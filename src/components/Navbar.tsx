@@ -131,6 +131,8 @@ import {
   SheetTrigger,
 } from "@/components/ui/sheet";
 import { usePathname } from "next/navigation";
+import { ThemeToggle } from "@/components/ThemeToggle";
+import { SearchDialog } from "@/components/SearchDialog";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -167,12 +169,25 @@ const Navbar = () => {
           </Link>
         </div>
         <div className="flex items-center space-x-4">
-          <Button className="text-gray-700 hover:text-black bg-white hover:bg-white/80 ">
-            Sign in
-          </Button>
-          <Button className="bg-[#9CE630] text-black hover:bg-[#8BD520] hidden lg:block">
-            Sign up
-          </Button>
+          <div className="hidden md:block">
+            <SearchDialog />
+          </div>
+          <ThemeToggle />
+          <Link href="/dashboard">
+            <Button variant="ghost" className="text-zinc-400 hover:text-white">
+              Dashboard
+            </Button>
+          </Link>
+          <Link href="/login">
+            <Button className="text-gray-700 hover:text-black bg-white hover:bg-white/80 dark:bg-zinc-800 dark:text-white dark:hover:bg-zinc-700">
+              Sign in
+            </Button>
+          </Link>
+          <Link href="/signup" className="hidden lg:block">
+            <Button className="bg-[#9CE630] text-black hover:bg-[#8BD520]">
+              Sign up
+            </Button>
+          </Link>
           <Sheet open={isOpen} onOpenChange={setIsOpen}>
             <SheetTrigger asChild className="lg:hidden">
               <CgMenuRight className="h-6 w-6 text-white" />
@@ -223,12 +238,25 @@ const Navbar = () => {
                 >
                   Questions
                 </Link>
-                <Button
-                  className="bg-[#9CE630] text-black hover:bg-[#8BD520] w-full mt-4"
+                <Link
+                  className={linkClasses("/dashboard")}
+                  href="/dashboard"
                   onClick={closeSheet}
                 >
-                  Sign up
-                </Button>
+                  Dashboard
+                </Link>
+                <Link href="/signup" className="w-full">
+                  <Button
+                    className="bg-[#9CE630] text-black hover:bg-[#8BD520] w-full mt-4"
+                    onClick={closeSheet}
+                  >
+                    Sign up
+                  </Button>
+                </Link>
+                <div className="flex justify-center mt-4 space-x-4">
+                  <SearchDialog />
+                  <ThemeToggle />
+                </div>
               </nav>
             </SheetContent>
           </Sheet>

@@ -12,6 +12,7 @@ import {
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Textarea } from "@/components/ui/textarea";
 import { MessageSquare, ThumbsUp, PenSquare } from "lucide-react";
+import Link from "next/link";
 
 export default function QuestionPage() {
   const [questions, setQuestions] = useState([
@@ -40,11 +41,27 @@ export default function QuestionPage() {
   ]);
 
   const [newQuestion, setNewQuestion] = useState({ title: "", content: "" });
+  const [showQuestionForm, setShowQuestionForm] = useState(false);
 
-  const handleNewQuestion = (e: any) => {
+  const handleNewQuestion = (e: React.FormEvent) => {
     e.preventDefault();
-    console.log("New question:", newQuestion);
+    if (!newQuestion.title.trim() || !newQuestion.content.trim()) return;
+
+    // Add the new question to the list
+    const newQuestionObj = {
+      id: questions.length + 1,
+      title: newQuestion.title,
+      content: newQuestion.content,
+      author: "Current User", // In a real app, this would be the logged-in user
+      avatar: "/placeholder.svg?height=50&width=50",
+      date: new Date().toISOString().split("T")[0],
+      votes: 0,
+      answers: 0,
+    };
+
+    setQuestions([newQuestionObj, ...questions]);
     setNewQuestion({ title: "", content: "" });
+    setShowQuestionForm(false);
   };
 
   return (
@@ -56,52 +73,56 @@ export default function QuestionPage() {
           </h1>
 
           <Button
-            type="submit"
+            onClick={() => setShowQuestionForm(!showQuestionForm)}
             className="bg-[#9CE630] text-black hover:bg-[#8BD520]"
           >
             <PenSquare className="mr-2 h-4 w-4" />
-            Post Question
+            {showQuestionForm ? "Cancel" : "Post Question"}
           </Button>
         </div>
 
-        {/* <Card className="mb-8 bg-zinc-900 border-zinc-800">
-          <CardHeader>
-            <CardTitle className="text-white">Ask a Question</CardTitle>
-          </CardHeader>
-          <CardContent>
-            <form onSubmit={handleNewQuestion}>
-              <input
-                className="w-full mb-4 p-2 bg-zinc-800 border border-zinc-700 rounded text-white"
-                placeholder="Question Title"
-                value={newQuestion.title}
-                onChange={(e) =>
-                  setNewQuestion({ ...newQuestion, title: e.target.value })
-                }
-              />
-              <Textarea
-                className="w-full mb-4 p-2 bg-zinc-800 border border-zinc-700 rounded text-white"
-                placeholder="Question Details"
-                value={newQuestion.content}
-                onChange={(e) =>
-                  setNewQuestion({ ...newQuestion, content: e.target.value })
-                }
-              />
-              <Button
-                type="submit"
-                className="bg-[#9CE630] text-black hover:bg-[#8BD520]"
-              >
-                <PenSquare className="mr-2 h-4 w-4" />
-                Post Question
-              </Button>
-            </form>
-          </CardContent>
-        </Card> */}
+        {showQuestionForm && (
+          <Card className="mb-8 bg-zinc-900 border-zinc-800">
+            <CardHeader>
+              <CardTitle className="text-white">Ask a Question</CardTitle>
+            </CardHeader>
+            <CardContent>
+              <form onSubmit={handleNewQuestion}>
+                <input
+                  className="w-full mb-4 p-2 bg-zinc-800 border border-zinc-700 rounded text-white"
+                  placeholder="Question Title"
+                  value={newQuestion.title}
+                  onChange={(e) =>
+                    setNewQuestion({ ...newQuestion, title: e.target.value })
+                  }
+                />
+                <Textarea
+                  className="w-full mb-4 p-2 bg-zinc-800 border border-zinc-700 rounded text-white min-h-32"
+                  placeholder="Question Details"
+                  value={newQuestion.content}
+                  onChange={(e) =>
+                    setNewQuestion({ ...newQuestion, content: e.target.value })
+                  }
+                />
+                <Button
+                  type="submit"
+                  className="bg-[#9CE630] text-black hover:bg-[#8BD520]"
+                  disabled={!newQuestion.title.trim() || !newQuestion.content.trim()}
+                >
+                  Submit Question
+                </Button>
+              </form>
+            </CardContent>
+          </Card>
+        )}
 
         <div className="space-y-6">
           {questions.map((question) => (
             <Card key={question.id} className="bg-zinc-900 border-zinc-800">
               <CardHeader>
-                <CardTitle className="text-white">{question.title}</CardTitle>
+                <Link href={`/question/${question.id}`}>
+                  <CardTitle className="text-white hover:text-[#9CE630] transition-colors">{question.title}</CardTitle>
+                </Link>
               </CardHeader>
               <CardContent>
                 <p className="text-zinc-400">{question.content}</p>
@@ -139,9 +160,11 @@ export default function QuestionPage() {
                     <MessageSquare className="mr-2 h-4 w-4" />
                     {question.answers}
                   </Button>
-                  <Button className="bg-[#9CE630] text-black hover:bg-[#8BD520]">
-                    Answer
-                  </Button>
+                  <Link href={`/question/${question.id}`}>
+                    <Button className="bg-[#9CE630] text-black hover:bg-[#8BD520]">
+                      Answer
+                    </Button>
+                  </Link>
                 </div>
               </CardFooter>
             </Card>
