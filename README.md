@@ -57,8 +57,17 @@ DevUnity is an open-source platform built with Next.js and TypeScript that enabl
 
 5. Open the application in your browser at [http://localhost:3000](http://localhost:3000).
 
+## Handling Hydration Issues
 
-Contributing
+This application uses client-side hydration with Next.js. To prevent hydration mismatches:
+
+- Components that depend on client-side state (like theme) use a mounted check
+- The ThemeProvider component delays rendering until after hydration
+- Browser extensions like Grammarly may cause hydration warnings that are safely suppressed
+
+If you encounter hydration issues, check the component's client-side initialization and ensure it matches the server-rendered HTML.
+
+## Contributing
 ------------
 
 We welcome contributions from the community! If you want to contribute to DevUnity, follow these steps:
@@ -81,13 +90,17 @@ Please ensure your code follows the project’s coding style and includes tests 
 Roadmap
 -------
 
-*   Add user authentication (login, signup, etc.)
+*   Implement backend API integration for persistent data storage
 
-*   Integrate a database for storing posts, user data, and other content.
+*   Add real-time chat or messaging features for collaboration
 
-*   Add real-time chat or messaging features for collaboration.
+*   Implement social authentication (GitHub, Google, etc.)
 
-*   Add additional UI components for a better user experience.
+*   Add notification system for user interactions
+
+*   Create a code snippet sharing feature with syntax highlighting
+
+*   Implement a reputation and badge system for community contributions
 
 
 License
@@ -98,9 +111,12 @@ This project is licensed under the MIT License - see the LICENSE file for detail
 Acknowledgements
 ----------------
 
-*   [ShadCN UI](https://github.com/shadcn)
-
-*   [Accertinty UI](https://github.com/accertinty)
+*   [ShadCN UI](https://ui.shadcn.com/) - Beautiful, accessible components
+*   [Radix UI](https://www.radix-ui.com/) - Unstyled, accessible UI primitives
+*   [Tailwind CSS](https://tailwindcss.com/) - Utility-first CSS framework
+*   [Next.js](https://nextjs.org/) - React framework for production
+*   [Lucide Icons](https://lucide.dev/) - Beautiful & consistent icons
+*   [next-themes](https://github.com/pacocoursey/next-themes) - Theme management for Next.js
 
 
 Feel free to open issues for suggestions, improvements, or bugs! Let's make DevUnity a great space for developers to collaborate and grow together!
