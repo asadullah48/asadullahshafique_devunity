@@ -28,7 +28,13 @@ export function SearchDialog() {
   const [query, setQuery] = useState("");
   const [results, setResults] = useState<SearchResult[]>([]);
   const [isSearching, setIsSearching] = useState(false);
+  const [mounted, setMounted] = useState(false);
   const router = useRouter();
+
+  // Prevent hydration mismatch
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   // Mock search results
   const mockResults: SearchResult[] = [
@@ -102,8 +108,11 @@ export function SearchDialog() {
       }
     };
 
-    window.addEventListener("keydown", handleKeyDown);
-    return () => window.removeEventListener("keydown", handleKeyDown);
+    // Only add event listener on client side
+    if (typeof window !== 'undefined') {
+      window.addEventListener("keydown", handleKeyDown);
+      return () => window.removeEventListener("keydown", handleKeyDown);
+    }
   }, []);
 
   // Handle result click
@@ -126,6 +135,19 @@ export function SearchDialog() {
         return <Search className="h-4 w-4 text-[#9CE630]" />;
     }
   };
+
+  // Don't render the full component until mounted to prevent hydration issues
+  if (!mounted) {
+    return (
+      <Button
+        variant="outline"
+        className="relative h-9 w-9 p-0 xl:h-10 xl:w-60 xl:justify-start xl:px-3 xl:py-2 dark:border-zinc-700 dark:text-white"
+      >
+        <Search className="h-4 w-4 xl:mr-2" />
+        <span className="hidden xl:inline-flex">Search...</span>
+      </Button>
+    );
+  }
 
   return (
     <Dialog open={open} onOpenChange={setOpen}>
