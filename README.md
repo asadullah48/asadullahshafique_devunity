@@ -8,21 +8,28 @@ DevUnity is an open-source platform built with Next.js and TypeScript that enabl
   </kbd>
 </p>
 
-## Features!
-
+## Features
 
 - **Community-driven Discussions**: A space for developers to ask questions, share knowledge, and help each other grow.
 - **Collaborate on Projects**: Work together with other developers on open-source projects or new ideas.
 - **Write Blogs**: Share your technical knowledge and experiences through blog posts.
-- **Simple UI**: Designed with [ShadCN UI](https://github.com/shadcn) and [Accertinty UI](https://github.com/accertinty) for a clean and intuitive user experience.
-- **Future Enhancements**: Plans for adding user authentication and database integration to store posts and user data.
+- **User Authentication**: Sign up and login functionality with form validation.
+- **Dark/Light Theme**: Toggle between dark and light themes based on your preference.
+- **User Dashboard**: Track your contributions, questions, answers, and blog posts.
+- **Global Search**: Search across questions, blogs, and users with keyboard shortcut (Ctrl+K/Cmd+K).
+- **Enhanced Question System**: Post questions, provide answers, and vote on content.
+- **Responsive Design**: Optimized for both desktop and mobile devices.
+- **Simple UI**: Designed with [ShadCN UI](https://github.com/shadcn) components for a clean and intuitive user experience.
 
 ## Tech Stack
 
-- **Next.js**: A React framework for building server-side rendered (SSR) web applications.
+- **Next.js 15**: A React framework for building server-side rendered (SSR) web applications.
 - **TypeScript**: Type-safe JavaScript for building scalable applications.
 - **ShadCN UI**: A UI component library for building modern, accessible components.
-- **Accertinty UI**: Another UI component library used for creating customizable interfaces.
+- **Radix UI**: Primitives for building high-quality, accessible design systems.
+- **Tailwind CSS**: Utility-first CSS framework for rapid UI development.
+- **next-themes**: Feature-complete theming solution for Next.js applications.
+- **Lucide Icons**: Beautiful & consistent icons for web applications.
 
 ## Setup
 
@@ -57,17 +64,17 @@ Contributing
 We welcome contributions from the community! If you want to contribute to DevUnity, follow these steps:
 
 1.  Fork the repository.
-    
+
 2.  Create a new branch for your feature or bug fix (git checkout -b feature/your-feature).
-    
+
 3.  Make your changes.
-    
+
 4.  Commit your changes (git commit -am 'Add new feature').
-    
+
 5.  Push to your branch (git push origin feature/your-feature).
-    
+
 6.  Open a pull request to the main repository.
-    
+
 
 Please ensure your code follows the project’s coding style and includes tests where applicable.
 
@@ -75,13 +82,13 @@ Roadmap
 -------
 
 *   Add user authentication (login, signup, etc.)
-    
+
 *   Integrate a database for storing posts, user data, and other content.
-    
+
 *   Add real-time chat or messaging features for collaboration.
-    
+
 *   Add additional UI components for a better user experience.
-    
+
 
 License
 -------
@@ -92,8 +99,8 @@ Acknowledgements
 ----------------
 
 *   [ShadCN UI](https://github.com/shadcn)
-    
+
 *   [Accertinty UI](https://github.com/accertinty)
-    
+
 
 Feel free to open issues for suggestions, improvements, or bugs! Let's make DevUnity a great space for developers to collaborate and grow together!
