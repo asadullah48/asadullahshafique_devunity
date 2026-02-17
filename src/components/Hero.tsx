@@ -1,58 +1,173 @@
-import React from "react";
+"use client";
+
+import React, { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
-import { Github } from "lucide-react";
-import Image from "next/image";
+import { Github, ArrowDown, Sparkles, Code2, Brain } from "lucide-react";
 import Link from "next/link";
+import { motion } from "framer-motion";
 
 const Hero = () => {
-  return (
-    <section className="relative overflow-hidden">
-      <div className="absolute inset-0 z-0">
-        <Image
-          src="/background-pattern.png"
-          alt="Background Pattern"
-          fill
-          style={{ objectFit: "cover" }}
-          objectFit="cover"
-          quality={100}
-        />
-        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-zinc-950/70 to-zinc-950" />
-      </div>
+    const [mounted, setMounted] = useState(false);
 
-      <div className="container relative z-10 mx-auto px-4 py-24 md:py-32 mt-16 text-center">
-        <div className="animate-fade-in-up">
-          <h1 className="mb-6 text-4xl font-bold text-white md:text-6xl lg:text-7xl">
-            Developer <span className="text-[#9CE630]">Community</span>,
-            <br />
-            finally{" "}
-            <span className="relative inline-block">
-              unified
-              <span className="absolute bottom-0 left-0 w-full h-2 bg-[#9CE630] transform scale-x-0 transition-transform duration-300 origin-left group-hover:scale-x-100"></span>
-            </span>
-            .
-          </h1>
-          <p className="mb-8 text-lg text-zinc-400 md:text-xl max-w-3xl mx-auto">
-            Join a thriving community of developers. Ask questions, share
-            knowledge, and build connections in a collaborative environment.
-          </p>
-          <div className="flex flex-col items-center justify-center space-y-4 md:flex-row md:space-x-4 md:space-y-0">
-            <Button className="relative h-12 z-10 px-8 bg-[linear-gradient(110deg,#9CE630,45%,#8BD520,55%,#9CE630)] bg-[length:200%_100%] animate-shimmer text-black flex items-center justify-center rounded-md transition-colors hover:bg-[#8BD520] border-none">
-              <span className="relative z-10">Join Community</span>
-              <span className="ml-2 rounded-full bg-black/10 px-2 py-0.5 text-sm relative z-10">
-                Free
-              </span>
-            </Button>
-            <Link href={"https://github.com/asadullah48/asadullahshafique_devunity.git"}>
-              <Button className="h-12 z-10 px-8 border-2 border-[#9CE630] bg-transparent text-[#9CE630] hover:bg-[#9CE630] hover:text-black flex flex-row items-center justify-center">
-                <Github className="mr-2 h-5 w-5" />
-                Star on GitHub
-              </Button>
-            </Link>
-          </div>
-        </div>
-      </div>
-    </section>
-  );
+    useEffect(() => {
+          setMounted(true);
+    }, []);
+
+    if (!mounted) return null;
+
+    return (
+          <section id="home" className="relative min-h-screen overflow-hidden flex items-center justify-center">
+            {/* Animated gradient background */}
+                <div className="absolute inset-0 bg-gradient-to-br from-zinc-950 via-zinc-900 to-zinc-950" />
+                <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-[#9CE630]/10 via-transparent to-transparent" />
+          
+            {/* Floating particles */}
+                <div className="absolute inset-0 overflow-hidden">
+                  {[...Array(20)].map((_, i) => (
+                      <motion.div
+                                    key={i}
+                                    className="absolute w-1 h-1 bg-[#9CE630]/30 rounded-full"
+                                    initial={{
+                                                    x: Math.random() * (typeof window !== "undefined" ? window.innerWidth : 1000),
+                                                    y: Math.random() * (typeof window !== "undefined" ? window.innerHeight : 800),
+                                    }}
+                                    animate={{
+                                                    y: [null, Math.random() * -200 - 100],
+                                                    opacity: [0, 1, 0],
+                                    }}
+                                    transition={{
+                                                    duration: Math.random() * 5 + 5,
+                                                    repeat: Infinity,
+                                                    delay: Math.random() * 5,
+                                    }}
+                                  />
+                    ))}
+                </div>div>
+          
+                <div className="container relative z-10 mx-auto px-4 py-24 md:py-32 text-center">
+                        <motion.div
+                                    initial={{ opacity: 0, y: 30 }}
+                                    animate={{ opacity: 1, y: 0 }}
+                                    transition={{ duration: 0.8, ease: "easeOut" }}
+                                  >
+                          {/* Status badge */}
+                                  <motion.div
+                                                initial={{ opacity: 0, scale: 0.9 }}
+                                                animate={{ opacity: 1, scale: 1 }}
+                                                transition={{ delay: 0.2, duration: 0.5 }}
+                                                className="inline-flex items-center gap-2 px-4 py-2 mb-8 rounded-full border border-[#9CE630]/30 bg-[#9CE630]/5 text-[#9CE630] text-sm"
+                                              >
+                                              <Sparkles className="w-4 h-4" />
+                                              <span>Open to Collaborate on AI Projects</span>span>
+                                              <span className="relative flex h-2 w-2">
+                                                            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#9CE630] opacity-75" />
+                                                            <span className="relative inline-flex rounded-full h-2 w-2 bg-[#9CE630]" />
+                                              </span>span>
+                                  </motion.div>motion.div>
+                        
+                          {/* Main heading */}
+                                  <h1 className="mb-6 text-4xl font-bold text-white md:text-6xl lg:text-7xl tracking-tight">
+                                              Hi, I&apos;m{" "}
+                                              <span className="relative">
+                                                            <span className="text-[#9CE630]">Asadullah</span>span>
+                                                            <motion.span
+                                                                              className="absolute -bottom-2 left-0 w-full h-1 bg-gradient-to-r from-[#9CE630] to-[#9CE630]/0 rounded-full"
+                                                                              initial={{ scaleX: 0 }}
+                                                                              animate={{ scaleX: 1 }}
+                                                                              transition={{ delay: 1, duration: 0.8 }}
+                                                                              style={{ transformOrigin: "left" }}
+                                                                            />
+                                              </span>span>
+                                              <br />
+                                              <span className="text-zinc-400 text-3xl md:text-5xl lg:text-6xl">
+                                                            Agentic AI Developer
+                                              </span>span>
+                                  </h1>h1>
+                        
+                          {/* Description */}
+                                  <p className="mb-10 text-lg text-zinc-400 md:text-xl max-w-2xl mx-auto leading-relaxed">
+                                              Building intelligent systems with{" "}
+                                              <span className="text-white font-medium">Next.js</span>span>,{" "}
+                                              <span className="text-white font-medium">TypeScript</span>span>,{" "}
+                                              <span className="text-white font-medium">Python</span>span> &{" "}
+                                              <span className="text-white font-medium">FastAPI</span>span>.
+                                              Passionate about Generative AI, spec-first development, and pushing boundaries.
+                                  </p>p>
+                        
+                          {/* Tech icons row */}
+                                  <div className="flex items-center justify-center gap-6 mb-10">
+                                    {[
+                                    { icon: Code2, label: "Full-Stack" },
+                                    { icon: Brain, label: "AI/ML" },
+                                    { icon: Sparkles, label: "Gen AI" },
+                                                ].map((item, i) => (
+                                                                <motion.div
+                                                                                  key={item.label}
+                                                                                  initial={{ opacity: 0, y: 20 }}
+                                                                                  animate={{ opacity: 1, y: 0 }}
+                                                                                  transition={{ delay: 0.5 + i * 0.1 }}
+                                                                                  className="flex items-center gap-2 text-zinc-500 text-sm"
+                                                                                >
+                                                                                <item.icon className="w-4 h-4 text-[#9CE630]" />
+                                                                                <span>{item.label}</span>span>
+                                                                </motion.div>motion.div>
+                                                              ))}
+                                  </div>div>
+                        
+                          {/* CTA Buttons */}
+                                  <div className="flex flex-col items-center justify-center space-y-4 md:flex-row md:space-x-4 md:space-y-0">
+                                              <Link href="#projects">
+                                                            <Button className="h-12 px-8 bg-[#9CE630] text-black font-semibold hover:bg-[#8BD520] transition-all duration-300 hover:shadow-lg hover:shadow-[#9CE630]/20">
+                                                                            View My Work
+                                                                            <ArrowDown className="ml-2 h-4 w-4 animate-bounce" />
+                                                            </Button>Button>
+                                              </Link>Link>
+                                              <Link
+                                                              href="https://github.com/asadullah48"
+                                                              target="_blank"
+                                                              rel="noopener noreferrer"
+                                                            >
+                                                            <Button
+                                                                              variant="outline"
+                                                                              className="h-12 px-8 border-zinc-700 text-zinc-300 hover:border-[#9CE630] hover:text-[#9CE630] transition-all duration-300"
+                                                                            >
+                                                                            <Github className="mr-2 h-5 w-5" />
+                                                                            GitHub Profile
+                                                            </Button>Button>
+                                              </Link>Link>
+                                  </div>div>
+                        
+                          {/* Stats */}
+                                  <motion.div
+                                                initial={{ opacity: 0, y: 20 }}
+                                                animate={{ opacity: 1, y: 0 }}
+                                                transition={{ delay: 0.8, duration: 0.5 }}
+                                                className="flex items-center justify-center gap-8 mt-16 pt-8 border-t border-zinc-800/50"
+                                              >
+                                    {[
+                                                { value: "10+", label: "Projects" },
+                                                { value: "5+", label: "Hackathons" },
+                                                { value: "Full-Stack", label: "AI Developer" },
+                                                            ].map((stat) => (
+                                                                            <div key={stat.label} className="text-center">
+                                                                                            <div className="text-2xl font-bold text-white">{stat.value}</div>div>
+                                                                                            <div className="text-xs text-zinc-500 mt-1">{stat.label}</div>div>
+                                                                            </div>div>
+                                                                          ))}
+                                  </motion.div>motion.div>
+                        </motion.div>motion.div>
+                </div>div>
+          
+            {/* Scroll indicator */}
+                <motion.div
+                          className="absolute bottom-8 left-1/2 -translate-x-1/2"
+                          animate={{ y: [0, 10, 0] }}
+                          transition={{ duration: 2, repeat: Infinity }}
+                        >
+                        <ArrowDown className="w-5 h-5 text-zinc-600" />
+                </motion.div>motion.div>
+          </section>section>
+        );
 };
 
-export default Hero;
+export default Hero;</section>
