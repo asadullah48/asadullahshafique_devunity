@@ -29,7 +29,7 @@ Supports:
   - NoTeachLLM privacy controls
 """
 
-from fastapi import FastAPI, HTTPException, BackgroundTasks, Request, UploadFile, File, Form
+from fastapi import FastAPI, HTTPException, BackgroundTasks, Request, UploadFile, File, Form, Depends
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import JSONResponse, HTMLResponse
 from fastapi.staticfiles import StaticFiles
@@ -44,10 +44,26 @@ import base64
 import json
 import shutil
 from pathlib import Path
+from sqlalchemy.orm import Session
+from slowapi import Limiter, _rate_limit_exceeded_handler
+from slowapi.util import get_remote_address
+from slowapi.errors import RateLimitExceeded
+from slowapi.middleware import SlowAPIMiddleware
 
 # Local modules
 from agent import run_agent, run_error_solver_agent, run_learning_agent, run_teaching_agent
 from mcp_server import router as mcp_router
+from database import engine, get_db, init_db, Base
+from models import ContactMessage, Video, LearningProgress, TaughtContent, BackendlessProject, NoTeachLLM
+from db_helpers import (
+    create_contact_message, get_contact_messages, mark_message_read,
+    create_video, get_videos, get_video, delete_video, increment_video_views,
+    create_learning_progress, get_learning_progress, update_learning_progress,
+    create_taught_content, get_taught_content, approve_taught_content,
+    create_backendless_project, get_backendless_projects, get_backendless_project,
+    update_backendless_project, delete_backendless_project,
+    create_opt_out, get_opt_out, revoke_opt_out,
+)
 
 # ─── Logging Configuration ────────────────────────────────────────────────────
 logging.basicConfig(
@@ -70,15 +86,28 @@ This API powers the [asadullah.dev](https://asadullah.dev) portfolio website.
 - **GitHub Stats**: Real-time GitHub profile statistics
 - **AI Agent**: LangGraph-powered portfolio assistant
 - **MCP Server**: Model Context Protocol integration for AI tools
+- **Video Upload**: Upload and manage educational videos
+- **Learning Platform**: Learn through LLM and teach to LLM
+- **Privacy Controls**: NoTeachLLM opt-out system
+- **Backendless Projects**: Showcase frontend-only projects
 
 ### Authentication
 Currently open for demo purposes. Add API key authentication before production use.
+
+### Database
+Uses SQLite for development, PostgreSQL for production.
     """,
-    version="2.1.0",
+    version="2.3.0",
     docs_url="/docs",
     redoc_url="/redoc",
     openapi_url="/openapi.json",
 )
+
+# ─── Rate Limiting Setup ──────────────────────────────────────────────────────
+limiter = Limiter(key_func=get_remote_address)
+app.state.limiter = limiter
+app.add_middleware(SlowAPIMiddleware)
+app.add_exception_handler(RateLimitExceeded, _rate_limit_exceeded_handler)
 
 # CORS — allow your frontend origins
 allowed_origins_str = os.getenv("ALLOWED_ORIGINS", "")
@@ -106,6 +135,13 @@ app.add_middleware(
 
 # Mount MCP server router
 app.include_router(mcp_router)
+
+# ─── Database Initialization ──────────────────────────────────────────────────
+@app.on_event("startup")
+async def startup_db():
+    """Initialize database on startup."""
+    Base.metadata.create_all(bind=engine)
+    logger.info("✅ Database initialized")
 
 # ─── Environment Variables ────────────────────────────────────────────────────
 DISCORD_WEBHOOK_URL = os.getenv("DISCORD_WEBHOOK_URL", "")
@@ -167,21 +203,14 @@ class ErrorResponse(BaseModel):
     status_code: int = 500
 
 
-# ─── In-Memory Storage (replace with database in production) ────────────────
-contact_messages: list[dict] = []
-
-# Video storage
-uploaded_videos: list[dict] = []
-
-# Learning data storage
-learning_progress: list[dict] = []
-taught_content: list[dict] = []
-
-# NoTeachLLM opt-out registry
-noteachllm_registry: list[dict] = []
-
-# Backendless projects showcase
-backendless_projects: list[dict] = []
+# ─── In-Memory Storage (DEPRECATED - Using Database Now) ─────────────────────
+# These are kept for backwards compatibility but new code should use database
+# contact_messages: list[dict] = []  # → ContactMessage model
+# uploaded_videos: list[dict] = []   # → Video model
+# learning_progress: list[dict] = [] # → LearningProgress model
+# taught_content: list[dict] = []    # → TaughtContent model
+# noteachllm_registry: list[dict] = [] # → NoTeachLLM model
+# backendless_projects: list[dict] = [] # → BackendlessProject model
 
 # Static files directory for backendless projects
 STATIC_DIR = Path("static_projects")
@@ -344,26 +373,35 @@ async def health():
 
 # ─── Contact ──────────────────────────────────────────────────────────────────
 @app.post("/api/contact", response_model=ContactResponse, tags=["Contact"])
-async def submit_contact(contact: ContactRequest, background_tasks: BackgroundTasks):
+@limiter.limit("5/minute")  # Rate limit: 5 submissions per minute
+async def submit_contact(
+    request: Request,
+    contact: ContactRequest,
+    background_tasks: BackgroundTasks,
+    db: Session = Depends(get_db),
+):
     """
     Receive a contact form submission.
 
     - **Validates** input via Pydantic
-    - **Stores** the message in memory
+    - **Stores** the message in database
     - **Sends** Discord notification in background (if webhook configured)
+    - **Rate Limited**: 5 submissions per minute per IP
 
     Returns success message to the user.
     """
-    message_entry = {
-        "id": len(contact_messages) + 1,
-        "name": contact.name,
-        "email": contact.email,
-        "subject": contact.subject,
-        "message": contact.message,
-        "timestamp": datetime.utcnow().isoformat(),
-        "read": False,
-    }
-    contact_messages.append(message_entry)
+    # Save to database
+    db_message = ContactMessage(
+        name=contact.name,
+        email=contact.email,
+        subject=contact.subject,
+        message=contact.message,
+    )
+    db.add(db_message)
+    db.commit()
+    db.refresh(db_message)
+    
+    # Send Discord notification
     background_tasks.add_task(send_discord_notification, contact)
     logger.info(f"📬 Contact from {contact.name} <{contact.email}>: {contact.subject}")
 
@@ -374,14 +412,29 @@ async def submit_contact(contact: ContactRequest, background_tasks: BackgroundTa
 
 
 @app.get("/api/contact/messages", tags=["Contact"])
-async def get_messages():
+async def get_messages(db: Session = Depends(get_db)):
     """
-    Get all contact messages.
+    Get all contact messages from database.
 
     ⚠️ **Security Warning**: Add authentication before exposing in production.
-    Currently for development/demo purposes only.
     """
-    return {"messages": contact_messages, "total": len(contact_messages)}
+    messages = db.query(ContactMessage).order_by(ContactMessage.timestamp.desc()).all()
+    return {
+        "messages": [
+            {
+                "id": m.id,
+                "name": m.name,
+                "email": m.email,
+                "subject": m.subject,
+                "message": m.message,
+                "timestamp": m.timestamp.isoformat(),
+                "read": m.read,
+                "responded": m.responded,
+            }
+            for m in messages
+        ],
+        "total": len(messages),
+    }
 
 
 # ─── Blog ─────────────────────────────────────────────────────────────────────
@@ -783,47 +836,61 @@ async def get_taught_content(topic: Optional[str] = None):
 
 # ─── Video Upload ─────────────────────────────────────────────────────────────
 @app.post("/api/video/upload", response_model=VideoUploadResponse, tags=["Video"])
+@limiter.limit("10/minute")  # Rate limit: 10 uploads per minute
 async def upload_video(
+    request: Request,
     title: str = Form(...),
     description: str = Form(...),
     tags: str = Form(""),
     uploader: str = Form("Anonymous"),
     file: Optional[UploadFile] = File(None),
+    db: Session = Depends(get_db),
 ):
     """
     Upload a video to the platform.
-    
+
     Accepts video files and metadata. In production, this would store
     the file in cloud storage (S3, etc.) and save metadata to database.
-    For demo purposes, stores metadata in memory.
+    
+    Rate Limited: 10 uploads per minute per IP
     """
     try:
         # Parse tags
         tag_list = [tag.strip() for tag in tags.split(",") if tag.strip()]
-        
-        # In production, save the file to storage
-        # For now, just store metadata
+
+        # Save file (in production, upload to S3/cloud storage)
         file_path = f"/uploads/{file.filename}" if file else "/uploads/placeholder.mp4"
-        
-        video_entry = {
-            "id": len(uploaded_videos) + 1,
-            "title": title,
-            "description": description,
-            "uploader": uploader,
-            "upload_date": datetime.utcnow().isoformat(),
-            "file_path": file_path,
-            "thumbnail": None,
-            "duration": None,
-            "tags": tag_list,
-        }
-        uploaded_videos.append(video_entry)
-        
+        if file:
+            file_path = STATIC_DIR / file.filename
+            with open(file_path, "wb") as buffer:
+                shutil.copyfileobj(file.file, buffer)
+
+        # Save to database
+        db_video = create_video(
+            db=db,
+            title=title,
+            description=description,
+            file_path=str(file_path),
+            uploader=uploader,
+            tags=tag_list,
+        )
+
         logger.info(f"📹 Video uploaded: {title} by {uploader}")
-        
+
         return VideoUploadResponse(
             success=True,
             message="Video uploaded successfully!",
-            video=VideoUpload(**video_entry),
+            video=VideoUpload(
+                id=db_video.id,
+                title=db_video.title,
+                description=db_video.description,
+                uploader=db_video.uploader,
+                upload_date=db_video.upload_date.isoformat(),
+                file_path=db_video.file_path,
+                thumbnail=db_video.thumbnail,
+                duration=db_video.duration,
+                tags=db_video.tags,
+            ),
         )
     except Exception as e:
         logger.error(f"Video upload error: {e}")
@@ -831,31 +898,54 @@ async def upload_video(
 
 
 @app.get("/api/video/list", response_model=List[VideoUpload], tags=["Video"])
-async def list_videos(tag: Optional[str] = None):
+async def list_videos(tag: Optional[str] = None, db: Session = Depends(get_db)):
     """Get all uploaded videos, optionally filtered by tag."""
-    videos = uploaded_videos
-    if tag:
-        videos = [v for v in videos if tag.lower() in [t.lower() for t in v["tags"]]]
-    return videos
+    videos = get_videos(db, tag=tag)
+    return [
+        VideoUpload(
+            id=v.id,
+            title=v.title,
+            description=v.description,
+            uploader=v.uploader,
+            upload_date=v.upload_date.isoformat(),
+            file_path=v.file_path,
+            thumbnail=v.thumbnail,
+            duration=v.duration,
+            tags=v.tags,
+        )
+        for v in videos
+    ]
 
 
 @app.get("/api/video/{video_id}", response_model=VideoUpload, tags=["Video"])
-async def get_video(video_id: int):
+async def get_video(video_id: int, db: Session = Depends(get_db)):
     """Get a specific video by ID."""
-    video = next((v for v in uploaded_videos if v["id"] == video_id), None)
+    video = get_video(db, video_id)
     if not video:
         raise HTTPException(status_code=404, detail="Video not found")
-    return video
+    
+    # Increment view count
+    increment_video_views(db, video_id)
+    
+    return VideoUpload(
+        id=video.id,
+        title=video.title,
+        description=video.description,
+        uploader=video.uploader,
+        upload_date=video.upload_date.isoformat(),
+        file_path=video.file_path,
+        thumbnail=video.thumbnail,
+        duration=video.duration,
+        tags=video.tags,
+    )
 
 
 @app.delete("/api/video/{video_id}", tags=["Video"])
-async def delete_video(video_id: int):
+async def delete_video_endpoint(video_id: int, db: Session = Depends(get_db)):
     """Delete a video by ID."""
-    global uploaded_videos
-    video = next((v for v in uploaded_videos if v["id"] == video_id), None)
-    if not video:
+    success = delete_video(db, video_id)
+    if not success:
         raise HTTPException(status_code=404, detail="Video not found")
-    uploaded_videos = [v for v in uploaded_videos if v["id"] != video_id]
     return {"success": True, "message": "Video deleted successfully"}
 
 
