@@ -1,0 +1,43 @@
+# Frontend .dockerignore
+# ======================
+
+# Dependencies
+node_modules
+npm-debug.log
+
+# Build outputs
+.next
+out
+
+# Development
+.git
+.gitignore
+*.md
+.env.local
+.env.development*
+
+# IDE
+.vscode
+.idea
+*.swp
+*.swo
+
+# Testing
+coverage
+.nyc_output
+
+# Docker
+Dockerfile*
+docker-compose*.yml
+.dockerignore
+
+# Kubernetes
+k8s/
+
+# Backend
+backend/
+
+# Misc
+.DS_Store
+Thumbs.db
+*.log

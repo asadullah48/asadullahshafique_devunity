@@ -1,0 +1,21 @@
+# Kubernetes Manifests for Asadullah.dev Portfolio
+# =================================================
+# Deploy to Kubernetes cluster with:
+#   kubectl apply -f k8s/namespace.yaml
+#   kubectl apply -f k8s/configmap.yaml
+#   kubectl apply -f k8s/secrets.yaml
+#   kubectl apply -f k8s/backend-deployment.yaml
+#   kubectl apply -f k8s/backend-service.yaml
+#   kubectl apply -f k8s/frontend-deployment.yaml
+#   kubectl apply -f k8s/frontend-service.yaml
+#   kubectl apply -f k8s/ingress.yaml
+
+---
+# Namespace
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: asadullah-dev
+  labels:
+    app: asadullah-dev
+    environment: production

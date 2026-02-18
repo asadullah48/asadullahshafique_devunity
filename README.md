@@ -38,6 +38,8 @@
 - 🧠 **AI Error Solver** — Intelligent coding error debugger
 - 📚 **Learn through LLM** — Personalized AI-generated lessons
 - 💡 **Teach to LLM** — Contribute knowledge to the AI system
+- 🔒 **NoTeachLLM** — Privacy controls to opt-out of AI training
+- 📦 **Backendless Projects** — Showcase frontend-only & static sites
 - 🐳 **Docker Ready** — Multi-stage builds for optimized containers
 - ☸️ **Kubernetes Ready** — Complete K8s manifests for production deployment
 - 🚀 **CI/CD** — GitHub Actions workflows for automated testing and deployment
@@ -375,6 +377,82 @@ curl http://localhost:8000/api/video/list
 curl "http://localhost:8000/api/video/list?tag=python"
 ```
 
+### 5. NoTeachLLM - Privacy Controls
+**Location:** `/privacy` or `/api/noteachllm/*`
+
+Opt-out of AI training and control your data privacy:
+- **Complete opt-out** from all AI features
+- **Granular control** (learning, teaching, analytics)
+- **Check status** of your opt-out
+- **Revoke opt-out** anytime
+
+**Scopes:**
+- `all`: Complete opt-out from all AI features
+- `learning`: Don't track learning progress
+- `teaching`: Don't use taught content for AI training
+- `analytics`: Disable analytics tracking
+
+**Example Usage:**
+```bash
+# Opt out
+curl -X POST http://localhost:8000/api/noteachllm \
+  -H "Content-Type: application/json" \
+  -d '{
+    "email": "user@example.com",
+    "scope": "all",
+    "reason": "Privacy concerns"
+  }'
+
+# Check status
+curl "http://localhost:8000/api/noteachllm/status?email=user@example.com"
+
+# Revoke opt-out
+curl -X DELETE http://localhost:8000/api/noteachllm/opt-abc123
+```
+
+### 6. Backendless Project Support
+**Location:** `/backendless` or `/api/backendless/*`
+
+Showcase frontend-only projects without backend requirements:
+- **Create project entries** for static sites
+- **Support multiple frameworks** (Next.js, React, Vue, Angular, Svelte)
+- **Upload static files** (ZIP deployment)
+- **Serve static content** directly from backend
+- **Filter by framework** for easy browsing
+
+**Perfect for:**
+- Portfolio websites
+- Landing pages
+- JAMstack applications
+- Frontend framework demos
+- Static site generators
+
+**Example Usage:**
+```bash
+# Create backendless project
+curl -X POST http://localhost:8000/api/backendless \
+  -H "Content-Type: application/json" \
+  -d '{
+    "name": "My Portfolio",
+    "description": "Personal portfolio built with Next.js",
+    "framework": "nextjs",
+    "github_url": "https://github.com/...",
+    "demo_url": "https://myportfolio.vercel.app",
+    "tech_stack": ["TypeScript", "Tailwind", "Framer Motion"],
+    "features": ["Dark mode", "Responsive", "SEO optimized"]
+  }'
+
+# List all projects
+curl http://localhost:8000/api/backendless
+
+# Filter by framework
+curl "http://localhost:8000/api/backendless?framework=nextjs"
+
+# Upload static files (ZIP)
+curl -X POST http://localhost:8000/api/backendless/1/upload \
+  -F "file=@dist.zip"
+```
+
 ---
 
 ## 🔧 Configuration
@@ -428,6 +506,15 @@ curl "http://localhost:8000/api/video/list?tag=python"
 | `/api/video/list` | GET | **NEW** List videos |
 | `/api/video/{video_id}` | GET | **NEW** Get video |
 | `/api/video/{video_id}` | DELETE | **NEW** Delete video |
+| `/api/noteachllm` | POST | **NEW** Opt-out of AI training |
+| `/api/noteachllm/status` | GET | **NEW** Check opt-out status |
+| `/api/noteachllm/{id}` | DELETE | **NEW** Revoke opt-out |
+| `/api/backendless` | GET | **NEW** List backendless projects |
+| `/api/backendless` | POST | **NEW** Create backendless project |
+| `/api/backendless/{id}` | GET | **NEW** Get project |
+| `/api/backendless/{id}` | PUT | **NEW** Update project |
+| `/api/backendless/{id}` | DELETE | **NEW** Delete project |
+| `/api/backendless/{id}/upload` | POST | **NEW** Upload static files |
 | `/mcp/tools` | GET | List MCP tools |
 | `/mcp/rpc` | POST | MCP JSON-RPC endpoint |
 | `/docs` | GET | Swagger UI documentation |

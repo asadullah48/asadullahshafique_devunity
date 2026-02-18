@@ -1,0 +1,21 @@
+# Service Monitor for Prometheus (optional)
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  name: portfolio-monitor
+  namespace: asadullah-dev
+  labels:
+    app: asadullah-dev
+    release: prometheus
+spec:
+  selector:
+    matchLabels:
+      app: asadullah-dev
+  endpoints:
+    - port: http
+      path: /metrics
+      interval: 30s
+      scrapeTimeout: 10s
+  namespaceSelector:
+    matchNames:
+      - asadullah-dev

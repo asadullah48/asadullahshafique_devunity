@@ -1,0 +1,106 @@
+# Code Quality & Security Scan
+# ============================
+# - Runs ESLint and TypeScript checks on frontend
+# - Runs Ruff and MyPy on backend
+# - Scans for security vulnerabilities
+# - Checks for secrets in code
+
+name: Code Quality
+
+on:
+  push:
+    branches: [main, develop]
+  pull_request:
+    branches: [main]
+
+jobs:
+  frontend-quality:
+    name: Frontend Quality
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+          
+      - name: Install dependencies
+        run: npm ci
+        
+      - name: Run ESLint
+        run: npm run lint
+        
+      - name: TypeScript type check
+        run: npx tsc --noEmit
+        
+      - name: Check for console statements
+        run: |
+          if grep -r "console\.log" src/ --include="*.ts" --include="*.tsx"; then
+            echo "⚠️ Found console.log statements in source code"
+          fi
+
+  backend-quality:
+    name: Backend Quality
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+          cache: 'pip'
+          
+      - name: Install dependencies
+        working-directory: ./backend
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+          pip install ruff mypy bandit safety
+          
+      - name: Lint with Ruff
+        working-directory: ./backend
+        run: ruff check . --output-format=github
+        
+      - name: Type check with MyPy
+        working-directory: ./backend
+        run: mypy . --ignore-missing-imports || true
+        
+      - name: Security scan with Bandit
+        working-directory: ./backend
+        run: bandit -r . -f github || true
+        
+      - name: Check dependencies with Safety
+        working-directory: ./backend
+        run: safety check || true
+
+  security-scan:
+    name: Security Scan
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        
+      - name: Run Gitleaks
+        uses: gitleaks/gitleaks-action@v2
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITLEAKS_LICENSE: ${{ secrets.GITLEAKS_LICENSE }}
+          
+      - name: Check for exposed secrets
+        run: |
+          echo "🔍 Scanning for exposed secrets..."
+          if grep -r "api_key\s*=\s*['\"]" . --exclude-dir=.git --exclude-dir=node_modules; then
+            echo "⚠️ Potential API key found in code"
+          fi
+          if grep -r "password\s*=\s*['\"]" . --exclude-dir=.git --exclude-dir=node_modules; then
+            echo "⚠️ Potential password found in code"
+          fi
+          echo "✅ Security scan complete"

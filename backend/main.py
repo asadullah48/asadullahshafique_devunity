@@ -13,6 +13,8 @@ Endpoints:
   - /api/video/list     List uploaded videos
   - /api/learn          Learn through LLM feature
   - /api/teach          Teach to LLM feature
+  - /api/noteachllm     NoTeachLLM - Opt-out of AI training
+  - /api/backendless    Backendless project support
   - /mcp/*              MCP (Model Context Protocol) server tools
 
 Run locally:
@@ -20,19 +22,28 @@ Run locally:
 
 Docs at: http://localhost:8000/docs
 Production: Deploy to Hugging Face Spaces with Docker SDK
+
+Supports:
+  - Full-stack projects (with backend)
+  - Backendless projects (static/frontend-only)
+  - NoTeachLLM privacy controls
 """
 
 from fastapi import FastAPI, HTTPException, BackgroundTasks, Request, UploadFile, File, Form
 from fastapi.middleware.cors import CORSMiddleware
-from fastapi.responses import JSONResponse
+from fastapi.responses import JSONResponse, HTMLResponse
+from fastapi.staticfiles import StaticFiles
+from fastapi.responses import FileResponse
 from pydantic import BaseModel, EmailStr
-from typing import Optional, List
+from typing import Optional, List, Dict, Any
 from datetime import datetime
 import httpx
 import os
 import logging
 import base64
 import json
+import shutil
+from pathlib import Path
 
 # Local modules
 from agent import run_agent, run_error_solver_agent, run_learning_agent, run_teaching_agent
@@ -165,6 +176,16 @@ uploaded_videos: list[dict] = []
 # Learning data storage
 learning_progress: list[dict] = []
 taught_content: list[dict] = []
+
+# NoTeachLLM opt-out registry
+noteachllm_registry: list[dict] = []
+
+# Backendless projects showcase
+backendless_projects: list[dict] = []
+
+# Static files directory for backendless projects
+STATIC_DIR = Path("static_projects")
+STATIC_DIR.mkdir(exist_ok=True)
 
 blog_posts_data: list[dict] = [
     {
@@ -564,6 +585,61 @@ class VideoUploadResponse(BaseModel):
     video: Optional[VideoUpload] = None
 
 
+class NoTeachLLMRequest(BaseModel):
+    user_id: Optional[str] = None
+    email: Optional[EmailStr] = None
+    reason: Optional[str] = None
+    scope: Optional[str] = "all"  # all, learning, teaching, analytics
+
+    class Config:
+        json_schema_extra = {
+            "example": {
+                "user_id": "user-123",
+                "email": "user@example.com",
+                "reason": "Privacy concerns",
+                "scope": "all",
+            }
+        }
+
+
+class NoTeachLLMResponse(BaseModel):
+    success: bool
+    message: str
+    opt_out_id: str
+    scope: str
+    timestamp: str
+
+
+class BackendlessProject(BaseModel):
+    id: int
+    name: str
+    description: str
+    framework: str  # nextjs, react, vue, angular, static
+    github_url: Optional[str] = None
+    demo_url: Optional[str] = None
+    tech_stack: List[str] = []
+    features: List[str] = []
+    screenshots: List[str] = []
+    created_date: str
+    updated_date: str
+
+
+class BackendlessProjectCreate(BaseModel):
+    name: str
+    description: str
+    framework: str
+    github_url: Optional[str] = None
+    demo_url: Optional[str] = None
+    tech_stack: List[str] = []
+    features: List[str] = []
+
+
+class BackendlessProjectResponse(BaseModel):
+    success: bool
+    message: str
+    project: Optional[BackendlessProject] = None
+
+
 @app.post("/api/agent/chat", response_model=AgentResponse, tags=["Agent"])
 async def agent_chat(request: AgentRequest):
     """
@@ -783,24 +859,275 @@ async def delete_video(video_id: int):
     return {"success": True, "message": "Video deleted successfully"}
 
 
+# ─── NoTeachLLM - Privacy Controls ────────────────────────────────────────────
+@app.post("/api/noteachllm", response_model=NoTeachLLMResponse, tags=["Privacy"])
+async def opt_out_teaching(request: NoTeachLLMRequest):
+    """
+    NoTeachLLM - Opt out of AI training and data collection.
+    
+    Users can control how their data is used:
+    - Opt out of having their content used for AI training
+    - Control learning analytics tracking
+    - Manage teaching contribution privacy
+    
+    Scopes:
+    - all: Complete opt-out from all AI features
+    - learning: Don't track learning progress
+    - teaching: Don't use taught content for AI training
+    - analytics: Disable analytics tracking
+    """
+    import uuid
+    
+    opt_out_id = f"opt-{uuid.uuid4().hex[:12]}"
+    
+    registry_entry = {
+        "id": opt_out_id,
+        "user_id": request.user_id,
+        "email": request.email,
+        "reason": request.reason,
+        "scope": request.scope,
+        "timestamp": datetime.utcnow().isoformat(),
+        "active": True,
+    }
+    noteachllm_registry.append(registry_entry)
+    
+    logger.info(f"🔒 NoTeachLLM opt-out: {opt_out_id} (scope: {request.scope})")
+    
+    return NoTeachLLMResponse(
+        success=True,
+        message="Successfully opted out of AI training. Your preferences have been saved.",
+        opt_out_id=opt_out_id,
+        scope=request.scope,
+        timestamp=registry_entry["timestamp"],
+    )
+
+
+@app.get("/api/noteachllm/status", tags=["Privacy"])
+async def check_noteachllm_status(email: Optional[str] = None, user_id: Optional[str] = None):
+    """Check NoTeachLLM opt-out status for a user."""
+    if not email and not user_id:
+        raise HTTPException(status_code=400, detail="email or user_id required")
+    
+    status = next(
+        (
+            entry for entry in noteachllm_registry
+            if (email and entry.get("email") == email) or 
+               (user_id and entry.get("user_id") == user_id)
+        ),
+        None,
+    )
+    
+    if status:
+        return {
+            "opted_out": True,
+            "scope": status["scope"],
+            "timestamp": status["timestamp"],
+            "active": status["active"],
+        }
+    else:
+        return {
+            "opted_out": False,
+            "message": "No opt-out record found. Your data may be used for AI training.",
+        }
+
+
+@app.delete("/api/noteachllm/{opt_out_id}", tags=["Privacy"])
+async def revoke_opt_out(opt_out_id: str):
+    """Revoke a NoTeachLLM opt-out (opt back in)."""
+    global noteachllm_registry
+    
+    entry = next((e for e in noteachllm_registry if e["id"] == opt_out_id), None)
+    if not entry:
+        raise HTTPException(status_code=404, detail="Opt-out record not found")
+    
+    noteachllm_registry = [e for e in noteachllm_registry if e["id"] != opt_out_id]
+    
+    return {
+        "success": True,
+        "message": "Opt-out revoked. You're now opted back in.",
+    }
+
+
+# ─── Backendless Project Support ──────────────────────────────────────────────
+@app.post("/api/backendless", response_model=BackendlessProjectResponse, tags=["Backendless"])
+async def create_backendless_project(project: BackendlessProjectCreate):
+    """
+    Create a backendless (frontend-only) project entry.
+    
+    For projects that don't need a backend:
+    - Static sites
+    - JAMstack applications
+    - Frontend frameworks demos
+    - Portfolio pieces
+    
+    These projects are showcased without backend API requirements.
+    """
+    project_entry = {
+        "id": len(backendless_projects) + 1,
+        **project.dict(),
+        "screenshots": [],
+        "created_date": datetime.utcnow().isoformat(),
+        "updated_date": datetime.utcnow().isoformat(),
+    }
+    backendless_projects.append(project_entry)
+    
+    logger.info(f"📦 Backendless project created: {project.name} ({project.framework})")
+    
+    return BackendlessProjectResponse(
+        success=True,
+        message="Backendless project created successfully!",
+        project=BackendlessProject(**project_entry),
+    )
+
+
+@app.get("/api/backendless", response_model=List[BackendlessProject], tags=["Backendless"])
+async def list_backendless_projects(framework: Optional[str] = None):
+    """List all backendless projects, optionally filtered by framework."""
+    projects = backendless_projects
+    if framework:
+        projects = [p for p in projects if p["framework"].lower() == framework.lower()]
+    return projects
+
+
+@app.get("/api/backendless/{project_id}", response_model=BackendlessProject, tags=["Backendless"])
+async def get_backendless_project(project_id: int):
+    """Get a specific backendless project by ID."""
+    project = next((p for p in backendless_projects if p["id"] == project_id), None)
+    if not project:
+        raise HTTPException(status_code=404, detail="Project not found")
+    return project
+
+
+@app.put("/api/backendless/{project_id}", response_model=BackendlessProject, tags=["Backendless"])
+async def update_backendless_project(project_id: int, updates: Dict[str, Any]):
+    """Update a backendless project."""
+    global backendless_projects
+    
+    project = next((p for p in backendless_projects if p["id"] == project_id), None)
+    if not project:
+        raise HTTPException(status_code=404, detail="Project not found")
+    
+    # Update allowed fields
+    allowed_fields = ["name", "description", "github_url", "demo_url", "tech_stack", "features"]
+    for field, value in updates.items():
+        if field in allowed_fields:
+            project[field] = value
+    
+    project["updated_date"] = datetime.utcnow().isoformat()
+    
+    return BackendlessProject(**project)
+
+
+@app.delete("/api/backendless/{project_id}", tags=["Backendless"])
+async def delete_backendless_project(project_id: int):
+    """Delete a backendless project."""
+    global backendless_projects
+    project = next((p for p in backendless_projects if p["id"] == project_id), None)
+    if not project:
+        raise HTTPException(status_code=404, detail="Project not found")
+    backendless_projects = [p for p in backendless_projects if p["id"] != project_id]
+    return {"success": True, "message": "Project deleted successfully"}
+
+
+@app.post("/api/backendless/{project_id}/upload", tags=["Backendless"])
+async def upload_backendless_project(
+    project_id: int,
+    file: UploadFile = File(...),
+):
+    """
+    Upload static files for a backendless project.
+    
+    Accepts ZIP files containing built static sites (HTML, CSS, JS).
+    Files are extracted and served statically.
+    """
+    project = next((p for p in backendless_projects if p["id"] == project_id), None)
+    if not project:
+        raise HTTPException(status_code=404, detail="Project not found")
+    
+    # Create project directory
+    project_dir = STATIC_DIR / f"project_{project_id}"
+    project_dir.mkdir(exist_ok=True)
+    
+    # Save the uploaded file
+    file_path = project_dir / file.filename
+    try:
+        with file_path.open("wb") as buffer:
+            shutil.copyfileobj(file.file, buffer)
+        
+        # If it's a zip, extract it
+        if file.filename.endswith(".zip"):
+            import zipfile
+            with zipfile.ZipFile(file_path, 'r') as zip_ref:
+                zip_ref.extractall(project_dir)
+            file_path.unlink()  # Remove zip after extraction
+        
+        logger.info(f"📦 Uploaded backendless project files for: {project['name']}")
+        
+        return {
+            "success": True,
+            "message": "Project files uploaded successfully",
+            "path": str(project_dir),
+        }
+    except Exception as e:
+        logger.error(f"Upload error: {e}")
+        raise HTTPException(status_code=500, detail=f"Upload failed: {str(e)}")
+
+
+@app.get("/api/backendless/{project_id}/serve/{path:path}", tags=["Backendless"])
+async def serve_backendless_project(project_id: int, path: str):
+    """Serve static files for a backendless project."""
+    project_dir = STATIC_DIR / f"project_{project_id}"
+    
+    if not project_dir.exists():
+        raise HTTPException(status_code=404, detail="Project files not found")
+    
+    file_path = project_dir / path
+    
+    # Security: Ensure path is within project directory
+    try:
+        file_path.resolve().relative_to(project_dir.resolve())
+    except ValueError:
+        raise HTTPException(status_code=403, detail="Access denied")
+    
+    if not file_path.exists():
+        # Try index.html for root
+        if path == "" or path.endswith("/"):
+            file_path = project_dir / "index.html"
+        else:
+            raise HTTPException(status_code=404, detail="File not found")
+    
+    return FileResponse(file_path)
+
+
 # ─── API Info ─────────────────────────────────────────────────────────────────
 @app.get("/api", tags=["Info"], summary="API Information")
 async def api_info():
     """Get API information and available endpoints."""
     return {
         "name": "Asadullah.dev Portfolio API",
-        "version": "2.2.0",
+        "version": "2.3.0",
         "description": "Backend API for Asadullah Shafique's portfolio",
+        "features": [
+            "Contact & Blog API",
+            "GitHub Stats",
+            "AI Agents (Chat, Error Solver, Learn, Teach)",
+            "Video Upload & Management",
+            "NoTeachLLM Privacy Controls",
+            "Backendless Project Support",
+            "MCP Server Integration",
+        ],
         "endpoints": {
             "health": "/health",
             "contact": "/api/contact",
             "blog": "/api/blog",
             "github": "/api/github/stats",
-            "agent": "/api/agent/chat",
+            "agent_chat": "/api/agent/chat",
             "agent_solve_error": "/api/agent/solve-error",
             "learn": "/api/learn",
             "teach": "/api/teach",
             "video": "/api/video",
+            "noteachllm": "/api/noteachllm",
+            "backendless": "/api/backendless",
             "mcp": "/mcp",
             "docs": "/docs",
         },

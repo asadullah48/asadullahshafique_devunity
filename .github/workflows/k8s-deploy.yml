@@ -1,0 +1,94 @@
+# Kubernetes Deployment
+# =====================
+# - Deploys the portfolio application to Kubernetes cluster
+# - Uses kubectl and kubeconfig secrets
+# - Supports rolling updates and rollbacks
+
+name: Kubernetes Deployment
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'k8s/**'
+      - '.github/workflows/k8s-deploy.yml'
+  workflow_dispatch:
+
+env:
+  NAMESPACE: asadullah-dev
+  KUBECONFIG_SECRET: ${{ secrets.KUBE_CONFIG_DATA }}
+
+jobs:
+  deploy:
+    name: Deploy to Kubernetes
+    runs-on: ubuntu-latest
+    environment: production
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        
+      - name: Setup kubectl
+        uses: azure/setup-kubectl@v3
+        with:
+          version: 'v1.29.0'
+          
+      - name: Configure kubeconfig
+        run: |
+          mkdir -p ~/.kube
+          echo "${{ secrets.KUBE_CONFIG_DATA }}" | base64 -d > ~/.kube/config
+          chmod 600 ~/.kube/config
+          
+      - name: Verify cluster connection
+        run: kubectl cluster-info
+        
+      - name: Create namespace
+        run: |
+          kubectl apply -f k8s/namespace.yaml
+          
+      - name: Apply ConfigMap
+        run: |
+          kubectl apply -f k8s/configmap.yaml
+          
+      - name: Apply Secrets
+        run: |
+          kubectl apply -f k8s/secrets.yaml
+          
+      - name: Deploy backend
+        run: |
+          kubectl apply -f k8s/backend-deployment.yaml
+          kubectl apply -f k8s/backend-service.yaml
+          
+      - name: Deploy frontend
+        run: |
+          kubectl apply -f k8s/frontend-deployment.yaml
+          kubectl apply -f k8s/frontend-service.yaml
+          
+      - name: Configure HPA
+        run: |
+          kubectl apply -f k8s/hpa.yaml
+          
+      - name: Configure Network Policies
+        run: |
+          kubectl apply -f k8s/network-policy.yaml
+          
+      - name: Deploy Ingress
+        run: |
+          kubectl apply -f k8s/ingress.yaml
+          
+      - name: Wait for rollout
+        run: |
+          kubectl rollout status deployment/backend -n ${{ env.NAMESPACE }}
+          kubectl rollout status deployment/frontend -n ${{ env.NAMESPACE }}
+          
+      - name: Verify deployment
+        run: |
+          kubectl get pods -n ${{ env.NAMESPACE }}
+          kubectl get services -n ${{ env.NAMESPACE }}
+          kubectl get ingress -n ${{ env.NAMESPACE }}
+          
+      - name: Get deployment status
+        run: |
+          echo "✅ Deployment complete!"
+          echo "Namespace: ${{ env.NAMESPACE }}"
+          kubectl get all -n ${{ env.NAMESPACE }}

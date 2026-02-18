@@ -1,0 +1,14 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(dir:*)",
+      "Bash(git config:*)",
+      "mcp__claude_ai_Hugging_Face__hf_whoami",
+      "mcp__claude_ai_Hugging_Face__hub_repo_details",
+      "Bash(huggingface-cli whoami)",
+      "Bash(python -c \"from huggingface_hub import HfApi; api = HfApi\\(\\); print\\(api.whoami\\(\\)[''name'']\\)\")",
+      "Bash(python3:*)",
+      "mcp__claude_ai_Hugging_Face__hf_hub_community"
+    ]
+  }
+}

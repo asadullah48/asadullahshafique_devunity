@@ -14,6 +14,8 @@ const navLinks = [
   { name: "Open Source", href: "#opensource" },
   { name: "AI Tools", href: "/ai-tools" },
   { name: "Videos", href: "/videos" },
+  { name: "Backendless", href: "/backendless" },
+  { name: "Privacy", href: "/privacy" },
   { name: "Contact", href: "#contact" },
 ];
 

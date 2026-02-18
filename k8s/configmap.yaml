@@ -1,0 +1,21 @@
+# ConfigMap for Asadullah.dev Portfolio
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: portfolio-config
+  namespace: asadullah-dev
+  labels:
+    app: asadullah-dev
+data:
+  # Backend Configuration
+  GITHUB_USERNAME: "asadullah48"
+  PORT: "7860"
+  LOG_LEVEL: "INFO"
+  ALLOWED_ORIGINS: "https://asadullahshafique-devunity.vercel.app,https://asadullah.dev"
+  
+  # Frontend Configuration
+  NEXT_PUBLIC_API_URL: "https://api.asadullah.dev"
+  NEXT_PUBLIC_PRODUCTION_API_URL: "https://api.asadullah.dev"
+  NEXT_PUBLIC_SITE_URL: "https://asadullah.dev"
+  NEXT_PUBLIC_ENABLE_AI_AGENT: "true"
+  NEXT_PUBLIC_ENABLE_CONTACT_FORM: "true"
