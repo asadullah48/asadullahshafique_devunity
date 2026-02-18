@@ -3,6 +3,8 @@ import "./globals.css";
 import { Inter, JetBrains_Mono } from "next/font/google";
 import Navbar from "@/components/Navbar";
 import { ThemeProvider } from "@/components/ThemeProvider";
+import { KeyboardShortcutsProvider } from "@/components/KeyboardShortcutsProvider";
+import ShortcutsDialog from "@/components/ShortcutsDialog";
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
 const jetbrainsMono = JetBrains_Mono({
@@ -48,11 +50,14 @@ export default function RootLayout({
                                     defaultTheme="dark"
                                     enableSystem
                                     disableTransitionOnChange
-                                  >
-                                  <Navbar />
-                                  <main>{children}</main>main>
-                        </ThemeProvider>ThemeProvider>
-                </body>body>
-          </html>html>
-        );
-}</html>
+                        >
+                              <KeyboardShortcutsProvider>
+                                    <Navbar />
+                                    <main>{children}</main>
+                                    <ShortcutsDialog />
+                              </KeyboardShortcutsProvider>
+                        </ThemeProvider>
+                  </body>
+          </html>
+    );
+}

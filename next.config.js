@@ -10,6 +10,31 @@ const nextConfig = {
     // NEVER set this to true in production!
     ignoreBuildErrors: process.env.NEXT_PUBLIC_IGNORE_ERRORS === 'true',
   },
+  // Image optimization
+  images: {
+    formats: ['image/avif', 'image/webp'],
+    deviceSizes: [640, 750, 828, 1080, 1200, 1920, 2048],
+    imageSizes: [16, 32, 48, 64, 96, 128, 256, 384],
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: '**.githubusercontent.com',
+      },
+      {
+        protocol: 'https',
+        hostname: 'avatars.githubusercontent.com',
+      },
+    ],
+  },
+  // Bundle optimization
+  compiler: {
+    removeConsole: process.env.NODE_ENV === 'production',
+  },
+  // Experimental features
+  experimental: {
+    optimizeCss: true,
+    scrollRestoration: true,
+  },
   // Security headers
   async headers() {
     return [
@@ -43,7 +68,25 @@ const nextConfig = {
         ]
       }
     ]
-  }
+  },
+  // Webpack optimization
+  webpack: (config, { dev, isServer }) => {
+    if (!dev && !isServer) {
+      config.optimization.splitChunks = {
+        chunks: 'all',
+        minSize: 20000,
+        maxSize: 244000,
+        cacheGroups: {
+          vendor: {
+            test: /[\\/]node_modules[\\/]/,
+            name: 'vendors',
+            chunks: 'all',
+          },
+        },
+      }
+    }
+    return config
+  },
 };
 
 module.exports = nextConfig;
