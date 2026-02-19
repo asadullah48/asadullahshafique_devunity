@@ -42,7 +42,7 @@ const Hero = () => {
                                     }}
                                   />
                     ))}
-                </div>div>
+                </div>
           
                 <div className="container relative z-10 mx-auto px-4 py-24 md:py-32 text-center">
                         <motion.div
@@ -58,18 +58,18 @@ const Hero = () => {
                                                 className="inline-flex items-center gap-2 px-4 py-2 mb-8 rounded-full border border-[#9CE630]/30 bg-[#9CE630]/5 text-[#9CE630] text-sm"
                                               >
                                               <Sparkles className="w-4 h-4" />
-                                              <span>Open to Collaborate on AI Projects</span>span>
+                                              <span>Open to Collaborate on AI Projects</span>
                                               <span className="relative flex h-2 w-2">
                                                             <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#9CE630] opacity-75" />
                                                             <span className="relative inline-flex rounded-full h-2 w-2 bg-[#9CE630]" />
-                                              </span>span>
-                                  </motion.div>motion.div>
+                                              </span>
+                                  </motion.div>
                         
                           {/* Main heading */}
                                   <h1 className="mb-6 text-4xl font-bold text-white md:text-6xl lg:text-7xl tracking-tight">
                                               Hi, I&apos;m{" "}
                                               <span className="relative">
-                                                            <span className="text-[#9CE630]">Asadullah</span>span>
+                                                            <span className="text-[#9CE630]">Asadullah</span>
                                                             <motion.span
                                                                               className="absolute -bottom-2 left-0 w-full h-1 bg-gradient-to-r from-[#9CE630] to-[#9CE630]/0 rounded-full"
                                                                               initial={{ scaleX: 0 }}
@@ -77,22 +77,22 @@ const Hero = () => {
                                                                               transition={{ delay: 1, duration: 0.8 }}
                                                                               style={{ transformOrigin: "left" }}
                                                                             />
-                                              </span>span>
+                                              </span>
                                               <br />
                                               <span className="text-zinc-400 text-3xl md:text-5xl lg:text-6xl">
                                                             Agentic AI Developer
-                                              </span>span>
-                                  </h1>h1>
+                                              </span>
+                                  </h1>
                         
                           {/* Description */}
                                   <p className="mb-10 text-lg text-zinc-400 md:text-xl max-w-2xl mx-auto leading-relaxed">
                                               Building intelligent systems with{" "}
-                                              <span className="text-white font-medium">Next.js</span>span>,{" "}
-                                              <span className="text-white font-medium">TypeScript</span>span>,{" "}
-                                              <span className="text-white font-medium">Python</span>span> &{" "}
-                                              <span className="text-white font-medium">FastAPI</span>span>.
+                                              <span className="text-white font-medium">Next.js</span>,{" "}
+                                              <span className="text-white font-medium">TypeScript</span>,{" "}
+                                              <span className="text-white font-medium">Python</span> &{" "}
+                                              <span className="text-white font-medium">FastAPI</span>.
                                               Passionate about Generative AI, spec-first development, and pushing boundaries.
-                                  </p>p>
+                                  </p>
                         
                           {/* Tech icons row */}
                                   <div className="flex items-center justify-center gap-6 mb-10">
@@ -109,10 +109,10 @@ const Hero = () => {
                                                                                   className="flex items-center gap-2 text-zinc-500 text-sm"
                                                                                 >
                                                                                 <item.icon className="w-4 h-4 text-[#9CE630]" />
-                                                                                <span>{item.label}</span>span>
-                                                                </motion.div>motion.div>
+                                                                                <span>{item.label}</span>
+                                                                </motion.div>
                                                               ))}
-                                  </div>div>
+                                  </div>
                         
                           {/* CTA Buttons */}
                                   <div className="flex flex-col items-center justify-center space-y-4 md:flex-row md:space-x-4 md:space-y-0">
@@ -120,8 +120,8 @@ const Hero = () => {
                                                             <Button className="h-12 px-8 bg-[#9CE630] text-black font-semibold hover:bg-[#8BD520] transition-all duration-300 hover:shadow-lg hover:shadow-[#9CE630]/20">
                                                                             View My Work
                                                                             <ArrowDown className="ml-2 h-4 w-4 animate-bounce" />
-                                                            </Button>Button>
-                                              </Link>Link>
+                                                            </Button>
+                                              </Link>
                                               <Link
                                                               href="https://github.com/asadullah48"
                                                               target="_blank"
@@ -133,9 +133,9 @@ const Hero = () => {
                                                                             >
                                                                             <Github className="mr-2 h-5 w-5" />
                                                                             GitHub Profile
-                                                            </Button>Button>
-                                              </Link>Link>
-                                  </div>div>
+                                                            </Button>
+                                              </Link>
+                                  </div>
                         
                           {/* Stats */}
                                   <motion.div
@@ -150,13 +150,13 @@ const Hero = () => {
                                                 { value: "Full-Stack", label: "AI Developer" },
                                                             ].map((stat) => (
                                                                             <div key={stat.label} className="text-center">
-                                                                                            <div className="text-2xl font-bold text-white">{stat.value}</div>div>
-                                                                                            <div className="text-xs text-zinc-500 mt-1">{stat.label}</div>div>
-                                                                            </div>div>
+                                                                                            <div className="text-2xl font-bold text-white">{stat.value}</div>
+                                                                                            <div className="text-xs text-zinc-500 mt-1">{stat.label}</div>
+                                                                            </div>
                                                                           ))}
-                                  </motion.div>motion.div>
-                        </motion.div>motion.div>
-                </div>div>
+                                  </motion.div>
+                        </motion.div>
+                </div>
           
             {/* Scroll indicator */}
                 <motion.div
@@ -165,9 +165,9 @@ const Hero = () => {
                           transition={{ duration: 2, repeat: Infinity }}
                         >
                         <ArrowDown className="w-5 h-5 text-zinc-600" />
-                </motion.div>motion.div>
-          </section>section>
+                </motion.div>
+          </section>
         );
 };
 
-export default Hero;</section>
+export default Hero;

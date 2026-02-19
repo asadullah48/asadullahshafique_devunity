@@ -52,13 +52,13 @@ const Hackathons = () => {
                                     className="text-center mb-16"
                                   >
                                   <h2 className="text-3xl md:text-5xl font-bold text-white mb-4">
-                                              Hackathons & <span className="text-[#9CE630]">Achievements</span>span>
-                                  </h2>h2>
+                                              Hackathons & <span className="text-[#9CE630]">Achievements</span>
+                                  </h2>
                                   <div className="w-20 h-1 bg-[#9CE630] mx-auto rounded-full mb-6" />
                                   <p className="text-zinc-400 max-w-xl mx-auto">
                                               Actively participating in hackathons and building under pressure to sharpen my skills.
-                                  </p>p>
-                        </motion.div>motion.div>
+                                  </p>
+                        </motion.div>
                 
                   {/* Timeline */}
                         <div className="max-w-3xl mx-auto relative">
@@ -92,31 +92,31 @@ const Hackathons = () => {
                                                                                         <Trophy className="w-5 h-5 text-[#9CE630]" />
                                                                                       )}
                                                                                                         {hackathon.title}
-                                                                                                        </h3>h3>
-                                                                                                      <p className="text-sm text-zinc-500 mt-1">{hackathon.organizer}</p>p>
-                                                                                  </div>div>
+                                                                                                        </h3>
+                                                                                                      <p className="text-sm text-zinc-500 mt-1">{hackathon.organizer}</p>
+                                                                                  </div>
                                                               {hackathon.highlight && (
                                                                                     <span className="inline-flex items-center gap-1 px-3 py-1 rounded-full bg-[#9CE630]/10 text-[#9CE630] text-xs font-medium">
                                                                                                             <Award className="w-3 h-3" />
                                                                                       {hackathon.achievement}
-                                                                                      </span>span>
+                                                                                      </span>
                                                                                 )}
-                                                            </div>div>
+                                                            </div>
                                           
                                                             <p className="text-zinc-400 text-sm leading-relaxed mb-4">
                                                               {hackathon.description}
-                                                            </p>p>
+                                                            </p>
                                           
                                                             <div className="flex items-center gap-4 text-xs text-zinc-500 mb-3">
                                                                                 <span className="flex items-center gap-1">
                                                                                                       <Calendar className="w-3 h-3" />
                                                                                   {hackathon.date}
-                                                                                  </span>span>
+                                                                                  </span>
                                                                                 <span className="flex items-center gap-1">
                                                                                                       <MapPin className="w-3 h-3" />
                                                                                   {hackathon.location}
-                                                                                  </span>span>
-                                                            </div>div>
+                                                                                  </span>
+                                                            </div>
                                           
                                                             <div className="flex flex-wrap gap-2">
                                                               {hackathon.technologies.map((tech) => (
@@ -125,17 +125,17 @@ const Hackathons = () => {
                                                                                                               className="px-2 py-1 text-xs bg-zinc-800 text-zinc-400 rounded-md"
                                                                                                             >
                                                                                       {tech}
-                                                                                      </span>span>
+                                                                                      </span>
                                                                                   ))}
-                                                            </div>div>
-                                          </div>div>
-                          </motion.div>motion.div>
+                                                            </div>
+                                          </div>
+                          </motion.div>
                         ))}
-                                  </div>div>
-                        </div>div>
-                </div>div>
-          </section>section>
+                                  </div>
+                        </div>
+                </div>
+          </section>
         );
 };
 
-export default Hackathons;</section>
+export default Hackathons;

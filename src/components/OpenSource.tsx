@@ -48,14 +48,14 @@ export default function OpenSourceSection() {
                                     className="text-center mb-16"
                                   >
                                   <h2 className="text-3xl md:text-5xl font-bold text-white mb-4">
-                                              Open Source <span className="text-[#9CE630]">for All</span>span>
-                                  </h2>h2>
+                                              Open Source <span className="text-[#9CE630]">for All</span>
+                                  </h2>
                                   <div className="w-20 h-1 bg-[#9CE630] mx-auto rounded-full mb-6" />
                                   <p className="text-zinc-400 max-w-2xl mx-auto text-lg">
                                               I believe in the power of community-driven development.
                                               All my projects are open source and contributions are always welcome.
-                                  </p>p>
-                        </motion.div>motion.div>
+                                  </p>
+                        </motion.div>
                 
                   {/* Stats */}
                         <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mb-16 max-w-3xl mx-auto">
@@ -69,11 +69,11 @@ export default function OpenSourceSection() {
                                         className="text-center p-4 rounded-xl bg-zinc-900/50 border border-zinc-800"
                                       >
                                       <stat.icon className="w-6 h-6 text-[#9CE630] mx-auto mb-2" />
-                                      <div className="text-2xl font-bold text-white">{stat.value}</div>div>
-                                      <div className="text-xs text-zinc-500 mt-1">{stat.label}</div>div>
-                        </motion.div>motion.div>
+                                      <div className="text-2xl font-bold text-white">{stat.value}</div>
+                                      <div className="text-xs text-zinc-500 mt-1">{stat.label}</div>
+                        </motion.div>
                       ))}
-                        </div>div>
+                        </div>
                 
                   {/* Contribution areas */}
                         <div className="grid md:grid-cols-3 gap-6 mb-12 max-w-4xl mx-auto">
@@ -89,13 +89,13 @@ export default function OpenSourceSection() {
                                       <item.icon className="w-10 h-10 text-[#9CE630] mb-4" />
                                       <h3 className="text-lg font-semibold text-white mb-2">
                                         {item.title}
-                                      </h3>h3>
+                                      </h3>
                                       <p className="text-zinc-400 text-sm leading-relaxed">
                                         {item.description}
-                                      </p>p>
-                        </motion.div>motion.div>
+                                      </p>
+                        </motion.div>
                       ))}
-                        </div>div>
+                        </div>
                 
                   {/* CTA */}
                         <motion.div
@@ -113,10 +113,10 @@ export default function OpenSourceSection() {
                                               <Button className="bg-[#9CE630] text-black hover:bg-[#8BD520] text-lg px-8 py-6 rounded-full transition-all duration-300 hover:shadow-lg hover:shadow-[#9CE630]/20">
                                                             <Github className="mr-2 h-5 w-5" />
                                                             Contribute on GitHub
-                                              </Button>Button>
-                                  </Link>Link>
-                        </motion.div>motion.div>
-                </div>div>
-          </section>section>
+                                              </Button>
+                                  </Link>
+                        </motion.div>
+                </div>
+          </section>
         );
-}</section>
+}
