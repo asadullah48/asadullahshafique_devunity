@@ -49,14 +49,14 @@ const About = () => {
                                     className="text-center mb-16"
                                   >
                                   <h2 className="text-3xl md:text-5xl font-bold text-white mb-4">
-                                              About <span className="text-[#9CE630]">Me</span>span>
-                                  </h2>h2>
+                                              About <span className="text-[#9CE630]">Me</span>
+                                  </h2>
                                   <div className="w-20 h-1 bg-[#9CE630] mx-auto rounded-full mb-6" />
                                   <p className="text-zinc-400 max-w-2xl mx-auto text-lg">
                                               A student pursuing Agentic AI development, passionate about building
                                               intelligent systems that push the boundaries of what&apos;s possible.
-                                  </p>p>
-                        </motion.div>motion.div>
+                                  </p>
+                        </motion.div>
                 
                   {/* Bio Card */}
                         <motion.div
@@ -83,9 +83,9 @@ const About = () => {
                                                                                   ],
                                                                                     "methodology": "Spec-Kit Plus (Spec-First)",
                                                                                       "status": "Open to collaborate"
-                                                                                      }`}</code>code>
-                                  </pre>pre>
-                        </motion.div>motion.div>
+                                                                                      }`}</code>
+                                  </pre>
+                        </motion.div>
                 
                   {/* Highlights Grid */}
                         <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3 max-w-5xl mx-auto">
@@ -99,14 +99,14 @@ const About = () => {
                                         className="group p-6 rounded-xl bg-zinc-900/50 border border-zinc-800 hover:border-[#9CE630]/30 transition-all duration-300 hover:bg-zinc-900/80"
                                       >
                                       <item.icon className="w-10 h-10 text-[#9CE630] mb-4 group-hover:scale-110 transition-transform" />
-                                      <h3 className="text-lg font-semibold text-white mb-2">{item.title}</h3>h3>
-                                      <p className="text-zinc-400 text-sm leading-relaxed">{item.description}</p>p>
-                        </motion.div>motion.div>
+                                      <h3 className="text-lg font-semibold text-white mb-2">{item.title}</h3>
+                                      <p className="text-zinc-400 text-sm leading-relaxed">{item.description}</p>
+                        </motion.div>
                       ))}
-                        </div>div>
-                </div>div>
-          </section>section>
+                        </div>
+                </div>
+          </section>
         );
 };
 
-export default About;</section>
+export default About;

@@ -43,6 +43,7 @@ FastAPI backend powering [asadullahshafique-devunity.vercel.app](https://asadull
 | `ANTHROPIC_API_KEY` | Optional | Enables full LangGraph agent (falls back to static otherwise) |
 | `DISCORD_WEBHOOK_URL` | Optional | Contact form → Discord notifications |
 | `GITHUB_TOKEN` | Optional | Higher GitHub API rate limits |
+| `ALLOWED_ORIGINS` | Recommended | Comma-separated CORS origins (e.g. `https://asadullahshafique-devunity.vercel.app`) |
 
 ## Local Development
 

@@ -57,13 +57,13 @@ const Skills = () => {
                                     className="text-center mb-16"
                                   >
                                   <h2 className="text-3xl md:text-5xl font-bold text-white mb-4">
-                                              Tech <span className="text-[#9CE630]">Stack</span>span>
-                                  </h2>h2>
+                                              Tech <span className="text-[#9CE630]">Stack</span>
+                                  </h2>
                                   <div className="w-20 h-1 bg-[#9CE630] mx-auto rounded-full mb-6" />
                                   <p className="text-zinc-400 max-w-xl mx-auto">
                                               Technologies and tools I work with to build production-ready applications.
-                                  </p>p>
-                        </motion.div>motion.div>
+                                  </p>
+                        </motion.div>
                 
                   {/* Category Tabs */}
                         <div className="flex flex-wrap justify-center gap-3 mb-12">
@@ -78,9 +78,9 @@ const Skills = () => {
                                         }`}
                                       >
                           {cat.name}
-                        </button>button>
+                        </button>
                       ))}
-                        </div>div>
+                        </div>
                 
                   {/* Skills Display */}
                         <motion.div
@@ -99,16 +99,16 @@ const Skills = () => {
                                                                 className="space-y-2"
                                                               >
                                                               <div className="flex justify-between items-center">
-                                                                              <span className="text-white font-medium">{skill.name}</span>span>
-                                                                              <span className="text-[#9CE630] text-sm font-mono">{skill.level}%</span>span>
-                                                              </div>div>
+                                                                              <span className="text-white font-medium">{skill.name}</span>
+                                                                              <span className="text-[#9CE630] text-sm font-mono">{skill.level}%</span>
+                                                              </div>
                                                               <Progress
                                                                                 value={skill.level}
                                                                                 className="h-2 bg-zinc-800"
                                                                               />
-                                                </motion.div>motion.div>
+                                                </motion.div>
                                               ))}
-                        </motion.div>motion.div>
+                        </motion.div>
                 
                   {/* Tech Badges */}
                         <motion.div
@@ -118,7 +118,7 @@ const Skills = () => {
                                     viewport={{ once: true }}
                                     className="mt-16 text-center"
                                   >
-                                  <h3 className="text-lg font-semibold text-zinc-400 mb-6">Also working with</h3>h3>
+                                  <h3 className="text-lg font-semibold text-zinc-400 mb-6">Also working with</h3>
                                   <div className="flex flex-wrap justify-center gap-3 max-w-3xl mx-auto">
                                     {[
                                                   "OpenAI API", "Gemini API", "Radix UI", "shadcn/ui",
@@ -130,13 +130,13 @@ const Skills = () => {
                                                                                   className="px-3 py-1.5 text-xs font-medium text-zinc-400 bg-zinc-900 border border-zinc-800 rounded-full hover:border-[#9CE630]/30 hover:text-[#9CE630] transition-all duration-300 cursor-default"
                                                                                 >
                                                                   {tech}
-                                                                </span>span>
+                                                                </span>
                                                               ))}
-                                  </div>div>
-                        </motion.div>motion.div>
-                </div>div>
-          </section>section>
+                                  </div>
+                        </motion.div>
+                </div>
+          </section>
         );
 };
 
-export default Skills;</section>
+export default Skills;

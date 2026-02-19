@@ -203,14 +203,11 @@ class ErrorResponse(BaseModel):
     status_code: int = 500
 
 
-# ─── In-Memory Storage (DEPRECATED - Using Database Now) ─────────────────────
-# These are kept for backwards compatibility but new code should use database
-# contact_messages: list[dict] = []  # → ContactMessage model
-# uploaded_videos: list[dict] = []   # → Video model
-# learning_progress: list[dict] = [] # → LearningProgress model
-# taught_content: list[dict] = []    # → TaughtContent model
-# noteachllm_registry: list[dict] = [] # → NoTeachLLM model
-# backendless_projects: list[dict] = [] # → BackendlessProject model
+# ─── In-Memory Storage (fallback for non-DB endpoints) ───────────────────────
+learning_progress: list[dict] = []
+taught_content: list[dict] = []
+noteachllm_registry: list[dict] = []
+backendless_projects: list[dict] = []
 
 # Static files directory for backendless projects
 STATIC_DIR = Path("static_projects")
