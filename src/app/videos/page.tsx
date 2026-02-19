@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useRef } from "react";
+import { useState, useEffect, useRef } from "react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
@@ -39,9 +39,9 @@ export default function VideoUploadPage() {
   const [searchTerm, setSearchTerm] = useState("");
 
   // Fetch videos on mount
-  useState(() => {
+  useEffect(() => {
     fetchVideos();
-  });
+  }, []);
 
   const fetchVideos = async () => {
     try {

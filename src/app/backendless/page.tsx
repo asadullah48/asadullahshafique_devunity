@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
@@ -311,9 +311,9 @@ function ProjectList({
 }) {
   const [loading, setLoading] = useState(true);
 
-  useState(() => {
+  useEffect(() => {
     fetchProjects();
-  });
+  }, []);
 
   async function fetchProjects() {
     try {
