@@ -23,7 +23,7 @@ import { motion } from "framer-motion";
 
 const API_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000";
 
-interface Video {
+interface VideoItem {
   id: number;
   title: string;
   description: string;
@@ -34,7 +34,7 @@ interface Video {
 }
 
 export default function VideoUploadPage() {
-  const [videos, setVideos] = useState<Video[]>([]);
+  const [videos, setVideos] = useState<VideoItem[]>([]);
   const [loading, setLoading] = useState(false);
   const [searchTerm, setSearchTerm] = useState("");
 
@@ -278,7 +278,7 @@ function VideoList({
   setSearchTerm,
   onDelete,
 }: {
-  videos: Video[];
+  videos: VideoItem[];
   searchTerm: string;
   setSearchTerm: (term: string) => void;
   onDelete: () => void;
