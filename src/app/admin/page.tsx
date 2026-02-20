@@ -49,11 +49,11 @@ export default function AdminPage() {
     setError("");
     try {
       const r = await fetch("/api/admin/messages");
-      if (!r.ok) throw new Error("Failed");
       const data = await r.json();
+      if (!r.ok) throw new Error(`${r.status}: ${data?.error ?? r.statusText}`);
       setMessages(Array.isArray(data) ? data : data.messages || []);
-    } catch {
-      setError("Failed to load messages. Is the backend running?");
+    } catch (err) {
+      setError(`Failed to load messages — ${err instanceof Error ? err.message : "unknown error"}`);
     } finally {
       setLoading(false);
     }
