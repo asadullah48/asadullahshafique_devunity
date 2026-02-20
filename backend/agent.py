@@ -124,9 +124,10 @@ if LANGGRAPH_AVAILABLE:
             "Keep answers under 3 sentences."
         )
 
-        def call_model(state: AgentState):
+        async def call_model(state: AgentState):
+            # Use ainvoke to avoid blocking the uvicorn event loop during LLM calls.
             messages = [SystemMessage(content=SYSTEM_PROMPT)] + state["messages"]
-            response = llm.invoke(messages)
+            response = await llm.ainvoke(messages)
             return {"messages": [response]}
 
         def call_tools(state: AgentState):
