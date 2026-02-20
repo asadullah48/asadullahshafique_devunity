@@ -19,3 +19,5 @@ services:
         sync: false
       - key: GITHUB_TOKEN
         sync: false
+      - key: ADMIN_SECRET
+        sync: false

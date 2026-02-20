@@ -147,6 +147,14 @@ async def startup_db():
 DISCORD_WEBHOOK_URL = os.getenv("DISCORD_WEBHOOK_URL", "")
 GITHUB_USERNAME = os.getenv("GITHUB_USERNAME", "asadullah48")
 ANTHROPIC_API_KEY = os.getenv("ANTHROPIC_API_KEY", "")
+ADMIN_SECRET = os.getenv("ADMIN_SECRET", "")
+
+
+def require_admin(request: Request) -> None:
+    """Dependency: require X-Admin-Token header matching ADMIN_SECRET."""
+    token = request.headers.get("X-Admin-Token", "")
+    if not ADMIN_SECRET or token != ADMIN_SECRET:
+        raise HTTPException(status_code=401, detail="Unauthorized")
 
 # ─── Models ──────────────────────────────────────────────────────────────────
 class ContactRequest(BaseModel):
@@ -409,11 +417,16 @@ async def submit_contact(
 
 
 @app.get("/api/contact/messages", tags=["Contact"])
-async def get_messages(db: Session = Depends(get_db)):
+async def get_messages(
+    request: Request,
+    db: Session = Depends(get_db),
+    _: None = Depends(require_admin),
+):
     """
     Get all contact messages from database.
 
-    ⚠️ **Security Warning**: Add authentication before exposing in production.
+    Requires the `X-Admin-Token` header to match the `ADMIN_SECRET` env var.
+    Returns 401 Unauthorized if the token is missing or incorrect.
     """
     messages = db.query(ContactMessage).order_by(ContactMessage.timestamp.desc()).all()
     return {
