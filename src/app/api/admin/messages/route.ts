@@ -8,10 +8,12 @@ import { NextResponse } from "next/server";
 export const maxDuration = 30;
 
 // Prefer server-only FASTAPI_BACKEND_URL; fall back to NEXT_PUBLIC_API_URL
-const BACKEND_URL =
+// Strip trailing slash so paths like /api/contact/messages don't double-slash
+const BACKEND_URL = (
   process.env.FASTAPI_BACKEND_URL ||
   process.env.NEXT_PUBLIC_API_URL ||
-  "http://localhost:8000";
+  "http://localhost:8000"
+).replace(/\/$/, "");
 const ADMIN_SECRET = process.env.ADMIN_SECRET || "";
 
 export async function GET() {
