@@ -65,7 +65,7 @@ class LearningProgress(Base):
     completed = Column(Boolean, default=False)
     started_at = Column(DateTime(timezone=True), server_default=func.now())
     completed_at = Column(DateTime(timezone=True), nullable=True)
-    metadata = Column(JSON, default=dict)  # Additional data
+    extra_data = Column(JSON, default=dict)  # Additional data (renamed: 'metadata' is reserved by SQLAlchemy)
 
 
 class TaughtContent(Base):
