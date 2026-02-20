@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Github, ArrowDown, Sparkles, Code2, Brain } from "lucide-react";
 import Link from "next/link";
 import { motion } from "framer-motion";
+import { GitHubStatsStrip } from "@/components/GitHubStatsStrip";
 
 const Hero = () => {
     const [mounted, setMounted] = useState(false);
@@ -137,6 +138,9 @@ const Hero = () => {
                                               </Link>
                                   </div>
                         
+                          {/* Live GitHub Stats */}
+                                  <GitHubStatsStrip />
+
                           {/* Stats */}
                                   <motion.div
                                                 initial={{ opacity: 0, y: 20 }}
