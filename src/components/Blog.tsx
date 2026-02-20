@@ -21,6 +21,7 @@ interface BlogPost {
 const Blog = () => {
   const [posts, setPosts] = useState<BlogPost[]>([]);
   const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(false);
 
   useEffect(() => {
     const controller = new AbortController();
@@ -36,9 +37,8 @@ const Blog = () => {
         }
       })
       .catch((err) => {
-        // Suppress abort errors that fire on unmount; ignore other fetch failures silently
         if (err.name !== "AbortError") {
-          // silently ignore
+          setError(true);
         }
       })
       .finally(() => setLoading(false));
@@ -51,6 +51,15 @@ const Blog = () => {
     return (
       <section id="blog" className="py-24 flex items-center justify-center min-h-[400px]">
         <Loader2 className="w-8 h-8 animate-spin text-[#9CE630]" />
+      </section>
+    );
+  }
+
+  // Show a friendly message when the fetch failed (network error, backend down, etc.)
+  if (error) {
+    return (
+      <section id="blog" className="py-24 flex items-center justify-center min-h-[400px]">
+        <p className="text-zinc-500 text-sm">Could not load posts. Check back soon.</p>
       </section>
     );
   }
@@ -80,7 +89,7 @@ const Blog = () => {
             .filter((p) => p.featured)
             .map((post, index) => (
               <motion.article
-                key={post.title}
+                key={post.id}
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
@@ -127,7 +136,7 @@ const Blog = () => {
             .filter((p) => !p.featured)
             .map((post, index) => (
               <motion.article
-                key={post.title}
+                key={post.id}
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
