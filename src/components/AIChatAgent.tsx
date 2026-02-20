@@ -26,6 +26,7 @@ const AIChatAgent = () => {
   ]);
   const [input, setInput] = useState("");
   const [isLoading, setIsLoading] = useState(false);
+  const [streamingContent, setStreamingContent] = useState("");
   const messagesEndRef = useRef<HTMLDivElement>(null);
 
   const scrollToBottom = () => {
@@ -40,34 +41,62 @@ const AIChatAgent = () => {
     e.preventDefault();
     if (!input.trim() || isLoading) return;
 
-    const userMessage: Message = {
-      role: "user",
-      content: input.trim(),
-      timestamp: new Date(),
-    };
-
-    setMessages((prev) => [...prev, userMessage]);
+    const userMsg = input.trim();
+    setMessages((prev) => [...prev, { role: "user", content: userMsg, timestamp: new Date() }]);
     setInput("");
     setIsLoading(true);
+    setStreamingContent("");
 
     try {
-      const response = await fetch("/api/agent/chat", {
+      const response = await fetch("/api/agent/chat/stream", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ message: input.trim() }),
+        body: JSON.stringify({ message: userMsg }),
       });
 
-      const data = await response.json();
+      if (!response.ok || !response.body) {
+        throw new Error("Stream unavailable");
+      }
 
-      const assistantMessage: Message = {
-        role: "assistant",
-        content: data.answer || "I'm not sure about that. Feel free to contact Asadullah directly!",
-        timestamp: new Date(),
-      };
+      const reader = response.body.getReader();
+      const decoder = new TextDecoder();
+      let accumulated = "";
+      let done = false;
 
-      setMessages((prev) => [...prev, assistantMessage]);
+      while (!done) {
+        const { done: readerDone, value } = await reader.read();
+        if (readerDone) break;
+
+        const chunk = decoder.decode(value, { stream: true });
+        const lines = chunk.split("\n");
+
+        for (const line of lines) {
+          if (line.startsWith("data: ")) {
+            try {
+              const data = JSON.parse(line.slice(6));
+              if (data.token) {
+                accumulated += data.token;
+                setStreamingContent(accumulated);
+              }
+              if (data.done) {
+                setMessages((prev) => [
+                  ...prev,
+                  { role: "assistant", content: accumulated, timestamp: new Date() },
+                ]);
+                setStreamingContent("");
+                done = true;
+              }
+              if (data.error) {
+                throw new Error(data.error);
+              }
+            } catch (parseErr) {
+              // Skip malformed SSE lines
+            }
+          }
+        }
+      }
     } catch (error) {
-      console.error("Chat error:", error);
+      console.error("Chat stream error:", error);
       setMessages((prev) => [
         ...prev,
         {
@@ -76,8 +105,10 @@ const AIChatAgent = () => {
           timestamp: new Date(),
         },
       ]);
+      setStreamingContent("");
     } finally {
       setIsLoading(false);
+      setStreamingContent("");
     }
   };
 
@@ -126,7 +157,7 @@ const AIChatAgent = () => {
                     </div>
                     <div>
                       <h3 className="font-semibold text-black">Portfolio Assistant</h3>
-                      <p className="text-xs text-black/80">Powered by LangGraph AI</p>
+                      <p className="text-xs text-black/80">Claude + LangGraph Agent</p>
                     </div>
                   </div>
                   <Button
@@ -175,7 +206,22 @@ const AIChatAgent = () => {
                     </div>
                   </motion.div>
                 ))}
-                {isLoading && (
+                {streamingContent && (
+                  <motion.div
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    className="flex items-start gap-3"
+                  >
+                    <div className="w-8 h-8 rounded-full bg-zinc-700 flex items-center justify-center shrink-0">
+                      <Bot className="w-4 h-4 text-white" />
+                    </div>
+                    <div className="max-w-[80%] p-3 rounded-lg text-sm bg-zinc-800 text-white">
+                      {streamingContent}
+                      <span className="inline-block w-1 h-3 ml-0.5 bg-[#9CE630] animate-pulse" />
+                    </div>
+                  </motion.div>
+                )}
+                {isLoading && !streamingContent && (
                   <motion.div
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
