@@ -1,0 +1,22 @@
+services:
+  - type: web
+    name: asadullah-portfolio-api
+    runtime: docker
+    dockerfilePath: ./backend/Dockerfile
+    dockerContext: ./backend
+    plan: free
+    healthCheckPath: /health
+    envVars:
+      - key: ALLOWED_ORIGINS
+        value: "https://asadullahshafique-devunity.vercel.app,https://asadullah.dev,http://localhost:3000"
+      - key: GITHUB_USERNAME
+        value: asadullah48
+      - key: LOG_LEVEL
+        value: INFO
+      # Set these as secrets in Render dashboard — do NOT add values here:
+      - key: ANTHROPIC_API_KEY
+        sync: false
+      - key: DISCORD_WEBHOOK_URL
+        sync: false
+      - key: GITHUB_TOKEN
+        sync: false

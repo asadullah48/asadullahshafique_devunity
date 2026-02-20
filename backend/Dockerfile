@@ -7,6 +7,7 @@ FROM python:3.12-slim
 # Set environment variables
 ENV PYTHONDONTWRITEBYTECODE=1
 ENV PYTHONUNBUFFERED=1
+# PORT default: 7860 for HF Spaces, overridden by Render/Railway at runtime
 ENV PORT=7860
 
 # Create non-root user for security
