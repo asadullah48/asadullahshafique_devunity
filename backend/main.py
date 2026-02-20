@@ -31,12 +31,13 @@ Supports:
 
 from fastapi import FastAPI, HTTPException, BackgroundTasks, Request, UploadFile, File, Form, Depends
 from fastapi.middleware.cors import CORSMiddleware
-from fastapi.responses import JSONResponse, HTMLResponse
+from fastapi.responses import JSONResponse, HTMLResponse, StreamingResponse
 from fastapi.staticfiles import StaticFiles
 from fastapi.responses import FileResponse
 from pydantic import BaseModel, EmailStr
 from typing import Optional, List, Dict, Any
 from datetime import datetime
+import asyncio
 import httpx
 import os
 import logging
@@ -722,6 +723,53 @@ async def agent_chat(request: AgentRequest):
         mode=result.get("mode", "static"),
         session_id=request.session_id,
         confidence=0.95 if result.get("mode") == "langgraph" else 0.7,
+    )
+
+
+@app.post("/api/agent/chat/stream", tags=["Agent"])
+async def chat_stream(body: dict, request: Request):
+    """Stream AI agent response as Server-Sent Events (SSE).
+
+    POST body: {"message": "...", "session_id": "optional"}
+    Returns: text/event-stream with data: {"token": "..."} events,
+             ending with data: {"done": true}
+    """
+    message = body.get("message", "")
+    # session_id is accepted for API compatibility but run_agent is stateless
+    session_id = body.get("session_id", "default")  # noqa: F841
+
+    if not message:
+        return JSONResponse({"error": "message is required"}, status_code=400)
+
+    async def generate():
+        try:
+            # run_agent is async — await it directly (no executor needed)
+            result = await run_agent(message)
+            answer = result.get(
+                "answer",
+                "I'm not sure. Feel free to contact Asadullah directly!",
+            )
+
+            # Stream word-by-word to produce a typewriter effect on the client
+            words = answer.split(" ")
+            for i, word in enumerate(words):
+                chunk = word + (" " if i < len(words) - 1 else "")
+                yield f"data: {json.dumps({'token': chunk})}\n\n"
+                await asyncio.sleep(0.03)
+
+            yield f"data: {json.dumps({'done': True})}\n\n"
+        except Exception as e:
+            logger.error(f"Stream error: {e}")
+            yield f"data: {json.dumps({'error': str(e)})}\n\n"
+
+    return StreamingResponse(
+        generate(),
+        media_type="text/event-stream",
+        headers={
+            "Cache-Control": "no-cache",
+            # Prevent nginx/proxy buffering so tokens reach the client immediately
+            "X-Accel-Buffering": "no",
+        },
     )
 
 
