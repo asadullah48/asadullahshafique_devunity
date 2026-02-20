@@ -4,7 +4,14 @@
 
 import { NextResponse } from "next/server";
 
-const BACKEND_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000";
+// Allow up to 30s for Render free-tier cold start
+export const maxDuration = 30;
+
+// Prefer server-only FASTAPI_BACKEND_URL; fall back to NEXT_PUBLIC_API_URL
+const BACKEND_URL =
+  process.env.FASTAPI_BACKEND_URL ||
+  process.env.NEXT_PUBLIC_API_URL ||
+  "http://localhost:8000";
 const ADMIN_SECRET = process.env.ADMIN_SECRET || "";
 
 export async function GET() {
