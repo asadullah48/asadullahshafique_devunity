@@ -16,8 +16,11 @@ export async function GET() {
       headers: { "X-Admin-Token": ADMIN_SECRET },
       cache: "no-store",
     });
-    if (!response.ok) {
+    if (response.status === 401) {
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+    }
+    if (!response.ok) {
+      return NextResponse.json({ error: "Backend error" }, { status: 502 });
     }
     return NextResponse.json(await response.json());
   } catch {

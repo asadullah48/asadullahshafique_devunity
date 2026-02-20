@@ -16,7 +16,7 @@ interface ContactMessage {
   email: string;
   subject: string;
   message: string;
-  created_at: string;
+  timestamp: string;
   read: boolean;
 }
 
@@ -29,10 +29,14 @@ export default function AdminPage() {
 
   // NEXT_PUBLIC_ prefix is intentional here: this is only a lightweight UI gate,
   // not the real authentication secret (which lives server-side in ADMIN_SECRET).
-  const GATE_PASSWORD = process.env.NEXT_PUBLIC_ADMIN_GATE || "admin";
+  const GATE_PASSWORD = process.env.NEXT_PUBLIC_ADMIN_GATE ?? "";
 
   const handleLogin = (e: React.FormEvent) => {
     e.preventDefault();
+    if (!GATE_PASSWORD) {
+      setError("Admin gate not configured. Set NEXT_PUBLIC_ADMIN_GATE.");
+      return;
+    }
     if (password === GATE_PASSWORD) {
       setAuthed(true);
     } else {
@@ -159,7 +163,7 @@ export default function AdminPage() {
                   </div>
                   <div className="flex items-center gap-2 text-zinc-500 text-xs">
                     <Clock className="w-3 h-3" />
-                    {new Date(msg.created_at).toLocaleString()}
+                    {new Date(msg.timestamp).toLocaleString()}
                     {!msg.read && (
                       <span className="ml-2 px-2 py-0.5 bg-[#9CE630]/10 text-[#9CE630] rounded-full">
                         New
