@@ -47,6 +47,9 @@ const AIChatAgent = () => {
     setIsLoading(true);
     setStreamingContent("");
 
+    // Declared outside try so the catch block can cancel it on error (Fix 3)
+    let reader: ReadableStreamDefaultReader<Uint8Array> | undefined;
+
     try {
       const response = await fetch("/api/agent/chat/stream", {
         method: "POST",
@@ -58,17 +61,22 @@ const AIChatAgent = () => {
         throw new Error("Stream unavailable");
       }
 
-      const reader = response.body.getReader();
+      reader = response.body.getReader();
       const decoder = new TextDecoder();
       let accumulated = "";
       let done = false;
+
+      // Persistent buffer retains incomplete SSE lines that span chunk boundaries (Fix 2)
+      let buffer = "";
 
       while (!done) {
         const { done: readerDone, value } = await reader.read();
         if (readerDone) break;
 
-        const chunk = decoder.decode(value, { stream: true });
-        const lines = chunk.split("\n");
+        buffer += decoder.decode(value, { stream: true });
+        const lines = buffer.split("\n");
+        // Keep the last (potentially incomplete) line for the next iteration
+        buffer = lines.pop() ?? "";
 
         for (const line of lines) {
           if (line.startsWith("data: ")) {
@@ -96,6 +104,10 @@ const AIChatAgent = () => {
         }
       }
     } catch (error) {
+      // Cancel the reader to release the underlying stream lock on error (Fix 3)
+      if (reader) {
+        try { await reader.cancel(); } catch {}
+      }
       console.error("Chat stream error:", error);
       setMessages((prev) => [
         ...prev,
@@ -105,7 +117,6 @@ const AIChatAgent = () => {
           timestamp: new Date(),
         },
       ]);
-      setStreamingContent("");
     } finally {
       setIsLoading(false);
       setStreamingContent("");
