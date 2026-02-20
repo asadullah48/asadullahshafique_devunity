@@ -7,7 +7,7 @@ sdk: docker
 pinned: true
 license: mit
 app_port: 7860
-short_description: FastAPI backend for Asadullah Shafique's portfolio — contact, blog, LangGraph agent, MCP server
+short_description: FastAPI backend — contact, blog, AI agent, MCP
 ---
 
 # Asadullah.dev — Portfolio API Backend
