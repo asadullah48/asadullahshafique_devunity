@@ -37,7 +37,7 @@ export default function AdminPage() {
       setError("Admin gate not configured. Set NEXT_PUBLIC_ADMIN_GATE.");
       return;
     }
-    if (password === GATE_PASSWORD) {
+    if (password.trim() === GATE_PASSWORD.trim()) {
       setAuthed(true);
     } else {
       setError("Wrong password");
