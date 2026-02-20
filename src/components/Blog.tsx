@@ -1,69 +1,60 @@
 "use client";
 
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
-import { Calendar, Clock, ArrowRight, Tag } from "lucide-react";
+import { Calendar, Clock, ArrowRight, Tag, Loader2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 
-const blogPosts = [
-  {
-    title: "Why Spec-First Development Changes Everything",
-    excerpt:
-      "How the SpecifyKit methodology transformed my approach to building AI applications. From chaos to clarity in every project.",
-    date: "Feb 2026",
-    readTime: "5 min",
-    tags: ["SpecifyKit", "Methodology", "AI"],
-    featured: true,
-  },
-  {
-    title: "Building RAG Chatbots: Lessons from Panaversity Hackathon",
-    excerpt:
-      "Deep dive into building a comprehensive textbook platform with RAG chatbot during the Physical AI & Humanoid Robotics Hackathon.",
-    date: "Jan 2026",
-    readTime: "8 min",
-    tags: ["RAG", "Hackathon", "Python"],
-    featured: true,
-  },
-  {
-    title: "Learning from AI Mistakes: A New Paradigm",
-    excerpt:
-      "Exploring an innovative approach — instead of avoiding AI errors, what if we embraced them as learning opportunities?",
-    date: "Jan 2026",
-    readTime: "6 min",
-    tags: ["AI Research", "Innovation"],
-    featured: false,
-  },
-  {
-    title: "Next.js + FastAPI: The Ultimate Full-Stack Combo",
-    excerpt:
-      "My go-to architecture for production AI apps. Why this stack works and how to set it up properly.",
-    date: "Dec 2025",
-    readTime: "10 min",
-    tags: ["Next.js", "FastAPI", "Full-Stack"],
-    featured: false,
-  },
-  {
-    title: "MCP Servers: Supercharging Claude Desktop",
-    excerpt:
-      "How I configured MCP servers to enhance my AI development workflow with Claude Desktop for maximum productivity.",
-    date: "Dec 2025",
-    readTime: "7 min",
-    tags: ["MCP", "Claude", "Productivity"],
-    featured: false,
-  },
-  {
-    title: "From Student to Agentic AI Developer: My Journey",
-    excerpt:
-      "The path from learning basics to building autonomous AI agents. Resources, tools, and mindset shifts that made the difference.",
-    date: "Nov 2025",
-    readTime: "12 min",
-    tags: ["Career", "Agentic AI", "Journey"],
-    featured: false,
-  },
-];
+/** Shape returned by the FastAPI /api/blog endpoint */
+interface BlogPost {
+  id: number;
+  title: string;
+  excerpt: string;
+  date: string;
+  read_time: string;
+  tags: string[];
+  featured: boolean;
+  slug: string;
+}
 
 const Blog = () => {
+  const [posts, setPosts] = useState<BlogPost[]>([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const controller = new AbortController();
+
+    fetch("/api/blog", { signal: controller.signal })
+      .then((r) => r.json())
+      .then((data) => {
+        // Backend may return a plain array or an object with a posts key
+        if (Array.isArray(data)) {
+          setPosts(data);
+        } else if (Array.isArray(data.posts)) {
+          setPosts(data.posts);
+        }
+      })
+      .catch((err) => {
+        // Suppress abort errors that fire on unmount; ignore other fetch failures silently
+        if (err.name !== "AbortError") {
+          // silently ignore
+        }
+      })
+      .finally(() => setLoading(false));
+
+    return () => controller.abort();
+  }, []);
+
+  // Show a centered spinner while the fetch is in-flight
+  if (loading) {
+    return (
+      <section id="blog" className="py-24 flex items-center justify-center min-h-[400px]">
+        <Loader2 className="w-8 h-8 animate-spin text-[#9CE630]" />
+      </section>
+    );
+  }
+
   return (
     <section id="blog" className="py-24 relative">
       <div className="container mx-auto px-4">
@@ -85,7 +76,7 @@ const Blog = () => {
 
         {/* Featured Posts */}
         <div className="grid md:grid-cols-2 gap-6 mb-8 max-w-5xl mx-auto">
-          {blogPosts
+          {posts
             .filter((p) => p.featured)
             .map((post, index) => (
               <motion.article
@@ -112,7 +103,7 @@ const Blog = () => {
                   </span>
                   <span className="flex items-center gap-1">
                     <Clock className="w-3 h-3" />
-                    {post.readTime}
+                    {post.read_time}
                   </span>
                 </div>
                 <div className="flex flex-wrap gap-2">
@@ -132,7 +123,7 @@ const Blog = () => {
 
         {/* Regular Posts */}
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-5xl mx-auto mb-12">
-          {blogPosts
+          {posts
             .filter((p) => !p.featured)
             .map((post, index) => (
               <motion.article
@@ -156,7 +147,7 @@ const Blog = () => {
                   </span>
                   <span className="flex items-center gap-1">
                     <Clock className="w-3 h-3" />
-                    {post.readTime}
+                    {post.read_time}
                   </span>
                 </div>
               </motion.article>
