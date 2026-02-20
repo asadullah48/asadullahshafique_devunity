@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useMemo } from "react";
 import { Button } from "@/components/ui/button";
 import { Github, ArrowDown, Sparkles, Code2, Brain } from "lucide-react";
 import Link from "next/link";
@@ -9,6 +9,23 @@ import { GitHubStatsStrip } from "@/components/GitHubStatsStrip";
 
 const Hero = () => {
     const [mounted, setMounted] = useState(false);
+
+    /**
+     * Particle positions and animation values are memoized so that Math.random()
+     * is called only once (on mount), preventing visible re-randomization on
+     * every re-render (e.g. when GitHub stats load and update parent state).
+     */
+    const particles = useMemo(
+      () =>
+        Array.from({ length: 20 }, () => ({
+          x: Math.random() * 1000,
+          y: Math.random() * 800,
+          yTarget: Math.random() * -200 - 100,
+          duration: Math.random() * 5 + 5,
+          delay: Math.random() * 5,
+        })),
+      []
+    );
 
     useEffect(() => {
           setMounted(true);
@@ -24,22 +41,22 @@ const Hero = () => {
           
             {/* Floating particles */}
                 <div className="absolute inset-0 overflow-hidden">
-                  {[...Array(20)].map((_, i) => (
+                  {particles.map((p, i) => (
                       <motion.div
                                     key={i}
                                     className="absolute w-1 h-1 bg-[#9CE630]/30 rounded-full"
                                     initial={{
-                                                    x: Math.random() * (typeof window !== "undefined" ? window.innerWidth : 1000),
-                                                    y: Math.random() * (typeof window !== "undefined" ? window.innerHeight : 800),
+                                                    x: p.x,
+                                                    y: p.y,
                                     }}
                                     animate={{
-                                                    y: [null, Math.random() * -200 - 100],
+                                                    y: [null, p.yTarget],
                                                     opacity: [0, 1, 0],
                                     }}
                                     transition={{
-                                                    duration: Math.random() * 5 + 5,
+                                                    duration: p.duration,
                                                     repeat: Infinity,
-                                                    delay: Math.random() * 5,
+                                                    delay: p.delay,
                                     }}
                                   />
                     ))}
