@@ -97,19 +97,16 @@ const Hero = () => {
                                                                             />
                                               </span>
                                               <br />
-                                              <span className="text-zinc-400 text-3xl md:text-5xl lg:text-6xl">
-                                                            Agentic AI Developer
+                                              <span className="text-zinc-400 text-xl md:text-2xl lg:text-3xl">
+                                                            Agentic AI Developer · Digital Marketing Strategist · CMT Industry Founder
                                               </span>
                                   </h1>
                         
                           {/* Description */}
                                   <p className="mb-10 text-lg text-zinc-400 md:text-xl max-w-2xl mx-auto leading-relaxed">
-                                              Building intelligent systems with{" "}
-                                              <span className="text-white font-medium">Next.js</span>,{" "}
-                                              <span className="text-white font-medium">TypeScript</span>,{" "}
-                                              <span className="text-white font-medium">Python</span> &{" "}
-                                              <span className="text-white font-medium">FastAPI</span>.
-                                              Passionate about Generative AI, spec-first development, and pushing boundaries.
+                                              I build AI-powered systems and market real businesses — from{" "}
+                                              <span className="text-white font-medium">Dubai construction projects</span> to{" "}
+                                              <span className="text-white font-medium">Pakistani textile factories</span>.
                                   </p>
                         
                           {/* Tech icons row */}

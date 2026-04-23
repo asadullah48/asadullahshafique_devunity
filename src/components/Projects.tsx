@@ -2,12 +2,22 @@
 
 import React from "react";
 import { motion } from "framer-motion";
-import { Github, ExternalLink, Star, GitFork } from "lucide-react";
+import { Github, ExternalLink, Star, GitFork, Zap } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import Link from "next/link";
 
 const projects = [
+  {
+        title: "CMT Stitching System",
+        description:
+                "Live SaaS product for CMT stitching and packing factories. Order lifecycle, auto-billing, inventory, dispatch, and financial tracking. Built from real factory operations.",
+        tags: ["SaaS", "Next.js", "TypeScript", "Factory Ops"],
+        github: "https://github.com/asadullah48",
+        demo: "https://cmt-stitching-asadullah-shafiques-projects.vercel.app",
+        featured: true,
+        liveProduct: true,
+  },
   {
         title: "DevUnity Platform",
         description:
@@ -96,8 +106,11 @@ const Projects = () => {
                           {project.featured && (
                                                         <div className="absolute -top-3 left-4">
                                                                           <Badge className="bg-[#9CE630] text-black text-xs font-semibold">
-                                                                                              <Star className="w-3 h-3 mr-1" />
-                                                                                              Featured
+                                                                                              {(project as { liveProduct?: boolean }).liveProduct ? (
+                                                                                                <><Zap className="w-3 h-3 mr-1" />Live Product</>
+                                                                                              ) : (
+                                                                                                <><Star className="w-3 h-3 mr-1" />Featured</>
+                                                                                              )}
                                                                           </Badge>
                                                         </div>
                                       )}

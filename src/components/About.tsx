@@ -28,7 +28,7 @@ const highlights = [
   {
         icon: GraduationCap,
         title: "Continuous Learner",
-        description: "Pursuing Agentic AI development, exploring MCP servers and innovative AI paradigms.",
+        description: "Continuously expanding expertise in AI, digital marketing, and SaaS product development.",
   },
   {
         icon: Zap,
@@ -53,8 +53,7 @@ const About = () => {
                                   </h2>
                                   <div className="w-20 h-1 bg-[#9CE630] mx-auto rounded-full mb-6" />
                                   <p className="text-zinc-400 max-w-2xl mx-auto text-lg">
-                                              A student pursuing Agentic AI development, passionate about building
-                                              intelligent systems that push the boundaries of what&apos;s possible.
+                                              Agentic AI Developer, Digital Marketing Strategist, and CMT Industry Founder — building AI-powered systems and marketing real businesses across Pakistan and UAE.
                                   </p>
                         </motion.div>
                 

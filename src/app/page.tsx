@@ -1,6 +1,8 @@
 import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
 import About from "@/components/About";
+import Services from "@/components/Services";
+import Industries from "@/components/Industries";
 import Skills from "@/components/Skills";
 import Projects from "@/components/Projects";
 import Hackathons from "@/components/Hackathons";
@@ -10,6 +12,7 @@ import Discord from "@/components/Discord";
 import Contact from "@/components/Contact";
 import Footer from "@/components/Footer";
 import AIChatAgent from "@/components/AIChatAgent";
+import WhatsAppButton from "@/components/WhatsAppButton";
 
 export default function Home() {
     return (
@@ -23,6 +26,8 @@ export default function Home() {
             <Navbar />
             <Hero />
             <About />
+            <Services />
+            <Industries />
             <Skills />
             <Projects />
             <Hackathons />
@@ -32,6 +37,7 @@ export default function Home() {
             <Contact />
             <Footer />
             <AIChatAgent />
+            <WhatsAppButton />
         </div>
     );
 }

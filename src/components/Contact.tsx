@@ -2,7 +2,7 @@
 
 import React, { useState } from "react";
 import { motion } from "framer-motion";
-import { Mail, Send, CheckCircle, AlertCircle, Loader2 } from "lucide-react";
+import { Mail, Send, CheckCircle, AlertCircle, Loader2, MessageCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 const Contact = () => {
@@ -96,6 +96,22 @@ const Contact = () => {
               </div>
             </a>
 
+            <a
+              href="https://wa.me/923213771445"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center gap-4 p-4 rounded-xl bg-zinc-900/50 border border-zinc-800 hover:border-[#25D366]/30 transition-all group"
+            >
+              <div className="w-10 h-10 rounded-lg bg-[#25D366]/10 flex items-center justify-center group-hover:bg-[#25D366]/20 transition-colors">
+                <MessageCircle className="w-5 h-5 text-[#25D366]" />
+              </div>
+              <div>
+                <p className="text-xs text-zinc-500">WhatsApp</p>
+                <p className="text-sm text-white">+92 3XX XXXXXXX</p>
+                <p className="text-xs text-zinc-500 mt-0.5">For Pakistan/UAE: WhatsApp preferred for faster response</p>
+              </div>
+            </a>
+
             <div className="p-6 rounded-xl bg-zinc-900/50 border border-zinc-800">
               <p className="text-sm font-semibold text-white mb-3">Prefer other channels?</p>
               <div className="space-y-2 text-sm text-zinc-400">
@@ -120,6 +136,18 @@ const Contact = () => {
                   >
                     Join Server
                   </a>
+                </p>
+                <p>
+                  WhatsApp:{" "}
+                  <a
+                    href="https://wa.me/923213771445"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-[#25D366] hover:underline"
+                  >
+                    Chat Now
+                  </a>
+                  <span className="text-zinc-500"> (Pakistan/UAE preferred)</span>
                 </p>
               </div>
             </div>
