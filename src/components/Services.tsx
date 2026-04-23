@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import React from "react";
 import { motion } from "framer-motion";
@@ -28,7 +28,7 @@ const services = [
     icon: Factory,
     title: "Textile ERP Platform — Pakistan",
     description:
-      "A full-spectrum ERP built for Pakistan's textile industry — from small CMT units to large garment factories and exporters. Order management, billing, inventory, production tracking, dispatch, and financial ledgers. Targeting Faisalabad, Sialkot, Gujranwala, Karachi, and Lahore textile hubs.",
+      "A full-spectrum ERP for Pakistan's textile industry — from Fabric Mills to garment exporters. Module 1: Fabric Mill — roll/lot management, weaving and knitting stage tracking, Yarn inventory, and Imported Fabric. Further modules: CMT order lifecycle, auto-billing, production sessions, dispatch, party ledgers, and financial accounts. Targeting Faisalabad, Sialkot, Gujranwala, Karachi, and Lahore.",
     cta: "Join Waitlist →",
     ctaHref: "",
     external: false,

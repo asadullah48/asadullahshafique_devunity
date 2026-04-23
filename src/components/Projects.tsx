@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import React from "react";
 import { motion } from "framer-motion";
@@ -11,7 +11,7 @@ const projects = [
   {
         title: "Textile ERP Platform",
         description:
-                "Full-scale ERP for Pakistan's textile and garment industry. Built on real CMT factory operations — order lifecycle, auto-billing across 4 bill types, inventory with BOM, production sessions, dispatch, party ledgers, and cash tracking. Targeting small CMT units through to large exporters across Pakistan's textile hubs.",
+                "Full-scale ERP for Pakistan's textile and garment industry. Module 1 — Fabric Mill: roll/lot management, weaving and knitting stage tracking, Yarn inventory, Imported Fabric. Core modules: CMT order lifecycle, auto-billing across 4 bill types, inventory with BOM, production sessions, dispatch, party ledgers, and cash tracking. Built for small CMT units through to large mills and exporters across Pakistan.",
         tags: ["SaaS", "Next.js", "TypeScript", "Factory Ops"],
         github: "https://github.com/asadullah48",
         demo: "https://cmt-stitching-asadullah-shafiques-projects.vercel.app",
