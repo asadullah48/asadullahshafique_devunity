@@ -24,6 +24,24 @@ const skillCategories = [
               ],
   },
   {
+        name: "OpenClaw Curriculum",
+        skills: [
+          { name: "Python Fundamentals", level: 85 },
+          { name: "OOP & Classes",        level: 78 },
+          { name: "Functions & Modules",  level: 82 },
+          { name: "File I/O & Exceptions",level: 75 },
+              ],
+  },
+  {
+        name: "Agent Foundation",
+        skills: [
+          { name: "General Agent (Claude Code)", level: 82 },
+          { name: "Custom Agent (OpenAI SDK)",   level: 75 },
+          { name: "MCP Server Integration",      level: 78 },
+          { name: "Constitutional AI",           level: 85 },
+              ],
+  },
+  {
         name: "AI & Tools",
         skills: [
           { name: "Generative AI", level: 82 },
@@ -124,6 +142,7 @@ const Skills = () => {
                                                   "OpenAI API", "Gemini API", "Radix UI", "shadcn/ui",
                                                   "Framer Motion", "MCP Servers", "Ubuntu WSL", "PostgreSQL",
                                                   "REST APIs", "RAG Systems", "Prompt Engineering", "Lucide Icons",
+                                                  "OpenClaw", "SKILL.md", "Kubernetes", "Dapr", "Kafka", "Helm", "GitHub Actions",
                                                 ].map((tech) => (
                                                                 <span
                                                                                   key={tech}
