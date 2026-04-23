@@ -107,7 +107,7 @@ const Contact = () => {
               </div>
               <div>
                 <p className="text-xs text-zinc-500">WhatsApp</p>
-                <p className="text-sm text-white">+92 3XX XXXXXXX</p>
+                <p className="text-sm text-white">+92 321 3771445</p>
                 <p className="text-xs text-zinc-500 mt-0.5">For Pakistan/UAE: WhatsApp preferred for faster response</p>
               </div>
             </a>

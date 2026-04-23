@@ -9,9 +9,9 @@ import Link from "next/link";
 
 const projects = [
   {
-        title: "CMT Stitching System",
+        title: "Textile ERP Platform",
         description:
-                "Live SaaS product for CMT stitching and packing factories. Order lifecycle, auto-billing, inventory, dispatch, and financial tracking. Built from real factory operations.",
+                "Full-scale ERP for Pakistan's textile and garment industry. Built on real CMT factory operations — order lifecycle, auto-billing across 4 bill types, inventory with BOM, production sessions, dispatch, party ledgers, and cash tracking. Targeting small CMT units through to large exporters across Pakistan's textile hubs.",
         tags: ["SaaS", "Next.js", "TypeScript", "Factory Ops"],
         github: "https://github.com/asadullah48",
         demo: "https://cmt-stitching-asadullah-shafiques-projects.vercel.app",
@@ -107,7 +107,7 @@ const Projects = () => {
                                                         <div className="absolute -top-3 left-4">
                                                                           <Badge className="bg-[#9CE630] text-black text-xs font-semibold">
                                                                                               {(project as { liveProduct?: boolean }).liveProduct ? (
-                                                                                                <><Zap className="w-3 h-3 mr-1" />Live Product</>
+                                                                                                <><Zap className="w-3 h-3 mr-1" />In Development</>
                                                                                               ) : (
                                                                                                 <><Star className="w-3 h-3 mr-1" />Featured</>
                                                                                               )}

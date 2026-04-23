@@ -10,7 +10,7 @@ const industries = [
     title: "Textile & Garment",
     subtitle: "Pakistan · UAE · Turkey",
     description:
-      "CMT factories, stitching units, packing houses, and garment exporters. Deep operational expertise from running a CMT factory.",
+      "Serving Pakistan's textile value chain — CMT stitching units, garment factories, fabric mills, and exporters across Faisalabad, Sialkot, Gujranwala, Karachi, and Lahore. Also UAE and Turkish sourcing houses.",
   },
   {
     icon: Building2,

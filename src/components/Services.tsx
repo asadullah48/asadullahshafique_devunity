@@ -26,12 +26,14 @@ const services = [
   },
   {
     icon: Factory,
-    title: "CMT System — Live SaaS Product",
+    title: "Textile ERP Platform — Pakistan",
     description:
-      "Order management, billing, inventory, and dispatch for stitching and packing businesses. Built by a CMT factory owner, for CMT owners.",
-    cta: "Try Free →",
-    ctaHref: "https://cmt-stitching-asadullah-shafiques-projects.vercel.app",
-    external: true,
+      "A full-spectrum ERP built for Pakistan's textile industry — from small CMT units to large garment factories and exporters. Order management, billing, inventory, production tracking, dispatch, and financial ledgers. Targeting Faisalabad, Sialkot, Gujranwala, Karachi, and Lahore textile hubs.",
+    cta: "Join Waitlist →",
+    ctaHref: "",
+    external: false,
+    badge: "Launching 2026",
+    waitlist: true,
   },
 ];
 
@@ -66,10 +68,19 @@ const Services = () => {
               className="group flex flex-col p-6 rounded-xl bg-zinc-900/50 border border-zinc-800 hover:border-[#9CE630]/30 transition-all duration-300 hover:bg-zinc-900/80"
             >
               <service.icon className="w-10 h-10 text-[#9CE630] mb-4 group-hover:scale-110 transition-transform" />
-              <h3 className="text-xl font-semibold text-white mb-3">{service.title}</h3>
+              <h3 className="text-xl font-semibold text-white mb-2">{service.title}</h3>
+              {(service as { badge?: string }).badge && (
+                <span className="inline-block px-2 py-0.5 mb-3 text-xs font-semibold text-black bg-[#9CE630] rounded-full">
+                  {(service as { badge?: string }).badge}
+                </span>
+              )}
               <p className="text-zinc-400 text-sm leading-relaxed flex-grow">{service.description}</p>
               <div className="mt-6 pt-4 border-t border-zinc-800">
-                {service.external ? (
+                {(service as { waitlist?: boolean }).waitlist ? (
+                  <span className="text-[#9CE630] text-sm font-medium">
+                    {service.cta}
+                  </span>
+                ) : service.external ? (
                   <Link
                     href={service.ctaHref}
                     target="_blank"
