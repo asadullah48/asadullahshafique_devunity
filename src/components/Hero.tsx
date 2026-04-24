@@ -2,7 +2,7 @@
 
 import React, { useEffect, useState, useMemo } from "react";
 import { Button } from "@/components/ui/button";
-import { Github, ArrowDown, Sparkles, Code2, Brain } from "lucide-react";
+import { Github, ArrowDown, Sparkles, Code2, Brain, FileDown } from "lucide-react";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { GitHubStatsStrip } from "@/components/GitHubStatsStrip";
@@ -150,6 +150,20 @@ const Hero = () => {
                                                                             GitHub Profile
                                                             </Button>
                                               </Link>
+                                              <a
+                                                href="/resume.pdf"
+                                                target="_blank"
+                                                rel="noopener noreferrer"
+                                                download="Asadullah_Shafique_Resume_2025.pdf"
+                                              >
+                                                <Button
+                                                  variant="outline"
+                                                  className="h-12 px-8 border-[#9CE630]/40 text-[#9CE630] hover:bg-[#9CE630]/10 hover:border-[#9CE630] transition-all duration-300"
+                                                >
+                                                  <FileDown className="mr-2 h-5 w-5" />
+                                                  Download Resume
+                                                </Button>
+                                              </a>
                                   </div>
                         
                           {/* Live GitHub Stats */}
@@ -164,7 +178,7 @@ const Hero = () => {
                                               >
                                     {[
                                                 { value: "10+", label: "Projects" },
-                                                { value: "5+", label: "Hackathons" },
+                                                { value: "6", label: "Hackathons" },
                                                 { value: "Full-Stack", label: "AI Developer" },
                                                             ].map((stat) => (
                                                                             <div key={stat.label} className="text-center">
