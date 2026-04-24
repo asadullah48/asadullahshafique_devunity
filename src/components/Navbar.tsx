@@ -3,7 +3,7 @@
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
-import { Code2, Github, Menu, X, MessageCircle } from "lucide-react";
+import { Code2, Github, Menu, X, MessageCircle, FileDown } from "lucide-react";
 
 const navLinks = [
   { name: "About", href: "#about" },
@@ -93,6 +93,16 @@ const Navbar = () => {
               GitHub
             </Button>
           </Link>
+          <Link href="/resume" className="hidden sm:block">
+            <Button
+              variant="outline"
+              size="sm"
+              className="border-[#9CE630]/40 text-[#9CE630] hover:bg-[#9CE630]/10 hover:border-[#9CE630] h-9"
+            >
+              <FileDown className="w-4 h-4 mr-2" />
+              Resume
+            </Button>
+          </Link>
           <Link href="#contact">
             <Button
               size="sm"
@@ -141,6 +151,14 @@ const Navbar = () => {
               className="block text-zinc-400 hover:text-[#9CE630] py-2 transition-colors"
             >
               GitHub
+            </Link>
+            <Link
+              href="/resume"
+              onClick={() => setIsMobileOpen(false)}
+              className="flex items-center gap-2 text-[#9CE630] py-2 transition-colors font-medium"
+            >
+              <FileDown className="w-4 h-4" />
+              Resume
             </Link>
           </div>
         </div>
