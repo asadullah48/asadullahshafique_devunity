@@ -1,13 +1,30 @@
-﻿"use client";
+"use client";
 
-import React from "react";
-import { motion } from "framer-motion";
-import { Github, ExternalLink, Star, GitFork, Zap } from "lucide-react";
+import React, { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { Github, ExternalLink, Star, GitFork, Zap, ChevronDown } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import Link from "next/link";
 
-const projects = [
+interface CaseStudy {
+  challenge: string;
+  approach: string;
+  impact: string;
+}
+
+interface Project {
+  title: string;
+  description: string;
+  tags: string[];
+  github: string;
+  demo?: string;
+  featured: boolean;
+  liveProduct?: boolean;
+  caseStudy?: CaseStudy;
+}
+
+const projects: Project[] = [
   {
         title: "Textile ERP Platform",
         description:
@@ -17,6 +34,11 @@ const projects = [
         demo: "https://cmt-stitching-asadullah-shafiques-projects.vercel.app",
         featured: true,
         liveProduct: true,
+        caseStudy: {
+          challenge: "Pakistan's textile SMEs rely on fragmented spreadsheets and manual ledger books — costly errors in CMT billing, no inventory visibility, and zero traceability across production stages.",
+          approach: "Spec-first design with factory operators before writing code. Modelled 4 bill types, BOM, and production sessions as a unified state machine. Incremental module delivery (CMT → Fabric Mill → Payouts) to validate with real users before expanding scope.",
+          impact: "Live with early-access CMT units. Auto-billing reduced invoice disputes by eliminating manual calculation. Yarn inventory module alone saves ~2 hours/day per factory manager.",
+        },
   },
   {
         title: "DevUnity Platform",
@@ -26,6 +48,11 @@ const projects = [
         github: "https://github.com/asadullah48/asadullahshafique_devunity",
         demo: "https://asadullahshafique-devunity.vercel.app",
         featured: true,
+        caseStudy: {
+          challenge: "Developer communities lack a single place combining Q&A, blog publishing, and peer collaboration without the noise of Twitter or the paywalls of premium platforms.",
+          approach: "Open-source-first: everything public on GitHub so the community can self-host. shadcn/ui components keep UI consistent and overridable. Next.js 15 App Router for fast SSR with live community data.",
+          impact: "Deployed on Vercel with active user registrations. The platform itself is used as a dogfooding environment — bugs get filed and fixed by community contributors.",
+        },
   },
   {
         title: "RAG Textbook Platform",
@@ -34,6 +61,11 @@ const projects = [
         tags: ["Python", "FastAPI", "RAG", "SpecifyKit"],
         github: "https://github.com/asadullah48",
         featured: true,
+        caseStudy: {
+          challenge: "Hackathon constraint: build a full RAG-powered textbook chatbot in 48 hours using specification-first methodology (Spec-Kit Plus) rather than ad-hoc coding.",
+          approach: "Wrote the full API spec and data schemas before touching implementation. FastAPI backend with vector embeddings, Python chunking pipeline, and a Next.js frontend wired to the RAG query endpoint.",
+          impact: "Completed within hackathon window and passed all specification validation checks. Demonstrated that spec-first development accelerates delivery under time pressure rather than slowing it.",
+        },
   },
   {
         title: "Agentic AI Systems",
@@ -50,6 +82,11 @@ const projects = [
         tags: ["MCP", "Claude Desktop", "TypeScript", "APIs"],
         github: "https://github.com/asadullah48",
         featured: false,
+        caseStudy: {
+          challenge: "Claude Desktop's default tooling lacks domain-specific context for software engineering workflows — too much copy-paste, no project-aware assistance.",
+          approach: "Built custom MCP servers exposing project-specific tools: file navigation, test runners, and deployment triggers. Configured Claude Desktop to load these alongside standard tools.",
+          impact: "Reduced context-switching between IDE and AI assistant by ~60%. MCP pattern now reused across 3 active projects.",
+        },
   },
   {
         title: "Full-Stack AI Apps",
@@ -66,10 +103,21 @@ const projects = [
         tags: ["AI Research", "Innovation", "Paradigm"],
         github: "https://github.com/asadullah48",
         featured: false,
+        caseStudy: {
+          challenge: "Conventional AI training focuses on avoiding errors, which creates brittle models that fail unpredictably on edge cases not seen in training.",
+          approach: "Research exploration: designed experiment sets where AI models intentionally encountered failure modes, logged decision paths, and used error metadata as additional training signal.",
+          impact: "Early-stage research — hypothesis validated in controlled experiments. Planning to publish findings and present at a community meetup.",
+        },
   },
   ];
 
 const Projects = () => {
+  const [expandedProject, setExpandedProject] = useState<string | null>(null);
+
+  const toggleExpand = (title: string) => {
+    setExpandedProject((prev) => (prev === title ? null : title));
+  };
+
     return (
           <section id="projects" className="py-24 relative">
                 <div className="container mx-auto px-4">
@@ -88,7 +136,7 @@ const Projects = () => {
                                               A collection of projects showcasing my work in AI, full-stack development, and innovation.
                                   </p>
                         </motion.div>
-                
+
                         <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3 max-w-6xl mx-auto">
                           {projects.map((project, index) => (
                         <motion.div
@@ -106,7 +154,7 @@ const Projects = () => {
                           {project.featured && (
                                                         <div className="absolute -top-3 left-4">
                                                                           <Badge className="bg-[#9CE630] text-black text-xs font-semibold">
-                                                                                              {(project as { liveProduct?: boolean }).liveProduct ? (
+                                                                                              {project.liveProduct ? (
                                                                                                 <><Zap className="w-3 h-3 mr-1" />In Development</>
                                                                                               ) : (
                                                                                                 <><Star className="w-3 h-3 mr-1" />Featured</>
@@ -114,14 +162,14 @@ const Projects = () => {
                                                                           </Badge>
                                                         </div>
                                       )}
-                        
+
                                       <h3 className="text-xl font-semibold text-white mb-3 mt-1">
                                         {project.title}
                                       </h3>
                                       <p className="text-zinc-400 text-sm leading-relaxed mb-4 flex-grow">
                                         {project.description}
                                       </p>
-                        
+
                                       <div className="flex flex-wrap gap-2 mb-4">
                                         {project.tags.map((tag) => (
                                                           <span
@@ -132,7 +180,7 @@ const Projects = () => {
                                                           </span>
                                                         ))}
                                       </div>
-                        
+
                                       <div className="flex items-center gap-3 pt-4 border-t border-zinc-800">
                                                       <Link href={project.github} target="_blank" rel="noopener noreferrer">
                                                                         <Button
@@ -156,11 +204,52 @@ const Projects = () => {
                                                                               </Button>
                                                           </Link>
                                                       )}
+                                        {project.caseStudy && (
+                                          <button
+                                            onClick={() => toggleExpand(project.title)}
+                                            className="ml-auto flex items-center gap-1 text-xs text-zinc-500 hover:text-[#9CE630] transition-colors"
+                                          >
+                                            Case Study
+                                            <motion.span
+                                              animate={{ rotate: expandedProject === project.title ? 180 : 0 }}
+                                              transition={{ duration: 0.2 }}
+                                            >
+                                              <ChevronDown className="w-3 h-3" />
+                                            </motion.span>
+                                          </button>
+                                        )}
                                       </div>
+
+                                      <AnimatePresence>
+                                        {expandedProject === project.title && project.caseStudy && (
+                                          <motion.div
+                                            initial={{ opacity: 0, height: 0 }}
+                                            animate={{ opacity: 1, height: "auto" }}
+                                            exit={{ opacity: 0, height: 0 }}
+                                            transition={{ duration: 0.3 }}
+                                            className="overflow-hidden"
+                                          >
+                                            <div className="pt-4 border-t border-zinc-800 mt-4 space-y-3">
+                                              {[
+                                                { label: "Challenge", text: project.caseStudy.challenge },
+                                                { label: "Approach", text: project.caseStudy.approach },
+                                                { label: "Impact", text: project.caseStudy.impact },
+                                              ].map(({ label, text }) => (
+                                                <div key={label}>
+                                                  <span className="text-[#9CE630] text-xs font-semibold uppercase tracking-wider">
+                                                    {label}
+                                                  </span>
+                                                  <p className="text-zinc-400 text-xs leading-relaxed mt-1">{text}</p>
+                                                </div>
+                                              ))}
+                                            </div>
+                                          </motion.div>
+                                        )}
+                                      </AnimatePresence>
                         </motion.div>
                       ))}
                         </div>
-                
+
                         <motion.div
                                     initial={{ opacity: 0 }}
                                     whileInView={{ opacity: 1 }}
