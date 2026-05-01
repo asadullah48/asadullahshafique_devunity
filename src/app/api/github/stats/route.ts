@@ -1,32 +1,49 @@
-// API Route Handler for GitHub Stats
-// Proxies requests to the FastAPI backend
-
 import { NextResponse } from "next/server";
 
-const BACKEND_URL = (process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000").replace(/\/$/, "");
+const GITHUB_USERNAME = "asadullah48";
 
 export async function GET() {
   try {
-    const response = await fetch(`${BACKEND_URL}/api/github/stats`, {
-      method: "GET",
-      headers: { "Content-Type": "application/json" },
-      cache: "no-store",
-    });
+    const [profileRes, reposRes] = await Promise.all([
+      fetch(`https://api.github.com/users/${GITHUB_USERNAME}`, {
+        headers: { Accept: "application/vnd.github+json" },
+        next: { revalidate: 3600 },
+      }),
+      fetch(`https://api.github.com/users/${GITHUB_USERNAME}/repos?per_page=100&sort=updated`, {
+        headers: { Accept: "application/vnd.github+json" },
+        next: { revalidate: 3600 },
+      }),
+    ]);
 
-    if (!response.ok) {
-      return NextResponse.json(
-        { error: "Failed to fetch GitHub stats" },
-        { status: response.status }
-      );
+    if (!profileRes.ok || !reposRes.ok) {
+      return NextResponse.json({ error: "GitHub API error" }, { status: 502 });
     }
 
-    const data = await response.json();
-    return NextResponse.json(data);
+    const profile = await profileRes.json();
+    const repos: Array<{ stargazers_count: number; language: string | null; fork: boolean }> =
+      await reposRes.json();
+
+    const ownRepos = repos.filter((r) => !r.fork);
+    const total_stars = ownRepos.reduce((sum, r) => sum + (r.stargazers_count ?? 0), 0);
+
+    const langCount: Record<string, number> = {};
+    for (const repo of ownRepos) {
+      if (repo.language) langCount[repo.language] = (langCount[repo.language] ?? 0) + 1;
+    }
+    const top_languages = Object.entries(langCount)
+      .sort(([, a], [, b]) => b - a)
+      .slice(0, 5)
+      .map(([lang]) => lang);
+
+    return NextResponse.json({
+      public_repos: profile.public_repos as number,
+      followers: profile.followers as number,
+      following: profile.following as number,
+      total_stars,
+      top_languages,
+    });
   } catch (error) {
-    console.error("GitHub Stats API error:", error);
-    return NextResponse.json(
-      { error: "Internal server error" },
-      { status: 500 }
-    );
+    console.error("GitHub Stats error:", error);
+    return NextResponse.json({ error: "Internal server error" }, { status: 500 });
   }
 }
