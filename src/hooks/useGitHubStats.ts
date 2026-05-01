@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 
 /**
  * Shape of the GitHub stats returned by /api/github/stats
- * (proxied from the FastAPI backend).
+ * (fetched from the GitHub REST API).
  */
 interface GitHubStats {
   public_repos: number;

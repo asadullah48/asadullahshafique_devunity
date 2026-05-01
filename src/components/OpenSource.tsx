@@ -98,11 +98,14 @@ export default function OpenSourceSection() {
           <p className="text-xs text-zinc-600 text-center mb-3 uppercase tracking-wider">
             GitHub Contribution Activity
           </p>
-          {/* eslint-disable-next-line @next/next/no-img-element */}
+          {/* eslint-disable-next-line @next/next/no-img-element -- ghchart.rshah.org returns an SVG; next/image optimization is not applicable here */}
           <img
             src="https://ghchart.rshah.org/9CE630/asadullah48"
             alt="Asadullah's GitHub contribution chart"
             className="w-full rounded-lg opacity-90"
+            onError={(e) => {
+              (e.currentTarget.parentElement as HTMLElement).style.display = "none";
+            }}
           />
         </motion.div>
 

@@ -2,6 +2,12 @@ import { NextResponse } from "next/server";
 
 const GITHUB_USERNAME = "asadullah48";
 
+interface GitHubProfile {
+  public_repos: number;
+  followers: number;
+  following: number;
+}
+
 export async function GET() {
   try {
     const [profileRes, reposRes] = await Promise.all([
@@ -19,7 +25,7 @@ export async function GET() {
       return NextResponse.json({ error: "GitHub API error" }, { status: 502 });
     }
 
-    const profile = await profileRes.json();
+    const profile = (await profileRes.json()) as GitHubProfile;
     const repos: Array<{ stargazers_count: number; language: string | null; fork: boolean }> =
       await reposRes.json();
 
@@ -36,9 +42,9 @@ export async function GET() {
       .map(([lang]) => lang);
 
     return NextResponse.json({
-      public_repos: profile.public_repos as number,
-      followers: profile.followers as number,
-      following: profile.following as number,
+      public_repos: profile.public_repos,
+      followers: profile.followers,
+      following: profile.following,
       total_stars,
       top_languages,
     });
