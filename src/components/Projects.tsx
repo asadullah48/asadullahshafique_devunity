@@ -207,26 +207,27 @@ const Projects = () => {
                                         {project.caseStudy && (
                                           <button
                                             onClick={() => toggleExpand(project.title)}
-                                            className="ml-auto flex items-center gap-1 text-xs text-zinc-500 hover:text-[#9CE630] transition-colors"
+                                            className="ml-auto flex items-center gap-1 h-8 text-xs text-zinc-500 hover:text-[#9CE630] transition-colors"
                                           >
                                             Case Study
-                                            <motion.span
+                                            <motion.div
+                                              style={{ display: "inline-flex" }}
                                               animate={{ rotate: expandedProject === project.title ? 180 : 0 }}
                                               transition={{ duration: 0.2 }}
                                             >
                                               <ChevronDown className="w-3 h-3" />
-                                            </motion.span>
+                                            </motion.div>
                                           </button>
                                         )}
                                       </div>
 
-                                      <AnimatePresence>
+                                      <AnimatePresence mode="wait">
                                         {expandedProject === project.title && project.caseStudy && (
                                           <motion.div
                                             initial={{ opacity: 0, height: 0 }}
                                             animate={{ opacity: 1, height: "auto" }}
                                             exit={{ opacity: 0, height: 0 }}
-                                            transition={{ duration: 0.3 }}
+                                            transition={{ duration: 0.3, opacity: { duration: 0.15 } }}
                                             className="overflow-hidden"
                                           >
                                             <div className="pt-4 border-t border-zinc-800 mt-4 space-y-3">
