@@ -8,6 +8,7 @@ import Projects from "@/components/Projects";
 import Hackathons from "@/components/Hackathons";
 import Blog from "@/components/Blog";
 import OpenSourceSection from "@/components/OpenSource";
+import Testimonials from "@/components/Testimonials";
 import Discord from "@/components/Discord";
 import Contact from "@/components/Contact";
 import Footer from "@/components/Footer";
@@ -33,6 +34,7 @@ export default function Home() {
             <Hackathons />
             <Blog />
             <OpenSourceSection />
+            <Testimonials />
             <Discord />
             <Contact />
             <Footer />

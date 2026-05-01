@@ -14,6 +14,7 @@ const navLinks = [
   { name: "Hackathons", href: "#hackathons" },
   { name: "Blog", href: "#blog" },
   { name: "Open Source", href: "#opensource" },
+  { name: "Testimonials", href: "#testimonials" },
   { name: "Contact", href: "#contact" },
 ];
 
