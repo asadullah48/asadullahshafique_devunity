@@ -119,6 +119,7 @@ export default function Testimonials() {
           <div className="flex items-center justify-center gap-4 mt-8">
             <button
               onClick={prev}
+              aria-label="Previous testimonial"
               className="p-2 rounded-full border border-zinc-700 text-zinc-400 hover:border-[#9CE630] hover:text-[#9CE630] transition-colors"
             >
               <ChevronLeft className="w-5 h-5" />
@@ -129,8 +130,10 @@ export default function Testimonials() {
                 <button
                   key={i}
                   onClick={() => setCurrent(i)}
-                  className={`w-2 h-2 rounded-full transition-all duration-300 ${
-                    i === current ? "bg-[#9CE630] w-6" : "bg-zinc-700"
+                  aria-label={`Go to testimonial ${i + 1}`}
+                  aria-current={i === current ? "true" : undefined}
+                  className={`h-2 rounded-full transition-all duration-300 ${
+                    i === current ? "bg-[#9CE630] w-6" : "bg-zinc-700 w-2"
                   }`}
                 />
               ))}
@@ -138,6 +141,7 @@ export default function Testimonials() {
 
             <button
               onClick={next}
+              aria-label="Next testimonial"
               className="p-2 rounded-full border border-zinc-700 text-zinc-400 hover:border-[#9CE630] hover:text-[#9CE630] transition-colors"
             >
               <ChevronRight className="w-5 h-5" />
