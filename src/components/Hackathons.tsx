@@ -3,8 +3,23 @@
 import React from "react";
 import { motion } from "framer-motion";
 import { Trophy, Calendar, MapPin, Award } from "lucide-react";
+import { useLocale } from "@/context/LocaleContext";
 
-const tierStyles: Record<string, string> = {
+type HackathonTier = "Agent Factory" | "Platinum" | "Gold" | "Silver" | "Bronze";
+
+type HackathonEntry = {
+  tier: HackathonTier;
+  title: string;
+  organizer: string;
+  date: string;
+  location: string;
+  achievement: string;
+  description: string;
+  technologies: string[];
+  highlight: boolean;
+};
+
+const tierStyles: Record<HackathonTier, string> = {
   "Agent Factory": "bg-purple-500/20 text-purple-400 border border-purple-500/30",
   "Platinum":      "bg-sky-500/20    text-sky-400    border border-sky-500/30",
   "Gold":          "bg-yellow-500/20 text-yellow-400 border border-yellow-500/30",
@@ -12,7 +27,7 @@ const tierStyles: Record<string, string> = {
   "Bronze":        "bg-orange-500/20 text-orange-400 border border-orange-500/30",
 };
 
-const hackathons = [
+const HACKATHONS_EN: HackathonEntry[] = [
   {
     tier: "Agent Factory",
     title: "H5 — Agent Factory",
@@ -81,109 +96,173 @@ const hackathons = [
   },
 ];
 
+const HACKATHONS_AR: HackathonEntry[] = [
+  {
+    tier: "Agent Factory",
+    title: "H5 — مصنع الوكلاء",
+    organizer: "سلسلة هاكاثونات Panaversity",
+    date: "2025",
+    location: "عبر الإنترنت",
+    achievement: "مكتمل",
+    description: "هندسة من طبقتين: الوكيل العام (Claude Code) يصنع الوكيل المخصص (OpenAI Agents SDK). ملفات SKILL.md كوحدات ذكاء قابلة للنقل والتسييل. نموذج الموظف الرقمي مُسعَّر ومنشور على Kubernetes + Dapr. يستهدف نظام OpenAI Apps البيئي (800 مليون مستخدم). 117 شريحة عرض مُتقنة.",
+    technologies: ["Claude Code", "OpenAI Agents SDK", "SKILL.md", "MCP", "Kubernetes", "Dapr"],
+    highlight: true,
+  },
+  {
+    tier: "Platinum",
+    title: "H4 — النشر السحابي الأصيل",
+    organizer: "سلسلة هاكاثونات Panaversity",
+    date: "2025",
+    location: "عبر الإنترنت",
+    achievement: "بلاتيني (قيد التقدم)",
+    description: "حاويات H3 مع Docker متعدد المراحل. مانيفيستات Kubernetes: namespace وConfigMap وSecrets وDeployments وStatefulSets وPVCs. شبكة خدمات Dapr وKafka، مجموعة Prometheus + Grafana + Jaeger، مخططات Helm، وCI/CD بـ GitHub Actions.",
+    technologies: ["Kubernetes", "Docker", "Dapr", "Kafka", "Prometheus", "Grafana", "Helm"],
+    highlight: true,
+  },
+  {
+    tier: "Gold",
+    title: "H3 — مهام متقدمة",
+    organizer: "سلسلة هاكاثونات Panaversity",
+    date: "2025",
+    location: "عبر الإنترنت",
+    achievement: "ذهبي",
+    description: "149 اختباراً ناجحاً. مهام متكررة وقوالب وتعاون جماعي واقتراحات ذكاء اصطناعي وتكامل التقويم. ذكاء اصطناعي دستوري ثلاثي الطبقات: 7 أنماط BLOCK (غش أكاديمي، نشاط غير قانوني، محتوى ضار)، 5 أنماط FLAG. 85% إعادة استخدام كود من H2.",
+    technologies: ["Next.js", "FastAPI", "PostgreSQL", "Constitutional AI", "TypeScript"],
+    highlight: true,
+  },
+  {
+    tier: "Silver",
+    title: "H2 — مهام مدعومة بالذكاء الاصطناعي",
+    organizer: "سلسلة هاكاثونات Panaversity",
+    date: "2025",
+    location: "عبر الإنترنت",
+    achievement: "فضي",
+    description: "89 اختباراً ناجحاً. مهام كاملة الحزمة مدعومة بالذكاء الاصطناعي مع تكامل الذكاء الاصطناعي الدستوري. 70% إعادة استخدام كود من H1. منهجية Spec-First المكونة من أربع جلسات.",
+    technologies: ["Next.js", "TypeScript", "FastAPI", "Constitutional AI"],
+    highlight: false,
+  },
+  {
+    tier: "Silver",
+    title: "H1 — زميل الدورة الموظف الرقمي",
+    organizer: "سلسلة هاكاثونات Panaversity",
+    date: "2024",
+    location: "عبر الإنترنت",
+    achievement: "فضي",
+    description: "هندسة Zero-Backend-LLM. مساعد دورة مبني كنموذج موظف رقمي متفرغ (FTE). 70% إعادة استخدام كود من H0.",
+    technologies: ["Next.js", "TypeScript", "OpenAI API", "Zero-Backend Architecture"],
+    highlight: false,
+  },
+  {
+    tier: "Bronze",
+    title: "H0 — المدير التقني الشخصي بالذكاء الاصطناعي",
+    organizer: "سلسلة هاكاثونات Panaversity",
+    date: "2024",
+    location: "عبر الإنترنت",
+    achievement: "برونزي",
+    description: "أساس الذكاء الاصطناعي الدستوري. رسّخ منهجية Spec-First وأنماط القيود الدستورية التي استمرت عبر جميع الهاكاثونات الـ6 اللاحقة.",
+    technologies: ["TypeScript", "Constitutional AI", "LLMs"],
+    highlight: false,
+  },
+];
+
 const Hackathons = () => {
-    return (
-          <section id="hackathons" className="py-24 relative">
-                <div className="container mx-auto px-4">
-                        <motion.div
-                                    initial={{ opacity: 0, y: 20 }}
-                                    whileInView={{ opacity: 1, y: 0 }}
-                                    transition={{ duration: 0.6 }}
-                                    viewport={{ once: true }}
-                                    className="text-center mb-16"
-                                  >
-                                  <h2 className="text-3xl md:text-5xl font-bold text-white mb-4">
-                                              Hackathons & <span className="text-[#9CE630]">Achievements</span>
-                                  </h2>
-                                  <div className="w-20 h-1 bg-[#9CE630] mx-auto rounded-full mb-6" />
-                                  <p className="text-zinc-400 max-w-xl mx-auto">
-                                              6 consecutive Panaversity hackathons — Bronze through Agent Factory. Zero failures, 85% code reuse.
-                                  </p>
-                        </motion.div>
+  const { t, locale } = useLocale();
+  const hackathons = locale === "ar" ? HACKATHONS_AR : HACKATHONS_EN;
 
-                  {/* Timeline */}
-                        <div className="max-w-3xl mx-auto relative">
-                          {/* Timeline line */}
-                                  <div className="absolute left-8 top-0 bottom-0 w-px bg-zinc-800 hidden md:block" />
+  const tierLabels: Record<HackathonTier, string> = {
+    "Agent Factory": t("hackathons.agentFactory"),
+    "Platinum":      t("hackathons.platinum"),
+    "Gold":          t("hackathons.gold"),
+    "Silver":        t("hackathons.silver"),
+    "Bronze":        t("hackathons.bronze"),
+  };
 
-                                  <div className="space-y-8">
-                                    {hackathons.map((hackathon, index) => (
-                          <motion.div
-                                            key={hackathon.title}
-                                            initial={{ opacity: 0, x: -20 }}
-                                            whileInView={{ opacity: 1, x: 0 }}
-                                            transition={{ duration: 0.5, delay: index * 0.1 }}
-                                            viewport={{ once: true }}
-                                            className="relative"
-                                          >
-                            {/* Timeline dot */}
-                                          <div className="absolute left-6 top-6 w-5 h-5 rounded-full border-2 border-[#9CE630] bg-zinc-950 hidden md:block z-10" />
+  return (
+    <section id="hackathons" className="py-24 relative">
+      <div className="container mx-auto px-4">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+          viewport={{ once: true }}
+          className="text-center mb-16"
+        >
+          <h2 className="text-3xl md:text-5xl font-bold text-white mb-4">
+            {t("hackathons.title")} <span className="text-[#9CE630]">{t("hackathons.titleHighlight")}</span>
+          </h2>
+          <div className="w-20 h-1 bg-[#9CE630] mx-auto rounded-full mb-6" />
+          <p className="text-zinc-400 max-w-xl mx-auto">
+            {t("hackathons.subtitle")}
+          </p>
+        </motion.div>
 
-                                          <div
-                                                              className={`md:ml-20 p-6 rounded-xl border transition-all duration-300 ${
-                                                                                    hackathon.highlight
-                                                                                      ? "bg-zinc-900/70 border-[#9CE630]/30 hover:border-[#9CE630]/60"
-                                                                                      : "bg-zinc-900/50 border-zinc-800 hover:border-zinc-700"
-                                                              }`}
-                                                            >
-                                                            <div className="flex items-start justify-between flex-wrap gap-2 mb-3">
-                                                                                <div>
-                                                                                  <h3 className="text-lg font-semibold text-white flex items-center gap-2">
-                                                                                    {hackathon.highlight && (
-                                                                                      <Trophy className="w-5 h-5 text-[#9CE630]" />
-                                                                                    )}
-                                                                                    {hackathon.title}
-                                                                                  </h3>
-                                                                                  <p className="text-sm text-zinc-500 mt-1">{hackathon.organizer}</p>
-                                                                                </div>
-                                                                                <div className="flex flex-wrap gap-2">
-                                                                                  {/* Tier pill — always shown */}
-                                                                                  <span className={`inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold ${tierStyles[hackathon.tier] ?? ""}`}>
-                                                                                    {hackathon.tier}
-                                                                                  </span>
-                                                                                  {/* Achievement badge — highlighted only */}
-                                                                                  {hackathon.highlight && (
-                                                                                    <span className="inline-flex items-center gap-1 px-3 py-1 rounded-full bg-[#9CE630]/10 text-[#9CE630] text-xs font-medium">
-                                                                                      <Award className="w-3 h-3" />
-                                                                                      {hackathon.achievement}
-                                                                                    </span>
-                                                                                  )}
-                                                                                </div>
-                                                            </div>
+        <div className="max-w-3xl mx-auto relative">
+          <div className="absolute left-8 top-0 bottom-0 w-px bg-zinc-800 hidden md:block" />
+          <div className="space-y-8">
+            {hackathons.map((hackathon, index) => (
+              <motion.div
+                key={hackathon.title}
+                initial={{ opacity: 0, x: -20 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.5, delay: index * 0.1 }}
+                viewport={{ once: true }}
+                className="relative"
+              >
+                <div className="absolute left-6 top-6 w-5 h-5 rounded-full border-2 border-[#9CE630] bg-zinc-950 hidden md:block z-10" />
+                <div className={`md:ml-20 p-6 rounded-xl border transition-all duration-300 ${
+                  hackathon.highlight
+                    ? "bg-zinc-900/70 border-[#9CE630]/30 hover:border-[#9CE630]/60"
+                    : "bg-zinc-900/50 border-zinc-800 hover:border-zinc-700"
+                }`}>
+                  <div className="flex items-start justify-between flex-wrap gap-2 mb-3">
+                    <div>
+                      <h3 className="text-lg font-semibold text-white flex items-center gap-2">
+                        {hackathon.highlight && <Trophy className="w-5 h-5 text-[#9CE630]" />}
+                        {hackathon.title}
+                      </h3>
+                      <p className="text-sm text-zinc-500 mt-1">{hackathon.organizer}</p>
+                    </div>
+                    <div className="flex flex-wrap gap-2">
+                      <span className={`inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold ${tierStyles[hackathon.tier] ?? ""}`}>
+                        {tierLabels[hackathon.tier]}
+                      </span>
+                      {hackathon.highlight && (
+                        <span className="inline-flex items-center gap-1 px-3 py-1 rounded-full bg-[#9CE630]/10 text-[#9CE630] text-xs font-medium">
+                          <Award className="w-3 h-3" />
+                          {hackathon.achievement}
+                        </span>
+                      )}
+                    </div>
+                  </div>
 
-                                                            <p className="text-zinc-400 text-sm leading-relaxed mb-4">
-                                                              {hackathon.description}
-                                                            </p>
+                  <p className="text-zinc-400 text-sm leading-relaxed mb-4">{hackathon.description}</p>
 
-                                                            <div className="flex items-center gap-4 text-xs text-zinc-500 mb-3">
-                                                                                <span className="flex items-center gap-1">
-                                                                                  <Calendar className="w-3 h-3" />
-                                                                                  {hackathon.date}
-                                                                                </span>
-                                                                                <span className="flex items-center gap-1">
-                                                                                  <MapPin className="w-3 h-3" />
-                                                                                  {hackathon.location}
-                                                                                </span>
-                                                            </div>
+                  <div className="flex items-center gap-4 text-xs text-zinc-500 mb-3">
+                    <span className="flex items-center gap-1">
+                      <Calendar className="w-3 h-3" />
+                      {hackathon.date}
+                    </span>
+                    <span className="flex items-center gap-1">
+                      <MapPin className="w-3 h-3" />
+                      {hackathon.location}
+                    </span>
+                  </div>
 
-                                                            <div className="flex flex-wrap gap-2">
-                                                              {hackathon.technologies.map((tech) => (
-                                                                <span
-                                                                  key={tech}
-                                                                  className="px-2 py-1 text-xs bg-zinc-800 text-zinc-400 rounded-md"
-                                                                >
-                                                                  {tech}
-                                                                </span>
-                                                              ))}
-                                                            </div>
-                                          </div>
-                          </motion.div>
-                        ))}
-                                  </div>
-                        </div>
+                  <div className="flex flex-wrap gap-2">
+                    {hackathon.technologies.map((tech) => (
+                      <span key={tech} className="px-2 py-1 text-xs bg-zinc-800 text-zinc-400 rounded-md">
+                        {tech}
+                      </span>
+                    ))}
+                  </div>
                 </div>
-          </section>
-        );
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </section>
+  );
 };
 
 export default Hackathons;

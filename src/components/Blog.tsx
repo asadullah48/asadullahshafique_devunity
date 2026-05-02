@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import { ArrowRight, Clock, Tag } from "lucide-react";
+import { useLocale } from "@/context/LocaleContext";
 
 type Post = {
   slug: string;
@@ -13,7 +14,7 @@ type Post = {
   accentColor: string;
 };
 
-const POSTS: Post[] = [
+const POSTS_EN: Post[] = [
   {
     slug: "six-hackathons-one-methodology",
     title: "How I Won 6 Consecutive Hackathons With a Single Methodology",
@@ -46,13 +47,46 @@ const POSTS: Post[] = [
   },
 ];
 
-function PostCard({ post, index }: { post: Post; index: number }) {
+const POSTS_AR: Post[] = [
+  {
+    slug: "six-hackathons-one-methodology",
+    title: "كيف فزت بـ 6 هاكاثونات متتالية بمنهجية واحدة",
+    excerpt:
+      "Panaversity، برونزي → بلاتيني → مصنع الوكلاء. صفر إخفاقات عبر 6 هاكاثونات، 85% إعادة استخدام الكود، ونموذج تنفيذ من أربع جلسات يمكن لأي مطور نسخه. هذا هو الدليل التفصيلي بالضبط.",
+    readTime: "8 دقائق قراءة",
+    date: "أبريل 2025",
+    tags: ["المنهجية", "هاكاثون", "Spec-First", "CLAUDE.md"],
+    accentColor: "#84cc16",
+  },
+  {
+    slug: "constitutional-ai-todo-spec-first",
+    title: "بناء تطبيق مهام بالذكاء الاصطناعي الدستوري: الطريقة Spec-First",
+    excerpt:
+      "149 اختباراً ناجحاً. ذكاء اصطناعي دستوري ثلاثي الطبقات بـ 7 أنماط BLOCK و5 أنماط FLAG. تعاون جماعي ومهام متكررة وتكامل التقويم — مبني في أربع جلسات من 3 ساعات من ملف SPEC.md واحد.",
+    readTime: "12 دقيقة قراءة",
+    date: "مارس 2025",
+    tags: ["الذكاء الاصطناعي الدستوري", "FastAPI", "Next.js", "TDD"],
+    accentColor: "#3b82f6",
+  },
+  {
+    slug: "agent-factory-claude-builds-openai",
+    title: "مصنع الوكلاء: كيف يبني Claude Code وكلاء OpenAI على نطاق واسع",
+    excerpt:
+      "هندسة من طبقتين حيث يصنع وكيل عام (Claude Code) وكلاء مخصصين (OpenAI Agents SDK) باستخدام ملفات SKILL.md كوحدات ذكاء قابلة للنقل والتسييل. نموذج الموظف الرقمي مشروحاً.",
+    readTime: "15 دقيقة قراءة",
+    date: "مايو 2025",
+    tags: ["الذكاء الاصطناعي الوكيل", "SKILL.md", "OpenAI SDK", "Digital FTE"],
+    accentColor: "#a855f7",
+  },
+];
+
+function PostCard({ post, readArticleLabel }: { post: Post; readArticleLabel: string }) {
   return (
     <motion.article
       initial={{ opacity: 0, y: 24 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-40px" }}
-      transition={{ duration: 0.4, delay: index * 0.1 }}
+      transition={{ duration: 0.4 }}
       className="group relative bg-[#111111] border border-white/8 rounded-2xl overflow-hidden hover:border-green-500/30 transition-all duration-300 cursor-pointer flex flex-col"
     >
       <div
@@ -103,7 +137,7 @@ function PostCard({ post, index }: { post: Post; index: number }) {
           className="flex items-center gap-2 text-sm font-medium transition-all duration-200 group/link w-fit"
           style={{ color: post.accentColor }}
         >
-          Read Article
+          {readArticleLabel}
           <ArrowRight className="w-4 h-4 group-hover/link:translate-x-1 transition-transform duration-200" />
         </a>
       </div>
@@ -112,6 +146,9 @@ function PostCard({ post, index }: { post: Post; index: number }) {
 }
 
 export function BlogSection() {
+  const { t, locale } = useLocale();
+  const posts = locale === "ar" ? POSTS_AR : POSTS_EN;
+
   return (
     <section id="blog" className="py-24 bg-[#0d0d0d]">
       <div className="container mx-auto px-6">
@@ -124,18 +161,17 @@ export function BlogSection() {
           className="text-center mb-14"
         >
           <h2 className="text-4xl lg:text-5xl font-bold text-white mb-4">
-            Latest <span className="text-green-400">Articles</span>
+            {t("blog.title")} <span className="text-green-400">{t("blog.titleHighlight")}</span>
           </h2>
           <div className="w-16 h-0.5 bg-green-400 mx-auto mb-5" />
           <p className="text-gray-400 max-w-xl mx-auto">
-            Lessons from 6 hackathons, production AI systems, and building real businesses
-            with technology.
+            {t("blog.subtitle")}
           </p>
         </motion.div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          {POSTS.map((post, i) => (
-            <PostCard key={post.slug} post={post} index={i} />
+          {posts.map((post) => (
+            <PostCard key={post.slug} post={post} readArticleLabel={t("blog.readArticle")} />
           ))}
         </div>
 
@@ -147,8 +183,7 @@ export function BlogSection() {
           className="mt-12 p-8 bg-[#111111] border border-green-500/20 rounded-2xl text-center"
         >
           <p className="text-gray-400 mb-4">
-            New articles drop in the Discord first — along with code snippets, WIP demos, and
-            hackathon post-mortems.
+            {t("blog.discordNote")}
           </p>
           <a
             href="https://discord.gg/kXfEYVGX"
@@ -159,7 +194,7 @@ export function BlogSection() {
             <svg className="w-5 h-5" viewBox="0 0 24 24" fill="currentColor">
               <path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057 19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028 14.09 14.09 0 0 0 1.226-1.994.076.076 0 0 0-.041-.106 13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128 10.2 10.2 0 0 0 .372-.292.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.892.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03z" />
             </svg>
-            Join Asadullah&apos;s Dev Hub
+            {t("blog.joinHub")}
           </a>
         </motion.div>
       </div>

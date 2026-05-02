@@ -1,43 +1,45 @@
-﻿"use client";
+"use client";
 
 import React from "react";
 import { motion } from "framer-motion";
 import { TrendingUp, Bot, Factory } from "lucide-react";
 import Link from "next/link";
+import { useLocale } from "@/context/LocaleContext";
 
-const services = [
-  {
-    icon: TrendingUp,
-    title: "Digital Marketing",
-    description:
-      "Full-spectrum digital marketing for Dubai real estate, UAE construction, and Pakistani businesses. Strategy, social media, paid ads, property portals, and monthly reporting.",
-    cta: "See Marketing Plan →",
-    ctaHref: "#contact",
-    external: false,
-  },
-  {
-    icon: Bot,
-    title: "AI-Powered SaaS Development",
-    description:
-      "Production-grade agentic systems, cloud-native deployment, MCP servers, and custom AI agents. Built and deployed — not just prototyped.",
-    cta: "View GitHub →",
-    ctaHref: "https://github.com/asadullah48",
-    external: true,
-  },
-  {
-    icon: Factory,
-    title: "Textile ERP Platform — Pakistan",
-    description:
-      "A full-spectrum ERP for Pakistan's textile industry — from Fabric Mills to garment exporters. Module 1: Fabric Mill — roll/lot management, weaving and knitting stage tracking, Yarn inventory, and Imported Fabric. Further modules: CMT order lifecycle, auto-billing, production sessions, dispatch, party ledgers, and financial accounts. Targeting Faisalabad, Sialkot, Gujranwala, Karachi, and Lahore.",
-    cta: "Join Waitlist →",
-    ctaHref: "",
-    external: false,
-    badge: "Launching 2026",
-    waitlist: true,
-  },
-];
+const Icons = [TrendingUp, Bot, Factory];
 
 const Services = () => {
+  const { t } = useLocale();
+
+  const services = [
+    {
+      Icon: Icons[0],
+      title: t("services.s1Title"),
+      description: t("services.s1Desc"),
+      cta: t("services.s1CTA"),
+      ctaHref: "#contact",
+      external: false,
+    },
+    {
+      Icon: Icons[1],
+      title: t("services.s2Title"),
+      description: t("services.s2Desc"),
+      cta: t("services.s2CTA"),
+      ctaHref: "https://github.com/asadullah48",
+      external: true,
+    },
+    {
+      Icon: Icons[2],
+      title: t("services.s3Title"),
+      description: t("services.s3Desc"),
+      cta: t("services.s3CTA"),
+      ctaHref: "",
+      external: false,
+      badge: t("services.s3Badge"),
+      waitlist: true,
+    },
+  ];
+
   return (
     <section id="services" className="py-24 relative">
       <div className="container mx-auto px-4">
@@ -49,11 +51,11 @@ const Services = () => {
           className="text-center mb-16"
         >
           <h2 className="text-3xl md:text-5xl font-bold text-white mb-4">
-            What I <span className="text-[#9CE630]">Offer</span>
+            {t("services.title")} <span className="text-[#9CE630]">{t("services.titleHighlight")}</span>
           </h2>
           <div className="w-20 h-1 bg-[#9CE630] mx-auto rounded-full mb-6" />
           <p className="text-zinc-400 max-w-xl mx-auto">
-            AI development, digital marketing, and industry-specific SaaS — built for real businesses.
+            {t("services.subtitle")}
           </p>
         </motion.div>
 
@@ -67,16 +69,16 @@ const Services = () => {
               viewport={{ once: true }}
               className="group flex flex-col p-6 rounded-xl bg-zinc-900/50 border border-zinc-800 hover:border-[#9CE630]/30 transition-all duration-300 hover:bg-zinc-900/80"
             >
-              <service.icon className="w-10 h-10 text-[#9CE630] mb-4 group-hover:scale-110 transition-transform" />
+              <service.Icon className="w-10 h-10 text-[#9CE630] mb-4 group-hover:scale-110 transition-transform" />
               <h3 className="text-xl font-semibold text-white mb-2">{service.title}</h3>
-              {(service as { badge?: string }).badge && (
+              {service.badge && (
                 <span className="inline-block px-2 py-0.5 mb-3 text-xs font-semibold text-black bg-[#9CE630] rounded-full">
-                  {(service as { badge?: string }).badge}
+                  {service.badge}
                 </span>
               )}
               <p className="text-zinc-400 text-sm leading-relaxed flex-grow">{service.description}</p>
               <div className="mt-6 pt-4 border-t border-zinc-800">
-                {(service as { waitlist?: boolean }).waitlist ? (
+                {service.waitlist ? (
                   <span className="text-[#9CE630] text-sm font-medium">
                     {service.cta}
                   </span>

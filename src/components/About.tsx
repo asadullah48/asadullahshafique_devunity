@@ -9,39 +9,10 @@ import {
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import Link from "next/link";
+import { useLocale } from "@/context/LocaleContext";
 
-const highlights = [
-  {
-    icon: Brain,
-    title: "Agentic AI Builder",
-    description: "Production-grade agents using OpenAI Agents SDK, MCP servers, Constitutional AI — deployed on Kubernetes.",
-  },
-  {
-    icon: Factory,
-    title: "CMT Industry Founder",
-    description: "Founded Texcot Embroidery Sourcing House. Building Textile ERP Platform for Pakistan's full textile value chain.",
-  },
-  {
-    icon: TrendingUp,
-    title: "Digital Marketing",
-    description: "Full-spectrum strategy for Dubai real estate, UAE construction, and Pakistani SMEs entering the digital economy.",
-  },
-  {
-    icon: Trophy,
-    title: "Hackathon Champion",
-    description: "6 consecutive Panaversity hackathons: Bronze → Silver → Silver → Gold → Platinum → Agent Factory. Zero failures.",
-  },
-  {
-    icon: GraduationCap,
-    title: "OpenClaw + AI Track",
-    description: "Advancing through OpenClaw Python curriculum and Panaversity's Foundation of General & Custom Agent track.",
-  },
-  {
-    icon: Terminal,
-    title: "Spec-First Dev",
-    description: "Four-session methodology with 85% code reuse. CLAUDE.md-driven, zero-defect delivery across 6 hackathons.",
-  },
-];
+const HIGHLIGHT_ICONS = [Brain, Factory, TrendingUp, Trophy, GraduationCap, Terminal];
+const HIGHLIGHT_KEYS = ["h1", "h2", "h3", "h4", "h5", "h6"] as const;
 
 const socialLinks = [
   {
@@ -113,6 +84,14 @@ const socialLinks = [
 ];
 
 const About = () => {
+  const { t } = useLocale();
+
+  const highlights = HIGHLIGHT_KEYS.map((k, i) => ({
+    Icon: HIGHLIGHT_ICONS[i],
+    title: t(`about.${k}Title`),
+    description: t(`about.${k}Desc`),
+  }));
+
   return (
     <section id="about" className="py-24 relative">
       <div className="container mx-auto px-4">
@@ -124,15 +103,14 @@ const About = () => {
           className="text-center mb-16"
         >
           <h2 className="text-3xl md:text-5xl font-bold text-white mb-4">
-            About <span className="text-[#9CE630]">Me</span>
+            {t("about.title")} <span className="text-[#9CE630]">{t("about.titleHighlight")}</span>
           </h2>
           <div className="w-20 h-1 bg-[#9CE630] mx-auto rounded-full mb-6" />
           <p className="text-zinc-400 max-w-2xl mx-auto text-lg">
-            Agentic AI Developer, Digital Marketing Strategist, and CMT Industry Founder — building AI-powered systems and marketing real businesses across Pakistan and UAE.
+            {t("about.subtitle")}
           </p>
         </motion.div>
 
-        {/* 2-column layout */}
         <div className="max-w-6xl mx-auto flex flex-col lg:flex-row gap-8 items-start mb-8">
 
           {/* LEFT — Bio Card */}
@@ -145,25 +123,20 @@ const About = () => {
           >
             <Card className="bg-zinc-900/50 border-zinc-800">
               <CardContent className="p-8">
-                <h3 className="text-2xl font-bold text-white mb-4">Asadullah Shafique</h3>
+                <h3 className="text-2xl font-bold text-white mb-4">{t("about.bioName")}</h3>
                 <div className="flex flex-wrap gap-2 mb-4">
                   <Badge variant="outline" className="text-[#9CE630] border-[#9CE630]/40 text-xs">
-                    Agentic AI Developer
+                    {t("about.badgeAI")}
                   </Badge>
                   <Badge variant="outline" className="text-[#9CE630] border-[#9CE630]/40 text-xs">
-                    CMT Industry Founder
+                    {t("about.badgeCMT")}
                   </Badge>
                   <Badge variant="outline" className="text-[#9CE630] border-[#9CE630]/40 text-xs">
-                    Digital Marketer
+                    {t("about.badgeMarketing")}
                   </Badge>
                 </div>
                 <p className="text-zinc-400 text-sm leading-relaxed mt-4">
-                  I build production-grade AI systems and run real businesses. Founder of
-                  Texcot Embroidery Sourcing House and creator of the Textile ERP Platform —
-                  targeting Pakistan&apos;s full textile value chain. Completing the Panaversity
-                  Hackathon Series: 6 consecutive hackathons, 85% code reusability, zero
-                  failed attempts. Bridging AI development and digital marketing for Pakistan
-                  and UAE markets.
+                  {t("about.bio")}
                 </p>
                 <div className="mt-6 flex flex-wrap gap-3">
                   {socialLinks.map((link) => (
@@ -195,7 +168,7 @@ const About = () => {
               >
                 <Card className="group bg-zinc-900/50 border-zinc-800 hover:border-[#9CE630]/30 transition-all duration-300 hover:bg-zinc-900/80 h-full">
                   <CardContent className="p-6">
-                    <item.icon className="w-10 h-10 text-[#9CE630] mb-4 group-hover:scale-110 transition-transform" />
+                    <item.Icon className="w-10 h-10 text-[#9CE630] mb-4 group-hover:scale-110 transition-transform" />
                     <h3 className="text-lg font-semibold text-white mb-2">{item.title}</h3>
                     <p className="text-zinc-400 text-sm leading-relaxed">{item.description}</p>
                   </CardContent>

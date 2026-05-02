@@ -1,24 +1,18 @@
-﻿"use client";
+"use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useMemo } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
 import { ArrowDown, Github, ExternalLink, MapPin } from "lucide-react";
-
-const ROLES = [
-  "Agentic AI Developer",
-  "Full-Stack SaaS Builder",
-  "Cloud-Native Engineer",
-  "Digital Marketing Strategist",
-];
+import { useLocale } from "@/context/LocaleContext";
 
 const TERMINAL_LINES = [
   { text: "$ claude code --spec-first", color: "#84cc16" },
   { text: "> Booting SKILL.md agent...", color: "#9ca3af" },
   { text: "> Spawning OpenAI Custom Agent", color: "#9ca3af" },
-  { text: "> Deploying â†’ Kubernetes cluster", color: "#9ca3af" },
-  { text: "âœ“ Zero failures. 6/6 hackathons.", color: "#84cc16" },
+  { text: "> Deploying → Kubernetes cluster", color: "#9ca3af" },
+  { text: "✓ Zero failures. 6/6 hackathons.", color: "#84cc16" },
 ];
 
 const ORBIT_BADGES = [
@@ -96,8 +90,8 @@ function TerminalCard() {
       const reset = setTimeout(() => setVisibleLines(1), 3000);
       return () => clearTimeout(reset);
     }
-    const t = setTimeout(() => setVisibleLines((v) => v + 1), 900);
-    return () => clearTimeout(t);
+    const timer = setTimeout(() => setVisibleLines((v) => v + 1), 900);
+    return () => clearTimeout(timer);
   }, [visibleLines]);
 
   return (
@@ -124,7 +118,7 @@ function TerminalCard() {
                   animate={{ opacity: [1, 0] }}
                   transition={{ repeat: Infinity, duration: 0.7 }}
                   style={{ color: "#84cc16" }}
-                >â–ˆ</motion.span>
+                >█</motion.span>
               )}
             </motion.div>
           ))}
@@ -135,14 +129,29 @@ function TerminalCard() {
 }
 
 export function HeroSection() {
+  const { t } = useLocale();
+
+  const ROLES = useMemo(() => [
+    t("hero.role1"),
+    t("hero.role2"),
+    t("hero.role3"),
+    t("hero.role4"),
+  ], [t]);
+
   const [roleIndex, setRoleIndex]   = useState(0);
   const [displayed, setDisplayed]   = useState("");
   const [deleting, setDeleting]     = useState(false);
 
   useEffect(() => {
+    setDisplayed("");
+    setDeleting(false);
+    setRoleIndex(0);
+  }, [ROLES]);
+
+  useEffect(() => {
     const role  = ROLES[roleIndex];
     const speed = deleting ? 35 : 65;
-    const t = setTimeout(() => {
+    const timer = setTimeout(() => {
       if (!deleting) {
         if (displayed.length < role.length) {
           setDisplayed(role.slice(0, displayed.length + 1));
@@ -158,8 +167,15 @@ export function HeroSection() {
         }
       }
     }, speed);
-    return () => clearTimeout(t);
-  }, [displayed, deleting, roleIndex]);
+    return () => clearTimeout(timer);
+  }, [displayed, deleting, roleIndex, ROLES]);
+
+  const stats = [
+    { val: "467+", label: t("hero.stats.repos")     },
+    { val: "6",    label: t("hero.stats.hackathons") },
+    { val: "85%",  label: t("hero.stats.codeReuse")  },
+    { val: "149+", label: t("hero.stats.tests")      },
+  ];
 
   return (
     <section
@@ -187,15 +203,15 @@ export function HeroSection() {
               <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75" />
               <span className="relative inline-flex rounded-full h-2 w-2 bg-green-500" />
             </span>
-            <span className="text-green-400 text-sm font-medium">Open to AI Collaborations &amp; Freelance</span>
+            <span className="text-green-400 text-sm font-medium">{t("hero.badge")}</span>
             <MapPin className="w-3 h-3 text-green-400/60" />
-            <span className="text-green-400/60 text-xs">Pakistan Â· UAE</span>
+            <span className="text-green-400/60 text-xs">{t("hero.location")}</span>
           </motion.div>
 
           <h1 className="text-5xl lg:text-7xl font-bold text-white mb-5 leading-tight">
-            Hi, I&apos;m{" "}
+            {t("hero.greeting")}{" "}
             <span className="text-green-400 relative">
-              Asadullah
+              {t("hero.name")}
               <span className="absolute -bottom-1 left-0 w-full h-px bg-green-400/40" />
             </span>
           </h1>
@@ -212,11 +228,13 @@ export function HeroSection() {
           </div>
 
           <p className="text-gray-400 text-base lg:text-lg mb-8 max-w-xl leading-relaxed">
-            Building <span className="text-white font-semibold">production-grade AI systems</span> and
-            marketing real businesses â€” from{" "}
-            <span className="text-green-400 font-semibold">Dubai construction</span> to{" "}
-            <span className="text-green-400 font-semibold">Pakistani textile factories</span>.
-            Six hackathons. Zero failures.
+            {t("hero.descPre")}{" "}
+            <span className="text-white font-semibold">{t("hero.descBold1")}</span>{" "}
+            {t("hero.descMid1")}{" "}
+            <span className="text-green-400 font-semibold">{t("hero.descBold2")}</span>{" "}
+            {t("hero.descMid2")}{" "}
+            <span className="text-green-400 font-semibold">{t("hero.descBold3")}</span>
+            {t("hero.descSuffix")}
           </p>
 
           <div className="flex flex-wrap gap-3 justify-center lg:justify-start mb-10">
@@ -224,7 +242,7 @@ export function HeroSection() {
               href="#projects"
               className="flex items-center gap-2 bg-green-500 hover:bg-green-400 text-black font-semibold px-6 py-3 rounded-lg transition-all duration-200 hover:scale-105 shadow-[0_0_24px_rgba(132,204,22,0.35)]"
             >
-              View My Work <ArrowDown className="w-4 h-4" />
+              {t("hero.viewWork")} <ArrowDown className="w-4 h-4" />
             </Link>
             <a
               href="https://github.com/asadullah48"
@@ -232,7 +250,7 @@ export function HeroSection() {
               rel="noopener noreferrer"
               className="flex items-center gap-2 border border-white/20 hover:border-green-500/50 text-white px-6 py-3 rounded-lg transition-all duration-200 hover:bg-white/5"
             >
-              <Github className="w-4 h-4" /> GitHub Profile
+              <Github className="w-4 h-4" /> {t("hero.githubProfile")}
             </a>
             <a
               href="/resume.pdf"
@@ -241,17 +259,12 @@ export function HeroSection() {
               rel="noopener noreferrer"
               className="flex items-center gap-2 border border-white/20 hover:border-green-500/50 text-white px-6 py-3 rounded-lg transition-all duration-200 hover:bg-white/5"
             >
-              <ExternalLink className="w-4 h-4" /> Download Resume
+              <ExternalLink className="w-4 h-4" /> {t("hero.downloadResume")}
             </a>
           </div>
 
           <div className="flex flex-wrap items-center gap-6 justify-center lg:justify-start">
-            {[
-              { val: "467+", label: "GitHub Repos"    },
-              { val: "6",    label: "Hackathons Won"  },
-              { val: "85%",  label: "Code Reuse Rate" },
-              { val: "149+", label: "Tests Passing"   },
-            ].map((s, i) => (
+            {stats.map((s, i) => (
               <div key={s.label} className="flex items-center gap-6">
                 {i > 0 && <div className="w-px h-8 bg-white/10" />}
                 <div className="text-center lg:text-left">
@@ -279,7 +292,7 @@ export function HeroSection() {
         animate={{ y: [0, 8, 0] }}
         transition={{ repeat: Infinity, duration: 2, ease: "easeInOut" }}
       >
-        <span className="text-[10px] text-gray-600 tracking-widest uppercase">scroll</span>
+        <span className="text-[10px] text-gray-600 tracking-widest uppercase">{t("hero.scroll")}</span>
         <ArrowDown className="w-4 h-4 text-green-400/40" />
       </motion.div>
     </section>
@@ -287,4 +300,3 @@ export function HeroSection() {
 }
 
 export default HeroSection;
-

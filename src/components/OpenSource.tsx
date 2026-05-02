@@ -2,36 +2,34 @@
 
 import { motion } from "framer-motion";
 import { Github, GitFork, Star, Code2, Users } from "lucide-react";
+import { useLocale } from "@/context/LocaleContext";
 
 const GITHUB_USERNAME = "asadullah48";
 
-const STATS = [
-  { icon: Github,   value: "467+",  label: "Repositories",      color: "#84cc16" },
-  { icon: GitFork,  value: "6",     label: "Hackathons",         color: "#3b82f6" },
-  { icon: Code2,    value: "85%",   label: "Code Reuse Rate",    color: "#a855f7" },
-  { icon: Star,     value: "10+",   label: "Technologies",       color: "#f59e0b" },
-  { icon: Users,    value: "3",     label: "Active Communities", color: "#10b981" },
-];
+const STAT_ICONS = [Github, GitFork, Code2, Star, Users];
+const STAT_VALUES = ["467+", "6", "85%", "10+", "3"];
+const STAT_COLORS = ["#84cc16", "#3b82f6", "#a855f7", "#f59e0b", "#10b981"];
+const STAT_LABEL_KEYS = ["s1Label", "s2Label", "s3Label", "s4Label", "s5Label"] as const;
 
-const VALUES = [
-  {
-    icon: "🌐",
-    title: "Global Collaboration",
-    desc: "Contributing to projects that empower developer communities worldwide — Pakistan, UAE, and beyond.",
-  },
-  {
-    icon: "🧪",
-    title: "Quality Code",
-    desc: "Clean, documented, well-tested code. 149+ tests passing. CLAUDE.md-driven spec-first delivery.",
-  },
-  {
-    icon: "🤝",
-    title: "Community Impact",
-    desc: "Sharing knowledge through blog posts, Discord, and open-source tools. DevUnity is the flagship.",
-  },
-];
+const VALUE_KEYS = ["v1", "v2", "v3"] as const;
+const VALUE_ICONS = ["🌐", "🧪", "🤝"];
 
 export function OpenSourceSection() {
+  const { t } = useLocale();
+
+  const stats = STAT_LABEL_KEYS.map((k, i) => ({
+    Icon: STAT_ICONS[i],
+    value: STAT_VALUES[i],
+    label: t(`opensrc.${k}`),
+    color: STAT_COLORS[i],
+  }));
+
+  const values = VALUE_KEYS.map((k, i) => ({
+    icon: VALUE_ICONS[i],
+    title: t(`opensrc.${k}Title`),
+    desc: t(`opensrc.${k}Desc`),
+  }));
+
   return (
     <section id="open-source" className="py-24 bg-[#0d0d0d]">
       <div className="container mx-auto px-6">
@@ -44,17 +42,16 @@ export function OpenSourceSection() {
           className="text-center mb-14"
         >
           <h2 className="text-4xl lg:text-5xl font-bold text-white mb-4">
-            Open <span className="text-green-400">Source</span>
+            {t("opensrc.title")} <span className="text-green-400">{t("opensrc.titleHighlight")}</span>
           </h2>
           <div className="w-16 h-0.5 bg-green-400 mx-auto mb-5" />
           <p className="text-gray-400 max-w-xl mx-auto">
-            All projects are open source. 467+ repositories and counting — built in public,
-            shipped with purpose.
+            {t("opensrc.subtitle")}
           </p>
         </motion.div>
 
         <div className="grid grid-cols-2 md:grid-cols-5 gap-4 mb-16">
-          {STATS.map((stat, i) => (
+          {stats.map((stat, i) => (
             <motion.div
               key={stat.label}
               initial={{ opacity: 0, scale: 0.9 }}
@@ -63,7 +60,7 @@ export function OpenSourceSection() {
               transition={{ duration: 0.3, delay: i * 0.08 }}
               className="flex flex-col items-center justify-center p-5 bg-[#111111] border border-white/8 rounded-xl hover:border-green-500/20 transition-all duration-300"
             >
-              <stat.icon className="w-5 h-5 mb-3" style={{ color: stat.color }} />
+              <stat.Icon className="w-5 h-5 mb-3" style={{ color: stat.color }} />
               <div className="text-2xl font-bold text-white">{stat.value}</div>
               <div className="text-xs text-gray-500 mt-1 text-center">{stat.label}</div>
             </motion.div>
@@ -79,7 +76,7 @@ export function OpenSourceSection() {
         >
           <div className="flex items-center gap-3 mb-5">
             <Github className="w-5 h-5 text-green-400" />
-            <h3 className="text-white font-semibold">GitHub Activity</h3>
+            <h3 className="text-white font-semibold">{t("opensrc.githubActivity")}</h3>
             <a
               href={`https://github.com/${GITHUB_USERNAME}`}
               target="_blank"
@@ -119,7 +116,7 @@ export function OpenSourceSection() {
         </motion.div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
-          {VALUES.map((v, i) => (
+          {values.map((v, i) => (
             <motion.div
               key={v.title}
               initial={{ opacity: 0, y: 20 }}
@@ -142,7 +139,7 @@ export function OpenSourceSection() {
             rel="noopener noreferrer"
             className="flex items-center gap-2 bg-white/5 hover:bg-white/10 border border-white/15 hover:border-white/30 text-white font-medium px-6 py-3 rounded-lg transition-all duration-200"
           >
-            <Github className="w-4 h-4" /> Contribute on GitHub
+            <Github className="w-4 h-4" /> {t("opensrc.contributeGithub")}
           </a>
           <a
             href="https://discord.gg/kXfEYVGX"
@@ -153,7 +150,7 @@ export function OpenSourceSection() {
             <svg className="w-4 h-4" viewBox="0 0 24 24" fill="currentColor">
               <path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057 19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028 14.09 14.09 0 0 0 1.226-1.994.076.076 0 0 0-.041-.106 13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128 10.2 10.2 0 0 0 .372-.292.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.892.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03z" />
             </svg>
-            Join Discord Community
+            {t("opensrc.joinDiscord")}
           </a>
         </div>
       </div>

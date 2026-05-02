@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import { Quote, Linkedin } from "lucide-react";
+import { useLocale } from "@/context/LocaleContext";
 
 type Testimonial = {
   name: string;
@@ -14,7 +15,7 @@ type Testimonial = {
   context: string;
 };
 
-const TESTIMONIALS: Testimonial[] = [
+const TESTIMONIALS_EN: Testimonial[] = [
   {
     name: "Mohammed Al Rashidi",
     role: "General Manager",
@@ -44,7 +45,37 @@ const TESTIMONIALS: Testimonial[] = [
   },
 ];
 
-function TestimonialCard({ t, index }: { t: Testimonial; index: number }) {
+const TESTIMONIALS_AR: Testimonial[] = [
+  {
+    name: "محمد الراشدي",
+    role: "المدير العام",
+    company: "Al Rashidi Real Estate — دبي، الإمارات",
+    avatar: "MA",
+    avatarColor: "#84cc16",
+    text: "أسد الله غيّر طريقة توليد العملاء المحتملين عبر الإنترنت. نظام التسويق الرقمي الذي بناه — بوابات العقارات والحملات الاجتماعية ولوحة التحليلات — خفّض تكلفة الحصول على العميل بأكثر من 40% في الربع الأول.",
+    context: "التسويق الرقمي للعقارات في دبي",
+  },
+  {
+    name: "طارق محمود",
+    role: "المالك",
+    company: "Mahmood Garments — فيصل آباد",
+    avatar: "TM",
+    avatarColor: "#3b82f6",
+    text: "مفهوم منصة ERP للمنسوجات الذي قدّمه أسد الله هو بالضبط ما تحتاجه صناعتنا. تتبع الإنتاج لدينا حالياً كله في Excel وWhatsApp — هذا سيغيّر كل شيء لوحدات CMT مثلنا.",
+    context: "منصة ERP للمنسوجات — ملاحظات مبكرة",
+  },
+  {
+    name: "د. أمين عالم",
+    role: "مدرس",
+    company: "Panaversity",
+    avatar: "AA",
+    avatarColor: "#a855f7",
+    text: "كان أسد الله من أكثر المساهمين ثباتاً في سلسلة الهاكاثونات لدينا. منهجيته Spec-First وتسليمه خالياً من الأخطاء عبر ستة هاكاثونات متتالية هو معيار يُحتذى به للطلاب الآخرين.",
+    context: "مرشد سلسلة هاكاثونات Panaversity",
+  },
+];
+
+function TestimonialCard({ testimonial, index }: { testimonial: Testimonial; index: number }) {
   return (
     <motion.div
       initial={{ opacity: 0, y: 24 }}
@@ -55,37 +86,37 @@ function TestimonialCard({ t, index }: { t: Testimonial; index: number }) {
     >
       <Quote
         className="w-8 h-8 mb-4 opacity-30"
-        style={{ color: t.avatarColor }}
+        style={{ color: testimonial.avatarColor }}
       />
 
       <p className="text-gray-300 text-sm leading-relaxed mb-6 flex-1 italic">
-        &ldquo;{t.text}&rdquo;
+        &ldquo;{testimonial.text}&rdquo;
       </p>
 
       <div
         className="text-xs px-2.5 py-1 rounded-full mb-5 w-fit"
         style={{
-          backgroundColor: `${t.avatarColor}15`,
-          color: t.avatarColor,
-          border: `1px solid ${t.avatarColor}30`,
+          backgroundColor: `${testimonial.avatarColor}15`,
+          color: testimonial.avatarColor,
+          border: `1px solid ${testimonial.avatarColor}30`,
         }}
       >
-        {t.context}
+        {testimonial.context}
       </div>
 
       <div className="flex items-center gap-3">
         <div
           className="w-10 h-10 rounded-full flex items-center justify-center text-sm font-bold text-black flex-shrink-0"
-          style={{ backgroundColor: t.avatarColor }}
+          style={{ backgroundColor: testimonial.avatarColor }}
         >
-          {t.avatar}
+          {testimonial.avatar}
         </div>
         <div>
           <div className="flex items-center gap-2">
-            <span className="text-white font-semibold text-sm">{t.name}</span>
-            {t.linkedIn && (
+            <span className="text-white font-semibold text-sm">{testimonial.name}</span>
+            {testimonial.linkedIn && (
               <a
-                href={t.linkedIn}
+                href={testimonial.linkedIn}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-blue-400/60 hover:text-blue-400 transition-colors"
@@ -95,7 +126,7 @@ function TestimonialCard({ t, index }: { t: Testimonial; index: number }) {
             )}
           </div>
           <div className="text-gray-500 text-xs">
-            {t.role} · {t.company}
+            {testimonial.role} · {testimonial.company}
           </div>
         </div>
       </div>
@@ -104,6 +135,9 @@ function TestimonialCard({ t, index }: { t: Testimonial; index: number }) {
 }
 
 export function TestimonialsSection() {
+  const { t, locale } = useLocale();
+  const testimonials = locale === "ar" ? TESTIMONIALS_AR : TESTIMONIALS_EN;
+
   return (
     <section id="testimonials" className="py-24 bg-[#0a0a0a]">
       <div className="container mx-auto px-6">
@@ -116,18 +150,17 @@ export function TestimonialsSection() {
           className="text-center mb-14"
         >
           <h2 className="text-4xl lg:text-5xl font-bold text-white mb-4">
-            What People <span className="text-green-400">Say</span>
+            {t("testimonials.title")} <span className="text-green-400">{t("testimonials.titleHighlight")}</span>
           </h2>
           <div className="w-16 h-0.5 bg-green-400 mx-auto mb-5" />
           <p className="text-gray-400 max-w-xl mx-auto">
-            From Dubai real estate to Faisalabad garment factories — feedback from the
-            people I&apos;ve worked with.
+            {t("testimonials.subtitle")}
           </p>
         </motion.div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          {TESTIMONIALS.map((t, i) => (
-            <TestimonialCard key={t.name} t={t} index={i} />
+          {testimonials.map((testimonial, i) => (
+            <TestimonialCard key={testimonial.name} testimonial={testimonial} index={i} />
           ))}
         </div>
 
@@ -145,7 +178,7 @@ export function TestimonialsSection() {
             className="inline-flex items-center gap-2 text-blue-400/70 hover:text-blue-400 text-sm transition-colors duration-200"
           >
             <Linkedin className="w-4 h-4" />
-            View LinkedIn Recommendations
+            {t("testimonials.linkedInCTA")}
           </a>
         </motion.div>
       </div>

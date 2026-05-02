@@ -1,29 +1,31 @@
-﻿"use client";
+"use client";
 
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useMemo } from "react";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Code2, Github, Menu, X, MessageCircle, FileDown } from "lucide-react";
 import { ThemeToggle } from "./ThemeToggle";
 import { LocaleSwitcher } from "./LocaleSwitcher";
-
-const navLinks = [
-  { name: "About", href: "#about" },
-  { name: "Services", href: "#services" },
-  { name: "Industries", href: "#industries" },
-  { name: "Skills", href: "#skills" },
-  { name: "Projects", href: "#projects" },
-  { name: "Hackathons", href: "#hackathons" },
-  { name: "Blog", href: "#blog" },
-  { name: "Open Source", href: "#opensource" },
-  { name: "Testimonials", href: "#testimonials" },
-  { name: "Contact", href: "#contact" },
-];
+import { useLocale } from "@/context/LocaleContext";
 
 const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileOpen, setIsMobileOpen] = useState(false);
   const [mounted, setMounted] = useState(false);
+  const { t } = useLocale();
+
+  const navLinks = useMemo(() => [
+    { name: t("nav.about"),        href: "#about"        },
+    { name: t("nav.services"),     href: "#services"     },
+    { name: t("nav.industries"),   href: "#industries"   },
+    { name: t("nav.skills"),       href: "#skills"       },
+    { name: t("nav.projects"),     href: "#projects"     },
+    { name: t("nav.hackathons"),   href: "#hackathons"   },
+    { name: t("nav.blog"),         href: "#blog"         },
+    { name: t("nav.openSource"),   href: "#opensource"   },
+    { name: t("nav.testimonials"), href: "#testimonials" },
+    { name: t("nav.contact"),      href: "#contact"      },
+  ], [t]);
 
   useEffect(() => {
     setMounted(true);
@@ -55,7 +57,7 @@ const Navbar = () => {
         <div className="hidden lg:flex items-center space-x-6">
           {navLinks.map((link) => (
             <Link
-              key={link.name}
+              key={link.href}
               href={link.href}
               className="text-sm text-zinc-400 hover:text-[#9CE630] transition-colors duration-200"
             >
@@ -78,7 +80,7 @@ const Navbar = () => {
               className="text-zinc-400 hover:text-[#5865F2] h-9"
             >
               <MessageCircle className="w-4 h-4 mr-2" />
-              Discord
+              {t("nav.discord")}
             </Button>
           </Link>
           <Link
@@ -93,7 +95,7 @@ const Navbar = () => {
               className="text-zinc-400 hover:text-[#9CE630] h-9"
             >
               <Github className="w-4 h-4 mr-2" />
-              GitHub
+              {t("nav.github")}
             </Button>
           </Link>
           <Link href="/resume" className="hidden sm:block">
@@ -103,7 +105,7 @@ const Navbar = () => {
               className="border-[#9CE630]/40 text-[#9CE630] hover:bg-[#9CE630]/10 hover:border-[#9CE630] h-9"
             >
               <FileDown className="w-4 h-4 mr-2" />
-              Resume
+              {t("nav.resume")}
             </Button>
           </Link>
           <Link href="#contact">
@@ -111,7 +113,7 @@ const Navbar = () => {
               size="sm"
               className="bg-[#9CE630] text-black hover:bg-[#8BD520] h-9 font-medium"
             >
-              Contact Me
+              {t("nav.contactMe")}
             </Button>
           </Link>
           <LocaleSwitcher />
@@ -120,7 +122,7 @@ const Navbar = () => {
           <button
             className="lg:hidden p-2 text-zinc-400 hover:text-white"
             onClick={() => setIsMobileOpen(!isMobileOpen)}
-            aria-label="Toggle menu"
+            aria-label={t("nav.toggleMenu")}
           >
             {isMobileOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
           </button>
@@ -133,7 +135,7 @@ const Navbar = () => {
           <div className="container mx-auto px-4 py-4 space-y-3">
             {navLinks.map((link) => (
               <Link
-                key={link.name}
+                key={link.href}
                 href={link.href}
                 onClick={() => setIsMobileOpen(false)}
                 className="block text-zinc-400 hover:text-[#9CE630] py-2 transition-colors"
@@ -147,7 +149,7 @@ const Navbar = () => {
               onClick={() => setIsMobileOpen(false)}
               className="block text-zinc-400 hover:text-[#5865F2] py-2 transition-colors"
             >
-              Discord Community
+              {t("nav.discordCommunity")}
             </Link>
             <Link
               href="https://github.com/asadullah48"
@@ -155,7 +157,7 @@ const Navbar = () => {
               onClick={() => setIsMobileOpen(false)}
               className="block text-zinc-400 hover:text-[#9CE630] py-2 transition-colors"
             >
-              GitHub
+              {t("nav.github")}
             </Link>
             <Link
               href="/resume"
@@ -163,7 +165,7 @@ const Navbar = () => {
               className="flex items-center gap-2 text-[#9CE630] py-2 transition-colors font-medium"
             >
               <FileDown className="w-4 h-4" />
-              Resume
+              {t("nav.resume")}
             </Link>
           </div>
         </div>
@@ -173,5 +175,3 @@ const Navbar = () => {
 };
 
 export default Navbar;
-
-

@@ -4,8 +4,10 @@ import React, { useState } from "react";
 import { motion } from "framer-motion";
 import { Mail, Send, CheckCircle, AlertCircle, Loader2, MessageCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { useLocale } from "@/context/LocaleContext";
 
 const Contact = () => {
+  const { t } = useLocale();
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -30,12 +32,12 @@ const Contact = () => {
         setTimeout(() => setStatus("idle"), 5000);
       } else {
         const data = await res.json();
-        setErrorMessage(data.error || "Something went wrong. Please try again.");
+        setErrorMessage(data.error || t("contact.errorGeneric"));
         setStatus("error");
         setTimeout(() => setStatus("idle"), 5000);
       }
     } catch {
-      setErrorMessage("Network error. Please check your connection.");
+      setErrorMessage(t("contact.errorNetwork"));
       setStatus("error");
       setTimeout(() => setStatus("idle"), 5000);
     }
@@ -55,11 +57,11 @@ const Contact = () => {
           className="text-center mb-16"
         >
           <h2 className="text-3xl md:text-5xl font-bold text-white mb-4">
-            Get in <span className="text-[#9CE630]">Touch</span>
+            {t("contact.title")} <span className="text-[#9CE630]">{t("contact.titleHighlight")}</span>
           </h2>
           <div className="w-20 h-1 bg-[#9CE630] mx-auto rounded-full mb-6" />
           <p className="text-zinc-400 max-w-xl mx-auto">
-            Have a project idea, want to collaborate, or just say hello? Drop me a message!
+            {t("contact.subheadline")}
           </p>
         </motion.div>
 
@@ -74,12 +76,10 @@ const Contact = () => {
           >
             <div>
               <h3 className="text-2xl font-bold text-white mb-4">
-                Let&apos;s build something amazing together
+                {t("contact.buildTogether")}
               </h3>
               <p className="text-zinc-400 leading-relaxed">
-                I&apos;m always excited to discuss new projects, creative ideas, or opportunities
-                to be part of your vision. Whether it&apos;s an AI project, hackathon
-                collaboration, or open-source contribution.
+                {t("contact.buildDesc")}
               </p>
             </div>
 
@@ -91,7 +91,7 @@ const Contact = () => {
                 <Mail className="w-5 h-5 text-[#9CE630]" />
               </div>
               <div>
-                <p className="text-xs text-zinc-500">Email</p>
+                <p className="text-xs text-zinc-500">{t("contact.emailLabel")}</p>
                 <p className="text-sm text-white">asadullahshafique@hotmail.com</p>
               </div>
             </a>
@@ -106,14 +106,14 @@ const Contact = () => {
                 <MessageCircle className="w-5 h-5 text-[#25D366]" />
               </div>
               <div>
-                <p className="text-xs text-zinc-500">WhatsApp</p>
+                <p className="text-xs text-zinc-500">{t("contact.whatsappLabel")}</p>
                 <p className="text-sm text-white">+92 321 3771445</p>
-                <p className="text-xs text-zinc-500 mt-0.5">For Pakistan/UAE: WhatsApp preferred for faster response</p>
+                <p className="text-xs text-zinc-500 mt-0.5">{t("contact.whatsappHint")}</p>
               </div>
             </a>
 
             <div className="p-6 rounded-xl bg-zinc-900/50 border border-zinc-800">
-              <p className="text-sm font-semibold text-white mb-3">Prefer other channels?</p>
+              <p className="text-sm font-semibold text-white mb-3">{t("contact.preferOther")}</p>
               <div className="space-y-2 text-sm text-zinc-400">
                 <p>
                   GitHub:{" "}
@@ -134,7 +134,7 @@ const Contact = () => {
                     rel="noopener noreferrer"
                     className="text-[#5865F2] hover:underline"
                   >
-                    Join Server
+                    {t("contact.discordJoin")}
                   </a>
                 </p>
                 <p>
@@ -145,9 +145,9 @@ const Contact = () => {
                     rel="noopener noreferrer"
                     className="text-[#25D366] hover:underline"
                   >
-                    Chat Now
+                    {t("contact.whatsappChat")}
                   </a>
-                  <span className="text-zinc-500"> (Pakistan/UAE preferred)</span>
+                  <span className="text-zinc-500"> {t("contact.whatsappRegion")}</span>
                 </p>
               </div>
             </div>
@@ -163,50 +163,50 @@ const Contact = () => {
             <form onSubmit={handleSubmit} className="space-y-4">
               <div className="grid grid-cols-2 gap-4">
                 <div>
-                  <label className="block text-sm text-zinc-400 mb-1.5">Name</label>
+                  <label className="block text-sm text-zinc-400 mb-1.5">{t("contact.nameLabel")}</label>
                   <input
                     type="text"
                     required
                     value={formData.name}
                     onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                     className={inputClass}
-                    placeholder="Your name"
+                    placeholder={t("contact.namePlaceholder")}
                   />
                 </div>
                 <div>
-                  <label className="block text-sm text-zinc-400 mb-1.5">Email</label>
+                  <label className="block text-sm text-zinc-400 mb-1.5">{t("contact.emailFieldLabel")}</label>
                   <input
                     type="email"
                     required
                     value={formData.email}
                     onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                     className={inputClass}
-                    placeholder="your@email.com"
+                    placeholder={t("contact.emailPlaceholder")}
                   />
                 </div>
               </div>
 
               <div>
-                <label className="block text-sm text-zinc-400 mb-1.5">Subject</label>
+                <label className="block text-sm text-zinc-400 mb-1.5">{t("contact.subjectLabel")}</label>
                 <input
                   type="text"
                   required
                   value={formData.subject}
                   onChange={(e) => setFormData({ ...formData, subject: e.target.value })}
                   className={inputClass}
-                  placeholder="Project collaboration, Hackathon, etc."
+                  placeholder={t("contact.subjectPlaceholder")}
                 />
               </div>
 
               <div>
-                <label className="block text-sm text-zinc-400 mb-1.5">Message</label>
+                <label className="block text-sm text-zinc-400 mb-1.5">{t("contact.messageLabel")}</label>
                 <textarea
                   required
                   rows={5}
                   value={formData.message}
                   onChange={(e) => setFormData({ ...formData, message: e.target.value })}
                   className={`${inputClass} resize-none`}
-                  placeholder="Tell me about your project or idea..."
+                  placeholder={t("contact.messagePlaceholder")}
                 />
               </div>
 
@@ -218,12 +218,12 @@ const Contact = () => {
                 {status === "loading" ? (
                   <>
                     <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-                    Sending...
+                    {t("contact.sending")}
                   </>
                 ) : (
                   <>
                     <Send className="mr-2 h-4 w-4" />
-                    Send Message
+                    {t("contact.send")}
                   </>
                 )}
               </Button>
@@ -235,7 +235,7 @@ const Contact = () => {
                   className="flex items-center gap-2 p-3 rounded-lg bg-green-500/10 border border-green-500/20 text-green-400 text-sm"
                 >
                   <CheckCircle className="w-4 h-4 shrink-0" />
-                  Message sent successfully! I&apos;ll get back to you soon.
+                  {t("contact.successFull")}
                 </motion.div>
               )}
 

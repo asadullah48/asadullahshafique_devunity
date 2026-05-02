@@ -3,32 +3,21 @@
 import React from "react";
 import { motion } from "framer-motion";
 import { Scissors, Building2, Store } from "lucide-react";
+import { useLocale } from "@/context/LocaleContext";
 
-const industries = [
-  {
-    icon: Scissors,
-    title: "Textile & Garment",
-    subtitle: "Pakistan · UAE · Turkey",
-    description:
-      "Serving Pakistan's textile value chain — CMT stitching units, garment factories, fabric mills, and exporters across Faisalabad, Sialkot, Gujranwala, Karachi, and Lahore. Also UAE and Turkish sourcing houses.",
-  },
-  {
-    icon: Building2,
-    title: "Dubai & UAE Real Estate / Construction",
-    subtitle: "Real estate · Contractors · Developers",
-    description:
-      "Digital marketing, property portals, social media, and lead generation for the UAE construction and property sector.",
-  },
-  {
-    icon: Store,
-    title: "Pakistani SMEs & Factories",
-    subtitle: "Small and medium enterprises across Pakistan",
-    description:
-      "AI tools, digital marketing, and SaaS solutions tailored for Pakistani businesses entering the digital economy.",
-  },
-];
+const Icons = [Scissors, Building2, Store];
+const KEYS = ["i1", "i2", "i3"] as const;
 
 const Industries = () => {
+  const { t } = useLocale();
+
+  const industries = KEYS.map((k, i) => ({
+    Icon: Icons[i],
+    title: t(`industries.${k}Title`),
+    subtitle: t(`industries.${k}Sub`),
+    description: t(`industries.${k}Desc`),
+  }));
+
   return (
     <section id="industries" className="py-24 relative">
       <div className="container mx-auto px-4">
@@ -40,11 +29,11 @@ const Industries = () => {
           className="text-center mb-16"
         >
           <h2 className="text-3xl md:text-5xl font-bold text-white mb-4">
-            Industries I <span className="text-[#9CE630]">Serve</span>
+            {t("industries.title")} <span className="text-[#9CE630]">{t("industries.titleHighlight")}</span>
           </h2>
           <div className="w-20 h-1 bg-[#9CE630] mx-auto rounded-full mb-6" />
           <p className="text-zinc-400 max-w-xl mx-auto">
-            Domain expertise built through real operations, not just consulting.
+            {t("industries.subtitle")}
           </p>
         </motion.div>
 
@@ -58,7 +47,7 @@ const Industries = () => {
               viewport={{ once: true }}
               className="group p-6 rounded-xl bg-zinc-900/50 border border-zinc-800 hover:border-[#9CE630]/30 transition-all duration-300 hover:bg-zinc-900/80"
             >
-              <industry.icon className="w-10 h-10 text-[#9CE630] mb-4 group-hover:scale-110 transition-transform" />
+              <industry.Icon className="w-10 h-10 text-[#9CE630] mb-4 group-hover:scale-110 transition-transform" />
               <h3 className="text-xl font-semibold text-white mb-1">{industry.title}</h3>
               <p className="text-[#9CE630] text-xs font-medium mb-3">{industry.subtitle}</p>
               <p className="text-zinc-400 text-sm leading-relaxed">{industry.description}</p>

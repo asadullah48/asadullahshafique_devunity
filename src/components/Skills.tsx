@@ -1,7 +1,8 @@
-﻿"use client";
+"use client";
 
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import { useLocale } from "@/context/LocaleContext";
 
 const DI = "https://cdn.jsdelivr.net/gh/devicons/devicon/icons";
 
@@ -43,10 +44,10 @@ const SKILL_TABS: Record<string, Skill[]> = {
     { name: "Constitutional AI", custom: true, icon: "", badge: "CAI",   color: "#84cc16" },
     { name: "SKILL.md",          custom: true, icon: "", badge: "SKL",   color: "#84cc16" },
     { name: "Prompt Eng.",       custom: true, icon: "", badge: "PE",    color: "#a855f7" },
-    { name: "LangChain",        custom: true, icon: "", badge: "LC",    color: "#1C3C3C" },
-    { name: "LlamaIndex",       custom: true, icon: "", badge: "LI",    color: "#fbba00" },
-    { name: "n8n",              custom: true, icon: "", badge: "n8n",   color: "#ea4b71" },
-    { name: "Hugging Face",     custom: true, icon: "", badge: "HF",    color: "#FFD21E" },
+    { name: "LangChain",         custom: true, icon: "", badge: "LC",    color: "#1C3C3C" },
+    { name: "LlamaIndex",        custom: true, icon: "", badge: "LI",    color: "#fbba00" },
+    { name: "n8n",               custom: true, icon: "", badge: "n8n",   color: "#ea4b71" },
+    { name: "Hugging Face",      custom: true, icon: "", badge: "HF",    color: "#FFD21E" },
   ],
   "Cloud & DevOps": [
     { name: "Kubernetes",     icon: "kubernetes/kubernetes-original.svg",   color: "#326CE5" },
@@ -144,6 +145,16 @@ function SkillCard({ skill }: { skill: Skill }) {
 
 export function SkillsSection() {
   const [activeTab, setActiveTab] = useState(TAB_KEYS[0]);
+  const { t } = useLocale();
+
+  const TAB_LABELS: Record<string, string> = {
+    "Languages":      t("skills.tabLanguages"),
+    "Frameworks":     t("skills.tabFrameworks"),
+    "AI & Agents":    t("skills.tabAI"),
+    "Cloud & DevOps": t("skills.tabCloud"),
+    "Platforms":      t("skills.tabPlatforms"),
+    "OpenClaw Track": t("skills.tabOpenClaw"),
+  };
 
   return (
     <section id="skills" className="py-24 bg-[#0a0a0a]">
@@ -157,12 +168,11 @@ export function SkillsSection() {
           className="text-center mb-14"
         >
           <h2 className="text-4xl lg:text-5xl font-bold text-white mb-4">
-            Tech <span className="text-green-400">Stack</span>
+            {t("skills.title")} <span className="text-green-400">{t("skills.titleHighlight")}</span>
           </h2>
           <div className="w-16 h-0.5 bg-green-400 mx-auto mb-5" />
           <p className="text-gray-400 max-w-xl mx-auto">
-            Technologies I use to ship production-ready applications â€” from
-            agentic AI systems to cloud-native microservices.
+            {t("skills.subtitle")}
           </p>
         </motion.div>
 
@@ -177,7 +187,7 @@ export function SkillsSection() {
                   : "border border-white/15 text-gray-400 hover:border-green-500/40 hover:text-white"
               }`}
             >
-              {tab}
+              {TAB_LABELS[tab]}
             </button>
           ))}
         </div>
@@ -204,7 +214,7 @@ export function SkillsSection() {
           transition={{ delay: 0.4 }}
           className="text-center text-gray-600 text-sm mt-10"
         >
-          + Cloudflare Workers Â· Radix UI Â· Lucide Icons Â· REST APIs Â· MCP Servers
+          {t("skills.footer")}
         </motion.p>
       </div>
     </section>
@@ -212,5 +222,3 @@ export function SkillsSection() {
 }
 
 export default SkillsSection;
-
-
