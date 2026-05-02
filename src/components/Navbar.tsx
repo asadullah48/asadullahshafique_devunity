@@ -1,9 +1,11 @@
-"use client";
+﻿"use client";
 
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Code2, Github, Menu, X, MessageCircle, FileDown } from "lucide-react";
+import { ThemeToggle } from "./ThemeToggle";
+import { LocaleSwitcher } from "./LocaleSwitcher";
 
 const navLinks = [
   { name: "About", href: "#about" },
@@ -112,6 +114,8 @@ const Navbar = () => {
               Contact Me
             </Button>
           </Link>
+          <LocaleSwitcher />
+          <ThemeToggle />
           {/* Mobile menu button */}
           <button
             className="lg:hidden p-2 text-zinc-400 hover:text-white"
@@ -169,3 +173,5 @@ const Navbar = () => {
 };
 
 export default Navbar;
+
+

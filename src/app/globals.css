@@ -1,3 +1,4 @@
+﻿@import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&family=Noto+Sans+Arabic:wght@400;600;700&display=swap');
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -106,3 +107,4 @@
 .animate-fade-in-up {
     animation: fade-in-up 0.8s ease-out;
 }
+

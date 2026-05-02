@@ -1,8 +1,9 @@
-import type { Metadata } from "next";
+﻿import type { Metadata } from "next";
 import "./globals.css";
 import { Inter, JetBrains_Mono } from "next/font/google";
 import Navbar from "@/components/Navbar";
 import { ThemeProvider } from "@/components/ThemeProvider";
+import { LocaleProvider } from "@/context/LocaleContext";
 import { KeyboardShortcutsProvider } from "@/components/KeyboardShortcutsProvider";
 import ShortcutsDialog from "@/components/ShortcutsDialog";
 
@@ -51,13 +52,15 @@ export default function RootLayout({
                                     enableSystem
                                     disableTransitionOnChange
                         >
-                              <KeyboardShortcutsProvider>
+                              <LocaleProvider><KeyboardShortcutsProvider>
                                     <Navbar />
                                     <main>{children}</main>
                                     <ShortcutsDialog />
-                              </KeyboardShortcutsProvider>
+                              </KeyboardShortcutsProvider></LocaleProvider>
                         </ThemeProvider>
                   </body>
           </html>
     );
 }
+
+

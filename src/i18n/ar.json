@@ -1,0 +1,79 @@
+﻿{
+  "nav": {
+    "about": "نبذة عني",
+    "services": "الخدمات",
+    "industries": "القطاعات",
+    "skills": "المهارات",
+    "projects": "المشاريع",
+    "hackathons": "الهاكاثون",
+    "blog": "المدونة",
+    "openSource": "المصدر المفتوح",
+    "testimonials": "آراء العملاء",
+    "contact": "تواصل معي",
+    "discord": "ديسكورد",
+    "github": "جيت هاب",
+    "resume": "السيرة الذاتية"
+  },
+  "hero": {
+    "badge": "متاح للتعاون في مشاريع الذكاء الاصطناعي والعمل الحر",
+    "location": "باكستان · الإمارات",
+    "greeting": "مرحباً، أنا",
+    "name": "أسد الله",
+    "description": "أبني أنظمة ذكاء اصطناعي احترافية وأسوّق لأعمال حقيقية — من شركات البناء في دبي إلى مصانع النسيج الباكستانية. ستة هاكاثونات. صفر إخفاقات.",
+    "viewWork": "استعرض أعمالي",
+    "githubProfile": "ملفي على GitHub",
+    "downloadResume": "تحميل السيرة الذاتية",
+    "downloadingResume": "جاري التحقق...",
+    "resumeNotFound": "الملف غير موجود",
+    "resumeMissingHint": "أضف resume.pdf إلى مجلد /public وأعد النشر",
+    "stats": {
+      "repos": "مستودعات GitHub",
+      "hackathons": "هاكاثونات فزت بها",
+      "codeReuse": "معدل إعادة استخدام الكود",
+      "tests": "اختبارات ناجحة"
+    }
+  },
+  "skills": {
+    "title": "التقنيات",
+    "titleHighlight": "المستخدمة",
+    "subtitle": "التقنيات التي أستخدمها لبناء تطبيقات جاهزة للإنتاج — من أنظمة الذكاء الاصطناعي إلى الخدمات المصغرة السحابية.",
+    "footer": "+ Cloudflare Workers · Radix UI · Lucide Icons · REST APIs · MCP Servers"
+  },
+  "projects": {
+    "title": "المشاريع",
+    "titleHighlight": "المميزة",
+    "subtitle": "أنظمة احترافية بُنيت في مجالات الذكاء الاصطناعي والبنية التحتية السحابية وأتمتة المؤسسات.",
+    "viewCode": "الكود",
+    "viewLive": "مباشر",
+    "viewCaseStudy": "عرض دراسة الحالة",
+    "hideCaseStudy": "إخفاء دراسة الحالة",
+    "problem": "المشكلة",
+    "solution": "الحل",
+    "impact": "التأثير",
+    "flagship": "المشروع الرئيسي"
+  },
+  "contact": {
+    "title": "تواصل",
+    "titleHighlight": "معي",
+    "subtitle": "متاح لمشاريع الذكاء الاصطناعي والعمل الحر والتعاون.",
+    "namePlaceholder": "اسمك",
+    "emailPlaceholder": "بريدك الإلكتروني",
+    "messagePlaceholder": "رسالتك",
+    "send": "إرسال الرسالة",
+    "sending": "جاري الإرسال...",
+    "success": "تم إرسال رسالتك بنجاح!",
+    "error": "فشل الإرسال. حاول مرة أخرى."
+  },
+  "footer": {
+    "rights": "جميع الحقوق محفوظة.",
+    "builtWith": "مبني بـ Next.js · منشور على Vercel"
+  },
+  "common": {
+    "scroll": "تمرير",
+    "loading": "جاري التحميل...",
+    "learnMore": "اقرأ المزيد",
+    "close": "إغلاق",
+    "toggleTheme": "تبديل المظهر",
+    "switchLanguage": "English"
+  }
+}

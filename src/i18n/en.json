@@ -1,0 +1,79 @@
+﻿{
+  "nav": {
+    "about": "About",
+    "services": "Services",
+    "industries": "Industries",
+    "skills": "Skills",
+    "projects": "Projects",
+    "hackathons": "Hackathons",
+    "blog": "Blog",
+    "openSource": "Open Source",
+    "testimonials": "Testimonials",
+    "contact": "Contact",
+    "discord": "Discord",
+    "github": "GitHub",
+    "resume": "Resume"
+  },
+  "hero": {
+    "badge": "Open to AI Collaborations & Freelance",
+    "location": "Pakistan · UAE",
+    "greeting": "Hi, I'm",
+    "name": "Asadullah",
+    "description": "Building production-grade AI systems and marketing real businesses — from Dubai construction to Pakistani textile factories. Six hackathons. Zero failures.",
+    "viewWork": "View My Work",
+    "githubProfile": "GitHub Profile",
+    "downloadResume": "Download Resume",
+    "downloadingResume": "Checking...",
+    "resumeNotFound": "PDF not found",
+    "resumeMissingHint": "Add resume.pdf to your /public folder & redeploy",
+    "stats": {
+      "repos": "GitHub Repos",
+      "hackathons": "Hackathons Won",
+      "codeReuse": "Code Reuse Rate",
+      "tests": "Tests Passing"
+    }
+  },
+  "skills": {
+    "title": "Tech",
+    "titleHighlight": "Stack",
+    "subtitle": "Technologies I use to ship production-ready applications — from agentic AI systems to cloud-native microservices.",
+    "footer": "+ Cloudflare Workers · Radix UI · Lucide Icons · REST APIs · MCP Servers"
+  },
+  "projects": {
+    "title": "Featured",
+    "titleHighlight": "Projects",
+    "subtitle": "Production systems built across AI, cloud-native infrastructure, and enterprise automation.",
+    "viewCode": "Code",
+    "viewLive": "Live",
+    "viewCaseStudy": "View Case Study",
+    "hideCaseStudy": "Hide Case Study",
+    "problem": "Problem",
+    "solution": "Solution",
+    "impact": "Impact",
+    "flagship": "Flagship"
+  },
+  "contact": {
+    "title": "Get In",
+    "titleHighlight": "Touch",
+    "subtitle": "Open for AI projects, freelance work, and collaborations.",
+    "namePlaceholder": "Your Name",
+    "emailPlaceholder": "Your Email",
+    "messagePlaceholder": "Your Message",
+    "send": "Send Message",
+    "sending": "Sending...",
+    "success": "Message sent successfully!",
+    "error": "Failed to send. Please try again."
+  },
+  "footer": {
+    "rights": "All rights reserved.",
+    "builtWith": "Built with Next.js · Deployed on Vercel"
+  },
+  "common": {
+    "scroll": "scroll",
+    "loading": "Loading...",
+    "learnMore": "Learn More",
+    "close": "Close",
+    "toggleTheme": "Toggle theme",
+    "switchLanguage": "العربية"
+  }
+}

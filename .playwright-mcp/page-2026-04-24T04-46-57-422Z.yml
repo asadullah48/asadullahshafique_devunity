@@ -1,0 +1,354 @@
+- generic [active] [ref=e1]:
+  - alert [ref=e2]
+  - navigation [ref=e3]:
+    - generic [ref=e4]:
+      - link "Asadullah.dev" [ref=e5] [cursor=pointer]:
+        - /url: "#home"
+        - img [ref=e6]
+        - generic [ref=e10]: Asadullah.dev
+      - generic [ref=e11]:
+        - link "About" [ref=e12] [cursor=pointer]:
+          - /url: "#about"
+        - link "Services" [ref=e13] [cursor=pointer]:
+          - /url: "#services"
+        - link "Industries" [ref=e14] [cursor=pointer]:
+          - /url: "#industries"
+        - link "Skills" [ref=e15] [cursor=pointer]:
+          - /url: "#skills"
+        - link "Projects" [ref=e16] [cursor=pointer]:
+          - /url: "#projects"
+        - link "Hackathons" [ref=e17] [cursor=pointer]:
+          - /url: "#hackathons"
+        - link "Blog" [ref=e18] [cursor=pointer]:
+          - /url: "#blog"
+        - link "Open Source" [ref=e19] [cursor=pointer]:
+          - /url: "#opensource"
+        - link "Contact" [ref=e20] [cursor=pointer]:
+          - /url: "#contact"
+      - generic [ref=e21]:
+        - link "Discord" [ref=e22] [cursor=pointer]:
+          - /url: https://discord.gg/kXfEYVGX
+          - button "Discord" [ref=e23]:
+            - img
+            - text: Discord
+        - link "GitHub" [ref=e24] [cursor=pointer]:
+          - /url: https://github.com/asadullah48
+          - button "GitHub" [ref=e25]:
+            - img
+            - text: GitHub
+        - link "Resume" [ref=e26] [cursor=pointer]:
+          - /url: /resume
+          - button "Resume" [ref=e27]:
+            - img
+            - text: Resume
+        - link "Contact Me" [ref=e28] [cursor=pointer]:
+          - /url: "#contact"
+          - button "Contact Me" [ref=e29]
+  - main [ref=e30]:
+    - main [ref=e31]:
+      - generic [ref=e34]:
+        - link "Back to Portfolio" [ref=e36] [cursor=pointer]:
+          - /url: /
+          - img [ref=e37]
+          - text: Back to Portfolio
+        - generic [ref=e39]:
+          - generic [ref=e40]:
+            - generic [ref=e41]:
+              - img [ref=e42]
+              - heading "Asadullah Shafique" [level=1] [ref=e46]
+            - paragraph [ref=e47]: Agentic AI Developer · Digital Marketing Strategist · CMT Industry Founder
+            - generic [ref=e48]:
+              - generic [ref=e49]:
+                - img [ref=e50]
+                - text: Karachi, Pakistan
+              - generic [ref=e53]:
+                - img [ref=e54]
+                - text: +92 321 3771445
+              - generic [ref=e56]:
+                - img [ref=e57]
+                - text: asadullahshafique@hotmail.com
+            - generic [ref=e60]:
+              - link "github.com/asadullah48" [ref=e61] [cursor=pointer]:
+                - /url: https://github.com/asadullah48
+                - img [ref=e62]
+                - text: github.com/asadullah48
+              - link "LinkedIn" [ref=e65] [cursor=pointer]:
+                - /url: https://linkedin.com/in/asadullah-shafique-a00679325
+                - img [ref=e66]
+                - text: LinkedIn
+              - link "Portfolio" [ref=e70] [cursor=pointer]:
+                - /url: https://asadullahshafique-devunity.vercel.app
+                - img [ref=e71]
+                - text: Portfolio
+          - link "Download PDF" [ref=e75] [cursor=pointer]:
+            - /url: /resume.pdf
+            - button "Download PDF" [ref=e76]:
+              - img
+              - text: Download PDF
+      - generic [ref=e77]:
+        - generic [ref=e78]:
+          - generic [ref=e79]:
+            - img [ref=e81]
+            - heading "Professional Summary" [level=2] [ref=e84]
+          - paragraph [ref=e86]: Developer specializing in AI agents with 25+ years of deep textile and garment domain expertise, building SaaS solutions for the industry. Founder of Texcot Embroidery Sourcing House and creator of Textile ERP Platform targeting Pakistan's textile value chain. Completed six consecutive hackathons with 85% code reusability and zero failed attempts. Currently focused on agentic AI architecture and Digital FTE deployment.
+        - generic [ref=e87]:
+          - generic [ref=e88]:
+            - img [ref=e90]
+            - heading "Technical Skills" [level=2] [ref=e94]
+          - generic [ref=e96]:
+            - generic [ref=e97]:
+              - paragraph [ref=e98]: Languages
+              - generic [ref=e99]:
+                - generic [ref=e100]: TypeScript
+                - generic [ref=e101]: JavaScript
+                - generic [ref=e102]: Python
+                - generic [ref=e103]: HTML/CSS
+            - generic [ref=e104]:
+              - paragraph [ref=e105]: Frontend
+              - generic [ref=e106]:
+                - generic [ref=e107]: Next.js 15
+                - generic [ref=e108]: React 19
+                - generic [ref=e109]: Tailwind v4
+                - generic [ref=e110]: shadcn/ui
+                - generic [ref=e111]: Framer Motion
+            - generic [ref=e112]:
+              - paragraph [ref=e113]: Backend
+              - generic [ref=e114]:
+                - generic [ref=e115]: FastAPI
+                - generic [ref=e116]: SQLAlchemy ORM
+                - generic [ref=e117]: PostgreSQL
+                - generic [ref=e118]: RESTful APIs
+            - generic [ref=e119]:
+              - paragraph [ref=e120]: Cloud / DevOps
+              - generic [ref=e121]:
+                - generic [ref=e122]: Kubernetes
+                - generic [ref=e123]: Docker
+                - generic [ref=e124]: Dapr
+                - generic [ref=e125]: Kafka
+                - generic [ref=e126]: Helm
+                - generic [ref=e127]: GitHub Actions CI/CD
+            - generic [ref=e128]:
+              - paragraph [ref=e129]: AI & Agents
+              - generic [ref=e130]:
+                - generic [ref=e131]: OpenAI Agents SDK
+                - generic [ref=e132]: MCP Servers
+                - generic [ref=e133]: Constitutional AI
+                - generic [ref=e134]: RAG
+                - generic [ref=e135]: SKILL.md
+            - generic [ref=e136]:
+              - paragraph [ref=e137]: Observability
+              - generic [ref=e138]:
+                - generic [ref=e139]: Prometheus
+                - generic [ref=e140]: Grafana
+                - generic [ref=e141]: Jaeger
+                - generic [ref=e142]: Loki
+            - generic [ref=e143]:
+              - paragraph [ref=e144]: Platforms
+              - generic [ref=e145]:
+                - generic [ref=e146]: Vercel
+                - generic [ref=e147]: Koyeb
+                - generic [ref=e148]: Minikube
+                - generic [ref=e149]: WSL2
+                - generic [ref=e150]: Git
+        - generic [ref=e151]:
+          - generic [ref=e152]:
+            - img [ref=e154]
+            - heading "Work Experience" [level=2] [ref=e157]
+          - generic [ref=e159]:
+            - generic [ref=e162]:
+              - generic [ref=e163]:
+                - generic [ref=e164]:
+                  - heading "Founder & CEO — CMT Stitching Operations" [level=3] [ref=e165]
+                  - paragraph [ref=e166]: Texcot Embroidery Sourcing House
+                - generic [ref=e167]:
+                  - paragraph [ref=e168]: 2020 – Present
+                  - paragraph [ref=e169]: Karachi
+              - list [ref=e170]:
+                - listitem [ref=e171]:
+                  - generic [ref=e172]: ›
+                  - text: Operates stitching unit with 30–35 employees including supervisors and production leads.
+                - listitem [ref=e173]:
+                  - generic [ref=e174]: ›
+                  - text: "Manages complete manufacturing: sample fabric, design analysis, machine allocation, bulk production, QC inspection."
+                - listitem [ref=e175]:
+                  - generic [ref=e176]: ›
+                  - text: Developing Textile ERP Platform to digitize operations across Pakistan's textile sector.
+            - generic [ref=e179]:
+              - generic [ref=e180]:
+                - generic [ref=e181]:
+                  - heading "Digital Marketing Services" [level=3] [ref=e182]
+                  - paragraph [ref=e183]: Independent
+                - generic [ref=e184]:
+                  - paragraph [ref=e185]: Concurrent
+                  - paragraph [ref=e186]: Remote
+              - list [ref=e187]:
+                - listitem [ref=e188]:
+                  - generic [ref=e189]: ›
+                  - text: Strategy for Dubai real estate, UAE construction, and Pakistani SMEs.
+                - listitem [ref=e190]:
+                  - generic [ref=e191]: ›
+                  - text: Social media management (Facebook, Instagram, X, LinkedIn) plus paid advertising.
+                - listitem [ref=e192]:
+                  - generic [ref=e193]: ›
+                  - text: Lead generation funnels and monthly performance reporting.
+            - generic [ref=e196]:
+              - generic [ref=e197]:
+                - generic [ref=e198]:
+                  - heading "Marketing Manager" [level=3] [ref=e199]
+                  - paragraph [ref=e200]: JK Embroidery
+                - generic [ref=e201]:
+                  - paragraph [ref=e202]: 2016 – 2020
+                  - paragraph [ref=e203]: Karachi
+              - list [ref=e204]:
+                - listitem [ref=e205]:
+                  - generic [ref=e206]: ›
+                  - text: Managed marketing and production planning; scheduled staff and equipment.
+                - listitem [ref=e207]:
+                  - generic [ref=e208]: ›
+                  - text: Tracked KPIs; communicated with 30–35 team members on production priorities.
+            - generic [ref=e211]:
+              - generic [ref=e212]:
+                - generic [ref=e213]:
+                  - heading "Country Manager / Buying Agent" [level=3] [ref=e214]
+                  - paragraph [ref=e215]: Steven Berry
+                - generic [ref=e216]:
+                  - paragraph [ref=e217]: 2003 – 2005
+                  - paragraph [ref=e218]: International
+              - list [ref=e219]:
+                - listitem [ref=e220]:
+                  - generic [ref=e221]: ›
+                  - text: Managed international shipments; ensured compliance with international quality standards.
+                - listitem [ref=e222]:
+                  - generic [ref=e223]: ›
+                  - text: Conducted pre-production, in-production, and final inspections of apparel and textiles.
+        - generic [ref=e224]:
+          - generic [ref=e225]:
+            - img [ref=e227]
+            - heading "Key Projects" [level=2] [ref=e231]
+          - generic [ref=e233]:
+            - generic [ref=e236]:
+              - generic [ref=e237]:
+                - generic [ref=e238]:
+                  - heading "Textile ERP Platform" [level=3] [ref=e239]
+                  - paragraph [ref=e240]: Founder / Lead Developer
+                - generic [ref=e241]: 2024 – Present
+              - paragraph [ref=e242]: "Full-stack ERP targeting Pakistan's textile value chain. Module 1: Fabric Mill (roll/lot management, weaving/knitting tracking, yarn inventory). Core: CMT order lifecycle, auto-billing (4 types), BOM inventory, production sessions, dispatch, ledgers, cash flow."
+              - generic [ref=e243]:
+                - generic [ref=e244]: Next.js 15
+                - generic [ref=e245]: FastAPI
+                - generic [ref=e246]: PostgreSQL
+                - generic [ref=e247]: Vercel
+                - generic [ref=e248]: Koyeb
+            - generic [ref=e251]:
+              - generic [ref=e252]:
+                - generic [ref=e253]:
+                  - heading "Agent Factory (H5)" [level=3] [ref=e254]
+                  - paragraph [ref=e255]: Panaversity Hackathon
+                - generic [ref=e256]: "2025"
+              - paragraph [ref=e257]: "Two-tier architecture: General Agent (Claude Code) manufactures Custom Agent (OpenAI Agents SDK) at scale. SKILL.md monetization model targeting OpenAI Apps (800M users). Focus: Portable, monetizable intelligence units and Digital FTE pricing."
+              - generic [ref=e258]:
+                - generic [ref=e259]: Claude Code
+                - generic [ref=e260]: OpenAI SDK
+                - generic [ref=e261]: MCP
+                - generic [ref=e262]: SKILL.md
+                - generic [ref=e263]: Dapr
+                - generic [ref=e264]: Kubernetes
+        - generic [ref=e265]:
+          - generic [ref=e266]:
+            - img [ref=e268]
+            - heading "Hackathon Series" [level=2] [ref=e274]
+          - paragraph [ref=e276]: 6 consecutive Panaversity hackathons · 85% code reuse · Zero failed attempts
+          - generic [ref=e277]:
+            - generic [ref=e280]:
+              - generic [ref=e281]:
+                - generic [ref=e282]: Agent Factory
+                - generic [ref=e283]: H5
+                - generic [ref=e284]: "2025"
+              - generic [ref=e285]:
+                - paragraph [ref=e286]: General Agent builds Custom Agent; SKILL.md monetization; Digital FTE on K8s
+                - paragraph [ref=e287]: Claude Code · OpenAI SDK · MCP · Dapr
+            - generic [ref=e290]:
+              - generic [ref=e291]:
+                - generic [ref=e292]: Platinum
+                - generic [ref=e293]: H4
+                - generic [ref=e294]: "2025"
+              - generic [ref=e295]:
+                - paragraph [ref=e296]: Multi-stage Docker, K8s manifests, StatefulSets, PVCs, Dapr, Kafka, monitoring
+                - paragraph [ref=e297]: K8s · Docker · Dapr · Kafka · Helm
+            - generic [ref=e300]:
+              - generic [ref=e301]:
+                - generic [ref=e302]: Gold
+                - generic [ref=e303]: H3
+                - generic [ref=e304]: "2025"
+              - generic [ref=e305]:
+                - paragraph [ref=e306]: 149 tests passing; recurring todos, team collaboration, AI suggestions; triple-layer Constitutional AI
+                - paragraph [ref=e307]: Next.js · FastAPI · PostgreSQL
+            - generic [ref=e310]:
+              - generic [ref=e311]:
+                - generic [ref=e312]: Silver
+                - generic [ref=e313]: H2
+                - generic [ref=e314]: "2025"
+              - generic [ref=e315]:
+                - paragraph [ref=e316]: 89 tests passing; full-stack Constitutional AI; 70% code reuse from H1
+                - paragraph [ref=e317]: Next.js · TypeScript · FastAPI
+            - generic [ref=e320]:
+              - generic [ref=e321]:
+                - generic [ref=e322]: Silver
+                - generic [ref=e323]: H1
+                - generic [ref=e324]: "2024"
+              - generic [ref=e325]:
+                - paragraph [ref=e326]: Zero-backend-LLM architecture; Digital FTE model; 70% reuse from H0
+                - paragraph [ref=e327]: Next.js · TypeScript · OpenAI
+            - generic [ref=e330]:
+              - generic [ref=e331]:
+                - generic [ref=e332]: Bronze
+                - generic [ref=e333]: H0
+                - generic [ref=e334]: "2024"
+              - generic [ref=e335]:
+                - paragraph [ref=e336]: Constitutional AI foundation; spec-first, 4-session methodology
+                - paragraph [ref=e337]: TypeScript · Constitutional AI
+        - generic [ref=e338]:
+          - generic [ref=e339]:
+            - img [ref=e341]
+            - heading "Education" [level=2] [ref=e344]
+          - generic [ref=e346]:
+            - generic [ref=e347]:
+              - generic [ref=e348]:
+                - paragraph [ref=e349]: Agentic AI Specialization
+                - paragraph [ref=e350]: GIAIC / Panaversity
+              - generic [ref=e351]: Sep 2022 – Present
+            - generic [ref=e352]:
+              - generic [ref=e353]:
+                - paragraph [ref=e354]: Alim — Islamic Studies
+                - paragraph [ref=e355]: Burooj Institute, Karachi
+              - generic [ref=e356]: 5-year program
+            - generic [ref=e357]:
+              - generic [ref=e358]:
+                - paragraph [ref=e359]: Associate Degree — Textile Technology
+                - paragraph [ref=e360]: Textile Institute of Pakistan (APTMA)
+              - generic [ref=e361]: "1997"
+            - generic [ref=e362]:
+              - generic [ref=e363]:
+                - paragraph [ref=e364]: H.S.C Pre-Engineering
+                - paragraph [ref=e365]: Pakistan Shipowner's Government College
+              - generic [ref=e366]: "1994"
+            - generic [ref=e367]:
+              - generic [ref=e368]:
+                - paragraph [ref=e369]: S.S.C Science
+                - paragraph [ref=e370]: Ladybird Grammar School
+              - generic [ref=e371]: "1992"
+        - generic [ref=e372]:
+          - heading "Let's Work Together" [level=3] [ref=e373]
+          - paragraph [ref=e374]: Open to collaborating on AI projects, digital marketing strategy, or textile tech.
+          - generic [ref=e375]:
+            - link "Email Me" [ref=e376] [cursor=pointer]:
+              - /url: mailto:asadullahshafique@hotmail.com
+              - button "Email Me" [ref=e377]:
+                - img
+                - text: Email Me
+            - link "WhatsApp" [ref=e378] [cursor=pointer]:
+              - /url: https://wa.me/923213771445
+              - button "WhatsApp" [ref=e379]
+            - link "View Portfolio" [ref=e380] [cursor=pointer]:
+              - /url: /
+              - button "View Portfolio" [ref=e381]

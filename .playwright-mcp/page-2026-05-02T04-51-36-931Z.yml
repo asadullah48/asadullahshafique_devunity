@@ -1,0 +1,870 @@
+- main [ref=e2]:
+  - generic [ref=e3]:
+    - generic [ref=e5]:
+      - generic [ref=e8]:
+        - generic [ref=e9]:
+          - generic [ref=e10]:
+            - generic [ref=e14]: Open to AI Collaborations & Freelance
+            - img [ref=e15]
+            - generic [ref=e18]: Pakistan · UAE
+          - heading "Hi, I'm Asadullah" [level=1] [ref=e19]:
+            - text: Hi, I'm
+            - generic [ref=e20]: Asadullah
+          - generic [ref=e23]: "|"
+          - paragraph [ref=e24]: Building production-grade AI systems and marketing real businesses — from Dubai construction to Pakistani textile factories. Six hackathons. Zero failures.
+          - generic [ref=e25]:
+            - link "View My Work" [ref=e26] [cursor=pointer]:
+              - /url: "#projects"
+              - text: View My Work
+              - img [ref=e27]
+            - link "GitHub Profile" [ref=e29] [cursor=pointer]:
+              - /url: https://github.com/asadullah48
+              - img [ref=e30]
+              - text: GitHub Profile
+            - link "Download Resume" [ref=e33] [cursor=pointer]:
+              - /url: /resume.pdf
+              - img [ref=e34]
+              - text: Download Resume
+          - generic [ref=e38]:
+            - generic [ref=e40]:
+              - generic [ref=e41]: 467+
+              - generic [ref=e42]: GitHub Repos
+            - generic [ref=e45]:
+              - generic [ref=e46]: "6"
+              - generic [ref=e47]: Hackathons Won
+            - generic [ref=e50]:
+              - generic [ref=e51]: 85%
+              - generic [ref=e52]: Code Reuse Rate
+            - generic [ref=e55]:
+              - generic [ref=e56]: 149+
+              - generic [ref=e57]: Tests Passing
+        - generic [ref=e58]:
+          - generic [ref=e59]:
+            - generic: Next.js
+            - generic: Kubernetes
+            - generic: FastAPI
+            - generic: OpenAI SDK
+            - generic: Claude MCP
+            - generic: TypeScript
+            - generic:
+              - generic: AS
+              - generic: DEV
+          - generic [ref=e63]:
+            - generic [ref=e68]: agent-factory ~ asadullah
+            - generic [ref=e70]: $ claude code --spec-first█
+      - generic [ref=e71]:
+        - generic [ref=e72]: scroll
+        - img [ref=e73]
+    - generic [ref=e76]:
+      - generic [ref=e77]:
+        - heading "About Me" [level=2] [ref=e78]
+        - paragraph [ref=e80]: Agentic AI Developer, Digital Marketing Strategist, and CMT Industry Founder — building AI-powered systems and marketing real businesses across Pakistan and UAE.
+      - generic [ref=e81]:
+        - generic [ref=e84]:
+          - heading "Asadullah Shafique" [level=3] [ref=e85]
+          - generic [ref=e86]:
+            - generic [ref=e87]: Agentic AI Developer
+            - generic [ref=e88]: CMT Industry Founder
+            - generic [ref=e89]: Digital Marketer
+          - paragraph [ref=e90]: "I build production-grade AI systems and run real businesses. Founder of Texcot Embroidery Sourcing House and creator of the Textile ERP Platform — targeting Pakistan's full textile value chain. Completing the Panaversity Hackathon Series: 6 consecutive hackathons, 85% code reusability, zero failed attempts. Bridging AI development and digital marketing for Pakistan and UAE markets."
+          - generic [ref=e91]:
+            - link "GitHub" [ref=e92] [cursor=pointer]:
+              - /url: https://github.com/asadullah48
+              - img [ref=e93]
+            - link "LinkedIn" [ref=e96] [cursor=pointer]:
+              - /url: https://www.linkedin.com/in/asadullah-shafique-a00679325/
+              - img [ref=e97]
+            - link "Twitter / X" [ref=e101] [cursor=pointer]:
+              - /url: https://x.com/texcotembroide1
+              - img [ref=e102]
+            - link "Facebook" [ref=e104] [cursor=pointer]:
+              - /url: https://facebook.com/asadullahshafique
+              - img [ref=e105]
+            - link "Instagram" [ref=e107] [cursor=pointer]:
+              - /url: https://instagram.com/shafiqueasadullah
+              - img [ref=e108]
+            - link "Medium" [ref=e111] [cursor=pointer]:
+              - /url: https://medium.com/@texcotembroiderysourcinghouse
+              - img [ref=e112]
+            - link "Discord" [ref=e114] [cursor=pointer]:
+              - /url: https://discord.gg/kXfEYVGX
+              - img [ref=e115]
+            - link "WhatsApp" [ref=e117] [cursor=pointer]:
+              - /url: https://wa.me/923213771445
+              - img [ref=e118]
+        - generic [ref=e120]:
+          - generic [ref=e123]:
+            - img [ref=e124]
+            - heading "Agentic AI Builder" [level=3] [ref=e134]
+            - paragraph [ref=e135]: Production-grade agents using OpenAI Agents SDK, MCP servers, Constitutional AI — deployed on Kubernetes.
+          - generic [ref=e138]:
+            - img [ref=e139]
+            - heading "CMT Industry Founder" [level=3] [ref=e141]
+            - paragraph [ref=e142]: Founded Texcot Embroidery Sourcing House. Building Textile ERP Platform for Pakistan's full textile value chain.
+          - generic [ref=e145]:
+            - img [ref=e146]
+            - heading "Digital Marketing" [level=3] [ref=e149]
+            - paragraph [ref=e150]: Full-spectrum strategy for Dubai real estate, UAE construction, and Pakistani SMEs entering the digital economy.
+          - generic [ref=e153]:
+            - img [ref=e154]
+            - heading "Hackathon Champion" [level=3] [ref=e160]
+            - paragraph [ref=e161]: "6 consecutive Panaversity hackathons: Bronze → Silver → Silver → Gold → Platinum → Agent Factory. Zero failures."
+          - generic [ref=e164]:
+            - img [ref=e165]
+            - heading "OpenClaw + AI Track" [level=3] [ref=e168]
+            - paragraph [ref=e169]: Advancing through OpenClaw Python curriculum and Panaversity's Foundation of General & Custom Agent track.
+          - generic [ref=e172]:
+            - img [ref=e173]
+            - heading "Spec-First Dev" [level=3] [ref=e175]
+            - paragraph [ref=e176]: Four-session methodology with 85% code reuse. CLAUDE.md-driven, zero-defect delivery across 6 hackathons.
+    - generic [ref=e178]:
+      - generic [ref=e179]:
+        - heading "What I Offer" [level=2] [ref=e180]
+        - paragraph [ref=e182]: AI development, digital marketing, and industry-specific SaaS — built for real businesses.
+      - generic [ref=e183]:
+        - generic [ref=e184]:
+          - img [ref=e185]
+          - heading "Digital Marketing" [level=3] [ref=e188]
+          - paragraph [ref=e189]: Full-spectrum digital marketing for Dubai real estate, UAE construction, and Pakistani businesses. Strategy, social media, paid ads, property portals, and monthly reporting.
+          - link "See Marketing Plan →" [ref=e191] [cursor=pointer]:
+            - /url: "#contact"
+        - generic [ref=e192]:
+          - img [ref=e193]
+          - heading "AI-Powered SaaS Development" [level=3] [ref=e196]
+          - paragraph [ref=e197]: Production-grade agentic systems, cloud-native deployment, MCP servers, and custom AI agents. Built and deployed — not just prototyped.
+          - link "View GitHub →" [ref=e199] [cursor=pointer]:
+            - /url: https://github.com/asadullah48
+        - generic [ref=e200]:
+          - img [ref=e201]
+          - heading "Textile ERP Platform — Pakistan" [level=3] [ref=e203]
+          - generic [ref=e204]: Launching 2026
+          - paragraph [ref=e205]: "A full-spectrum ERP for Pakistan's textile industry — from Fabric Mills to garment exporters. Module 1: Fabric Mill — roll/lot management, weaving and knitting stage tracking, Yarn inventory, and Imported Fabric. Further modules: CMT order lifecycle, auto-billing, production sessions, dispatch, party ledgers, and financial accounts. Targeting Faisalabad, Sialkot, Gujranwala, Karachi, and Lahore."
+          - generic [ref=e206]: Join Waitlist →
+    - generic [ref=e208]:
+      - generic [ref=e209]:
+        - heading "Industries I Serve" [level=2] [ref=e210]
+        - paragraph [ref=e212]: Domain expertise built through real operations, not just consulting.
+      - generic [ref=e213]:
+        - generic [ref=e214]:
+          - img [ref=e215]
+          - heading "Textile & Garment" [level=3] [ref=e221]
+          - paragraph [ref=e222]: Pakistan · UAE · Turkey
+          - paragraph [ref=e223]: Serving Pakistan's textile value chain — CMT stitching units, garment factories, fabric mills, and exporters across Faisalabad, Sialkot, Gujranwala, Karachi, and Lahore. Also UAE and Turkish sourcing houses.
+        - generic [ref=e224]:
+          - img [ref=e225]
+          - heading "Dubai & UAE Real Estate / Construction" [level=3] [ref=e229]
+          - paragraph [ref=e230]: Real estate · Contractors · Developers
+          - paragraph [ref=e231]: Digital marketing, property portals, social media, and lead generation for the UAE construction and property sector.
+        - generic [ref=e232]:
+          - img [ref=e233]
+          - heading "Pakistani SMEs & Factories" [level=3] [ref=e238]
+          - paragraph [ref=e239]: Small and medium enterprises across Pakistan
+          - paragraph [ref=e240]: AI tools, digital marketing, and SaaS solutions tailored for Pakistani businesses entering the digital economy.
+    - generic [ref=e242]:
+      - generic [ref=e243]:
+        - heading "Tech Stack" [level=2] [ref=e244]
+        - paragraph [ref=e246]: Technologies I use to ship production-ready applications — from agentic AI systems to cloud-native microservices.
+      - generic [ref=e247]:
+        - button "Languages" [ref=e248] [cursor=pointer]
+        - button "Frameworks" [ref=e249] [cursor=pointer]
+        - button "AI & Agents" [ref=e250] [cursor=pointer]
+        - button "Cloud & DevOps" [ref=e251] [cursor=pointer]
+        - button "Platforms" [ref=e252] [cursor=pointer]
+        - button "OpenClaw Track" [ref=e253] [cursor=pointer]
+      - generic [ref=e254]:
+        - generic [ref=e255]:
+          - img "TypeScript" [ref=e257]
+          - generic [ref=e258]: TypeScript
+        - generic [ref=e259]:
+          - img "JavaScript" [ref=e261]
+          - generic [ref=e262]: JavaScript
+        - generic [ref=e263]:
+          - img "Python" [ref=e265]
+          - generic [ref=e266]: Python
+        - generic [ref=e267]:
+          - img "HTML5" [ref=e269]
+          - generic [ref=e270]: HTML5
+        - generic [ref=e271]:
+          - img "CSS3" [ref=e273]
+          - generic [ref=e274]: CSS3
+        - generic [ref=e275]:
+          - img "SQL" [ref=e277]
+          - generic [ref=e278]: SQL
+      - paragraph [ref=e279]: + Cloudflare Workers · Radix UI · Lucide Icons · REST APIs · MCP Servers
+    - generic [ref=e281]:
+      - generic [ref=e282]:
+        - heading "Featured Projects" [level=2] [ref=e283]
+        - paragraph [ref=e285]: Production-grade systems — not prototypes. Click View Case Study on any card for the full problem → solution → impact breakdown.
+      - generic [ref=e286]:
+        - generic [ref=e287]:
+          - generic [ref=e289]: NEW
+          - generic [ref=e290]:
+            - generic [ref=e291]:
+              - img [ref=e292]
+              - text: Flagship
+            - heading "Bazaar — Multi-Vendor Marketplace" [level=3] [ref=e295]
+            - paragraph [ref=e296]: One-stop marketplace for buyers, vendors & enterprise
+            - paragraph [ref=e297]: A one-stop marketplace where users shop across categories without friction, while vendors gain access to a robust platform to grow their businesses. Modular design for local SMEs, global e-commerce, and enterprise-level adoption.
+            - generic [ref=e298]:
+              - generic [ref=e299]:
+                - generic [ref=e300]: "3"
+                - generic [ref=e301]: Vendor Tiers
+              - generic [ref=e302]:
+                - generic [ref=e303]: Modular
+                - generic [ref=e304]: Architecture
+              - generic [ref=e305]:
+                - generic [ref=e306]: SME → Enterprise
+                - generic [ref=e307]: Target Market
+            - generic [ref=e308]:
+              - generic [ref=e309]: Next.js 15
+              - generic [ref=e310]: FastAPI
+              - generic [ref=e311]: Supabase
+              - generic [ref=e312]: Stripe
+              - generic [ref=e313]: TypeScript
+              - generic [ref=e314]: PostgreSQL
+              - generic [ref=e315]: Redis
+              - generic [ref=e316]: Kubernetes
+            - button "View Case Study" [ref=e317] [cursor=pointer]:
+              - img [ref=e318]
+              - text: View Case Study
+            - link "Code" [ref=e321] [cursor=pointer]:
+              - /url: https://github.com/asadullah48
+              - img [ref=e322]
+              - text: Code
+        - generic [ref=e327]:
+          - generic [ref=e328]:
+            - img [ref=e329]
+            - text: In Development
+          - heading "Textile ERP Platform" [level=3] [ref=e332]
+          - paragraph [ref=e333]: Full-scale ERP for Pakistan's textile industry
+          - paragraph [ref=e334]: Full-scale ERP for Pakistan's textile and garment industry — from Fabric Mills to garment exporters.
+          - generic [ref=e335]:
+            - generic [ref=e336]:
+              - generic [ref=e337]: 5+
+              - generic [ref=e338]: Target Cities
+            - generic [ref=e339]:
+              - generic [ref=e340]: 6+
+              - generic [ref=e341]: Modules
+            - generic [ref=e342]:
+              - generic [ref=e343]: "2026"
+              - generic [ref=e344]: Launch
+          - generic [ref=e345]:
+            - generic [ref=e346]: Next.js
+            - generic [ref=e347]: FastAPI
+            - generic [ref=e348]: PostgreSQL
+            - generic [ref=e349]: Kubernetes
+            - generic [ref=e350]: Supabase
+            - generic [ref=e351]: TypeScript
+          - button "View Case Study" [ref=e352] [cursor=pointer]:
+            - img [ref=e353]
+            - text: View Case Study
+          - link "Code" [ref=e356] [cursor=pointer]:
+            - /url: https://github.com/asadullah48
+            - img [ref=e357]
+            - text: Code
+        - generic [ref=e362]:
+          - generic [ref=e363]:
+            - img [ref=e364]
+            - text: Featured
+          - heading "DevUnity Platform" [level=3] [ref=e366]
+          - paragraph [ref=e367]: Open-source developer community hub
+          - paragraph [ref=e368]: Open-source developer community platform with Q&A, blogs, and collaboration features.
+          - generic [ref=e369]:
+            - generic [ref=e370]:
+              - generic [ref=e371]: Next.js 15
+              - generic [ref=e372]: Stack
+            - generic [ref=e373]:
+              - generic [ref=e374]: Live
+              - generic [ref=e375]: Status
+            - generic [ref=e376]:
+              - generic [ref=e377]: Open Source
+              - generic [ref=e378]: License
+          - generic [ref=e379]:
+            - generic [ref=e380]: Next.js 15
+            - generic [ref=e381]: TypeScript
+            - generic [ref=e382]: Tailwind CSS
+            - generic [ref=e383]: shadcn/ui
+            - generic [ref=e384]: PostgreSQL
+          - button "View Case Study" [ref=e385] [cursor=pointer]:
+            - img [ref=e386]
+            - text: View Case Study
+          - generic [ref=e388]:
+            - link "Code" [ref=e389] [cursor=pointer]:
+              - /url: https://github.com/asadullah48
+              - img [ref=e390]
+              - text: Code
+            - link "Demo" [ref=e393] [cursor=pointer]:
+              - /url: https://asadullahshafique-devunity.vercel.app
+              - img [ref=e394]
+              - text: Demo
+        - generic [ref=e400]:
+          - generic [ref=e401]:
+            - img [ref=e402]
+            - text: In Development
+          - heading "Stitching & Packing ERP" [level=3] [ref=e405]
+          - paragraph [ref=e406]: CMT operations management for garment factories
+          - paragraph [ref=e407]: Specialised ERP for stitching units and packing departments. Order tracking, machine allocation, QC checkpoints, packaging labels, and export documentation — built for Pakistan's garment exporters.
+          - generic [ref=e408]:
+            - generic [ref=e409]:
+              - generic [ref=e410]: CMT/Garment
+              - generic [ref=e411]: Sector
+            - generic [ref=e412]:
+              - generic [ref=e413]: Module 1
+              - generic [ref=e414]: Status
+            - generic [ref=e415]:
+              - generic [ref=e416]: Exporters
+              - generic [ref=e417]: Target
+          - generic [ref=e418]:
+            - generic [ref=e419]: Next.js
+            - generic [ref=e420]: Supabase
+            - generic [ref=e421]: TypeScript
+            - generic [ref=e422]: PostgreSQL
+            - generic [ref=e423]: FastAPI
+          - link "Code" [ref=e425] [cursor=pointer]:
+            - /url: https://github.com/asadullah48
+            - img [ref=e426]
+            - text: Code
+        - generic [ref=e431]:
+          - generic [ref=e432]:
+            - img [ref=e433]
+            - text: Featured
+          - heading "Agent Factory" [level=3] [ref=e435]
+          - paragraph [ref=e436]: Two-tier agent architecture at enterprise scale
+          - paragraph [ref=e437]: General Agent (Claude Code) builds Custom Agent (OpenAI Agents SDK). SKILL.md files as portable, monetizable intelligence units. Digital FTE model deployed on Kubernetes + Dapr. Targets OpenAI Apps ecosystem (800M users).
+          - generic [ref=e438]:
+            - generic [ref=e439]:
+              - generic [ref=e440]: H5 Completed
+              - generic [ref=e441]: Hackathon
+            - generic [ref=e442]:
+              - generic [ref=e443]: "117"
+              - generic [ref=e444]: Slides
+            - generic [ref=e445]:
+              - generic [ref=e446]: 800M users
+              - generic [ref=e447]: Market
+          - generic [ref=e448]:
+            - generic [ref=e449]: Claude Code
+            - generic [ref=e450]: OpenAI Agents SDK
+            - generic [ref=e451]: SKILL.md
+            - generic [ref=e452]: MCP
+            - generic [ref=e453]: Kubernetes
+            - generic [ref=e454]: Dapr
+          - link "Code" [ref=e456] [cursor=pointer]:
+            - /url: https://github.com/asadullah48
+            - img [ref=e457]
+            - text: Code
+        - generic [ref=e462]:
+          - generic [ref=e463]:
+            - img [ref=e464]
+            - text: Completed
+          - heading "RAG Textbook Platform" [level=3] [ref=e466]
+          - paragraph [ref=e467]: AI-powered textbook chatbot with RAG architecture
+          - paragraph [ref=e468]: Comprehensive textbook platform with RAG chatbot built during Panaversity Hackathon (H1) using specification-first development and Spec-Kit Plus methodology.
+          - generic [ref=e469]:
+            - generic [ref=e470]:
+              - generic [ref=e471]: H1 Silver
+              - generic [ref=e472]: Hackathon
+            - generic [ref=e473]:
+              - generic [ref=e474]: RAG + FastAPI
+              - generic [ref=e475]: Architecture
+            - generic [ref=e476]:
+              - generic [ref=e477]: 70%
+              - generic [ref=e478]: Reuse
+          - generic [ref=e479]:
+            - generic [ref=e480]: Python
+            - generic [ref=e481]: FastAPI
+            - generic [ref=e482]: RAG
+            - generic [ref=e483]: SpecifyKit
+            - generic [ref=e484]: OpenAI API
+            - generic [ref=e485]: PostgreSQL
+          - link "Code" [ref=e487] [cursor=pointer]:
+            - /url: https://github.com/asadullah48
+            - img [ref=e488]
+            - text: Code
+      - link "View All 467+ Repositories on GitHub" [ref=e492] [cursor=pointer]:
+        - /url: https://github.com/asadullah48
+        - img [ref=e493]
+        - text: View All 467+ Repositories on GitHub
+    - generic [ref=e497]:
+      - generic [ref=e498]:
+        - heading "Hackathons & Achievements" [level=2] [ref=e499]
+        - paragraph [ref=e501]: 6 consecutive Panaversity hackathons — Bronze through Agent Factory. Zero failures, 85% code reuse.
+      - generic [ref=e504]:
+        - generic [ref=e507]:
+          - generic [ref=e508]:
+            - generic [ref=e509]:
+              - heading "H5 — Agent Factory" [level=3] [ref=e510]:
+                - img [ref=e511]
+                - text: H5 — Agent Factory
+              - paragraph [ref=e517]: Panaversity Hackathon Series
+            - generic [ref=e518]:
+              - generic [ref=e519]: Agent Factory
+              - generic [ref=e520]:
+                - img [ref=e521]
+                - text: Completed
+          - paragraph [ref=e524]: "Two-tier architecture: General Agent (Claude Code) builds Custom Agent (OpenAI Agents SDK). SKILL.md files as portable, monetizable intelligence units. Digital FTE model priced and deployed on Kubernetes + Dapr. Distribution targets OpenAI Apps ecosystem (800M users). 117-slide presentation mastered."
+          - generic [ref=e525]:
+            - generic [ref=e526]:
+              - img [ref=e527]
+              - text: "2025"
+            - generic [ref=e529]:
+              - img [ref=e530]
+              - text: Online
+          - generic [ref=e533]:
+            - generic [ref=e534]: Claude Code
+            - generic [ref=e535]: OpenAI Agents SDK
+            - generic [ref=e536]: SKILL.md
+            - generic [ref=e537]: MCP
+            - generic [ref=e538]: Kubernetes
+            - generic [ref=e539]: Dapr
+        - generic [ref=e542]:
+          - generic [ref=e543]:
+            - generic [ref=e544]:
+              - heading "H4 — Cloud-Native Deployment" [level=3] [ref=e545]:
+                - img [ref=e546]
+                - text: H4 — Cloud-Native Deployment
+              - paragraph [ref=e552]: Panaversity Hackathon Series
+            - generic [ref=e553]:
+              - generic [ref=e554]: Platinum
+              - generic [ref=e555]:
+                - img [ref=e556]
+                - text: Platinum (in progress)
+          - paragraph [ref=e559]: "Containerized H3 with multi-stage Docker builds. Kubernetes manifests: namespace, ConfigMap, Secrets, Deployments, StatefulSets, PVCs. Dapr service mesh, Kafka event-driven pub/sub, Prometheus + Grafana + Jaeger observability stack, Helm charts, GitHub Actions CI/CD."
+          - generic [ref=e560]:
+            - generic [ref=e561]:
+              - img [ref=e562]
+              - text: "2025"
+            - generic [ref=e564]:
+              - img [ref=e565]
+              - text: Online
+          - generic [ref=e568]:
+            - generic [ref=e569]: Kubernetes
+            - generic [ref=e570]: Docker
+            - generic [ref=e571]: Dapr
+            - generic [ref=e572]: Kafka
+            - generic [ref=e573]: Prometheus
+            - generic [ref=e574]: Grafana
+            - generic [ref=e575]: Helm
+        - generic [ref=e578]:
+          - generic [ref=e579]:
+            - generic [ref=e580]:
+              - heading "H3 — Advanced Todo" [level=3] [ref=e581]:
+                - img [ref=e582]
+                - text: H3 — Advanced Todo
+              - paragraph [ref=e588]: Panaversity Hackathon Series
+            - generic [ref=e589]:
+              - generic [ref=e590]: Gold
+              - generic [ref=e591]:
+                - img [ref=e592]
+                - text: Gold
+          - paragraph [ref=e595]: "149 tests passing. Recurring todos, templates, team collaboration, AI suggestions, calendar integration. Triple-layer Constitutional AI: 7 BLOCK patterns (academic dishonesty, illegal activity, harmful content), 5 FLAG patterns. 85% code reuse from H2."
+          - generic [ref=e596]:
+            - generic [ref=e597]:
+              - img [ref=e598]
+              - text: "2025"
+            - generic [ref=e600]:
+              - img [ref=e601]
+              - text: Online
+          - generic [ref=e604]:
+            - generic [ref=e605]: Next.js
+            - generic [ref=e606]: FastAPI
+            - generic [ref=e607]: PostgreSQL
+            - generic [ref=e608]: Constitutional AI
+            - generic [ref=e609]: TypeScript
+        - generic [ref=e612]:
+          - generic [ref=e613]:
+            - generic [ref=e614]:
+              - heading "H2 — AI-Powered Todo" [level=3] [ref=e615]
+              - paragraph [ref=e616]: Panaversity Hackathon Series
+            - generic [ref=e618]: Silver
+          - paragraph [ref=e619]: 89 tests passing. Full-stack AI-powered todo with Constitutional AI integration. 70% code reuse from H1. Spec-first four-session methodology.
+          - generic [ref=e620]:
+            - generic [ref=e621]:
+              - img [ref=e622]
+              - text: "2025"
+            - generic [ref=e624]:
+              - img [ref=e625]
+              - text: Online
+          - generic [ref=e628]:
+            - generic [ref=e629]: Next.js
+            - generic [ref=e630]: TypeScript
+            - generic [ref=e631]: FastAPI
+            - generic [ref=e632]: Constitutional AI
+        - generic [ref=e635]:
+          - generic [ref=e636]:
+            - generic [ref=e637]:
+              - heading "H1 — Course Companion FTE" [level=3] [ref=e638]
+              - paragraph [ref=e639]: Panaversity Hackathon Series
+            - generic [ref=e641]: Silver
+          - paragraph [ref=e642]: Zero-Backend-LLM architecture. Course companion built as a Digital Full-Time Employee (FTE) model. 70% code reuse from H0.
+          - generic [ref=e643]:
+            - generic [ref=e644]:
+              - img [ref=e645]
+              - text: "2024"
+            - generic [ref=e647]:
+              - img [ref=e648]
+              - text: Online
+          - generic [ref=e651]:
+            - generic [ref=e652]: Next.js
+            - generic [ref=e653]: TypeScript
+            - generic [ref=e654]: OpenAI API
+            - generic [ref=e655]: Zero-Backend Architecture
+        - generic [ref=e658]:
+          - generic [ref=e659]:
+            - generic [ref=e660]:
+              - heading "H0 — Personal AI CTO" [level=3] [ref=e661]
+              - paragraph [ref=e662]: Panaversity Hackathon Series
+            - generic [ref=e664]: Bronze
+          - paragraph [ref=e665]: Constitutional AI foundation. Established the spec-first methodology and constitutional constraint patterns that persist across all 6 subsequent hackathons.
+          - generic [ref=e666]:
+            - generic [ref=e667]:
+              - img [ref=e668]
+              - text: "2024"
+            - generic [ref=e670]:
+              - img [ref=e671]
+              - text: Online
+          - generic [ref=e674]:
+            - generic [ref=e675]: TypeScript
+            - generic [ref=e676]: Constitutional AI
+            - generic [ref=e677]: LLMs
+    - generic [ref=e679]:
+      - generic [ref=e680]:
+        - heading "Latest Articles" [level=2] [ref=e681]
+        - paragraph [ref=e683]: Lessons from 6 hackathons, production AI systems, and building real businesses with technology.
+      - generic [ref=e684]:
+        - article [ref=e685] [cursor=pointer]:
+          - generic [ref=e687]:
+            - generic [ref=e688]:
+              - generic [ref=e689]: April 2025
+              - generic [ref=e691]:
+                - img [ref=e692]
+                - text: 8 min read
+            - heading "How I Won 6 Consecutive Hackathons With a Single Methodology" [level=3] [ref=e695]
+            - paragraph [ref=e696]: Panaversity, Bronze → Platinum → Agent Factory. Zero failures across 6 hackathons, 85% code reuse, and a four-session execution model that any developer can copy. Here's the exact playbook.
+            - generic [ref=e697]:
+              - generic [ref=e698]:
+                - img [ref=e699]
+                - text: Methodology
+              - generic [ref=e702]:
+                - img [ref=e703]
+                - text: Hackathon
+              - generic [ref=e706]:
+                - img [ref=e707]
+                - text: Spec-First
+              - generic [ref=e710]:
+                - img [ref=e711]
+                - text: CLAUDE.md
+            - link "Read Article" [ref=e714]:
+              - /url: /blog/six-hackathons-one-methodology
+              - text: Read Article
+              - img [ref=e715]
+        - article [ref=e717] [cursor=pointer]:
+          - generic [ref=e719]:
+            - generic [ref=e720]:
+              - generic [ref=e721]: March 2025
+              - generic [ref=e723]:
+                - img [ref=e724]
+                - text: 12 min read
+            - 'heading "Building a Constitutional AI Todo App: The Spec-First Way" [level=3] [ref=e727]'
+            - paragraph [ref=e728]: 149 tests passing. Triple-layer Constitutional AI with 7 BLOCK and 5 FLAG patterns. Team collaboration, recurring todos, and calendar integration — built in four 3-hour sessions from a single SPEC.md file.
+            - generic [ref=e729]:
+              - generic [ref=e730]:
+                - img [ref=e731]
+                - text: Constitutional AI
+              - generic [ref=e734]:
+                - img [ref=e735]
+                - text: FastAPI
+              - generic [ref=e738]:
+                - img [ref=e739]
+                - text: Next.js
+              - generic [ref=e742]:
+                - img [ref=e743]
+                - text: TDD
+            - link "Read Article" [ref=e746]:
+              - /url: /blog/constitutional-ai-todo-spec-first
+              - text: Read Article
+              - img [ref=e747]
+        - article [ref=e749] [cursor=pointer]:
+          - generic [ref=e751]:
+            - generic [ref=e752]:
+              - generic [ref=e753]: May 2025
+              - generic [ref=e755]:
+                - img [ref=e756]
+                - text: 15 min read
+            - 'heading "Agent Factory: How Claude Code Builds OpenAI Agents at Scale" [level=3] [ref=e759]'
+            - paragraph [ref=e760]: Two-tier architecture where a General Agent (Claude Code) manufactures Custom Agents (OpenAI Agents SDK) using SKILL.md files as portable, monetizable intelligence units. The Digital FTE model explained.
+            - generic [ref=e761]:
+              - generic [ref=e762]:
+                - img [ref=e763]
+                - text: Agentic AI
+              - generic [ref=e766]:
+                - img [ref=e767]
+                - text: SKILL.md
+              - generic [ref=e770]:
+                - img [ref=e771]
+                - text: OpenAI SDK
+              - generic [ref=e774]:
+                - img [ref=e775]
+                - text: Digital FTE
+            - link "Read Article" [ref=e778]:
+              - /url: /blog/agent-factory-claude-builds-openai
+              - text: Read Article
+              - img [ref=e779]
+      - generic [ref=e781]:
+        - paragraph [ref=e782]: New articles drop in the Discord first — along with code snippets, WIP demos, and hackathon post-mortems.
+        - link "Join Asadullah's Dev Hub" [ref=e783] [cursor=pointer]:
+          - /url: https://discord.gg/kXfEYVGX
+          - img [ref=e784]
+          - text: Join Asadullah's Dev Hub
+    - generic [ref=e787]:
+      - generic [ref=e788]:
+        - heading "Open Source" [level=2] [ref=e789]
+        - paragraph [ref=e791]: All projects are open source. 467+ repositories and counting — built in public, shipped with purpose.
+      - generic [ref=e792]:
+        - generic [ref=e793]:
+          - img [ref=e794]
+          - generic [ref=e797]: 467+
+          - generic [ref=e798]: Repositories
+        - generic [ref=e799]:
+          - img [ref=e800]
+          - generic [ref=e805]: "6"
+          - generic [ref=e806]: Hackathons
+        - generic [ref=e807]:
+          - img [ref=e808]
+          - generic [ref=e812]: 85%
+          - generic [ref=e813]: Code Reuse Rate
+        - generic [ref=e814]:
+          - img [ref=e815]
+          - generic [ref=e817]: 10+
+          - generic [ref=e818]: Technologies
+        - generic [ref=e819]:
+          - img [ref=e820]
+          - generic [ref=e825]: "3"
+          - generic [ref=e826]: Active Communities
+      - generic [ref=e827]:
+        - generic [ref=e828]:
+          - img [ref=e829]
+          - heading "GitHub Activity" [level=3] [ref=e832]
+          - link "@asadullah48 →" [ref=e833] [cursor=pointer]:
+            - /url: https://github.com/asadullah48
+        - generic [ref=e834]:
+          - img "GitHub Stats"
+          - img "Top Languages"
+        - generic:
+          - img "GitHub Streak"
+      - generic [ref=e835]:
+        - generic [ref=e836]:
+          - generic [ref=e837]: 🌐
+          - heading "Global Collaboration" [level=3] [ref=e838]
+          - paragraph [ref=e839]: Contributing to projects that empower developer communities worldwide — Pakistan, UAE, and beyond.
+        - generic [ref=e840]:
+          - generic [ref=e841]: 🧪
+          - heading "Quality Code" [level=3] [ref=e842]
+          - paragraph [ref=e843]: Clean, documented, well-tested code. 149+ tests passing. CLAUDE.md-driven spec-first delivery.
+        - generic [ref=e844]:
+          - generic [ref=e845]: 🤝
+          - heading "Community Impact" [level=3] [ref=e846]
+          - paragraph [ref=e847]: Sharing knowledge through blog posts, Discord, and open-source tools. DevUnity is the flagship.
+      - generic [ref=e848]:
+        - link "Contribute on GitHub" [ref=e849] [cursor=pointer]:
+          - /url: https://github.com/asadullah48
+          - img [ref=e850]
+          - text: Contribute on GitHub
+        - link "Join Discord Community" [ref=e853] [cursor=pointer]:
+          - /url: https://discord.gg/kXfEYVGX
+          - img [ref=e854]
+          - text: Join Discord Community
+    - generic [ref=e857]:
+      - generic [ref=e858]:
+        - heading "What People Say" [level=2] [ref=e859]
+        - paragraph [ref=e861]: From Dubai real estate to Faisalabad garment factories — feedback from the people I've worked with.
+      - generic [ref=e862]:
+        - generic [ref=e863]:
+          - img [ref=e864]
+          - paragraph [ref=e867]: “Asadullah transformed how we generate leads online. The digital marketing system he built — property portals, social campaigns, and the analytics dashboard — cut our cost-per-lead by over 40% in the first quarter.”
+          - generic [ref=e868]: Dubai Real Estate Digital Marketing
+          - generic [ref=e869]:
+            - generic [ref=e870]: MA
+            - generic [ref=e871]:
+              - generic [ref=e873]: Mohammed Al Rashidi
+              - generic [ref=e874]: General Manager · Al Rashidi Real Estate — Dubai, UAE
+        - generic [ref=e875]:
+          - img [ref=e876]
+          - paragraph [ref=e879]: “The Textile ERP concept Asadullah presented is exactly what our industry needs. Our production tracking is currently all Excel and WhatsApp — this would change everything for CMT units like ours.”
+          - generic [ref=e880]: Textile ERP Platform — Early Feedback
+          - generic [ref=e881]:
+            - generic [ref=e882]: TM
+            - generic [ref=e883]:
+              - generic [ref=e885]: Tariq Mahmood
+              - generic [ref=e886]: Owner · Mahmood Garments — Faisalabad
+        - generic [ref=e887]:
+          - img [ref=e888]
+          - paragraph [ref=e891]: “Asadullah has been one of the most consistent contributors in our hackathon series. His spec-first methodology and zero-defect delivery across six consecutive hackathons is a benchmark for other students.”
+          - generic [ref=e892]: Panaversity Hackathon Series Mentor
+          - generic [ref=e893]:
+            - generic [ref=e894]: AA
+            - generic [ref=e895]:
+              - generic [ref=e897]: Dr. Ameen Alam
+              - generic [ref=e898]: Instructor · Panaversity
+      - link "View LinkedIn Recommendations" [ref=e900] [cursor=pointer]:
+        - /url: https://linkedin.com/in/asadullah-shafique
+        - img [ref=e901]
+        - text: View LinkedIn Recommendations
+    - generic [ref=e906]:
+      - generic [ref=e907]:
+        - heading "Join My Discord" [level=2] [ref=e908]
+        - paragraph [ref=e910]: Be part of a growing community of developers building the future with AI. Ask questions, share projects, and grow together.
+      - generic [ref=e913]:
+        - generic [ref=e914]:
+          - img [ref=e916]
+          - generic [ref=e918]:
+            - heading "Asadullah's Dev Hub" [level=3] [ref=e919]
+            - generic [ref=e920]: Community Growing
+        - generic [ref=e924]:
+          - generic [ref=e925]:
+            - img [ref=e926]
+            - heading "Developer Community" [level=4] [ref=e931]
+            - paragraph [ref=e932]: Connect with fellow AI developers, full-stack engineers, and tech enthusiasts.
+          - generic [ref=e933]:
+            - img [ref=e934]
+            - heading "Live Discussions" [level=4] [ref=e936]
+            - paragraph [ref=e937]: Real-time conversations about Agentic AI, Next.js, FastAPI, and cutting-edge tech.
+          - generic [ref=e938]:
+            - img [ref=e939]
+            - heading "Project Collaborations" [level=4] [ref=e942]
+            - paragraph [ref=e943]: Find partners for hackathons, open source projects, and innovative AI applications.
+        - generic [ref=e944]:
+          - paragraph [ref=e945]: Channels
+          - generic [ref=e946]:
+            - generic [ref=e947]: "# general-chat"
+            - generic [ref=e948]: "# agentic-ai"
+            - generic [ref=e949]: "# nextjs-fastapi"
+            - generic [ref=e950]: "# hackathon-teams"
+            - generic [ref=e951]: "# project-showcase"
+            - generic [ref=e952]: "# resources"
+        - generic [ref=e953]:
+          - link "Join Discord Server" [ref=e954] [cursor=pointer]:
+            - /url: https://discord.gg/kXfEYVGX
+            - button "Join Discord Server" [ref=e955]:
+              - img
+              - text: Join Discord Server
+              - img
+          - paragraph [ref=e956]: Free to join · No spam · Active community
+    - generic [ref=e958]:
+      - generic [ref=e959]:
+        - heading "Get in Touch" [level=2] [ref=e960]
+        - paragraph [ref=e962]: Have a project idea, want to collaborate, or just say hello? Drop me a message!
+      - generic [ref=e963]:
+        - generic [ref=e964]:
+          - generic [ref=e965]:
+            - heading "Let's build something amazing together" [level=3] [ref=e966]
+            - paragraph [ref=e967]: I'm always excited to discuss new projects, creative ideas, or opportunities to be part of your vision. Whether it's an AI project, hackathon collaboration, or open-source contribution.
+          - link "Email asadullahshafique@hotmail.com" [ref=e968] [cursor=pointer]:
+            - /url: mailto:asadullahshafique@hotmail.com
+            - img [ref=e970]
+            - generic [ref=e973]:
+              - paragraph [ref=e974]: Email
+              - paragraph [ref=e975]: asadullahshafique@hotmail.com
+          - 'link "WhatsApp +92 321 3771445 For Pakistan/UAE: WhatsApp preferred for faster response" [ref=e976] [cursor=pointer]':
+            - /url: https://wa.me/923213771445
+            - img [ref=e978]
+            - generic [ref=e980]:
+              - paragraph [ref=e981]: WhatsApp
+              - paragraph [ref=e982]: +92 321 3771445
+              - paragraph [ref=e983]: "For Pakistan/UAE: WhatsApp preferred for faster response"
+          - generic [ref=e984]:
+            - paragraph [ref=e985]: Prefer other channels?
+            - generic [ref=e986]:
+              - paragraph [ref=e987]:
+                - text: "GitHub:"
+                - link "@asadullah48" [ref=e988] [cursor=pointer]:
+                  - /url: https://github.com/asadullah48
+              - paragraph [ref=e989]:
+                - text: "Discord:"
+                - link "Join Server" [ref=e990] [cursor=pointer]:
+                  - /url: https://discord.gg/kXfEYVGX
+              - paragraph [ref=e991]:
+                - text: "WhatsApp:"
+                - link "Chat Now" [ref=e992] [cursor=pointer]:
+                  - /url: https://wa.me/923213771445
+                - text: (Pakistan/UAE preferred)
+        - generic [ref=e994]:
+          - generic [ref=e995]:
+            - generic [ref=e996]:
+              - generic [ref=e997]: Name
+              - textbox "Your name" [ref=e998]
+            - generic [ref=e999]:
+              - generic [ref=e1000]: Email
+              - textbox "your@email.com" [ref=e1001]
+          - generic [ref=e1002]:
+            - generic [ref=e1003]: Subject
+            - textbox "Project collaboration, Hackathon, etc." [ref=e1004]
+          - generic [ref=e1005]:
+            - generic [ref=e1006]: Message
+            - textbox "Tell me about your project or idea..." [ref=e1007]
+          - button "Send Message" [ref=e1008] [cursor=pointer]:
+            - img
+            - text: Send Message
+    - generic [ref=e1010]:
+      - generic [ref=e1011]:
+        - generic [ref=e1012]:
+          - heading "Asadullah Shafique" [level=3] [ref=e1013]
+          - paragraph [ref=e1014]: Agentic AI Developer, CMT Industry Founder, and Digital Marketing Strategist. Building AI-powered systems and real businesses across Pakistan and UAE.
+          - generic [ref=e1015]:
+            - link "GitHub" [ref=e1016] [cursor=pointer]:
+              - /url: https://github.com/asadullah48
+              - img [ref=e1017]
+            - link "LinkedIn" [ref=e1020] [cursor=pointer]:
+              - /url: https://www.linkedin.com/in/asadullah-shafique-a00679325/
+              - img [ref=e1021]
+            - link "Twitter / X" [ref=e1025] [cursor=pointer]:
+              - /url: https://x.com/texcotembroide1
+              - img [ref=e1026]
+            - link "Email" [ref=e1028] [cursor=pointer]:
+              - /url: mailto:asadullahshafique@hotmail.com
+              - img [ref=e1029]
+            - link "Facebook" [ref=e1032] [cursor=pointer]:
+              - /url: https://facebook.com/asadullahshafique
+              - img [ref=e1033]
+            - link "Instagram" [ref=e1035] [cursor=pointer]:
+              - /url: https://instagram.com/shafiqueasadullah
+              - img [ref=e1036]
+            - link "Medium" [ref=e1039] [cursor=pointer]:
+              - /url: https://medium.com/@texcotembroiderysourcinghouse
+              - img [ref=e1040]
+            - link "Discord" [ref=e1042] [cursor=pointer]:
+              - /url: https://discord.gg/kXfEYVGX
+              - img [ref=e1043]
+        - generic [ref=e1045]:
+          - heading "Quick Links" [level=3] [ref=e1046]
+          - list [ref=e1047]:
+            - listitem [ref=e1048]:
+              - link "About" [ref=e1049] [cursor=pointer]:
+                - /url: "#about"
+            - listitem [ref=e1050]:
+              - link "Skills" [ref=e1051] [cursor=pointer]:
+                - /url: "#skills"
+            - listitem [ref=e1052]:
+              - link "Projects" [ref=e1053] [cursor=pointer]:
+                - /url: "#projects"
+            - listitem [ref=e1054]:
+              - link "Hackathons" [ref=e1055] [cursor=pointer]:
+                - /url: "#hackathons"
+            - listitem [ref=e1056]:
+              - link "Open Source" [ref=e1057] [cursor=pointer]:
+                - /url: "#opensource"
+        - generic [ref=e1058]:
+          - heading "Get in Touch" [level=3] [ref=e1059]
+          - paragraph [ref=e1060]: Open to collaborations, hackathons, and interesting AI projects.
+          - link "asadullahshafique@hotmail.com" [ref=e1061] [cursor=pointer]:
+            - /url: mailto:asadullahshafique@hotmail.com
+            - img [ref=e1062]
+            - text: asadullahshafique@hotmail.com
+      - paragraph [ref=e1066]:
+        - text: Built with
+        - img [ref=e1067]
+        - text: by Asadullah Shafique © 2026. All rights reserved.
+    - button "Toggle chat":
+      - img
+    - link "Chat on WhatsApp" [ref=e1069] [cursor=pointer]:
+      - /url: https://wa.me/923213771445
+      - img [ref=e1070]

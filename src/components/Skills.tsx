@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
@@ -32,6 +32,7 @@ const SKILL_TABS: Record<string, Skill[]> = {
     { name: "Firebase",     icon: "firebase/firebase-original.svg",       color: "#FFCA28" },
     { name: "SQLAlchemy",   icon: "sqlalchemy/sqlalchemy-original.svg",   color: "#CC2927" },
     { name: "shadcn/ui",    custom: true, icon: "", badge: "UI",          color: "#ffffff" },
+    { name: "Stripe",       icon: "stripe/stripe-original.svg",            color: "#635BFF" },
   ],
   "AI & Agents": [
     { name: "OpenAI API",        custom: true, icon: "", badge: "GPT",   color: "#10a37f" },
@@ -42,6 +43,10 @@ const SKILL_TABS: Record<string, Skill[]> = {
     { name: "Constitutional AI", custom: true, icon: "", badge: "CAI",   color: "#84cc16" },
     { name: "SKILL.md",          custom: true, icon: "", badge: "SKL",   color: "#84cc16" },
     { name: "Prompt Eng.",       custom: true, icon: "", badge: "PE",    color: "#a855f7" },
+    { name: "LangChain",        custom: true, icon: "", badge: "LC",    color: "#1C3C3C" },
+    { name: "LlamaIndex",       custom: true, icon: "", badge: "LI",    color: "#fbba00" },
+    { name: "n8n",              custom: true, icon: "", badge: "n8n",   color: "#ea4b71" },
+    { name: "Hugging Face",     custom: true, icon: "", badge: "HF",    color: "#FFD21E" },
   ],
   "Cloud & DevOps": [
     { name: "Kubernetes",     icon: "kubernetes/kubernetes-original.svg",   color: "#326CE5" },
@@ -52,6 +57,9 @@ const SKILL_TABS: Record<string, Skill[]> = {
     { name: "Dapr",           custom: true, icon: "", badge: "DPR",        color: "#0D2192" },
     { name: "Prometheus",     custom: true, icon: "", badge: "PRO",        color: "#E6522C" },
     { name: "Grafana",        icon: "grafana/grafana-original.svg",         color: "#F46800" },
+    { name: "Redis",          icon: "redis/redis-original.svg",             color: "#FF4438" },
+    { name: "Terraform",      icon: "terraform/terraform-original.svg",     color: "#7B42BC" },
+    { name: "Jaeger",         custom: true, icon: "", badge: "OTL",         color: "#60d0e4" },
   ],
   Platforms: [
     { name: "Vercel",         icon: "vercel/vercel-original.svg",      color: "#ffffff" },
@@ -153,7 +161,7 @@ export function SkillsSection() {
           </h2>
           <div className="w-16 h-0.5 bg-green-400 mx-auto mb-5" />
           <p className="text-gray-400 max-w-xl mx-auto">
-            Technologies I use to ship production-ready applications — from
+            Technologies I use to ship production-ready applications â€” from
             agentic AI systems to cloud-native microservices.
           </p>
         </motion.div>
@@ -196,7 +204,7 @@ export function SkillsSection() {
           transition={{ delay: 0.4 }}
           className="text-center text-gray-600 text-sm mt-10"
         >
-          + Cloudflare Workers · Radix UI · Lucide Icons · REST APIs · MCP Servers
+          + Cloudflare Workers Â· Radix UI Â· Lucide Icons Â· REST APIs Â· MCP Servers
         </motion.p>
       </div>
     </section>
@@ -204,3 +212,5 @@ export function SkillsSection() {
 }
 
 export default SkillsSection;
+
+

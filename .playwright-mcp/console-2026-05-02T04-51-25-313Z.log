@@ -1,0 +1,506 @@
+[   11215ms] [INFO] %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold @ webpack-internal:///(app-pages-browser)/./node_modules/next/dist/compiled/react-dom/cjs/react-dom-client.development.js:24503
+[   11765ms] [ERROR] A tree hydrated but some attributes of the server rendered HTML didn't match the client properties. This won't be patched up. This can happen if a SSR-ed Client Component used:
+
+- A server/client branch `if (typeof window !== 'undefined')`.
+- Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.
+- Date formatting in a user's locale which doesn't match the server.
+- External changing data without sending a snapshot of it along with the HTML.
+- Invalid HTML tag nesting.
+
+It can also happen if the client has a browser extension installed which messes with the HTML before React loaded.
+
+%s%s https://react.dev/link/hydration-mismatch 
+
+  ...
+    <InnerLayoutRouter parallelRouterKey="children" url="/" tree={[...]} childNodes={Map} segmentPath={[...]} ...>
+      <Home>
+        <div className="min-h-scre...">
+          <div>
+          <Navbar>
+          <HeroSection>
+            <section id="home" className="min-h-scre...">
+              <div>
+              <div>
+              <div className="container ...">
+                <MotionComponent>
+                <MotionComponent className="flex-shrin..." initial={{opacity:0,x:40}} animate={{opacity:1,x:0}} ...>
+                  <div className="flex-shrin..." style={{opacity:0, ...}} ref={function}>
+                    <MonogramAvatar>
+                      <div className="relative w...">
+                        <div>
+                        <MotionComponent>
+                        <div>
+                        <MotionComponent>
+                        <MotionComponent>
+                        <MotionComponent>
+                        <MotionComponent>
+                        <MotionComponent initial={{opacity:0,scale:0}} animate={{opacity:1,scale:1}} ...>
+                          <div
+                            className="absolute text-xs font-mono px-2 py-0.5 rounded-full border"
+                            style={{
++                             left: "calc(50% + -64.00000000000006px)"
+-                             left: "calc(50% - 64px)"
++                             top: "calc(50% + -110.85125168440811px)"
+-                             top: "calc(50% - 110.851px)"
++                             transform: "scale(0)"
+-                             transform: "scale(0)"
++                             backgroundColor: "#CC785C15"
++                             borderColor: "#CC785C50"
++                             color: "#CC785C"
+-                             color: "rgb(204, 120, 92)"
++                             whiteSpace: "nowrap"
++                             opacity: 0
+-                             opacity: "0"
+-                             background-color: "rgba(204, 120, 92, 0.082)"
+-                             border-top-color: "rgba(204, 120, 92, 0.314)"
+-                             border-right-color: "rgba(204, 120, 92, 0.314)"
+-                             border-bottom-color: "rgba(204, 120, 92, 0.314)"
+-                             border-left-color: "rgba(204, 120, 92, 0.314)"
+-                             white-space-collapse: "collapse"
+-                             text-wrap-mode: "nowrap"
+                            }}
+                            ref={function}
+                          >
++                           Claude MCP
+                        ...
+                        ...
+                    ...
+              ...
+          ...
+      ...
+ @ webpack-internal:///(app-pages-browser)/./node_modules/next/dist/client/components/globals/intercept-console-error.js:55
+[  136696ms] [ERROR] Failed to load resource: the server responded with a status of 503 () @ https://github-readme-stats.vercel.app/api/top-langs/?username=asadullah48&layout=compact&theme=chartreuse-dark&bg_color=111111&border_color=ffffff15&title_color=84cc16&text_color=9ca3af&hide_border=false:0
+[  136828ms] [ERROR] Failed to load resource: the server responded with a status of 503 () @ https://github-readme-stats.vercel.app/api?username=asadullah48&show_icons=true&theme=chartreuse-dark&bg_color=111111&border_color=ffffff15&title_color=84cc16&icon_color=84cc16&text_color=9ca3af&hide_border=false&rank_icon=github:0
+[  167017ms] [LOG] [Fast Refresh] rebuilding @ webpack-internal:///(app-pages-browser)/./node_modules/next/dist/client/components/react-dev-overlay/app/hot-reloader-client.js:240
+[  167858ms] [LOG] [Fast Refresh] done in 842ms @ webpack-internal:///(app-pages-browser)/./node_modules/next/dist/client/components/react-dev-overlay/app/hot-reloader-client.js:67
+[  179472ms] [LOG] [Fast Refresh] rebuilding @ webpack-internal:///(app-pages-browser)/./node_modules/next/dist/client/components/react-dev-overlay/app/hot-reloader-client.js:240
+[  179979ms] [LOG] [Fast Refresh] done in 507ms @ webpack-internal:///(app-pages-browser)/./node_modules/next/dist/client/components/react-dev-overlay/app/hot-reloader-client.js:67
+[ 3816162ms] [LOG] [Fast Refresh] rebuilding @ webpack-internal:///(app-pages-browser)/./node_modules/next/dist/client/components/react-dev-overlay/app/hot-reloader-client.js:240
+[ 3817279ms] [LOG] [Fast Refresh] done in 1114ms @ webpack-internal:///(app-pages-browser)/./node_modules/next/dist/client/components/react-dev-overlay/app/hot-reloader-client.js:67
+[ 3818387ms] [WARNING] Image with src "/images/asadullah-vector.png" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes @ webpack-internal:///(app-pages-browser)/./node_modules/next/dist/shared/lib/utils/warn-once.js:15
+[ 4962006ms] [LOG] [Fast Refresh] rebuilding @ webpack-internal:///(app-pages-browser)/./node_modules/next/dist/client/components/react-dev-overlay/app/hot-reloader-client.js:240
+[ 4963073ms] [LOG] [Fast Refresh] done in 1067ms @ webpack-internal:///(app-pages-browser)/./node_modules/next/dist/client/components/react-dev-overlay/app/hot-reloader-client.js:67
+[ 4963235ms] [LOG] [Fast Refresh] rebuilding @ webpack-internal:///(app-pages-browser)/./node_modules/next/dist/client/components/react-dev-overlay/app/hot-reloader-client.js:240
+[ 4963912ms] [LOG] [Fast Refresh] done in 677ms @ webpack-internal:///(app-pages-browser)/./node_modules/next/dist/client/components/react-dev-overlay/app/hot-reloader-client.js:67
+[ 4964315ms] [ERROR] Refused to apply style from 'http://localhost:3001/_next/static/css/app/layout.css?v=1777702448468' because its MIME type ('text/html') is not a supported stylesheet MIME type, and strict MIME checking is enabled. @ http://localhost:3001/:0
+[ 4964353ms] [ERROR] Refused to apply style from 'http://localhost:3001/_next/static/css/app/layout.css?v=1777702448468' because its MIME type ('text/html') is not a supported stylesheet MIME type, and strict MIME checking is enabled. @ http://localhost:3001/:0
+[ 4964470ms] Event
+[ 4973066ms] [LOG] [Fast Refresh] rebuilding @ webpack-internal:///(app-pages-browser)/./node_modules/next/dist/client/components/react-dev-overlay/app/hot-reloader-client.js:240
+[ 4973499ms] [LOG] [Fast Refresh] done in 434ms @ webpack-internal:///(app-pages-browser)/./node_modules/next/dist/client/components/react-dev-overlay/app/hot-reloader-client.js:67
+[ 4973911ms] [ERROR] Refused to apply style from 'http://localhost:3001/_next/static/css/app/layout.css?v=1777702459061' because its MIME type ('text/html') is not a supported stylesheet MIME type, and strict MIME checking is enabled. @ http://localhost:3001/:0
+[ 4973937ms] [ERROR] Refused to apply style from 'http://localhost:3001/_next/static/css/app/layout.css?v=1777702459061' because its MIME type ('text/html') is not a supported stylesheet MIME type, and strict MIME checking is enabled. @ http://localhost:3001/:0
+[ 4973962ms] Event
+[ 4991135ms] [LOG] [Fast Refresh] rebuilding @ webpack-internal:///(app-pages-browser)/./node_modules/next/dist/client/components/react-dev-overlay/app/hot-reloader-client.js:240
+[ 4992041ms] [LOG] [Fast Refresh] done in 906ms @ webpack-internal:///(app-pages-browser)/./node_modules/next/dist/client/components/react-dev-overlay/app/hot-reloader-client.js:67
+[ 4992075ms] [WARNING] Image with src "/images/asadullah-vector.png" has "fill" and parent element with invalid "position". Provided "static" should be one of absolute,fixed,relative. @ webpack-internal:///(app-pages-browser)/./node_modules/next/dist/shared/lib/utils/warn-once.js:15
+[ 4992076ms] [WARNING] Image with src "/images/asadullah-vector.png" has "fill" and a height value of 0. This is likely because the parent element of the image has not been styled to have a set height. @ webpack-internal:///(app-pages-browser)/./node_modules/next/dist/shared/lib/utils/warn-once.js:15
+[ 4992166ms] [ERROR] Refused to apply style from 'http://localhost:3001/_next/static/css/app/layout.css?v=1777702477239' because its MIME type ('text/html') is not a supported stylesheet MIME type, and strict MIME checking is enabled. @ http://localhost:3001/:0
+[ 4992192ms] [ERROR] Refused to apply style from 'http://localhost:3001/_next/static/css/app/layout.css?v=1777702477239' because its MIME type ('text/html') is not a supported stylesheet MIME type, and strict MIME checking is enabled. @ http://localhost:3001/:0
+[ 4992204ms] Event
+[ 4992560ms] [ERROR] Failed to load resource: the server responded with a status of 503 () @ https://github-readme-stats.vercel.app/api/top-langs/?username=asadullah48&layout=compact&theme=chartreuse-dark&bg_color=111111&border_color=ffffff15&title_color=84cc16&text_color=9ca3af&hide_border=false:0
+[ 4992563ms] [ERROR] Failed to load resource: the server responded with a status of 503 () @ https://github-readme-stats.vercel.app/api?username=asadullah48&show_icons=true&theme=chartreuse-dark&bg_color=111111&border_color=ffffff15&title_color=84cc16&icon_color=84cc16&text_color=9ca3af&hide_border=false&rank_icon=github:0
+[ 5086969ms] [LOG] [Fast Refresh] rebuilding @ webpack-internal:///(app-pages-browser)/./node_modules/next/dist/client/components/react-dev-overlay/app/hot-reloader-client.js:240
+[ 5087462ms] [LOG] [Fast Refresh] done in 493ms @ webpack-internal:///(app-pages-browser)/./node_modules/next/dist/client/components/react-dev-overlay/app/hot-reloader-client.js:67
+[ 5092464ms] [LOG] [Fast Refresh] rebuilding @ webpack-internal:///(app-pages-browser)/./node_modules/next/dist/client/components/react-dev-overlay/app/hot-reloader-client.js:240
+[ 5093082ms] [ERROR] ./src/app/layout.tsx:6:1
+Module not found: Can't resolve '@/context/LocaleContext'
+  4 | import Navbar from "@/components/Navbar";
+  5 | import { ThemeProvider } from "@/components/ThemeProvider";
+> 6 | import { LocaleProvider } from "@/context/LocaleContext";
+    | ^
+  7 | import { KeyboardShortcutsProvider } from "@/components/KeyboardShortcutsProvider";
+  8 | import ShortcutsDialog from "@/components/ShortcutsDialog";
+  9 |
+
+https://nextjs.org/docs/messages/module-not-found @ webpack-internal:///(app-pages-browser)/./node_modules/next/dist/client/components/globals/intercept-console-error.js:55
+[ 5095799ms] [LOG] [Fast Refresh] done in 3335ms @ webpack-internal:///(app-pages-browser)/./node_modules/next/dist/client/components/react-dev-overlay/app/hot-reloader-client.js:67
+[ 5097207ms] [LOG] [Fast Refresh] done in 4742ms @ webpack-internal:///(app-pages-browser)/./node_modules/next/dist/client/components/react-dev-overlay/app/hot-reloader-client.js:67
+[ 5097574ms] [ERROR] ./src/app/layout.tsx:6:1
+Module not found: Can't resolve '@/context/LocaleContext'
+  4 | import Navbar from "@/components/Navbar";
+  5 | import { ThemeProvider } from "@/components/ThemeProvider";
+> 6 | import { LocaleProvider } from "@/context/LocaleContext";
+    | ^
+  7 | import { KeyboardShortcutsProvider } from "@/components/KeyboardShortcutsProvider";
+  8 | import ShortcutsDialog from "@/components/ShortcutsDialog";
+  9 |
+
+https://nextjs.org/docs/messages/module-not-found @ webpack-internal:///(app-pages-browser)/./node_modules/next/dist/client/components/globals/intercept-console-error.js:55
+[ 5097940ms] [ERROR] Failed to load resource: the server responded with a status of 500 (Internal Server Error) @ http://localhost:3001/?_rsc=r3yhw:0
+[ 5098001ms] [ERROR] Failed to load resource: the server responded with a status of 500 (Internal Server Error) @ http://localhost:3001/?_rsc=r3yhw:0
+[ 5098046ms] [ERROR] Failed to load resource: the server responded with a status of 500 (Internal Server Error) @ http://localhost:3001/?_rsc=r3yhw:0
+[ 5098121ms] [ERROR] Failed to load resource: the server responded with a status of 500 (Internal Server Error) @ http://localhost:3001/:0
+[ 5098858ms] [INFO] %cDownload the React DevTools for a better development experience: https://reactjs.org/link/react-devtools font-weight:bold @ webpack-internal:///./node_modules/react-dom/cjs/react-dom.development.js:29889
+[ 5098948ms] Error: Module not found: Can't resolve '@/context/LocaleContext'
+  4 | import Navbar from "@/components/Navbar";
+  5 | import { ThemeProvider } from "@/components/ThemeProvider";
+> 6 | import { LocaleProvider } from "@/context/LocaleContext";
+    | ^
+  7 | import { KeyboardShortcutsProvider } from "@/components/KeyboardShortcutsProvider";
+  8 | import ShortcutsDialog from "@/components/ShortcutsDialog";
+  9 |
+
+https://nextjs.org/docs/messages/module-not-found
+
+    at <unknown> (https://nextjs.org/docs/messages/module-not-found)
+    at getNotFoundError (file://D:\GitHub\asadullahshafique_devunity\node_modules\next\dist\build\webpack\plugins\wellknown-errors-plugin\parseNotFoundError.js:133:16)
+    at async getModuleBuildError (file://D:\GitHub\asadullahshafique_devunity\node_modules\next\dist\build\webpack\plugins\wellknown-errors-plugin\webpackModuleError.js:104:27)
+    at async (file://D:\GitHub\asadullahshafique_devunity\node_modules\next\dist\build\webpack\plugins\wellknown-errors-plugin\index.js:29:49)
+    at async (file://D:\GitHub\asadullahshafique_devunity\node_modules\next\dist\build\webpack\plugins\wellknown-errors-plugin\index.js:27:21)
+[ 5098950ms] [LOG] [HMR] connected @ webpack-internal:///./node_modules/next/dist/client/components/react-dev-overlay/pages/websocket.js:41
+[ 5098953ms] [ERROR] ./src/app/layout.tsx:6:1
+Module not found: Can't resolve '@/context/LocaleContext'
+  4 | import Navbar from "@/components/Navbar";
+  5 | import { ThemeProvider } from "@/components/ThemeProvider";
+> 6 | import { LocaleProvider } from "@/context/LocaleContext";
+    | ^
+  7 | import { KeyboardShortcutsProvider } from "@/components/KeyboardShortcutsProvider";
+  8 | import ShortcutsDialog from "@/components/ShortcutsDialog";
+  9 |
+
+https://nextjs.org/docs/messages/module-not-found @ webpack-internal:///./node_modules/next/dist/client/components/react-dev-overlay/pages/client.js:84
+[ 5099064ms] [LOG] [Fast Refresh] rebuilding @ webpack-internal:///./node_modules/next/dist/client/components/react-dev-overlay/pages/hot-reloader-client.js:221
+[ 5099281ms] [ERROR] ./src/components/LocaleSwitcher.tsx:3:1
+Module not found: Can't resolve '@/context/LocaleContext'
+  1 | "use client";
+  2 |
+> 3 | import { useLocale } from "@/context/LocaleContext";
+    | ^
+  4 | import { motion } from "framer-motion";
+  5 |
+  6 | export function LocaleSwitcher() {
+
+https://nextjs.org/docs/messages/module-not-found
+
+Import trace for requested module:
+./src/components/Navbar.tsx @ webpack-internal:///./node_modules/next/dist/client/components/react-dev-overlay/pages/client.js:84
+[ 5099282ms] [ERROR] ./src/app/layout.tsx:6:1
+Module not found: Can't resolve '@/context/LocaleContext'
+  4 | import Navbar from "@/components/Navbar";
+  5 | import { ThemeProvider } from "@/components/ThemeProvider";
+> 6 | import { LocaleProvider } from "@/context/LocaleContext";
+    | ^
+  7 | import { KeyboardShortcutsProvider } from "@/components/KeyboardShortcutsProvider";
+  8 | import ShortcutsDialog from "@/components/ShortcutsDialog";
+  9 |
+
+https://nextjs.org/docs/messages/module-not-found @ webpack-internal:///./node_modules/next/dist/client/components/react-dev-overlay/pages/client.js:84
+[ 5099912ms] [ERROR] ./src/components/LocaleSwitcher.tsx:3:1
+Module not found: Can't resolve '@/context/LocaleContext'
+  1 | "use client";
+  2 |
+> 3 | import { useLocale } from "@/context/LocaleContext";
+    | ^
+  4 | import { motion } from "framer-motion";
+  5 |
+  6 | export function LocaleSwitcher() {
+
+https://nextjs.org/docs/messages/module-not-found
+
+Import trace for requested module:
+./src/components/Navbar.tsx @ webpack-internal:///./node_modules/next/dist/client/components/react-dev-overlay/pages/client.js:84
+[ 5100123ms] [ERROR] ./src/components/LocaleSwitcher.tsx:3:1
+Module not found: Can't resolve '@/context/LocaleContext'
+  1 | "use client";
+  2 |
+> 3 | import { useLocale } from "@/context/LocaleContext";
+    | ^
+  4 | import { motion } from "framer-motion";
+  5 |
+  6 | export function LocaleSwitcher() {
+
+https://nextjs.org/docs/messages/module-not-found
+
+Import trace for requested module:
+./src/components/Navbar.tsx @ webpack-internal:///./node_modules/next/dist/client/components/react-dev-overlay/pages/client.js:84
+[ 5100123ms] [ERROR] ./src/app/layout.tsx:6:1
+Module not found: Can't resolve '@/context/LocaleContext'
+  4 | import Navbar from "@/components/Navbar";
+  5 | import { ThemeProvider } from "@/components/ThemeProvider";
+> 6 | import { LocaleProvider } from "@/context/LocaleContext";
+    | ^
+  7 | import { KeyboardShortcutsProvider } from "@/components/KeyboardShortcutsProvider";
+  8 | import ShortcutsDialog from "@/components/ShortcutsDialog";
+  9 |
+
+https://nextjs.org/docs/messages/module-not-found @ webpack-internal:///./node_modules/next/dist/client/components/react-dev-overlay/pages/client.js:84
+[ 5100136ms] [ERROR] Failed to load resource: the server responded with a status of 500 (Internal Server Error) @ http://localhost:3001/_next/static/webpack/a3235c178601f71c.webpack.hot-update.json:0
+[ 5100137ms] [WARNING] [Fast Refresh] performing full reload
+
+Fast Refresh will perform a full reload when you edit a file that's imported by modules outside of the React rendering tree.
+You might have a file which exports a React component but also exports a value that is imported by a non-React component file.
+Consider migrating the non-React component export to a separate file and importing it into both files.
+
+It is also possible the parent component of the component you edited is a class component, which disables Fast Refresh.
+Fast Refresh requires at least one parent function component in your React tree. @ webpack-internal:///./node_modules/next/dist/client/components/react-dev-overlay/pages/hot-reloader-client.js:350
+[ 5100164ms] [ERROR] Failed to load resource: the server responded with a status of 500 (Internal Server Error) @ http://localhost:3001/:0
+[ 5100436ms] [INFO] %cDownload the React DevTools for a better development experience: https://reactjs.org/link/react-devtools font-weight:bold @ webpack-internal:///./node_modules/react-dom/cjs/react-dom.development.js:29889
+[ 5100455ms] Error: Module not found: Can't resolve '@/context/LocaleContext'
+  1 | "use client";
+  2 |
+> 3 | import { useLocale } from "@/context/LocaleContext";
+    | ^
+  4 | import { motion } from "framer-motion";
+  5 |
+  6 | export function LocaleSwitcher() {
+
+https://nextjs.org/docs/messages/module-not-found
+
+Import trace for requested module:
+./src/components/Navbar.tsx
+    at <unknown> (https://nextjs.org/docs/messages/module-not-found)
+    at getNotFoundError (file://D:\GitHub\asadullahshafique_devunity\node_modules\next\dist\build\webpack\plugins\wellknown-errors-plugin\parseNotFoundError.js:133:16)
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at async getModuleBuildError (file://D:\GitHub\asadullahshafique_devunity\node_modules\next\dist\build\webpack\plugins\wellknown-errors-plugin\webpackModuleError.js:104:27)
+    at async (file://D:\GitHub\asadullahshafique_devunity\node_modules\next\dist\build\webpack\plugins\wellknown-errors-plugin\index.js:29:49)
+    at async (file://D:\GitHub\asadullahshafique_devunity\node_modules\next\dist\build\webpack\plugins\wellknown-errors-plugin\index.js:27:21)
+[ 5100457ms] [LOG] [HMR] connected @ webpack-internal:///./node_modules/next/dist/client/components/react-dev-overlay/pages/websocket.js:41
+[ 5100460ms] [ERROR] ./src/components/LocaleSwitcher.tsx:3:1
+Module not found: Can't resolve '@/context/LocaleContext'
+  1 | "use client";
+  2 |
+> 3 | import { useLocale } from "@/context/LocaleContext";
+    | ^
+  4 | import { motion } from "framer-motion";
+  5 |
+  6 | export function LocaleSwitcher() {
+
+https://nextjs.org/docs/messages/module-not-found
+
+Import trace for requested module:
+./src/components/Navbar.tsx @ webpack-internal:///./node_modules/next/dist/client/components/react-dev-overlay/pages/client.js:84
+[ 5100461ms] [ERROR] ./src/app/layout.tsx:6:1
+Module not found: Can't resolve '@/context/LocaleContext'
+  4 | import Navbar from "@/components/Navbar";
+  5 | import { ThemeProvider } from "@/components/ThemeProvider";
+> 6 | import { LocaleProvider } from "@/context/LocaleContext";
+    | ^
+  7 | import { KeyboardShortcutsProvider } from "@/components/KeyboardShortcutsProvider";
+  8 | import ShortcutsDialog from "@/components/ShortcutsDialog";
+  9 |
+
+https://nextjs.org/docs/messages/module-not-found @ webpack-internal:///./node_modules/next/dist/client/components/react-dev-overlay/pages/client.js:84
+[ 5100468ms] [ERROR] ./src/components/LocaleSwitcher.tsx:3:1
+Module not found: Can't resolve '@/context/LocaleContext'
+  1 | "use client";
+  2 |
+> 3 | import { useLocale } from "@/context/LocaleContext";
+    | ^
+  4 | import { motion } from "framer-motion";
+  5 |
+  6 | export function LocaleSwitcher() {
+
+https://nextjs.org/docs/messages/module-not-found
+
+Import trace for requested module:
+./src/components/Navbar.tsx @ webpack-internal:///./node_modules/next/dist/client/components/react-dev-overlay/pages/client.js:84
+[ 5100828ms] [ERROR] ./src/components/LocaleSwitcher.tsx:3:1
+Module not found: Can't resolve '@/context/LocaleContext'
+  1 | "use client";
+  2 |
+> 3 | import { useLocale } from "@/context/LocaleContext";
+    | ^
+  4 | import { motion } from "framer-motion";
+  5 |
+  6 | export function LocaleSwitcher() {
+
+https://nextjs.org/docs/messages/module-not-found
+
+Import trace for requested module:
+./src/components/Navbar.tsx @ webpack-internal:///./node_modules/next/dist/client/components/react-dev-overlay/pages/client.js:84
+[ 5100828ms] [ERROR] ./src/app/layout.tsx:6:1
+Module not found: Can't resolve '@/context/LocaleContext'
+  4 | import Navbar from "@/components/Navbar";
+  5 | import { ThemeProvider } from "@/components/ThemeProvider";
+> 6 | import { LocaleProvider } from "@/context/LocaleContext";
+    | ^
+  7 | import { KeyboardShortcutsProvider } from "@/components/KeyboardShortcutsProvider";
+  8 | import ShortcutsDialog from "@/components/ShortcutsDialog";
+  9 |
+
+https://nextjs.org/docs/messages/module-not-found @ webpack-internal:///./node_modules/next/dist/client/components/react-dev-overlay/pages/client.js:84
+[ 5100842ms] [ERROR] Failed to load resource: the server responded with a status of 404 (Not Found) @ http://localhost:3001/favicon.ico:0
+[ 5110179ms] [ERROR] ./src/components/LocaleSwitcher.tsx:3:1
+Module not found: Can't resolve '@/context/LocaleContext'
+  1 | "use client";
+  2 |
+> 3 | import { useLocale } from "@/context/LocaleContext";
+    | ^
+  4 | import { motion } from "framer-motion";
+  5 |
+  6 | export function LocaleSwitcher() {
+
+https://nextjs.org/docs/messages/module-not-found
+
+Import trace for requested module:
+./src/components/Navbar.tsx @ webpack-internal:///./node_modules/next/dist/client/components/react-dev-overlay/pages/client.js:84
+[ 5110179ms] [LOG] [Fast Refresh] rebuilding @ webpack-internal:///./node_modules/next/dist/client/components/react-dev-overlay/pages/hot-reloader-client.js:221
+[ 5110380ms] [ERROR] ./src/components/LocaleSwitcher.tsx:3:1
+Module not found: Can't resolve '@/context/LocaleContext'
+  1 | "use client";
+  2 |
+> 3 | import { useLocale } from "@/context/LocaleContext";
+    | ^
+  4 | import { motion } from "framer-motion";
+  5 |
+  6 | export function LocaleSwitcher() {
+
+https://nextjs.org/docs/messages/module-not-found
+
+Import trace for requested module:
+./src/components/Navbar.tsx @ webpack-internal:///./node_modules/next/dist/client/components/react-dev-overlay/pages/client.js:84
+[ 5110380ms] [ERROR] ./src/app/layout.tsx:6:1
+Module not found: Can't resolve '@/context/LocaleContext'
+  4 | import Navbar from "@/components/Navbar";
+  5 | import { ThemeProvider } from "@/components/ThemeProvider";
+> 6 | import { LocaleProvider } from "@/context/LocaleContext";
+    | ^
+  7 | import { KeyboardShortcutsProvider } from "@/components/KeyboardShortcutsProvider";
+  8 | import ShortcutsDialog from "@/components/ShortcutsDialog";
+  9 |
+
+https://nextjs.org/docs/messages/module-not-found @ webpack-internal:///./node_modules/next/dist/client/components/react-dev-overlay/pages/client.js:84
+[ 5110388ms] [ERROR] ./src/components/LocaleSwitcher.tsx:3:1
+Module not found: Can't resolve '@/context/LocaleContext'
+  1 | "use client";
+  2 |
+> 3 | import { useLocale } from "@/context/LocaleContext";
+    | ^
+  4 | import { motion } from "framer-motion";
+  5 |
+  6 | export function LocaleSwitcher() {
+
+https://nextjs.org/docs/messages/module-not-found
+
+Import trace for requested module:
+./src/components/Navbar.tsx @ webpack-internal:///./node_modules/next/dist/client/components/react-dev-overlay/pages/client.js:84
+[ 5111004ms] [ERROR] ./src/components/LocaleSwitcher.tsx:3:1
+Module not found: Can't resolve '@/context/LocaleContext'
+  1 | "use client";
+  2 |
+> 3 | import { useLocale } from "@/context/LocaleContext";
+    | ^
+  4 | import { motion } from "framer-motion";
+  5 |
+  6 | export function LocaleSwitcher() {
+
+https://nextjs.org/docs/messages/module-not-found
+
+Import trace for requested module:
+./src/components/Navbar.tsx @ webpack-internal:///./node_modules/next/dist/client/components/react-dev-overlay/pages/client.js:84
+[ 5111145ms] [ERROR] ./src/components/LocaleSwitcher.tsx:3:1
+Module not found: Can't resolve '@/context/LocaleContext'
+  1 | "use client";
+  2 |
+> 3 | import { useLocale } from "@/context/LocaleContext";
+    | ^
+  4 | import { motion } from "framer-motion";
+  5 |
+  6 | export function LocaleSwitcher() {
+
+https://nextjs.org/docs/messages/module-not-found
+
+Import trace for requested module:
+./src/components/Navbar.tsx @ webpack-internal:///./node_modules/next/dist/client/components/react-dev-overlay/pages/client.js:84
+[ 5111145ms] [ERROR] ./src/app/layout.tsx:6:1
+Module not found: Can't resolve '@/context/LocaleContext'
+  4 | import Navbar from "@/components/Navbar";
+  5 | import { ThemeProvider } from "@/components/ThemeProvider";
+> 6 | import { LocaleProvider } from "@/context/LocaleContext";
+    | ^
+  7 | import { KeyboardShortcutsProvider } from "@/components/KeyboardShortcutsProvider";
+  8 | import ShortcutsDialog from "@/components/ShortcutsDialog";
+  9 |
+
+https://nextjs.org/docs/messages/module-not-found @ webpack-internal:///./node_modules/next/dist/client/components/react-dev-overlay/pages/client.js:84
+[ 5274219ms] [ERROR] ./src/app/globals.css.webpack[javascript/auto]!=!./node_modules/next/dist/build/webpack/loaders/css-loader/src/index.js??ruleSet[1].rules[13].oneOf[10].use[2]!./node_modules/next/dist/build/webpack/loaders/postcss-loader/src/index.js??ruleSet[1].rules[13].oneOf[10].use[3]!./src/app/globals.css
+Error: Cannot find module 'tailwindcss-rtl'
+Require stack:
+- D:\GitHub\asadullahshafique_devunity\tailwind.config.ts
+Import trace for requested module:
+./src/app/globals.css.webpack[javascript/auto]!=!./node_modules/next/dist/build/webpack/loaders/css-loader/src/index.js??ruleSet[1].rules[13].oneOf[10].use[2]!./node_modules/next/dist/build/webpack/loaders/postcss-loader/src/index.js??ruleSet[1].rules[13].oneOf[10].use[3]!./src/app/globals.css
+./src/app/globals.css @ webpack-internal:///./node_modules/next/dist/client/components/react-dev-overlay/pages/client.js:84
+[ 5274219ms] [ERROR] ./src/app/globals.css
+Error: Cannot find module 'tailwindcss-rtl'
+Require stack:
+- D:\GitHub\asadullahshafique_devunity\tailwind.config.ts
+-- inner error --
+Error: Cannot find module 'tailwindcss-rtl'
+Require stack:
+- D:\GitHub\asadullahshafique_devunity\tailwind.config.ts
+Generated code for D:\GitHub\asadullahshafique_devunity\node_modules\next\dist\build\webpack\loaders\css-loader\src\index.js??ruleSet[1].rules[13].oneOf[10].use[2]!D:\GitHub\asadullahshafique_devunity\node_modules\next\dist\build\webpack\loaders\postcss-loader\src\index.js??ruleSet[1].rules[13].oneOf[10].use[3]!D:\GitHub\asadullahshafique_devunity\src\app\globals.css
+
+Import trace for requested module:
+./src/app/globals.css @ webpack-internal:///./node_modules/next/dist/client/components/react-dev-overlay/pages/client.js:84
+[ 5274219ms] [ERROR] ./src/components/LocaleSwitcher.tsx:3:1
+Module not found: Can't resolve '@/context/LocaleContext'
+  1 | "use client";
+  2 |
+> 3 | import { useLocale } from "@/context/LocaleContext";
+    | ^
+  4 | import { motion } from "framer-motion";
+  5 |
+  6 | export function LocaleSwitcher() {
+
+https://nextjs.org/docs/messages/module-not-found
+
+Import trace for requested module:
+./src/components/Navbar.tsx @ webpack-internal:///./node_modules/next/dist/client/components/react-dev-overlay/pages/client.js:84
+[ 5274647ms] [ERROR] ./src/app/globals.css.webpack[javascript/auto]!=!./node_modules/next/dist/build/webpack/loaders/css-loader/src/index.js??ruleSet[1].rules[13].oneOf[10].use[2]!./node_modules/next/dist/build/webpack/loaders/postcss-loader/src/index.js??ruleSet[1].rules[13].oneOf[10].use[3]!./src/app/globals.css
+Error: Cannot find module 'tailwindcss-rtl'
+Require stack:
+- D:\GitHub\asadullahshafique_devunity\tailwind.config.ts
+Import trace for requested module:
+./src/app/globals.css.webpack[javascript/auto]!=!./node_modules/next/dist/build/webpack/loaders/css-loader/src/index.js??ruleSet[1].rules[13].oneOf[10].use[2]!./node_modules/next/dist/build/webpack/loaders/postcss-loader/src/index.js??ruleSet[1].rules[13].oneOf[10].use[3]!./src/app/globals.css
+./src/app/globals.css @ webpack-internal:///./node_modules/next/dist/client/components/react-dev-overlay/pages/client.js:84
+[ 5274647ms] [ERROR] ./src/app/globals.css
+Error: Cannot find module 'tailwindcss-rtl'
+Require stack:
+- D:\GitHub\asadullahshafique_devunity\tailwind.config.ts
+-- inner error --
+Error: Cannot find module 'tailwindcss-rtl'
+Require stack:
+- D:\GitHub\asadullahshafique_devunity\tailwind.config.ts
+Generated code for D:\GitHub\asadullahshafique_devunity\node_modules\next\dist\build\webpack\loaders\css-loader\src\index.js??ruleSet[1].rules[13].oneOf[10].use[2]!D:\GitHub\asadullahshafique_devunity\node_modules\next\dist\build\webpack\loaders\postcss-loader\src\index.js??ruleSet[1].rules[13].oneOf[10].use[3]!D:\GitHub\asadullahshafique_devunity\src\app\globals.css
+
+Import trace for requested module:
+./src/app/globals.css @ webpack-internal:///./node_modules/next/dist/client/components/react-dev-overlay/pages/client.js:84
+[ 5274648ms] [ERROR] ./src/components/LocaleSwitcher.tsx:3:1
+Module not found: Can't resolve '@/context/LocaleContext'
+  1 | "use client";
+  2 |
+> 3 | import { useLocale } from "@/context/LocaleContext";
+    | ^
+  4 | import { motion } from "framer-motion";
+  5 |
+  6 | export function LocaleSwitcher() {
+
+https://nextjs.org/docs/messages/module-not-found
+
+Import trace for requested module:
+./src/components/Navbar.tsx @ webpack-internal:///./node_modules/next/dist/client/components/react-dev-overlay/pages/client.js:84
+[ 5275035ms] [ERROR] ./src/components/LocaleSwitcher.tsx:3:1
+Module not found: Can't resolve '@/context/LocaleContext'
+  1 | "use client";
+  2 |
+> 3 | import { useLocale } from "@/context/LocaleContext";
+    | ^
+  4 | import { motion } from "framer-motion";
+  5 |
+  6 | export function LocaleSwitcher() {
+
+https://nextjs.org/docs/messages/module-not-found
+
+Import trace for requested module:
+./src/components/Navbar.tsx @ webpack-internal:///./node_modules/next/dist/client/components/react-dev-overlay/pages/client.js:84
+[ 5275035ms] [ERROR] ./src/app/layout.tsx:6:1
+Module not found: Can't resolve '@/context/LocaleContext'
+  4 | import Navbar from "@/components/Navbar";
+  5 | import { ThemeProvider } from "@/components/ThemeProvider";
+> 6 | import { LocaleProvider } from "@/context/LocaleContext";
+    | ^
+  7 | import { KeyboardShortcutsProvider } from "@/components/KeyboardShortcutsProvider";
+  8 | import ShortcutsDialog from "@/components/ShortcutsDialog";
+  9 |
+
+https://nextjs.org/docs/messages/module-not-found @ webpack-internal:///./node_modules/next/dist/client/components/react-dev-overlay/pages/client.js:84
