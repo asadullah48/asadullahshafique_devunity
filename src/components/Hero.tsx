@@ -1,6 +1,7 @@
-"use client";
+﻿"use client";
 
 import { useState, useEffect } from "react";
+import Image from "next/image";
 import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
 import { ArrowDown, Github, ExternalLink, MapPin } from "lucide-react";
@@ -16,8 +17,8 @@ const TERMINAL_LINES = [
   { text: "$ claude code --spec-first", color: "#84cc16" },
   { text: "> Booting SKILL.md agent...", color: "#9ca3af" },
   { text: "> Spawning OpenAI Custom Agent", color: "#9ca3af" },
-  { text: "> Deploying → Kubernetes cluster", color: "#9ca3af" },
-  { text: "✓ Zero failures. 6/6 hackathons.", color: "#84cc16" },
+  { text: "> Deploying â†’ Kubernetes cluster", color: "#9ca3af" },
+  { text: "âœ“ Zero failures. 6/6 hackathons.", color: "#84cc16" },
 ];
 
 const ORBIT_BADGES = [
@@ -72,10 +73,16 @@ function MonogramAvatar() {
         initial={{ scale: 0, opacity: 0 }}
         animate={{ scale: 1, opacity: 1 }}
         transition={{ duration: 0.6, type: "spring" }}
-        className="relative z-10 w-28 h-28 rounded-full bg-[#111111] border-2 border-green-500/60 flex flex-col items-center justify-center shadow-[0_0_40px_rgba(132,204,22,0.25)]"
+        className="relative z-10 w-36 h-36 rounded-full border-2 border-green-500/60 overflow-hidden shadow-[0_0_40px_rgba(132,204,22,0.25)] bg-[#111111]"
       >
-        <span className="text-4xl font-bold text-green-400 leading-none">AS</span>
-        <span className="text-[10px] text-gray-500 font-mono mt-1 tracking-widest">DEV</span>
+        <Image
+          src="/images/asadullah-vector.png"
+          alt="Asadullah Shafique"
+          fill
+          priority
+          className="object-cover object-top scale-110"
+        />
+        <div className="absolute inset-0 bg-green-500/5 rounded-full" />
       </motion.div>
     </div>
   );
@@ -117,7 +124,7 @@ function TerminalCard() {
                   animate={{ opacity: [1, 0] }}
                   transition={{ repeat: Infinity, duration: 0.7 }}
                   style={{ color: "#84cc16" }}
-                >█</motion.span>
+                >â–ˆ</motion.span>
               )}
             </motion.div>
           ))}
@@ -182,7 +189,7 @@ export function HeroSection() {
             </span>
             <span className="text-green-400 text-sm font-medium">Open to AI Collaborations &amp; Freelance</span>
             <MapPin className="w-3 h-3 text-green-400/60" />
-            <span className="text-green-400/60 text-xs">Pakistan · UAE</span>
+            <span className="text-green-400/60 text-xs">Pakistan Â· UAE</span>
           </motion.div>
 
           <h1 className="text-5xl lg:text-7xl font-bold text-white mb-5 leading-tight">
@@ -206,7 +213,7 @@ export function HeroSection() {
 
           <p className="text-gray-400 text-base lg:text-lg mb-8 max-w-xl leading-relaxed">
             Building <span className="text-white font-semibold">production-grade AI systems</span> and
-            marketing real businesses — from{" "}
+            marketing real businesses â€” from{" "}
             <span className="text-green-400 font-semibold">Dubai construction</span> to{" "}
             <span className="text-green-400 font-semibold">Pakistani textile factories</span>.
             Six hackathons. Zero failures.
@@ -280,3 +287,4 @@ export function HeroSection() {
 }
 
 export default HeroSection;
+
