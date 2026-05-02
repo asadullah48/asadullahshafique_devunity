@@ -1,119 +1,206 @@
 "use client";
 
-import React, { useState } from "react";
-import { motion } from "framer-motion";
+import { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 
-const skillCategories = [
-    {
-        name: "Languages",
-        skills: ["TypeScript", "JavaScript", "Python", "HTML/CSS"],
-    },
-    {
-        name: "Frameworks",
-        skills: ["Next.js", "React", "FastAPI", "Tailwind CSS"],
-    },
-    {
-        name: "Agent Foundation",
-        skills: ["Claude Code (General Agent)", "OpenAI SDK (Custom Agent)", "MCP Server Integration", "Constitutional AI"],
-    },
-    {
-        name: "AI & Tools",
-        skills: ["Generative AI", "SpecifyKit SDK", "Docker", "Claude Pro / LLMs"],
-    },
-    {
-        name: "Platforms",
-        skills: ["Git / GitHub", "Vercel", "Ubuntu WSL", "AWS (Learning)"],
-    },
-];
+const DI = "https://cdn.jsdelivr.net/gh/devicons/devicon/icons";
 
-const Skills = () => {
-    const [activeCategory, setActiveCategory] = useState(0);
-
-    return (
-        <section id="skills" className="py-24 relative">
-            <div className="container mx-auto px-4">
-                <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.6 }}
-                    viewport={{ once: true }}
-                    className="text-center mb-16"
-                >
-                    <h2 className="text-3xl md:text-5xl font-bold text-white mb-4">
-                        Tech <span className="text-[#9CE630]">Stack</span>
-                    </h2>
-                    <div className="w-20 h-1 bg-[#9CE630] mx-auto rounded-full mb-6" />
-                    <p className="text-zinc-400 max-w-xl mx-auto">
-                        Technologies and tools I work with to build production-ready applications.
-                    </p>
-                </motion.div>
-
-                {/* Category Tabs */}
-                <div className="flex flex-wrap justify-center gap-3 mb-12">
-                    {skillCategories.map((cat, index) => (
-                        <button
-                            key={cat.name}
-                            onClick={() => setActiveCategory(index)}
-                            className={`px-5 py-2 rounded-full text-sm font-medium transition-all duration-300 ${
-                                activeCategory === index
-                                    ? "bg-[#9CE630] text-black"
-                                    : "bg-zinc-800 text-zinc-400 hover:bg-zinc-700 hover:text-white"
-                            }`}
-                        >
-                            {cat.name}
-                        </button>
-                    ))}
-                </div>
-
-                {/* Skills Badge Grid */}
-                <motion.div
-                    key={activeCategory}
-                    initial={{ opacity: 0, y: 10 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.3 }}
-                    className="flex flex-wrap justify-center gap-4 max-w-3xl mx-auto"
-                >
-                    {skillCategories[activeCategory].skills.map((skill, index) => (
-                        <motion.div
-                            key={skill}
-                            initial={{ opacity: 0, scale: 0.9 }}
-                            animate={{ opacity: 1, scale: 1 }}
-                            transition={{ delay: index * 0.05 }}
-                            className="px-5 py-3 rounded-xl bg-zinc-900 border border-zinc-800 text-white font-medium text-sm hover:border-[#9CE630]/50 hover:text-[#9CE630] hover:bg-zinc-900/80 transition-all duration-200 cursor-default"
-                        >
-                            {skill}
-                        </motion.div>
-                    ))}
-                </motion.div>
-
-                {/* Tech Badges */}
-                <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.6, delay: 0.3 }}
-                    viewport={{ once: true }}
-                    className="mt-16 text-center"
-                >
-                    <h3 className="text-lg font-semibold text-zinc-400 mb-6">Also working with</h3>
-                    <div className="flex flex-wrap justify-center gap-3 max-w-3xl mx-auto">
-                        {[
-                            "OpenAI API", "Gemini API", "Radix UI", "shadcn/ui",
-                            "Framer Motion", "MCP Servers", "Ubuntu WSL", "PostgreSQL",
-                            "REST APIs", "RAG Systems", "Prompt Engineering", "Lucide Icons",
-                            "OpenClaw", "SKILL.md", "Kubernetes", "Dapr", "Kafka", "Helm", "GitHub Actions",
-                        ].map((tech) => (
-                            <span
-                                key={tech}
-                                className="px-3 py-1.5 text-xs font-medium text-zinc-400 bg-zinc-900 border border-zinc-800 rounded-full hover:border-[#9CE630]/30 hover:text-[#9CE630] transition-all duration-300 cursor-default"
-                            >
-                                {tech}
-                            </span>
-                        ))}
-                    </div>
-                </motion.div>
-            </div>
-        </section>
-    );
+type Skill = {
+  name: string;
+  icon: string;
+  color: string;
+  custom?: boolean;
+  badge?: string;
 };
 
-export default Skills;
+const SKILL_TABS: Record<string, Skill[]> = {
+  Languages: [
+    { name: "TypeScript", icon: "typescript/typescript-original.svg", color: "#3178C6" },
+    { name: "JavaScript", icon: "javascript/javascript-original.svg", color: "#F7DF1E" },
+    { name: "Python",     icon: "python/python-original.svg",         color: "#3776AB" },
+    { name: "HTML5",      icon: "html5/html5-original.svg",           color: "#E34F26" },
+    { name: "CSS3",       icon: "css3/css3-original.svg",             color: "#1572B6" },
+    { name: "SQL",        icon: "postgresql/postgresql-original.svg", color: "#4169E1" },
+  ],
+  Frameworks: [
+    { name: "Next.js",      icon: "nextjs/nextjs-original.svg",           color: "#ffffff" },
+    { name: "React",        icon: "react/react-original.svg",             color: "#61DAFB" },
+    { name: "FastAPI",      icon: "fastapi/fastapi-original.svg",         color: "#009688" },
+    { name: "Tailwind",     icon: "tailwindcss/tailwindcss-original.svg", color: "#06B6D4" },
+    { name: "Node.js",      icon: "nodejs/nodejs-original.svg",           color: "#339933" },
+    { name: "Supabase",     custom: true, icon: "", badge: "SB",          color: "#3ECF8E" },
+    { name: "Firebase",     icon: "firebase/firebase-original.svg",       color: "#FFCA28" },
+    { name: "SQLAlchemy",   icon: "sqlalchemy/sqlalchemy-original.svg",   color: "#CC2927" },
+    { name: "shadcn/ui",    custom: true, icon: "", badge: "UI",          color: "#ffffff" },
+  ],
+  "AI & Agents": [
+    { name: "OpenAI API",        custom: true, icon: "", badge: "GPT",   color: "#10a37f" },
+    { name: "Agents SDK",        custom: true, icon: "", badge: "AGT",   color: "#10a37f" },
+    { name: "Claude / MCP",      custom: true, icon: "", badge: "MCP",   color: "#CC785C" },
+    { name: "Gemini API",        custom: true, icon: "", badge: "GEM",   color: "#4285F4" },
+    { name: "RAG Systems",       custom: true, icon: "", badge: "RAG",   color: "#84cc16" },
+    { name: "Constitutional AI", custom: true, icon: "", badge: "CAI",   color: "#84cc16" },
+    { name: "SKILL.md",          custom: true, icon: "", badge: "SKL",   color: "#84cc16" },
+    { name: "Prompt Eng.",       custom: true, icon: "", badge: "PE",    color: "#a855f7" },
+  ],
+  "Cloud & DevOps": [
+    { name: "Kubernetes",     icon: "kubernetes/kubernetes-original.svg",   color: "#326CE5" },
+    { name: "Docker",         icon: "docker/docker-original.svg",           color: "#2496ED" },
+    { name: "GitHub Actions", icon: "github/github-original.svg",          color: "#ffffff" },
+    { name: "Helm",           custom: true, icon: "", badge: "HLM",        color: "#0F1689" },
+    { name: "Kafka",          icon: "apachekafka/apachekafka-original.svg", color: "#ffffff" },
+    { name: "Dapr",           custom: true, icon: "", badge: "DPR",        color: "#0D2192" },
+    { name: "Prometheus",     custom: true, icon: "", badge: "PRO",        color: "#E6522C" },
+    { name: "Grafana",        icon: "grafana/grafana-original.svg",         color: "#F46800" },
+  ],
+  Platforms: [
+    { name: "Vercel",         icon: "vercel/vercel-original.svg",      color: "#ffffff" },
+    { name: "Koyeb",          custom: true, icon: "", badge: "KYB",    color: "#121212" },
+    { name: "Cloudflare",     icon: "cloudflare/cloudflare-original.svg", color: "#F38020" },
+    { name: "GitHub",         icon: "github/github-original.svg",      color: "#ffffff" },
+    { name: "Supabase BaaS",  custom: true, icon: "", badge: "BaaS",   color: "#3ECF8E" },
+    { name: "PostgreSQL",     icon: "postgresql/postgresql-original.svg", color: "#4169E1" },
+    { name: "Ubuntu WSL",     icon: "ubuntu/ubuntu-original.svg",      color: "#E95420" },
+  ],
+  "OpenClaw Track": [
+    { name: "OpenClaw",       custom: true, icon: "", badge: "OC",    color: "#84cc16" },
+    { name: "CLAUDE.md",      custom: true, icon: "", badge: "CLD",   color: "#CC785C" },
+    { name: "Spec-First Dev", custom: true, icon: "", badge: "SFD",   color: "#84cc16" },
+    { name: "SKILL.md Files", custom: true, icon: "", badge: "SKL",   color: "#84cc16" },
+    { name: "Digital FTE",    custom: true, icon: "", badge: "FTE",   color: "#a855f7" },
+    { name: "Agent Factory",  custom: true, icon: "", badge: "AF",    color: "#84cc16" },
+  ],
+};
+
+const TAB_KEYS = Object.keys(SKILL_TABS);
+
+function SkillCard({ skill }: { skill: Skill }) {
+  const [hovered, setHovered] = useState(false);
+
+  return (
+    <motion.div
+      layout
+      initial={{ opacity: 0, scale: 0.8 }}
+      animate={{ opacity: 1, scale: 1 }}
+      exit={{ opacity: 0, scale: 0.8 }}
+      transition={{ duration: 0.25 }}
+      onMouseEnter={() => setHovered(true)}
+      onMouseLeave={() => setHovered(false)}
+      className="group relative flex flex-col items-center justify-center gap-2.5 p-4 rounded-xl border transition-all duration-300 cursor-default select-none"
+      style={{
+        backgroundColor: hovered ? `${skill.color}12` : "transparent",
+        borderColor: hovered ? `${skill.color}60` : "rgba(255,255,255,0.07)",
+        boxShadow: hovered ? `0 0 20px ${skill.color}20` : "none",
+      }}
+    >
+      <div className="w-10 h-10 flex items-center justify-center">
+        {skill.custom ? (
+          <div
+            className="w-10 h-10 rounded-lg flex items-center justify-center text-xs font-bold font-mono"
+            style={{
+              backgroundColor: `${skill.color}20`,
+              color: skill.color,
+              border: `1px solid ${skill.color}40`,
+            }}
+          >
+            {skill.badge}
+          </div>
+        ) : (
+          // eslint-disable-next-line @next/next/no-img-element
+          <img
+            src={`${DI}/${skill.icon}`}
+            alt={skill.name}
+            className="w-9 h-9 object-contain transition-transform duration-300 group-hover:scale-110"
+            style={{ filter: skill.color === "#ffffff" ? "brightness(0.9)" : "none" }}
+            loading="lazy"
+          />
+        )}
+      </div>
+
+      <span className="text-xs text-gray-400 group-hover:text-white transition-colors duration-200 text-center leading-tight">
+        {skill.name}
+      </span>
+
+      {hovered && (
+        <motion.div
+          layoutId="skill-glow"
+          className="absolute -top-1 -right-1 w-2 h-2 rounded-full"
+          style={{ backgroundColor: skill.color }}
+          initial={{ scale: 0 }}
+          animate={{ scale: 1 }}
+        />
+      )}
+    </motion.div>
+  );
+}
+
+export function SkillsSection() {
+  const [activeTab, setActiveTab] = useState(TAB_KEYS[0]);
+
+  return (
+    <section id="skills" className="py-24 bg-[#0a0a0a]">
+      <div className="container mx-auto px-6">
+
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5 }}
+          className="text-center mb-14"
+        >
+          <h2 className="text-4xl lg:text-5xl font-bold text-white mb-4">
+            Tech <span className="text-green-400">Stack</span>
+          </h2>
+          <div className="w-16 h-0.5 bg-green-400 mx-auto mb-5" />
+          <p className="text-gray-400 max-w-xl mx-auto">
+            Technologies I use to ship production-ready applications — from
+            agentic AI systems to cloud-native microservices.
+          </p>
+        </motion.div>
+
+        <div className="flex flex-wrap justify-center gap-2 mb-10">
+          {TAB_KEYS.map((tab) => (
+            <button
+              key={tab}
+              onClick={() => setActiveTab(tab)}
+              className={`px-4 py-2 rounded-full text-sm font-medium transition-all duration-200 ${
+                activeTab === tab
+                  ? "bg-green-500 text-black shadow-[0_0_15px_rgba(132,204,22,0.4)]"
+                  : "border border-white/15 text-gray-400 hover:border-green-500/40 hover:text-white"
+              }`}
+            >
+              {tab}
+            </button>
+          ))}
+        </div>
+
+        <AnimatePresence mode="wait">
+          <motion.div
+            key={activeTab}
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -10 }}
+            transition={{ duration: 0.3 }}
+            className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 lg:grid-cols-8 gap-3"
+          >
+            {SKILL_TABS[activeTab].map((skill) => (
+              <SkillCard key={skill.name} skill={skill} />
+            ))}
+          </motion.div>
+        </AnimatePresence>
+
+        <motion.p
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
+          transition={{ delay: 0.4 }}
+          className="text-center text-gray-600 text-sm mt-10"
+        >
+          + Cloudflare Workers · Radix UI · Lucide Icons · REST APIs · MCP Servers
+        </motion.p>
+      </div>
+    </section>
+  );
+}
+
+export default SkillsSection;

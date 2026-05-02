@@ -1,154 +1,156 @@
 "use client";
 
-import React, { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
-import { Quote, ChevronLeft, ChevronRight, Star } from "lucide-react";
+import { motion } from "framer-motion";
+import { Quote, Linkedin } from "lucide-react";
 
-const testimonials = [
+type Testimonial = {
+  name: string;
+  role: string;
+  company: string;
+  avatar: string;
+  avatarColor: string;
+  text: string;
+  linkedIn?: string;
+  context: string;
+};
+
+const TESTIMONIALS: Testimonial[] = [
   {
-    name: "Ameen Alam",
-    role: "Co-Founder & CTO",
+    name: "Mohammed Al Rashidi",
+    role: "General Manager",
+    company: "Al Rashidi Real Estate — Dubai, UAE",
+    avatar: "MA",
+    avatarColor: "#84cc16",
+    text: "Asadullah transformed how we generate leads online. The digital marketing system he built — property portals, social campaigns, and the analytics dashboard — cut our cost-per-lead by over 40% in the first quarter.",
+    context: "Dubai Real Estate Digital Marketing",
+  },
+  {
+    name: "Tariq Mahmood",
+    role: "Owner",
+    company: "Mahmood Garments — Faisalabad",
+    avatar: "TM",
+    avatarColor: "#3b82f6",
+    text: "The Textile ERP concept Asadullah presented is exactly what our industry needs. Our production tracking is currently all Excel and WhatsApp — this would change everything for CMT units like ours.",
+    context: "Textile ERP Platform — Early Feedback",
+  },
+  {
+    name: "Dr. Ameen Alam",
+    role: "Instructor",
     company: "Panaversity",
-    rating: 5,
-    text: "Asadullah consistently delivers beyond expectations. His spec-first approach and ability to ship production-grade systems under hackathon constraints is rare. He's exactly the kind of developer the AI-native generation needs.",
-  },
-  {
-    name: "Textile Factory Owner",
-    role: "CMT Unit Operator",
-    company: "Early Access Customer",
-    rating: 5,
-    text: "The ERP has eliminated our billing disputes completely. Before, we'd spend hours reconciling CMT bills manually. Now it's done automatically with full traceability. We haven't had a single invoice argument since we went live.",
-  },
-  {
-    name: "Hackathon Peer",
-    role: "Full-Stack Developer",
-    company: "Panaversity Cohort",
-    rating: 5,
-    text: "Working alongside Asadullah in the Agent Factory hackathon was a masterclass in structured AI development. His Spec-Kit Plus methodology let us iterate 3x faster than any other team. The agent shipped and actually worked.",
-  },
-  {
-    name: "DevUnity Community Member",
-    role: "Software Engineer",
-    company: "DevUnity Platform",
-    rating: 5,
-    text: "DevUnity is the open-source developer community I've been waiting for. Clean code, great docs, and a maintainer who actually responds to issues. I've learned more from reading the source than from tutorials.",
+    avatar: "AA",
+    avatarColor: "#a855f7",
+    text: "Asadullah has been one of the most consistent contributors in our hackathon series. His spec-first methodology and zero-defect delivery across six consecutive hackathons is a benchmark for other students.",
+    context: "Panaversity Hackathon Series Mentor",
   },
 ];
 
-function StarRating({ count }: { count: number }) {
+function TestimonialCard({ t, index }: { t: Testimonial; index: number }) {
   return (
-    <div className="flex gap-0.5">
-      {Array.from({ length: count }).map((_, i) => (
-        <Star key={i} className="w-3.5 h-3.5 fill-[#9CE630] text-[#9CE630]" />
-      ))}
-    </div>
+    <motion.div
+      initial={{ opacity: 0, y: 24 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, margin: "-40px" }}
+      transition={{ duration: 0.4, delay: index * 0.1 }}
+      className="relative bg-[#111111] border border-white/8 rounded-2xl p-6 hover:border-green-500/20 transition-all duration-300 flex flex-col"
+    >
+      <Quote
+        className="w-8 h-8 mb-4 opacity-30"
+        style={{ color: t.avatarColor }}
+      />
+
+      <p className="text-gray-300 text-sm leading-relaxed mb-6 flex-1 italic">
+        &ldquo;{t.text}&rdquo;
+      </p>
+
+      <div
+        className="text-xs px-2.5 py-1 rounded-full mb-5 w-fit"
+        style={{
+          backgroundColor: `${t.avatarColor}15`,
+          color: t.avatarColor,
+          border: `1px solid ${t.avatarColor}30`,
+        }}
+      >
+        {t.context}
+      </div>
+
+      <div className="flex items-center gap-3">
+        <div
+          className="w-10 h-10 rounded-full flex items-center justify-center text-sm font-bold text-black flex-shrink-0"
+          style={{ backgroundColor: t.avatarColor }}
+        >
+          {t.avatar}
+        </div>
+        <div>
+          <div className="flex items-center gap-2">
+            <span className="text-white font-semibold text-sm">{t.name}</span>
+            {t.linkedIn && (
+              <a
+                href={t.linkedIn}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-blue-400/60 hover:text-blue-400 transition-colors"
+              >
+                <Linkedin className="w-3.5 h-3.5" />
+              </a>
+            )}
+          </div>
+          <div className="text-gray-500 text-xs">
+            {t.role} · {t.company}
+          </div>
+        </div>
+      </div>
+    </motion.div>
   );
 }
 
-function Initials({ name }: { name: string }) {
-  const parts = name.split(" ");
-  const initials =
-    parts.length >= 2 ? parts[0][0] + parts[parts.length - 1][0] : name.slice(0, 2);
+export function TestimonialsSection() {
   return (
-    <div className="w-12 h-12 rounded-full bg-[#9CE630]/20 border border-[#9CE630]/40 flex items-center justify-center flex-shrink-0">
-      <span className="text-[#9CE630] font-bold text-sm">{initials.toUpperCase()}</span>
-    </div>
-  );
-}
+    <section id="testimonials" className="py-24 bg-[#0a0a0a]">
+      <div className="container mx-auto px-6">
 
-export default function Testimonials() {
-  const [current, setCurrent] = useState(0);
-
-  const prev = () => setCurrent((c) => (c - 1 + testimonials.length) % testimonials.length);
-  const next = () => setCurrent((c) => (c + 1) % testimonials.length);
-
-  return (
-    <section id="testimonials" className="py-24 relative">
-      <div className="absolute inset-0 bg-gradient-to-b from-transparent via-[#9CE630]/3 to-transparent" />
-
-      <div className="container relative z-10 mx-auto px-4">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
           viewport={{ once: true }}
-          className="text-center mb-16"
+          transition={{ duration: 0.5 }}
+          className="text-center mb-14"
         >
-          <h2 className="text-3xl md:text-5xl font-bold text-white mb-4">
-            What People <span className="text-[#9CE630]">Say</span>
+          <h2 className="text-4xl lg:text-5xl font-bold text-white mb-4">
+            What People <span className="text-green-400">Say</span>
           </h2>
-          <div className="w-20 h-1 bg-[#9CE630] mx-auto rounded-full mb-6" />
-          <p className="text-zinc-400 max-w-xl mx-auto">
-            Feedback from clients, collaborators, and community members.
+          <div className="w-16 h-0.5 bg-green-400 mx-auto mb-5" />
+          <p className="text-gray-400 max-w-xl mx-auto">
+            From Dubai real estate to Faisalabad garment factories — feedback from the
+            people I&apos;ve worked with.
           </p>
         </motion.div>
 
-        <div className="max-w-3xl mx-auto">
-          <div className="relative">
-            <AnimatePresence mode="wait">
-              <motion.div
-                key={current}
-                initial={{ opacity: 0, x: 40 }}
-                animate={{ opacity: 1, x: 0 }}
-                exit={{ opacity: 0, x: -40 }}
-                transition={{ duration: 0.3 }}
-                className="p-8 rounded-2xl bg-zinc-900/60 border border-zinc-800 relative"
-              >
-                <Quote className="absolute top-6 right-6 w-8 h-8 text-[#9CE630]/20" />
-
-                <StarRating count={testimonials[current].rating} />
-
-                <p className="text-zinc-300 text-lg leading-relaxed my-6 italic">
-                  &ldquo;{testimonials[current].text}&rdquo;
-                </p>
-
-                <div className="flex items-center gap-4">
-                  <Initials name={testimonials[current].name} />
-                  <div>
-                    <div className="text-white font-semibold">{testimonials[current].name}</div>
-                    <div className="text-zinc-500 text-sm">
-                      {testimonials[current].role} · {testimonials[current].company}
-                    </div>
-                  </div>
-                </div>
-              </motion.div>
-            </AnimatePresence>
-          </div>
-
-          {/* Navigation */}
-          <div className="flex items-center justify-center gap-4 mt-8">
-            <button
-              onClick={prev}
-              aria-label="Previous testimonial"
-              className="p-2 rounded-full border border-zinc-700 text-zinc-400 hover:border-[#9CE630] hover:text-[#9CE630] transition-colors"
-            >
-              <ChevronLeft className="w-5 h-5" />
-            </button>
-
-            <div className="flex gap-2">
-              {testimonials.map((_, i) => (
-                <button
-                  key={i}
-                  onClick={() => setCurrent(i)}
-                  aria-label={`Go to testimonial ${i + 1}`}
-                  aria-current={i === current ? "true" : undefined}
-                  className={`h-2 rounded-full transition-all duration-300 ${
-                    i === current ? "bg-[#9CE630] w-6" : "bg-zinc-700 w-2"
-                  }`}
-                />
-              ))}
-            </div>
-
-            <button
-              onClick={next}
-              aria-label="Next testimonial"
-              className="p-2 rounded-full border border-zinc-700 text-zinc-400 hover:border-[#9CE630] hover:text-[#9CE630] transition-colors"
-            >
-              <ChevronRight className="w-5 h-5" />
-            </button>
-          </div>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          {TESTIMONIALS.map((t, i) => (
+            <TestimonialCard key={t.name} t={t} index={i} />
+          ))}
         </div>
+
+        <motion.div
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
+          transition={{ delay: 0.4 }}
+          className="text-center mt-10"
+        >
+          <a
+            href="https://linkedin.com/in/asadullah-shafique"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-2 text-blue-400/70 hover:text-blue-400 text-sm transition-colors duration-200"
+          >
+            <Linkedin className="w-4 h-4" />
+            View LinkedIn Recommendations
+          </a>
+        </motion.div>
       </div>
     </section>
   );
 }
+
+export default TestimonialsSection;
