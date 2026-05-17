@@ -20,6 +20,7 @@ type Project = {
   tech: string[];
   github?: string;
   demo?: string;
+  image?: string;
   metrics?: { label: string; value: string }[];
   featured?: boolean;
   isNew?: boolean;
@@ -28,20 +29,22 @@ type Project = {
 const PROJECTS_EN: Project[] = [
   {
     id: "bazaar",
-    title: "Bazaar — Multi-Vendor Marketplace",
+    title: "Bazaar — Unified B2B + B2C Marketplace",
     status: "Flagship",
     statusColor: "#f59e0b",
-    tagline: "One-stop marketplace for buyers, vendors & enterprise",
+    tagline: "Pakistan's First Unified B2B/B2C Marketplace",
     problem: "Local SMEs in Pakistan and the UAE have no unified digital storefront. Buyers juggle multiple platforms, vendors lack analytics, and enterprise clients need white-label flexibility — all three groups are underserved by existing solutions.",
-    solution: "Bazaar is a modular, multi-vendor marketplace where users shop across categories without friction and vendors access a full-featured growth platform. Architecture: multi-tenant Next.js 15 storefront, FastAPI microservices, Supabase BaaS for auth/realtime, Stripe + local payment gateways, vendor dashboard with analytics, order lifecycle management, AI-powered product recommendations, and a white-label enterprise tier.",
-    impact: "Designed for three adoption tiers: local SMEs (quick onboarding, low cost), global e-commerce (Stripe, multi-currency, i18n), and enterprise (white-label, custom domains, dedicated infra). Modular design means each tier is additive — one codebase, infinite scale.",
-    description: "A one-stop marketplace where users shop across categories without friction, while vendors gain access to a robust platform to grow their businesses. Modular design for local SMEs, global e-commerce, and enterprise-level adoption.",
-    tech: ["Next.js 15", "FastAPI", "Supabase", "Stripe", "TypeScript", "PostgreSQL", "Redis", "Kubernetes"],
-    github: "https://github.com/asadullah48",
+    solution: "Bazaar unifies B2C retail (browse, cart, checkout — JazzCash, Easypaisa, Card) and B2B wholesale (RFQ engine, quantity-tier pricing, verified suppliers) into one platform. Architecture: multi-tenant Next.js 15 storefront, FastAPI microservices, Supabase BaaS for auth/realtime, local + Stripe payment gateways, vendor dashboard with analytics, AI-powered recommendations, and a white-label enterprise tier.",
+    impact: "500+ verified sellers, 10K+ products across Textiles, Electronics, Furniture, Auto Parts & more. PKR-native, 3 languages (EN/UR/AR). Modular design means each tier is additive — one codebase, SME to enterprise scale.",
+    description: "Pakistan's first unified marketplace with dual B2C retail storefront and B2B wholesale/RFQ engine — 500+ verified sellers, 10K+ products, JazzCash/Easypaisa/Card payments, and PKR-native currency. Built for local SMEs and enterprise adoption.",
+    tech: ["Next.js 15", "FastAPI", "Supabase", "PostgreSQL", "Redis", "Docker", "TypeScript", "WhatsApp"],
+    github: "https://github.com/asadullah48/bazaar",
+    demo: "https://frontend-three-kappa-64.vercel.app",
+    image: "/images/bazaar-preview.svg",
     metrics: [
-      { label: "Vendor Tiers",  value: "3"               },
-      { label: "Architecture",  value: "Modular"         },
-      { label: "Target Market", value: "SME → Enterprise" },
+      { label: "Mode",     value: "B2B + B2C" },
+      { label: "Sellers",  value: "500+"       },
+      { label: "Products", value: "10K+"       },
     ],
     featured: true,
     isNew: true,
@@ -135,20 +138,22 @@ const PROJECTS_EN: Project[] = [
 const PROJECTS_AR: Project[] = [
   {
     id: "bazaar",
-    title: "بازار — سوق متعدد البائعين",
+    title: "بازار — سوق B2B + B2C الموحد",
     status: "Flagship",
     statusColor: "#f59e0b",
-    tagline: "سوق شامل للمشترين والبائعين والمؤسسات",
+    tagline: "أول سوق موحد B2B/B2C في باكستان",
     problem: "الشركات الصغيرة في باكستان والإمارات تفتقر إلى واجهة رقمية موحدة. المشترون يتنقلون بين منصات متعددة، والبائعون يفتقرون للتحليلات، وعملاء المؤسسات يحتاجون مرونة العلامة البيضاء — جميع الفئات غير خاضعة للخدمة الكاملة.",
-    solution: "بازار سوق معياري متعدد البائعين حيث يتسوق المستخدمون عبر الفئات دون عوائق ويحصل البائعون على منصة نمو متكاملة. الهندسة: متجر Next.js 15 متعدد المستأجرين، خدمات FastAPI المصغرة، Supabase BaaS للمصادقة، Stripe وبوابات دفع محلية، لوحة تحكم البائع مع تحليلات، إدارة دورة حياة الطلب، توصيات منتجات بالذكاء الاصطناعي، وطبقة مؤسسية بعلامة بيضاء.",
-    impact: "مصمم لثلاث مراحل تبني: الشركات الصغيرة المحلية (إعداد سريع، تكلفة منخفضة)، التجارة الإلكترونية العالمية (Stripe، متعدد العملات)، والمؤسسات (علامة بيضاء، نطاقات مخصصة). التصميم المعياري يجعل كل طبقة إضافية — قاعدة كود واحدة، توسع لا محدود.",
-    description: "سوق شامل حيث يتسوق المستخدمون عبر الفئات بسهولة، بينما يتمتع البائعون بمنصة قوية لتنمية أعمالهم. تصميم معياري للشركات الصغيرة المحلية والتجارة الإلكترونية العالمية والمؤسسات.",
-    tech: ["Next.js 15", "FastAPI", "Supabase", "Stripe", "TypeScript", "PostgreSQL", "Redis", "Kubernetes"],
-    github: "https://github.com/asadullah48",
+    solution: "بازار يوحّد تجارة التجزئة B2C (التصفح، السلة، الدفع — JazzCash وEasypaisa والبطاقة) والجملة B2B (محرك طلبات العروض، التسعير بالكمية، الموردون الموثقون) في منصة واحدة. الهندسة: متجر Next.js 15 متعدد المستأجرين، خدمات FastAPI المصغرة، Supabase BaaS للمصادقة، بوابات دفع محلية وStripe، لوحة تحكم البائع، توصيات بالذكاء الاصطناعي، وطبقة مؤسسية.",
+    impact: "أكثر من 500 بائع موثق، وأكثر من 10K منتج في المنسوجات والإلكترونيات والأثاث وقطع غيار السيارات. الروبية الباكستانية عملة أصلية، 3 لغات. التصميم المعياري يجعل كل طبقة إضافية — قاعدة كود واحدة، توسع لا محدود.",
+    description: "أول سوق موحد في باكستان بواجهة B2C للتجزئة ومحرك B2B للجملة وطلبات العروض — 500+ بائع موثق، 10K+ منتج، مدفوعات بـ JazzCash/Easypaisa/بطاقة، والروبية الباكستانية عملة أصلية.",
+    tech: ["Next.js 15", "FastAPI", "Supabase", "PostgreSQL", "Redis", "Docker", "TypeScript", "WhatsApp"],
+    github: "https://github.com/asadullah48/bazaar",
+    demo: "https://frontend-three-kappa-64.vercel.app",
+    image: "/images/bazaar-preview.svg",
     metrics: [
-      { label: "طبقات البائعين",  value: "3"             },
-      { label: "الهندسة",         value: "معياري"        },
-      { label: "السوق المستهدف",  value: "صغير → مؤسسة" },
+      { label: "النمط",     value: "B2B + B2C" },
+      { label: "البائعون",  value: "500+"       },
+      { label: "المنتجات",  value: "10K+"       },
     ],
     featured: true,
     isNew: true,
@@ -280,6 +285,17 @@ function ProjectCard({ project, labels }: { project: Project; labels: Record<str
         className="h-0.5 w-full flex-shrink-0"
         style={{ background: `linear-gradient(to right, transparent, ${project.statusColor}80, transparent)` }}
       />
+
+      {project.image && (
+        <div className="w-full overflow-hidden bg-[#0d0d0d]" style={{ maxHeight: "200px" }}>
+          <img
+            src={project.image}
+            alt={project.title}
+            className="w-full h-full object-cover object-top"
+            style={{ maxHeight: "200px" }}
+          />
+        </div>
+      )}
 
       {project.isNew && (
         <div className="absolute top-4 right-4 z-10">
