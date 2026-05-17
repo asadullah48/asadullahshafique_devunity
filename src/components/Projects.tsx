@@ -81,6 +81,7 @@ const PROJECTS_EN: Project[] = [
     tech: ["Next.js 15", "TypeScript", "Tailwind CSS", "shadcn/ui", "PostgreSQL"],
     github: "https://github.com/asadullah48",
     demo:   "https://asadullahshafique-devunity.vercel.app",
+    image:  "/images/devunity-preview.svg",
     metrics: [
       { label: "Stack",   value: "Next.js 15"  },
       { label: "Status",  value: "Live"        },
@@ -190,6 +191,7 @@ const PROJECTS_AR: Project[] = [
     tech: ["Next.js 15", "TypeScript", "Tailwind CSS", "shadcn/ui", "PostgreSQL"],
     github: "https://github.com/asadullah48",
     demo:   "https://asadullahshafique-devunity.vercel.app",
+    image:  "/images/devunity-preview.svg",
     metrics: [
       { label: "التقنية",  value: "Next.js 15"   },
       { label: "الحالة",   value: "مباشر"        },

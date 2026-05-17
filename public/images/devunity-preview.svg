@@ -1,0 +1,102 @@
+<svg width="100%" viewBox="0 0 680 680" role="img" xmlns="http://www.w3.org/2000/svg">
+<title>DevUnity Platform — Open-Source Developer Community Hub</title>
+<desc>A bold banner for DevUnity showing the platform name, tagline, Q&amp;A and blog features, tech stack, and live demo link.</desc>
+
+<!-- Background: deep purple-black -->
+<rect width="680" height="680" fill="#0B0714"/>
+
+<!-- Corner accent circles -->
+<circle cx="0" cy="0" r="220" fill="none" stroke="#7c3aed" stroke-width="0.5" opacity="0.35"/>
+<circle cx="0" cy="0" r="320" fill="none" stroke="#7c3aed" stroke-width="0.5" opacity="0.2"/>
+<circle cx="680" cy="680" r="220" fill="none" stroke="#7c3aed" stroke-width="0.5" opacity="0.35"/>
+<circle cx="680" cy="680" r="320" fill="none" stroke="#7c3aed" stroke-width="0.5" opacity="0.2"/>
+
+<!-- Decorative code glyphs -->
+<text x="572" y="88" font-family="monospace" font-size="72" fill="#a855f7" opacity="0.06">{}</text>
+<text x="22" y="628" font-family="monospace" font-size="64" fill="#a855f7" opacity="0.06">&lt;/&gt;</text>
+
+<!-- Top accent bar -->
+<rect x="40" y="44" width="80" height="4" rx="2" fill="#a855f7"/>
+
+<!-- Brand name -->
+<text x="40" y="100" font-family="system-ui, sans-serif" font-size="52" font-weight="700" fill="#FFFFFF" letter-spacing="-1">DevUnity</text>
+
+<!-- Urdu / Arabic subtle label -->
+<text x="40" y="128" font-family="system-ui, sans-serif" font-size="15" font-weight="400" fill="#C4B5FD" letter-spacing="1">ڈیو یونٹی  |  ديف يونيتي</text>
+
+<!-- Tagline -->
+<text x="40" y="174" font-family="system-ui, sans-serif" font-size="22" font-weight="500" fill="#C4B5FD">Open-Source Developer Community Hub</text>
+
+<!-- Divider -->
+<line x1="40" y1="196" x2="640" y2="196" stroke="#7c3aed" stroke-width="0.5"/>
+
+<!-- Q&A Card -->
+<rect x="40" y="216" width="284" height="148" rx="12" fill="#140920"/>
+<rect x="40" y="216" width="284" height="148" rx="12" fill="none" stroke="#a855f7" stroke-width="0.5"/>
+<text x="64" y="252" font-family="system-ui, sans-serif" font-size="11" font-weight="500" fill="#C4B5FD" letter-spacing="1.5">COMMUNITY  Q&amp;A</text>
+<text x="64" y="278" font-family="system-ui, sans-serif" font-size="20" font-weight="700" fill="#FFFFFF">Ask &amp; Answer</text>
+<text x="64" y="300" font-family="system-ui, sans-serif" font-size="13" font-weight="400" fill="#C4B5FD">Threaded discussions &amp; upvotes</text>
+<text x="64" y="320" font-family="system-ui, sans-serif" font-size="13" font-weight="400" fill="#C4B5FD">AI-powered answer suggestions</text>
+<text x="64" y="340" font-family="system-ui, sans-serif" font-size="13" font-weight="400" fill="#C4B5FD">Context-aware for Pakistani devs</text>
+
+<!-- Blog & Collab Card -->
+<rect x="356" y="216" width="284" height="148" rx="12" fill="#0E061A"/>
+<rect x="356" y="216" width="284" height="148" rx="12" fill="none" stroke="#7c3aed" stroke-width="0.5"/>
+<text x="380" y="252" font-family="system-ui, sans-serif" font-size="11" font-weight="500" fill="#C4B5FD" letter-spacing="1.5">KNOWLEDGE  BASE</text>
+<text x="380" y="278" font-family="system-ui, sans-serif" font-size="20" font-weight="700" fill="#FFFFFF">Blogs &amp; Projects</text>
+<text x="380" y="300" font-family="system-ui, sans-serif" font-size="13" font-weight="400" fill="#C4B5FD">Write &amp; share technical guides</text>
+<text x="380" y="320" font-family="system-ui, sans-serif" font-size="13" font-weight="400" fill="#C4B5FD">Showcase open-source projects</text>
+<text x="380" y="340" font-family="system-ui, sans-serif" font-size="13" font-weight="400" fill="#C4B5FD">Collaborate &amp; build together</text>
+
+<!-- Stats row -->
+<rect x="40" y="384" width="130" height="76" rx="10" fill="#0D0620"/>
+<text x="105" y="418" font-family="system-ui, sans-serif" font-size="24" font-weight="700" fill="#FFFFFF" text-anchor="middle">100%</text>
+<text x="105" y="440" font-family="system-ui, sans-serif" font-size="12" font-weight="400" fill="#C4B5FD" text-anchor="middle">Open Source</text>
+
+<rect x="190" y="384" width="130" height="76" rx="10" fill="#0D0620"/>
+<text x="255" y="418" font-family="system-ui, sans-serif" font-size="24" font-weight="700" fill="#FFFFFF" text-anchor="middle">v15</text>
+<text x="255" y="440" font-family="system-ui, sans-serif" font-size="12" font-weight="400" fill="#C4B5FD" text-anchor="middle">Next.js App Router</text>
+
+<rect x="340" y="384" width="130" height="76" rx="10" fill="#0D0620"/>
+<text x="405" y="418" font-family="system-ui, sans-serif" font-size="24" font-weight="700" fill="#FFFFFF" text-anchor="middle">LIVE</text>
+<text x="405" y="440" font-family="system-ui, sans-serif" font-size="12" font-weight="400" fill="#C4B5FD" text-anchor="middle">Production</text>
+
+<rect x="490" y="384" width="150" height="76" rx="10" fill="#0D0620"/>
+<text x="565" y="418" font-family="system-ui, sans-serif" font-size="24" font-weight="700" fill="#FFFFFF" text-anchor="middle">AI</text>
+<text x="565" y="440" font-family="system-ui, sans-serif" font-size="12" font-weight="400" fill="#C4B5FD" text-anchor="middle">Powered Answers</text>
+
+<!-- Features label -->
+<text x="40" y="498" font-family="system-ui, sans-serif" font-size="12" font-weight="500" fill="#C4B5FD" letter-spacing="1.2">FEATURES</text>
+
+<!-- Feature pills -->
+<rect x="40" y="508" width="96" height="28" rx="14" fill="#1A0B2E"/>
+<text x="88" y="527" font-family="system-ui, sans-serif" font-size="12" font-weight="500" fill="#C4B5FD" text-anchor="middle">Q&amp;A Forum</text>
+
+<rect x="148" y="508" width="68" height="28" rx="14" fill="#1A0B2E"/>
+<text x="182" y="527" font-family="system-ui, sans-serif" font-size="12" font-weight="500" fill="#C4B5FD" text-anchor="middle">Blogs</text>
+
+<rect x="228" y="508" width="84" height="28" rx="14" fill="#1A0B2E"/>
+<text x="270" y="527" font-family="system-ui, sans-serif" font-size="12" font-weight="500" fill="#C4B5FD" text-anchor="middle">Projects</text>
+
+<rect x="324" y="508" width="104" height="28" rx="14" fill="#1A0B2E"/>
+<text x="376" y="527" font-family="system-ui, sans-serif" font-size="12" font-weight="500" fill="#C4B5FD" text-anchor="middle">Hackathons</text>
+
+<rect x="440" y="508" width="80" height="28" rx="14" fill="#1A0B2E"/>
+<text x="480" y="527" font-family="system-ui, sans-serif" font-size="12" font-weight="500" fill="#C4B5FD" text-anchor="middle">Discord</text>
+
+<rect x="532" y="508" width="80" height="28" rx="14" fill="#1A0B2E"/>
+<text x="572" y="527" font-family="system-ui, sans-serif" font-size="12" font-weight="500" fill="#C4B5FD" text-anchor="middle">AI Chat</text>
+
+<!-- Divider before CTA -->
+<line x1="40" y1="558" x2="640" y2="558" stroke="#7c3aed" stroke-width="0.5"/>
+
+<!-- Tech stack micro-row -->
+<text x="40" y="582" font-family="system-ui, sans-serif" font-size="12" font-weight="400" fill="#C4B5FD">Next.js 15  ·  TypeScript  ·  Tailwind CSS  ·  shadcn/ui  ·  PostgreSQL</text>
+
+<!-- CTA pill -->
+<rect x="40" y="598" width="480" height="44" rx="22" fill="#a855f7"/>
+<text x="280" y="625" font-family="system-ui, sans-serif" font-size="14" font-weight="600" fill="#FFFFFF" text-anchor="middle">asadullahshafique-devunity.vercel.app</text>
+
+<!-- By line -->
+<text x="640" y="648" font-family="system-ui, sans-serif" font-size="12" font-weight="400" fill="#C4B5FD" text-anchor="end">Built by Asadullah Shafique · Open Source</text>
+</svg>
