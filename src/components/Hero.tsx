@@ -1,9 +1,9 @@
 "use client";
 
-import { useState, useEffect, useMemo } from "react";
+import { useState, useEffect, useMemo, useRef } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence, useInView } from "framer-motion";
 import { ArrowDown, Github, ExternalLink, MapPin } from "lucide-react";
 import { useLocale } from "@/context/LocaleContext";
 
@@ -128,6 +128,36 @@ function TerminalCard() {
   );
 }
 
+function useCountUp(target: number, duration = 1800, inView = false) {
+  const [count, setCount] = useState(0);
+  useEffect(() => {
+    if (!inView) return;
+    let start = 0;
+    const step = target / (duration / 16);
+    const timer = setInterval(() => {
+      start += step;
+      if (start >= target) { setCount(target); clearInterval(timer); }
+      else setCount(Math.floor(start));
+    }, 16);
+    return () => clearInterval(timer);
+  }, [target, duration, inView]);
+  return count;
+}
+
+function StatCounter({ target, suffix, label, inView }: {
+  target: number; suffix: string; label: string; inView: boolean;
+}) {
+  const count = useCountUp(target, 1600, inView);
+  return (
+    <div className="text-center lg:text-left">
+      <div className="text-2xl font-bold text-white tabular-nums">
+        {count}{suffix}
+      </div>
+      <div className="text-xs text-gray-500 mt-0.5">{label}</div>
+    </div>
+  );
+}
+
 export function HeroSection() {
   const { t } = useLocale();
 
@@ -170,12 +200,15 @@ export function HeroSection() {
     return () => clearTimeout(timer);
   }, [displayed, deleting, roleIndex, ROLES]);
 
-  const stats = [
-    { val: "467+", label: t("hero.stats.repos")     },
-    { val: "6",    label: t("hero.stats.hackathons") },
-    { val: "85%",  label: t("hero.stats.codeReuse")  },
-    { val: "149+", label: t("hero.stats.tests")      },
+  const STATS = [
+    { target: 467, suffix: "+", label: t("hero.stats.repos")     },
+    { target: 6,   suffix: "",  label: t("hero.stats.hackathons") },
+    { target: 85,  suffix: "%", label: t("hero.stats.codeReuse")  },
+    { target: 149, suffix: "+", label: t("hero.stats.tests")      },
   ];
+
+  const statsRef = useRef<HTMLDivElement>(null);
+  const statsInView = useInView(statsRef, { once: true, margin: "-100px" });
 
   return (
     <section
@@ -263,14 +296,11 @@ export function HeroSection() {
             </a>
           </div>
 
-          <div className="flex flex-wrap items-center gap-6 justify-center lg:justify-start">
-            {stats.map((s, i) => (
+          <div ref={statsRef} className="flex flex-wrap items-center gap-6 justify-center lg:justify-start">
+            {STATS.map((s, i) => (
               <div key={s.label} className="flex items-center gap-6">
                 {i > 0 && <div className="w-px h-8 bg-white/10" />}
-                <div className="text-center lg:text-left">
-                  <div className="text-2xl font-bold text-white">{s.val}</div>
-                  <div className="text-xs text-gray-500 mt-0.5">{s.label}</div>
-                </div>
+                <StatCounter {...s} inView={statsInView} />
               </div>
             ))}
           </div>
