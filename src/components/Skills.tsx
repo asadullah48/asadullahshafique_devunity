@@ -81,6 +81,41 @@ const SKILL_TABS: Record<string, Skill[]> = {
   ],
 };
 
+const AGENT_ROLE_GROUPS: Record<string, Skill[]> = {
+  "AI Agent Layer": [
+    { name: "Claude / MCP",      custom: true, icon: "", badge: "MCP",  color: "#CC785C" },
+    { name: "OpenAI Agents SDK", custom: true, icon: "", badge: "AGT",  color: "#10a37f" },
+    { name: "LangChain",         custom: true, icon: "", badge: "LC",   color: "#1C3C3C" },
+    { name: "RAG Systems",       custom: true, icon: "", badge: "RAG",  color: "#84cc16" },
+    { name: "Prompt Eng.",       custom: true, icon: "", badge: "PE",   color: "#a855f7" },
+    { name: "SKILL.md",          custom: true, icon: "", badge: "SKL",  color: "#84cc16" },
+  ],
+  "Backend Runtime": [
+    { name: "Python",     icon: "python/python-original.svg",           color: "#3776AB" },
+    { name: "FastAPI",    icon: "fastapi/fastapi-original.svg",         color: "#009688" },
+    { name: "Docker",     icon: "docker/docker-original.svg",           color: "#2496ED" },
+    { name: "PostgreSQL", icon: "postgresql/postgresql-original.svg",   color: "#4169E1" },
+    { name: "Redis",      icon: "redis/redis-original.svg",             color: "#FF4438" },
+    { name: "Supabase",   custom: true, icon: "", badge: "SB",          color: "#3ECF8E" },
+  ],
+  "Frontend Interface": [
+    { name: "Next.js",    icon: "nextjs/nextjs-original.svg",           color: "#ffffff" },
+    { name: "TypeScript", icon: "typescript/typescript-original.svg",   color: "#3178C6" },
+    { name: "React",      icon: "react/react-original.svg",             color: "#61DAFB" },
+    { name: "Tailwind",   icon: "tailwindcss/tailwindcss-original.svg", color: "#06B6D4" },
+    { name: "shadcn/ui",  custom: true, icon: "", badge: "UI",          color: "#ffffff" },
+    { name: "Framer",     custom: true, icon: "", badge: "FM",          color: "#0055FF" },
+  ],
+  "Infrastructure": [
+    { name: "Kubernetes",     icon: "kubernetes/kubernetes-original.svg",    color: "#326CE5" },
+    { name: "GitHub Actions", icon: "github/github-original.svg",            color: "#ffffff" },
+    { name: "Vercel",         icon: "vercel/vercel-original.svg",            color: "#ffffff" },
+    { name: "Terraform",      icon: "terraform/terraform-original.svg",      color: "#7B42BC" },
+    { name: "Kafka",          icon: "apachekafka/apachekafka-original.svg",  color: "#ffffff" },
+    { name: "Grafana",        icon: "grafana/grafana-original.svg",          color: "#F46800" },
+  ],
+};
+
 const TAB_KEYS = Object.keys(SKILL_TABS);
 
 function SkillCard({ skill }: { skill: Skill }) {
@@ -143,8 +178,11 @@ function SkillCard({ skill }: { skill: Skill }) {
   );
 }
 
+type SkillView = "technology" | "role";
+
 export function SkillsSection() {
   const [activeTab, setActiveTab] = useState(TAB_KEYS[0]);
+  const [view, setView] = useState<SkillView>("technology");
   const { t } = useLocale();
 
   const TAB_LABELS: Record<string, string> = {
@@ -176,36 +214,84 @@ export function SkillsSection() {
           </p>
         </motion.div>
 
-        <div className="flex flex-wrap justify-center gap-2 mb-10">
-          {TAB_KEYS.map((tab) => (
-            <button
-              key={tab}
-              onClick={() => setActiveTab(tab)}
-              className={`px-4 py-2 rounded-full text-sm font-medium transition-all duration-200 ${
-                activeTab === tab
-                  ? "bg-green-500 text-black shadow-[0_0_15px_rgba(132,204,22,0.4)]"
-                  : "border border-white/15 text-gray-400 hover:border-green-500/40 hover:text-white"
-              }`}
-            >
-              {TAB_LABELS[tab]}
-            </button>
-          ))}
+        {/* View Toggle */}
+        <div className="flex justify-center mb-6">
+          <div className="flex bg-zinc-900 border border-zinc-800 rounded-full p-1 gap-1">
+            {(["technology", "role"] as SkillView[]).map((v) => (
+              <button
+                key={v}
+                type="button"
+                onClick={() => setView(v)}
+                className={`px-4 py-1.5 rounded-full text-xs font-medium transition-all duration-200 ${
+                  view === v
+                    ? "bg-green-500 text-black shadow-[0_0_12px_rgba(132,204,22,0.35)]"
+                    : "text-gray-400 hover:text-white"
+                }`}
+              >
+                {v === "technology" ? "By Technology" : "By Agent Role"}
+              </button>
+            ))}
+          </div>
         </div>
 
-        <AnimatePresence mode="wait">
-          <motion.div
-            key={activeTab}
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -10 }}
-            transition={{ duration: 0.3 }}
-            className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 lg:grid-cols-8 gap-3"
-          >
-            {SKILL_TABS[activeTab].map((skill) => (
-              <SkillCard key={skill.name} skill={skill} />
+        {view === "technology" ? (
+          <>
+            <div className="flex flex-wrap justify-center gap-2 mb-10">
+              {TAB_KEYS.map((tab) => (
+                <button
+                  key={tab}
+                  onClick={() => setActiveTab(tab)}
+                  className={`px-4 py-2 rounded-full text-sm font-medium transition-all duration-200 ${
+                    activeTab === tab
+                      ? "bg-green-500 text-black shadow-[0_0_15px_rgba(132,204,22,0.4)]"
+                      : "border border-white/15 text-gray-400 hover:border-green-500/40 hover:text-white"
+                  }`}
+                >
+                  {TAB_LABELS[tab]}
+                </button>
+              ))}
+            </div>
+
+            <AnimatePresence mode="wait">
+              <motion.div
+                key={activeTab}
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -10 }}
+                transition={{ duration: 0.3 }}
+                className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 lg:grid-cols-8 gap-3"
+              >
+                {SKILL_TABS[activeTab].map((skill) => (
+                  <SkillCard key={skill.name} skill={skill} />
+                ))}
+              </motion.div>
+            </AnimatePresence>
+          </>
+        ) : (
+          <div className="space-y-10">
+            {Object.entries(AGENT_ROLE_GROUPS).map(([role, skills], groupIdx) => (
+              <motion.div
+                key={role}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: groupIdx * 0.1 }}
+              >
+                <div className="flex items-center gap-3 mb-4">
+                  <span className="text-xs font-mono text-green-400 uppercase tracking-widest">
+                    // {role.toLowerCase().replace(/ /g, "_")}
+                  </span>
+                  <div className="flex-1 h-px bg-green-500/15" />
+                  <span className="text-xs text-zinc-600">{skills.length} tools</span>
+                </div>
+                <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 gap-3">
+                  {skills.map((skill) => (
+                    <SkillCard key={skill.name} skill={skill} />
+                  ))}
+                </div>
+              </motion.div>
             ))}
-          </motion.div>
-        </AnimatePresence>
+          </div>
+        )}
 
         <motion.p
           initial={{ opacity: 0 }}
