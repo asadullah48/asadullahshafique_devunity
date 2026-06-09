@@ -24,9 +24,17 @@ const MODES: { id: AgentMode; label: string; emoji: string; color: string }[] = 
   { id: "agents",  label: "Agents",  emoji: "🧠", color: "#CC785C" },
 ];
 
+const THINKING_STEPS = [
+  "Searching knowledge base...",
+  "Retrieving project data...",
+  "Analyzing context...",
+  "Composing response...",
+];
+
 const AIChatAgent = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [mode, setMode] = useState<AgentMode>("general");
+  const [thinkingStep, setThinkingStep] = useState(0);
   const [messages, setMessages] = useState<Message[]>([
     {
       role: "assistant",
@@ -47,6 +55,14 @@ const AIChatAgent = () => {
     scrollToBottom();
   }, [messages]);
 
+  useEffect(() => {
+    if (!isLoading) return;
+    const interval = setInterval(() => {
+      setThinkingStep((s) => (s + 1) % THINKING_STEPS.length);
+    }, 1200);
+    return () => clearInterval(interval);
+  }, [isLoading]);
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!input.trim() || isLoading) return;
@@ -55,6 +71,7 @@ const AIChatAgent = () => {
     setMessages((prev) => [...prev, { role: "user", content: userMsg, timestamp: new Date() }]);
     setInput("");
     setIsLoading(true);
+    setThinkingStep(0);
     setStreamingContent("");
 
     // Declared outside try so the catch block can cancel it on error (Fix 3)
@@ -272,11 +289,23 @@ const AIChatAgent = () => {
                     animate={{ opacity: 1 }}
                     className="flex items-center gap-3"
                   >
-                    <div className="w-8 h-8 rounded-full bg-zinc-700 flex items-center justify-center">
+                    <div className="w-8 h-8 rounded-full bg-zinc-700 flex items-center justify-center flex-shrink-0">
                       <Bot className="w-4 h-4 text-white" />
                     </div>
-                    <div className="bg-zinc-800 p-3 rounded-lg">
-                      <Loader2 className="w-4 h-4 animate-spin text-zinc-400" />
+                    <div className="bg-zinc-800 px-3 py-2 rounded-lg flex items-center gap-2">
+                      <Loader2 className="w-3 h-3 animate-spin text-zinc-400 flex-shrink-0" />
+                      <AnimatePresence mode="wait">
+                        <motion.span
+                          key={thinkingStep}
+                          initial={{ opacity: 0, y: 4 }}
+                          animate={{ opacity: 1, y: 0 }}
+                          exit={{ opacity: 0, y: -4 }}
+                          transition={{ duration: 0.2 }}
+                          className="text-xs text-zinc-400 font-mono"
+                        >
+                          {THINKING_STEPS[thinkingStep]}
+                        </motion.span>
+                      </AnimatePresence>
                     </div>
                   </motion.div>
                 )}
