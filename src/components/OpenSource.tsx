@@ -41,6 +41,9 @@ export function OpenSourceSection() {
           transition={{ duration: 0.5 }}
           className="text-center mb-14"
         >
+          <div className="text-xs font-mono text-green-400/60 uppercase tracking-widest mb-3">
+            // open_source
+          </div>
           <h2 className="text-4xl lg:text-5xl font-bold text-white mb-4">
             {t("opensrc.title")} <span className="text-green-400">{t("opensrc.titleHighlight")}</span>
           </h2>
