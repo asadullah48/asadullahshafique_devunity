@@ -15,8 +15,18 @@ interface Message {
   timestamp: Date;
 }
 
+type AgentMode = "general" | "python" | "nextjs" | "agents";
+
+const MODES: { id: AgentMode; label: string; emoji: string; color: string }[] = [
+  { id: "general", label: "Guide",   emoji: "🤖", color: "#9CE630" },
+  { id: "python",  label: "Python",  emoji: "🐍", color: "#009688" },
+  { id: "nextjs",  label: "Next.js", emoji: "⚡", color: "#3178C6" },
+  { id: "agents",  label: "Agents",  emoji: "🧠", color: "#CC785C" },
+];
+
 const AIChatAgent = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const [mode, setMode] = useState<AgentMode>("general");
   const [messages, setMessages] = useState<Message[]>([
     {
       role: "assistant",
@@ -54,7 +64,7 @@ const AIChatAgent = () => {
       const response = await fetch("/api/agent/chat/stream", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ message: userMsg }),
+        body: JSON.stringify({ message: userMsg, mode }),
       });
 
       if (!response.ok || !response.body) {
@@ -168,7 +178,10 @@ const AIChatAgent = () => {
                     </div>
                     <div>
                       <h3 className="font-semibold text-black">Portfolio Assistant</h3>
-                      <p className="text-xs text-black/80">Claude + LangGraph Agent</p>
+                      <p className="text-xs text-black/80">
+                        {MODES.find((m) => m.id === mode)?.emoji}{" "}
+                        {MODES.find((m) => m.id === mode)?.label} Mode
+                      </p>
                     </div>
                   </div>
                   <Button
@@ -180,6 +193,25 @@ const AIChatAgent = () => {
                     <X className="w-5 h-5" />
                   </Button>
                 </div>
+              </div>
+
+              {/* Mode Tabs */}
+              <div className="flex gap-1 px-3 py-2 border-b border-zinc-800 overflow-x-auto">
+                {MODES.map((m) => (
+                  <button
+                    key={m.id}
+                    onClick={() => setMode(m.id)}
+                    className="flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-medium whitespace-nowrap transition-all duration-200 flex-shrink-0"
+                    style={
+                      mode === m.id
+                        ? { backgroundColor: `${m.color}25`, color: m.color, border: `1px solid ${m.color}60` }
+                        : { backgroundColor: "transparent", color: "#6b7280", border: "1px solid transparent" }
+                    }
+                  >
+                    <span>{m.emoji}</span>
+                    {m.label}
+                  </button>
+                ))}
               </div>
 
               {/* Messages */}
