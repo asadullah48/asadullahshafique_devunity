@@ -4,6 +4,7 @@
     "services": "Services",
     "industries": "Industries",
     "skills": "Skills",
+    "roadmap": "Roadmap",
     "projects": "Projects",
     "hackathons": "Hackathons",
     "blog": "Blog",
@@ -81,6 +82,73 @@
     "tabCloud": "Cloud & DevOps",
     "tabPlatforms": "Platforms",
     "tabOpenClaw": "OpenClaw Track"
+  },
+  "roadmap": {
+    "title": "Learning",
+    "titleHighlight": "Roadmap",
+    "subtitle": "Backend engineering, infrastructure, and AI — what I'm growing into next.",
+    "python": {
+      "title": "Python Foundations",
+      "subtitle": "Basic → Intermediate → Advanced",
+      "levels": {
+        "basic": "Basic",
+        "intermediate": "Intermediate",
+        "advanced": "Advanced"
+      }
+    },
+    "docker": {
+      "title": "Docker & Containerization",
+      "subtitle": "Module 01",
+      "topics": {
+        "intro": "Introduction to Docker",
+        "imagesContainers": "Images & Containers",
+        "dockerizeNode": "Dockerizing a Node.js Application",
+        "portMapping": "Port Mapping",
+        "compose": "Docker Compose",
+        "networking": "Docker Networking",
+        "volumes": "Docker Volumes"
+      }
+    },
+    "redis": {
+      "title": "Redis & Caching",
+      "subtitle": "Module 02",
+      "topics": {
+        "intro": "Introduction to Redis",
+        "apiCaching": "API Caching",
+        "rateLimiting": "Rate Limiting",
+        "messageQueue": "Message Queue (with Redis)"
+      }
+    },
+    "systemDesign": {
+      "title": "System Design & Scalability",
+      "subtitle": "Module 03",
+      "topics": {
+        "intro": "Introduction to System Design",
+        "scaling": "Scaling Concepts",
+        "nginx": "Nginx (Reverse Proxy & Load Balancer)",
+        "microservices": "Microservices Architecture",
+        "dbScaling": "Database Scaling (Replication & Sharding)"
+      }
+    },
+    "cicd": {
+      "title": "CI/CD & Cloud Infrastructure",
+      "subtitle": "Module 04",
+      "topics": {
+        "pipelines": "CI/CD Pipeline Basics",
+        "aws": "AWS Deployment & Services",
+        "iac": "Infrastructure as Code (IaC) Overview"
+      }
+    },
+    "ai": {
+      "title": "AI Integration in Backend",
+      "subtitle": "Module 05",
+      "topics": {
+        "llms": "Introduction to LLMs (Large Language Models)",
+        "langchain": "LangChain Framework",
+        "rag": "Retrieval-Augmented Generation (RAG)",
+        "vectorDbs": "Vector Databases (Pinecone, Weaviate, Milvus)"
+      }
+    }
   },
   "services": {
     "title": "What I",

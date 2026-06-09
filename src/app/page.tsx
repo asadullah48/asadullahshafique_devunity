@@ -4,6 +4,7 @@ import About from "@/components/About";
 import Services from "@/components/Services";
 import Industries from "@/components/Industries";
 import Skills from "@/components/Skills";
+import Roadmap from "@/components/Roadmap";
 import Projects from "@/components/Projects";
 import Hackathons from "@/components/Hackathons";
 import Blog from "@/components/Blog";
@@ -30,6 +31,7 @@ export default function Home() {
             <Services />
             <Industries />
             <Skills />
+            <Roadmap />
             <Projects />
             <Hackathons />
             <Blog />

@@ -4,6 +4,7 @@
     "services": "الخدمات",
     "industries": "القطاعات",
     "skills": "المهارات",
+    "roadmap": "خارطة التعلم",
     "projects": "المشاريع",
     "hackathons": "الهاكاثون",
     "blog": "المدونة",
@@ -81,6 +82,73 @@
     "tabCloud": "السحابة وDevOps",
     "tabPlatforms": "المنصات",
     "tabOpenClaw": "مسار OpenClaw"
+  },
+  "roadmap": {
+    "title": "خارطة",
+    "titleHighlight": "التعلم",
+    "subtitle": "هندسة الواجهة الخلفية والبنية التحتية والذكاء الاصطناعي — ما أتعمق فيه بعد ذلك.",
+    "python": {
+      "title": "أساسيات Python",
+      "subtitle": "مبتدئ → متوسط → متقدم",
+      "levels": {
+        "basic": "مبتدئ",
+        "intermediate": "متوسط",
+        "advanced": "متقدم"
+      }
+    },
+    "docker": {
+      "title": "Docker والحاويات",
+      "subtitle": "الوحدة 01",
+      "topics": {
+        "intro": "مقدمة في Docker",
+        "imagesContainers": "الصور والحاويات",
+        "dockerizeNode": "حاوية تطبيق Node.js",
+        "portMapping": "تعيين المنافذ",
+        "compose": "Docker Compose",
+        "networking": "شبكات Docker",
+        "volumes": "وحدات Docker"
+      }
+    },
+    "redis": {
+      "title": "Redis والتخزين المؤقت",
+      "subtitle": "الوحدة 02",
+      "topics": {
+        "intro": "مقدمة في Redis",
+        "apiCaching": "التخزين المؤقت للـ API",
+        "rateLimiting": "تحديد معدل الطلبات",
+        "messageQueue": "قائمة انتظار الرسائل (مع Redis)"
+      }
+    },
+    "systemDesign": {
+      "title": "تصميم الأنظمة والتوسع",
+      "subtitle": "الوحدة 03",
+      "topics": {
+        "intro": "مقدمة في تصميم الأنظمة",
+        "scaling": "مفاهيم التوسع",
+        "nginx": "Nginx (وكيل عكسي وموازن حمل)",
+        "microservices": "بنية الخدمات المصغرة",
+        "dbScaling": "توسع قواعد البيانات (النسخ والتجزئة)"
+      }
+    },
+    "cicd": {
+      "title": "CI/CD والبنية السحابية",
+      "subtitle": "الوحدة 04",
+      "topics": {
+        "pipelines": "أساسيات خط CI/CD",
+        "aws": "النشر على AWS وخدماته",
+        "iac": "البنية التحتية كـ كود (IaC)"
+      }
+    },
+    "ai": {
+      "title": "تكامل الذكاء الاصطناعي في الواجهة الخلفية",
+      "subtitle": "الوحدة 05",
+      "topics": {
+        "llms": "مقدمة في النماذج اللغوية الكبيرة (LLMs)",
+        "langchain": "إطار LangChain",
+        "rag": "التوليد المعزز بالاسترجاع (RAG)",
+        "vectorDbs": "قواعد البيانات المتجهية (Pinecone, Weaviate, Milvus)"
+      }
+    }
   },
   "services": {
     "title": "ما",
