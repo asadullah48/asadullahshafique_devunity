@@ -140,6 +140,8 @@ const AIChatAgent = () => {
     "What hackathons has he participated in?",
   ];
 
+  const activeMode = MODES.find((m) => m.id === mode)!;
+
   return (
     <>
       {/* Chat Toggle Button */}
@@ -179,8 +181,7 @@ const AIChatAgent = () => {
                     <div>
                       <h3 className="font-semibold text-black">Portfolio Assistant</h3>
                       <p className="text-xs text-black/80">
-                        {MODES.find((m) => m.id === mode)?.emoji}{" "}
-                        {MODES.find((m) => m.id === mode)?.label} Mode
+                        {activeMode.emoji} {activeMode.label} Mode
                       </p>
                     </div>
                   </div>
@@ -200,6 +201,7 @@ const AIChatAgent = () => {
                 {MODES.map((m) => (
                   <button
                     key={m.id}
+                    type="button"
                     onClick={() => setMode(m.id)}
                     className="flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-medium whitespace-nowrap transition-all duration-200 flex-shrink-0"
                     style={
