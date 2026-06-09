@@ -200,12 +200,12 @@ export function HeroSection() {
     return () => clearTimeout(timer);
   }, [displayed, deleting, roleIndex, ROLES]);
 
-  const STATS = [
+  const STATS = useMemo(() => [
     { target: 467, suffix: "+", label: t("hero.stats.repos")     },
     { target: 6,   suffix: "",  label: t("hero.stats.hackathons") },
     { target: 85,  suffix: "%", label: t("hero.stats.codeReuse")  },
     { target: 149, suffix: "+", label: t("hero.stats.tests")      },
-  ];
+  ], [t]);
 
   const statsRef = useRef<HTMLDivElement>(null);
   const statsInView = useInView(statsRef, { once: true, margin: "-100px" });
