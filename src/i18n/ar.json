@@ -4,7 +4,7 @@
     "services": "الخدمات",
     "industries": "القطاعات",
     "skills": "المهارات",
-    "roadmap": "خارطة التعلم",
+    "roadmap": "الخبرة التقنية",
     "projects": "المشاريع",
     "hackathons": "الهاكاثون",
     "blog": "المدونة",
@@ -84,66 +84,69 @@
     "tabOpenClaw": "مسار OpenClaw"
   },
   "roadmap": {
-    "title": "خارطة",
-    "titleHighlight": "التعلم",
-    "subtitle": "هندسة الواجهة الخلفية والبنية التحتية والذكاء الاصطناعي — ما أتعمق فيه بعد ذلك.",
+    "title": "الخبرة",
+    "titleHighlight": "الهندسية",
+    "subtitle": "إتقان تام في هندسة الواجهة الخلفية والبنية التحتية والسحابة وتكامل الذكاء الاصطناعي — مصقولة عبر 6 هاكاثونات ونشرات حية.",
     "python": {
-      "title": "أساسيات Python",
-      "subtitle": "مبتدئ → متوسط → متقدم",
-      "levels": {
-        "basic": "مبتدئ",
-        "intermediate": "متوسط",
-        "advanced": "متقدم"
+      "title": "Python",
+      "subtitle": "اللغة الأساسية",
+      "topics": {
+        "syntax": "البنية الأساسية وهياكل البيانات",
+        "oop": "البرمجة الكائنية وأنماط التصميم",
+        "async": "البرمجة غير المتزامنة (Async/Await)",
+        "typeHints": "التلميحات النوعية والمزخرفات",
+        "testing": "الاختبار والتصحيح",
+        "fastapi": "تكامل FastAPI"
       }
     },
     "docker": {
       "title": "Docker والحاويات",
-      "subtitle": "الوحدة 01",
+      "subtitle": "إدارة الحاويات",
       "topics": {
-        "intro": "مقدمة في Docker",
-        "imagesContainers": "الصور والحاويات",
-        "dockerizeNode": "حاوية تطبيق Node.js",
-        "portMapping": "تعيين المنافذ",
-        "compose": "Docker Compose",
+        "intro": "بنية Docker والمفاهيم الأساسية",
+        "imagesContainers": "الصور ودورة حياة الحاويات",
+        "dockerizeNode": "حاوية تطبيقات Node.js",
+        "portMapping": "تعيين المنافذ والشبكات",
+        "compose": "Docker Compose (حزم متعددة الخدمات)",
         "networking": "شبكات Docker",
-        "volumes": "وحدات Docker"
+        "volumes": "وحدات التخزين الدائمة"
       }
     },
     "redis": {
       "title": "Redis والتخزين المؤقت",
-      "subtitle": "الوحدة 02",
+      "subtitle": "التخزين المؤقت والقوائم",
       "topics": {
-        "intro": "مقدمة في Redis",
-        "apiCaching": "التخزين المؤقت للـ API",
+        "intro": "هياكل بيانات Redis وحالات الاستخدام",
+        "apiCaching": "التخزين المؤقت لاستجابات الـ API",
         "rateLimiting": "تحديد معدل الطلبات",
-        "messageQueue": "قائمة انتظار الرسائل (مع Redis)"
+        "messageQueue": "قائمة الرسائل عبر Redis Pub/Sub"
       }
     },
     "systemDesign": {
       "title": "تصميم الأنظمة والتوسع",
-      "subtitle": "الوحدة 03",
+      "subtitle": "الأنظمة الموزعة",
       "topics": {
-        "intro": "مقدمة في تصميم الأنظمة",
-        "scaling": "مفاهيم التوسع",
+        "intro": "مبادئ تصميم الأنظمة",
+        "scaling": "التوسع الأفقي والرأسي",
         "nginx": "Nginx (وكيل عكسي وموازن حمل)",
         "microservices": "بنية الخدمات المصغرة",
-        "dbScaling": "توسع قواعد البيانات (النسخ والتجزئة)"
+        "dbScaling": "نسخ قواعد البيانات والتجزئة"
       }
     },
     "cicd": {
       "title": "CI/CD والبنية السحابية",
-      "subtitle": "الوحدة 04",
+      "subtitle": "DevOps والسحابة",
       "topics": {
-        "pipelines": "أساسيات خط CI/CD",
+        "pipelines": "تصميم خطوط CI/CD",
         "aws": "النشر على AWS وخدماته",
         "iac": "البنية التحتية كـ كود (IaC)"
       }
     },
     "ai": {
       "title": "تكامل الذكاء الاصطناعي في الواجهة الخلفية",
-      "subtitle": "الوحدة 05",
+      "subtitle": "هندسة الذكاء الاصطناعي",
       "topics": {
-        "llms": "مقدمة في النماذج اللغوية الكبيرة (LLMs)",
+        "llms": "واجهات LLM وهندسة الطلبات",
         "langchain": "إطار LangChain",
         "rag": "التوليد المعزز بالاسترجاع (RAG)",
         "vectorDbs": "قواعد البيانات المتجهية (Pinecone, Weaviate, Milvus)"

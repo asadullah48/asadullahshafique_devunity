@@ -23,15 +23,18 @@ test.describe("Portfolio home page", () => {
     await expect(section.locator(".rounded-2xl")).toHaveCount(6);
   });
 
-  test("Roadmap section shows Python Foundations card", async ({ page }) => {
+  test("Roadmap section shows Python card", async ({ page }) => {
     await page.evaluate(() => document.querySelector("#roadmap")?.scrollIntoView());
-    await expect(page.getByText("Python Foundations")).toBeVisible();
+    const roadmap = page.locator("#roadmap");
+    await expect(roadmap.getByRole("heading", { name: "Python", exact: true })).toBeVisible();
+    await expect(roadmap.getByText("Core Language", { exact: true })).toBeVisible();
   });
 
-  test("Roadmap section shows all 5 module subtitles", async ({ page }) => {
+  test("Roadmap section shows all domain subtitle labels", async ({ page }) => {
     await page.evaluate(() => document.querySelector("#roadmap")?.scrollIntoView());
-    for (const label of ["Module 01", "Module 02", "Module 03", "Module 04", "Module 05"]) {
-      await expect(page.getByText(label)).toBeVisible();
+    const roadmap = page.locator("#roadmap");
+    for (const label of ["Containerization", "Caching & Queuing", "Distributed Systems", "DevOps & Cloud", "AI Engineering"]) {
+      await expect(roadmap.getByText(label, { exact: true })).toBeVisible();
     }
   });
 

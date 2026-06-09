@@ -4,7 +4,7 @@
     "services": "Services",
     "industries": "Industries",
     "skills": "Skills",
-    "roadmap": "Roadmap",
+    "roadmap": "Expertise",
     "projects": "Projects",
     "hackathons": "Hackathons",
     "blog": "Blog",
@@ -84,66 +84,69 @@
     "tabOpenClaw": "OpenClaw Track"
   },
   "roadmap": {
-    "title": "Learning",
-    "titleHighlight": "Roadmap",
-    "subtitle": "Backend engineering, infrastructure, and AI — what I'm growing into next.",
+    "title": "Engineering",
+    "titleHighlight": "Expertise",
+    "subtitle": "Production-ready command across backend engineering, infrastructure, cloud, and AI — sharpened through 6 hackathons and live deployments.",
     "python": {
-      "title": "Python Foundations",
-      "subtitle": "Basic → Intermediate → Advanced",
-      "levels": {
-        "basic": "Basic",
-        "intermediate": "Intermediate",
-        "advanced": "Advanced"
+      "title": "Python",
+      "subtitle": "Core Language",
+      "topics": {
+        "syntax": "Core Syntax & Data Structures",
+        "oop": "OOP & Design Patterns",
+        "async": "Async / Await & Concurrency",
+        "typeHints": "Type Hints & Decorators",
+        "testing": "Testing & Debugging",
+        "fastapi": "FastAPI Integration"
       }
     },
     "docker": {
       "title": "Docker & Containerization",
-      "subtitle": "Module 01",
+      "subtitle": "Containerization",
       "topics": {
-        "intro": "Introduction to Docker",
-        "imagesContainers": "Images & Containers",
-        "dockerizeNode": "Dockerizing a Node.js Application",
-        "portMapping": "Port Mapping",
-        "compose": "Docker Compose",
+        "intro": "Docker Architecture & Core Concepts",
+        "imagesContainers": "Images & Container Lifecycle",
+        "dockerizeNode": "Dockerizing Node.js Applications",
+        "portMapping": "Port Mapping & Networking",
+        "compose": "Docker Compose (multi-service stacks)",
         "networking": "Docker Networking",
-        "volumes": "Docker Volumes"
+        "volumes": "Persistent Volumes & Mounts"
       }
     },
     "redis": {
       "title": "Redis & Caching",
-      "subtitle": "Module 02",
+      "subtitle": "Caching & Queuing",
       "topics": {
-        "intro": "Introduction to Redis",
-        "apiCaching": "API Caching",
+        "intro": "Redis Data Structures & Use Cases",
+        "apiCaching": "API Response Caching",
         "rateLimiting": "Rate Limiting",
-        "messageQueue": "Message Queue (with Redis)"
+        "messageQueue": "Message Queue with Redis Pub/Sub"
       }
     },
     "systemDesign": {
       "title": "System Design & Scalability",
-      "subtitle": "Module 03",
+      "subtitle": "Distributed Systems",
       "topics": {
-        "intro": "Introduction to System Design",
-        "scaling": "Scaling Concepts",
+        "intro": "System Design Principles",
+        "scaling": "Horizontal & Vertical Scaling",
         "nginx": "Nginx (Reverse Proxy & Load Balancer)",
         "microservices": "Microservices Architecture",
-        "dbScaling": "Database Scaling (Replication & Sharding)"
+        "dbScaling": "DB Replication & Sharding"
       }
     },
     "cicd": {
       "title": "CI/CD & Cloud Infrastructure",
-      "subtitle": "Module 04",
+      "subtitle": "DevOps & Cloud",
       "topics": {
-        "pipelines": "CI/CD Pipeline Basics",
+        "pipelines": "CI/CD Pipeline Design",
         "aws": "AWS Deployment & Services",
-        "iac": "Infrastructure as Code (IaC) Overview"
+        "iac": "Infrastructure as Code (IaC)"
       }
     },
     "ai": {
       "title": "AI Integration in Backend",
-      "subtitle": "Module 05",
+      "subtitle": "AI Engineering",
       "topics": {
-        "llms": "Introduction to LLMs (Large Language Models)",
+        "llms": "LLM APIs & Prompt Engineering",
         "langchain": "LangChain Framework",
         "rag": "Retrieval-Augmented Generation (RAG)",
         "vectorDbs": "Vector Databases (Pinecone, Weaviate, Milvus)"

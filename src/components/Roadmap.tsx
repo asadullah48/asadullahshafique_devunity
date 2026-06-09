@@ -14,9 +14,7 @@ type Track = {
   number: string;
   icon: TrackIcon;
   color: string;
-  kind: "levels" | "topics";
-  levels?: string[];
-  topicKeys?: string[];
+  topicKeys: string[];
 };
 
 const TRACKS: Track[] = [
@@ -25,15 +23,13 @@ const TRACKS: Track[] = [
     number: "00",
     icon: { kind: "devicon", slug: "python/python-original.svg" },
     color: "#3776AB",
-    kind: "levels",
-    levels: ["basic", "intermediate", "advanced"],
+    topicKeys: ["syntax", "oop", "async", "typeHints", "testing", "fastapi"],
   },
   {
     id: "docker",
     number: "01",
     icon: { kind: "devicon", slug: "docker/docker-original.svg" },
     color: "#2496ED",
-    kind: "topics",
     topicKeys: ["intro", "imagesContainers", "dockerizeNode", "portMapping", "compose", "networking", "volumes"],
   },
   {
@@ -41,7 +37,6 @@ const TRACKS: Track[] = [
     number: "02",
     icon: { kind: "devicon", slug: "redis/redis-original.svg" },
     color: "#FF4438",
-    kind: "topics",
     topicKeys: ["intro", "apiCaching", "rateLimiting", "messageQueue"],
   },
   {
@@ -49,7 +44,6 @@ const TRACKS: Track[] = [
     number: "03",
     icon: { kind: "badge", text: "SD" },
     color: "#9CE630",
-    kind: "topics",
     topicKeys: ["intro", "scaling", "nginx", "microservices", "dbScaling"],
   },
   {
@@ -57,7 +51,6 @@ const TRACKS: Track[] = [
     number: "04",
     icon: { kind: "badge", text: "CD" },
     color: "#F05033",
-    kind: "topics",
     topicKeys: ["pipelines", "aws", "iac"],
   },
   {
@@ -65,7 +58,6 @@ const TRACKS: Track[] = [
     number: "05",
     icon: { kind: "badge", text: "AI" },
     color: "#10a37f",
-    kind: "topics",
     topicKeys: ["llms", "langchain", "rag", "vectorDbs"],
   },
 ];
@@ -141,35 +133,17 @@ export default function Roadmap() {
                 {t(`roadmap.${track.id}.subtitle`)}
               </p>
 
-              {track.kind === "levels" && track.levels ? (
-                <div className="flex flex-wrap gap-2">
-                  {track.levels.map((level) => (
+              <ul className="space-y-1.5">
+                {track.topicKeys.map((key) => (
+                  <li key={key} className="flex items-start gap-2 text-sm text-zinc-300">
                     <span
-                      key={level}
-                      className="text-xs px-3 py-1 rounded-full font-medium"
-                      style={{
-                        backgroundColor: `${track.color}15`,
-                        border: `1px solid ${track.color}40`,
-                        color: track.color,
-                      }}
-                    >
-                      {t(`roadmap.${track.id}.levels.${level}`)}
-                    </span>
-                  ))}
-                </div>
-              ) : (
-                <ul className="space-y-1.5">
-                  {track.topicKeys?.map((key) => (
-                    <li key={key} className="flex items-start gap-2 text-sm text-zinc-300">
-                      <span
-                        className="mt-1.5 w-1.5 h-1.5 rounded-full flex-shrink-0"
-                        style={{ backgroundColor: "#9CE630" }}
-                      />
-                      {t(`roadmap.${track.id}.topics.${key}`)}
-                    </li>
-                  ))}
-                </ul>
-              )}
+                      className="mt-1.5 w-1.5 h-1.5 rounded-full flex-shrink-0"
+                      style={{ backgroundColor: "#9CE630" }}
+                    />
+                    {t(`roadmap.${track.id}.topics.${key}`)}
+                  </li>
+                ))}
+              </ul>
             </motion.div>
           ))}
         </div>
