@@ -128,6 +128,47 @@ function TerminalCard() {
   );
 }
 
+const AGENT_MODES = [
+  { id: "general", label: "Portfolio Guide", color: "#9CE630" },
+  { id: "python",  label: "Backend Expert",  color: "#009688" },
+  { id: "nextjs",  label: "Frontend Arch",   color: "#3178C6" },
+  { id: "agents",  label: "Agent Builder",   color: "#CC785C" },
+] as const;
+
+function AgentModeStrip() {
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 10 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ delay: 0.8 }}
+      className="w-full max-w-xs"
+    >
+      <div className="text-[10px] text-gray-600 font-mono uppercase tracking-widest mb-2 px-1">
+        // available_agents
+      </div>
+      <div className="grid grid-cols-2 gap-1.5">
+        {AGENT_MODES.map((mode) => (
+          <div
+            key={mode.id}
+            className="flex items-center gap-2 px-3 py-2 rounded-lg border text-xs font-mono"
+            style={{
+              borderColor: `${mode.color}30`,
+              backgroundColor: `${mode.color}08`,
+              color: mode.color,
+            }}
+          >
+            <span
+              className="w-1.5 h-1.5 rounded-full flex-shrink-0"
+              style={{ backgroundColor: mode.color }}
+            />
+            {mode.label}
+          </div>
+        ))}
+      </div>
+    </motion.div>
+  );
+}
+
 function useCountUp(target: number, duration = 1800, inView = false) {
   const [count, setCount] = useState(0);
   useEffect(() => {
@@ -314,6 +355,7 @@ export function HeroSection() {
         >
           <MonogramAvatar />
           <TerminalCard />
+          <AgentModeStrip />
         </motion.div>
       </div>
 
