@@ -1,9 +1,9 @@
-import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
 import About from "@/components/About";
 import Services from "@/components/Services";
 import Industries from "@/components/Industries";
 import Skills from "@/components/Skills";
+import AgentEngineering from "@/components/AgentEngineering";
 import Roadmap from "@/components/Roadmap";
 import Projects from "@/components/Projects";
 import Hackathons from "@/components/Hackathons";
@@ -25,12 +25,12 @@ export default function Home() {
                     mask: "radial-gradient(circle at center, transparent, black)",
                 }}
             />
-            <Navbar />
             <Hero />
             <About />
             <Services />
             <Industries />
             <Skills />
+            <AgentEngineering />
             <Roadmap />
             <Projects />
             <Hackathons />

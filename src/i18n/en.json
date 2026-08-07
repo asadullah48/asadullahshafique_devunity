@@ -4,6 +4,7 @@
     "services": "Services",
     "industries": "Industries",
     "skills": "Skills",
+    "agentEng": "Agent Eng",
     "roadmap": "Expertise",
     "projects": "Projects",
     "hackathons": "Hackathons",
@@ -82,6 +83,30 @@
     "tabCloud": "Cloud & DevOps",
     "tabPlatforms": "Platforms",
     "tabOpenClaw": "OpenClaw Track"
+  },
+  "agentEngineering": {
+    "title": "Agent",
+    "titleHighlight": "Engineering",
+    "subtitle": "The three disciplines behind every production agent I ship. A model is not a product — the harness, the loop, and the graph around it are.",
+    "harness": {
+      "tag": "The Environment",
+      "title": "Harness Engineering",
+      "desc": "The safety net around the model: tools, memory, permissions, observability. The harness decides what an agent can see, touch, and remember.",
+      "callout": "Agent forgot what it did 5 steps ago? Deleted the wrong file? That's not a model failure — that's a harness problem."
+    },
+    "loop": {
+      "tag": "The Feedback",
+      "title": "Loop Engineering",
+      "desc": "How the agent evaluates its own work and gets better at the job — tests, evals, and verification wired into every iteration.",
+      "callout": "Evidence over confidence. A coding agent stops when the tests pass — not when it feels done."
+    },
+    "graph": {
+      "tag": "The Flow",
+      "title": "Graph Engineering",
+      "desc": "Orchestration of the full workflow: branching, approvals, retries, parallel tasks — turning a single agent into a dependable system.",
+      "callout": "One agent is a demo. A graph with retries, approval gates, and parallel branches is a product."
+    },
+    "footer": "harness × loop × graph — the framework I apply to every agent build"
   },
   "roadmap": {
     "title": "Engineering",

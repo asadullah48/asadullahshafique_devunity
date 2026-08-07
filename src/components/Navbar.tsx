@@ -19,6 +19,7 @@ const Navbar = () => {
     { name: t("nav.services"),     href: "#services"     },
     { name: t("nav.industries"),   href: "#industries"   },
     { name: t("nav.skills"),       href: "#skills"       },
+    { name: t("nav.agentEng"),     href: "#agent-engineering" },
     { name: t("nav.roadmap"),      href: "#roadmap"      },
     { name: t("nav.projects"),     href: "#projects"     },
     { name: t("nav.hackathons"),   href: "#hackathons"   },
