@@ -6,6 +6,7 @@ import { ThemeProvider } from "@/components/ThemeProvider";
 import { LocaleProvider } from "@/context/LocaleContext";
 import { KeyboardShortcutsProvider } from "@/components/KeyboardShortcutsProvider";
 import ShortcutsDialog from "@/components/ShortcutsDialog";
+import ScrollProgress from "@/components/ScrollProgress";
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
 const jetbrainsMono = JetBrains_Mono({
@@ -13,7 +14,10 @@ const jetbrainsMono = JetBrains_Mono({
     variable: "--font-mono",
 });
 
+const BASE_URL = "https://asadullahshafique-devunity.vercel.app";
+
 export const metadata: Metadata = {
+    metadataBase: new URL(BASE_URL),
     title: "Asadullah Shafique | Agentic AI Developer",
     description:
           "Portfolio of Asadullah Shafique - Agentic AI Developer, Full-Stack Engineer, and Open Source Contributor. Building the future with AI.",
@@ -25,8 +29,12 @@ export const metadata: Metadata = {
           "TypeScript",
           "Python",
           "FastAPI",
+          "MCP",
+          "AI Agents",
         ],
     authors: [{ name: "Asadullah Shafique" }],
+    alternates: { canonical: "/" },
+    robots: { index: true, follow: true },
     icons: {
           icon: [{ url: "/favicon.svg", type: "image/svg+xml" }],
           shortcut: "/favicon.svg",
@@ -36,7 +44,36 @@ export const metadata: Metadata = {
           description:
                   "Building the future with Agentic AI, Full-Stack Development, and Open Source.",
           type: "website",
+          url: BASE_URL,
+          siteName: "Asadullah Shafique — Portfolio",
+          locale: "en_US",
     },
+    twitter: {
+          card: "summary_large_image",
+          title: "Asadullah Shafique | Agentic AI Developer",
+          description:
+                  "Building the future with Agentic AI, Full-Stack Development, and Open Source.",
+    },
+};
+
+const personJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    name: "Asadullah Shafique",
+    url: BASE_URL,
+    jobTitle: "Agentic AI Developer",
+    sameAs: ["https://github.com/asadullah48"],
+    knowsAbout: [
+          "Agentic AI",
+          "Next.js",
+          "TypeScript",
+          "Python",
+          "FastAPI",
+          "MCP",
+          "LangChain",
+          "Docker",
+          "Kubernetes",
+        ],
 };
 
 export default function RootLayout({
@@ -56,7 +93,12 @@ export default function RootLayout({
                                     enableSystem
                                     disableTransitionOnChange
                         >
+                        <script
+                                    type="application/ld+json"
+                                    dangerouslySetInnerHTML={{ __html: JSON.stringify(personJsonLd) }}
+                        />
                               <LocaleProvider><KeyboardShortcutsProvider>
+                                    <ScrollProgress />
                                     <Navbar />
                                     <main>{children}</main>
                                     <ShortcutsDialog />

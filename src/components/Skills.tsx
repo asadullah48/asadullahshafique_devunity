@@ -48,6 +48,8 @@ const SKILL_TABS: Record<string, Skill[]> = {
     { name: "LlamaIndex",        custom: true, icon: "", badge: "LI",    color: "#fbba00" },
     { name: "n8n",               custom: true, icon: "", badge: "n8n",   color: "#ea4b71" },
     { name: "Hugging Face",      custom: true, icon: "", badge: "HF",    color: "#FFD21E" },
+    { name: "A2A Protocol",      custom: true, icon: "", badge: "A2A",   color: "#4285F4" },
+    { name: "Computer Use",      custom: true, icon: "", badge: "CU",    color: "#CC785C" },
   ],
   "Cloud & DevOps": [
     { name: "Kubernetes",     icon: "kubernetes/kubernetes-original.svg",   color: "#326CE5" },
