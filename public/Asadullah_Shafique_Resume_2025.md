@@ -12,13 +12,25 @@ Agentic AI Developer and CMT Industry Founder with 25+ years of deep textile dom
 
 Completed **6 consecutive Panaversity Hackathons** (Bronze → Silver → Silver → Gold → Platinum → Agent Factory) with **85% code reusability** and **zero failed attempts**. Combines manufacturing operations mastery with modern AI engineering to digitize one of Pakistan's core industries.
 
+Builds production agents on a three-pillar engineering framework — **Harness** (environment: tools, memory, permissions, observability), **Loop** (feedback: evidence over confidence), and **Graph** (flow: branching, approvals, retries, parallel tasks). Currently advancing through Panaversity's Foundation of General & Custom Agent track.
+
 ---
 
 ## CORE COMPETENCIES
 
 | Agentic AI & Agents | Cloud-Native & DevOps | Full-Stack SaaS | Domain Expertise |
 |---|---|---|---|
-| OpenAI Agents SDK, MCP Servers, Constitutional AI, RAG | Kubernetes, Dapr, Kafka, Docker, Helm, GitHub Actions | Next.js 15, React 19, FastAPI, PostgreSQL, Tailwind v4 | Textile ERP, CMT Operations, Supply Chain, Digital Marketing |
+| OpenAI Agents SDK, Claude Code, MCP Servers, A2A Protocol, Constitutional AI, RAG | Kubernetes, Dapr, Kafka, Docker, Helm, GitHub Actions | Next.js 15, React 19, FastAPI, PostgreSQL, Tailwind v4 | Textile ERP, CMT Operations, Supply Chain, Digital Marketing |
+
+---
+
+## AGENT ENGINEERING METHODOLOGY
+
+**Harness Engineering — The Environment.** The safety net around the model: tools, memory, permissions, observability. An agent that forgets what it did five steps ago is a harness problem, not a model failure.
+
+**Loop Engineering — The Feedback.** How the agent evaluates its own work and improves. Evidence over confidence: a coding agent stops when the tests pass — not when it feels done.
+
+**Graph Engineering — The Flow.** Orchestration of the full workflow: branching, approvals, retries, parallel tasks. One agent is a demo; a graph with retries and approval gates is a product.
 
 ---
 
@@ -27,7 +39,7 @@ Completed **6 consecutive Panaversity Hackathons** (Bronze → Silver → Silver
 **Languages:** TypeScript, JavaScript, Python, HTML/CSS  
 **Frontend:** Next.js 15, React 19, Tailwind CSS v4, shadcn/ui  
 **Backend:** FastAPI, SQLAlchemy ORM, PostgreSQL, REST APIs  
-**AI & Agents:** OpenAI Agents SDK, MCP Servers, Constitutional AI, RAG, OpenAI API  
+**AI & Agents:** OpenAI Agents SDK, Claude Code / Claude API, MCP Servers, A2A Protocol, Computer Use, LangChain, Constitutional AI, RAG, Streaming SSE  
 **Cloud & DevOps:** Kubernetes, Docker, Dapr, Kafka, Helm, GitHub Actions, Vercel, Koyeb, Minikube  
 **Observability:** Prometheus, Grafana, Jaeger, Loki  
 **Platforms & Tools:** Git, Windows 11 / WSL2  
@@ -70,6 +82,13 @@ Full-scale ERP targeting Pakistan's textile and garment industry — from Fabric
 - **Financial:** Party ledgers, cash flow tracking, financial accounts for multi-city hubs (Faisalabad, Sialkot, Gujranwala, Karachi, Lahore)
 - **Live Demo:** [cmt-stitching-asadullah-shafiques-projects.vercel.app](https://cmt-stitching-asadullah-shafiques-projects.vercel.app)
 - **Stack:** Next.js 15, FastAPI, PostgreSQL, Vercel/Koyeb
+
+### Agentic OS Portfolio — asadullahshafique-devunity.vercel.app *(Live, 2026)*
+
+- Portfolio built as an agentic system: multi-mode AI chat agent (Portfolio Guide, Backend Specialist, Frontend Architect, Agent Builder) with streaming SSE
+- FastAPI backend live on Render: contact pipeline with Discord webhooks, GitHub stats proxy, token-protected admin dashboard
+- Bilingual EN/AR with full RTL support; AI-discoverable via llms.txt, JSON-LD structured data, and dynamic OG image generation
+- **Stack:** Next.js 15, TypeScript, Framer Motion, FastAPI, Render, Vercel
 
 ### Agent Factory (H5) — Panaversity Hackathon 2025
 
