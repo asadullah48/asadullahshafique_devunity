@@ -14,7 +14,7 @@ const Footer = () => {
     { nameKey: "nav.skills",     href: "#skills"     },
     { nameKey: "nav.projects",   href: "#projects"   },
     { nameKey: "nav.hackathons", href: "#hackathons" },
-    { nameKey: "nav.openSource", href: "#opensource" },
+    { nameKey: "nav.openSource", href: "#open-source" },
   ];
 
   return (
