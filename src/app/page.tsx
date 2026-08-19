@@ -13,8 +13,8 @@ import Testimonials from "@/components/Testimonials";
 import Discord from "@/components/Discord";
 import Contact from "@/components/Contact";
 import Footer from "@/components/Footer";
-import AIChatAgent from "@/components/AIChatAgent";
-import WhatsAppButton from "@/components/WhatsAppButton";
+import TechMarquee from "@/components/TechMarquee";
+import FloatingWidgets from "@/components/FloatingWidgets";
 
 export default function Home() {
     return (
@@ -26,6 +26,7 @@ export default function Home() {
                 }}
             />
             <Hero />
+            <TechMarquee />
             <About />
             <Services />
             <Industries />
@@ -40,8 +41,7 @@ export default function Home() {
             <Discord />
             <Contact />
             <Footer />
-            <AIChatAgent />
-            <WhatsAppButton />
+            <FloatingWidgets />
         </div>
     );
 }

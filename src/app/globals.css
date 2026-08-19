@@ -92,6 +92,63 @@
     color: white;
 }
 
+/* Aurora backdrop blobs (hero) */
+@keyframes aurora-drift-1 {
+    0%, 100% { transform: translate(0, 0) scale(1); }
+    33%      { transform: translate(60px, 40px) scale(1.15); }
+    66%      { transform: translate(-40px, 20px) scale(0.95); }
+}
+
+@keyframes aurora-drift-2 {
+    0%, 100% { transform: translate(0, 0) scale(1); }
+    50%      { transform: translate(-70px, -50px) scale(1.2); }
+}
+
+.animate-aurora-1 {
+    animation: aurora-drift-1 18s ease-in-out infinite;
+}
+
+.animate-aurora-2 {
+    animation: aurora-drift-2 24s ease-in-out infinite;
+}
+
+/* Infinite logo marquee */
+@keyframes marquee-scroll {
+    from { transform: translateX(0); }
+    to   { transform: translateX(-50%); }
+}
+
+.animate-marquee {
+    animation: marquee-scroll 36s linear infinite;
+    will-change: transform;
+}
+
+.marquee-mask {
+    mask-image: linear-gradient(to right, transparent, black 12%, black 88%, transparent);
+    -webkit-mask-image: linear-gradient(to right, transparent, black 12%, black 88%, transparent);
+}
+
+.group\/marquee:hover .animate-marquee {
+    animation-play-state: paused;
+}
+
+/* Spotlight card hover glow — position driven by --spot-x / --spot-y */
+.spotlight-overlay {
+    background: radial-gradient(
+        320px circle at var(--spot-x, 50%) var(--spot-y, 50%),
+        rgba(156, 230, 48, 0.08),
+        transparent 65%
+    );
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .animate-aurora-1,
+    .animate-aurora-2,
+    .animate-marquee {
+        animation: none;
+    }
+}
+
 /* Smooth animations */
 @keyframes fade-in-up {
     from {

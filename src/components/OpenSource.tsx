@@ -3,6 +3,8 @@
 import { motion } from "framer-motion";
 import { Github, GitFork, Star, Code2, Users } from "lucide-react";
 import { useLocale } from "@/context/LocaleContext";
+import { GitHubHeatmap } from "@/components/GitHubHeatmap";
+import { GitHubStatsStrip } from "@/components/GitHubStatsStrip";
 
 const GITHUB_USERNAME = "asadullah48";
 
@@ -51,6 +53,8 @@ export function OpenSourceSection() {
           <p className="text-gray-400 max-w-xl mx-auto">
             {t("opensrc.subtitle")}
           </p>
+          {/* Live repo / star / follower counts from /api/github/stats */}
+          <GitHubStatsStrip />
         </motion.div>
 
         <div className="grid grid-cols-2 md:grid-cols-5 gap-4 mb-16">
@@ -89,6 +93,9 @@ export function OpenSourceSection() {
               @{GITHUB_USERNAME} →
             </a>
           </div>
+
+          {/* Live contribution heatmap (renders nothing if the API is down) */}
+          <GitHubHeatmap />
 
           <div className="flex flex-col md:flex-row gap-4 items-center justify-center flex-wrap">
             {/* eslint-disable-next-line @next/next/no-img-element */}

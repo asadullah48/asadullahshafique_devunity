@@ -150,12 +150,34 @@ const AIChatAgent = () => {
     }
   };
 
-  const suggestedQuestions = [
-    "What are Asadullah's main skills?",
-    "Tell me about his projects",
-    "How can I contact him?",
-    "What hackathons has he participated in?",
-  ];
+  // Suggestions follow the active agent mode so each expert feels distinct.
+  const SUGGESTIONS_BY_MODE: Record<AgentMode, string[]> = {
+    general: [
+      "What are Asadullah's main skills?",
+      "Tell me about his projects",
+      "How can I contact him?",
+      "What hackathons has he participated in?",
+    ],
+    python: [
+      "How is the FastAPI backend structured?",
+      "What does his contact API pipeline do?",
+      "Which Python tools does he use daily?",
+      "How does the streaming SSE endpoint work?",
+    ],
+    nextjs: [
+      "How is this portfolio built?",
+      "What's his approach to App Router?",
+      "Which UI stack does he prefer?",
+      "How does he handle EN/AR localization?",
+    ],
+    agents: [
+      "Explain his harness × loop × graph framework",
+      "What agents has he shipped?",
+      "How does he use Claude MCP?",
+      "What is spec-first agent development?",
+    ],
+  };
+  const suggestedQuestions = SUGGESTIONS_BY_MODE[mode];
 
   const activeMode = MODES.find((m) => m.id === mode)!;
 

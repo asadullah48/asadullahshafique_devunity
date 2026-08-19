@@ -259,6 +259,19 @@ export function HeroSection() {
       <div className="absolute inset-0 bg-[linear-gradient(rgba(132,204,22,0.035)_1px,transparent_1px),linear-gradient(90deg,rgba(132,204,22,0.035)_1px,transparent_1px)] bg-[size:3.5rem_3.5rem]" />
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_80%_80%_at_50%_-20%,rgba(132,204,22,0.06),transparent)]" />
 
+      {/* Aurora blobs — slow-drifting brand-color glows behind the content */}
+      <div className="animate-aurora-1 absolute -top-40 -left-40 w-[520px] h-[520px] rounded-full bg-[#9CE630]/[0.07] blur-[130px] pointer-events-none" />
+      <div className="animate-aurora-2 absolute -bottom-32 -right-24 w-[440px] h-[440px] rounded-full bg-teal-400/[0.06] blur-[110px] pointer-events-none" />
+
+      {/* Film grain — breaks up gradient banding on large screens */}
+      <div
+        className="absolute inset-0 opacity-[0.025] pointer-events-none"
+        style={{
+          backgroundImage:
+            "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E\")",
+        }}
+      />
+
       <div className="container mx-auto px-6 py-24 flex flex-col lg:flex-row items-center gap-16 relative z-10">
 
         <motion.div

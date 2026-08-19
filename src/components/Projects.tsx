@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, type MouseEvent } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Github, ExternalLink, ChevronDown, ChevronUp, Zap, Star, Clock, ShoppingBag } from "lucide-react";
 import { useLocale } from "@/context/LocaleContext";
@@ -310,9 +310,18 @@ function ProjectCard({ project, labels }: { project: Project; labels: Record<str
   const [expanded, setExpanded] = useState(false);
   const hasCaseStudy = !!(project.problem && project.solution && project.impact);
 
+  // Spotlight: track the cursor via CSS vars so the glow follows the mouse
+  // without triggering React re-renders on every pointer move.
+  const handleSpotlight = (e: MouseEvent<HTMLDivElement>) => {
+    const rect = e.currentTarget.getBoundingClientRect();
+    e.currentTarget.style.setProperty("--spot-x", `${e.clientX - rect.left}px`);
+    e.currentTarget.style.setProperty("--spot-y", `${e.clientY - rect.top}px`);
+  };
+
   return (
     <motion.div
       layout
+      onMouseMove={handleSpotlight}
       initial={{ opacity: 0, y: 24 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-60px" }}
@@ -327,6 +336,9 @@ function ProjectCard({ project, labels }: { project: Project; labels: Record<str
         className="h-0.5 w-full flex-shrink-0"
         style={{ background: `linear-gradient(to right, transparent, ${project.statusColor}80, transparent)` }}
       />
+
+      {/* Cursor-tracking glow (position set by handleSpotlight) */}
+      <div className="spotlight-overlay absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none z-[1]" />
 
       {project.image && (
         <div className="w-full overflow-hidden bg-[#0d0d0d]" style={{ maxHeight: "200px" }}>
