@@ -6,7 +6,7 @@
 import { NextResponse } from "next/server";
 import { buildSystemPrompt, offlineAnswer } from "@/lib/agent-knowledge";
 
-const GEMINI_MODEL = process.env.GEMINI_MODEL || "gemini-2.5-flash";
+const GEMINI_MODEL = process.env.GEMINI_MODEL || "gemini-3.6-flash";
 
 export async function POST(request: Request) {
   let message = "";
