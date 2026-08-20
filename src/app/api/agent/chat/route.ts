@@ -6,7 +6,16 @@
 import { NextResponse } from "next/server";
 import { buildSystemPrompt, offlineAnswer } from "@/lib/agent-knowledge";
 
-const GEMINI_MODEL = process.env.GEMINI_MODEL || "gemini-3.6-flash";
+// flash-lite answers in ~2s. The full flash models are reasoning models: they
+// spend most of the token budget on thinking and can exceed 15s, which blows
+// the serverless function limit and truncates the reply.
+const GEMINI_MODEL = process.env.GEMINI_MODEL || "gemini-3.5-flash-lite";
+
+// Bound the upstream call well inside the platform's function limit so a slow
+// model degrades to the instant answer instead of a platform error page.
+const UPSTREAM_TIMEOUT_MS = 8000;
+
+export const maxDuration = 15;
 
 export async function POST(request: Request) {
   let message = "";
@@ -30,16 +39,24 @@ export async function POST(request: Request) {
     return NextResponse.json({ response: offlineAnswer(message), session_id });
   }
 
+  const controller = new AbortController();
+  const abortTimer = setTimeout(() => controller.abort(), UPSTREAM_TIMEOUT_MS);
+
   try {
     const upstream = await fetch(
       `https://generativelanguage.googleapis.com/v1beta/models/${GEMINI_MODEL}:generateContent`,
       {
         method: "POST",
         headers: { "Content-Type": "application/json", "x-goog-api-key": apiKey },
+        signal: controller.signal,
         body: JSON.stringify({
           system_instruction: { parts: [{ text: buildSystemPrompt(mode) }] },
           contents: [{ role: "user", parts: [{ text: message }] }],
-          generationConfig: { maxOutputTokens: 512, temperature: 0.7 },
+          generationConfig: {
+            maxOutputTokens: 800,
+            temperature: 0.7,
+            thinkingConfig: { thinkingLevel: "low" },
+          },
         }),
       }
     );
@@ -61,5 +78,7 @@ export async function POST(request: Request) {
   } catch (error) {
     console.error("Agent API error:", error);
     return NextResponse.json({ response: offlineAnswer(message), session_id });
+  } finally {
+    clearTimeout(abortTimer);
   }
 }

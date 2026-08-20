@@ -9,7 +9,16 @@
 import { NextResponse } from "next/server";
 import { buildSystemPrompt, offlineAnswer } from "@/lib/agent-knowledge";
 
-const GEMINI_MODEL = process.env.GEMINI_MODEL || "gemini-3.6-flash";
+// flash-lite answers in ~2s. The full flash models are reasoning models: they
+// spend most of the token budget on thinking and can exceed 15s, which blows
+// the serverless function limit and truncates the reply.
+const GEMINI_MODEL = process.env.GEMINI_MODEL || "gemini-3.5-flash-lite";
+
+// Bound the time to first byte so a slow model degrades to the instant answer
+// rather than leaving the widget spinning into a platform timeout.
+const UPSTREAM_TIMEOUT_MS = 8000;
+
+export const maxDuration = 30;
 
 const encoder = new TextEncoder();
 
@@ -55,23 +64,34 @@ export async function POST(request: Request) {
     return streamOfflineAnswer(message);
   }
 
+  const controller = new AbortController();
+  const abortTimer = setTimeout(() => controller.abort(), UPSTREAM_TIMEOUT_MS);
+
   const upstream = await fetch(
     `https://generativelanguage.googleapis.com/v1beta/models/${GEMINI_MODEL}:streamGenerateContent?alt=sse`,
     {
       method: "POST",
       headers: { "Content-Type": "application/json", "x-goog-api-key": apiKey },
+      signal: controller.signal,
       body: JSON.stringify({
         system_instruction: { parts: [{ text: buildSystemPrompt(mode) }] },
         contents: [{ role: "user", parts: [{ text: message }] }],
-        generationConfig: { maxOutputTokens: 512, temperature: 0.7 },
+        generationConfig: {
+          maxOutputTokens: 800,
+          temperature: 0.7,
+          thinkingConfig: { thinkingLevel: "low" },
+        },
       }),
     }
   ).catch(() => null);
 
   if (!upstream || !upstream.ok || !upstream.body) {
-    // Model unreachable (bad key, quota, outage) — degrade, don't die.
+    // Model unreachable (bad key, quota, outage): degrade, don't die.
+    clearTimeout(abortTimer);
     return streamOfflineAnswer(message);
   }
+  // First byte arrived; the stream itself is no longer on the clock.
+  clearTimeout(abortTimer);
 
   const reader = upstream.body.getReader();
   const decoder = new TextDecoder();
@@ -79,6 +99,7 @@ export async function POST(request: Request) {
   const stream = new ReadableStream<Uint8Array>({
     async start(controller) {
       let buffer = "";
+      let emittedAny = false;
       try {
         while (true) {
           const { done, value } = await reader.read();
@@ -95,6 +116,7 @@ export async function POST(request: Request) {
                   ?.map((p: { text?: string }) => p.text ?? "")
                   .join("") ?? "";
               if (text.length > 0) {
+                emittedAny = true;
                 controller.enqueue(sse({ token: text }));
               }
             } catch {
@@ -103,6 +125,11 @@ export async function POST(request: Request) {
           }
         }
       } finally {
+        // A stream that yielded no text (safety block, token budget spent on
+        // reasoning) would leave an empty bubble; answer from the facts instead.
+        if (!emittedAny) {
+          controller.enqueue(sse({ token: offlineAnswer(message) }));
+        }
         controller.enqueue(sse({ done: true }));
         controller.close();
       }
