@@ -17,7 +17,6 @@ const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileOpen, setIsMobileOpen] = useState(false);
   const [isMoreOpen, setIsMoreOpen] = useState(false);
-  const [mounted, setMounted] = useState(false);
   const [activeId, setActiveId] = useState("home");
   const moreRef = useRef<HTMLDivElement>(null);
   const { t } = useLocale();
@@ -48,7 +47,6 @@ const Navbar = () => {
   const isMoreActive = moreLinks.some((l) => l.href === `#${activeId}`);
 
   useEffect(() => {
-    setMounted(true);
     const handleScroll = () => setIsScrolled(window.scrollY > 50);
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
@@ -85,10 +83,10 @@ const Navbar = () => {
     return () => document.removeEventListener("mousedown", handleClick);
   }, [isMoreOpen]);
 
-  if (!mounted) return null;
-
+  // Rendered server-side (locale is always "en" at SSR, switching after
+  // hydration), so the header never pops in late.
   const linkClass = (href: string) =>
-    `text-sm transition-colors duration-200 ${
+    `text-sm transition-colors duration-200 rounded-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#9CE630]/60 ${
       href === `#${activeId}`
         ? "text-[#9CE630] font-medium"
         : "text-zinc-400 hover:text-[#9CE630]"
@@ -114,7 +112,12 @@ const Navbar = () => {
         {/* Desktop Nav — 5 primary links + a "More" dropdown for the rest */}
         <div className="hidden lg:flex items-center space-x-5">
           {primaryLinks.map((link) => (
-            <Link key={link.href} href={link.href} className={linkClass(link.href)}>
+            <Link
+              key={link.href}
+              href={link.href}
+              className={linkClass(link.href)}
+              aria-current={link.href === `#${activeId}` ? "true" : undefined}
+            >
               {link.name}
             </Link>
           ))}
@@ -146,6 +149,7 @@ const Navbar = () => {
                       key={link.href}
                       href={link.href}
                       onClick={() => setIsMoreOpen(false)}
+                      aria-current={link.href === `#${activeId}` ? "true" : undefined}
                       className={`block px-4 py-2 text-sm transition-colors ${
                         link.href === `#${activeId}`
                           ? "text-[#9CE630]"
@@ -155,38 +159,35 @@ const Navbar = () => {
                       {link.name}
                     </Link>
                   ))}
+                  {/* External profiles — moved out of the top bar so the
+                      right cluster keeps a single primary CTA */}
+                  <div className="my-2 border-t border-zinc-800" />
+                  <Link
+                    href="https://discord.gg/kXfEYVGX"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    onClick={() => setIsMoreOpen(false)}
+                    className="flex items-center gap-2 px-4 py-2 text-sm text-zinc-400 hover:text-[#5865F2] hover:bg-white/5 transition-colors"
+                  >
+                    <MessageCircle className="w-4 h-4" /> {t("nav.discord")}
+                  </Link>
+                  <Link
+                    href="https://github.com/asadullah48"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    onClick={() => setIsMoreOpen(false)}
+                    className="flex items-center gap-2 px-4 py-2 text-sm text-zinc-400 hover:text-[#9CE630] hover:bg-white/5 transition-colors"
+                  >
+                    <Github className="w-4 h-4" /> {t("nav.github")}
+                  </Link>
                 </motion.div>
               )}
             </AnimatePresence>
           </div>
         </div>
 
-        {/* Right side */}
+        {/* Right side — one quiet outline (Resume) + one primary CTA */}
         <div className="flex items-center space-x-2">
-          <Link
-            href="https://discord.gg/kXfEYVGX"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="hidden md:block"
-            title={t("nav.discord")}
-          >
-            <Button variant="ghost" size="icon" className="text-zinc-400 hover:text-[#5865F2] h-9 w-9">
-              <MessageCircle className="w-4 h-4" />
-              <span className="sr-only">{t("nav.discord")}</span>
-            </Button>
-          </Link>
-          <Link
-            href="https://github.com/asadullah48"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="hidden md:block"
-            title={t("nav.github")}
-          >
-            <Button variant="ghost" size="icon" className="text-zinc-400 hover:text-[#9CE630] h-9 w-9">
-              <Github className="w-4 h-4" />
-              <span className="sr-only">{t("nav.github")}</span>
-            </Button>
-          </Link>
           <Link href="/resume" className="hidden sm:block">
             <Button
               variant="outline"
@@ -227,6 +228,7 @@ const Navbar = () => {
                 key={link.href}
                 href={link.href}
                 onClick={() => setIsMobileOpen(false)}
+                aria-current={link.href === `#${activeId}` ? "true" : undefined}
                 className={`block py-2 transition-colors ${
                   link.href === `#${activeId}` ? "text-[#9CE630]" : "text-zinc-400 hover:text-[#9CE630]"
                 }`}

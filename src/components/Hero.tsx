@@ -169,11 +169,18 @@ function AgentModeStrip() {
   );
 }
 
+// Initial state is the real value so server HTML (crawlers, link previews,
+// no-JS readers) shows true numbers; the count-up runs only on the client
+// and is skipped for prefers-reduced-motion.
 function useCountUp(target: number, duration = 1800, inView = false) {
-  const [count, setCount] = useState(0);
+  const [count, setCount] = useState(target);
+  const started = useRef(false);
   useEffect(() => {
-    if (!inView) return;
+    if (!inView || started.current) return;
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    started.current = true;
     let start = 0;
+    setCount(0);
     const step = target / (duration / 16);
     const timer = setInterval(() => {
       start += step;

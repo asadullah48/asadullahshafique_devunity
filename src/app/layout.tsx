@@ -98,9 +98,15 @@ export default function RootLayout({
                                     dangerouslySetInnerHTML={{ __html: JSON.stringify(personJsonLd) }}
                         />
                               <LocaleProvider><KeyboardShortcutsProvider>
+                                    <a
+                                          href="#main-content"
+                                          className="sr-only focus:not-sr-only focus:fixed focus:top-2 focus:left-2 focus:z-[100] focus:bg-[#9CE630] focus:text-black focus:px-4 focus:py-2 focus:rounded-md focus:font-medium"
+                                    >
+                                          Skip to content
+                                    </a>
                                     <ScrollProgress />
                                     <Navbar />
-                                    <main>{children}</main>
+                                    <main id="main-content">{children}</main>
                                     <ShortcutsDialog />
                               </KeyboardShortcutsProvider></LocaleProvider>
                         </ThemeProvider>

@@ -27,6 +27,9 @@
 .DS_Store
 *.pem
 
+# editor local-history extensions
+.history/
+
 # debug
 npm-debug.log*
 yarn-debug.log*

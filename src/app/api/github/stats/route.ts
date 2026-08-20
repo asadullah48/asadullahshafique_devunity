@@ -8,21 +8,39 @@ interface GitHubProfile {
   following: number;
 }
 
+// Last-known-good values served when the GitHub API is unreachable or
+// rate-limited (unauthenticated requests share 60/hr per IP on Vercel).
+// Keeping the strip populated beats an eternal "Loading…" state.
+const FALLBACK_STATS = {
+  public_repos: 467,
+  followers: 40,
+  following: 60,
+  total_stars: 25,
+  top_languages: ["TypeScript", "Python", "JavaScript"],
+  fallback: true,
+};
+
 export async function GET() {
+  // An optional GITHUB_TOKEN raises the rate limit from 60/hr to 5000/hr.
+  const headers: Record<string, string> = { Accept: "application/vnd.github+json" };
+  if (process.env.GITHUB_TOKEN) {
+    headers.Authorization = `Bearer ${process.env.GITHUB_TOKEN}`;
+  }
+
   try {
     const [profileRes, reposRes] = await Promise.all([
       fetch(`https://api.github.com/users/${GITHUB_USERNAME}`, {
-        headers: { Accept: "application/vnd.github+json" },
+        headers,
         next: { revalidate: 3600 },
       }),
       fetch(`https://api.github.com/users/${GITHUB_USERNAME}/repos?per_page=100&sort=updated`, {
-        headers: { Accept: "application/vnd.github+json" },
+        headers,
         next: { revalidate: 3600 },
       }),
     ]);
 
     if (!profileRes.ok || !reposRes.ok) {
-      return NextResponse.json({ error: "GitHub API error" }, { status: 502 });
+      return NextResponse.json(FALLBACK_STATS);
     }
 
     const profile = (await profileRes.json()) as GitHubProfile;
@@ -50,6 +68,6 @@ export async function GET() {
     });
   } catch (error) {
     console.error("GitHub Stats error:", error);
-    return NextResponse.json({ error: "Internal server error" }, { status: 500 });
+    return NextResponse.json(FALLBACK_STATS);
   }
 }
