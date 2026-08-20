@@ -45,7 +45,7 @@ export const metadata: Metadata = {
                   "Building the future with Agentic AI, Full-Stack Development, and Open Source.",
           type: "website",
           url: BASE_URL,
-          siteName: "Asadullah Shafique — Portfolio",
+          siteName: "Asadullah Shafique Portfolio",
           locale: "en_US",
     },
     twitter: {

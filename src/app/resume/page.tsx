@@ -105,12 +105,12 @@ const hackathons = [
 
 const projects = [
   {
-    name: "Textile ERP Platform — Pakistan",
+    name: "Textile ERP Platform (Pakistan)",
     status: "In Development",
     role: "Founder",
     period: "2024 – Present",
     description:
-      "Full-scale ERP targeting Pakistan's textile and garment industry — from Fabric Mills to CMT units to garment exporters.",
+      "Full-scale ERP targeting Pakistan's textile and garment industry, from Fabric Mills to CMT units to garment exporters.",
     bullets: [
       "Fabric Mill Module: Roll/lot management, weaving & knitting stage tracking, yarn inventory, imported fabric handling",
       "CMT Core: Order lifecycle management, auto-billing (4 bill types), inventory with BOM, production sessions, dispatch tracking",
@@ -138,7 +138,7 @@ const projects = [
 
 const experience = [
   {
-    role: "Founder & CEO — CMT Stitching Operations",
+    role: "Founder & CEO, CMT Stitching Operations",
     company: "Texcot Embroidery Sourcing House",
     period: "2020 – Present",
     location: "Karachi, Pakistan",
@@ -174,8 +174,8 @@ const experience = [
 ];
 
 const education = [
-  { degree: "Alim — 5-Year Islamic Studies Course", institution: "Burooj Institute, Karachi", period: "" },
-  { degree: "Associate Degree — Textile Technology", institution: "Textile Institute of Pakistan (APTMA)", period: "1997" },
+  { degree: "Alim (5-Year Islamic Studies Course)", institution: "Burooj Institute, Karachi", period: "" },
+  { degree: "Associate Degree in Textile Technology", institution: "Textile Institute of Pakistan (APTMA)", period: "1997" },
   { degree: "H.S.C Pre-Engineering", institution: "Pakistan Shipowner's Government College, Karachi", period: "1994" },
   { degree: "S.S.C Science", institution: "Ladybird Grammar School, Karachi", period: "1992" },
 ];
@@ -272,7 +272,7 @@ export default function ResumePage() {
           <p className="text-zinc-300 leading-relaxed">
             Agentic AI Developer and CMT Industry Founder with <span className="text-white font-medium">25+ years</span> of deep textile domain expertise,
             now building AI-powered SaaS for Pakistan&apos;s textile value chain. Founder of Texcot Embroidery Sourcing House and creator of the{" "}
-            <span className="text-[#9CE630] font-medium">Textile ERP Platform</span> — a full-scale system targeting fabric mills, CMT units, and garment
+            <span className="text-[#9CE630] font-medium">Textile ERP Platform</span>, a full-scale system targeting fabric mills, CMT units, and garment
             exporters across Faisalabad, Sialkot, Gujranwala, Karachi, and Lahore.
           </p>
           <p className="text-zinc-300 leading-relaxed mt-3">
@@ -321,7 +321,7 @@ export default function ResumePage() {
         {/* Hackathons */}
         <Section title="Hackathon Achievements" icon={<Trophy className="w-5 h-5" />}>
           <p className="text-sm text-zinc-500 mb-5">
-            Panaversity Hackathon Series — <span className="text-zinc-300">6 Consecutive Wins</span> · 85% Code Reuse · Zero Failed Attempts
+            Panaversity Hackathon Series: <span className="text-zinc-300">6 Consecutive Wins</span> · 85% Code Reuse · Zero Failed Attempts
           </p>
           <div className="space-y-3">
             {hackathons.map((h) => (

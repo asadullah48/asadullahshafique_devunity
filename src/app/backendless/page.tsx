@@ -319,8 +319,7 @@ function ProjectList({
     try {
       const response = await fetch(`${API_URL}/api/backendless`);
       if (response.ok) {
-        const data = await response.json();
-        // @ts-ignore
+        const data = (await response.json()) as Project[];
         setProjectsLocal(data);
       }
     } catch (error) {

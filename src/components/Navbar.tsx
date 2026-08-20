@@ -21,15 +21,16 @@ const Navbar = () => {
   const moreRef = useRef<HTMLDivElement>(null);
   const { t } = useLocale();
 
+  // Order mirrors the page's section flow (AI-engineering proof first).
   const navLinks = useMemo(() => [
     { key: "about",        name: t("nav.about"),        href: "#about"        },
-    { key: "services",     name: t("nav.services"),     href: "#services"     },
-    { key: "industries",   name: t("nav.industries"),   href: "#industries"   },
     { key: "skills",       name: t("nav.skills"),       href: "#skills"       },
     { key: "agentEng",     name: t("nav.agentEng"),     href: "#agent-engineering" },
     { key: "roadmap",      name: t("nav.roadmap"),      href: "#roadmap"      },
     { key: "projects",     name: t("nav.projects"),     href: "#projects"     },
     { key: "hackathons",   name: t("nav.hackathons"),   href: "#hackathons"   },
+    { key: "services",     name: t("nav.services"),     href: "#services"     },
+    { key: "industries",   name: t("nav.industries"),   href: "#industries"   },
     { key: "blog",         name: t("nav.blog"),         href: "#blog"         },
     { key: "openSource",   name: t("nav.openSource"),   href: "#open-source"  },
     { key: "testimonials", name: t("nav.testimonials"), href: "#testimonials" },

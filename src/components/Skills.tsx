@@ -280,7 +280,7 @@ export function SkillsSection() {
               >
                 <div className="flex items-center gap-3 mb-4">
                   <span className="text-xs font-mono text-green-400 uppercase tracking-widest">
-                    // {role.toLowerCase().replace(/ /g, "_")}
+                    {`// ${role.toLowerCase().replace(/ /g, "_")}`}
                   </span>
                   <div className="flex-1 h-px bg-green-500/15" />
                   <span className="text-xs text-zinc-600">{skills.length} tools</span>

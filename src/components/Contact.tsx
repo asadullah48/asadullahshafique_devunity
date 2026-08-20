@@ -57,7 +57,7 @@ const Contact = () => {
           className="text-center mb-16"
         >
           <div className="text-xs font-mono text-green-400/60 uppercase tracking-widest mb-3">
-            // contact
+            {"// contact"}
           </div>
           <h2 className="text-3xl md:text-5xl font-bold text-white mb-4">
             {t("contact.title")} <span className="text-[#9CE630]">{t("contact.titleHighlight")}</span>

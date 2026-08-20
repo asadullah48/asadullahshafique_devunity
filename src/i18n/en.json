@@ -25,10 +25,10 @@
     "location": "Pakistan · UAE",
     "greeting": "Hi, I'm",
     "name": "Asadullah",
-    "description": "Building production-grade AI systems and marketing real businesses — from Dubai construction to Pakistani textile factories. Six hackathons. Zero failures.",
+    "description": "Building production-grade AI systems for real businesses, from Dubai construction to Pakistani textile factories. Six hackathons. Zero failures.",
     "descPre": "Building",
     "descBold1": "production-grade AI systems",
-    "descMid1": "and marketing real businesses — from",
+    "descMid1": "for real businesses, from",
     "descBold2": "Dubai construction",
     "descMid2": "to",
     "descBold3": "Pakistani textile factories",
@@ -54,14 +54,14 @@
   "about": {
     "title": "About",
     "titleHighlight": "Me",
-    "subtitle": "Agentic AI Developer, Digital Marketing Strategist, and CMT Industry Founder — building AI-powered systems and marketing real businesses across Pakistan and UAE.",
+    "subtitle": "Agentic AI Developer, Digital Marketing Strategist, and CMT Industry Founder, building AI-powered systems for real businesses across Pakistan and UAE.",
     "bioName": "Asadullah Shafique",
     "badgeAI": "Agentic AI Developer",
     "badgeCMT": "CMT Industry Founder",
     "badgeMarketing": "Digital Marketer",
-    "bio": "I build production-grade AI systems and run real businesses. Founder of Texcot Embroidery Sourcing House and creator of the Textile ERP Platform — targeting Pakistan's full textile value chain. Completing the Panaversity Hackathon Series: 6 consecutive hackathons, 85% code reusability, zero failed attempts. Bridging AI development and digital marketing for Pakistan and UAE markets.",
+    "bio": "I build production-grade AI systems and run real businesses. Founder of Texcot Embroidery Sourcing House and creator of the Textile ERP Platform targeting Pakistan's full textile value chain. Completing the Panaversity Hackathon Series: 6 consecutive hackathons, 85% code reusability, zero failed attempts. Bridging AI development and digital marketing for Pakistan and UAE markets.",
     "h1Title": "Agentic AI Builder",
-    "h1Desc": "Production-grade agents using OpenAI Agents SDK, MCP servers, Constitutional AI — deployed on Kubernetes.",
+    "h1Desc": "Production-grade agents using OpenAI Agents SDK, MCP servers, and Constitutional AI, deployed on Kubernetes.",
     "h2Title": "CMT Industry Founder",
     "h2Desc": "Founded Texcot Embroidery Sourcing House. Building Textile ERP Platform for Pakistan's full textile value chain.",
     "h3Title": "Digital Marketing",
@@ -76,7 +76,7 @@
   "skills": {
     "title": "Tech",
     "titleHighlight": "Stack",
-    "subtitle": "Technologies I use to ship production-ready applications — from agentic AI systems to cloud-native microservices.",
+    "subtitle": "Technologies I use to ship production-ready applications, from agentic AI systems to cloud-native microservices.",
     "footer": "+ Cloudflare Workers · Radix UI · Lucide Icons · REST APIs · MCP Servers",
     "tabLanguages": "Languages",
     "tabFrameworks": "Frameworks",
@@ -88,31 +88,31 @@
   "agentEngineering": {
     "title": "Agent",
     "titleHighlight": "Engineering",
-    "subtitle": "The three disciplines behind every production agent I ship. A model is not a product — the harness, the loop, and the graph around it are.",
+    "subtitle": "The three disciplines behind every production agent I ship. A model is not a product. The harness, the loop, and the graph around it are.",
     "harness": {
       "tag": "The Environment",
       "title": "Harness Engineering",
       "desc": "The safety net around the model: tools, memory, permissions, observability. The harness decides what an agent can see, touch, and remember.",
-      "callout": "Agent forgot what it did 5 steps ago? Deleted the wrong file? That's not a model failure — that's a harness problem."
+      "callout": "Agent forgot what it did 5 steps ago? Deleted the wrong file? That's not a model failure. It's a harness problem."
     },
     "loop": {
       "tag": "The Feedback",
       "title": "Loop Engineering",
-      "desc": "How the agent evaluates its own work and gets better at the job — tests, evals, and verification wired into every iteration.",
-      "callout": "Evidence over confidence. A coding agent stops when the tests pass — not when it feels done."
+      "desc": "How the agent evaluates its own work and gets better at the job: tests, evals, and verification wired into every iteration.",
+      "callout": "Evidence over confidence. A coding agent stops when the tests pass, not when it feels done."
     },
     "graph": {
       "tag": "The Flow",
       "title": "Graph Engineering",
-      "desc": "Orchestration of the full workflow: branching, approvals, retries, parallel tasks — turning a single agent into a dependable system.",
+      "desc": "Orchestration of the full workflow (branching, approvals, retries, parallel tasks) that turns a single agent into a dependable system.",
       "callout": "One agent is a demo. A graph with retries, approval gates, and parallel branches is a product."
     },
-    "footer": "harness × loop × graph — the framework I apply to every agent build"
+    "footer": "harness × loop × graph: the framework I apply to every agent build"
   },
   "roadmap": {
     "title": "Engineering",
     "titleHighlight": "Expertise",
-    "subtitle": "Production-ready command across backend engineering, infrastructure, cloud, and AI — sharpened through 6 hackathons and live deployments.",
+    "subtitle": "Production-ready command across backend engineering, infrastructure, cloud, and AI, sharpened through 6 hackathons and live deployments.",
     "python": {
       "title": "Python",
       "subtitle": "Core Language",
@@ -182,15 +182,15 @@
   "services": {
     "title": "What I",
     "titleHighlight": "Offer",
-    "subtitle": "AI development, digital marketing, and industry-specific SaaS — built for real businesses.",
+    "subtitle": "AI development, digital marketing, and industry-specific SaaS, built for real businesses.",
     "s1Title": "Digital Marketing",
     "s1Desc": "Full-spectrum digital marketing for Dubai real estate, UAE construction, and Pakistani businesses. Strategy, social media, paid ads, property portals, and monthly reporting.",
     "s1CTA": "See Marketing Plan →",
     "s2Title": "AI-Powered SaaS Development",
-    "s2Desc": "Production-grade agentic systems, cloud-native deployment, MCP servers, and custom AI agents. Built and deployed — not just prototyped.",
+    "s2Desc": "Production-grade agentic systems, cloud-native deployment, MCP servers, and custom AI agents. Built and deployed, not just prototyped.",
     "s2CTA": "View GitHub →",
-    "s3Title": "Textile ERP Platform — Pakistan",
-    "s3Desc": "A full-spectrum ERP for Pakistan's textile industry — from Fabric Mills to garment exporters. Module 1: Fabric Mill — roll/lot management, weaving and knitting stage tracking, Yarn inventory, and Imported Fabric. Further modules: CMT order lifecycle, auto-billing, production sessions, dispatch, party ledgers, and financial accounts.",
+    "s3Title": "Textile ERP Platform (Pakistan)",
+    "s3Desc": "A full-spectrum ERP for Pakistan's textile industry, from fabric mills to garment exporters. Module 1 (Fabric Mill): roll/lot management, weaving and knitting stage tracking, yarn inventory, and imported fabric. Further modules: CMT order lifecycle, auto-billing, production sessions, dispatch, party ledgers, and financial accounts.",
     "s3CTA": "Join Waitlist →",
     "s3Badge": "Launching 2026"
   },
@@ -200,7 +200,7 @@
     "subtitle": "Domain expertise built through real operations, not just consulting.",
     "i1Title": "Textile & Garment",
     "i1Sub": "Pakistan · UAE · Turkey",
-    "i1Desc": "Serving Pakistan's textile value chain — CMT stitching units, garment factories, fabric mills, and exporters across Faisalabad, Sialkot, Gujranwala, Karachi, and Lahore. Also UAE and Turkish sourcing houses.",
+    "i1Desc": "Serving Pakistan's textile value chain: CMT stitching units, garment factories, fabric mills, and exporters across Faisalabad, Sialkot, Gujranwala, Karachi, and Lahore. Also UAE and Turkish sourcing houses.",
     "i2Title": "Dubai & UAE Real Estate / Construction",
     "i2Sub": "Real estate · Contractors · Developers",
     "i2Desc": "Digital marketing, property portals, social media, and lead generation for the UAE construction and property sector.",
@@ -211,7 +211,7 @@
   "projects": {
     "title": "Featured",
     "titleHighlight": "Projects",
-    "subtitle": "Production-grade systems — not prototypes. Click View Case Study on any card for the full problem → solution → impact breakdown.",
+    "subtitle": "Production-grade systems, not prototypes. Click View Case Study on any card for the full problem, solution, and impact breakdown.",
     "viewCode": "Code",
     "viewLive": "Live",
     "viewDemo": "Demo",
@@ -227,7 +227,7 @@
   "hackathons": {
     "title": "Hackathons &",
     "titleHighlight": "Achievements",
-    "subtitle": "6 consecutive Panaversity hackathons — Bronze through Agent Factory. Zero failures, 85% code reuse.",
+    "subtitle": "6 consecutive Panaversity hackathons, Bronze through Agent Factory. Zero failures, 85% code reuse.",
     "agentFactory": "Agent Factory",
     "platinum": "Platinum",
     "gold": "Gold",
@@ -240,18 +240,18 @@
     "titleHighlight": "Articles",
     "subtitle": "Lessons from 6 hackathons, production AI systems, and building real businesses with technology.",
     "readArticle": "Read Article",
-    "discordNote": "New articles drop in the Discord first — along with code snippets, WIP demos, and hackathon post-mortems.",
+    "discordNote": "New articles drop in the Discord first, along with code snippets, WIP demos, and hackathon post-mortems.",
     "joinHub": "Join Asadullah's Dev Hub"
   },
   "opensrc": {
     "title": "Open",
     "titleHighlight": "Source",
-    "subtitle": "All projects are open source. 467+ repositories and counting — built in public, shipped with purpose.",
+    "subtitle": "All projects are open source. 467+ repositories and counting, built in public and shipped with purpose.",
     "githubActivity": "GitHub Activity",
     "contributeGithub": "Contribute on GitHub",
     "joinDiscord": "Join Discord Community",
     "v1Title": "Global Collaboration",
-    "v1Desc": "Contributing to projects that empower developer communities worldwide — Pakistan, UAE, and beyond.",
+    "v1Desc": "Contributing to projects that empower developer communities worldwide: Pakistan, UAE, and beyond.",
     "v2Title": "Quality Code",
     "v2Desc": "Clean, documented, well-tested code. 149+ tests passing. CLAUDE.md-driven spec-first delivery.",
     "v3Title": "Community Impact",
@@ -265,7 +265,7 @@
   "testimonials": {
     "title": "What People",
     "titleHighlight": "Say",
-    "subtitle": "From Dubai real estate to Faisalabad garment factories — feedback from the people I've worked with.",
+    "subtitle": "From Dubai real estate to Faisalabad garment factories: feedback from the people I've worked with.",
     "linkedInCTA": "View LinkedIn Recommendations"
   },
   "discord": {

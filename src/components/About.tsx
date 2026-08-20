@@ -102,9 +102,6 @@ const About = () => {
           viewport={{ once: true }}
           className="text-center mb-16"
         >
-          <div className="text-xs font-mono text-green-400/60 uppercase tracking-widest mb-3">
-            // about
-          </div>
           <h2 className="text-3xl md:text-5xl font-bold text-white mb-4">
             {t("about.title")} <span className="text-[#9CE630]">{t("about.titleHighlight")}</span>
           </h2>

@@ -4,7 +4,7 @@ import { useState, useEffect, useMemo, useRef } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { motion, AnimatePresence, useInView } from "framer-motion";
-import { ArrowDown, Github, ExternalLink, MapPin } from "lucide-react";
+import { ArrowDown, ExternalLink, MapPin } from "lucide-react";
 import { useLocale } from "@/context/LocaleContext";
 
 const TERMINAL_LINES = [
@@ -144,7 +144,7 @@ function AgentModeStrip() {
       className="w-full max-w-xs"
     >
       <div className="text-[10px] text-gray-600 font-mono uppercase tracking-widest mb-2 px-1">
-        // available_agents
+        {"// available_agents"}
       </div>
       <div className="grid grid-cols-2 gap-1.5">
         {AGENT_MODES.map((mode) => (
@@ -339,14 +339,6 @@ export function HeroSection() {
               {t("hero.viewWork")} <ArrowDown className="w-4 h-4" />
             </Link>
             <a
-              href="https://github.com/asadullah48"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex items-center gap-2 border border-white/20 hover:border-green-500/50 text-white px-6 py-3 rounded-lg transition-all duration-200 hover:bg-white/5"
-            >
-              <Github className="w-4 h-4" /> {t("hero.githubProfile")}
-            </a>
-            <a
               href="/resume.pdf"
               download="Asadullah_Shafique_Resume.pdf"
               target="_blank"
@@ -379,14 +371,6 @@ export function HeroSection() {
         </motion.div>
       </div>
 
-      <motion.div
-        className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-1"
-        animate={{ y: [0, 8, 0] }}
-        transition={{ repeat: Infinity, duration: 2, ease: "easeInOut" }}
-      >
-        <span className="text-[10px] text-gray-600 tracking-widest uppercase">{t("hero.scroll")}</span>
-        <ArrowDown className="w-4 h-4 text-green-400/40" />
-      </motion.div>
     </section>
   );
 }

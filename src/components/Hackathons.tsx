@@ -30,7 +30,7 @@ const tierStyles: Record<HackathonTier, string> = {
 const HACKATHONS_EN: HackathonEntry[] = [
   {
     tier: "Agent Factory",
-    title: "H5 — Agent Factory",
+    title: "H5: Agent Factory",
     organizer: "Panaversity Hackathon Series",
     date: "2025",
     location: "Online",
@@ -41,7 +41,7 @@ const HACKATHONS_EN: HackathonEntry[] = [
   },
   {
     tier: "Platinum",
-    title: "H4 — Cloud-Native Deployment",
+    title: "H4: Cloud-Native Deployment",
     organizer: "Panaversity Hackathon Series",
     date: "2025",
     location: "Online",
@@ -52,7 +52,7 @@ const HACKATHONS_EN: HackathonEntry[] = [
   },
   {
     tier: "Gold",
-    title: "H3 — Advanced Todo",
+    title: "H3: Advanced Todo",
     organizer: "Panaversity Hackathon Series",
     date: "2025",
     location: "Online",
@@ -63,7 +63,7 @@ const HACKATHONS_EN: HackathonEntry[] = [
   },
   {
     tier: "Silver",
-    title: "H2 — AI-Powered Todo",
+    title: "H2: AI-Powered Todo",
     organizer: "Panaversity Hackathon Series",
     date: "2025",
     location: "Online",
@@ -74,7 +74,7 @@ const HACKATHONS_EN: HackathonEntry[] = [
   },
   {
     tier: "Silver",
-    title: "H1 — Course Companion FTE",
+    title: "H1: Course Companion FTE",
     organizer: "Panaversity Hackathon Series",
     date: "2024",
     location: "Online",
@@ -85,7 +85,7 @@ const HACKATHONS_EN: HackathonEntry[] = [
   },
   {
     tier: "Bronze",
-    title: "H0 — Personal AI CTO",
+    title: "H0: Personal AI CTO",
     organizer: "Panaversity Hackathon Series",
     date: "2024",
     location: "Online",
@@ -99,7 +99,7 @@ const HACKATHONS_EN: HackathonEntry[] = [
 const HACKATHONS_AR: HackathonEntry[] = [
   {
     tier: "Agent Factory",
-    title: "H5 — مصنع الوكلاء",
+    title: "H5: مصنع الوكلاء",
     organizer: "سلسلة هاكاثونات Panaversity",
     date: "2025",
     location: "عبر الإنترنت",
@@ -110,7 +110,7 @@ const HACKATHONS_AR: HackathonEntry[] = [
   },
   {
     tier: "Platinum",
-    title: "H4 — النشر السحابي الأصيل",
+    title: "H4: النشر السحابي الأصيل",
     organizer: "سلسلة هاكاثونات Panaversity",
     date: "2025",
     location: "عبر الإنترنت",
@@ -121,7 +121,7 @@ const HACKATHONS_AR: HackathonEntry[] = [
   },
   {
     tier: "Gold",
-    title: "H3 — مهام متقدمة",
+    title: "H3: مهام متقدمة",
     organizer: "سلسلة هاكاثونات Panaversity",
     date: "2025",
     location: "عبر الإنترنت",
@@ -132,7 +132,7 @@ const HACKATHONS_AR: HackathonEntry[] = [
   },
   {
     tier: "Silver",
-    title: "H2 — مهام مدعومة بالذكاء الاصطناعي",
+    title: "H2: مهام مدعومة بالذكاء الاصطناعي",
     organizer: "سلسلة هاكاثونات Panaversity",
     date: "2025",
     location: "عبر الإنترنت",
@@ -143,7 +143,7 @@ const HACKATHONS_AR: HackathonEntry[] = [
   },
   {
     tier: "Silver",
-    title: "H1 — زميل الدورة الموظف الرقمي",
+    title: "H1: زميل الدورة الموظف الرقمي",
     organizer: "سلسلة هاكاثونات Panaversity",
     date: "2024",
     location: "عبر الإنترنت",
@@ -154,7 +154,7 @@ const HACKATHONS_AR: HackathonEntry[] = [
   },
   {
     tier: "Bronze",
-    title: "H0 — المدير التقني الشخصي بالذكاء الاصطناعي",
+    title: "H0: المدير التقني الشخصي بالذكاء الاصطناعي",
     organizer: "سلسلة هاكاثونات Panaversity",
     date: "2024",
     location: "عبر الإنترنت",
@@ -187,9 +187,6 @@ const Hackathons = () => {
           viewport={{ once: true }}
           className="text-center mb-16"
         >
-          <div className="text-xs font-mono text-green-400/60 uppercase tracking-widest mb-3">
-            // hackathons
-          </div>
           <h2 className="text-3xl md:text-5xl font-bold text-white mb-4">
             {t("hackathons.title")} <span className="text-[#9CE630]">{t("hackathons.titleHighlight")}</span>
           </h2>

@@ -29,7 +29,7 @@ const POSTS_EN: Post[] = [
     slug: "constitutional-ai-todo-spec-first",
     title: "Building a Constitutional AI Todo App: The Spec-First Way",
     excerpt:
-      "149 tests passing. Triple-layer Constitutional AI with 7 BLOCK and 5 FLAG patterns. Team collaboration, recurring todos, and calendar integration — built in four 3-hour sessions from a single SPEC.md file.",
+      "149 tests passing. Triple-layer Constitutional AI with 7 BLOCK and 5 FLAG patterns. Team collaboration, recurring todos, and calendar integration, built in four 3-hour sessions from a single SPEC.md file.",
     readTime: "12 min read",
     date: "March 2025",
     tags: ["Constitutional AI", "FastAPI", "Next.js", "TDD"],
@@ -62,7 +62,7 @@ const POSTS_AR: Post[] = [
     slug: "constitutional-ai-todo-spec-first",
     title: "بناء تطبيق مهام بالذكاء الاصطناعي الدستوري: الطريقة Spec-First",
     excerpt:
-      "149 اختباراً ناجحاً. ذكاء اصطناعي دستوري ثلاثي الطبقات بـ 7 أنماط BLOCK و5 أنماط FLAG. تعاون جماعي ومهام متكررة وتكامل التقويم — مبني في أربع جلسات من 3 ساعات من ملف SPEC.md واحد.",
+      "149 اختباراً ناجحاً. ذكاء اصطناعي دستوري ثلاثي الطبقات بـ 7 أنماط BLOCK و5 أنماط FLAG. تعاون جماعي ومهام متكررة وتكامل التقويم، مبني في أربع جلسات من 3 ساعات من ملف SPEC.md واحد.",
     readTime: "12 دقيقة قراءة",
     date: "مارس 2025",
     tags: ["الذكاء الاصطناعي الدستوري", "FastAPI", "Next.js", "TDD"],

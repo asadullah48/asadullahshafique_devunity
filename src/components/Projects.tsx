@@ -29,14 +29,14 @@ type Project = {
 const PROJECTS_EN: Project[] = [
   {
     id: "bazaar",
-    title: "Bazaar — Unified B2B + B2C Marketplace",
+    title: "Bazaar: Unified B2B + B2C Marketplace",
     status: "Flagship",
     statusColor: "#f59e0b",
     tagline: "Pakistan's First Unified B2B/B2C Marketplace",
-    problem: "Local SMEs in Pakistan and the UAE have no unified digital storefront. Buyers juggle multiple platforms, vendors lack analytics, and enterprise clients need white-label flexibility — all three groups are underserved by existing solutions.",
-    solution: "Bazaar unifies B2C retail (browse, cart, checkout — JazzCash, Easypaisa, Card) and B2B wholesale (RFQ engine, quantity-tier pricing, verified suppliers) into one platform. Architecture: multi-tenant Next.js 15 storefront, FastAPI microservices, Supabase BaaS for auth/realtime, local + Stripe payment gateways, vendor dashboard with analytics, AI-powered recommendations, and a white-label enterprise tier.",
-    impact: "500+ verified sellers, 10K+ products across Textiles, Electronics, Furniture, Auto Parts & more. PKR-native, 3 languages (EN/UR/AR). Modular design means each tier is additive — one codebase, SME to enterprise scale.",
-    description: "Pakistan's first unified marketplace with dual B2C retail storefront and B2B wholesale/RFQ engine — 500+ verified sellers, 10K+ products, JazzCash/Easypaisa/Card payments, and PKR-native currency. Built for local SMEs and enterprise adoption.",
+    problem: "Local SMEs in Pakistan and the UAE have no unified digital storefront. Buyers juggle multiple platforms, vendors lack analytics, and enterprise clients need white-label flexibility, all three groups are underserved by existing solutions.",
+    solution: "Bazaar unifies B2C retail (browse, cart, checkout, JazzCash, Easypaisa, Card) and B2B wholesale (RFQ engine, quantity-tier pricing, verified suppliers) into one platform. Architecture: multi-tenant Next.js 15 storefront, FastAPI microservices, Supabase BaaS for auth/realtime, local + Stripe payment gateways, vendor dashboard with analytics, AI-powered recommendations, and a white-label enterprise tier.",
+    impact: "500+ verified sellers, 10K+ products across Textiles, Electronics, Furniture, Auto Parts & more. PKR-native, 3 languages (EN/UR/AR). Modular design means each tier is additive, one codebase, SME to enterprise scale.",
+    description: "Pakistan's first unified marketplace with dual B2C retail storefront and B2B wholesale/RFQ engine, 500+ verified sellers, 10K+ products, JazzCash/Easypaisa/Card payments, and PKR-native currency. Built for local SMEs and enterprise adoption.",
     tech: ["Next.js 15", "FastAPI", "Supabase", "PostgreSQL", "Redis", "Docker", "TypeScript", "WhatsApp"],
     github: "https://github.com/asadullah48/bazaar",
     demo: "https://frontend-three-kappa-64.vercel.app",
@@ -51,14 +51,14 @@ const PROJECTS_EN: Project[] = [
   },
   {
     id: "ai-tradeflow",
-    title: "AI TradeFlow — Inventory & Accounting for Wholesalers",
+    title: "AI TradeFlow: Inventory & Accounting for Wholesalers",
     status: "In Development",
     statusColor: "#84cc16",
-    tagline: "AI for Pakistan's Trade Economy — Portfolio Project 1",
-    problem: "Pakistan's wholesalers and traders run multi-crore operations on paper registers, WhatsApp voice notes, and memory — no real-time stock visibility, chaotic udhaar (credit) tracking, and reorder decisions made on gut feel instead of data.",
-    solution: "A bilingual (Urdu + English) inventory and accounting platform with a real digital FTE, Munshi AI — an OpenAI Agents SDK agent with 5 read-only tools and a deterministic constitutional guardrail that blocks fraud/tax-evasion requests before any LLM call, never fabricates a number, and gracefully degrades to tool-grounded answers if the model API fails. FastAPI + SQLAlchemy + Alembic backend, a Next.js web app, and an Expo mobile companion, all against one shared API.",
-    impact: "90 automated tests, including full-trade-cycle API integration tests and agent golden-question suites with tool-citation assertions. Proper FIFO udhaar aging, not a balance heuristic. First project in the 'AI for Pakistan Trade' series — back-office module now, sourcing/logistics/negotiation phases to follow.",
-    description: "Bilingual AI-powered inventory & accounting platform for Pakistani wholesalers, with Munshi AI — a constitutionally-guarded digital accountant that reads your own data and answers 'what should I order this week?' with cited, grounded recommendations.",
+    tagline: "AI for Pakistan's Trade Economy, Portfolio Project 1",
+    problem: "Pakistan's wholesalers and traders run multi-crore operations on paper registers, WhatsApp voice notes, and memory, no real-time stock visibility, chaotic udhaar (credit) tracking, and reorder decisions made on gut feel instead of data.",
+    solution: "A bilingual (Urdu + English) inventory and accounting platform with a real digital FTE, Munshi AI, an OpenAI Agents SDK agent with 5 read-only tools and a deterministic constitutional guardrail that blocks fraud/tax-evasion requests before any LLM call, never fabricates a number, and gracefully degrades to tool-grounded answers if the model API fails. FastAPI + SQLAlchemy + Alembic backend, a Next.js web app, and an Expo mobile companion, all against one shared API.",
+    impact: "90 automated tests, including full-trade-cycle API integration tests and agent golden-question suites with tool-citation assertions. Proper FIFO udhaar aging, not a balance heuristic. First project in the 'AI for Pakistan Trade' series, back-office module now, sourcing/logistics/negotiation phases to follow.",
+    description: "Bilingual AI-powered inventory & accounting platform for Pakistani wholesalers, with Munshi AI, a constitutionally-guarded digital accountant that reads your own data and answers 'what should I order this week?' with cited, grounded recommendations.",
     tech: ["FastAPI", "Next.js 16", "OpenAI Agents SDK", "SQLAlchemy", "Alembic", "Expo", "PostgreSQL"],
     github: "https://github.com/asadullah48/ai-tradeflow",
     metrics: [
@@ -75,10 +75,10 @@ const PROJECTS_EN: Project[] = [
     status: "In Development",
     statusColor: "#84cc16",
     tagline: "Full-scale ERP for Pakistan's textile industry",
-    problem: "Pakistan's textile industry — CMT stitching units, garment factories, fabric mills — runs on WhatsApp messages, Excel sheets, and paper ledgers. Billing errors, zero production visibility, and manual inventory cost real money every day.",
+    problem: "Pakistan's textile industry, CMT stitching units, garment factories, fabric mills, runs on WhatsApp messages, Excel sheets, and paper ledgers. Billing errors, zero production visibility, and manual inventory cost real money every day.",
     solution: "Multi-tenant SaaS ERP. Module 1 (Fabric Mill): roll/lot management, weaving & knitting stage tracking, yarn inventory, imported fabric. CMT modules: full order lifecycle, auto-billing across 4 bill types, BOM inventory, production sessions, dispatch, party ledgers, and cash tracking.",
-    impact: "Targeting Faisalabad, Sialkot, Gujranwala, Karachi, and Lahore — Pakistan's full textile heartland. Multi-tenant SaaS on Kubernetes. Launching 2026.",
-    description: "Full-scale ERP for Pakistan's textile and garment industry — from Fabric Mills to garment exporters.",
+    impact: "Targeting Faisalabad, Sialkot, Gujranwala, Karachi, and Lahore, Pakistan's full textile heartland. Multi-tenant SaaS on Kubernetes. Launching 2026.",
+    description: "Full-scale ERP for Pakistan's textile and garment industry, from Fabric Mills to garment exporters.",
     tech: ["Next.js", "FastAPI", "PostgreSQL", "Kubernetes", "Supabase", "TypeScript"],
     github: "https://github.com/asadullah48",
     metrics: [
@@ -115,7 +115,7 @@ const PROJECTS_EN: Project[] = [
     status: "In Development",
     statusColor: "#84cc16",
     tagline: "CMT operations management for garment factories",
-    description: "Specialised ERP for stitching units and packing departments. Order tracking, machine allocation, QC checkpoints, packaging labels, and export documentation — built for Pakistan's garment exporters.",
+    description: "Specialised ERP for stitching units and packing departments. Order tracking, machine allocation, QC checkpoints, packaging labels, and export documentation, built for Pakistan's garment exporters.",
     tech: ["Next.js", "Supabase", "TypeScript", "PostgreSQL", "FastAPI"],
     github: "https://github.com/asadullah48",
     metrics: [
@@ -159,14 +159,14 @@ const PROJECTS_EN: Project[] = [
 const PROJECTS_AR: Project[] = [
   {
     id: "bazaar",
-    title: "بازار — سوق B2B + B2C الموحد",
+    title: "بازار: سوق B2B + B2C الموحد",
     status: "Flagship",
     statusColor: "#f59e0b",
     tagline: "أول سوق موحد B2B/B2C في باكستان",
-    problem: "الشركات الصغيرة في باكستان والإمارات تفتقر إلى واجهة رقمية موحدة. المشترون يتنقلون بين منصات متعددة، والبائعون يفتقرون للتحليلات، وعملاء المؤسسات يحتاجون مرونة العلامة البيضاء — جميع الفئات غير خاضعة للخدمة الكاملة.",
-    solution: "بازار يوحّد تجارة التجزئة B2C (التصفح، السلة، الدفع — JazzCash وEasypaisa والبطاقة) والجملة B2B (محرك طلبات العروض، التسعير بالكمية، الموردون الموثقون) في منصة واحدة. الهندسة: متجر Next.js 15 متعدد المستأجرين، خدمات FastAPI المصغرة، Supabase BaaS للمصادقة، بوابات دفع محلية وStripe، لوحة تحكم البائع، توصيات بالذكاء الاصطناعي، وطبقة مؤسسية.",
-    impact: "أكثر من 500 بائع موثق، وأكثر من 10K منتج في المنسوجات والإلكترونيات والأثاث وقطع غيار السيارات. الروبية الباكستانية عملة أصلية، 3 لغات. التصميم المعياري يجعل كل طبقة إضافية — قاعدة كود واحدة، توسع لا محدود.",
-    description: "أول سوق موحد في باكستان بواجهة B2C للتجزئة ومحرك B2B للجملة وطلبات العروض — 500+ بائع موثق، 10K+ منتج، مدفوعات بـ JazzCash/Easypaisa/بطاقة، والروبية الباكستانية عملة أصلية.",
+    problem: "الشركات الصغيرة في باكستان والإمارات تفتقر إلى واجهة رقمية موحدة. المشترون يتنقلون بين منصات متعددة، والبائعون يفتقرون للتحليلات، وعملاء المؤسسات يحتاجون مرونة العلامة البيضاء, جميع الفئات غير خاضعة للخدمة الكاملة.",
+    solution: "بازار يوحّد تجارة التجزئة B2C (التصفح، السلة، الدفع, JazzCash وEasypaisa والبطاقة) والجملة B2B (محرك طلبات العروض، التسعير بالكمية، الموردون الموثقون) في منصة واحدة. الهندسة: متجر Next.js 15 متعدد المستأجرين، خدمات FastAPI المصغرة، Supabase BaaS للمصادقة، بوابات دفع محلية وStripe، لوحة تحكم البائع، توصيات بالذكاء الاصطناعي، وطبقة مؤسسية.",
+    impact: "أكثر من 500 بائع موثق، وأكثر من 10K منتج في المنسوجات والإلكترونيات والأثاث وقطع غيار السيارات. الروبية الباكستانية عملة أصلية، 3 لغات. التصميم المعياري يجعل كل طبقة إضافية, قاعدة كود واحدة، توسع لا محدود.",
+    description: "أول سوق موحد في باكستان بواجهة B2C للتجزئة ومحرك B2B للجملة وطلبات العروض, 500+ بائع موثق، 10K+ منتج، مدفوعات بـ JazzCash/Easypaisa/بطاقة، والروبية الباكستانية عملة أصلية.",
     tech: ["Next.js 15", "FastAPI", "Supabase", "PostgreSQL", "Redis", "Docker", "TypeScript", "WhatsApp"],
     github: "https://github.com/asadullah48/bazaar",
     demo: "https://frontend-three-kappa-64.vercel.app",
@@ -181,14 +181,14 @@ const PROJECTS_AR: Project[] = [
   },
   {
     id: "ai-tradeflow",
-    title: "AI TradeFlow — المحاسبة والمخزون لتجار الجملة",
+    title: "AI TradeFlow: المحاسبة والمخزون لتجار الجملة",
     status: "In Development",
     statusColor: "#84cc16",
-    tagline: "الذكاء الاصطناعي لاقتصاد التجارة الباكستاني — المشروع الأول في السلسلة",
-    problem: "تجار الجملة في باكستان يديرون عمليات بملايين الروبيات باستخدام السجلات الورقية ورسائل واتساب الصوتية والذاكرة — لا رؤية فورية للمخزون، وفوضى في تتبع الأدهار (الائتمان)، وقرارات إعادة الطلب بالحدس بدلاً من البيانات.",
-    solution: "منصة محاسبة ومخزون ثنائية اللغة (أردو + إنجليزية) مع موظف رقمي حقيقي، Munshi AI — وكيل مبني على OpenAI Agents SDK بخمس أدوات للقراءة فقط وحارس دستوري حتمي يمنع طلبات الاحتيال والتهرب الضريبي قبل أي استدعاء للنموذج اللغوي، ولا يختلق رقمًا أبدًا، ويتراجع بأمان إلى إجابات مبنية على البيانات الفعلية إذا فشلت واجهة النموذج. خلفية FastAPI + SQLAlchemy + Alembic، وتطبيق ويب Next.js، ورفيق موبايل Expo، جميعها تعمل على واجهة برمجة واحدة مشتركة.",
-    impact: "90 اختبارًا آليًا تشمل اختبارات تكامل لدورة التجارة الكاملة ومجموعات أسئلة ذهبية للوكيل مع تحقق من الاستشهاد بالأدوات. حساب عمر الأدهار بطريقة FIFO صحيحة وليس تقريبًا بالرصيد. المشروع الأول في سلسلة 'الذكاء الاصطناعي لتجارة باكستان' — وحدة الخلفية المكتبية أولاً، ثم مراحل التوريد والخدمات اللوجستية والتفاوض لاحقًا.",
-    description: "منصة محاسبة ومخزون مدعومة بالذكاء الاصطناعي وثنائية اللغة لتجار الجملة الباكستانيين، مع Munshi AI — محاسب رقمي محكوم دستوريًا يقرأ بياناتك الخاصة ويجيب على 'ماذا يجب أن أطلب هذا الأسبوع؟' بتوصيات موثقة ومبنية على البيانات.",
+    tagline: "الذكاء الاصطناعي لاقتصاد التجارة الباكستاني, المشروع الأول في السلسلة",
+    problem: "تجار الجملة في باكستان يديرون عمليات بملايين الروبيات باستخدام السجلات الورقية ورسائل واتساب الصوتية والذاكرة, لا رؤية فورية للمخزون، وفوضى في تتبع الأدهار (الائتمان)، وقرارات إعادة الطلب بالحدس بدلاً من البيانات.",
+    solution: "منصة محاسبة ومخزون ثنائية اللغة (أردو + إنجليزية) مع موظف رقمي حقيقي، Munshi AI, وكيل مبني على OpenAI Agents SDK بخمس أدوات للقراءة فقط وحارس دستوري حتمي يمنع طلبات الاحتيال والتهرب الضريبي قبل أي استدعاء للنموذج اللغوي، ولا يختلق رقمًا أبدًا، ويتراجع بأمان إلى إجابات مبنية على البيانات الفعلية إذا فشلت واجهة النموذج. خلفية FastAPI + SQLAlchemy + Alembic، وتطبيق ويب Next.js، ورفيق موبايل Expo، جميعها تعمل على واجهة برمجة واحدة مشتركة.",
+    impact: "90 اختبارًا آليًا تشمل اختبارات تكامل لدورة التجارة الكاملة ومجموعات أسئلة ذهبية للوكيل مع تحقق من الاستشهاد بالأدوات. حساب عمر الأدهار بطريقة FIFO صحيحة وليس تقريبًا بالرصيد. المشروع الأول في سلسلة 'الذكاء الاصطناعي لتجارة باكستان', وحدة الخلفية المكتبية أولاً، ثم مراحل التوريد والخدمات اللوجستية والتفاوض لاحقًا.",
+    description: "منصة محاسبة ومخزون مدعومة بالذكاء الاصطناعي وثنائية اللغة لتجار الجملة الباكستانيين، مع Munshi AI, محاسب رقمي محكوم دستوريًا يقرأ بياناتك الخاصة ويجيب على 'ماذا يجب أن أطلب هذا الأسبوع؟' بتوصيات موثقة ومبنية على البيانات.",
     tech: ["FastAPI", "Next.js 16", "OpenAI Agents SDK", "SQLAlchemy", "Alembic", "Expo", "PostgreSQL"],
     github: "https://github.com/asadullah48/ai-tradeflow",
     metrics: [
@@ -205,10 +205,10 @@ const PROJECTS_AR: Project[] = [
     status: "In Development",
     statusColor: "#84cc16",
     tagline: "ERP شامل لصناعة المنسوجات الباكستانية",
-    problem: "صناعة المنسوجات الباكستانية — وحدات CMT ومصانع الملابس ومطاحن الأقمشة — تعمل على رسائل واتساب وجداول Excel وسجلات ورقية. أخطاء الفوترة وانعدام رؤية الإنتاج والمخزون اليدوي تكلف أموالاً حقيقية كل يوم.",
+    problem: "صناعة المنسوجات الباكستانية, وحدات CMT ومصانع الملابس ومطاحن الأقمشة, تعمل على رسائل واتساب وجداول Excel وسجلات ورقية. أخطاء الفوترة وانعدام رؤية الإنتاج والمخزون اليدوي تكلف أموالاً حقيقية كل يوم.",
     solution: "SaaS ERP متعدد المستأجرين. الوحدة 1 (مصنع الأقمشة): إدارة الرولات، تتبع مراحل النسج والحياكة، مخزون الغزل، الأقمشة المستوردة. وحدات CMT: دورة حياة الطلب الكاملة، الفوترة التلقائية لـ4 أنواع، مخزون المواد الأولية، جلسات الإنتاج، الشحن، دفاتر الأطراف.",
-    impact: "يستهدف فيصل آباد وسيالكوت وغوجرانوالا وكراتشي ولاهور — قلب المنسوجات الباكستاني. SaaS متعدد المستأجرين على Kubernetes. إطلاق 2026.",
-    description: "ERP شامل لصناعة المنسوجات والملابس الباكستانية — من مصانع الأقمشة إلى مصدري الملابس.",
+    impact: "يستهدف فيصل آباد وسيالكوت وغوجرانوالا وكراتشي ولاهور, قلب المنسوجات الباكستاني. SaaS متعدد المستأجرين على Kubernetes. إطلاق 2026.",
+    description: "ERP شامل لصناعة المنسوجات والملابس الباكستانية, من مصانع الأقمشة إلى مصدري الملابس.",
     tech: ["Next.js", "FastAPI", "PostgreSQL", "Kubernetes", "Supabase", "TypeScript"],
     github: "https://github.com/asadullah48",
     metrics: [
@@ -245,7 +245,7 @@ const PROJECTS_AR: Project[] = [
     status: "In Development",
     statusColor: "#84cc16",
     tagline: "إدارة عمليات CMT لمصانع الملابس",
-    description: "ERP متخصص لوحدات التخييط وأقسام التعبئة. تتبع الطلبات وتخصيص الآلات ونقاط فحص الجودة وملصقات التعبئة وتوثيق التصدير — مبني لمصدري الملابس الباكستانيين.",
+    description: "ERP متخصص لوحدات التخييط وأقسام التعبئة. تتبع الطلبات وتخصيص الآلات ونقاط فحص الجودة وملصقات التعبئة وتوثيق التصدير, مبني لمصدري الملابس الباكستانيين.",
     tech: ["Next.js", "Supabase", "TypeScript", "PostgreSQL", "FastAPI"],
     github: "https://github.com/asadullah48",
     metrics: [
@@ -479,7 +479,7 @@ export function ProjectsSection() {
           className="text-center mb-14"
         >
           <div className="text-xs font-mono text-green-400/60 uppercase tracking-widest mb-3">
-            // projects
+            {"// projects"}
           </div>
           <h2 className="text-4xl lg:text-5xl font-bold text-white mb-4">
             {t("projects.title")} <span className="text-green-400">{t("projects.titleHighlight")}</span>

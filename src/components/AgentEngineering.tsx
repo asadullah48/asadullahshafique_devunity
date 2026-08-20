@@ -46,7 +46,7 @@ export default function AgentEngineering() {
           className="text-center mb-14"
         >
           <div className="text-xs font-mono text-green-400/60 uppercase tracking-widest mb-3">
-            // agent_engineering
+            {"// agent_engineering"}
           </div>
           <h2 className="text-4xl lg:text-5xl font-bold text-white mb-4">
             {t("agentEngineering.title")}{" "}

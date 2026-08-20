@@ -25,16 +25,17 @@ export default function Home() {
                     mask: "radial-gradient(circle at center, transparent, black)",
                 }}
             />
+            {/* AI-engineering proof first; business services follow it */}
             <Hero />
             <TechMarquee />
             <About />
-            <Services />
-            <Industries />
             <Skills />
             <AgentEngineering />
             <Roadmap />
             <Projects />
             <Hackathons />
+            <Services />
+            <Industries />
             <Blog />
             <OpenSourceSection />
             <Testimonials />

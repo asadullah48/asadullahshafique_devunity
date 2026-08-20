@@ -53,7 +53,7 @@ export default function AdminPage() {
       if (!r.ok) throw new Error(`${r.status}: ${data?.error ?? r.statusText}`);
       setMessages(Array.isArray(data) ? data : data.messages || []);
     } catch (err) {
-      setError(`Failed to load messages — ${err instanceof Error ? err.message : "unknown error"}`);
+      setError(`Failed to load messages: ${err instanceof Error ? err.message : "unknown error"}`);
     } finally {
       setLoading(false);
     }

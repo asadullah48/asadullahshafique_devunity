@@ -1,7 +1,7 @@
 import { ImageResponse } from "next/og";
 
 export const runtime = "edge";
-export const alt = "Asadullah Shafique — Agentic AI Developer";
+export const alt = "Asadullah Shafique | Agentic AI Developer";
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
@@ -40,7 +40,7 @@ export default function OpengraphImage() {
             }}
           />
           <div style={{ color: "#9CE630", fontSize: "24px", letterSpacing: "4px" }}>
-            ONLINE — GENERAL AGENT
+            ONLINE · GENERAL AGENT
           </div>
         </div>
         <div
