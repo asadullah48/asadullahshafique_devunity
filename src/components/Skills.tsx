@@ -6,10 +6,24 @@ import { useLocale } from "@/context/LocaleContext";
 
 const DI = "https://cdn.jsdelivr.net/gh/devicons/devicon/icons";
 
+/**
+ * `color` is a VENDOR IDENTITY MARK (TypeScript blue, Python blue, Anthropic
+ * clay) — these are logos, not UI accents, so they stay literal. Same rule the
+ * Hero's ORBIT_BADGES follow.
+ *
+ * `own: true` marks concepts that are ours, not a vendor's — RAG Systems,
+ * SKILL.md, Agent Factory, Digital FTE. Those previously carried #84cc16 and
+ * #a855f7, i.e. the RETIRED lime brand and a stray purple, which made our own
+ * work the only thing on the page still wearing last season's palette. They
+ * now render in brand cyan and are the visual anchor of the grid.
+ */
 type Skill = {
   name: string;
   icon: string;
-  color: string;
+  /** Vendor brand hex. Omitted when `own` is set. */
+  color?: string;
+  /** Our own concept — renders in brand tokens, not a literal. */
+  own?: boolean;
   custom?: boolean;
   badge?: string;
 };
@@ -40,10 +54,10 @@ const SKILL_TABS: Record<string, Skill[]> = {
     { name: "Agents SDK",        custom: true, icon: "", badge: "AGT",   color: "#10a37f" },
     { name: "Claude / MCP",      custom: true, icon: "", badge: "MCP",   color: "#CC785C" },
     { name: "Gemini API",        custom: true, icon: "", badge: "GEM",   color: "#4285F4" },
-    { name: "RAG Systems",       custom: true, icon: "", badge: "RAG",   color: "#84cc16" },
-    { name: "Constitutional AI", custom: true, icon: "", badge: "CAI",   color: "#84cc16" },
-    { name: "SKILL.md",          custom: true, icon: "", badge: "SKL",   color: "#84cc16" },
-    { name: "Prompt Eng.",       custom: true, icon: "", badge: "PE",    color: "#a855f7" },
+    { name: "RAG Systems",       custom: true, icon: "", badge: "RAG",   own: true },
+    { name: "Constitutional AI", custom: true, icon: "", badge: "CAI",   own: true },
+    { name: "SKILL.md",          custom: true, icon: "", badge: "SKL",   own: true },
+    { name: "Prompt Eng.",       custom: true, icon: "", badge: "PE",    own: true },
     { name: "LangChain",         custom: true, icon: "", badge: "LC",    color: "#1C3C3C" },
     { name: "LlamaIndex",        custom: true, icon: "", badge: "LI",    color: "#fbba00" },
     { name: "n8n",               custom: true, icon: "", badge: "n8n",   color: "#ea4b71" },
@@ -74,12 +88,12 @@ const SKILL_TABS: Record<string, Skill[]> = {
     { name: "Ubuntu WSL",     icon: "ubuntu/ubuntu-original.svg",      color: "#E95420" },
   ],
   "OpenClaw Track": [
-    { name: "OpenClaw",       custom: true, icon: "", badge: "OC",    color: "#84cc16" },
+    { name: "OpenClaw",       custom: true, icon: "", badge: "OC",    own: true },
     { name: "CLAUDE.md",      custom: true, icon: "", badge: "CLD",   color: "#CC785C" },
-    { name: "Spec-First Dev", custom: true, icon: "", badge: "SFD",   color: "#84cc16" },
-    { name: "SKILL.md Files", custom: true, icon: "", badge: "SKL",   color: "#84cc16" },
-    { name: "Digital FTE",    custom: true, icon: "", badge: "FTE",   color: "#a855f7" },
-    { name: "Agent Factory",  custom: true, icon: "", badge: "AF",    color: "#84cc16" },
+    { name: "Spec-First Dev", custom: true, icon: "", badge: "SFD",   own: true },
+    { name: "SKILL.md Files", custom: true, icon: "", badge: "SKL",   own: true },
+    { name: "Digital FTE",    custom: true, icon: "", badge: "FTE",   own: true },
+    { name: "Agent Factory",  custom: true, icon: "", badge: "AF",    own: true },
   ],
 };
 
@@ -88,9 +102,9 @@ const AGENT_ROLE_GROUPS: Record<string, Skill[]> = {
     { name: "Claude / MCP",      custom: true, icon: "", badge: "MCP",  color: "#CC785C" },
     { name: "OpenAI Agents SDK", custom: true, icon: "", badge: "AGT",  color: "#10a37f" },
     { name: "LangChain",         custom: true, icon: "", badge: "LC",   color: "#1C3C3C" },
-    { name: "RAG Systems",       custom: true, icon: "", badge: "RAG",  color: "#84cc16" },
-    { name: "Prompt Eng.",       custom: true, icon: "", badge: "PE",   color: "#a855f7" },
-    { name: "SKILL.md",          custom: true, icon: "", badge: "SKL",  color: "#84cc16" },
+    { name: "RAG Systems",       custom: true, icon: "", badge: "RAG",  own: true },
+    { name: "Prompt Eng.",       custom: true, icon: "", badge: "PE",   own: true },
+    { name: "SKILL.md",          custom: true, icon: "", badge: "SKL",  own: true },
   ],
   "Backend Runtime": [
     { name: "Python",     icon: "python/python-original.svg",           color: "#3776AB" },
@@ -123,6 +137,12 @@ const TAB_KEYS = Object.keys(SKILL_TABS);
 function SkillCard({ skill }: { skill: Skill }) {
   const [hovered, setHovered] = useState(false);
 
+  // Two rendering paths. Vendor marks keep their literal hex in inline styles
+  // (hex+alpha suffixes like `${color}12` only work on hex, not on hsl()).
+  // Our own concepts take the token path via classes, so they retint with the
+  // theme and can never drift out of the palette again.
+  const isOwn = !!skill.own;
+
   return (
     <motion.div
       layout
@@ -132,30 +152,49 @@ function SkillCard({ skill }: { skill: Skill }) {
       transition={{ duration: 0.25 }}
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
-      className="group relative flex flex-col items-center justify-center gap-2.5 p-4 rounded-xl border transition-all duration-300 cursor-default select-none"
-      style={{
-        backgroundColor: hovered ? `${skill.color}12` : "transparent",
-        borderColor: hovered ? `${skill.color}60` : "rgba(255,255,255,0.07)",
-        boxShadow: hovered ? `0 0 20px ${skill.color}20` : "none",
-      }}
+      className={`group relative flex flex-col items-center justify-center gap-2.5 p-4 rounded-lg border transition-all duration-300 ease-spring cursor-default select-none ${
+        isOwn
+          ? "border-brand/20 bg-brand/[0.04] hover:border-brand/50 hover:bg-brand/10 hover:shadow-neon"
+          : "border-border"
+      }`}
+      style={
+        isOwn
+          ? undefined
+          : {
+              backgroundColor: hovered ? `${skill.color}12` : "transparent",
+              borderColor: hovered ? `${skill.color}60` : undefined,
+              boxShadow: hovered ? `0 0 20px ${skill.color}20` : "none",
+            }
+      }
     >
       <div className="w-10 h-10 flex items-center justify-center">
         {skill.custom ? (
           <div
-            className="w-10 h-10 rounded-lg flex items-center justify-center text-xs font-bold font-mono"
-            style={{
-              backgroundColor: `${skill.color}20`,
-              color: skill.color,
-              border: `1px solid ${skill.color}40`,
-            }}
+            className={`w-10 h-10 rounded-md flex items-center justify-center text-xs font-bold font-mono ${
+              isOwn ? "bg-brand/15 text-brand border border-brand/40" : "border"
+            }`}
+            style={
+              isOwn
+                ? undefined
+                : {
+                    backgroundColor: `${skill.color}20`,
+                    color: skill.color,
+                    borderColor: `${skill.color}40`,
+                  }
+            }
           >
             {skill.badge}
           </div>
         ) : (
+          // Remote CDN sprites from jsdelivr. next/image would need a
+          // remotePattern entry and buys nothing here — these are already
+          // small, cached SVGs at a fixed 36px.
           // eslint-disable-next-line @next/next/no-img-element
           <img
             src={`${DI}/${skill.icon}`}
-            alt={skill.name}
+            alt={`${skill.name} logo`}
+            width={36}
+            height={36}
             className="w-9 h-9 object-contain transition-transform duration-300 group-hover:scale-110"
             style={{ filter: skill.color === "#ffffff" ? "brightness(0.9)" : "none" }}
             loading="lazy"
@@ -163,15 +202,19 @@ function SkillCard({ skill }: { skill: Skill }) {
         )}
       </div>
 
-      <span className="text-xs text-muted-foreground group-hover:text-foreground transition-colors duration-200 text-center leading-tight">
+      <span
+        className={`text-xs transition-colors duration-200 text-center leading-tight ${
+          isOwn ? "text-brand-soft group-hover:text-brand" : "text-muted-foreground group-hover:text-foreground"
+        }`}
+      >
         {skill.name}
       </span>
 
       {hovered && (
         <motion.div
           layoutId="skill-glow"
-          className="absolute -top-1 -right-1 w-2 h-2 rounded-full"
-          style={{ backgroundColor: skill.color }}
+          className={`absolute -top-1 -right-1 w-2 h-2 rounded-full ${isOwn ? "bg-brand" : ""}`}
+          style={isOwn ? undefined : { backgroundColor: skill.color }}
           initial={{ scale: 0 }}
           animate={{ scale: 1 }}
         />
@@ -224,9 +267,10 @@ export function SkillsSection() {
                 key={v}
                 type="button"
                 onClick={() => setView(v)}
-                className={`px-4 py-1.5 rounded-full text-xs font-medium transition-all duration-200 ${
+                aria-pressed={view === v}
+                className={`px-4 py-1.5 rounded-full text-xs font-medium transition-all duration-200 ease-spring active:scale-[0.97] ${
                   view === v
-                    ? "bg-brand text-primary-foreground shadow-[0_0_12px_rgba(132,204,22,0.35)]"
+                    ? "bg-brand text-primary-foreground shadow-neon"
                     : "text-muted-foreground hover:text-foreground"
                 }`}
               >
@@ -242,11 +286,13 @@ export function SkillsSection() {
               {TAB_KEYS.map((tab) => (
                 <button
                   key={tab}
+                  type="button"
                   onClick={() => setActiveTab(tab)}
-                  className={`px-4 py-2 rounded-full text-sm font-medium transition-all duration-200 ${
+                  aria-pressed={activeTab === tab}
+                  className={`px-4 py-2 rounded-full text-sm font-medium transition-all duration-200 ease-spring active:scale-[0.97] ${
                     activeTab === tab
-                      ? "bg-brand text-primary-foreground shadow-[0_0_15px_rgba(132,204,22,0.4)]"
-                      : "border border-white/15 text-muted-foreground hover:border-brand/40 hover:text-foreground"
+                      ? "bg-brand text-primary-foreground shadow-neon"
+                      : "border border-border text-muted-foreground hover:border-brand/40 hover:text-foreground"
                   }`}
                 >
                   {TAB_LABELS[tab]}

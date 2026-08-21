@@ -4,7 +4,7 @@
 @tailwind utilities;
 
 /* ============================================================================
-   TOKENS — Midnight/Carbon, dark-first.
+   TOKENS — "Midnight Carbon", dark-first.
    `:root` IS the dark theme. `.light` is the opt-in override.
    This ordering matters: next-themes runs client-side, so SSR/no-JS output
    must already be carbon or the page flashes white before hydration.
@@ -16,48 +16,66 @@
 @layer base {
     :root {
           /* --- shadcn semantic layer --------------------------------------- */
-          --background: 220 16% 4%;          /* #08090B carbon           */
-          --foreground: 220 22% 92%;         /* #E6E9EF                  */
-          --card: 220 17% 7%;                /* #0F1115 raised           */
-          --card-foreground: 220 22% 92%;
-          --popover: 220 17% 8%;
-          --popover-foreground: 220 22% 92%;
+          /* #050506. Specified as #050505; keeps ~1pt of hue-220 tint so the
+             shadow system still reads as depth rather than grey smudge. */
+          --background: 220 12% 2%;
+          --foreground: 220 22% 93%;         /* #E8EBF1                  */
+          --card: 220 14% 5%;                /* #0B0D10 raised           */
+          --card-foreground: 220 22% 93%;
+          --popover: 220 14% 6%;
+          --popover-foreground: 220 22% 93%;
 
-          --primary: 188 86% 53%;            /* #22D3EE cyan — ALL UI    */
-          --primary-foreground: 220 16% 4%;  /* carbon text on cyan      */
+          --primary: 183 100% 50%;           /* #00F2FF cyan — ALL UI    */
+          --primary-foreground: 220 12% 2%;  /* carbon text on cyan      */
 
-          --secondary: 218 16% 13%;          /* #1C2027                  */
-          --secondary-foreground: 220 22% 92%;
+          --secondary: 218 14% 12%;          /* #1A1E25                  */
+          --secondary-foreground: 220 22% 93%;
 
-          --muted: 218 16% 13%;
-          --muted-foreground: 220 12% 59%;   /* #8B93A3                  */
+          --muted: 218 14% 12%;
+          --muted-foreground: 220 12% 60%;   /* #8D95A5                  */
 
           /* NOTE: shadcn's `accent` is the subtle HOVER SURFACE, not the
              brand accent. Keep it neutral — see --brand below. */
-          --accent: 218 16% 16%;
-          --accent-foreground: 220 22% 92%;
+          --accent: 218 14% 15%;
+          --accent-foreground: 220 22% 93%;
 
           --destructive: 0 72% 51%;
           --destructive-foreground: 220 22% 96%;
 
-          --border: 218 16% 13%;
-          --input: 218 16% 16%;
-          --ring: 188 86% 53%;
+          --border: 218 14% 13%;
+          --input: 218 14% 16%;
+          --ring: 183 100% 50%;
           --radius: 0.625rem;
 
           /* --- brand layer (beyond shadcn) --------------------------------- */
-          --brand: 188 86% 53%;              /* #22D3EE cyan             */
-          --brand-dim: 193 82% 31%;          /* #0E7490 pressed/dim      */
-          --violet: 262 83% 58%;             /* #7C3AED AMBIENT ONLY     */
+          --brand: 183 100% 50%;             /* #00F2FF — fills, hairlines, glow */
+          /* Full-saturation cyan chromatically vibrates in sustained body copy
+             on near-black. `--brand-soft` is the reading-safe sibling: use it
+             for paragraphs and long labels; use --brand for anything that is
+             a fill, a hairline, a glow, or a short label. */
+          --brand-soft: 186 78% 62%;         /* #57DEEB                  */
+          --brand-dim: 187 90% 28%;          /* pressed / disabled cyan  */
+          --violet: 258 89% 66%;             /* #8B5CF6 AMBIENT ONLY     */
 
-          /* Elevation scale — avoids ad-hoc bg-[#111] literals. */
-          --surface-1: 220 17% 7%;
-          --surface-2: 219 16% 10%;
-          --surface-3: 218 16% 14%;
+          /* Elevation scale — avoids ad-hoc bg-[#111] literals.
+             Steps are deliberately tight (2/5/8/12) because on a #050506 base
+             a wide ramp reads as unrelated panels rather than one system. */
+          --surface-1: 220 14% 5%;
+          --surface-2: 219 14% 8%;
+          --surface-3: 218 14% 12%;
+
+          /* --- glass layer -------------------------------------------------
+             Glass is the primary surface language of the command centre.
+             Driving blur radius and edge alpha from tokens means the whole
+             system retunes in one place instead of per-component. */
+          --glass-bg: 220 14% 7%;
+          --glass-alpha: 0.55;
+          --glass-blur: 16px;
+          --glass-edge: 0.09;                /* 1px inner border alpha   */
 
           /* Hairlines & grid */
-          --grid-line: 188 86% 53%;
-          --grid-alpha: 0.035;
+          --grid-line: 183 100% 50%;
+          --grid-alpha: 0.04;
     }
 
     .light {
@@ -68,7 +86,9 @@
           --popover: 0 0% 100%;
           --popover-foreground: 220 25% 10%;
 
-          --primary: 193 82% 34%;            /* darkened cyan for AA on white */
+          /* #00F2FF fails AA on white at any text size (contrast ~1.4:1), so
+             light mode darkens the same hue instead of using the raw brand. */
+          --primary: 187 92% 27%;
           --primary-foreground: 0 0% 100%;
 
           --secondary: 220 14% 94%;
@@ -85,16 +105,25 @@
 
           --border: 220 13% 88%;
           --input: 220 13% 88%;
-          --ring: 193 82% 34%;
+          --ring: 187 92% 27%;
 
-          --brand: 193 82% 34%;
-          --brand-dim: 193 82% 24%;
-          --violet: 262 70% 48%;
+          --brand: 187 92% 27%;
+          --brand-soft: 187 88% 33%;
+          --brand-dim: 187 92% 19%;
+          --violet: 258 72% 52%;
 
           --surface-1: 0 0% 100%;
           --surface-2: 220 16% 96%;
           --surface-3: 220 14% 92%;
 
+          /* Glass over a light page needs MORE opacity and LESS blur, or the
+             panel disappears into the background instead of floating on it. */
+          --glass-bg: 0 0% 100%;
+          --glass-alpha: 0.72;
+          --glass-blur: 12px;
+          --glass-edge: 0.06;
+
+          --grid-line: 187 92% 27%;
           --grid-alpha: 0.05;
     }
 }
@@ -169,16 +198,39 @@
    ========================================================================= */
 
 /* True glassmorphism: blur + 1px inner border + inner shadow for edge
-   refraction. A bare backdrop-blur reads as flat frosted plastic. */
+   refraction. A bare backdrop-blur reads as flat frosted plastic.
+   Every value is a token so the whole glass system retunes in one place. */
 .glass-panel {
-    background: hsl(var(--surface-1) / 0.72);
-    backdrop-filter: blur(14px) saturate(150%);
-    -webkit-backdrop-filter: blur(14px) saturate(150%);
-    border: 1px solid hsl(var(--foreground) / 0.08);
+    background: hsl(var(--glass-bg) / var(--glass-alpha));
+    backdrop-filter: blur(var(--glass-blur)) saturate(160%);
+    -webkit-backdrop-filter: blur(var(--glass-blur)) saturate(160%);
+    border: 1px solid hsl(var(--foreground) / var(--glass-edge));
     box-shadow:
-          inset 0 1px 0 0 hsl(var(--foreground) / 0.06),
-          inset 0 -1px 0 0 hsl(0 0% 0% / 0.3),
-          0 16px 40px -12px hsl(220 40% 2% / 0.7);
+          inset 0 1px 0 0 hsl(var(--foreground) / 0.07),
+          inset 0 -1px 0 0 hsl(0 0% 0% / 0.35),
+          0 16px 40px -12px hsl(220 40% 1% / 0.75);
+}
+
+/* Chrome/rail variant: heavier blur, thinner body. For the navbar, the
+   agent status rail, and anything pinned over scrolling content. */
+.glass-chrome {
+    background: hsl(var(--glass-bg) / 0.68);
+    backdrop-filter: blur(22px) saturate(170%);
+    -webkit-backdrop-filter: blur(22px) saturate(170%);
+    border-bottom: 1px solid hsl(var(--foreground) / var(--glass-edge));
+    box-shadow: inset 0 -1px 0 0 hsl(var(--brand) / 0.06);
+}
+
+/* Backdrop-filter is expensive to composite. On a machine that can't hold
+   60fps we drop the blur and lean on opacity alone — the panel still reads
+   as a distinct surface, it just stops refracting. */
+@media (update: slow), (prefers-reduced-transparency: reduce) {
+    .glass-panel,
+    .glass-chrome {
+          backdrop-filter: none;
+          -webkit-backdrop-filter: none;
+          background: hsl(var(--surface-1) / 0.96);
+    }
 }
 
 /* Fixed grain overlay — breaks digital flatness and gradient banding. */
@@ -197,6 +249,29 @@
           linear-gradient(hsl(var(--grid-line) / var(--grid-alpha)) 1px, transparent 1px),
           linear-gradient(90deg, hsl(var(--grid-line) / var(--grid-alpha)) 1px, transparent 1px);
     background-size: 3.5rem 3.5rem;
+}
+
+/* Site-wide ambient substrate. Replaces the hardcoded #080808 grid that
+   page.tsx used to render — same intent, but token-driven and faded out
+   toward the centre so it frames content instead of sitting behind text.
+   `mask` is a paint-only property: it never triggers layout. */
+.command-field {
+    background-image:
+          linear-gradient(hsl(var(--grid-line) / var(--grid-alpha)) 1px, transparent 1px),
+          linear-gradient(90deg, hsl(var(--grid-line) / var(--grid-alpha)) 1px, transparent 1px);
+    background-size: 4rem 4rem;
+    mask-image: radial-gradient(ellipse 75% 60% at 50% 0%, #000 10%, transparent 78%);
+    -webkit-mask-image: radial-gradient(ellipse 75% 60% at 50% 0%, #000 10%, transparent 78%);
+}
+
+/* Edge vignette. Darkens the four corners so the carbon base gains a centre
+   of gravity — without it, a flat #050506 field reads as an empty void. */
+.command-vignette {
+    background: radial-gradient(
+          ellipse 100% 80% at 50% 40%,
+          transparent 40%,
+          hsl(220 30% 0% / 0.55) 100%
+    );
 }
 
 /* Spotlight card hover glow — position driven by --spot-x / --spot-y */

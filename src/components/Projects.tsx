@@ -1,17 +1,24 @@
 "use client";
 
 import { useState, type MouseEvent } from "react";
+import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
 import { Github, ExternalLink, ChevronDown, ChevronUp, Zap, Star, Clock, ShoppingBag } from "lucide-react";
 import { useLocale } from "@/context/LocaleContext";
 
 type ProjectStatus = "Featured" | "In Development" | "Completed" | "Research" | "Flagship";
 
+/**
+ * Status is a SEMANTIC role, not a colour. Each status resolves to tokens via
+ * STATUS_TOKENS below, so the palette stays cyan-only and retints with the
+ * theme. The previous `statusColor: string` field smuggled four extra accents
+ * (#f59e0b, #84cc16, #a855f7, #3b82f6) past the design system — including the
+ * retired lime brand — and painted titles, borders and metrics with them.
+ */
 type Project = {
   id: string;
   title: string;
   status: ProjectStatus;
-  statusColor: string;
   tagline: string;
   problem?: string;
   solution?: string;
@@ -31,7 +38,6 @@ const PROJECTS_EN: Project[] = [
     id: "bazaar",
     title: "Bazaar: Unified B2B + B2C Marketplace",
     status: "Flagship",
-    statusColor: "#f59e0b",
     tagline: "Pakistan's First Unified B2B/B2C Marketplace",
     problem: "Local SMEs in Pakistan and the UAE have no unified digital storefront. Buyers juggle multiple platforms, vendors lack analytics, and enterprise clients need white-label flexibility, all three groups are underserved by existing solutions.",
     solution: "Bazaar unifies B2C retail (browse, cart, checkout, JazzCash, Easypaisa, Card) and B2B wholesale (RFQ engine, quantity-tier pricing, verified suppliers) into one platform. Architecture: multi-tenant Next.js 15 storefront, FastAPI microservices, Supabase BaaS for auth/realtime, local + Stripe payment gateways, vendor dashboard with analytics, AI-powered recommendations, and a white-label enterprise tier.",
@@ -53,7 +59,6 @@ const PROJECTS_EN: Project[] = [
     id: "ai-tradeflow",
     title: "AI TradeFlow: Inventory & Accounting for Wholesalers",
     status: "In Development",
-    statusColor: "#84cc16",
     tagline: "AI for Pakistan's Trade Economy, Portfolio Project 1",
     problem: "Pakistan's wholesalers and traders run multi-crore operations on paper registers, WhatsApp voice notes, and memory, no real-time stock visibility, chaotic udhaar (credit) tracking, and reorder decisions made on gut feel instead of data.",
     solution: "A bilingual (Urdu + English) inventory and accounting platform with a real digital FTE, Munshi AI, an OpenAI Agents SDK agent with 5 read-only tools and a deterministic constitutional guardrail that blocks fraud/tax-evasion requests before any LLM call, never fabricates a number, and gracefully degrades to tool-grounded answers if the model API fails. FastAPI + SQLAlchemy + Alembic backend, a Next.js web app, and an Expo mobile companion, all against one shared API.",
@@ -73,7 +78,6 @@ const PROJECTS_EN: Project[] = [
     id: "textile-erp",
     title: "Textile ERP Platform",
     status: "In Development",
-    statusColor: "#84cc16",
     tagline: "Full-scale ERP for Pakistan's textile industry",
     problem: "Pakistan's textile industry, CMT stitching units, garment factories, fabric mills, runs on WhatsApp messages, Excel sheets, and paper ledgers. Billing errors, zero production visibility, and manual inventory cost real money every day.",
     solution: "Multi-tenant SaaS ERP. Module 1 (Fabric Mill): roll/lot management, weaving & knitting stage tracking, yarn inventory, imported fabric. CMT modules: full order lifecycle, auto-billing across 4 bill types, BOM inventory, production sessions, dispatch, party ledgers, and cash tracking.",
@@ -92,7 +96,6 @@ const PROJECTS_EN: Project[] = [
     id: "devunity",
     title: "DevUnity Platform",
     status: "Featured",
-    statusColor: "#a855f7",
     tagline: "Open-source developer community hub",
     problem: "Pakistani developers lack a local, context-aware Q&A platform. Most alternatives are too generic and not community-driven.",
     solution: "Open-source community platform with threaded Q&A, blogs, project collaboration, and AI-powered answer suggestions. Built with Next.js 15 App Router and shadcn/ui.",
@@ -113,7 +116,6 @@ const PROJECTS_EN: Project[] = [
     id: "stitching-packing",
     title: "Stitching & Packing ERP",
     status: "In Development",
-    statusColor: "#84cc16",
     tagline: "CMT operations management for garment factories",
     description: "Specialised ERP for stitching units and packing departments. Order tracking, machine allocation, QC checkpoints, packaging labels, and export documentation, built for Pakistan's garment exporters.",
     tech: ["Next.js", "Supabase", "TypeScript", "PostgreSQL", "FastAPI"],
@@ -128,7 +130,6 @@ const PROJECTS_EN: Project[] = [
     id: "agent-factory",
     title: "Agent Factory",
     status: "Featured",
-    statusColor: "#a855f7",
     tagline: "Two-tier agent architecture at enterprise scale",
     description: "General Agent (Claude Code) builds Custom Agent (OpenAI Agents SDK). SKILL.md files as portable, monetizable intelligence units. Digital FTE model deployed on Kubernetes + Dapr. Targets OpenAI Apps ecosystem (800M users).",
     tech: ["Claude Code", "OpenAI Agents SDK", "SKILL.md", "MCP", "Kubernetes", "Dapr"],
@@ -143,7 +144,6 @@ const PROJECTS_EN: Project[] = [
     id: "rag-textbook",
     title: "RAG Textbook Platform",
     status: "Completed",
-    statusColor: "#3b82f6",
     tagline: "AI-powered textbook chatbot with RAG architecture",
     description: "Comprehensive textbook platform with RAG chatbot built during Panaversity Hackathon (H1) using specification-first development and Spec-Kit Plus methodology.",
     tech: ["Python", "FastAPI", "RAG", "SpecifyKit", "OpenAI API", "PostgreSQL"],
@@ -161,7 +161,6 @@ const PROJECTS_AR: Project[] = [
     id: "bazaar",
     title: "بازار: سوق B2B + B2C الموحد",
     status: "Flagship",
-    statusColor: "#f59e0b",
     tagline: "أول سوق موحد B2B/B2C في باكستان",
     problem: "الشركات الصغيرة في باكستان والإمارات تفتقر إلى واجهة رقمية موحدة. المشترون يتنقلون بين منصات متعددة، والبائعون يفتقرون للتحليلات، وعملاء المؤسسات يحتاجون مرونة العلامة البيضاء, جميع الفئات غير خاضعة للخدمة الكاملة.",
     solution: "بازار يوحّد تجارة التجزئة B2C (التصفح، السلة، الدفع, JazzCash وEasypaisa والبطاقة) والجملة B2B (محرك طلبات العروض، التسعير بالكمية، الموردون الموثقون) في منصة واحدة. الهندسة: متجر Next.js 15 متعدد المستأجرين، خدمات FastAPI المصغرة، Supabase BaaS للمصادقة، بوابات دفع محلية وStripe، لوحة تحكم البائع، توصيات بالذكاء الاصطناعي، وطبقة مؤسسية.",
@@ -183,7 +182,6 @@ const PROJECTS_AR: Project[] = [
     id: "ai-tradeflow",
     title: "AI TradeFlow: المحاسبة والمخزون لتجار الجملة",
     status: "In Development",
-    statusColor: "#84cc16",
     tagline: "الذكاء الاصطناعي لاقتصاد التجارة الباكستاني, المشروع الأول في السلسلة",
     problem: "تجار الجملة في باكستان يديرون عمليات بملايين الروبيات باستخدام السجلات الورقية ورسائل واتساب الصوتية والذاكرة, لا رؤية فورية للمخزون، وفوضى في تتبع الأدهار (الائتمان)، وقرارات إعادة الطلب بالحدس بدلاً من البيانات.",
     solution: "منصة محاسبة ومخزون ثنائية اللغة (أردو + إنجليزية) مع موظف رقمي حقيقي، Munshi AI, وكيل مبني على OpenAI Agents SDK بخمس أدوات للقراءة فقط وحارس دستوري حتمي يمنع طلبات الاحتيال والتهرب الضريبي قبل أي استدعاء للنموذج اللغوي، ولا يختلق رقمًا أبدًا، ويتراجع بأمان إلى إجابات مبنية على البيانات الفعلية إذا فشلت واجهة النموذج. خلفية FastAPI + SQLAlchemy + Alembic، وتطبيق ويب Next.js، ورفيق موبايل Expo، جميعها تعمل على واجهة برمجة واحدة مشتركة.",
@@ -203,7 +201,6 @@ const PROJECTS_AR: Project[] = [
     id: "textile-erp",
     title: "منصة ERP للمنسوجات",
     status: "In Development",
-    statusColor: "#84cc16",
     tagline: "ERP شامل لصناعة المنسوجات الباكستانية",
     problem: "صناعة المنسوجات الباكستانية, وحدات CMT ومصانع الملابس ومطاحن الأقمشة, تعمل على رسائل واتساب وجداول Excel وسجلات ورقية. أخطاء الفوترة وانعدام رؤية الإنتاج والمخزون اليدوي تكلف أموالاً حقيقية كل يوم.",
     solution: "SaaS ERP متعدد المستأجرين. الوحدة 1 (مصنع الأقمشة): إدارة الرولات، تتبع مراحل النسج والحياكة، مخزون الغزل، الأقمشة المستوردة. وحدات CMT: دورة حياة الطلب الكاملة، الفوترة التلقائية لـ4 أنواع، مخزون المواد الأولية، جلسات الإنتاج، الشحن، دفاتر الأطراف.",
@@ -222,7 +219,6 @@ const PROJECTS_AR: Project[] = [
     id: "devunity",
     title: "منصة DevUnity",
     status: "Featured",
-    statusColor: "#a855f7",
     tagline: "مركز مجتمع مطورين مفتوح المصدر",
     problem: "المطورون الباكستانيون يفتقرون إلى منصة أسئلة وأجوبة محلية تراعي السياق. معظم البدائل عامة جداً وليست مجتمعية.",
     solution: "منصة مجتمع مفتوحة المصدر مع أسئلة وأجوبة متسلسلة ومدونات وتعاون في المشاريع واقتراحات إجابات بالذكاء الاصطناعي. مبنية بـ Next.js 15 App Router وshadcn/ui.",
@@ -243,7 +239,6 @@ const PROJECTS_AR: Project[] = [
     id: "stitching-packing",
     title: "ERP التخييط والتعبئة",
     status: "In Development",
-    statusColor: "#84cc16",
     tagline: "إدارة عمليات CMT لمصانع الملابس",
     description: "ERP متخصص لوحدات التخييط وأقسام التعبئة. تتبع الطلبات وتخصيص الآلات ونقاط فحص الجودة وملصقات التعبئة وتوثيق التصدير, مبني لمصدري الملابس الباكستانيين.",
     tech: ["Next.js", "Supabase", "TypeScript", "PostgreSQL", "FastAPI"],
@@ -258,7 +253,6 @@ const PROJECTS_AR: Project[] = [
     id: "agent-factory",
     title: "مصنع الوكلاء",
     status: "Featured",
-    statusColor: "#a855f7",
     tagline: "هندسة وكلاء من طبقتين على نطاق المؤسسة",
     description: "الوكيل العام (Claude Code) يبني الوكيل المخصص (OpenAI Agents SDK). ملفات SKILL.md كوحدات ذكاء قابلة للنقل والتسييل. نموذج الموظف الرقمي المنشور على Kubernetes + Dapr. يستهدف نظام OpenAI Apps البيئي (800 مليون مستخدم).",
     tech: ["Claude Code", "OpenAI Agents SDK", "SKILL.md", "MCP", "Kubernetes", "Dapr"],
@@ -273,7 +267,6 @@ const PROJECTS_AR: Project[] = [
     id: "rag-textbook",
     title: "منصة الكتب المدرسية بـ RAG",
     status: "Completed",
-    statusColor: "#3b82f6",
     tagline: "روبوت محادثة مدعوم بالذكاء الاصطناعي مع هندسة RAG",
     description: "منصة كتب مدرسية شاملة مع روبوت محادثة RAG مبنية خلال هاكاثون Panaversity (H1) باستخدام تطوير Spec-First ومنهجية Spec-Kit Plus.",
     tech: ["Python", "FastAPI", "RAG", "SpecifyKit", "OpenAI API", "PostgreSQL"],
@@ -294,11 +287,56 @@ const STATUS_ICONS: Record<ProjectStatus, React.ReactNode> = {
   Research:         <Zap className="w-3 h-3" />,
 };
 
-function StatusBadge({ status, color, label }: { status: ProjectStatus; color: string; label: string }) {
+/**
+ * Hierarchy is carried by INTENSITY of one colour, not by hue. Flagship gets
+ * the full brand + bloom; Featured a softer cyan; everything else recedes to
+ * neutral. That is what makes a grid scan — five competing hues flatten it,
+ * because every card shouts equally loud.
+ */
+type StatusTone = {
+  badge: string;   // badge fill + border
+  accent: string;  // tagline / metric text
+  card: string;    // card border, resting + hover
+  rule: string;    // the 2px bar across the card top
+};
+
+const STATUS_TOKENS: Record<ProjectStatus, StatusTone> = {
+  Flagship: {
+    badge:  "bg-brand/15 text-brand border-brand/40",
+    accent: "text-brand",
+    card:   "border-brand/25 hover:border-brand/50",
+    rule:   "via-brand/70",
+  },
+  Featured: {
+    badge:  "bg-brand/10 text-brand-soft border-brand/25",
+    accent: "text-brand-soft",
+    card:   "border-border hover:border-brand/35",
+    rule:   "via-brand/40",
+  },
+  "In Development": {
+    badge:  "bg-surface-3 text-muted-foreground border-border",
+    accent: "text-muted-foreground",
+    card:   "border-border hover:border-brand/25",
+    rule:   "via-muted-foreground/30",
+  },
+  Completed: {
+    badge:  "bg-surface-3 text-muted-foreground border-border",
+    accent: "text-muted-foreground",
+    card:   "border-border hover:border-brand/25",
+    rule:   "via-muted-foreground/30",
+  },
+  Research: {
+    badge:  "bg-violet/10 text-brand-soft border-violet/25",
+    accent: "text-muted-foreground",
+    card:   "border-border hover:border-brand/25",
+    rule:   "via-violet/40",
+  },
+};
+
+function StatusBadge({ status, label }: { status: ProjectStatus; label: string }) {
   return (
     <span
-      className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-medium"
-      style={{ backgroundColor: `${color}20`, color, border: `1px solid ${color}40` }}
+      className={`inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full border text-xs font-medium ${STATUS_TOKENS[status].badge}`}
     >
       {STATUS_ICONS[status]}
       {label}
@@ -306,9 +344,18 @@ function StatusBadge({ status, color, label }: { status: ProjectStatus; color: s
   );
 }
 
-function ProjectCard({ project, labels }: { project: Project; labels: Record<string, string> }) {
+function ProjectCard({
+  project,
+  labels,
+  index,
+}: {
+  project: Project;
+  labels: Record<string, string>;
+  index: number;
+}) {
   const [expanded, setExpanded] = useState(false);
   const hasCaseStudy = !!(project.problem && project.solution && project.impact);
+  const tone = STATUS_TOKENS[project.status];
 
   // Spotlight: track the cursor via CSS vars so the glow follows the mouse
   // without triggering React re-renders on every pointer move.
@@ -318,6 +365,9 @@ function ProjectCard({ project, labels }: { project: Project; labels: Record<str
     e.currentTarget.style.setProperty("--spot-y", `${e.clientY - rect.top}px`);
   };
 
+  // glass-panel supplies the blur, lit rim and tinted drop shadow; the status
+  // tone supplies only the border. Cards sit over the ambient command-field,
+  // so the blur has something real to refract instead of frosting flat carbon.
   return (
     <motion.div
       layout
@@ -326,45 +376,53 @@ function ProjectCard({ project, labels }: { project: Project; labels: Record<str
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-60px" }}
       transition={{ duration: 0.4 }}
-      className={`group relative bg-surface-2 border rounded-2xl overflow-hidden transition-all duration-300 flex flex-col ${
-        project.status === "Flagship"
-          ? "border-amber-500/30 hover:border-amber-500/60 md:col-span-2 lg:col-span-1"
-          : "border-white/8 hover:border-brand/30"
-      }`}
+      className={`group glass-panel relative rounded-panel overflow-hidden transition-all duration-300 ease-spring flex flex-col spotlight-border hover:-translate-y-1 ${tone.card}`}
     >
       <div
-        className="h-0.5 w-full flex-shrink-0"
-        style={{ background: `linear-gradient(to right, transparent, ${project.statusColor}80, transparent)` }}
+        className={`h-0.5 w-full flex-shrink-0 bg-gradient-to-r from-transparent to-transparent ${tone.rule}`}
       />
 
       {/* Cursor-tracking glow (position set by handleSpotlight) */}
       <div className="spotlight-overlay absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none z-[1]" />
 
       {project.image && (
-        <div className="w-full overflow-hidden bg-surface-1" style={{ maxHeight: "200px" }}>
-          <img
+        // Fixed 200px band + `fill` gives next/image a bounded box to lay out
+        // against, so the card never reflows once the asset decodes.
+        // `sizes` matches the 1/2/3-column grid below or the browser would
+        // fetch a full-width source for a ~380px slot.
+        <div className="relative w-full h-[200px] overflow-hidden bg-surface-1">
+          <Image
             src={project.image}
-            alt={project.title}
-            className="w-full h-full object-cover object-top"
-            style={{ maxHeight: "200px" }}
+            alt={`${project.title} — interface preview`}
+            fill
+            sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
+            priority={index === 0}
+            // The optimizer rejects SVG unless `dangerouslyAllowSVG` is on.
+            // Vectors gain nothing from resizing, so bypass the pipeline for
+            // them instead of loosening that flag site-wide.
+            unoptimized={project.image.endsWith(".svg")}
+            className="object-cover object-top transition-transform duration-500 ease-spring group-hover:scale-[1.03]"
           />
         </div>
       )}
 
       {project.isNew && (
         <div className="absolute top-4 right-4 z-10">
-          <span className="text-[10px] font-bold px-2 py-0.5 rounded-full bg-amber-500/20 text-amber-400 border border-amber-500/40 animate-pulse">
+          {/* `animate-think-pulse` rather than Tailwind's `animate-pulse`:
+              the site's own heartbeat easing, and it stops under
+              prefers-reduced-motion via the one block in globals.css. */}
+          <span className="text-eyebrow font-bold px-2 py-0.5 rounded-full bg-brand/15 text-brand border border-brand/40 animate-think-pulse">
             {labels.new}
           </span>
         </div>
       )}
 
       <div className="p-6 flex flex-col flex-1">
-        <StatusBadge status={project.status} color={project.statusColor} label={labels[project.status] ?? project.status} />
-        <h3 className="text-xl font-bold text-foreground mt-3 mb-1.5 group-hover:text-brand transition-colors duration-200 pr-12">
+        <StatusBadge status={project.status} label={labels[project.status] ?? project.status} />
+        <h3 className="font-display text-xl font-bold text-foreground mt-3 mb-1.5 group-hover:text-brand transition-colors duration-200 pr-12">
           {project.title}
         </h3>
-        <p className="text-sm font-medium mb-4" style={{ color: project.statusColor + "cc" }}>
+        <p className={`text-sm font-medium mb-4 ${tone.accent}`}>
           {project.tagline}
         </p>
         <p className="text-muted-foreground text-sm leading-relaxed mb-5 flex-1">{project.description}</p>
@@ -373,7 +431,9 @@ function ProjectCard({ project, labels }: { project: Project; labels: Record<str
           <div className="flex gap-6 mb-5 flex-wrap">
             {project.metrics.map((m) => (
               <div key={m.label}>
-                <div className="font-bold text-sm" style={{ color: project.statusColor }}>{m.value}</div>
+                {/* tabular-nums so metric values line up column-to-column
+                    instead of jittering with proportional digits. */}
+                <div className={`font-display font-bold text-sm tabular-nums ${tone.accent}`}>{m.value}</div>
                 <div className="text-muted-foreground/70 text-xs mt-0.5">{m.label}</div>
               </div>
             ))}
@@ -382,7 +442,7 @@ function ProjectCard({ project, labels }: { project: Project; labels: Record<str
 
         <div className="flex flex-wrap gap-2 mb-5">
           {project.tech.map((tech) => (
-            <span key={tech} className="px-2.5 py-1 bg-white/5 border border-white/10 text-muted-foreground text-xs rounded-md font-mono hover:border-white/20 transition-colors">
+            <span key={tech} className="px-2.5 py-1 bg-surface-3/60 border border-border text-muted-foreground text-xs rounded-md font-mono hover:border-brand/30 hover:text-brand-soft transition-colors">
               {tech}
             </span>
           ))}
@@ -390,9 +450,12 @@ function ProjectCard({ project, labels }: { project: Project; labels: Record<str
 
         {hasCaseStudy && (
           <button
+            type="button"
             onClick={() => setExpanded(!expanded)}
-            className="flex items-center gap-2 text-xs font-medium transition-colors duration-200 mb-4 w-fit"
-            style={{ color: expanded ? project.statusColor : project.statusColor + "99" }}
+            aria-expanded={expanded}
+            className={`flex items-center gap-2 text-xs font-medium transition-colors duration-200 mb-4 w-fit hover:text-brand ${
+              expanded ? "text-brand" : "text-muted-foreground"
+            }`}
           >
             {expanded ? (
               <><ChevronUp className="w-3.5 h-3.5" /> {labels.hideCaseStudy}</>
@@ -411,14 +474,19 @@ function ProjectCard({ project, labels }: { project: Project; labels: Record<str
               transition={{ duration: 0.3 }}
               className="overflow-hidden"
             >
-              <div className="border border-white/8 rounded-xl p-5 mb-5 space-y-4 bg-surface-1">
+              {/* Problem → Solution → Impact reads as a progression, so it is
+                  keyed to RISING cyan intensity rather than to three unrelated
+                  hues. The previous version paired a `bg-brand` cyan dot with
+                  #84cc16 lime text on the same row — a half-finished migration
+                  that visibly contradicted itself. */}
+              <div className="border border-border rounded-lg p-5 mb-5 space-y-4 bg-surface-1/60">
                 {[
-                  { label: labels.problem,  dot: "bg-red-400",   textColor: "#f87171", body: project.problem  },
-                  { label: labels.solution, dot: "bg-blue-400",  textColor: "#60a5fa", body: project.solution },
-                  { label: labels.impact,   dot: "bg-brand", textColor: "#84cc16", body: project.impact   },
+                  { label: labels.problem,  dot: "bg-muted-foreground/50", text: "text-muted-foreground", body: project.problem  },
+                  { label: labels.solution, dot: "bg-brand/50",            text: "text-brand-soft",       body: project.solution },
+                  { label: labels.impact,   dot: "bg-brand",               text: "text-brand",            body: project.impact   },
                 ].map((row) => (
                   <div key={row.label}>
-                    <div className="text-xs font-semibold uppercase tracking-wider mb-2 flex items-center gap-2" style={{ color: row.textColor }}>
+                    <div className={`text-eyebrow font-semibold uppercase mb-2 flex items-center gap-2 ${row.text}`}>
                       <span className={`w-1.5 h-1.5 rounded-full ${row.dot} inline-block`} />
                       {row.label}
                     </div>
@@ -432,12 +500,12 @@ function ProjectCard({ project, labels }: { project: Project; labels: Record<str
 
         <div className="flex gap-3 mt-auto">
           {project.github && (
-            <a href={project.github} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 text-muted-foreground hover:text-foreground text-sm border border-white/10 hover:border-white/30 px-4 py-2 rounded-lg transition-all duration-200">
+            <a href={project.github} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 text-muted-foreground hover:text-foreground text-sm border border-border hover:border-brand/30 px-4 py-2 rounded-md transition-all duration-200 ease-spring active:scale-[0.97]">
               <Github className="w-4 h-4" /> {labels.viewCode}
             </a>
           )}
           {project.demo && (
-            <a href={project.demo} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 text-muted-foreground hover:text-brand text-sm border border-white/10 hover:border-brand/40 px-4 py-2 rounded-lg transition-all duration-200">
+            <a href={project.demo} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 text-muted-foreground hover:text-brand text-sm border border-border hover:border-brand/40 px-4 py-2 rounded-md transition-all duration-200 ease-spring active:scale-[0.97]">
               <ExternalLink className="w-4 h-4" /> {labels.viewDemo}
             </a>
           )}
@@ -491,8 +559,8 @@ export function ProjectsSection() {
         </motion.div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {PROJECTS.map((project) => (
-            <ProjectCard key={project.id} project={project} labels={labels} />
+          {PROJECTS.map((project, i) => (
+            <ProjectCard key={project.id} project={project} labels={labels} index={i} />
           ))}
         </div>
 

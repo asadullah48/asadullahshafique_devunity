@@ -75,8 +75,13 @@ const config: Config = {
 
         // --- brand layer -------------------------------------------------
         // `brand` is the ONLY color allowed on interactive elements.
+        //   brand      → fills, hairlines, glows, short labels (#00F2FF)
+        //   brand.soft → sustained body copy; full-saturation cyan visibly
+        //                vibrates at paragraph length on a near-black field
+        //   brand.dim  → pressed / disabled
         brand: {
           DEFAULT: "hsl(var(--brand))",
+          soft: "hsl(var(--brand-soft))",
           dim: "hsl(var(--brand-dim))",
         },
         // AMBIENT ONLY — glows, aurora, mesh gradients. Never a control.
@@ -104,6 +109,19 @@ const config: Config = {
         neon: "0 0 0 1px hsl(var(--brand) / 0.35), 0 0 24px -4px hsl(var(--brand) / 0.45)",
         "neon-lg": "0 0 0 1px hsl(var(--brand) / 0.4), 0 0 44px -6px hsl(var(--brand) / 0.55)",
         "inner-hairline": "inset 0 1px 0 0 hsl(var(--foreground) / 0.06)",
+        // Glass edge refraction without the .glass-panel background — for
+        // elements that need the lit rim but supply their own fill.
+        glass: [
+          "inset 0 1px 0 0 hsl(var(--foreground) / 0.07)",
+          "inset 0 -1px 0 0 hsl(0 0% 0% / 0.35)",
+          "0 16px 40px -12px hsl(220 40% 1% / 0.75)",
+        ].join(", "),
+      },
+      // Named blur steps so glass surfaces can't drift apart component by
+      // component. `backdrop-blur-glass` is the canonical panel value.
+      backdropBlur: {
+        glass: "var(--glass-blur)",
+        chrome: "22px",
       },
       transitionTimingFunction: {
         // Weighted, spring-like easing. Replaces the default linear/ease

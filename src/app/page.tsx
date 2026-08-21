@@ -18,12 +18,20 @@ import FloatingWidgets from "@/components/FloatingWidgets";
 
 export default function Home() {
     return (
-        <div className="min-h-screen bg-background">
+        // 100dvh, not 100vh — avoids the iOS Safari toolbar layout jump.
+        <div className="min-h-[100dvh] bg-background">
+            {/* Ambient substrate: two fixed, pointer-events-none paint layers —
+                a masked cyan hairline grid, and an edge vignette that gives the
+                flat carbon base a centre of gravity. Both are token-driven, so
+                they retint with the theme instead of being pinned to a literal
+                hex the way the previous #080808 grid was. */}
             <div
-                className="fixed inset-0 -z-10 h-full w-full bg-[linear-gradient(to_right,#080808_1px,transparent_1px),linear-gradient(to_bottom,#080808_1px,transparent_1px)] bg-[size:4rem_4rem]"
-                style={{
-                    mask: "radial-gradient(circle at center, transparent, black)",
-                }}
+                className="command-field pointer-events-none fixed inset-0 -z-10 h-full w-full"
+                aria-hidden="true"
+            />
+            <div
+                className="command-vignette pointer-events-none fixed inset-0 -z-10 h-full w-full"
+                aria-hidden="true"
             />
             {/* AI-engineering proof first; business services follow it */}
             <Hero />

@@ -96,9 +96,7 @@ const Navbar = () => {
   return (
     <nav
       className={`fixed top-0 left-0 right-0 z-nav transition-all duration-300 ease-spring ${
-        isScrolled
-          ? "bg-background/80 backdrop-blur-xl saturate-150 border-b border-border shadow-elevated"
-          : "bg-transparent"
+        isScrolled ? "glass-chrome shadow-elevated" : "bg-transparent"
       }`}
     >
       <div className="container mx-auto flex items-center justify-between px-4 py-4">
@@ -223,7 +221,7 @@ const Navbar = () => {
       {/* Mobile menu — full list, all sections reachable regardless of the
           desktop "More" split */}
       {isMobileOpen && (
-        <div className="lg:hidden bg-background/95 backdrop-blur-xl border-b border-border">
+        <div className="lg:hidden glass-chrome">
           <div className="container mx-auto px-4 py-4 space-y-3">
             {navLinks.map((link) => (
               <Link
