@@ -5,35 +5,43 @@ import Image from "next/image";
 import Link from "next/link";
 import { motion, AnimatePresence, useInView } from "framer-motion";
 import { ArrowDown, ExternalLink, MapPin } from "lucide-react";
+import { Button } from "@/components/ui/button";
 import { useLocale } from "@/context/LocaleContext";
 
+// Terminal palette is token-driven so the transcript retints with the theme
+// instead of staying lime on a carbon background.
+const BRAND = "hsl(var(--brand))";
+const DIM = "hsl(var(--muted-foreground))";
+
 const TERMINAL_LINES = [
-  { text: "$ claude code --spec-first", color: "#84cc16" },
-  { text: "> Booting SKILL.md agent...", color: "#9ca3af" },
-  { text: "> Spawning OpenAI Custom Agent", color: "#9ca3af" },
-  { text: "> Deploying → Kubernetes cluster", color: "#9ca3af" },
-  { text: "✓ Zero failures. 6/6 hackathons.", color: "#84cc16" },
+  { text: "$ claude code --spec-first", color: BRAND },
+  { text: "> Booting SKILL.md agent...", color: DIM },
+  { text: "> Spawning OpenAI Custom Agent", color: DIM },
+  { text: "> Deploying → Kubernetes cluster", color: DIM },
+  { text: "✓ Zero failures. 6/6 hackathons.", color: BRAND },
 ];
 
+// Official vendor colors — these are identity marks, not UI accents, so they
+// stay literal. The brand-cyan rule applies to interactive elements only.
 const ORBIT_BADGES = [
-  { label: "Next.js",     color: "#ffffff", angle: 0   },
-  { label: "Kubernetes",  color: "#326CE5", angle: 60  },
-  { label: "FastAPI",     color: "#009688", angle: 120 },
-  { label: "OpenAI SDK",  color: "#10a37f", angle: 180 },
-  { label: "Claude MCP",  color: "#CC785C", angle: 240 },
-  { label: "TypeScript",  color: "#3178C6", angle: 300 },
+  { label: "Next.js", color: "#ffffff", angle: 0 },
+  { label: "Kubernetes", color: "#326CE5", angle: 60 },
+  { label: "FastAPI", color: "#009688", angle: 120 },
+  { label: "OpenAI SDK", color: "#10a37f", angle: 180 },
+  { label: "Claude MCP", color: "#CC785C", angle: 240 },
+  { label: "TypeScript", color: "#3178C6", angle: 300 },
 ];
 
 function MonogramAvatar() {
   return (
     <div className="relative w-72 h-72 flex items-center justify-center">
-      <div className="absolute inset-0 rounded-full bg-green-500/10 blur-3xl" />
+      <div className="absolute inset-0 rounded-full bg-brand/10 blur-3xl" />
       <motion.div
         animate={{ rotate: 360 }}
         transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
-        className="absolute inset-0 rounded-full border border-dashed border-green-500/20"
+        className="absolute inset-0 rounded-full border border-dashed border-brand/20"
       />
-      <div className="absolute inset-4 rounded-full border border-green-500/30" />
+      <div className="absolute inset-4 rounded-full border border-brand/30" />
 
       {ORBIT_BADGES.map((badge, i) => {
         const rad = (badge.angle * Math.PI) / 180;
@@ -50,7 +58,7 @@ function MonogramAvatar() {
             suppressHydrationWarning
             style={{
               left: `calc(50% + ${x}px)`,
-              top:  `calc(50% + ${y}px)`,
+              top: `calc(50% + ${y}px)`,
               transform: "translate(-50%, -50%)",
               backgroundColor: `${badge.color}15`,
               borderColor: `${badge.color}50`,
@@ -67,7 +75,7 @@ function MonogramAvatar() {
         initial={{ scale: 0, opacity: 0 }}
         animate={{ scale: 1, opacity: 1 }}
         transition={{ duration: 0.6, type: "spring" }}
-        className="relative z-10 w-36 h-36 rounded-full border-2 border-green-500/60 overflow-hidden shadow-[0_0_40px_rgba(132,204,22,0.25)] bg-[#111111]"
+        className="relative z-raised w-36 h-36 rounded-full border-2 border-brand/60 overflow-hidden shadow-neon-lg bg-surface-2"
       >
         <Image
           src="/images/asadullah-vector.png"
@@ -76,7 +84,7 @@ function MonogramAvatar() {
           priority
           className="object-cover object-top scale-110"
         />
-        <div className="absolute inset-0 bg-green-500/5 rounded-full" />
+        <div className="absolute inset-0 bg-brand/5 rounded-full" />
       </motion.div>
     </div>
   );
@@ -84,6 +92,7 @@ function MonogramAvatar() {
 
 function TerminalCard() {
   const [visibleLines, setVisibleLines] = useState(1);
+  const done = visibleLines >= TERMINAL_LINES.length;
 
   useEffect(() => {
     if (visibleLines >= TERMINAL_LINES.length) {
@@ -95,13 +104,24 @@ function TerminalCard() {
   }, [visibleLines]);
 
   return (
-    <div className="w-full max-w-xs bg-[#0d0d0d] border border-white/10 rounded-xl overflow-hidden shadow-2xl">
-      <div className="flex items-center gap-1.5 px-4 py-2.5 bg-[#111111] border-b border-white/5">
-        <div className="w-2.5 h-2.5 rounded-full bg-red-500/70" />
-        <div className="w-2.5 h-2.5 rounded-full bg-yellow-500/70" />
-        <div className="w-2.5 h-2.5 rounded-full bg-green-500/70" />
-        <span className="ml-2 text-xs text-gray-600 font-mono">agent-factory ~ asadullah</span>
+    <div className="relative w-full max-w-xs bg-surface-1 border border-border rounded-panel overflow-hidden shadow-panel">
+      {/* Scanline sweep — reads as the agent indexing its own output. */}
+      {!done && (
+        <div
+          aria-hidden="true"
+          className="animate-scan-sweep pointer-events-none absolute inset-x-0 top-0 h-16 bg-gradient-to-b from-transparent via-brand/[0.07] to-transparent"
+        />
+      )}
+
+      <div className="flex items-center gap-1.5 px-4 py-2.5 bg-surface-2 border-b border-border">
+        <div className="w-2.5 h-2.5 rounded-full bg-destructive/60" />
+        <div className="w-2.5 h-2.5 rounded-full bg-muted-foreground/40" />
+        <div className="w-2.5 h-2.5 rounded-full bg-brand/60" />
+        <span className="ml-2 text-xs text-muted-foreground font-mono">
+          agent-factory ~ asadullah
+        </span>
       </div>
+
       <div className="p-4 font-mono text-xs space-y-1.5 min-h-[120px]">
         <AnimatePresence>
           {TERMINAL_LINES.slice(0, visibleLines).map((line, i) => (
@@ -117,8 +137,10 @@ function TerminalCard() {
                 <motion.span
                   animate={{ opacity: [1, 0] }}
                   transition={{ repeat: Infinity, duration: 0.7 }}
-                  style={{ color: "#84cc16" }}
-                >█</motion.span>
+                  style={{ color: BRAND }}
+                >
+                  █
+                </motion.span>
               )}
             </motion.div>
           ))}
@@ -128,11 +150,12 @@ function TerminalCard() {
   );
 }
 
+// Vendor identity colors again — the lead agent now carries brand cyan.
 const AGENT_MODES = [
-  { id: "general", label: "Portfolio Guide", color: "#9CE630" },
-  { id: "python",  label: "Backend Expert",  color: "#009688" },
-  { id: "nextjs",  label: "Frontend Arch",   color: "#3178C6" },
-  { id: "agents",  label: "Agent Builder",   color: "#CC785C" },
+  { id: "general", label: "Portfolio Guide", color: "#22D3EE" },
+  { id: "python", label: "Backend Expert", color: "#009688" },
+  { id: "nextjs", label: "Frontend Arch", color: "#3178C6" },
+  { id: "agents", label: "Agent Builder", color: "#CC785C" },
 ] as const;
 
 function AgentModeStrip() {
@@ -143,14 +166,14 @@ function AgentModeStrip() {
       transition={{ delay: 0.8 }}
       className="w-full max-w-xs"
     >
-      <div className="text-[10px] text-gray-600 font-mono uppercase tracking-widest mb-2 px-1">
+      <div className="text-eyebrow text-muted-foreground font-mono uppercase mb-2 px-1">
         {"// available_agents"}
       </div>
       <div className="grid grid-cols-2 gap-1.5">
         {AGENT_MODES.map((mode) => (
           <div
             key={mode.id}
-            className="flex items-center gap-2 px-3 py-2 rounded-lg border text-xs font-mono"
+            className="flex items-center gap-2 px-3 py-2 rounded-md border text-xs font-mono transition-transform duration-200 ease-spring hover:-translate-y-0.5"
             style={{
               borderColor: `${mode.color}30`,
               backgroundColor: `${mode.color}08`,
@@ -158,7 +181,7 @@ function AgentModeStrip() {
             }}
           >
             <span
-              className="w-1.5 h-1.5 rounded-full flex-shrink-0"
+              className="animate-think-pulse w-1.5 h-1.5 rounded-full flex-shrink-0"
               style={{ backgroundColor: mode.color }}
             />
             {mode.label}
@@ -184,24 +207,35 @@ function useCountUp(target: number, duration = 1800, inView = false) {
     const step = target / (duration / 16);
     const timer = setInterval(() => {
       start += step;
-      if (start >= target) { setCount(target); clearInterval(timer); }
-      else setCount(Math.floor(start));
+      if (start >= target) {
+        setCount(target);
+        clearInterval(timer);
+      } else setCount(Math.floor(start));
     }, 16);
     return () => clearInterval(timer);
   }, [target, duration, inView]);
   return count;
 }
 
-function StatCounter({ target, suffix, label, inView }: {
-  target: number; suffix: string; label: string; inView: boolean;
+function StatCounter({
+  target,
+  suffix,
+  label,
+  inView,
+}: {
+  target: number;
+  suffix: string;
+  label: string;
+  inView: boolean;
 }) {
   const count = useCountUp(target, 1600, inView);
   return (
     <div className="text-center lg:text-left">
-      <div className="text-2xl font-bold text-white tabular-nums">
-        {count}{suffix}
+      <div className="font-display text-2xl font-bold text-foreground tabular-nums">
+        {count}
+        {suffix}
       </div>
-      <div className="text-xs text-gray-500 mt-0.5">{label}</div>
+      <div className="text-xs text-muted-foreground mt-0.5">{label}</div>
     </div>
   );
 }
@@ -209,16 +243,14 @@ function StatCounter({ target, suffix, label, inView }: {
 export function HeroSection() {
   const { t } = useLocale();
 
-  const ROLES = useMemo(() => [
-    t("hero.role1"),
-    t("hero.role2"),
-    t("hero.role3"),
-    t("hero.role4"),
-  ], [t]);
+  const ROLES = useMemo(
+    () => [t("hero.role1"), t("hero.role2"), t("hero.role3"), t("hero.role4")],
+    [t]
+  );
 
-  const [roleIndex, setRoleIndex]   = useState(0);
-  const [displayed, setDisplayed]   = useState("");
-  const [deleting, setDeleting]     = useState(false);
+  const [roleIndex, setRoleIndex] = useState(0);
+  const [displayed, setDisplayed] = useState("");
+  const [deleting, setDeleting] = useState(false);
 
   useEffect(() => {
     setDisplayed("");
@@ -227,7 +259,7 @@ export function HeroSection() {
   }, [ROLES]);
 
   useEffect(() => {
-    const role  = ROLES[roleIndex];
+    const role = ROLES[roleIndex];
     const speed = deleting ? 35 : 65;
     const timer = setTimeout(() => {
       if (!deleting) {
@@ -248,12 +280,15 @@ export function HeroSection() {
     return () => clearTimeout(timer);
   }, [displayed, deleting, roleIndex, ROLES]);
 
-  const STATS = useMemo(() => [
-    { target: 467, suffix: "+", label: t("hero.stats.repos")     },
-    { target: 6,   suffix: "",  label: t("hero.stats.hackathons") },
-    { target: 85,  suffix: "%", label: t("hero.stats.codeReuse")  },
-    { target: 149, suffix: "+", label: t("hero.stats.tests")      },
-  ], [t]);
+  const STATS = useMemo(
+    () => [
+      { target: 467, suffix: "+", label: t("hero.stats.repos") },
+      { target: 6, suffix: "", label: t("hero.stats.hackathons") },
+      { target: 85, suffix: "%", label: t("hero.stats.codeReuse") },
+      { target: 149, suffix: "+", label: t("hero.stats.tests") },
+    ],
+    [t]
+  );
 
   const statsRef = useRef<HTMLDivElement>(null);
   const statsInView = useInView(statsRef, { once: true, margin: "-100px" });
@@ -261,26 +296,27 @@ export function HeroSection() {
   return (
     <section
       id="home"
-      className="min-h-screen flex items-center justify-center relative overflow-hidden bg-[#0a0a0a]"
+      // 100dvh, not 100vh — avoids the iOS Safari toolbar layout jump.
+      className="min-h-[100dvh] flex items-center justify-center relative overflow-hidden bg-background"
     >
-      <div className="absolute inset-0 bg-[linear-gradient(rgba(132,204,22,0.035)_1px,transparent_1px),linear-gradient(90deg,rgba(132,204,22,0.035)_1px,transparent_1px)] bg-[size:3.5rem_3.5rem]" />
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_80%_80%_at_50%_-20%,rgba(132,204,22,0.06),transparent)]" />
-
-      {/* Aurora blobs — slow-drifting brand-color glows behind the content */}
-      <div className="animate-aurora-1 absolute -top-40 -left-40 w-[520px] h-[520px] rounded-full bg-[#9CE630]/[0.07] blur-[130px] pointer-events-none" />
-      <div className="animate-aurora-2 absolute -bottom-32 -right-24 w-[440px] h-[440px] rounded-full bg-teal-400/[0.06] blur-[110px] pointer-events-none" />
-
-      {/* Film grain — breaks up gradient banding on large screens */}
+      <div className="neural-grid absolute inset-0" aria-hidden="true" />
       <div
-        className="absolute inset-0 opacity-[0.025] pointer-events-none"
-        style={{
-          backgroundImage:
-            "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E\")",
-        }}
+        className="absolute inset-0 bg-[radial-gradient(ellipse_80%_80%_at_50%_-20%,hsl(var(--brand)/0.07),transparent)]"
+        aria-hidden="true"
       />
 
-      <div className="container mx-auto px-6 py-24 flex flex-col lg:flex-row items-center gap-16 relative z-10">
+      {/* Aurora blobs. Cyan leads; violet is ambient-only and never sits
+          under an interactive element. */}
+      <div
+        aria-hidden="true"
+        className="animate-aurora-1 absolute -top-40 -left-40 w-[520px] h-[520px] rounded-full bg-brand/[0.07] blur-[130px] pointer-events-none"
+      />
+      <div
+        aria-hidden="true"
+        className="animate-aurora-2 absolute -bottom-32 -right-24 w-[440px] h-[440px] rounded-full bg-violet/[0.08] blur-[110px] pointer-events-none"
+      />
 
+      <div className="container flex flex-col lg:flex-row items-center gap-16 relative z-raised py-24">
         <motion.div
           className="flex-1 text-center lg:text-left"
           initial={{ opacity: 0, x: -40 }}
@@ -291,68 +327,75 @@ export function HeroSection() {
             initial={{ opacity: 0, y: -10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.2 }}
-            className="inline-flex items-center gap-2 bg-green-500/10 border border-green-500/30 rounded-full px-4 py-1.5 mb-7"
+            className="inline-flex items-center gap-2 bg-brand/10 border border-brand/25 rounded-full px-4 py-1.5 mb-7"
           >
             <span className="relative flex h-2 w-2">
-              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75" />
-              <span className="relative inline-flex rounded-full h-2 w-2 bg-green-500" />
+              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-brand opacity-75" />
+              <span className="relative inline-flex rounded-full h-2 w-2 bg-brand" />
             </span>
-            <span className="text-green-400 text-sm font-medium">{t("hero.badge")}</span>
-            <MapPin className="w-3 h-3 text-green-400/60" />
-            <span className="text-green-400/60 text-xs">{t("hero.location")}</span>
+            <span className="text-brand text-sm font-medium">{t("hero.badge")}</span>
+            <MapPin className="w-3 h-3 text-brand/60" />
+            <span className="text-brand/60 text-xs">{t("hero.location")}</span>
           </motion.div>
 
-          <h1 className="text-5xl lg:text-7xl font-bold text-white mb-5 leading-tight">
+          <h1 className="font-display text-display-lg lg:text-display-xl font-bold text-foreground mb-5">
             {t("hero.greeting")}{" "}
-            <span className="text-green-400 relative">
+            <span className="text-brand relative">
               {t("hero.name")}
-              <span className="absolute -bottom-1 left-0 w-full h-px bg-green-400/40" />
+              <span className="absolute -bottom-1 left-0 w-full h-px bg-brand/40" />
             </span>
           </h1>
 
           <div className="h-9 mb-6 flex items-center justify-center lg:justify-start">
-            <span className="text-xl lg:text-2xl text-gray-300 font-mono">
+            <span className="text-xl lg:text-2xl text-foreground/70 font-mono">
               {displayed}
               <motion.span
                 animate={{ opacity: [1, 0] }}
                 transition={{ repeat: Infinity, duration: 0.7 }}
-                className="text-green-400"
-              >|</motion.span>
+                className="text-brand"
+              >
+                |
+              </motion.span>
             </span>
           </div>
 
-          <p className="text-gray-400 text-base lg:text-lg mb-8 max-w-xl leading-relaxed">
+          <p className="text-muted-foreground text-base lg:text-lg mb-8 max-w-[62ch] leading-relaxed">
             {t("hero.descPre")}{" "}
-            <span className="text-white font-semibold">{t("hero.descBold1")}</span>{" "}
+            <span className="text-foreground font-semibold">{t("hero.descBold1")}</span>{" "}
             {t("hero.descMid1")}{" "}
-            <span className="text-green-400 font-semibold">{t("hero.descBold2")}</span>{" "}
+            <span className="text-brand font-semibold">{t("hero.descBold2")}</span>{" "}
             {t("hero.descMid2")}{" "}
-            <span className="text-green-400 font-semibold">{t("hero.descBold3")}</span>
+            <span className="text-brand font-semibold">{t("hero.descBold3")}</span>
             {t("hero.descSuffix")}
           </p>
 
+          {/* One `neon` per viewport — the resume download is deliberately
+              quieter so the primary path stays unambiguous. */}
           <div className="flex flex-wrap gap-3 justify-center lg:justify-start mb-10">
-            <Link
-              href="#projects"
-              className="flex items-center gap-2 bg-green-500 hover:bg-green-400 text-black font-semibold px-6 py-3 rounded-lg transition-all duration-200 hover:scale-105 shadow-[0_0_24px_rgba(132,204,22,0.35)]"
-            >
-              {t("hero.viewWork")} <ArrowDown className="w-4 h-4" />
-            </Link>
-            <a
-              href="/resume.pdf"
-              download="Asadullah_Shafique_Resume.pdf"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex items-center gap-2 border border-white/20 hover:border-green-500/50 text-white px-6 py-3 rounded-lg transition-all duration-200 hover:bg-white/5"
-            >
-              <ExternalLink className="w-4 h-4" /> {t("hero.downloadResume")}
-            </a>
+            <Button asChild variant="neon" size="lg">
+              <Link href="#projects">
+                {t("hero.viewWork")} <ArrowDown className="w-4 h-4" />
+              </Link>
+            </Button>
+            <Button asChild variant="outline" size="lg">
+              <a
+                href="/resume.pdf"
+                download="Asadullah_Shafique_Resume.pdf"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <ExternalLink className="w-4 h-4" /> {t("hero.downloadResume")}
+              </a>
+            </Button>
           </div>
 
-          <div ref={statsRef} className="flex flex-wrap items-center gap-6 justify-center lg:justify-start">
+          <div
+            ref={statsRef}
+            className="flex flex-wrap items-center gap-6 justify-center lg:justify-start"
+          >
             {STATS.map((s, i) => (
               <div key={s.label} className="flex items-center gap-6">
-                {i > 0 && <div className="w-px h-8 bg-white/10" />}
+                {i > 0 && <div className="w-px h-8 bg-border" />}
                 <StatCounter {...s} inView={statsInView} />
               </div>
             ))}
@@ -370,7 +413,6 @@ export function HeroSection() {
           <AgentModeStrip />
         </motion.div>
       </div>
-
     </section>
   );
 }

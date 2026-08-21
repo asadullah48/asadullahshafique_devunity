@@ -1,53 +1,102 @@
-﻿@import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&family=Noto+Sans+Arabic:wght@400;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&family=Noto+Sans+Arabic:wght@400;600;700&display=swap');
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
+/* ============================================================================
+   TOKENS — Midnight/Carbon, dark-first.
+   `:root` IS the dark theme. `.light` is the opt-in override.
+   This ordering matters: next-themes runs client-side, so SSR/no-JS output
+   must already be carbon or the page flashes white before hydration.
+
+   Grays are all tinted hue-220 (cool) so surfaces never mix warm and cool.
+   Interactive color is cyan ONLY. Violet is ambient — glows, aurora, mesh —
+   and must never be used for a control the user can click.
+   ========================================================================= */
 @layer base {
     :root {
-          --background: 0 0% 100%;
-          --foreground: 240 10% 3.9%;
-          --card: 0 0% 100%;
-          --card-foreground: 240 10% 3.9%;
-          --popover: 0 0% 100%;
-          --popover-foreground: 240 10% 3.9%;
-          --primary: 84 80% 55%;
-          --primary-foreground: 0 0% 0%;
-          --secondary: 240 4.8% 95.9%;
-          --secondary-foreground: 240 5.9% 10%;
-          --muted: 240 4.8% 95.9%;
-          --muted-foreground: 240 3.8% 46.1%;
-          --accent: 240 4.8% 95.9%;
-          --accent-foreground: 240 5.9% 10%;
-          --destructive: 0 84.2% 60.2%;
-          --destructive-foreground: 0 0% 98%;
-          --border: 240 5.9% 90%;
-          --input: 240 5.9% 90%;
-          --ring: 84 80% 55%;
-          --radius: 0.5rem;
+          /* --- shadcn semantic layer --------------------------------------- */
+          --background: 220 16% 4%;          /* #08090B carbon           */
+          --foreground: 220 22% 92%;         /* #E6E9EF                  */
+          --card: 220 17% 7%;                /* #0F1115 raised           */
+          --card-foreground: 220 22% 92%;
+          --popover: 220 17% 8%;
+          --popover-foreground: 220 22% 92%;
+
+          --primary: 188 86% 53%;            /* #22D3EE cyan — ALL UI    */
+          --primary-foreground: 220 16% 4%;  /* carbon text on cyan      */
+
+          --secondary: 218 16% 13%;          /* #1C2027                  */
+          --secondary-foreground: 220 22% 92%;
+
+          --muted: 218 16% 13%;
+          --muted-foreground: 220 12% 59%;   /* #8B93A3                  */
+
+          /* NOTE: shadcn's `accent` is the subtle HOVER SURFACE, not the
+             brand accent. Keep it neutral — see --brand below. */
+          --accent: 218 16% 16%;
+          --accent-foreground: 220 22% 92%;
+
+          --destructive: 0 72% 51%;
+          --destructive-foreground: 220 22% 96%;
+
+          --border: 218 16% 13%;
+          --input: 218 16% 16%;
+          --ring: 188 86% 53%;
+          --radius: 0.625rem;
+
+          /* --- brand layer (beyond shadcn) --------------------------------- */
+          --brand: 188 86% 53%;              /* #22D3EE cyan             */
+          --brand-dim: 193 82% 31%;          /* #0E7490 pressed/dim      */
+          --violet: 262 83% 58%;             /* #7C3AED AMBIENT ONLY     */
+
+          /* Elevation scale — avoids ad-hoc bg-[#111] literals. */
+          --surface-1: 220 17% 7%;
+          --surface-2: 219 16% 10%;
+          --surface-3: 218 16% 14%;
+
+          /* Hairlines & grid */
+          --grid-line: 188 86% 53%;
+          --grid-alpha: 0.035;
     }
 
-  .dark {
-        --background: 240 10% 3.9%;
-        --foreground: 0 0% 98%;
-        --card: 240 10% 3.9%;
-        --card-foreground: 0 0% 98%;
-        --popover: 240 10% 3.9%;
-        --popover-foreground: 0 0% 98%;
-        --primary: 84 80% 55%;
-        --primary-foreground: 0 0% 0%;
-        --secondary: 240 3.7% 15.9%;
-        --secondary-foreground: 0 0% 98%;
-        --muted: 240 3.7% 15.9%;
-        --muted-foreground: 240 5% 64.9%;
-        --accent: 240 3.7% 15.9%;
-        --accent-foreground: 0 0% 98%;
-        --destructive: 0 62.8% 30.6%;
-        --destructive-foreground: 0 0% 98%;
-        --border: 240 3.7% 15.9%;
-        --input: 240 3.7% 15.9%;
-        --ring: 84 80% 55%;
-  }
+    .light {
+          --background: 220 20% 98%;
+          --foreground: 220 25% 10%;
+          --card: 0 0% 100%;
+          --card-foreground: 220 25% 10%;
+          --popover: 0 0% 100%;
+          --popover-foreground: 220 25% 10%;
+
+          --primary: 193 82% 34%;            /* darkened cyan for AA on white */
+          --primary-foreground: 0 0% 100%;
+
+          --secondary: 220 14% 94%;
+          --secondary-foreground: 220 25% 12%;
+
+          --muted: 220 14% 94%;
+          --muted-foreground: 220 10% 40%;
+
+          --accent: 220 14% 91%;
+          --accent-foreground: 220 25% 12%;
+
+          --destructive: 0 72% 45%;
+          --destructive-foreground: 0 0% 100%;
+
+          --border: 220 13% 88%;
+          --input: 220 13% 88%;
+          --ring: 193 82% 34%;
+
+          --brand: 193 82% 34%;
+          --brand-dim: 193 82% 24%;
+          --violet: 262 70% 48%;
+
+          --surface-1: 0 0% 100%;
+          --surface-2: 220 16% 96%;
+          --surface-3: 220 14% 92%;
+
+          --grid-alpha: 0.05;
+    }
 }
 
 @layer base {
@@ -56,43 +105,138 @@
     }
     body {
           @apply bg-background text-foreground;
+          /* Tabular figures everywhere: this is a stats-heavy portfolio and
+             proportional digits make counters visibly jitter as they tick. */
+          font-variant-numeric: tabular-nums;
+          text-rendering: optimizeLegibility;
     }
     html {
           scroll-behavior: smooth;
+          /* Offset anchor targets so sticky nav doesn't cover section headings */
+          scroll-padding-top: 5.5rem;
+    }
+    h1, h2, h3 {
+          font-family: var(--font-display), var(--font-inter), system-ui, sans-serif;
+          text-wrap: balance;          /* kills orphaned words in headlines */
+          letter-spacing: -0.02em;     /* negative tracking on display sizes */
+    }
+    p {
+          text-wrap: pretty;
+    }
+    /* Single, consistent focus treatment for every interactive element. */
+    :where(a, button, [role="button"], input, select, textarea, [tabindex]):focus-visible {
+          outline: 2px solid hsl(var(--ring));
+          outline-offset: 2px;
+          border-radius: calc(var(--radius) - 3px);
     }
 }
 
-/* Custom scrollbar */
+/* ============================================================================
+   SCROLLBAR
+   ========================================================================= */
 ::-webkit-scrollbar {
-    width: 8px;
+    width: 10px;
+    height: 10px;
 }
 
 ::-webkit-scrollbar-track {
-    background: #09090b;
+    background: hsl(var(--background));
 }
 
 ::-webkit-scrollbar-thumb {
-    background: #27272a;
-    border-radius: 4px;
+    background: hsl(var(--surface-3));
+    border-radius: 6px;
+    border: 2px solid hsl(var(--background));
 }
 
 ::-webkit-scrollbar-thumb:hover {
-    background: #3f3f46;
+    background: hsl(var(--brand) / 0.45);
 }
 
-/* Progress bar override */
+/* Progress bar override — token-driven, no hardcoded hex */
 [data-radix-progress-indicator] {
-    background: #9CE630 !important;
+    background: hsl(var(--brand));
     transition: transform 660ms cubic-bezier(0.65, 0, 0.35, 1);
 }
 
-/* Selection */
 ::selection {
-    background-color: rgba(156, 230, 48, 0.3);
-    color: white;
+    background-color: hsl(var(--brand) / 0.28);
+    color: hsl(var(--foreground));
 }
 
-/* Aurora backdrop blobs (hero) */
+/* ============================================================================
+   SURFACES — glass, grain, glow
+   ========================================================================= */
+
+/* True glassmorphism: blur + 1px inner border + inner shadow for edge
+   refraction. A bare backdrop-blur reads as flat frosted plastic. */
+.glass-panel {
+    background: hsl(var(--surface-1) / 0.72);
+    backdrop-filter: blur(14px) saturate(150%);
+    -webkit-backdrop-filter: blur(14px) saturate(150%);
+    border: 1px solid hsl(var(--foreground) / 0.08);
+    box-shadow:
+          inset 0 1px 0 0 hsl(var(--foreground) / 0.06),
+          inset 0 -1px 0 0 hsl(0 0% 0% / 0.3),
+          0 16px 40px -12px hsl(220 40% 2% / 0.7);
+}
+
+/* Fixed grain overlay — breaks digital flatness and gradient banding. */
+.grain-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 1;
+    pointer-events: none;
+    opacity: 0.022;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/* Neural grid backdrop — cyan hairlines at very low alpha. */
+.neural-grid {
+    background-image:
+          linear-gradient(hsl(var(--grid-line) / var(--grid-alpha)) 1px, transparent 1px),
+          linear-gradient(90deg, hsl(var(--grid-line) / var(--grid-alpha)) 1px, transparent 1px);
+    background-size: 3.5rem 3.5rem;
+}
+
+/* Spotlight card hover glow — position driven by --spot-x / --spot-y */
+.spotlight-overlay {
+    background: radial-gradient(
+          320px circle at var(--spot-x, 50%) var(--spot-y, 50%),
+          hsl(var(--brand) / 0.10),
+          transparent 65%
+    );
+}
+
+/* Border that illuminates under the cursor. Pair with .spotlight-overlay. */
+.spotlight-border::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    padding: 1px;
+    background: radial-gradient(
+          220px circle at var(--spot-x, 50%) var(--spot-y, 50%),
+          hsl(var(--brand) / 0.55),
+          transparent 70%
+    );
+    -webkit-mask:
+          linear-gradient(#000 0 0) content-box,
+          linear-gradient(#000 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    opacity: 0;
+    transition: opacity 240ms ease;
+    pointer-events: none;
+}
+
+.spotlight-border:hover::before {
+    opacity: 1;
+}
+
+/* ============================================================================
+   AMBIENT MOTION — aurora, marquee
+   ========================================================================= */
 @keyframes aurora-drift-1 {
     0%, 100% { transform: translate(0, 0) scale(1); }
     33%      { transform: translate(60px, 40px) scale(1.15); }
@@ -104,15 +248,9 @@
     50%      { transform: translate(-70px, -50px) scale(1.2); }
 }
 
-.animate-aurora-1 {
-    animation: aurora-drift-1 18s ease-in-out infinite;
-}
+.animate-aurora-1 { animation: aurora-drift-1 18s ease-in-out infinite; }
+.animate-aurora-2 { animation: aurora-drift-2 24s ease-in-out infinite; }
 
-.animate-aurora-2 {
-    animation: aurora-drift-2 24s ease-in-out infinite;
-}
-
-/* Infinite logo marquee */
 @keyframes marquee-scroll {
     from { transform: translateX(0); }
     to   { transform: translateX(-50%); }
@@ -132,36 +270,76 @@
     animation-play-state: paused;
 }
 
-/* Spotlight card hover glow — position driven by --spot-x / --spot-y */
-.spotlight-overlay {
-    background: radial-gradient(
-        320px circle at var(--spot-x, 50%) var(--spot-y, 50%),
-        rgba(156, 230, 48, 0.08),
-        transparent 65%
-    );
+/* ============================================================================
+   AI-SYSTEM MOTION PRIMITIVES
+   Shared vocabulary for "the machine is alive/working". Every one is
+   transform/opacity only so they stay on the compositor.
+   ========================================================================= */
+
+/* Breathing pulse — idle "system online" heartbeat. */
+@keyframes think-pulse {
+    0%, 100% { opacity: 0.45; transform: scale(1); }
+    50%      { opacity: 1;    transform: scale(1.06); }
+}
+.animate-think-pulse { animation: think-pulse 2.4s ease-in-out infinite; }
+
+/* Expanding ring — emitted from a node while the agent is "reasoning". */
+@keyframes think-ring {
+    0%   { opacity: 0.5; transform: scale(0.7); }
+    100% { opacity: 0;   transform: scale(2.1); }
+}
+.animate-think-ring { animation: think-ring 2s cubic-bezier(0.22, 1, 0.36, 1) infinite; }
+
+/* Signal travelling along a neural path. Apply to a dashed stroke. */
+@keyframes data-flow {
+    from { stroke-dashoffset: 240; }
+    to   { stroke-dashoffset: 0; }
+}
+.animate-data-flow {
+    stroke-dasharray: 6 14;
+    animation: data-flow 3.2s linear infinite;
 }
 
+/* Scanline sweep across a panel — "reading/indexing" cue. */
+@keyframes scan-sweep {
+    0%   { transform: translateY(-100%); opacity: 0; }
+    12%  { opacity: 1; }
+    88%  { opacity: 1; }
+    100% { transform: translateY(400%); opacity: 0; }
+}
+.animate-scan-sweep { animation: scan-sweep 3.4s ease-in-out infinite; }
+
+/* Three-dot thinking indicator (stagger with delay utilities). */
+@keyframes token-bounce {
+    0%, 80%, 100% { transform: translateY(0);     opacity: 0.35; }
+    40%           { transform: translateY(-4px);  opacity: 1; }
+}
+.animate-token-bounce { animation: token-bounce 1.2s ease-in-out infinite; }
+
+/* Staggered section entry */
+@keyframes fade-in-up {
+    from { opacity: 0; transform: translateY(20px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+.animate-fade-in-up { animation: fade-in-up 0.8s ease-out; }
+
+/* ============================================================================
+   REDUCED MOTION — one authoritative block.
+   Ambient/decorative motion stops entirely; nothing here is load-bearing
+   for comprehension, so full suppression is safe.
+   ========================================================================= */
 @media (prefers-reduced-motion: reduce) {
     .animate-aurora-1,
     .animate-aurora-2,
-    .animate-marquee {
-        animation: none;
+    .animate-marquee,
+    .animate-think-pulse,
+    .animate-think-ring,
+    .animate-data-flow,
+    .animate-scan-sweep,
+    .animate-token-bounce,
+    .animate-fade-in-up {
+          animation: none !important;
     }
+    .spotlight-border::before { transition: none; }
+    html { scroll-behavior: auto; }
 }
-
-/* Smooth animations */
-@keyframes fade-in-up {
-    from {
-          opacity: 0;
-          transform: translateY(20px);
-    }
-    to {
-          opacity: 1;
-          transform: translateY(0);
-    }
-}
-
-.animate-fade-in-up {
-    animation: fade-in-up 0.8s ease-out;
-}
-

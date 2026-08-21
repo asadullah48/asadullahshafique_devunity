@@ -14,7 +14,7 @@ const PILLARS: Pillar[] = [
   {
     id: "harness",
     number: "01",
-    color: "#9CE630",
+    color: "hsl(var(--brand))",
     chips: ["MCP Servers", "Memory", "Permissions", "Hooks", "Observability"],
   },
   {
@@ -45,15 +45,15 @@ export default function AgentEngineering() {
           transition={{ duration: 0.5 }}
           className="text-center mb-14"
         >
-          <div className="text-xs font-mono text-green-400/60 uppercase tracking-widest mb-3">
+          <div className="text-xs font-mono text-brand/60 uppercase tracking-widest mb-3">
             {"// agent_engineering"}
           </div>
-          <h2 className="text-4xl lg:text-5xl font-bold text-white mb-4">
+          <h2 className="text-4xl lg:text-5xl font-bold text-foreground mb-4">
             {t("agentEngineering.title")}{" "}
-            <span className="text-[#9CE630]">{t("agentEngineering.titleHighlight")}</span>
+            <span className="text-brand">{t("agentEngineering.titleHighlight")}</span>
           </h2>
-          <div className="w-20 h-1 bg-[#9CE630] mx-auto rounded-full mb-6" />
-          <p className="text-zinc-400 max-w-2xl mx-auto">
+          <div className="w-20 h-1 bg-brand mx-auto rounded-full mb-6" />
+          <p className="text-muted-foreground max-w-2xl mx-auto">
             {t("agentEngineering.subtitle")}
           </p>
         </motion.div>
@@ -66,7 +66,7 @@ export default function AgentEngineering() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: index * 0.12 }}
-              className="group flex flex-col p-6 rounded-2xl bg-zinc-900/50 border border-zinc-800 transition-all duration-300 hover:bg-zinc-900/80"
+              className="group flex flex-col p-6 rounded-2xl bg-surface-1/50 border border-border transition-all duration-300 hover:bg-surface-1/80"
               onMouseEnter={(e) => {
                 e.currentTarget.style.borderColor = `${pillar.color}4d`;
                 e.currentTarget.style.boxShadow = `0 0 24px ${pillar.color}14`;
@@ -87,20 +87,20 @@ export default function AgentEngineering() {
                 >
                   {pillar.number}
                 </span>
-                <span className="text-xs font-mono uppercase tracking-widest text-zinc-500">
+                <span className="text-xs font-mono uppercase tracking-widest text-muted-foreground">
                   {t(`agentEngineering.${pillar.id}.tag`)}
                 </span>
               </div>
 
-              <h3 className="text-xl font-bold text-white mb-2">
+              <h3 className="text-xl font-bold text-foreground mb-2">
                 {t(`agentEngineering.${pillar.id}.title`)}
               </h3>
-              <p className="text-sm text-zinc-400 leading-relaxed mb-5">
+              <p className="text-sm text-muted-foreground leading-relaxed mb-5">
                 {t(`agentEngineering.${pillar.id}.desc`)}
               </p>
 
               <div
-                className="text-xs font-mono leading-relaxed rounded-lg px-3 py-2.5 mb-5 border-l-2 bg-black/40 text-zinc-400"
+                className="text-xs font-mono leading-relaxed rounded-lg px-3 py-2.5 mb-5 border-l-2 bg-black/40 text-muted-foreground"
                 style={{ borderLeftColor: pillar.color }}
               >
                 <span style={{ color: pillar.color }}>&gt; </span>
@@ -111,7 +111,7 @@ export default function AgentEngineering() {
                 {pillar.chips.map((chip) => (
                   <span
                     key={chip}
-                    className="text-[10px] font-mono px-2 py-0.5 rounded-full border border-zinc-800 text-zinc-500 group-hover:text-zinc-300 group-hover:border-zinc-700 transition-colors duration-200"
+                    className="text-[10px] font-mono px-2 py-0.5 rounded-full border border-border text-muted-foreground group-hover:text-foreground/80 group-hover:border-border transition-colors duration-200"
                   >
                     {chip}
                   </span>
@@ -126,7 +126,7 @@ export default function AgentEngineering() {
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
           transition={{ delay: 0.4 }}
-          className="text-center text-zinc-600 text-sm mt-10 font-mono"
+          className="text-center text-muted-foreground/70 text-sm mt-10 font-mono"
         >
           {t("agentEngineering.footer")}
         </motion.p>

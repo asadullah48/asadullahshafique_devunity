@@ -27,7 +27,7 @@ export default function AIToolsPage() {
   const [activeTab, setActiveTab] = useState("error-solver");
 
   return (
-    <div className="min-h-screen bg-zinc-950">
+    <div className="min-h-screen bg-background">
       <div
         className="fixed inset-0 -z-10 h-full w-full bg-[linear-gradient(to_right,#0d0d0d_1px,transparent_1px),linear-gradient(to_bottom,#0d0d0d_1px,transparent_1px)] bg-[size:4rem_4rem]"
         aria-hidden="true"
@@ -44,7 +44,7 @@ export default function AIToolsPage() {
           <h1 className="text-5xl font-bold mb-4 bg-gradient-to-r from-green-400 to-blue-500 bg-clip-text text-transparent">
             AI-Powered Tools
           </h1>
-          <p className="text-xl text-zinc-400 max-w-2xl mx-auto">
+          <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
             Leverage the power of AI to solve errors, learn new topics, and contribute knowledge
           </p>
         </motion.div>
@@ -121,7 +121,7 @@ function ErrorSolver() {
   };
 
   return (
-    <Card className="bg-zinc-900 border-zinc-800">
+    <Card className="bg-surface-1 border-border">
       <CardHeader>
         <CardTitle className="flex items-center gap-2">
           <AlertCircle className="w-5 h-5 text-yellow-500" />
@@ -141,7 +141,7 @@ function ErrorSolver() {
               value={formData.error_message}
               onChange={(e) => setFormData({ ...formData, error_message: e.target.value })}
               required
-              className="bg-zinc-800 border-zinc-700"
+              className="bg-surface-2 border-border"
             />
           </div>
 
@@ -151,7 +151,7 @@ function ErrorSolver() {
               value={formData.language}
               onValueChange={(value) => setFormData({ ...formData, language: value })}
             >
-              <SelectTrigger className="bg-zinc-800 border-zinc-700">
+              <SelectTrigger className="bg-surface-2 border-border">
                 <SelectValue />
               </SelectTrigger>
               <SelectContent>
@@ -171,7 +171,7 @@ function ErrorSolver() {
               placeholder="for i in 5:&#10;    print(i)"
               value={formData.code_snippet}
               onChange={(e) => setFormData({ ...formData, code_snippet: e.target.value })}
-              className="bg-zinc-800 border-zinc-700 font-mono"
+              className="bg-surface-2 border-border font-mono"
               rows={5}
             />
           </div>
@@ -183,7 +183,7 @@ function ErrorSolver() {
               placeholder="What were you trying to accomplish?"
               value={formData.context}
               onChange={(e) => setFormData({ ...formData, context: e.target.value })}
-              className="bg-zinc-800 border-zinc-700"
+              className="bg-surface-2 border-border"
               rows={3}
             />
           </div>
@@ -209,38 +209,38 @@ function ErrorSolver() {
             animate={{ opacity: 1, y: 0 }}
             className="mt-6 space-y-4"
           >
-            <div className="p-4 bg-zinc-800 rounded-lg">
+            <div className="p-4 bg-surface-2 rounded-lg">
               <h3 className="font-semibold mb-2 flex items-center gap-2">
                 <Brain className="w-4 h-4 text-blue-500" />
                 Explanation
               </h3>
-              <p className="text-zinc-300">{result.explanation}</p>
+              <p className="text-foreground/80">{result.explanation}</p>
             </div>
 
-            <div className="p-4 bg-zinc-800 rounded-lg">
+            <div className="p-4 bg-surface-2 rounded-lg">
               <h3 className="font-semibold mb-2 flex items-center gap-2">
                 <CheckCircle className="w-4 h-4 text-green-500" />
                 Solution
               </h3>
-              <p className="text-zinc-300">{result.solution}</p>
+              <p className="text-foreground/80">{result.solution}</p>
             </div>
 
             {result.corrected_code && (
-              <div className="p-4 bg-zinc-800 rounded-lg">
+              <div className="p-4 bg-surface-2 rounded-lg">
                 <h3 className="font-semibold mb-2 flex items-center gap-2">
                   <Code2 className="w-4 h-4 text-purple-500" />
                   Corrected Code
                 </h3>
-                <pre className="bg-zinc-900 p-3 rounded text-sm overflow-x-auto">
+                <pre className="bg-surface-1 p-3 rounded text-sm overflow-x-auto">
                   <code>{result.corrected_code}</code>
                 </pre>
               </div>
             )}
 
             <div className="flex items-center gap-2">
-              <span className="text-sm text-zinc-400">Confidence:</span>
+              <span className="text-sm text-muted-foreground">Confidence:</span>
               <Progress value={result.confidence * 100} className="w-32" />
-              <span className="text-sm text-zinc-300">{(result.confidence * 100).toFixed(0)}%</span>
+              <span className="text-sm text-foreground/80">{(result.confidence * 100).toFixed(0)}%</span>
             </div>
           </motion.div>
         )}
@@ -294,7 +294,7 @@ function LearnTool() {
   };
 
   return (
-    <Card className="bg-zinc-900 border-zinc-800">
+    <Card className="bg-surface-1 border-border">
       <CardHeader>
         <CardTitle className="flex items-center gap-2">
           <BookOpen className="w-5 h-5 text-blue-500" />
@@ -314,7 +314,7 @@ function LearnTool() {
               value={formData.topic}
               onChange={(e) => setFormData({ ...formData, topic: e.target.value })}
               required
-              className="bg-zinc-800 border-zinc-700"
+              className="bg-surface-2 border-border"
             />
           </div>
 
@@ -325,7 +325,7 @@ function LearnTool() {
                 value={formData.level}
                 onValueChange={(value) => setFormData({ ...formData, level: value as any })}
               >
-                <SelectTrigger className="bg-zinc-800 border-zinc-700">
+                <SelectTrigger className="bg-surface-2 border-border">
                   <SelectValue />
                 </SelectTrigger>
                 <SelectContent>
@@ -342,7 +342,7 @@ function LearnTool() {
                 value={formData.learning_style}
                 onValueChange={(value) => setFormData({ ...formData, learning_style: value as any })}
               >
-                <SelectTrigger className="bg-zinc-800 border-zinc-700">
+                <SelectTrigger className="bg-surface-2 border-border">
                   <SelectValue />
                 </SelectTrigger>
                 <SelectContent>
@@ -361,7 +361,7 @@ function LearnTool() {
               placeholder="What is ML?&#10;How does neural network work?"
               value={formData.questions}
               onChange={(e) => setFormData({ ...formData, questions: e.target.value })}
-              className="bg-zinc-800 border-zinc-700"
+              className="bg-surface-2 border-border"
               rows={4}
             />
           </div>
@@ -387,20 +387,20 @@ function LearnTool() {
             animate={{ opacity: 1, y: 0 }}
             className="mt-6 space-y-4"
           >
-            <div className="p-4 bg-zinc-800 rounded-lg">
+            <div className="p-4 bg-surface-2 rounded-lg">
               <h3 className="font-semibold mb-3">📚 Lesson Plan</h3>
               <div className="prose prose-invert max-w-none">
-                <pre className="whitespace-pre-wrap font-sans text-sm text-zinc-300">
+                <pre className="whitespace-pre-wrap font-sans text-sm text-foreground/80">
                   {result.lesson_plan}
                 </pre>
               </div>
             </div>
 
-            <div className="p-4 bg-zinc-800 rounded-lg">
+            <div className="p-4 bg-surface-2 rounded-lg">
               <h3 className="font-semibold mb-3">🔗 Resources</h3>
               <ul className="space-y-2">
                 {result.resources.map((resource: string, index: number) => (
-                  <li key={index} className="flex items-center gap-2 text-zinc-300">
+                  <li key={index} className="flex items-center gap-2 text-foreground/80">
                     <span className="w-1.5 h-1.5 bg-blue-500 rounded-full" />
                     {resource}
                   </li>
@@ -408,11 +408,11 @@ function LearnTool() {
               </ul>
             </div>
 
-            <div className="p-4 bg-zinc-800 rounded-lg">
+            <div className="p-4 bg-surface-2 rounded-lg">
               <h3 className="font-semibold mb-3">❓ Quiz Questions</h3>
               <ul className="space-y-2">
                 {result.quiz_questions.map((question: string, index: number) => (
-                  <li key={index} className="text-zinc-300">
+                  <li key={index} className="text-foreground/80">
                     <Badge variant="outline" className="mr-2">Q{index + 1}</Badge>
                     {question}
                   </li>
@@ -422,7 +422,7 @@ function LearnTool() {
 
             <div className="p-4 bg-gradient-to-r from-green-900/50 to-blue-900/50 rounded-lg">
               <h3 className="font-semibold mb-2">🚀 Next Steps</h3>
-              <p className="text-zinc-300 text-sm">{result.next_steps}</p>
+              <p className="text-foreground/80 text-sm">{result.next_steps}</p>
             </div>
           </motion.div>
         )}
@@ -476,7 +476,7 @@ function TeachTool() {
   };
 
   return (
-    <Card className="bg-zinc-900 border-zinc-800">
+    <Card className="bg-surface-1 border-border">
       <CardHeader>
         <CardTitle className="flex items-center gap-2">
           <Lightbulb className="w-5 h-5 text-yellow-500" />
@@ -496,7 +496,7 @@ function TeachTool() {
               value={formData.topic}
               onChange={(e) => setFormData({ ...formData, topic: e.target.value })}
               required
-              className="bg-zinc-800 border-zinc-700"
+              className="bg-surface-2 border-border"
             />
           </div>
 
@@ -506,7 +506,7 @@ function TeachTool() {
               value={formData.difficulty}
               onValueChange={(value) => setFormData({ ...formData, difficulty: value as any })}
             >
-              <SelectTrigger className="bg-zinc-800 border-zinc-700">
+              <SelectTrigger className="bg-surface-2 border-border">
                 <SelectValue />
               </SelectTrigger>
               <SelectContent>
@@ -525,7 +525,7 @@ function TeachTool() {
               value={formData.content}
               onChange={(e) => setFormData({ ...formData, content: e.target.value })}
               required
-              className="bg-zinc-800 border-zinc-700"
+              className="bg-surface-2 border-border"
               rows={6}
             />
           </div>
@@ -537,7 +537,7 @@ function TeachTool() {
               placeholder="def get_db():&#10;    yield db"
               value={formData.examples}
               onChange={(e) => setFormData({ ...formData, examples: e.target.value })}
-              className="bg-zinc-800 border-zinc-700 font-mono"
+              className="bg-surface-2 border-border font-mono"
               rows={4}
             />
           </div>
@@ -567,20 +567,20 @@ function TeachTool() {
               <p className="text-green-300">{result.acknowledgment}</p>
             </div>
 
-            <div className="p-4 bg-zinc-800 rounded-lg">
+            <div className="p-4 bg-surface-2 rounded-lg">
               <h3 className="font-semibold mb-3">📝 Structured Content</h3>
               <div className="prose prose-invert max-w-none">
-                <pre className="whitespace-pre-wrap font-sans text-sm text-zinc-300">
+                <pre className="whitespace-pre-wrap font-sans text-sm text-foreground/80">
                   {result.structured_content}
                 </pre>
               </div>
             </div>
 
-            <div className="p-4 bg-zinc-800 rounded-lg">
+            <div className="p-4 bg-surface-2 rounded-lg">
               <h3 className="font-semibold mb-3">💡 Suggested Exercises</h3>
               <ul className="space-y-2">
                 {result.suggested_exercises.map((exercise: string, index: number) => (
-                  <li key={index} className="flex items-start gap-2 text-zinc-300">
+                  <li key={index} className="flex items-start gap-2 text-foreground/80">
                     <span className="w-1.5 h-1.5 bg-yellow-500 rounded-full mt-2" />
                     {exercise}
                   </li>
@@ -588,7 +588,7 @@ function TeachTool() {
               </ul>
             </div>
 
-            <div className="p-4 bg-zinc-800 rounded-lg">
+            <div className="p-4 bg-surface-2 rounded-lg">
               <h3 className="font-semibold mb-3">🔗 Related Topics</h3>
               <div className="flex flex-wrap gap-2">
                 {result.related_topics.map((topic: string, index: number) => (

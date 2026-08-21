@@ -19,7 +19,7 @@ export function GitHubStatsStrip() {
   // Loading state — subtle pulse so the layout doesn't jump
   if (loading) {
     return (
-      <div className="flex items-center justify-center gap-8 mt-12 text-zinc-600">
+      <div className="flex items-center justify-center gap-8 mt-12 text-muted-foreground/70">
         <span className="text-xs animate-pulse">Loading GitHub stats…</span>
       </div>
     );
@@ -42,10 +42,10 @@ export function GitHubStatsStrip() {
       className="flex items-center justify-center gap-8 mt-12"
     >
       {items.map(({ icon: Icon, label, value }) => (
-        <div key={label} className="flex items-center gap-2 text-zinc-400">
-          <Icon className="w-4 h-4 text-[#9CE630]" />
-          <span className="text-sm font-medium text-white">{value}</span>
-          <span className="text-xs text-zinc-500">{label}</span>
+        <div key={label} className="flex items-center gap-2 text-muted-foreground">
+          <Icon className="w-4 h-4 text-brand" />
+          <span className="text-sm font-medium text-foreground">{value}</span>
+          <span className="text-xs text-muted-foreground">{label}</span>
         </div>
       ))}
     </motion.div>

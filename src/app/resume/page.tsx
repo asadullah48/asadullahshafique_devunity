@@ -181,9 +181,9 @@ const education = [
 ];
 
 const tierColor: Record<string, string> = {
-  Platinum: "bg-zinc-300/10 text-zinc-200 border-zinc-300/40",
+  Platinum: "bg-zinc-300/10 text-foreground border-zinc-300/40",
   Gold: "bg-yellow-400/10 text-yellow-400 border-yellow-400/40",
-  Silver: "bg-zinc-400/10 text-zinc-400 border-zinc-400/40",
+  Silver: "bg-muted/10 text-muted-foreground border-border/40",
   Bronze: "bg-amber-700/10 text-amber-500 border-amber-500/40",
 };
 
@@ -191,9 +191,9 @@ const fade = { hidden: { opacity: 0, y: 20 }, show: { opacity: 1, y: 0 } };
 
 export default function ResumePage() {
   return (
-    <main className="min-h-screen bg-zinc-950 text-zinc-100">
+    <main className="min-h-screen bg-background text-foreground">
       {/* Header */}
-      <div className="bg-gradient-to-br from-zinc-950 via-zinc-900 to-zinc-950 border-b border-zinc-800">
+      <div className="bg-gradient-to-br from-background via-surface-1 to-background border-b border-border">
         <div className="container mx-auto px-4 py-12 max-w-5xl">
           <motion.div
             initial="hidden"
@@ -203,7 +203,7 @@ export default function ResumePage() {
             <motion.div variants={fade} className="mb-8">
               <Link
                 href="/"
-                className="inline-flex items-center gap-2 text-sm text-zinc-500 hover:text-[#9CE630] transition-colors"
+                className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-brand transition-colors"
               >
                 <ArrowLeft className="w-4 h-4" />
                 Back to Portfolio
@@ -213,34 +213,34 @@ export default function ResumePage() {
             <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-6">
               <motion.div variants={fade}>
                 <div className="flex items-center gap-3 mb-1">
-                  <Code2 className="w-8 h-8 text-[#9CE630]" />
-                  <h1 className="text-4xl font-bold text-white">Asadullah Shafique</h1>
+                  <Code2 className="w-8 h-8 text-brand" />
+                  <h1 className="text-4xl font-bold text-foreground">Asadullah Shafique</h1>
                 </div>
-                <p className="text-[#9CE630] font-medium text-lg mb-4 ml-11">
+                <p className="text-brand font-medium text-lg mb-4 ml-11">
                   Agentic AI Developer | CMT Industry Founder | Digital Strategist
                 </p>
-                <div className="flex flex-wrap gap-x-5 gap-y-2 text-sm text-zinc-400 ml-11">
+                <div className="flex flex-wrap gap-x-5 gap-y-2 text-sm text-muted-foreground ml-11">
                   <span className="flex items-center gap-1.5">
-                    <MapPin className="w-3.5 h-3.5 text-[#9CE630]" /> Karachi, Pakistan
+                    <MapPin className="w-3.5 h-3.5 text-brand" /> Karachi, Pakistan
                   </span>
                   <span className="flex items-center gap-1.5">
-                    <Phone className="w-3.5 h-3.5 text-[#9CE630]" /> +92-321-3771445
+                    <Phone className="w-3.5 h-3.5 text-brand" /> +92-321-3771445
                   </span>
                   <span className="flex items-center gap-1.5">
-                    <Mail className="w-3.5 h-3.5 text-[#9CE630]" /> asadullahshafique@hotmail.com
+                    <Mail className="w-3.5 h-3.5 text-brand" /> asadullahshafique@hotmail.com
                   </span>
                 </div>
-                <div className="flex flex-wrap gap-x-5 gap-y-2 mt-2 text-sm text-zinc-400 ml-11">
-                  <Link href="https://github.com/asadullah48" target="_blank" className="flex items-center gap-1.5 hover:text-[#9CE630] transition-colors">
+                <div className="flex flex-wrap gap-x-5 gap-y-2 mt-2 text-sm text-muted-foreground ml-11">
+                  <Link href="https://github.com/asadullah48" target="_blank" className="flex items-center gap-1.5 hover:text-brand transition-colors">
                     <Github className="w-3.5 h-3.5" /> github.com/asadullah48
                   </Link>
-                  <Link href="https://linkedin.com/in/asadullah-shafique-a00679325" target="_blank" className="flex items-center gap-1.5 hover:text-[#9CE630] transition-colors">
+                  <Link href="https://linkedin.com/in/asadullah-shafique-a00679325" target="_blank" className="flex items-center gap-1.5 hover:text-brand transition-colors">
                     <Linkedin className="w-3.5 h-3.5" /> LinkedIn
                   </Link>
-                  <Link href="https://asadullahshafique-devunity.vercel.app" target="_blank" className="flex items-center gap-1.5 hover:text-[#9CE630] transition-colors">
+                  <Link href="https://asadullahshafique-devunity.vercel.app" target="_blank" className="flex items-center gap-1.5 hover:text-brand transition-colors">
                     <Globe className="w-3.5 h-3.5" /> Portfolio
                   </Link>
-                  <Link href="https://medium.com/@texcotembroiderysourcinghouse" target="_blank" className="flex items-center gap-1.5 hover:text-[#9CE630] transition-colors">
+                  <Link href="https://medium.com/@texcotembroiderysourcinghouse" target="_blank" className="flex items-center gap-1.5 hover:text-brand transition-colors">
                     Medium
                   </Link>
                 </div>
@@ -248,13 +248,13 @@ export default function ResumePage() {
 
               <motion.div variants={fade} className="flex flex-col gap-2 flex-shrink-0">
                 <a href="/resume.pdf" download="Asadullah_Shafique_Resume_2025.pdf">
-                  <Button className="w-full bg-[#9CE630] text-black font-semibold hover:bg-[#8BD520] h-11 px-6">
+                  <Button className="w-full bg-brand text-primary-foreground font-semibold hover:bg-[#8BD520] h-11 px-6">
                     <FileDown className="w-4 h-4 mr-2" />
                     Download PDF
                   </Button>
                 </a>
                 <a href="/Asadullah_Shafique_Resume_2025.md" download>
-                  <Button variant="outline" className="w-full border-zinc-700 text-zinc-400 hover:border-[#9CE630]/50 hover:text-[#9CE630] h-9 px-6 text-sm">
+                  <Button variant="outline" className="w-full border-border text-muted-foreground hover:border-brand/50 hover:text-brand h-9 px-6 text-sm">
                     <FileDown className="w-3.5 h-3.5 mr-2" />
                     Download Markdown
                   </Button>
@@ -269,15 +269,15 @@ export default function ResumePage() {
 
         {/* Summary */}
         <Section title="Professional Summary" icon={<Briefcase className="w-5 h-5" />}>
-          <p className="text-zinc-300 leading-relaxed">
-            Agentic AI Developer and CMT Industry Founder with <span className="text-white font-medium">25+ years</span> of deep textile domain expertise,
+          <p className="text-foreground/80 leading-relaxed">
+            Agentic AI Developer and CMT Industry Founder with <span className="text-foreground font-medium">25+ years</span> of deep textile domain expertise,
             now building AI-powered SaaS for Pakistan&apos;s textile value chain. Founder of Texcot Embroidery Sourcing House and creator of the{" "}
-            <span className="text-[#9CE630] font-medium">Textile ERP Platform</span>, a full-scale system targeting fabric mills, CMT units, and garment
+            <span className="text-brand font-medium">Textile ERP Platform</span>, a full-scale system targeting fabric mills, CMT units, and garment
             exporters across Faisalabad, Sialkot, Gujranwala, Karachi, and Lahore.
           </p>
-          <p className="text-zinc-300 leading-relaxed mt-3">
-            Completed <span className="text-white font-medium">6 consecutive Panaversity Hackathons</span> (Bronze → Silver → Silver → Gold → Platinum → Agent Factory)
-            with <span className="text-[#9CE630] font-medium">85% code reusability</span> and <span className="text-[#9CE630] font-medium">zero failed attempts</span>.
+          <p className="text-foreground/80 leading-relaxed mt-3">
+            Completed <span className="text-foreground font-medium">6 consecutive Panaversity Hackathons</span> (Bronze → Silver → Silver → Gold → Platinum → Agent Factory)
+            with <span className="text-brand font-medium">85% code reusability</span> and <span className="text-brand font-medium">zero failed attempts</span>.
             Combines manufacturing operations mastery with modern AI engineering to digitize one of Pakistan&apos;s core industries.
           </p>
         </Section>
@@ -286,10 +286,10 @@ export default function ResumePage() {
         <Section title="Core Competencies" icon={<Code2 className="w-5 h-5" />}>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
             {competencies.map((c) => (
-              <Card key={c.title} className="bg-zinc-900/60 border-zinc-800">
+              <Card key={c.title} className="bg-surface-1/60 border-border">
                 <CardContent className="p-4">
-                  <p className="text-[#9CE630] text-xs font-semibold uppercase tracking-wider mb-1.5">{c.title}</p>
-                  <p className="text-zinc-300 text-sm">{c.items}</p>
+                  <p className="text-brand text-xs font-semibold uppercase tracking-wider mb-1.5">{c.title}</p>
+                  <p className="text-foreground/80 text-sm">{c.items}</p>
                 </CardContent>
               </Card>
             ))}
@@ -301,13 +301,13 @@ export default function ResumePage() {
           <div className="grid gap-4 sm:grid-cols-2">
             {Object.entries(skills).map(([category, items]) => (
               <div key={category}>
-                <p className="text-xs font-semibold uppercase tracking-widest text-zinc-500 mb-2">{category}</p>
+                <p className="text-xs font-semibold uppercase tracking-widest text-muted-foreground mb-2">{category}</p>
                 <div className="flex flex-wrap gap-1.5">
                   {items.map((skill) => (
                     <Badge
                       key={skill}
                       variant="outline"
-                      className="border-zinc-700 text-zinc-300 hover:border-[#9CE630]/50 hover:text-[#9CE630] transition-colors text-xs"
+                      className="border-border text-foreground/80 hover:border-brand/50 hover:text-brand transition-colors text-xs"
                     >
                       {skill}
                     </Badge>
@@ -320,8 +320,8 @@ export default function ResumePage() {
 
         {/* Hackathons */}
         <Section title="Hackathon Achievements" icon={<Trophy className="w-5 h-5" />}>
-          <p className="text-sm text-zinc-500 mb-5">
-            Panaversity Hackathon Series: <span className="text-zinc-300">6 Consecutive Wins</span> · 85% Code Reuse · Zero Failed Attempts
+          <p className="text-sm text-muted-foreground mb-5">
+            Panaversity Hackathon Series: <span className="text-foreground/80">6 Consecutive Wins</span> · 85% Code Reuse · Zero Failed Attempts
           </p>
           <div className="space-y-3">
             {hackathons.map((h) => (
@@ -332,7 +332,7 @@ export default function ResumePage() {
                 whileInView="show"
                 viewport={{ once: true }}
               >
-                <Card className="bg-zinc-900/60 border-zinc-800 hover:border-zinc-700 transition-colors">
+                <Card className="bg-surface-1/60 border-border hover:border-border transition-colors">
                   <CardContent className="p-4">
                     <div className="flex flex-col sm:flex-row sm:items-start gap-3">
                       <div className="flex items-center gap-3 sm:w-56 flex-shrink-0">
@@ -341,15 +341,15 @@ export default function ResumePage() {
                           <Badge variant="outline" className={`text-xs mb-1 ${tierColor[h.tier]}`}>
                             {h.tier}
                           </Badge>
-                          <p className="text-zinc-500 text-xs">{h.year}</p>
+                          <p className="text-muted-foreground text-xs">{h.year}</p>
                         </div>
                       </div>
                       <div className="flex-1">
-                        <p className="text-white font-medium text-sm mb-1">{h.name}</p>
-                        <p className="text-sm text-zinc-400 mb-2 leading-relaxed">{h.description}</p>
+                        <p className="text-foreground font-medium text-sm mb-1">{h.name}</p>
+                        <p className="text-sm text-muted-foreground mb-2 leading-relaxed">{h.description}</p>
                         <div className="flex flex-wrap gap-1">
                           {h.stack.map((t) => (
-                            <Badge key={t} variant="outline" className="border-[#9CE630]/25 text-[#9CE630]/80 text-xs">
+                            <Badge key={t} variant="outline" className="border-brand/25 text-brand/80 text-xs">
                               {t}
                             </Badge>
                           ))}
@@ -374,30 +374,30 @@ export default function ResumePage() {
                 whileInView="show"
                 viewport={{ once: true }}
               >
-                <Card className="bg-zinc-900/60 border-zinc-800 hover:border-zinc-700 transition-colors">
+                <Card className="bg-surface-1/60 border-border hover:border-border transition-colors">
                   <CardContent className="p-5">
                     <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-2 mb-3">
                       <div>
                         <div className="flex items-center gap-2 flex-wrap">
-                          <h3 className="font-semibold text-white">{p.name}</h3>
-                          <Badge variant="outline" className="text-xs border-zinc-700 text-zinc-500">{p.status}</Badge>
+                          <h3 className="font-semibold text-foreground">{p.name}</h3>
+                          <Badge variant="outline" className="text-xs border-border text-muted-foreground">{p.status}</Badge>
                         </div>
-                        <p className="text-[#9CE630] text-sm">{p.role}</p>
+                        <p className="text-brand text-sm">{p.role}</p>
                       </div>
-                      <span className="text-sm text-zinc-500 flex-shrink-0">{p.period}</span>
+                      <span className="text-sm text-muted-foreground flex-shrink-0">{p.period}</span>
                     </div>
-                    <p className="text-sm text-zinc-400 mb-3 leading-relaxed">{p.description}</p>
+                    <p className="text-sm text-muted-foreground mb-3 leading-relaxed">{p.description}</p>
                     <ul className="space-y-1.5 mb-3">
                       {p.bullets.map((b) => (
-                        <li key={b} className="text-sm text-zinc-400 flex gap-2">
-                          <span className="text-[#9CE630] mt-0.5 flex-shrink-0">›</span>
+                        <li key={b} className="text-sm text-muted-foreground flex gap-2">
+                          <span className="text-brand mt-0.5 flex-shrink-0">›</span>
                           {b}
                         </li>
                       ))}
                     </ul>
                     <div className="flex flex-wrap items-center gap-2">
                       {p.stack.map((t) => (
-                        <Badge key={t} variant="outline" className="border-[#9CE630]/30 text-[#9CE630] text-xs">
+                        <Badge key={t} variant="outline" className="border-brand/30 text-brand text-xs">
                           {t}
                         </Badge>
                       ))}
@@ -405,7 +405,7 @@ export default function ResumePage() {
                         <Link
                           href={p.demo}
                           target="_blank"
-                          className="ml-auto flex items-center gap-1 text-xs text-zinc-500 hover:text-[#9CE630] transition-colors"
+                          className="ml-auto flex items-center gap-1 text-xs text-muted-foreground hover:text-brand transition-colors"
                         >
                           <ExternalLink className="w-3 h-3" /> Live Demo
                         </Link>
@@ -429,22 +429,22 @@ export default function ResumePage() {
                 whileInView="show"
                 viewport={{ once: true }}
               >
-                <Card className="bg-zinc-900/60 border-zinc-800 hover:border-zinc-700 transition-colors">
+                <Card className="bg-surface-1/60 border-border hover:border-border transition-colors">
                   <CardContent className="p-5">
                     <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-1 mb-3">
                       <div>
-                        <h3 className="font-semibold text-white">{job.role}</h3>
-                        <p className="text-[#9CE630] text-sm">{job.company}</p>
+                        <h3 className="font-semibold text-foreground">{job.role}</h3>
+                        <p className="text-brand text-sm">{job.company}</p>
                       </div>
-                      <div className="text-sm text-zinc-500 flex-shrink-0 sm:text-right">
+                      <div className="text-sm text-muted-foreground flex-shrink-0 sm:text-right">
                         <p>{job.period}</p>
                         <p>{job.location}</p>
                       </div>
                     </div>
                     <ul className="space-y-1.5">
                       {job.bullets.map((b) => (
-                        <li key={b} className="text-sm text-zinc-400 flex gap-2">
-                          <span className="text-[#9CE630] mt-0.5 flex-shrink-0">›</span>
+                        <li key={b} className="text-sm text-muted-foreground flex gap-2">
+                          <span className="text-brand mt-0.5 flex-shrink-0">›</span>
                           {b}
                         </li>
                       ))}
@@ -458,9 +458,9 @@ export default function ResumePage() {
 
         {/* Digital Marketing */}
         <Section title="Digital Marketing Services" icon={<TrendingUp className="w-5 h-5" />}>
-          <Card className="bg-zinc-900/60 border-zinc-800">
+          <Card className="bg-surface-1/60 border-border">
             <CardContent className="p-5">
-              <p className="text-sm text-zinc-400 mb-3 leading-relaxed">
+              <p className="text-sm text-muted-foreground mb-3 leading-relaxed">
                 Full-spectrum digital marketing strategy for Dubai real estate, UAE construction, and Pakistani SMEs:
               </p>
               <ul className="space-y-1.5">
@@ -469,8 +469,8 @@ export default function ResumePage() {
                   "Property portal listings, lead generation funnels, and monthly performance reporting",
                   "Tailored strategies for GCC/expat/Pakistani diaspora investors; AED-priced service packages",
                 ].map((b) => (
-                  <li key={b} className="text-sm text-zinc-400 flex gap-2">
-                    <span className="text-[#9CE630] mt-0.5 flex-shrink-0">›</span>
+                  <li key={b} className="text-sm text-muted-foreground flex gap-2">
+                    <span className="text-brand mt-0.5 flex-shrink-0">›</span>
                     {b}
                   </li>
                 ))}
@@ -485,13 +485,13 @@ export default function ResumePage() {
             {education.map((e) => (
               <div
                 key={e.degree}
-                className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-1 py-3.5 border-b border-zinc-800/60 last:border-0"
+                className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-1 py-3.5 border-b border-border/60 last:border-0"
               >
                 <div>
-                  <p className="font-medium text-white text-sm">{e.degree}</p>
-                  <p className="text-zinc-400 text-sm">{e.institution}</p>
+                  <p className="font-medium text-foreground text-sm">{e.degree}</p>
+                  <p className="text-muted-foreground text-sm">{e.institution}</p>
                 </div>
-                {e.period && <span className="text-zinc-500 text-sm flex-shrink-0">{e.period}</span>}
+                {e.period && <span className="text-muted-foreground text-sm flex-shrink-0">{e.period}</span>}
               </div>
             ))}
           </div>
@@ -503,25 +503,25 @@ export default function ResumePage() {
           initial="hidden"
           whileInView="show"
           viewport={{ once: true }}
-          className="border border-zinc-800 rounded-xl p-8 text-center bg-zinc-900/40"
+          className="border border-border rounded-xl p-8 text-center bg-surface-1/40"
         >
-          <h3 className="text-xl font-bold text-white mb-2">Let&apos;s Work Together</h3>
-          <p className="text-zinc-400 text-sm mb-6">
+          <h3 className="text-xl font-bold text-foreground mb-2">Let&apos;s Work Together</h3>
+          <p className="text-muted-foreground text-sm mb-6">
             Open to collaborating on AI projects, digital marketing strategy, or textile tech.
           </p>
           <div className="flex flex-wrap justify-center gap-3">
             <Link href="mailto:asadullahshafique@hotmail.com">
-              <Button variant="outline" className="border-zinc-700 text-zinc-300 hover:border-[#9CE630] hover:text-[#9CE630]">
+              <Button variant="outline" className="border-border text-foreground/80 hover:border-brand hover:text-brand">
                 <Mail className="w-4 h-4 mr-2" /> Email Me
               </Button>
             </Link>
             <Link href="https://wa.me/923213771445" target="_blank">
-              <Button variant="outline" className="border-zinc-700 text-zinc-300 hover:border-[#9CE630] hover:text-[#9CE630]">
+              <Button variant="outline" className="border-border text-foreground/80 hover:border-brand hover:text-brand">
                 WhatsApp
               </Button>
             </Link>
             <Link href="/">
-              <Button className="bg-[#9CE630] text-black font-semibold hover:bg-[#8BD520]">
+              <Button className="bg-brand text-primary-foreground font-semibold hover:bg-[#8BD520]">
                 View Portfolio
               </Button>
             </Link>
@@ -550,9 +550,9 @@ function Section({
       viewport={{ once: true }}
     >
       <div className="flex items-center gap-3 mb-5">
-        <span className="text-[#9CE630]">{icon}</span>
-        <h2 className="text-xl font-bold text-white">{title}</h2>
-        <div className="flex-1 h-px bg-zinc-800" />
+        <span className="text-brand">{icon}</span>
+        <h2 className="text-xl font-bold text-foreground">{title}</h2>
+        <div className="flex-1 h-px bg-surface-2" />
       </div>
       {children}
     </motion.section>

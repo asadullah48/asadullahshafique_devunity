@@ -255,7 +255,7 @@ export default function DashboardPage() {
                     <CardContent>
                       <div className="space-y-4">
                         <div className="flex items-start">
-                          <MessageSquare className="h-5 w-5 text-[#9CE630] mr-2 mt-0.5" />
+                          <MessageSquare className="h-5 w-5 text-brand mr-2 mt-0.5" />
                           <div>
                             <p className="text-sm text-zinc-900 dark:text-white">
                               Posted an answer to "How to optimize React performance?"
@@ -266,7 +266,7 @@ export default function DashboardPage() {
                           </div>
                         </div>
                         <div className="flex items-start">
-                          <ThumbsUp className="h-5 w-5 text-[#9CE630] mr-2 mt-0.5" />
+                          <ThumbsUp className="h-5 w-5 text-brand mr-2 mt-0.5" />
                           <div>
                             <p className="text-sm text-zinc-900 dark:text-white">
                               Received 5 upvotes on your answer
@@ -277,7 +277,7 @@ export default function DashboardPage() {
                           </div>
                         </div>
                         <div className="flex items-start">
-                          <BookOpen className="h-5 w-5 text-[#9CE630] mr-2 mt-0.5" />
+                          <BookOpen className="h-5 w-5 text-brand mr-2 mt-0.5" />
                           <div>
                             <p className="text-sm text-zinc-900 dark:text-white">
                               Published a blog post "Getting Started with Next.js 14"
@@ -299,7 +299,7 @@ export default function DashboardPage() {
                   <CardHeader className="flex flex-row items-center justify-between">
                     <CardTitle className="text-zinc-900 dark:text-white">Your Questions</CardTitle>
                     <Link href="/question">
-                      <Button className="bg-[#9CE630] text-black hover:bg-[#8BD520]">
+                      <Button className="bg-brand text-black hover:bg-[#8BD520]">
                         Ask Question
                       </Button>
                     </Link>
@@ -313,7 +313,7 @@ export default function DashboardPage() {
                             className="p-4 border border-zinc-200 dark:border-zinc-800 rounded-lg"
                           >
                             <Link href={`/question/${question.id}`}>
-                              <h3 className="text-lg font-medium text-zinc-900 dark:text-white hover:text-[#9CE630] dark:hover:text-[#9CE630] transition-colors">
+                              <h3 className="text-lg font-medium text-zinc-900 dark:text-white hover:text-brand dark:hover:text-brand transition-colors">
                                 {question.title}
                               </h3>
                             </Link>
@@ -345,7 +345,7 @@ export default function DashboardPage() {
                           You haven't asked any questions yet.
                         </p>
                         <Link href="/question">
-                          <Button className="mt-4 bg-[#9CE630] text-black hover:bg-[#8BD520]">
+                          <Button className="mt-4 bg-brand text-black hover:bg-[#8BD520]">
                             Ask Your First Question
                           </Button>
                         </Link>
@@ -370,7 +370,7 @@ export default function DashboardPage() {
                             className="p-4 border border-zinc-200 dark:border-zinc-800 rounded-lg"
                           >
                             <Link href={`/question/${answer.questionId}`}>
-                              <h3 className="text-lg font-medium text-zinc-900 dark:text-white hover:text-[#9CE630] dark:hover:text-[#9CE630] transition-colors">
+                              <h3 className="text-lg font-medium text-zinc-900 dark:text-white hover:text-brand dark:hover:text-brand transition-colors">
                                 {answer.questionTitle}
                               </h3>
                             </Link>
@@ -402,7 +402,7 @@ export default function DashboardPage() {
                           You haven't answered any questions yet.
                         </p>
                         <Link href="/question">
-                          <Button className="mt-4 bg-[#9CE630] text-black hover:bg-[#8BD520]">
+                          <Button className="mt-4 bg-brand text-black hover:bg-[#8BD520]">
                             Browse Questions
                           </Button>
                         </Link>
@@ -418,7 +418,7 @@ export default function DashboardPage() {
                   <CardHeader className="flex flex-row items-center justify-between">
                     <CardTitle className="text-zinc-900 dark:text-white">Your Blog Posts</CardTitle>
                     <Link href="/blogs">
-                      <Button className="bg-[#9CE630] text-black hover:bg-[#8BD520]">
+                      <Button className="bg-brand text-black hover:bg-[#8BD520]">
                         Write Blog
                       </Button>
                     </Link>
@@ -432,7 +432,7 @@ export default function DashboardPage() {
                             className="p-4 border border-zinc-200 dark:border-zinc-800 rounded-lg"
                           >
                             <Link href={`/blogs/${blog.id}`}>
-                              <h3 className="text-lg font-medium text-zinc-900 dark:text-white hover:text-[#9CE630] dark:hover:text-[#9CE630] transition-colors">
+                              <h3 className="text-lg font-medium text-zinc-900 dark:text-white hover:text-brand dark:hover:text-brand transition-colors">
                                 {blog.title}
                               </h3>
                             </Link>
@@ -464,7 +464,7 @@ export default function DashboardPage() {
                           You haven't written any blog posts yet.
                         </p>
                         <Link href="/blogs">
-                          <Button className="mt-4 bg-[#9CE630] text-black hover:bg-[#8BD520]">
+                          <Button className="mt-4 bg-brand text-black hover:bg-[#8BD520]">
                             Write Your First Blog
                           </Button>
                         </Link>

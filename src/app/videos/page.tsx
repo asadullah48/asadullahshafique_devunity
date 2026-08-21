@@ -61,7 +61,7 @@ export default function VideoUploadPage() {
   );
 
   return (
-    <div className="min-h-screen bg-zinc-950">
+    <div className="min-h-screen bg-background">
       <div
         className="fixed inset-0 -z-10 h-full w-full bg-[linear-gradient(to_right,#0d0d0d_1px,transparent_1px),linear-gradient(to_bottom,#0d0d0d_1px,transparent_1px)] bg-[size:4rem_4rem]"
         aria-hidden="true"
@@ -78,7 +78,7 @@ export default function VideoUploadPage() {
           <h1 className="text-5xl font-bold mb-4 bg-gradient-to-r from-purple-400 to-pink-500 bg-clip-text text-transparent">
             Video Library
           </h1>
-          <p className="text-xl text-zinc-400 max-w-2xl mx-auto">
+          <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
             Upload, share, and discover educational videos
           </p>
         </motion.div>
@@ -159,7 +159,7 @@ function UploadForm({ onUploadSuccess }: { onUploadSuccess: () => void }) {
   };
 
   return (
-    <Card className="bg-zinc-900 border-zinc-800 sticky top-24">
+    <Card className="bg-surface-1 border-border sticky top-24">
       <CardHeader>
         <CardTitle className="flex items-center gap-2">
           <Upload className="w-5 h-5 text-purple-500" />
@@ -179,7 +179,7 @@ function UploadForm({ onUploadSuccess }: { onUploadSuccess: () => void }) {
               value={formData.title}
               onChange={(e) => setFormData({ ...formData, title: e.target.value })}
               required
-              className="bg-zinc-800 border-zinc-700"
+              className="bg-surface-2 border-border"
             />
           </div>
 
@@ -191,7 +191,7 @@ function UploadForm({ onUploadSuccess }: { onUploadSuccess: () => void }) {
               value={formData.description}
               onChange={(e) => setFormData({ ...formData, description: e.target.value })}
               required
-              className="bg-zinc-800 border-zinc-700"
+              className="bg-surface-2 border-border"
               rows={4}
             />
           </div>
@@ -203,7 +203,7 @@ function UploadForm({ onUploadSuccess }: { onUploadSuccess: () => void }) {
               placeholder="python, fastapi, tutorial"
               value={formData.tags}
               onChange={(e) => setFormData({ ...formData, tags: e.target.value })}
-              className="bg-zinc-800 border-zinc-700"
+              className="bg-surface-2 border-border"
             />
           </div>
 
@@ -214,14 +214,14 @@ function UploadForm({ onUploadSuccess }: { onUploadSuccess: () => void }) {
               placeholder="John Doe"
               value={formData.uploader}
               onChange={(e) => setFormData({ ...formData, uploader: e.target.value })}
-              className="bg-zinc-800 border-zinc-700"
+              className="bg-surface-2 border-border"
             />
           </div>
 
           <div>
             <Label htmlFor="file">Video File (Optional for demo)</Label>
             <div
-              className="border-2 border-dashed border-zinc-700 rounded-lg p-6 text-center hover:border-zinc-600 transition-colors cursor-pointer"
+              className="border-2 border-dashed border-border rounded-lg p-6 text-center hover:border-border transition-colors cursor-pointer"
               onClick={() => fileInputRef.current?.click()}
             >
               <input
@@ -232,11 +232,11 @@ function UploadForm({ onUploadSuccess }: { onUploadSuccess: () => void }) {
                 onChange={(e) => setFile(e.target.files?.[0] || null)}
                 className="hidden"
               />
-              <Video className="w-8 h-8 mx-auto mb-2 text-zinc-500" />
-              <p className="text-sm text-zinc-400">
+              <Video className="w-8 h-8 mx-auto mb-2 text-muted-foreground" />
+              <p className="text-sm text-muted-foreground">
                 {file ? file.name : "Click to select a video"}
               </p>
-              <p className="text-xs text-zinc-500 mt-1">
+              <p className="text-xs text-muted-foreground mt-1">
                 MP4, WebM, or Ogg (Max 100MB)
               </p>
             </div>
@@ -307,22 +307,22 @@ function VideoList({
     <div className="space-y-6">
       {/* Search */}
       <div className="relative">
-        <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-zinc-500" />
+        <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
         <Input
           placeholder="Search videos by title or tags..."
           value={searchTerm}
           onChange={(e) => setSearchTerm(e.target.value)}
-          className="pl-10 bg-zinc-900 border-zinc-800"
+          className="pl-10 bg-surface-1 border-border"
         />
       </div>
 
       {/* Video Grid */}
       {videos.length === 0 ? (
-        <Card className="bg-zinc-900 border-zinc-800">
+        <Card className="bg-surface-1 border-border">
           <CardContent className="py-12 text-center">
-            <Video className="w-12 h-12 mx-auto mb-4 text-zinc-600" />
+            <Video className="w-12 h-12 mx-auto mb-4 text-muted-foreground/70" />
             <h3 className="text-lg font-semibold mb-2">No videos yet</h3>
-            <p className="text-zinc-400">
+            <p className="text-muted-foreground">
               {searchTerm ? "No videos match your search" : "Be the first to upload a video!"}
             </p>
           </CardContent>
@@ -336,19 +336,19 @@ function VideoList({
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.3 }}
             >
-              <Card className="bg-zinc-900 border-zinc-800 hover:border-zinc-700 transition-colors">
+              <Card className="bg-surface-1 border-border hover:border-border transition-colors">
                 <CardContent className="p-6">
                   <div className="flex items-start gap-4">
                     {/* Thumbnail placeholder */}
-                    <div className="w-48 h-28 bg-zinc-800 rounded-lg flex items-center justify-center flex-shrink-0">
-                      <Play className="w-8 h-8 text-zinc-600" />
+                    <div className="w-48 h-28 bg-surface-2 rounded-lg flex items-center justify-center flex-shrink-0">
+                      <Play className="w-8 h-8 text-muted-foreground/70" />
                     </div>
 
                     <div className="flex-1 min-w-0">
                       <div className="flex items-start justify-between gap-4">
                         <div>
                           <h3 className="font-semibold text-lg mb-1">{video.title}</h3>
-                          <p className="text-zinc-400 text-sm line-clamp-2 mb-3">
+                          <p className="text-muted-foreground text-sm line-clamp-2 mb-3">
                             {video.description}
                           </p>
                         </div>
@@ -363,11 +363,11 @@ function VideoList({
                       </div>
 
                       <div className="flex items-center gap-4 text-sm">
-                        <span className="text-zinc-500">
+                        <span className="text-muted-foreground">
                           By {video.uploader}
                         </span>
-                        <span className="text-zinc-600">•</span>
-                        <span className="text-zinc-500">
+                        <span className="text-muted-foreground/70">•</span>
+                        <span className="text-muted-foreground">
                           {new Date(video.upload_date).toLocaleDateString()}
                         </span>
                       </div>
@@ -378,7 +378,7 @@ function VideoList({
                             <Badge
                               key={index}
                               variant="secondary"
-                              className="cursor-pointer hover:bg-zinc-700"
+                              className="cursor-pointer hover:bg-surface-3"
                               onClick={() => setSearchTerm(tag)}
                             >
                               #{tag}

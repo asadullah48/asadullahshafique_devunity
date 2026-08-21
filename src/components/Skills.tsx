@@ -163,7 +163,7 @@ function SkillCard({ skill }: { skill: Skill }) {
         )}
       </div>
 
-      <span className="text-xs text-gray-400 group-hover:text-white transition-colors duration-200 text-center leading-tight">
+      <span className="text-xs text-muted-foreground group-hover:text-foreground transition-colors duration-200 text-center leading-tight">
         {skill.name}
       </span>
 
@@ -197,7 +197,7 @@ export function SkillsSection() {
   };
 
   return (
-    <section id="skills" className="py-24 bg-[#0a0a0a]">
+    <section id="skills" className="py-24 bg-background">
       <div className="container mx-auto px-6">
 
         <motion.div
@@ -207,18 +207,18 @@ export function SkillsSection() {
           transition={{ duration: 0.5 }}
           className="text-center mb-14"
         >
-          <h2 className="text-4xl lg:text-5xl font-bold text-white mb-4">
-            {t("skills.title")} <span className="text-green-400">{t("skills.titleHighlight")}</span>
+          <h2 className="text-4xl lg:text-5xl font-bold text-foreground mb-4">
+            {t("skills.title")} <span className="text-brand">{t("skills.titleHighlight")}</span>
           </h2>
-          <div className="w-16 h-0.5 bg-green-400 mx-auto mb-5" />
-          <p className="text-gray-400 max-w-xl mx-auto">
+          <div className="w-16 h-0.5 bg-brand mx-auto mb-5" />
+          <p className="text-muted-foreground max-w-xl mx-auto">
             {t("skills.subtitle")}
           </p>
         </motion.div>
 
         {/* View Toggle */}
         <div className="flex justify-center mb-6">
-          <div className="flex bg-zinc-900 border border-zinc-800 rounded-full p-1 gap-1">
+          <div className="flex bg-surface-1 border border-border rounded-full p-1 gap-1">
             {(["technology", "role"] as SkillView[]).map((v) => (
               <button
                 key={v}
@@ -226,8 +226,8 @@ export function SkillsSection() {
                 onClick={() => setView(v)}
                 className={`px-4 py-1.5 rounded-full text-xs font-medium transition-all duration-200 ${
                   view === v
-                    ? "bg-green-500 text-black shadow-[0_0_12px_rgba(132,204,22,0.35)]"
-                    : "text-gray-400 hover:text-white"
+                    ? "bg-brand text-primary-foreground shadow-[0_0_12px_rgba(132,204,22,0.35)]"
+                    : "text-muted-foreground hover:text-foreground"
                 }`}
               >
                 {v === "technology" ? "By Technology" : "By Agent Role"}
@@ -245,8 +245,8 @@ export function SkillsSection() {
                   onClick={() => setActiveTab(tab)}
                   className={`px-4 py-2 rounded-full text-sm font-medium transition-all duration-200 ${
                     activeTab === tab
-                      ? "bg-green-500 text-black shadow-[0_0_15px_rgba(132,204,22,0.4)]"
-                      : "border border-white/15 text-gray-400 hover:border-green-500/40 hover:text-white"
+                      ? "bg-brand text-primary-foreground shadow-[0_0_15px_rgba(132,204,22,0.4)]"
+                      : "border border-white/15 text-muted-foreground hover:border-brand/40 hover:text-foreground"
                   }`}
                 >
                   {TAB_LABELS[tab]}
@@ -279,11 +279,11 @@ export function SkillsSection() {
                 transition={{ delay: groupIdx * 0.1 }}
               >
                 <div className="flex items-center gap-3 mb-4">
-                  <span className="text-xs font-mono text-green-400 uppercase tracking-widest">
+                  <span className="text-xs font-mono text-brand uppercase tracking-widest">
                     {`// ${role.toLowerCase().replace(/ /g, "_")}`}
                   </span>
-                  <div className="flex-1 h-px bg-green-500/15" />
-                  <span className="text-xs text-zinc-600">{skills.length} tools</span>
+                  <div className="flex-1 h-px bg-brand/15" />
+                  <span className="text-xs text-muted-foreground/70">{skills.length} tools</span>
                 </div>
                 <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 gap-3">
                   {skills.map((skill) => (
@@ -300,7 +300,7 @@ export function SkillsSection() {
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
           transition={{ delay: 0.4 }}
-          className="text-center text-gray-600 text-sm mt-10"
+          className="text-center text-muted-foreground/70 text-sm mt-10"
         >
           {t("skills.footer")}
         </motion.p>

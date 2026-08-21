@@ -14,8 +14,10 @@ interface ContributionsResponse {
   contributions: ContributionDay[];
 }
 
-// Brand lime scale, darkest → brightest, matching GitHub's 5 levels.
-const LEVEL_COLORS = ["#1c1c1c", "#2c4410", "#476d15", "#6fae1f", "#9CE630"] as const;
+// Cyan density ramp, darkest → brightest, matching GitHub's 5 levels.
+// Literal hexes rather than tokens: a single token cannot express a scale,
+// and each step is tuned so adjacent levels stay distinguishable on carbon.
+const LEVEL_COLORS = ["#12151A", "#0B3A47", "#0E7490", "#14A5C4", "#22D3EE"] as const;
 
 /**
  * GitHubHeatmap — real 52-week contribution grid fetched from
@@ -75,7 +77,7 @@ export function GitHubHeatmap() {
                 <div
                   key={day.date}
                   title={`${day.date}: ${day.count} contribution${day.count === 1 ? "" : "s"}`}
-                  className="w-[10px] h-[10px] rounded-[2px] transition-colors duration-150 hover:ring-1 hover:ring-[#9CE630]/60"
+                  className="w-[10px] h-[10px] rounded-[2px] transition-colors duration-150 hover:ring-1 hover:ring-brand/60"
                   style={{ backgroundColor: LEVEL_COLORS[day.level] }}
                 />
               ))}
@@ -84,9 +86,9 @@ export function GitHubHeatmap() {
         </div>
       </div>
 
-      <div className="flex items-center justify-between mt-3 text-xs text-gray-500 font-mono">
+      <div className="flex items-center justify-between mt-3 text-xs text-muted-foreground font-mono">
         <span>
-          <span className="text-[#9CE630] font-semibold">{total.toLocaleString()}</span>{" "}
+          <span className="text-brand font-semibold">{total.toLocaleString()}</span>{" "}
           contributions in the last year
         </span>
         <span className="flex items-center gap-1.5">

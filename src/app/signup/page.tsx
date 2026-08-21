@@ -144,7 +144,7 @@ export default function SignUpPage() {
                 <p className="text-sm text-red-500">{errors.confirmPassword}</p>
               )}
             </div>
-            <Button type="submit" className="w-full bg-[#9CE630] text-black hover:bg-[#8BD520]">
+            <Button type="submit" className="w-full bg-brand text-black hover:bg-[#8BD520]">
               Sign Up
             </Button>
           </form>
@@ -172,7 +172,7 @@ export default function SignUpPage() {
         <CardFooter className="flex justify-center">
           <p className="text-sm text-zinc-600 dark:text-zinc-400">
             Already have an account?{" "}
-            <Link href="/login" className="text-[#9CE630] hover:underline">
+            <Link href="/login" className="text-brand hover:underline">
               Sign in
             </Link>
           </p>

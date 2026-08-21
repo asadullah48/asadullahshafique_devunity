@@ -260,7 +260,7 @@ export default function QuestionDetailPage() {
               />
               <Button
                 type="submit"
-                className="mt-4 bg-[#9CE630] text-black hover:bg-[#8BD520]"
+                className="mt-4 bg-brand text-black hover:bg-[#8BD520]"
                 disabled={isSubmitting || !newAnswer.trim()}
               >
                 {isSubmitting ? "Submitting..." : "Post Answer"}

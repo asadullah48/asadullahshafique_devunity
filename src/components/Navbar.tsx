@@ -87,26 +87,26 @@ const Navbar = () => {
   // Rendered server-side (locale is always "en" at SSR, switching after
   // hydration), so the header never pops in late.
   const linkClass = (href: string) =>
-    `text-sm transition-colors duration-200 rounded-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#9CE630]/60 ${
+    `text-sm transition-colors duration-200 rounded-sm ${
       href === `#${activeId}`
-        ? "text-[#9CE630] font-medium"
-        : "text-zinc-400 hover:text-[#9CE630]"
+        ? "text-brand font-medium"
+        : "text-muted-foreground hover:text-brand"
     }`;
 
   return (
     <nav
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+      className={`fixed top-0 left-0 right-0 z-nav transition-all duration-300 ease-spring ${
         isScrolled
-          ? "bg-zinc-950/90 backdrop-blur-md border-b border-zinc-800/50 shadow-lg"
+          ? "bg-background/80 backdrop-blur-xl saturate-150 border-b border-border shadow-elevated"
           : "bg-transparent"
       }`}
     >
       <div className="container mx-auto flex items-center justify-between px-4 py-4">
         {/* Logo */}
         <Link href="#home" className="flex items-center space-x-2 group flex-shrink-0">
-          <Code2 className="h-7 w-7 text-[#9CE630] group-hover:rotate-12 transition-transform" />
-          <span className="text-lg font-bold text-white">
-            Asadullah<span className="text-[#9CE630]">.dev</span>
+          <Code2 className="h-7 w-7 text-brand group-hover:rotate-12 transition-transform" />
+          <span className="font-display text-lg font-bold text-foreground">
+            Asadullah<span className="text-brand">.dev</span>
           </span>
         </Link>
 
@@ -128,7 +128,7 @@ const Navbar = () => {
               onClick={() => setIsMoreOpen((v) => !v)}
               aria-expanded={isMoreOpen}
               className={`flex items-center gap-1 text-sm transition-colors duration-200 ${
-                isMoreActive ? "text-[#9CE630] font-medium" : "text-zinc-400 hover:text-[#9CE630]"
+                isMoreActive ? "text-brand font-medium" : "text-muted-foreground hover:text-brand"
               }`}
             >
               {t("nav.more")}
@@ -143,7 +143,7 @@ const Navbar = () => {
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0, y: -6 }}
                   transition={{ duration: 0.15 }}
-                  className="absolute left-0 top-full mt-3 w-48 rounded-lg border border-zinc-800 bg-zinc-950/95 backdrop-blur-md shadow-xl py-2"
+                  className="absolute left-0 top-full mt-3 w-48 rounded-panel border border-border bg-popover/95 backdrop-blur-xl shadow-panel py-2"
                 >
                   {moreLinks.map((link) => (
                     <Link
@@ -153,8 +153,8 @@ const Navbar = () => {
                       aria-current={link.href === `#${activeId}` ? "true" : undefined}
                       className={`block px-4 py-2 text-sm transition-colors ${
                         link.href === `#${activeId}`
-                          ? "text-[#9CE630]"
-                          : "text-zinc-400 hover:text-[#9CE630] hover:bg-white/5"
+                          ? "text-brand"
+                          : "text-muted-foreground hover:text-brand hover:bg-white/5"
                       }`}
                     >
                       {link.name}
@@ -162,13 +162,13 @@ const Navbar = () => {
                   ))}
                   {/* External profiles — moved out of the top bar so the
                       right cluster keeps a single primary CTA */}
-                  <div className="my-2 border-t border-zinc-800" />
+                  <div className="my-2 border-t border-border" />
                   <Link
                     href="https://discord.gg/kXfEYVGX"
                     target="_blank"
                     rel="noopener noreferrer"
                     onClick={() => setIsMoreOpen(false)}
-                    className="flex items-center gap-2 px-4 py-2 text-sm text-zinc-400 hover:text-[#5865F2] hover:bg-white/5 transition-colors"
+                    className="flex items-center gap-2 px-4 py-2 text-sm text-muted-foreground hover:text-[#5865F2] hover:bg-white/5 transition-colors"
                   >
                     <MessageCircle className="w-4 h-4" /> {t("nav.discord")}
                   </Link>
@@ -177,7 +177,7 @@ const Navbar = () => {
                     target="_blank"
                     rel="noopener noreferrer"
                     onClick={() => setIsMoreOpen(false)}
-                    className="flex items-center gap-2 px-4 py-2 text-sm text-zinc-400 hover:text-[#9CE630] hover:bg-white/5 transition-colors"
+                    className="flex items-center gap-2 px-4 py-2 text-sm text-muted-foreground hover:text-brand hover:bg-white/5 transition-colors"
                   >
                     <Github className="w-4 h-4" /> {t("nav.github")}
                   </Link>
@@ -193,7 +193,7 @@ const Navbar = () => {
             <Button
               variant="outline"
               size="sm"
-              className="border-[#9CE630]/40 text-[#9CE630] hover:bg-[#9CE630]/10 hover:border-[#9CE630] h-9"
+              className="h-9"
             >
               <FileDown className="w-4 h-4 mr-2" />
               {t("nav.resume")}
@@ -201,8 +201,9 @@ const Navbar = () => {
           </Link>
           <Link href="#contact">
             <Button
+              variant="neon"
               size="sm"
-              className="bg-[#9CE630] text-black hover:bg-[#8BD520] h-9 font-medium"
+              className="h-9"
             >
               {t("nav.contactMe")}
             </Button>
@@ -210,7 +211,7 @@ const Navbar = () => {
           <LocaleSwitcher />
           {/* Mobile menu button */}
           <button
-            className="lg:hidden p-2 text-zinc-400 hover:text-white"
+            className="lg:hidden p-2 rounded-sm text-muted-foreground hover:text-foreground transition-colors"
             onClick={() => setIsMobileOpen(!isMobileOpen)}
             aria-label={t("nav.toggleMenu")}
           >
@@ -222,7 +223,7 @@ const Navbar = () => {
       {/* Mobile menu — full list, all sections reachable regardless of the
           desktop "More" split */}
       {isMobileOpen && (
-        <div className="lg:hidden bg-zinc-950/95 backdrop-blur-md border-b border-zinc-800">
+        <div className="lg:hidden bg-background/95 backdrop-blur-xl border-b border-border">
           <div className="container mx-auto px-4 py-4 space-y-3">
             {navLinks.map((link) => (
               <Link
@@ -231,7 +232,7 @@ const Navbar = () => {
                 onClick={() => setIsMobileOpen(false)}
                 aria-current={link.href === `#${activeId}` ? "true" : undefined}
                 className={`block py-2 transition-colors ${
-                  link.href === `#${activeId}` ? "text-[#9CE630]" : "text-zinc-400 hover:text-[#9CE630]"
+                  link.href === `#${activeId}` ? "text-brand" : "text-muted-foreground hover:text-brand"
                 }`}
               >
                 {link.name}
@@ -241,7 +242,7 @@ const Navbar = () => {
               href="https://discord.gg/kXfEYVGX"
               target="_blank"
               onClick={() => setIsMobileOpen(false)}
-              className="block text-zinc-400 hover:text-[#5865F2] py-2 transition-colors"
+              className="block text-muted-foreground hover:text-[#5865F2] py-2 transition-colors"
             >
               {t("nav.discordCommunity")}
             </Link>
@@ -249,14 +250,14 @@ const Navbar = () => {
               href="https://github.com/asadullah48"
               target="_blank"
               onClick={() => setIsMobileOpen(false)}
-              className="block text-zinc-400 hover:text-[#9CE630] py-2 transition-colors"
+              className="block text-muted-foreground hover:text-brand py-2 transition-colors"
             >
               {t("nav.github")}
             </Link>
             <Link
               href="/resume"
               onClick={() => setIsMobileOpen(false)}
-              className="flex items-center gap-2 text-[#9CE630] py-2 transition-colors font-medium"
+              className="flex items-center gap-2 text-brand py-2 transition-colors font-medium"
             >
               <FileDown className="w-4 h-4" />
               {t("nav.resume")}

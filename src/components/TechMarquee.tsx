@@ -44,7 +44,7 @@ function MarqueeRow({ ariaHidden = false }: { ariaHidden?: boolean }) {
       {STACK.map(({ Icon, label, color }) => (
         <div
           key={label}
-          className="flex items-center gap-2.5 text-gray-500 hover:text-white transition-colors duration-200"
+          className="flex items-center gap-2.5 text-muted-foreground hover:text-foreground transition-colors duration-200"
         >
           <Icon className="w-5 h-5 flex-shrink-0" style={{ color: `${color}b0` }} />
           <span className="text-sm font-mono whitespace-nowrap">{label}</span>
@@ -62,7 +62,7 @@ function MarqueeRow({ ariaHidden = false }: { ariaHidden?: boolean }) {
  */
 export function TechMarquee() {
   return (
-    <div className="group/marquee bg-[#0a0a0a] border-y border-white/5 py-5 overflow-hidden marquee-mask" dir="ltr">
+    <div className="group/marquee bg-background border-y border-white/5 py-5 overflow-hidden marquee-mask" dir="ltr">
       <div className="flex w-max animate-marquee">
         <MarqueeRow />
         <MarqueeRow ariaHidden />

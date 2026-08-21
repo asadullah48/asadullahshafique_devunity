@@ -1,6 +1,6 @@
 ﻿import type { Metadata } from "next";
 import "./globals.css";
-import { Inter, JetBrains_Mono } from "next/font/google";
+import { Inter, JetBrains_Mono, Space_Grotesk } from "next/font/google";
 import Navbar from "@/components/Navbar";
 import { ThemeProvider } from "@/components/ThemeProvider";
 import { LocaleProvider } from "@/context/LocaleContext";
@@ -8,7 +8,15 @@ import { KeyboardShortcutsProvider } from "@/components/KeyboardShortcutsProvide
 import ShortcutsDialog from "@/components/ShortcutsDialog";
 import ScrollProgress from "@/components/ScrollProgress";
 
+// Body/UI: Inter stays for small-size readability.
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
+// Display: Space Grotesk carries the headlines. Pairing a display face with
+// Inter avoids the "Inter everywhere" flatness while adding zero risk.
+const spaceGrotesk = Space_Grotesk({
+    subsets: ["latin"],
+    weight: ["500", "600", "700"],
+    variable: "--font-display",
+});
 const jetbrainsMono = JetBrains_Mono({
     subsets: ["latin"],
     variable: "--font-mono",
@@ -84,7 +92,7 @@ export default function RootLayout({
     return (
           <html lang="en" suppressHydrationWarning className="scroll-smooth">
                 <body
-                          className={`${inter.variable} ${jetbrainsMono.variable} font-sans antialiased`}
+                          className={`${inter.variable} ${spaceGrotesk.variable} ${jetbrainsMono.variable} font-sans antialiased`}
                           suppressHydrationWarning
                         >
                         <ThemeProvider
@@ -100,7 +108,7 @@ export default function RootLayout({
                               <LocaleProvider><KeyboardShortcutsProvider>
                                     <a
                                           href="#main-content"
-                                          className="sr-only focus:not-sr-only focus:fixed focus:top-2 focus:left-2 focus:z-[100] focus:bg-[#9CE630] focus:text-black focus:px-4 focus:py-2 focus:rounded-md focus:font-medium"
+                                          className="sr-only focus:not-sr-only focus:fixed focus:top-2 focus:left-2 focus:z-toast focus:bg-primary focus:text-primary-foreground focus:px-4 focus:py-2 focus:rounded-md focus:font-medium"
                                     >
                                           Skip to content
                                     </a>
@@ -108,6 +116,10 @@ export default function RootLayout({
                                     <Navbar />
                                     <main id="main-content">{children}</main>
                                     <ShortcutsDialog />
+                                    {/* Site-wide film grain. Fixed + pointer-events-none, so it
+                                        never intercepts clicks; breaks up gradient banding on
+                                        large carbon surfaces. */}
+                                    <div className="grain-overlay" aria-hidden="true" />
                               </KeyboardShortcutsProvider></LocaleProvider>
                         </ThemeProvider>
                   </body>

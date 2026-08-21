@@ -70,8 +70,8 @@ const Discord = () => {
                   <h3 className="text-2xl font-bold text-white">{t("discord.hubTitle")}</h3>
                   <div className="flex items-center gap-2 text-sm text-zinc-400">
                     <span className="relative flex h-2 w-2">
-                      <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75" />
-                      <span className="relative inline-flex rounded-full h-2 w-2 bg-green-400" />
+                      <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-brand opacity-75" />
+                      <span className="relative inline-flex rounded-full h-2 w-2 bg-brand" />
                     </span>
                     {t("discord.communityGrowing")}
                   </div>

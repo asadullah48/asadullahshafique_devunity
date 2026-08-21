@@ -45,8 +45,8 @@ export function ResumeButton({ variant = "outline" }: { variant?: "outline" | "s
 
   const variantClass =
     variant === "solid"
-      ? "bg-green-500 hover:bg-green-400 text-black hover:scale-105"
-      : "border border-white/20 hover:border-green-500/50 text-white hover:bg-white/5";
+      ? "bg-brand hover:bg-brand text-primary-foreground hover:scale-105"
+      : "border border-white/20 hover:border-brand/50 text-foreground hover:bg-white/5";
 
   return (
     <div className="relative inline-flex flex-col items-center gap-1">

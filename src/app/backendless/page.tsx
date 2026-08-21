@@ -50,7 +50,7 @@ export default function BackendlessPage() {
   const [selectedFramework, setSelectedFramework] = useState<string>("all");
 
   return (
-    <div className="min-h-screen bg-zinc-950">
+    <div className="min-h-screen bg-background">
       <div
         className="fixed inset-0 -z-10 h-full w-full bg-[linear-gradient(to_right,#0d0d0d_1px,transparent_1px),linear-gradient(to_bottom,#0d0d0d_1px,transparent_1px)] bg-[size:4rem_4rem]"
         aria-hidden="true"
@@ -70,7 +70,7 @@ export default function BackendlessPage() {
               Backendless Projects
             </h1>
           </div>
-          <p className="text-xl text-zinc-400 max-w-2xl mx-auto">
+          <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
             Showcase your frontend-only projects, static sites, and JAMstack applications
           </p>
         </motion.div>
@@ -158,7 +158,7 @@ function CreateProjectForm({ onProjectCreated }: { onProjectCreated: () => void 
   };
 
   return (
-    <Card className="bg-zinc-900 border-zinc-800 sticky top-24">
+    <Card className="bg-surface-1 border-border sticky top-24">
       <CardHeader>
         <CardTitle className="flex items-center gap-2">
           <Plus className="w-5 h-5 text-purple-500" />
@@ -178,7 +178,7 @@ function CreateProjectForm({ onProjectCreated }: { onProjectCreated: () => void 
               value={formData.name}
               onChange={(e) => setFormData({ ...formData, name: e.target.value })}
               required
-              className="bg-zinc-800 border-zinc-700"
+              className="bg-surface-2 border-border"
             />
           </div>
 
@@ -188,7 +188,7 @@ function CreateProjectForm({ onProjectCreated }: { onProjectCreated: () => void 
               value={formData.framework}
               onValueChange={(value) => setFormData({ ...formData, framework: value })}
             >
-              <SelectTrigger className="bg-zinc-800 border-zinc-700">
+              <SelectTrigger className="bg-surface-2 border-border">
                 <SelectValue />
               </SelectTrigger>
               <SelectContent>
@@ -211,7 +211,7 @@ function CreateProjectForm({ onProjectCreated }: { onProjectCreated: () => void 
               value={formData.description}
               onChange={(e) => setFormData({ ...formData, description: e.target.value })}
               required
-              className="bg-zinc-800 border-zinc-700"
+              className="bg-surface-2 border-border"
               rows={3}
             />
           </div>
@@ -223,7 +223,7 @@ function CreateProjectForm({ onProjectCreated }: { onProjectCreated: () => void 
               placeholder="https://github.com/..."
               value={formData.github_url}
               onChange={(e) => setFormData({ ...formData, github_url: e.target.value })}
-              className="bg-zinc-800 border-zinc-700"
+              className="bg-surface-2 border-border"
             />
           </div>
 
@@ -234,7 +234,7 @@ function CreateProjectForm({ onProjectCreated }: { onProjectCreated: () => void 
               placeholder="https://myproject.vercel.app"
               value={formData.demo_url}
               onChange={(e) => setFormData({ ...formData, demo_url: e.target.value })}
-              className="bg-zinc-800 border-zinc-700"
+              className="bg-surface-2 border-border"
             />
           </div>
 
@@ -245,7 +245,7 @@ function CreateProjectForm({ onProjectCreated }: { onProjectCreated: () => void 
               placeholder="TypeScript, Tailwind, Framer Motion"
               value={formData.tech_stack}
               onChange={(e) => setFormData({ ...formData, tech_stack: e.target.value })}
-              className="bg-zinc-800 border-zinc-700"
+              className="bg-surface-2 border-border"
             />
           </div>
 
@@ -256,7 +256,7 @@ function CreateProjectForm({ onProjectCreated }: { onProjectCreated: () => void 
               placeholder="Responsive design, Dark mode, SEO optimized"
               value={formData.features}
               onChange={(e) => setFormData({ ...formData, features: e.target.value })}
-              className="bg-zinc-800 border-zinc-700"
+              className="bg-surface-2 border-border"
               rows={3}
             />
           </div>
@@ -287,9 +287,9 @@ function CreateProjectForm({ onProjectCreated }: { onProjectCreated: () => void 
           )}
         </form>
 
-        <div className="mt-4 p-3 bg-zinc-800/50 rounded-lg">
-          <p className="text-xs text-zinc-400">
-            <strong className="text-zinc-300">Note:</strong> Backendless projects are frontend-only. 
+        <div className="mt-4 p-3 bg-surface-2/50 rounded-lg">
+          <p className="text-xs text-muted-foreground">
+            <strong className="text-foreground/80">Note:</strong> Backendless projects are frontend-only. 
             No backend API required. Perfect for portfolios, landing pages, and static sites.
           </p>
         </div>
@@ -353,10 +353,10 @@ function ProjectList({
 
   if (loading) {
     return (
-      <Card className="bg-zinc-900 border-zinc-800">
+      <Card className="bg-surface-1 border-border">
         <CardContent className="py-12 text-center">
-          <Loader2 className="w-8 h-8 mx-auto animate-spin text-zinc-600" />
-          <p className="text-zinc-500 mt-4">Loading projects...</p>
+          <Loader2 className="w-8 h-8 mx-auto animate-spin text-muted-foreground/70" />
+          <p className="text-muted-foreground mt-4">Loading projects...</p>
         </CardContent>
       </Card>
     );
@@ -366,9 +366,9 @@ function ProjectList({
     <div className="space-y-6">
       {/* Filter */}
       <div className="flex items-center gap-4">
-        <Label className="text-zinc-400">Filter by framework:</Label>
+        <Label className="text-muted-foreground">Filter by framework:</Label>
         <Select value={selectedFramework} onValueChange={setSelectedFramework}>
-          <SelectTrigger className="w-48 bg-zinc-800 border-zinc-700">
+          <SelectTrigger className="w-48 bg-surface-2 border-border">
             <SelectValue />
           </SelectTrigger>
           <SelectContent>
@@ -385,11 +385,11 @@ function ProjectList({
 
       {/* Projects Grid */}
       {filteredProjects.length === 0 ? (
-        <Card className="bg-zinc-900 border-zinc-800">
+        <Card className="bg-surface-1 border-border">
           <CardContent className="py-12 text-center">
-            <Code2 className="w-12 h-12 mx-auto mb-4 text-zinc-600" />
+            <Code2 className="w-12 h-12 mx-auto mb-4 text-muted-foreground/70" />
             <h3 className="text-lg font-semibold mb-2">No projects yet</h3>
-            <p className="text-zinc-400">
+            <p className="text-muted-foreground">
               Create your first backendless project to showcase it here
             </p>
           </CardContent>
@@ -403,7 +403,7 @@ function ProjectList({
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.3 }}
             >
-              <Card className="bg-zinc-900 border-zinc-800 hover:border-purple-500/30 transition-colors">
+              <Card className="bg-surface-1 border-border hover:border-purple-500/30 transition-colors">
                 <CardContent className="p-6">
                   <div className="flex items-start justify-between gap-4">
                     <div className="flex-1">
@@ -411,7 +411,7 @@ function ProjectList({
                         <h3 className="font-semibold text-lg">{project.name}</h3>
                         <Badge variant="secondary">{project.framework}</Badge>
                       </div>
-                      <p className="text-zinc-400 text-sm mb-4">{project.description}</p>
+                      <p className="text-muted-foreground text-sm mb-4">{project.description}</p>
 
                       {project.tech_stack && project.tech_stack.length > 0 && (
                         <div className="flex flex-wrap gap-2 mb-3">
@@ -429,7 +429,7 @@ function ProjectList({
                             href={project.github_url}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="flex items-center gap-1 text-zinc-400 hover:text-white transition-colors"
+                            className="flex items-center gap-1 text-muted-foreground hover:text-foreground transition-colors"
                           >
                             <Github className="w-4 h-4" />
                             Code
@@ -440,14 +440,14 @@ function ProjectList({
                             href={project.demo_url}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="flex items-center gap-1 text-zinc-400 hover:text-white transition-colors"
+                            className="flex items-center gap-1 text-muted-foreground hover:text-foreground transition-colors"
                           >
                             <ExternalLink className="w-4 h-4" />
                             Demo
                           </a>
                         )}
-                        <span className="text-zinc-600">•</span>
-                        <span className="text-zinc-500 text-xs">
+                        <span className="text-muted-foreground/70">•</span>
+                        <span className="text-muted-foreground text-xs">
                           Created {new Date(project.created_date).toLocaleDateString()}
                         </span>
                       </div>

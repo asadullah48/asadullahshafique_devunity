@@ -50,11 +50,11 @@ const Services = () => {
           viewport={{ once: true }}
           className="text-center mb-16"
         >
-          <h2 className="text-3xl md:text-5xl font-bold text-white mb-4">
-            {t("services.title")} <span className="text-[#9CE630]">{t("services.titleHighlight")}</span>
+          <h2 className="text-3xl md:text-5xl font-bold text-foreground mb-4">
+            {t("services.title")} <span className="text-brand">{t("services.titleHighlight")}</span>
           </h2>
-          <div className="w-20 h-1 bg-[#9CE630] mx-auto rounded-full mb-6" />
-          <p className="text-zinc-400 max-w-xl mx-auto">
+          <div className="w-20 h-1 bg-brand mx-auto rounded-full mb-6" />
+          <p className="text-muted-foreground max-w-xl mx-auto">
             {t("services.subtitle")}
           </p>
         </motion.div>
@@ -67,19 +67,19 @@ const Services = () => {
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
               viewport={{ once: true }}
-              className="group flex flex-col p-6 rounded-xl bg-zinc-900/50 border border-zinc-800 hover:border-[#9CE630]/30 transition-all duration-300 hover:bg-zinc-900/80"
+              className="group flex flex-col p-6 rounded-xl bg-surface-1/50 border border-border hover:border-brand/30 transition-all duration-300 hover:bg-surface-1/80"
             >
-              <service.Icon className="w-10 h-10 text-[#9CE630] mb-4 group-hover:scale-110 transition-transform" />
-              <h3 className="text-xl font-semibold text-white mb-2">{service.title}</h3>
+              <service.Icon className="w-10 h-10 text-brand mb-4 group-hover:scale-110 transition-transform" />
+              <h3 className="text-xl font-semibold text-foreground mb-2">{service.title}</h3>
               {service.badge && (
-                <span className="inline-block px-2 py-0.5 mb-3 text-xs font-semibold text-black bg-[#9CE630] rounded-full">
+                <span className="inline-block px-2 py-0.5 mb-3 text-xs font-semibold text-primary-foreground bg-brand rounded-full">
                   {service.badge}
                 </span>
               )}
-              <p className="text-zinc-400 text-sm leading-relaxed flex-grow">{service.description}</p>
-              <div className="mt-6 pt-4 border-t border-zinc-800">
+              <p className="text-muted-foreground text-sm leading-relaxed flex-grow">{service.description}</p>
+              <div className="mt-6 pt-4 border-t border-border">
                 {service.waitlist ? (
-                  <span className="text-[#9CE630] text-sm font-medium">
+                  <span className="text-brand text-sm font-medium">
                     {service.cta}
                   </span>
                 ) : service.external ? (
@@ -87,14 +87,14 @@ const Services = () => {
                     href={service.ctaHref}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="text-[#9CE630] text-sm font-medium hover:underline"
+                    className="text-brand text-sm font-medium hover:underline"
                   >
                     {service.cta}
                   </Link>
                 ) : (
                   <Link
                     href={service.ctaHref}
-                    className="text-[#9CE630] text-sm font-medium hover:underline"
+                    className="text-brand text-sm font-medium hover:underline"
                   >
                     {service.cta}
                   </Link>

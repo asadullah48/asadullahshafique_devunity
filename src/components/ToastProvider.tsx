@@ -23,7 +23,7 @@ export function ToastProvider({ children }: ToastProviderProps) {
         visibleToasts={5}
         toastOptions={{
           classNames: {
-            toast: "bg-zinc-900 border-zinc-800 text-white",
+            toast: "bg-surface-1 border-border text-foreground",
             success: "bg-green-900/30 border-green-800 text-green-300",
             error: "bg-red-900/30 border-red-800 text-red-300",
             warning: "bg-yellow-900/30 border-yellow-800 text-yellow-300",

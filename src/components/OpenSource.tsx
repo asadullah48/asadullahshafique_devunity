@@ -33,7 +33,7 @@ export function OpenSourceSection() {
   }));
 
   return (
-    <section id="open-source" className="py-24 bg-[#0d0d0d]">
+    <section id="open-source" className="py-24 bg-surface-1">
       <div className="container mx-auto px-6">
 
         <motion.div
@@ -43,11 +43,11 @@ export function OpenSourceSection() {
           transition={{ duration: 0.5 }}
           className="text-center mb-14"
         >
-          <h2 className="text-4xl lg:text-5xl font-bold text-white mb-4">
-            {t("opensrc.title")} <span className="text-green-400">{t("opensrc.titleHighlight")}</span>
+          <h2 className="text-4xl lg:text-5xl font-bold text-foreground mb-4">
+            {t("opensrc.title")} <span className="text-brand">{t("opensrc.titleHighlight")}</span>
           </h2>
-          <div className="w-16 h-0.5 bg-green-400 mx-auto mb-5" />
-          <p className="text-gray-400 max-w-xl mx-auto">
+          <div className="w-16 h-0.5 bg-brand mx-auto mb-5" />
+          <p className="text-muted-foreground max-w-xl mx-auto">
             {t("opensrc.subtitle")}
           </p>
           {/* Live repo / star / follower counts from /api/github/stats */}
@@ -62,11 +62,11 @@ export function OpenSourceSection() {
               whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true }}
               transition={{ duration: 0.3, delay: i * 0.08 }}
-              className="flex flex-col items-center justify-center p-5 bg-[#111111] border border-white/8 rounded-xl hover:border-green-500/20 transition-all duration-300"
+              className="flex flex-col items-center justify-center p-5 bg-surface-2 border border-white/8 rounded-xl hover:border-brand/20 transition-all duration-300"
             >
               <stat.Icon className="w-5 h-5 mb-3" style={{ color: stat.color }} />
-              <div className="text-2xl font-bold text-white">{stat.value}</div>
-              <div className="text-xs text-gray-500 mt-1 text-center">{stat.label}</div>
+              <div className="text-2xl font-bold text-foreground">{stat.value}</div>
+              <div className="text-xs text-muted-foreground mt-1 text-center">{stat.label}</div>
             </motion.div>
           ))}
         </div>
@@ -76,16 +76,16 @@ export function OpenSourceSection() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5 }}
-          className="mb-14 overflow-hidden rounded-2xl border border-white/8 bg-[#111111] p-6"
+          className="mb-14 overflow-hidden rounded-2xl border border-white/8 bg-surface-2 p-6"
         >
           <div className="flex items-center gap-3 mb-5">
-            <Github className="w-5 h-5 text-green-400" />
-            <h3 className="text-white font-semibold">{t("opensrc.githubActivity")}</h3>
+            <Github className="w-5 h-5 text-brand" />
+            <h3 className="text-foreground font-semibold">{t("opensrc.githubActivity")}</h3>
             <a
               href={`https://github.com/${GITHUB_USERNAME}`}
               target="_blank"
               rel="noopener noreferrer"
-              className="ml-auto text-xs text-green-400/60 hover:text-green-400 transition-colors"
+              className="ml-auto text-xs text-brand/60 hover:text-brand transition-colors"
             >
               @{GITHUB_USERNAME} →
             </a>
@@ -130,11 +130,11 @@ export function OpenSourceSection() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.4, delay: i * 0.1 }}
-              className="p-6 bg-[#111111] border border-white/8 rounded-2xl hover:border-green-500/20 transition-all duration-300"
+              className="p-6 bg-surface-2 border border-white/8 rounded-2xl hover:border-brand/20 transition-all duration-300"
             >
               <div className="text-3xl mb-4">{v.icon}</div>
-              <h3 className="text-white font-semibold mb-2">{v.title}</h3>
-              <p className="text-gray-400 text-sm leading-relaxed">{v.desc}</p>
+              <h3 className="text-foreground font-semibold mb-2">{v.title}</h3>
+              <p className="text-muted-foreground text-sm leading-relaxed">{v.desc}</p>
             </motion.div>
           ))}
         </div>
@@ -144,7 +144,7 @@ export function OpenSourceSection() {
             href={`https://github.com/${GITHUB_USERNAME}`}
             target="_blank"
             rel="noopener noreferrer"
-            className="flex items-center gap-2 bg-white/5 hover:bg-white/10 border border-white/15 hover:border-white/30 text-white font-medium px-6 py-3 rounded-lg transition-all duration-200"
+            className="flex items-center gap-2 bg-white/5 hover:bg-white/10 border border-white/15 hover:border-white/30 text-foreground font-medium px-6 py-3 rounded-lg transition-all duration-200"
           >
             <Github className="w-4 h-4" /> {t("opensrc.contributeGithub")}
           </a>

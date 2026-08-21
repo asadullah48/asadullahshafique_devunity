@@ -23,7 +23,7 @@ const tierStyles: Record<HackathonTier, string> = {
   "Agent Factory": "bg-purple-500/20 text-purple-400 border border-purple-500/30",
   "Platinum":      "bg-sky-500/20    text-sky-400    border border-sky-500/30",
   "Gold":          "bg-yellow-500/20 text-yellow-400 border border-yellow-500/30",
-  "Silver":        "bg-zinc-400/20   text-zinc-300   border border-zinc-400/30",
+  "Silver":        "bg-muted/20   text-foreground/80   border border-border/30",
   "Bronze":        "bg-orange-500/20 text-orange-400 border border-orange-500/30",
 };
 
@@ -187,17 +187,17 @@ const Hackathons = () => {
           viewport={{ once: true }}
           className="text-center mb-16"
         >
-          <h2 className="text-3xl md:text-5xl font-bold text-white mb-4">
-            {t("hackathons.title")} <span className="text-[#9CE630]">{t("hackathons.titleHighlight")}</span>
+          <h2 className="text-3xl md:text-5xl font-bold text-foreground mb-4">
+            {t("hackathons.title")} <span className="text-brand">{t("hackathons.titleHighlight")}</span>
           </h2>
-          <div className="w-20 h-1 bg-[#9CE630] mx-auto rounded-full mb-6" />
-          <p className="text-zinc-400 max-w-xl mx-auto">
+          <div className="w-20 h-1 bg-brand mx-auto rounded-full mb-6" />
+          <p className="text-muted-foreground max-w-xl mx-auto">
             {t("hackathons.subtitle")}
           </p>
         </motion.div>
 
         <div className="max-w-3xl mx-auto relative">
-          <div className="absolute left-8 top-0 bottom-0 w-px bg-zinc-800 hidden md:block" />
+          <div className="absolute left-8 top-0 bottom-0 w-px bg-surface-2 hidden md:block" />
           <div className="space-y-8">
             {hackathons.map((hackathon, index) => (
               <motion.div
@@ -208,26 +208,26 @@ const Hackathons = () => {
                 viewport={{ once: true }}
                 className="relative"
               >
-                <div className="absolute left-6 top-6 w-5 h-5 rounded-full border-2 border-[#9CE630] bg-zinc-950 hidden md:block z-10" />
+                <div className="absolute left-6 top-6 w-5 h-5 rounded-full border-2 border-brand bg-background hidden md:block z-10" />
                 <div className={`md:ml-20 p-6 rounded-xl border transition-all duration-300 ${
                   hackathon.highlight
-                    ? "bg-zinc-900/70 border-[#9CE630]/30 hover:border-[#9CE630]/60"
-                    : "bg-zinc-900/50 border-zinc-800 hover:border-zinc-700"
+                    ? "bg-surface-1/70 border-brand/30 hover:border-brand/60"
+                    : "bg-surface-1/50 border-border hover:border-border"
                 }`}>
                   <div className="flex items-start justify-between flex-wrap gap-2 mb-3">
                     <div>
-                      <h3 className="text-lg font-semibold text-white flex items-center gap-2">
-                        {hackathon.highlight && <Trophy className="w-5 h-5 text-[#9CE630]" />}
+                      <h3 className="text-lg font-semibold text-foreground flex items-center gap-2">
+                        {hackathon.highlight && <Trophy className="w-5 h-5 text-brand" />}
                         {hackathon.title}
                       </h3>
-                      <p className="text-sm text-zinc-500 mt-1">{hackathon.organizer}</p>
+                      <p className="text-sm text-muted-foreground mt-1">{hackathon.organizer}</p>
                     </div>
                     <div className="flex flex-wrap gap-2">
                       <span className={`inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold ${tierStyles[hackathon.tier] ?? ""}`}>
                         {tierLabels[hackathon.tier]}
                       </span>
                       {hackathon.highlight && (
-                        <span className="inline-flex items-center gap-1 px-3 py-1 rounded-full bg-[#9CE630]/10 text-[#9CE630] text-xs font-medium">
+                        <span className="inline-flex items-center gap-1 px-3 py-1 rounded-full bg-brand/10 text-brand text-xs font-medium">
                           <Award className="w-3 h-3" />
                           {hackathon.achievement}
                         </span>
@@ -235,9 +235,9 @@ const Hackathons = () => {
                     </div>
                   </div>
 
-                  <p className="text-zinc-400 text-sm leading-relaxed mb-4">{hackathon.description}</p>
+                  <p className="text-muted-foreground text-sm leading-relaxed mb-4">{hackathon.description}</p>
 
-                  <div className="flex items-center gap-4 text-xs text-zinc-500 mb-3">
+                  <div className="flex items-center gap-4 text-xs text-muted-foreground mb-3">
                     <span className="flex items-center gap-1">
                       <Calendar className="w-3 h-3" />
                       {hackathon.date}
@@ -250,7 +250,7 @@ const Hackathons = () => {
 
                   <div className="flex flex-wrap gap-2">
                     {hackathon.technologies.map((tech) => (
-                      <span key={tech} className="px-2 py-1 text-xs bg-zinc-800 text-zinc-400 rounded-md">
+                      <span key={tech} className="px-2 py-1 text-xs bg-surface-2 text-muted-foreground rounded-md">
                         {tech}
                       </span>
                     ))}

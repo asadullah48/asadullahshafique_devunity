@@ -126,13 +126,13 @@ export function SearchDialog() {
   const getIcon = (type: string) => {
     switch (type) {
       case "question":
-        return <MessageSquare className="h-4 w-4 text-[#9CE630]" />;
+        return <MessageSquare className="h-4 w-4 text-brand" />;
       case "blog":
-        return <BookOpen className="h-4 w-4 text-[#9CE630]" />;
+        return <BookOpen className="h-4 w-4 text-brand" />;
       case "user":
-        return <User className="h-4 w-4 text-[#9CE630]" />;
+        return <User className="h-4 w-4 text-brand" />;
       default:
-        return <Search className="h-4 w-4 text-[#9CE630]" />;
+        return <Search className="h-4 w-4 text-brand" />;
     }
   };
 

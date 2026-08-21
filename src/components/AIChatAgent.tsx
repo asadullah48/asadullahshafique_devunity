@@ -18,7 +18,7 @@ interface Message {
 type AgentMode = "general" | "python" | "nextjs" | "agents";
 
 const MODES: { id: AgentMode; label: string; emoji: string; color: string }[] = [
-  { id: "general", label: "Guide",   emoji: "🤖", color: "#9CE630" },
+  { id: "general", label: "Guide",   emoji: "🤖", color: "hsl(var(--brand))" },
   { id: "python",  label: "Python",  emoji: "🐍", color: "#009688" },
   { id: "nextjs",  label: "Next.js", emoji: "⚡", color: "#3178C6" },
   { id: "agents",  label: "Agents",  emoji: "🧠", color: "#CC785C" },
@@ -190,13 +190,13 @@ const AIChatAgent = () => {
         whileHover={{ scale: 1.1 }}
         whileTap={{ scale: 0.9 }}
         onClick={() => setIsOpen(!isOpen)}
-        className="fixed bottom-6 right-6 z-50 w-14 h-14 bg-[#9CE630] rounded-full shadow-lg flex items-center justify-center hover:bg-[#8BD520] transition-colors"
+        className="fixed bottom-6 right-6 z-50 w-14 h-14 bg-brand rounded-full shadow-lg flex items-center justify-center hover:bg-[#8BD520] transition-colors"
         aria-label="Toggle chat"
       >
         {isOpen ? (
-          <X className="w-6 h-6 text-black" />
+          <X className="w-6 h-6 text-primary-foreground" />
         ) : (
-          <MessageCircle className="w-6 h-6 text-black" />
+          <MessageCircle className="w-6 h-6 text-primary-foreground" />
         )}
       </motion.button>
 
@@ -209,17 +209,17 @@ const AIChatAgent = () => {
             exit={{ opacity: 0, y: 20, scale: 0.9 }}
             className="fixed bottom-24 right-6 z-50 w-96 max-w-[calc(100vw-3rem)]"
           >
-            <Card className="border border-zinc-800 bg-zinc-900/95 backdrop-blur-md shadow-2xl overflow-hidden">
+            <Card className="border border-border bg-surface-1/95 backdrop-blur-md shadow-2xl overflow-hidden">
               {/* Header */}
-              <div className="bg-gradient-to-r from-[#9CE630] to-[#8BD520] p-4">
+              <div className="bg-gradient-to-r from-brand to-[#8BD520] p-4">
                 <div className="flex items-center justify-between">
                   <div className="flex items-center gap-3">
                     <div className="w-10 h-10 rounded-full bg-white/20 flex items-center justify-center">
-                      <Bot className="w-6 h-6 text-black" />
+                      <Bot className="w-6 h-6 text-primary-foreground" />
                     </div>
                     <div>
-                      <h3 className="font-semibold text-black">Portfolio Assistant</h3>
-                      <p className="text-xs text-black/80">
+                      <h3 className="font-semibold text-primary-foreground">Portfolio Assistant</h3>
+                      <p className="text-xs text-primary-foreground/80">
                         {activeMode.emoji} {activeMode.label} Mode
                       </p>
                     </div>
@@ -228,7 +228,7 @@ const AIChatAgent = () => {
                     variant="ghost"
                     size="sm"
                     onClick={() => setIsOpen(false)}
-                    className="text-black hover:bg-white/20"
+                    className="text-primary-foreground hover:bg-white/20"
                   >
                     <X className="w-5 h-5" />
                   </Button>
@@ -236,7 +236,7 @@ const AIChatAgent = () => {
               </div>
 
               {/* Mode Tabs */}
-              <div className="flex gap-1 px-3 py-2 border-b border-zinc-800 overflow-x-auto">
+              <div className="flex gap-1 px-3 py-2 border-b border-border overflow-x-auto">
                 {MODES.map((m) => (
                   <button
                     key={m.id}
@@ -269,21 +269,21 @@ const AIChatAgent = () => {
                     <div
                       className={`w-8 h-8 rounded-full flex items-center justify-center shrink-0 ${
                         message.role === "user"
-                          ? "bg-[#9CE630]"
-                          : "bg-zinc-700"
+                          ? "bg-brand"
+                          : "bg-surface-3"
                       }`}
                     >
                       {message.role === "user" ? (
-                        <User className="w-4 h-4 text-black" />
+                        <User className="w-4 h-4 text-primary-foreground" />
                       ) : (
-                        <Bot className="w-4 h-4 text-white" />
+                        <Bot className="w-4 h-4 text-foreground" />
                       )}
                     </div>
                     <div
                       className={`max-w-[80%] p-3 rounded-lg text-sm ${
                         message.role === "user"
-                          ? "bg-[#9CE630] text-black"
-                          : "bg-zinc-800 text-white"
+                          ? "bg-brand text-primary-foreground"
+                          : "bg-surface-2 text-foreground"
                       }`}
                     >
                       {message.content}
@@ -296,12 +296,12 @@ const AIChatAgent = () => {
                     animate={{ opacity: 1 }}
                     className="flex items-start gap-3"
                   >
-                    <div className="w-8 h-8 rounded-full bg-zinc-700 flex items-center justify-center shrink-0">
-                      <Bot className="w-4 h-4 text-white" />
+                    <div className="w-8 h-8 rounded-full bg-surface-3 flex items-center justify-center shrink-0">
+                      <Bot className="w-4 h-4 text-foreground" />
                     </div>
-                    <div className="max-w-[80%] p-3 rounded-lg text-sm bg-zinc-800 text-white">
+                    <div className="max-w-[80%] p-3 rounded-lg text-sm bg-surface-2 text-foreground">
                       {streamingContent}
-                      <span className="inline-block w-1 h-3 ml-0.5 bg-[#9CE630] animate-pulse" />
+                      <span className="inline-block w-1 h-3 ml-0.5 bg-brand animate-pulse" />
                     </div>
                   </motion.div>
                 )}
@@ -311,11 +311,11 @@ const AIChatAgent = () => {
                     animate={{ opacity: 1 }}
                     className="flex items-center gap-3"
                   >
-                    <div className="w-8 h-8 rounded-full bg-zinc-700 flex items-center justify-center flex-shrink-0">
-                      <Bot className="w-4 h-4 text-white" />
+                    <div className="w-8 h-8 rounded-full bg-surface-3 flex items-center justify-center flex-shrink-0">
+                      <Bot className="w-4 h-4 text-foreground" />
                     </div>
-                    <div className="bg-zinc-800 px-3 py-2 rounded-lg flex items-center gap-2">
-                      <Loader2 className="w-3 h-3 animate-spin text-zinc-400 flex-shrink-0" />
+                    <div className="bg-surface-2 px-3 py-2 rounded-lg flex items-center gap-2">
+                      <Loader2 className="w-3 h-3 animate-spin text-muted-foreground flex-shrink-0" />
                       <AnimatePresence mode="wait">
                         <motion.span
                           key={thinkingStep}
@@ -323,7 +323,7 @@ const AIChatAgent = () => {
                           animate={{ opacity: 1, y: 0 }}
                           exit={{ opacity: 0, y: -4 }}
                           transition={{ duration: 0.2 }}
-                          className="text-xs text-zinc-400 font-mono"
+                          className="text-xs text-muted-foreground font-mono"
                         >
                           {THINKING_STEPS[thinkingStep]}
                         </motion.span>
@@ -337,7 +337,7 @@ const AIChatAgent = () => {
               {/* Suggested Questions */}
               {messages.length === 1 && (
                 <div className="px-4 pb-2">
-                  <div className="flex items-center gap-2 text-xs text-zinc-500 mb-2">
+                  <div className="flex items-center gap-2 text-xs text-muted-foreground mb-2">
                     <Sparkles className="w-3 h-3" />
                     Suggested questions:
                   </div>
@@ -346,7 +346,7 @@ const AIChatAgent = () => {
                       <button
                         key={index}
                         onClick={() => setInput(question)}
-                        className="text-xs px-3 py-1.5 bg-zinc-800 hover:bg-zinc-700 text-zinc-300 rounded-full transition-colors"
+                        className="text-xs px-3 py-1.5 bg-surface-2 hover:bg-surface-3 text-foreground/80 rounded-full transition-colors"
                       >
                         {question}
                       </button>
@@ -356,21 +356,21 @@ const AIChatAgent = () => {
               )}
 
               {/* Input Form */}
-              <form onSubmit={handleSubmit} className="p-4 border-t border-zinc-800">
+              <form onSubmit={handleSubmit} className="p-4 border-t border-border">
                 <div className="flex items-center gap-2">
                   <input
                     type="text"
                     value={input}
                     onChange={(e) => setInput(e.target.value)}
                     placeholder="Ask me anything..."
-                    className="flex-1 bg-zinc-800 border border-zinc-700 rounded-lg px-4 py-2 text-sm text-white placeholder:text-zinc-500 focus:outline-none focus:border-[#9CE630]"
+                    className="flex-1 bg-surface-2 border border-border rounded-lg px-4 py-2 text-sm text-foreground placeholder:text-muted-foreground focus:outline-none focus:border-brand"
                     disabled={isLoading}
                   />
                   <Button
                     type="submit"
                     size="sm"
                     disabled={isLoading || !input.trim()}
-                    className="bg-[#9CE630] text-black hover:bg-[#8BD520] disabled:opacity-50"
+                    className="bg-brand text-primary-foreground hover:bg-[#8BD520] disabled:opacity-50"
                   >
                     <Send className="w-4 h-4" />
                   </Button>

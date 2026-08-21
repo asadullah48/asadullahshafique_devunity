@@ -12,7 +12,7 @@ export function LocaleSwitcher() {
     <motion.button
       onClick={toggle}
       whileTap={{ scale: 0.92 }}
-      className="relative flex items-center gap-1.5 px-3 py-1.5 rounded-full border border-white/15 hover:border-[#9CE630]/50 text-zinc-400 hover:text-[#9CE630] text-xs font-medium transition-all duration-200 select-none"
+      className="relative flex items-center gap-1.5 px-3 py-1.5 rounded-full border border-white/15 hover:border-brand/50 text-muted-foreground hover:text-brand text-xs font-medium transition-all duration-200 select-none"
       title={t("common.switchLanguage")}
     >
       {/* Flag emoji */}

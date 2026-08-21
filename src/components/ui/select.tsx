@@ -80,13 +80,13 @@ const SelectTrigger = React.forwardRef<HTMLDivElement, SelectTriggerProps>(
     <div
       ref={ref}
       className={cn(
-        "flex h-10 w-full items-center justify-between rounded-md border border-zinc-700 bg-zinc-800 px-3 py-2 text-sm text-white",
+        "flex h-10 w-full items-center justify-between rounded-md border border-border bg-surface-2 px-3 py-2 text-sm text-foreground",
         className
       )}
       {...props}
     >
       <span className="flex-1 truncate">{children}</span>
-      <ChevronDown className="h-4 w-4 shrink-0 text-zinc-400 ml-2" />
+      <ChevronDown className="h-4 w-4 shrink-0 text-muted-foreground ml-2" />
     </div>
   )
 );

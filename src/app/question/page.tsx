@@ -65,16 +65,16 @@ export default function QuestionPage() {
   };
 
   return (
-    <div className="min-h-screen bg-zinc-950">
+    <div className="min-h-screen bg-background">
       <div className="container mx-auto px-4 py-8">
         <div className="flex flex-row items-center justify-between mt-12 md:mt-14 mb-8">
-          <h1 className="text-2xl md:text-4xl font-bold text-white">
+          <h1 className="text-2xl md:text-4xl font-bold text-foreground">
             Questions
           </h1>
 
           <Button
             onClick={() => setShowQuestionForm(!showQuestionForm)}
-            className="bg-[#9CE630] text-black hover:bg-[#8BD520]"
+            className="bg-brand text-primary-foreground hover:bg-[#8BD520]"
           >
             <PenSquare className="mr-2 h-4 w-4" />
             {showQuestionForm ? "Cancel" : "Post Question"}
@@ -82,14 +82,14 @@ export default function QuestionPage() {
         </div>
 
         {showQuestionForm && (
-          <Card className="mb-8 bg-zinc-900 border-zinc-800">
+          <Card className="mb-8 bg-surface-1 border-border">
             <CardHeader>
-              <CardTitle className="text-white">Ask a Question</CardTitle>
+              <CardTitle className="text-foreground">Ask a Question</CardTitle>
             </CardHeader>
             <CardContent>
               <form onSubmit={handleNewQuestion}>
                 <input
-                  className="w-full mb-4 p-2 bg-zinc-800 border border-zinc-700 rounded text-white"
+                  className="w-full mb-4 p-2 bg-surface-2 border border-border rounded text-foreground"
                   placeholder="Question Title"
                   value={newQuestion.title}
                   onChange={(e) =>
@@ -97,7 +97,7 @@ export default function QuestionPage() {
                   }
                 />
                 <Textarea
-                  className="w-full mb-4 p-2 bg-zinc-800 border border-zinc-700 rounded text-white min-h-32"
+                  className="w-full mb-4 p-2 bg-surface-2 border border-border rounded text-foreground min-h-32"
                   placeholder="Question Details"
                   value={newQuestion.content}
                   onChange={(e) =>
@@ -106,7 +106,7 @@ export default function QuestionPage() {
                 />
                 <Button
                   type="submit"
-                  className="bg-[#9CE630] text-black hover:bg-[#8BD520]"
+                  className="bg-brand text-primary-foreground hover:bg-[#8BD520]"
                   disabled={!newQuestion.title.trim() || !newQuestion.content.trim()}
                 >
                   Submit Question
@@ -118,14 +118,14 @@ export default function QuestionPage() {
 
         <div className="space-y-6">
           {questions.map((question) => (
-            <Card key={question.id} className="bg-zinc-900 border-zinc-800">
+            <Card key={question.id} className="bg-surface-1 border-border">
               <CardHeader>
                 <Link href={`/question/${question.id}`}>
-                  <CardTitle className="text-white hover:text-[#9CE630] transition-colors">{question.title}</CardTitle>
+                  <CardTitle className="text-foreground hover:text-brand transition-colors">{question.title}</CardTitle>
                 </Link>
               </CardHeader>
               <CardContent>
-                <p className="text-zinc-400">{question.content}</p>
+                <p className="text-muted-foreground">{question.content}</p>
               </CardContent>
               <CardFooter className="flex flex-col md:flex-row justify-between items-start md:items-center">
                 <div className="flex items-center space-x-4 mb-3">
@@ -139,29 +139,29 @@ export default function QuestionPage() {
                     </AvatarFallback>
                   </Avatar>
                   <div>
-                    <p className="text-sm font-medium text-white">
+                    <p className="text-sm font-medium text-foreground">
                       {question.author}
                     </p>
-                    <p className="text-xs text-zinc-400">{question.date}</p>
+                    <p className="text-xs text-muted-foreground">{question.date}</p>
                   </div>
                 </div>
                 <div className="flex items-center space-x-4">
                   <Button
                     variant="ghost"
-                    className="text-zinc-400 hover:text-white"
+                    className="text-muted-foreground hover:text-foreground"
                   >
                     <ThumbsUp className="mr-2 h-4 w-4" />
                     {question.votes}
                   </Button>
                   <Button
                     variant="ghost"
-                    className="text-zinc-400 hover:text-white"
+                    className="text-muted-foreground hover:text-foreground"
                   >
                     <MessageSquare className="mr-2 h-4 w-4" />
                     {question.answers}
                   </Button>
                   <Link href={`/question/${question.id}`}>
-                    <Button className="bg-[#9CE630] text-black hover:bg-[#8BD520]">
+                    <Button className="bg-brand text-primary-foreground hover:bg-[#8BD520]">
                       Answer
                     </Button>
                   </Link>

@@ -18,7 +18,7 @@ export default function OpengraphImage() {
           padding: "80px",
           backgroundColor: "#0a0a0a",
           backgroundImage:
-            "linear-gradient(rgba(156,230,48,0.06) 1px, transparent 1px), linear-gradient(90deg, rgba(156,230,48,0.06) 1px, transparent 1px)",
+            "linear-gradient(rgba(34,211,238,0.06) 1px, transparent 1px), linear-gradient(90deg, rgba(34,211,238,0.06) 1px, transparent 1px)",
           backgroundSize: "64px 64px",
           fontFamily: "monospace",
         }}
@@ -36,10 +36,10 @@ export default function OpengraphImage() {
               width: "12px",
               height: "12px",
               borderRadius: "50%",
-              backgroundColor: "#9CE630",
+              backgroundColor: "#22D3EE",
             }}
           />
-          <div style={{ color: "#9CE630", fontSize: "24px", letterSpacing: "4px" }}>
+          <div style={{ color: "#22D3EE", fontSize: "24px", letterSpacing: "4px" }}>
             ONLINE · GENERAL AGENT
           </div>
         </div>
@@ -55,7 +55,7 @@ export default function OpengraphImage() {
         </div>
         <div
           style={{
-            color: "#9CE630",
+            color: "#22D3EE",
             fontSize: "40px",
             marginTop: "16px",
           }}
@@ -72,9 +72,9 @@ export default function OpengraphImage() {
           }}
         >
           <span>harness</span>
-          <span style={{ color: "#9CE630" }}>×</span>
+          <span style={{ color: "#22D3EE" }}>×</span>
           <span>loop</span>
-          <span style={{ color: "#9CE630" }}>×</span>
+          <span style={{ color: "#22D3EE" }}>×</span>
           <span>graph</span>
         </div>
       </div>

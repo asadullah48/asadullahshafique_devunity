@@ -55,7 +55,7 @@ export function ShortcutsDialog() {
         <div className="space-y-6">
           {shortcuts.map((section) => (
             <div key={section.category}>
-              <h3 className="text-sm font-semibold text-zinc-400 mb-3">
+              <h3 className="text-sm font-semibold text-muted-foreground mb-3">
                 {section.category}
               </h3>
               <div className="space-y-2">
@@ -64,7 +64,7 @@ export function ShortcutsDialog() {
                     key={shortcut.description}
                     className="flex items-center justify-between"
                   >
-                    <span className="text-sm text-zinc-300">
+                    <span className="text-sm text-foreground/80">
                       {shortcut.description}
                     </span>
                     <div className="flex items-center gap-1">
@@ -77,7 +77,7 @@ export function ShortcutsDialog() {
                             {key}
                           </Badge>
                           {index < shortcut.keys.length - 1 && (
-                            <span className="mx-1 text-zinc-500">then</span>
+                            <span className="mx-1 text-muted-foreground">then</span>
                           )}
                         </div>
                       ))}
@@ -87,8 +87,8 @@ export function ShortcutsDialog() {
               </div>
             </div>
           ))}
-          <div className="pt-4 border-t border-zinc-800">
-            <p className="text-xs text-zinc-500 text-center">
+          <div className="pt-4 border-t border-border">
+            <p className="text-xs text-muted-foreground text-center">
               Press <Badge variant="outline" className="px-2 py-1 text-xs">?</Badge> to open this help
             </p>
           </div>

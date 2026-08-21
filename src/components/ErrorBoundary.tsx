@@ -69,7 +69,7 @@ export class ErrorBoundary extends Component<Props, State> {
               </div>
               <Button
                 onClick={this.handleReset}
-                className="w-full bg-red-800 hover:bg-red-700 text-white"
+                className="w-full bg-red-800 hover:bg-red-700 text-foreground"
               >
                 <RefreshCcw className="w-4 h-4 mr-2" />
                 Reload Page

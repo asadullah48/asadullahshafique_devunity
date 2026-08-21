@@ -44,7 +44,7 @@ const Contact = () => {
   };
 
   const inputClass =
-    "w-full px-4 py-3 bg-zinc-900/50 border border-zinc-800 rounded-lg text-white text-sm placeholder:text-zinc-600 focus:outline-none focus:border-[#9CE630]/50 transition-colors";
+    "w-full px-4 py-3 bg-surface-1/50 border border-border rounded-lg text-foreground text-sm placeholder:text-muted-foreground/70 focus:outline-none focus:border-brand/50 transition-colors";
 
   return (
     <section id="contact" className="py-24 relative">
@@ -59,11 +59,11 @@ const Contact = () => {
           <div className="text-xs font-mono text-green-400/60 uppercase tracking-widest mb-3">
             {"// contact"}
           </div>
-          <h2 className="text-3xl md:text-5xl font-bold text-white mb-4">
-            {t("contact.title")} <span className="text-[#9CE630]">{t("contact.titleHighlight")}</span>
+          <h2 className="text-3xl md:text-5xl font-bold text-foreground mb-4">
+            {t("contact.title")} <span className="text-brand">{t("contact.titleHighlight")}</span>
           </h2>
-          <div className="w-20 h-1 bg-[#9CE630] mx-auto rounded-full mb-6" />
-          <p className="text-zinc-400 max-w-xl mx-auto">
+          <div className="w-20 h-1 bg-brand mx-auto rounded-full mb-6" />
+          <p className="text-muted-foreground max-w-xl mx-auto">
             {t("contact.subheadline")}
           </p>
         </motion.div>
@@ -78,24 +78,24 @@ const Contact = () => {
             className="space-y-8"
           >
             <div>
-              <h3 className="text-2xl font-bold text-white mb-4">
+              <h3 className="text-2xl font-bold text-foreground mb-4">
                 {t("contact.buildTogether")}
               </h3>
-              <p className="text-zinc-400 leading-relaxed">
+              <p className="text-muted-foreground leading-relaxed">
                 {t("contact.buildDesc")}
               </p>
             </div>
 
             <a
               href="mailto:asadullahshafique@hotmail.com"
-              className="flex items-center gap-4 p-4 rounded-xl bg-zinc-900/50 border border-zinc-800 hover:border-[#9CE630]/30 transition-all group"
+              className="flex items-center gap-4 p-4 rounded-xl bg-surface-1/50 border border-border hover:border-brand/30 transition-all group"
             >
-              <div className="w-10 h-10 rounded-lg bg-[#9CE630]/10 flex items-center justify-center group-hover:bg-[#9CE630]/20 transition-colors">
-                <Mail className="w-5 h-5 text-[#9CE630]" />
+              <div className="w-10 h-10 rounded-lg bg-brand/10 flex items-center justify-center group-hover:bg-brand/20 transition-colors">
+                <Mail className="w-5 h-5 text-brand" />
               </div>
               <div>
-                <p className="text-xs text-zinc-500">{t("contact.emailLabel")}</p>
-                <p className="text-sm text-white">asadullahshafique@hotmail.com</p>
+                <p className="text-xs text-muted-foreground">{t("contact.emailLabel")}</p>
+                <p className="text-sm text-foreground">asadullahshafique@hotmail.com</p>
               </div>
             </a>
 
@@ -103,28 +103,28 @@ const Contact = () => {
               href="https://wa.me/923213771445"
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center gap-4 p-4 rounded-xl bg-zinc-900/50 border border-zinc-800 hover:border-[#25D366]/30 transition-all group"
+              className="flex items-center gap-4 p-4 rounded-xl bg-surface-1/50 border border-border hover:border-[#25D366]/30 transition-all group"
             >
               <div className="w-10 h-10 rounded-lg bg-[#25D366]/10 flex items-center justify-center group-hover:bg-[#25D366]/20 transition-colors">
                 <MessageCircle className="w-5 h-5 text-[#25D366]" />
               </div>
               <div>
-                <p className="text-xs text-zinc-500">{t("contact.whatsappLabel")}</p>
-                <p className="text-sm text-white">+92 321 3771445</p>
-                <p className="text-xs text-zinc-500 mt-0.5">{t("contact.whatsappHint")}</p>
+                <p className="text-xs text-muted-foreground">{t("contact.whatsappLabel")}</p>
+                <p className="text-sm text-foreground">+92 321 3771445</p>
+                <p className="text-xs text-muted-foreground mt-0.5">{t("contact.whatsappHint")}</p>
               </div>
             </a>
 
-            <div className="p-6 rounded-xl bg-zinc-900/50 border border-zinc-800">
-              <p className="text-sm font-semibold text-white mb-3">{t("contact.preferOther")}</p>
-              <div className="space-y-2 text-sm text-zinc-400">
+            <div className="p-6 rounded-xl bg-surface-1/50 border border-border">
+              <p className="text-sm font-semibold text-foreground mb-3">{t("contact.preferOther")}</p>
+              <div className="space-y-2 text-sm text-muted-foreground">
                 <p>
                   GitHub:{" "}
                   <a
                     href="https://github.com/asadullah48"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="text-[#9CE630] hover:underline"
+                    className="text-brand hover:underline"
                   >
                     @asadullah48
                   </a>
@@ -150,7 +150,7 @@ const Contact = () => {
                   >
                     {t("contact.whatsappChat")}
                   </a>
-                  <span className="text-zinc-500"> {t("contact.whatsappRegion")}</span>
+                  <span className="text-muted-foreground"> {t("contact.whatsappRegion")}</span>
                 </p>
               </div>
             </div>
@@ -166,7 +166,7 @@ const Contact = () => {
             <form onSubmit={handleSubmit} className="space-y-4">
               <div className="grid grid-cols-2 gap-4">
                 <div>
-                  <label className="block text-sm text-zinc-400 mb-1.5">{t("contact.nameLabel")}</label>
+                  <label className="block text-sm text-muted-foreground mb-1.5">{t("contact.nameLabel")}</label>
                   <input
                     type="text"
                     required
@@ -177,7 +177,7 @@ const Contact = () => {
                   />
                 </div>
                 <div>
-                  <label className="block text-sm text-zinc-400 mb-1.5">{t("contact.emailFieldLabel")}</label>
+                  <label className="block text-sm text-muted-foreground mb-1.5">{t("contact.emailFieldLabel")}</label>
                   <input
                     type="email"
                     required
@@ -190,7 +190,7 @@ const Contact = () => {
               </div>
 
               <div>
-                <label className="block text-sm text-zinc-400 mb-1.5">{t("contact.subjectLabel")}</label>
+                <label className="block text-sm text-muted-foreground mb-1.5">{t("contact.subjectLabel")}</label>
                 <input
                   type="text"
                   required
@@ -202,7 +202,7 @@ const Contact = () => {
               </div>
 
               <div>
-                <label className="block text-sm text-zinc-400 mb-1.5">{t("contact.messageLabel")}</label>
+                <label className="block text-sm text-muted-foreground mb-1.5">{t("contact.messageLabel")}</label>
                 <textarea
                   required
                   rows={5}
@@ -216,7 +216,7 @@ const Contact = () => {
               <Button
                 type="submit"
                 disabled={status === "loading"}
-                className="w-full h-12 bg-[#9CE630] text-black font-semibold hover:bg-[#8BD520] transition-all duration-300 disabled:opacity-50"
+                className="w-full h-12 bg-brand text-primary-foreground font-semibold hover:bg-[#8BD520] transition-all duration-300 disabled:opacity-50"
               >
                 {status === "loading" ? (
                   <>

@@ -43,7 +43,7 @@ const TRACKS: Track[] = [
     id: "systemDesign",
     number: "03",
     icon: { kind: "badge", text: "SD" },
-    color: "#9CE630",
+    color: "hsl(var(--brand))",
     topicKeys: ["intro", "scaling", "nginx", "microservices", "dbScaling"],
   },
   {
@@ -66,7 +66,7 @@ export default function Roadmap() {
   const { t } = useLocale();
 
   return (
-    <section id="roadmap" className="py-24 bg-[#0a0a0a]">
+    <section id="roadmap" className="py-24 bg-background">
       <div className="container mx-auto px-6">
 
         <motion.div
@@ -76,12 +76,12 @@ export default function Roadmap() {
           transition={{ duration: 0.5 }}
           className="text-center mb-14"
         >
-          <h2 className="text-4xl lg:text-5xl font-bold text-white mb-4">
+          <h2 className="text-4xl lg:text-5xl font-bold text-foreground mb-4">
             {t("roadmap.title")}{" "}
-            <span className="text-[#9CE630]">{t("roadmap.titleHighlight")}</span>
+            <span className="text-brand">{t("roadmap.titleHighlight")}</span>
           </h2>
-          <div className="w-20 h-1 bg-[#9CE630] mx-auto rounded-full mb-6" />
-          <p className="text-zinc-400 max-w-xl mx-auto">
+          <div className="w-20 h-1 bg-brand mx-auto rounded-full mb-6" />
+          <p className="text-muted-foreground max-w-xl mx-auto">
             {t("roadmap.subtitle")}
           </p>
         </motion.div>
@@ -94,7 +94,7 @@ export default function Roadmap() {
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
               viewport={{ once: true }}
-              className="group p-6 rounded-2xl bg-zinc-900/50 border border-zinc-800 hover:border-[#9CE630]/30 transition-all duration-300 hover:bg-zinc-900/80"
+              className="group p-6 rounded-2xl bg-surface-1/50 border border-border hover:border-brand/30 transition-all duration-300 hover:bg-surface-1/80"
             >
               <div className="flex items-start justify-between mb-4">
                 <div
@@ -121,12 +121,12 @@ export default function Roadmap() {
                     </span>
                   )}
                 </div>
-                <span className="text-xs text-zinc-500 border border-zinc-800 px-2 py-0.5 rounded-full font-mono">
+                <span className="text-xs text-muted-foreground border border-border px-2 py-0.5 rounded-full font-mono">
                   {track.number}
                 </span>
               </div>
 
-              <h3 className="text-lg font-semibold text-white mb-1">
+              <h3 className="text-lg font-semibold text-foreground mb-1">
                 {t(`roadmap.${track.id}.title`)}
               </h3>
               <p className="text-xs font-medium mb-4" style={{ color: track.color }}>
@@ -135,10 +135,10 @@ export default function Roadmap() {
 
               <ul className="space-y-1.5">
                 {track.topicKeys.map((key) => (
-                  <li key={key} className="flex items-start gap-2 text-sm text-zinc-300">
+                  <li key={key} className="flex items-start gap-2 text-sm text-foreground/80">
                     <span
                       className="mt-1.5 w-1.5 h-1.5 rounded-full flex-shrink-0"
-                      style={{ backgroundColor: "#9CE630" }}
+                      style={{ backgroundColor: "hsl(var(--brand))" }}
                     />
                     {t(`roadmap.${track.id}.topics.${key}`)}
                   </li>

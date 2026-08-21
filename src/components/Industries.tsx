@@ -28,11 +28,11 @@ const Industries = () => {
           viewport={{ once: true }}
           className="text-center mb-16"
         >
-          <h2 className="text-3xl md:text-5xl font-bold text-white mb-4">
-            {t("industries.title")} <span className="text-[#9CE630]">{t("industries.titleHighlight")}</span>
+          <h2 className="text-3xl md:text-5xl font-bold text-foreground mb-4">
+            {t("industries.title")} <span className="text-brand">{t("industries.titleHighlight")}</span>
           </h2>
-          <div className="w-20 h-1 bg-[#9CE630] mx-auto rounded-full mb-6" />
-          <p className="text-zinc-400 max-w-xl mx-auto">
+          <div className="w-20 h-1 bg-brand mx-auto rounded-full mb-6" />
+          <p className="text-muted-foreground max-w-xl mx-auto">
             {t("industries.subtitle")}
           </p>
         </motion.div>
@@ -45,12 +45,12 @@ const Industries = () => {
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
               viewport={{ once: true }}
-              className="group p-6 rounded-xl bg-zinc-900/50 border border-zinc-800 hover:border-[#9CE630]/30 transition-all duration-300 hover:bg-zinc-900/80"
+              className="group p-6 rounded-xl bg-surface-1/50 border border-border hover:border-brand/30 transition-all duration-300 hover:bg-surface-1/80"
             >
-              <industry.Icon className="w-10 h-10 text-[#9CE630] mb-4 group-hover:scale-110 transition-transform" />
-              <h3 className="text-xl font-semibold text-white mb-1">{industry.title}</h3>
-              <p className="text-[#9CE630] text-xs font-medium mb-3">{industry.subtitle}</p>
-              <p className="text-zinc-400 text-sm leading-relaxed">{industry.description}</p>
+              <industry.Icon className="w-10 h-10 text-brand mb-4 group-hover:scale-110 transition-transform" />
+              <h3 className="text-xl font-semibold text-foreground mb-1">{industry.title}</h3>
+              <p className="text-brand text-xs font-medium mb-3">{industry.subtitle}</p>
+              <p className="text-muted-foreground text-sm leading-relaxed">{industry.description}</p>
             </motion.div>
           ))}
         </div>

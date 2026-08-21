@@ -23,7 +23,7 @@ const API_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000";
 
 export default function PrivacyPage() {
   return (
-    <div className="min-h-screen bg-zinc-950">
+    <div className="min-h-screen bg-background">
       <div
         className="fixed inset-0 -z-10 h-full w-full bg-[linear-gradient(to_right,#0d0d0d_1px,transparent_1px),linear-gradient(to_bottom,#0d0d0d_1px,transparent_1px)] bg-[size:4rem_4rem]"
         aria-hidden="true"
@@ -38,12 +38,12 @@ export default function PrivacyPage() {
           className="text-center mb-12"
         >
           <div className="flex items-center justify-center gap-3 mb-4">
-            <Shield className="w-12 h-12 text-[#9CE630]" />
-            <h1 className="text-5xl font-bold bg-gradient-to-r from-[#9CE630] to-blue-500 bg-clip-text text-transparent">
+            <Shield className="w-12 h-12 text-brand" />
+            <h1 className="text-5xl font-bold bg-gradient-to-r from-brand to-blue-500 bg-clip-text text-transparent">
               Privacy Controls
             </h1>
           </div>
-          <p className="text-xl text-zinc-400 max-w-2xl mx-auto">
+          <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
             NoTeachLLM - Control how your data is used for AI training
           </p>
         </motion.div>
@@ -95,10 +95,10 @@ function OptOutForm() {
   };
 
   return (
-    <Card className="bg-zinc-900 border-zinc-800">
+    <Card className="bg-surface-1 border-border">
       <CardHeader>
         <CardTitle className="flex items-center gap-2">
-          <Lock className="w-5 h-5 text-[#9CE630]" />
+          <Lock className="w-5 h-5 text-brand" />
           Opt Out of AI Training
         </CardTitle>
         <CardDescription>
@@ -115,7 +115,7 @@ function OptOutForm() {
               placeholder="your@email.com"
               value={formData.email}
               onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-              className="bg-zinc-800 border-zinc-700"
+              className="bg-surface-2 border-border"
             />
           </div>
 
@@ -126,7 +126,7 @@ function OptOutForm() {
               placeholder="user-123"
               value={formData.user_id}
               onChange={(e) => setFormData({ ...formData, user_id: e.target.value })}
-              className="bg-zinc-800 border-zinc-700"
+              className="bg-surface-2 border-border"
             />
           </div>
 
@@ -136,7 +136,7 @@ function OptOutForm() {
               value={formData.scope}
               onValueChange={(value) => setFormData({ ...formData, scope: value })}
             >
-              <SelectTrigger className="bg-zinc-800 border-zinc-700">
+              <SelectTrigger className="bg-surface-2 border-border">
                 <SelectValue />
               </SelectTrigger>
               <SelectContent>
@@ -155,7 +155,7 @@ function OptOutForm() {
               placeholder="Why are you opting out?"
               value={formData.reason}
               onChange={(e) => setFormData({ ...formData, reason: e.target.value })}
-              className="bg-zinc-800 border-zinc-700"
+              className="bg-surface-2 border-border"
               rows={3}
             />
           </div>
@@ -204,12 +204,12 @@ function OptOutForm() {
           </motion.div>
         )}
 
-        <div className="mt-6 p-4 bg-zinc-800/50 rounded-lg">
+        <div className="mt-6 p-4 bg-surface-2/50 rounded-lg">
           <h4 className="font-semibold mb-2 flex items-center gap-2">
             <AlertTriangle className="w-4 h-4 text-yellow-500" />
             What does opting out mean?
           </h4>
-          <ul className="text-sm text-zinc-400 space-y-1">
+          <ul className="text-sm text-muted-foreground space-y-1">
             <li>• Your data won't be used for AI training</li>
             <li>• Learning progress won't be tracked (if selected)</li>
             <li>• Your teaching contributions won't train AI models</li>
@@ -261,7 +261,7 @@ function PrivacyStatus() {
   };
 
   return (
-    <Card className="bg-zinc-900 border-zinc-800">
+    <Card className="bg-surface-1 border-border">
       <CardHeader>
         <CardTitle className="flex items-center gap-2">
           <Eye className="w-5 h-5 text-blue-500" />
@@ -279,7 +279,7 @@ function PrivacyStatus() {
               placeholder="Enter your email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              className="bg-zinc-800 border-zinc-700 flex-1"
+              className="bg-surface-2 border-border flex-1"
             />
             <Button onClick={checkStatus} disabled={loading || !email}>
               {loading ? <Loader2 className="w-4 h-4 animate-spin" /> : "Check"}
@@ -293,7 +293,7 @@ function PrivacyStatus() {
               className={`p-4 rounded-lg border ${
                 status.opted_out
                   ? "bg-green-900/30 border-green-800"
-                  : "bg-zinc-800 border-zinc-700"
+                  : "bg-surface-2 border-border"
               }`}
             >
               {status.opted_out ? (
@@ -302,10 +302,10 @@ function PrivacyStatus() {
                     <Lock className="w-5 h-5 text-green-400" />
                     <span className="font-semibold text-green-300">Opted Out</span>
                   </div>
-                  <p className="text-sm text-zinc-300 mb-2">
+                  <p className="text-sm text-foreground/80 mb-2">
                     You have opted out of AI training
                   </p>
-                  <div className="space-y-1 text-xs text-zinc-400">
+                  <div className="space-y-1 text-xs text-muted-foreground">
                     <p>Scope: <span className="text-green-300">{status.scope}</span></p>
                     <p>Since: <span className="text-green-300">{new Date(status.timestamp).toLocaleDateString()}</span></p>
                   </div>
@@ -325,10 +325,10 @@ function PrivacyStatus() {
                     <Unlock className="w-5 h-5 text-yellow-500" />
                     <span className="font-semibold text-yellow-400">Not Opted Out</span>
                   </div>
-                  <p className="text-sm text-zinc-300">
+                  <p className="text-sm text-foreground/80">
                     {status.message || "Your data may be used for AI training"}
                   </p>
-                  <p className="text-xs text-zinc-500 mt-2">
+                  <p className="text-xs text-muted-foreground mt-2">
                     Use the form to opt out if you want more privacy
                   </p>
                 </div>
@@ -340,7 +340,7 @@ function PrivacyStatus() {
             <h4 className="font-semibold text-blue-300 mb-2">
               Your Privacy Rights
             </h4>
-            <ul className="text-sm text-zinc-400 space-y-2">
+            <ul className="text-sm text-muted-foreground space-y-2">
               <li className="flex items-start gap-2">
                 <CheckCircle className="w-4 h-4 text-blue-500 mt-0.5" />
                 Right to opt out of AI training

@@ -22,29 +22,29 @@ export default function ExplorePage() {
   ];
 
   return (
-    <div className="min-h-screen bg-zinc-950">
+    <div className="min-h-screen bg-background">
       <div className="container mx-auto px-4 py-8">
-        <h1 className="mb-8 text-4xl font-bold text-white mt-14">
+        <h1 className="mb-8 text-4xl font-bold text-foreground mt-14">
           Explore Topics
         </h1>
         <div className="mb-8">
           <Input
-            className="bg-zinc-900 border-zinc-700 text-white placeholder-zinc-400"
+            className="bg-surface-1 border-border text-foreground placeholder-zinc-400"
             placeholder="Search topics..."
           />
         </div>
         <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
           {categories.map((category, index) => (
-            <Card key={index} className="bg-zinc-900 border-zinc-800">
+            <Card key={index} className="bg-surface-1 border-border">
               <CardHeader className="flex flex-row items-center space-x-4">
-                <category.icon className="h-8 w-8 text-[#9CE630]" />
-                <CardTitle className="text-white">{category.name}</CardTitle>
+                <category.icon className="h-8 w-8 text-brand" />
+                <CardTitle className="text-foreground">{category.name}</CardTitle>
               </CardHeader>
               <CardContent>
-                <p className="text-zinc-400">
+                <p className="text-muted-foreground">
                   Explore topics related to {category.name.toLowerCase()}.
                 </p>
-                <Button className="mt-4 bg-[#9CE630] text-black hover:bg-[#8BD520]">
+                <Button className="mt-4 bg-brand text-primary-foreground hover:bg-[#8BD520]">
                   View Topics
                 </Button>
               </CardContent>

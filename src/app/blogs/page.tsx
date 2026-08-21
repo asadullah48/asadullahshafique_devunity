@@ -39,25 +39,25 @@ export default function BlogPage() {
   ];
 
   return (
-    <div className="min-h-screen bg-zinc-950">
+    <div className="min-h-screen bg-background">
       <div className="container mx-auto px-4 py-8">
         <div className="flex justify-between items-center mb-8 mt-12 md:mt-14">
-          <h1 className="text-2xl md:text-4xl font-bold text-white">
+          <h1 className="text-2xl md:text-4xl font-bold text-foreground">
             Blog Posts
           </h1>
-          <Button className="bg-[#9CE630] text-black hover:bg-[#8BD520]">
+          <Button className="bg-brand text-primary-foreground hover:bg-[#8BD520]">
             <PenSquare className="mr-2 h-4 w-4" />
             Create New Post
           </Button>
         </div>
         <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
           {blogPosts.map((post, index) => (
-            <Card key={index} className="bg-zinc-900 border-zinc-800">
+            <Card key={index} className="bg-surface-1 border-border">
               <CardHeader>
-                <CardTitle className="text-white">{post.title}</CardTitle>
+                <CardTitle className="text-foreground">{post.title}</CardTitle>
               </CardHeader>
               <CardContent>
-                <p className="text-zinc-400">{post.excerpt}</p>
+                <p className="text-muted-foreground">{post.excerpt}</p>
               </CardContent>
               <CardFooter className="flex justify-between items-center">
                 <div className="flex items-center space-x-2">
@@ -71,15 +71,15 @@ export default function BlogPage() {
                     </AvatarFallback>
                   </Avatar>
                   <div>
-                    <p className="text-sm font-medium text-white">
+                    <p className="text-sm font-medium text-foreground">
                       {post.author}
                     </p>
-                    <p className="text-xs text-zinc-400">{post.date}</p>
+                    <p className="text-xs text-muted-foreground">{post.date}</p>
                   </div>
                 </div>
                 <Button
                   variant="ghost"
-                  className="text-[#9CE630] hover:text-[#8BD520] hover:bg-zinc-800"
+                  className="text-brand hover:text-[#8BD520] hover:bg-surface-2"
                 >
                   Read More
                 </Button>

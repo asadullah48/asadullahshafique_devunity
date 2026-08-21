@@ -326,10 +326,10 @@ function ProjectCard({ project, labels }: { project: Project; labels: Record<str
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-60px" }}
       transition={{ duration: 0.4 }}
-      className={`group relative bg-[#111111] border rounded-2xl overflow-hidden transition-all duration-300 flex flex-col ${
+      className={`group relative bg-surface-2 border rounded-2xl overflow-hidden transition-all duration-300 flex flex-col ${
         project.status === "Flagship"
           ? "border-amber-500/30 hover:border-amber-500/60 md:col-span-2 lg:col-span-1"
-          : "border-white/8 hover:border-green-500/30"
+          : "border-white/8 hover:border-brand/30"
       }`}
     >
       <div
@@ -341,7 +341,7 @@ function ProjectCard({ project, labels }: { project: Project; labels: Record<str
       <div className="spotlight-overlay absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none z-[1]" />
 
       {project.image && (
-        <div className="w-full overflow-hidden bg-[#0d0d0d]" style={{ maxHeight: "200px" }}>
+        <div className="w-full overflow-hidden bg-surface-1" style={{ maxHeight: "200px" }}>
           <img
             src={project.image}
             alt={project.title}
@@ -361,20 +361,20 @@ function ProjectCard({ project, labels }: { project: Project; labels: Record<str
 
       <div className="p-6 flex flex-col flex-1">
         <StatusBadge status={project.status} color={project.statusColor} label={labels[project.status] ?? project.status} />
-        <h3 className="text-xl font-bold text-white mt-3 mb-1.5 group-hover:text-green-400 transition-colors duration-200 pr-12">
+        <h3 className="text-xl font-bold text-foreground mt-3 mb-1.5 group-hover:text-brand transition-colors duration-200 pr-12">
           {project.title}
         </h3>
         <p className="text-sm font-medium mb-4" style={{ color: project.statusColor + "cc" }}>
           {project.tagline}
         </p>
-        <p className="text-gray-400 text-sm leading-relaxed mb-5 flex-1">{project.description}</p>
+        <p className="text-muted-foreground text-sm leading-relaxed mb-5 flex-1">{project.description}</p>
 
         {project.metrics && (
           <div className="flex gap-6 mb-5 flex-wrap">
             {project.metrics.map((m) => (
               <div key={m.label}>
                 <div className="font-bold text-sm" style={{ color: project.statusColor }}>{m.value}</div>
-                <div className="text-gray-600 text-xs mt-0.5">{m.label}</div>
+                <div className="text-muted-foreground/70 text-xs mt-0.5">{m.label}</div>
               </div>
             ))}
           </div>
@@ -382,7 +382,7 @@ function ProjectCard({ project, labels }: { project: Project; labels: Record<str
 
         <div className="flex flex-wrap gap-2 mb-5">
           {project.tech.map((tech) => (
-            <span key={tech} className="px-2.5 py-1 bg-white/5 border border-white/10 text-gray-400 text-xs rounded-md font-mono hover:border-white/20 transition-colors">
+            <span key={tech} className="px-2.5 py-1 bg-white/5 border border-white/10 text-muted-foreground text-xs rounded-md font-mono hover:border-white/20 transition-colors">
               {tech}
             </span>
           ))}
@@ -411,18 +411,18 @@ function ProjectCard({ project, labels }: { project: Project; labels: Record<str
               transition={{ duration: 0.3 }}
               className="overflow-hidden"
             >
-              <div className="border border-white/8 rounded-xl p-5 mb-5 space-y-4 bg-[#0d0d0d]">
+              <div className="border border-white/8 rounded-xl p-5 mb-5 space-y-4 bg-surface-1">
                 {[
                   { label: labels.problem,  dot: "bg-red-400",   textColor: "#f87171", body: project.problem  },
                   { label: labels.solution, dot: "bg-blue-400",  textColor: "#60a5fa", body: project.solution },
-                  { label: labels.impact,   dot: "bg-green-400", textColor: "#84cc16", body: project.impact   },
+                  { label: labels.impact,   dot: "bg-brand", textColor: "#84cc16", body: project.impact   },
                 ].map((row) => (
                   <div key={row.label}>
                     <div className="text-xs font-semibold uppercase tracking-wider mb-2 flex items-center gap-2" style={{ color: row.textColor }}>
                       <span className={`w-1.5 h-1.5 rounded-full ${row.dot} inline-block`} />
                       {row.label}
                     </div>
-                    <p className="text-gray-400 text-sm leading-relaxed">{row.body}</p>
+                    <p className="text-muted-foreground text-sm leading-relaxed">{row.body}</p>
                   </div>
                 ))}
               </div>
@@ -432,12 +432,12 @@ function ProjectCard({ project, labels }: { project: Project; labels: Record<str
 
         <div className="flex gap-3 mt-auto">
           {project.github && (
-            <a href={project.github} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 text-gray-400 hover:text-white text-sm border border-white/10 hover:border-white/30 px-4 py-2 rounded-lg transition-all duration-200">
+            <a href={project.github} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 text-muted-foreground hover:text-foreground text-sm border border-white/10 hover:border-white/30 px-4 py-2 rounded-lg transition-all duration-200">
               <Github className="w-4 h-4" /> {labels.viewCode}
             </a>
           )}
           {project.demo && (
-            <a href={project.demo} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 text-gray-400 hover:text-green-400 text-sm border border-white/10 hover:border-green-500/40 px-4 py-2 rounded-lg transition-all duration-200">
+            <a href={project.demo} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 text-muted-foreground hover:text-brand text-sm border border-white/10 hover:border-brand/40 px-4 py-2 rounded-lg transition-all duration-200">
               <ExternalLink className="w-4 h-4" /> {labels.viewDemo}
             </a>
           )}
@@ -468,7 +468,7 @@ export function ProjectsSection() {
   };
 
   return (
-    <section id="projects" className="py-24 bg-[#0a0a0a]">
+    <section id="projects" className="py-24 bg-background">
       <div className="container mx-auto px-6">
 
         <motion.div
@@ -478,14 +478,14 @@ export function ProjectsSection() {
           transition={{ duration: 0.5 }}
           className="text-center mb-14"
         >
-          <div className="text-xs font-mono text-green-400/60 uppercase tracking-widest mb-3">
+          <div className="text-xs font-mono text-brand/60 uppercase tracking-widest mb-3">
             {"// projects"}
           </div>
-          <h2 className="text-4xl lg:text-5xl font-bold text-white mb-4">
-            {t("projects.title")} <span className="text-green-400">{t("projects.titleHighlight")}</span>
+          <h2 className="text-4xl lg:text-5xl font-bold text-foreground mb-4">
+            {t("projects.title")} <span className="text-brand">{t("projects.titleHighlight")}</span>
           </h2>
-          <div className="w-16 h-0.5 bg-green-400 mx-auto mb-5" />
-          <p className="text-gray-400 max-w-xl mx-auto">
+          <div className="w-16 h-0.5 bg-brand mx-auto mb-5" />
+          <p className="text-muted-foreground max-w-xl mx-auto">
             {t("projects.subtitle")}
           </p>
         </motion.div>
@@ -507,7 +507,7 @@ export function ProjectsSection() {
             href="https://github.com/asadullah48"
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 border border-green-500/40 text-green-400 hover:bg-green-500/10 px-6 py-3 rounded-lg transition-all duration-200"
+            className="inline-flex items-center gap-2 border border-brand/40 text-brand hover:bg-brand/10 px-6 py-3 rounded-lg transition-all duration-200"
           >
             <Github className="w-4 h-4" />
             {t("projects.viewAllGithub")}
