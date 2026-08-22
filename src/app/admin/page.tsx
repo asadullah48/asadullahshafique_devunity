@@ -89,7 +89,7 @@ export default function AdminPage() {
             {error && <p className="text-red-400 text-sm">{error}</p>}
             <Button
               type="submit"
-              className="w-full bg-brand text-primary-foreground hover:bg-[#8BD520]"
+              className="w-full bg-brand text-primary-foreground hover:bg-brand/90"
             >
               Login
             </Button>

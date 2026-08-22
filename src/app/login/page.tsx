@@ -100,7 +100,7 @@ export default function LoginPage() {
               />
               {errors.password && <p className="text-sm text-red-500">{errors.password}</p>}
             </div>
-            <Button type="submit" className="w-full bg-brand text-black hover:bg-[#8BD520]">
+            <Button type="submit" className="w-full bg-brand text-black hover:bg-brand/90">
               Sign In
             </Button>
           </form>

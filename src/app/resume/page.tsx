@@ -248,7 +248,7 @@ export default function ResumePage() {
 
               <motion.div variants={fade} className="flex flex-col gap-2 flex-shrink-0">
                 <a href="/resume.pdf" download="Asadullah_Shafique_Resume_2025.pdf">
-                  <Button className="w-full bg-brand text-primary-foreground font-semibold hover:bg-[#8BD520] h-11 px-6">
+                  <Button className="w-full bg-brand text-primary-foreground font-semibold hover:bg-brand/90 h-11 px-6">
                     <FileDown className="w-4 h-4 mr-2" />
                     Download PDF
                   </Button>
@@ -521,7 +521,7 @@ export default function ResumePage() {
               </Button>
             </Link>
             <Link href="/">
-              <Button className="bg-brand text-primary-foreground font-semibold hover:bg-[#8BD520]">
+              <Button className="bg-brand text-primary-foreground font-semibold hover:bg-brand/90">
                 View Portfolio
               </Button>
             </Link>

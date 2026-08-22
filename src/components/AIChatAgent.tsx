@@ -190,7 +190,7 @@ const AIChatAgent = () => {
         whileHover={{ scale: 1.1 }}
         whileTap={{ scale: 0.9 }}
         onClick={() => setIsOpen(!isOpen)}
-        className="fixed bottom-6 right-6 z-50 w-14 h-14 bg-brand rounded-full shadow-lg flex items-center justify-center hover:bg-[#8BD520] transition-colors"
+        className="fixed bottom-6 right-6 z-50 w-14 h-14 bg-brand rounded-full shadow-lg flex items-center justify-center hover:bg-brand/90 transition-colors"
         aria-label="Toggle chat"
       >
         {isOpen ? (
@@ -211,7 +211,7 @@ const AIChatAgent = () => {
           >
             <Card className="border border-border bg-surface-1/95 backdrop-blur-md shadow-2xl overflow-hidden">
               {/* Header */}
-              <div className="bg-gradient-to-r from-brand to-[#8BD520] p-4">
+              <div className="bg-gradient-to-r from-brand to-brand-dim p-4">
                 <div className="flex items-center justify-between">
                   <div className="flex items-center gap-3">
                     <div className="w-10 h-10 rounded-full bg-white/20 flex items-center justify-center">

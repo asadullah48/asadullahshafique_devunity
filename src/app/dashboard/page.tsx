@@ -299,7 +299,7 @@ export default function DashboardPage() {
                   <CardHeader className="flex flex-row items-center justify-between">
                     <CardTitle className="text-zinc-900 dark:text-white">Your Questions</CardTitle>
                     <Link href="/question">
-                      <Button className="bg-brand text-black hover:bg-[#8BD520]">
+                      <Button className="bg-brand text-black hover:bg-brand/90">
                         Ask Question
                       </Button>
                     </Link>
@@ -345,7 +345,7 @@ export default function DashboardPage() {
                           You haven't asked any questions yet.
                         </p>
                         <Link href="/question">
-                          <Button className="mt-4 bg-brand text-black hover:bg-[#8BD520]">
+                          <Button className="mt-4 bg-brand text-black hover:bg-brand/90">
                             Ask Your First Question
                           </Button>
                         </Link>
@@ -402,7 +402,7 @@ export default function DashboardPage() {
                           You haven't answered any questions yet.
                         </p>
                         <Link href="/question">
-                          <Button className="mt-4 bg-brand text-black hover:bg-[#8BD520]">
+                          <Button className="mt-4 bg-brand text-black hover:bg-brand/90">
                             Browse Questions
                           </Button>
                         </Link>
@@ -418,7 +418,7 @@ export default function DashboardPage() {
                   <CardHeader className="flex flex-row items-center justify-between">
                     <CardTitle className="text-zinc-900 dark:text-white">Your Blog Posts</CardTitle>
                     <Link href="/blogs">
-                      <Button className="bg-brand text-black hover:bg-[#8BD520]">
+                      <Button className="bg-brand text-black hover:bg-brand/90">
                         Write Blog
                       </Button>
                     </Link>
@@ -464,7 +464,7 @@ export default function DashboardPage() {
                           You haven't written any blog posts yet.
                         </p>
                         <Link href="/blogs">
-                          <Button className="mt-4 bg-brand text-black hover:bg-[#8BD520]">
+                          <Button className="mt-4 bg-brand text-black hover:bg-brand/90">
                             Write Your First Blog
                           </Button>
                         </Link>

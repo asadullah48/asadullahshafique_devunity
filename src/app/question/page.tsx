@@ -74,7 +74,7 @@ export default function QuestionPage() {
 
           <Button
             onClick={() => setShowQuestionForm(!showQuestionForm)}
-            className="bg-brand text-primary-foreground hover:bg-[#8BD520]"
+            className="bg-brand text-primary-foreground hover:bg-brand/90"
           >
             <PenSquare className="mr-2 h-4 w-4" />
             {showQuestionForm ? "Cancel" : "Post Question"}
@@ -106,7 +106,7 @@ export default function QuestionPage() {
                 />
                 <Button
                   type="submit"
-                  className="bg-brand text-primary-foreground hover:bg-[#8BD520]"
+                  className="bg-brand text-primary-foreground hover:bg-brand/90"
                   disabled={!newQuestion.title.trim() || !newQuestion.content.trim()}
                 >
                   Submit Question
@@ -161,7 +161,7 @@ export default function QuestionPage() {
                     {question.answers}
                   </Button>
                   <Link href={`/question/${question.id}`}>
-                    <Button className="bg-brand text-primary-foreground hover:bg-[#8BD520]">
+                    <Button className="bg-brand text-primary-foreground hover:bg-brand/90">
                       Answer
                     </Button>
                   </Link>

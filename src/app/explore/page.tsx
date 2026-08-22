@@ -44,7 +44,7 @@ export default function ExplorePage() {
                 <p className="text-muted-foreground">
                   Explore topics related to {category.name.toLowerCase()}.
                 </p>
-                <Button className="mt-4 bg-brand text-primary-foreground hover:bg-[#8BD520]">
+                <Button className="mt-4 bg-brand text-primary-foreground hover:bg-brand/90">
                   View Topics
                 </Button>
               </CardContent>

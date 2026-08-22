@@ -78,7 +78,7 @@ export default function AboutPage() {
           <h2 className="mb-6 text-3xl font-bold text-foreground">
             Join Our Community Today
           </h2>
-          <Button className="bg-brand text-primary-foreground hover:bg-[#8BD520] text-lg px-8 py-6 rounded-full transition-all duration-300 transform hover:scale-105 hover:shadow-lg hover:shadow-brand/20">
+          <Button className="bg-brand text-primary-foreground hover:bg-brand/90 text-lg px-8 py-6 rounded-full transition-all duration-300 transform hover:scale-105 hover:shadow-lg hover:shadow-brand/20">
             Get Started
             <ArrowRight className="ml-2 h-5 w-5" />
           </Button>

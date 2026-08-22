@@ -45,7 +45,7 @@ export default function BlogPage() {
           <h1 className="text-2xl md:text-4xl font-bold text-foreground">
             Blog Posts
           </h1>
-          <Button className="bg-brand text-primary-foreground hover:bg-[#8BD520]">
+          <Button className="bg-brand text-primary-foreground hover:bg-brand/90">
             <PenSquare className="mr-2 h-4 w-4" />
             Create New Post
           </Button>
@@ -79,7 +79,7 @@ export default function BlogPage() {
                 </div>
                 <Button
                   variant="ghost"
-                  className="text-brand hover:text-[#8BD520] hover:bg-surface-2"
+                  className="text-brand hover:text-brand/90 hover:bg-surface-2"
                 >
                   Read More
                 </Button>
