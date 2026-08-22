@@ -274,6 +274,20 @@
     );
 }
 
+/* Neural field — ambient node/signal graph, revealed around the cursor.
+   The mask centre is driven by --nf-x / --nf-y, which NeuralField.tsx writes
+   at most once per frame from a rAF-throttled pointermove. Only these two
+   custom properties change; the SVG itself is never re-rendered, and its
+   node/signal motion stays on the compositor via the existing primitives.
+   The defaults matter: with no pointer (touch, or before first move) the
+   field must still be visible, so it opens near the optical centre. */
+.neural-field {
+    --nf-x: 50vw;
+    --nf-y: 38vh;
+    mask-image: radial-gradient(circle 520px at var(--nf-x) var(--nf-y), #000 12%, transparent 100%);
+    -webkit-mask-image: radial-gradient(circle 520px at var(--nf-x) var(--nf-y), #000 12%, transparent 100%);
+}
+
 /* Spotlight card hover glow — position driven by --spot-x / --spot-y */
 .spotlight-overlay {
     background: radial-gradient(
@@ -398,6 +412,28 @@
 }
 .animate-fade-in-up { animation: fade-in-up 0.8s ease-out; }
 
+/* Determinate progress rail for the one-shot boot overlay. Unlike the
+   primitives above this one is FINITE — `forwards` holds the end state so the
+   rail does not snap back to empty on the last frame. Duration is supplied by
+   BootSequence.tsx via --boot-ms so the CSS and the JS timer cannot drift.
+   scaleX rather than width keeps it on the compositor. */
+@keyframes boot-progress {
+    from { transform: scaleX(0); }
+    to   { transform: scaleX(1); }
+}
+.animate-boot-progress {
+    transform-origin: left;
+    animation: boot-progress var(--boot-ms, 1400ms) cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+/* Boot overlay exit. Decoration only — the component unmounts on a JS timer
+   regardless of whether this animation ever runs. */
+@keyframes boot-dissolve {
+    from { opacity: 1; }
+    to   { opacity: 0; }
+}
+.animate-boot-dissolve { animation: boot-dissolve 420ms ease-out forwards; }
+
 /* ============================================================================
    REDUCED MOTION — one authoritative block.
    Ambient/decorative motion stops entirely; nothing here is load-bearing
@@ -412,7 +448,9 @@
     .animate-data-flow,
     .animate-scan-sweep,
     .animate-token-bounce,
-    .animate-fade-in-up {
+    .animate-fade-in-up,
+    .animate-boot-progress,
+    .animate-boot-dissolve {
           animation: none !important;
     }
     .spotlight-border::before { transition: none; }

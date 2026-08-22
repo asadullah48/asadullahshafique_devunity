@@ -136,6 +136,9 @@ const config: Config = {
         overlay: "50",
         modal: "60",
         toast: "70",
+        // One-shot boot overlay. Sits above everything, including toasts —
+        // nothing may paint over the system-scan sequence while it runs.
+        boot: "80",
       },
       animation: {
         shimmer: "shimmer 2s linear infinite",

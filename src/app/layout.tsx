@@ -7,6 +7,7 @@ import { LocaleProvider } from "@/context/LocaleContext";
 import { KeyboardShortcutsProvider } from "@/components/KeyboardShortcutsProvider";
 import ShortcutsDialog from "@/components/ShortcutsDialog";
 import ScrollProgress from "@/components/ScrollProgress";
+import BootSequence from "@/components/BootSequence";
 
 // Body/UI: Inter stays for small-size readability.
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
@@ -120,6 +121,12 @@ export default function RootLayout({
                                         never intercepts clicks; breaks up gradient banding on
                                         large carbon surfaces. */}
                                     <div className="grain-overlay" aria-hidden="true" />
+                                    {/* One-shot "system coming online" overlay. Last in the
+                                        tree and z-boot (80) so it paints above the grain
+                                        (z-1) and every other layer. Self-gates on
+                                        sessionStorage and prefers-reduced-motion, so on
+                                        most renders it returns null. */}
+                                    <BootSequence />
                               </KeyboardShortcutsProvider></LocaleProvider>
                         </ThemeProvider>
                   </body>

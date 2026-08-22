@@ -15,6 +15,7 @@ import Contact from "@/components/Contact";
 import Footer from "@/components/Footer";
 import TechMarquee from "@/components/TechMarquee";
 import FloatingWidgets from "@/components/FloatingWidgets";
+import NeuralField from "@/components/NeuralField";
 
 export default function Home() {
     return (
@@ -33,6 +34,11 @@ export default function Home() {
                 className="command-vignette pointer-events-none fixed inset-0 -z-10 h-full w-full"
                 aria-hidden="true"
             />
+            {/* Third substrate layer: a node/signal graph revealed around the
+                cursor. Sits above the grid and vignette but still behind all
+                content (-z-10), and deploys the data-flow / think-ring
+                primitives that had been shipped but never called. */}
+            <NeuralField />
             {/* AI-engineering proof first; business services follow it */}
             <Hero />
             <TechMarquee />
