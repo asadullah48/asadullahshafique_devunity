@@ -76,17 +76,90 @@ export interface ButtonProps
   extends React.ButtonHTMLAttributes<HTMLButtonElement>,
     VariantProps<typeof buttonVariants> {
   asChild?: boolean
+  /**
+   * The agent is working. Adds a breathing cyan aura and a three-dot token
+   * indicator beside the label, and blocks interaction.
+   *
+   * The label is KEPT, not replaced: swapping it for a spinner resizes the
+   * button mid-click and throws away the only text explaining what is
+   * happening. `aria-busy` carries the state to assistive tech, and the dots
+   * are `aria-hidden` so they are never announced as content.
+   *
+   * IGNORED when `asChild` is set — see the Slot note below.
+   */
+  thinking?: boolean
 }
 
 const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
-  ({ className, variant, size, asChild = false, ...props }, ref) => {
+  (
+    {
+      className,
+      variant,
+      size,
+      asChild = false,
+      thinking = false,
+      disabled,
+      children,
+      ...props
+    },
+    ref
+  ) => {
     const Comp = asChild ? Slot : "button"
+
+    // Slot calls React.Children.only(), so an `asChild` button must receive
+    // exactly ONE child. Injecting the aura and dots as siblings would throw
+    // at runtime for every `<Button asChild>` in the codebase. The caller owns
+    // that element's contents, so thinking decoration is skipped there.
+    const content = asChild ? (
+      children
+    ) : (
+      <>
+        {thinking && (
+          <>
+            {/*
+              The glow is an overlay whose OPACITY animates — never the
+              button's own box-shadow. Animating box-shadow repaints on every
+              frame, and this animation can run indefinitely. Reusing
+              think-pulse also means no new keyframe, and it is already
+              covered by the reduced-motion block in globals.css.
+            */}
+            <span
+              aria-hidden="true"
+              className="animate-think-pulse pointer-events-none absolute inset-0 rounded-[inherit] shadow-neon-lg"
+            />
+            <span aria-hidden="true" className="flex items-center gap-1">
+              {[0, 1, 2].map((i) => (
+                <span
+                  key={i}
+                  className="animate-token-bounce inline-block h-1 w-1 rounded-full bg-current"
+                  style={{ animationDelay: `${i * 0.16}s` }}
+                />
+              ))}
+            </span>
+          </>
+        )}
+        {children}
+      </>
+    )
+
     return (
       <Comp
-        className={cn(buttonVariants({ variant, size, className }))}
+        className={cn(
+          buttonVariants({ variant, size, className }),
+          // `disabled:opacity-100` overrides the base `disabled:opacity-45`
+          // through tailwind-merge. A button that greys out while working
+          // reads as broken rather than busy.
+          thinking && "relative cursor-progress disabled:opacity-100"
+        )}
         ref={ref}
+        // Genuinely disabled, so a form cannot be submitted twice — the
+        // dimming that normally accompanies it is undone above.
+        disabled={disabled || thinking}
+        aria-busy={thinking || undefined}
         {...props}
-      />
+      >
+        {content}
+      </Comp>
     )
   }
 )

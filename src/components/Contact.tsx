@@ -2,7 +2,7 @@
 
 import React, { useState } from "react";
 import { motion } from "framer-motion";
-import { Mail, Send, CheckCircle, AlertCircle, Loader2, MessageCircle } from "lucide-react";
+import { Mail, Send, CheckCircle, AlertCircle, MessageCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useLocale } from "@/context/LocaleContext";
 
@@ -213,19 +213,21 @@ const Contact = () => {
                 />
               </div>
 
+              {/* `thinking` supplies the busy state, the aura, disabling and
+                  aria-busy. The old hardcoded `hover:bg-[#8BD520]` was the
+                  RETIRED LIME brand — a stray literal that outlived the token
+                  migration; `variant="neon"` replaces it with the real one. */}
               <Button
                 type="submit"
-                disabled={status === "loading"}
-                className="w-full h-12 bg-brand text-primary-foreground font-semibold hover:bg-[#8BD520] transition-all duration-300 disabled:opacity-50"
+                variant="neon"
+                thinking={status === "loading"}
+                className="w-full h-12"
               >
                 {status === "loading" ? (
-                  <>
-                    <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-                    {t("contact.sending")}
-                  </>
+                  t("contact.sending")
                 ) : (
                   <>
-                    <Send className="mr-2 h-4 w-4" />
+                    <Send className="h-4 w-4" />
                     {t("contact.send")}
                   </>
                 )}

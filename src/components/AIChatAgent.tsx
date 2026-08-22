@@ -366,13 +366,18 @@ const AIChatAgent = () => {
                     className="flex-1 bg-surface-2 border border-border rounded-lg px-4 py-2 text-sm text-foreground placeholder:text-muted-foreground focus:outline-none focus:border-brand"
                     disabled={isLoading}
                   />
+                  {/* Same retired-lime literal as Contact.tsx had. `default`
+                      is the token-driven equivalent. `thinking` handles the
+                      busy state; `disabled` still guards the empty-input case,
+                      which is a genuinely separate condition. */}
                   <Button
                     type="submit"
                     size="sm"
-                    disabled={isLoading || !input.trim()}
-                    className="bg-brand text-primary-foreground hover:bg-[#8BD520] disabled:opacity-50"
+                    thinking={isLoading}
+                    disabled={!input.trim()}
+                    aria-label="Send message"
                   >
-                    <Send className="w-4 h-4" />
+                    {!isLoading && <Send className="w-4 h-4" />}
                   </Button>
                 </div>
               </form>

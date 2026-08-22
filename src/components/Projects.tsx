@@ -3,7 +3,7 @@
 import { useState, type MouseEvent } from "react";
 import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
-import { Github, ExternalLink, ChevronDown, ChevronUp, Zap, Star, Clock, ShoppingBag } from "lucide-react";
+import { Github, ExternalLink, ChevronDown, ChevronUp, Zap, Star, Clock, ShoppingBag, Terminal, LayoutGrid } from "lucide-react";
 import { useLocale } from "@/context/LocaleContext";
 
 type ProjectStatus = "Featured" | "In Development" | "Completed" | "Research" | "Flagship";
@@ -354,6 +354,7 @@ function ProjectCard({
   index: number;
 }) {
   const [expanded, setExpanded] = useState(false);
+  const [terminalView, setTerminalView] = useState(false);
   const hasCaseStudy = !!(project.problem && project.solution && project.impact);
   const tone = STATUS_TOKENS[project.status];
 
@@ -440,12 +441,78 @@ function ProjectCard({
           </div>
         )}
 
-        <div className="flex flex-wrap gap-2 mb-5">
-          {project.tech.map((tech) => (
-            <span key={tech} className="px-2.5 py-1 bg-surface-3/60 border border-border text-muted-foreground text-xs rounded-md font-mono hover:border-brand/30 hover:text-brand-soft transition-colors">
-              {tech}
+        {/* Stack, in two readings of the SAME data: chips for scanning, a
+            terminal log for the "this is a system, not a brochure" register.
+            Deliberately a toggle rather than an addition — showing both would
+            just be the tech list twice. */}
+        <div className="mb-5">
+          <div className="mb-2 flex items-center justify-between">
+            <span className="text-eyebrow uppercase text-muted-foreground/60">
+              {terminalView ? labels.terminalView : labels.stack}
             </span>
-          ))}
+            <button
+              type="button"
+              onClick={() => setTerminalView((v) => !v)}
+              // aria-pressed, not aria-expanded: this toggles BETWEEN two
+              // representations, it does not reveal extra content.
+              aria-pressed={terminalView}
+              aria-label={terminalView ? labels.showChips : labels.showTerminal}
+              title={terminalView ? labels.showChips : labels.showTerminal}
+              className="rounded-sm p-1 text-muted-foreground/70 transition-colors duration-200 hover:bg-brand/10 hover:text-brand"
+            >
+              {terminalView ? <LayoutGrid className="h-3.5 w-3.5" /> : <Terminal className="h-3.5 w-3.5" />}
+            </button>
+          </div>
+
+          {/* `mode="wait"` so the two views never overlap mid-crossfade, and
+              initial={false} so the chips do not animate in on first paint. */}
+          <AnimatePresence mode="wait" initial={false}>
+            {terminalView ? (
+              <motion.div
+                key="terminal"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                transition={{ duration: 0.18 }}
+                className="rounded-lg border border-border bg-surface-1 p-3 font-mono text-xs"
+              >
+                <div className="mb-2 flex items-center gap-1.5 border-b border-border pb-2">
+                  <span className="h-2 w-2 rounded-full bg-surface-3" />
+                  <span className="h-2 w-2 rounded-full bg-surface-3" />
+                  <span className="h-2 w-2 rounded-full bg-surface-3" />
+                  <span className="ml-1.5 truncate text-muted-foreground/60">{project.id}</span>
+                </div>
+                <p className="text-brand">$ inspect --stack</p>
+                <ul className="mt-1 space-y-0.5">
+                  {project.tech.map((tech) => (
+                    <li key={tech} className="flex items-center gap-2">
+                      <span className="text-brand/50">›</span>
+                      <span className="text-muted-foreground">{tech.toLowerCase()}</span>
+                      <span className="ml-auto text-brand-soft">ok</span>
+                    </li>
+                  ))}
+                </ul>
+                <p className="mt-2 text-brand-soft">
+                  ✓ {project.tech.length} {labels.modulesResolved}
+                </p>
+              </motion.div>
+            ) : (
+              <motion.div
+                key="chips"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                transition={{ duration: 0.18 }}
+                className="flex flex-wrap gap-2"
+              >
+                {project.tech.map((tech) => (
+                  <span key={tech} className="px-2.5 py-1 bg-surface-3/60 border border-border text-muted-foreground text-xs rounded-md font-mono hover:border-brand/30 hover:text-brand-soft transition-colors">
+                    {tech}
+                  </span>
+                ))}
+              </motion.div>
+            )}
+          </AnimatePresence>
         </div>
 
         {hasCaseStudy && (
@@ -529,6 +596,14 @@ export function ProjectsSection() {
     solution: t("projects.solution"),
     impact: t("projects.impact"),
     Flagship: t("projects.flagship"),
+    // Hardcoded English, matching the status labels below rather than
+    // `t()`: these keys do not exist in the locale files yet, and a missing
+    // key renders the raw key string into the card.
+    stack: "Stack",
+    terminalView: "Terminal",
+    showTerminal: "Show as terminal log",
+    showChips: "Show as tags",
+    modulesResolved: "modules resolved",
     Featured: "Featured",
     "In Development": "In Development",
     Completed: "Completed",

@@ -4,6 +4,27 @@ import { Github, Linkedin, Twitter, Mail, Heart } from "lucide-react";
 import Link from "next/link";
 import React from "react";
 import { useLocale } from "@/context/LocaleContext";
+import dynamic from "next/dynamic";
+
+/**
+ * Lazily loaded, and deliberately not server-rendered.
+ *
+ * The rail is the only consumer of the Radix Tooltip primitive, and Footer is
+ * statically imported by five pages — so a static import here put Tooltip +
+ * Popper + floating-ui into the initial bundle of the entire site (+23 kB)
+ * purely to explain five readouts that sit below the fold.
+ *
+ * It is also client-only by nature: every value it shows comes from Navigation
+ * Timing, a session timer, or a fetch, so SSR would render nothing but "—".
+ * Mounting late costs no layout shift because CLS only counts shifts inside
+ * the viewport, and the footer is below it.
+ */
+const AgentStatusRail = dynamic(() => import("@/components/AgentStatusRail"), {
+  ssr: false,
+  loading: () => (
+    <div className="h-[74px] rounded-panel border border-border bg-surface-1/60" />
+  ),
+});
 
 const Footer = () => {
   const { t } = useLocale();
@@ -97,7 +118,14 @@ const Footer = () => {
           </div>
         </div>
 
-        <div className="mt-12 pt-8 border-t border-border text-center">
+        {/* Agent Status Dashboard. Sits above the copyright rule so it reads
+            as instrumentation belonging to the site, not as another link
+            column. Every value in it is measured, never simulated. */}
+        <div className="mt-12">
+          <AgentStatusRail />
+        </div>
+
+        <div className="mt-8 pt-8 border-t border-border text-center">
           <p className="text-sm text-muted-foreground">
             {t("footer.copyright")} <Heart className="inline w-3 h-3 text-brand mx-1" /> © {currentYear}. {t("footer.rights")}
           </p>
