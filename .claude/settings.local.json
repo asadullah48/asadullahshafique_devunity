@@ -169,7 +169,9 @@
       "Bash(grep -vE \"UserWarning|from pydantic|LiteLLM|Feedback|^\\\\s*$\")",
       "Bash(env -u OPENAI_API_KEY -u ANTHROPIC_API_KEY -u GEMINI_API_KEY python evals/run.py)",
       "Bash(grep -c '^```' CLAUDE.md)",
-      "Bash(ORCHESTRATOR_MODEL=gemini/gemini-2.5-flash timeout 90 python -c ' *)"
+      "Bash(ORCHESTRATOR_MODEL=gemini/gemini-2.5-flash timeout 90 python -c ' *)",
+      "Bash(npx --no-install vercel --prod --yes)",
+      "Bash(npx --no-install vercel ls)"
     ]
   }
 }
