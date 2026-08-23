@@ -2,7 +2,6 @@
 
 import React, { useState, useEffect, useMemo, useRef } from "react";
 import Link from "next/link";
-import { motion, AnimatePresence } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Code2, Github, Menu, X, MessageCircle, FileDown, ChevronDown } from "lucide-react";
 import { LocaleSwitcher } from "./LocaleSwitcher";
@@ -134,15 +133,15 @@ const Navbar = () => {
                 className={`w-3.5 h-3.5 transition-transform duration-200 ${isMoreOpen ? "rotate-180" : ""}`}
               />
             </button>
-            <AnimatePresence>
-              {isMoreOpen && (
-                <motion.div
-                  initial={{ opacity: 0, y: -6 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: -6 }}
-                  transition={{ duration: 0.15 }}
-                  className="absolute left-0 top-full mt-3 w-48 rounded-panel border border-border bg-popover/95 backdrop-blur-xl shadow-panel py-2"
-                >
+            {/* tailwindcss-animate, already a dependency and already used by
+                ui/dialog and ui/tooltip. It animates the OPEN only: a React
+                element that unmounts is gone before CSS can run it out, so the
+                exit is now instant. Radix primitives get around that with
+                data-[state=closed]; this menu is hand-rolled and has no such
+                attribute, and adding an exit-state machine to save 150ms on a
+                dropdown close is not worth a 33 kB runtime. */}
+            {isMoreOpen && (
+              <div className="absolute left-0 top-full mt-3 w-48 rounded-panel border border-border bg-popover/95 backdrop-blur-xl shadow-panel py-2 animate-in fade-in-0 slide-in-from-top-1 duration-150">
                   {moreLinks.map((link) => (
                     <Link
                       key={link.href}
@@ -177,11 +176,10 @@ const Navbar = () => {
                     onClick={() => setIsMoreOpen(false)}
                     className="flex items-center gap-2 px-4 py-2 text-sm text-muted-foreground hover:text-brand hover:bg-white/5 transition-colors"
                   >
-                    <Github className="w-4 h-4" /> {t("nav.github")}
-                  </Link>
-                </motion.div>
-              )}
-            </AnimatePresence>
+                  <Github className="w-4 h-4" /> {t("nav.github")}
+                </Link>
+              </div>
+            )}
           </div>
         </div>
 

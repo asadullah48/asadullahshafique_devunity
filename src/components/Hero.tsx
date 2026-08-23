@@ -3,7 +3,7 @@
 import { useState, useEffect, useMemo, useRef } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { motion, AnimatePresence, useInView } from "framer-motion";
+import { Reveal } from "@/components/Reveal";
 import { ArrowDown, ExternalLink, MapPin } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useLocale } from "@/context/LocaleContext";
@@ -36,11 +36,10 @@ function MonogramAvatar() {
   return (
     <div className="relative w-72 h-72 flex items-center justify-center">
       <div className="absolute inset-0 rounded-full bg-brand/10 blur-3xl" />
-      <motion.div
-        animate={{ rotate: 360 }}
-        transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
-        className="absolute inset-0 rounded-full border border-dashed border-brand/20"
-      />
+      {/* A 20s infinite rotate is the worst possible thing to run through a JS
+          animation runtime: it never settles, so the main thread does work on
+          every frame forever. As CSS it is handed to the compositor once. */}
+      <div className="animate-orbit absolute inset-0 rounded-full border border-dashed border-brand/20" />
       <div className="absolute inset-4 rounded-full border border-brand/30" />
 
       {ORBIT_BADGES.map((badge, i) => {
@@ -49,17 +48,19 @@ function MonogramAvatar() {
         const x = Math.round(Math.cos(rad) * r);
         const y = Math.round(Math.sin(rad) * r);
         return (
-          <motion.div
+          <div
             key={badge.label}
-            initial={{ opacity: 0, scale: 0 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ delay: 0.4 + i * 0.1 }}
-            className="absolute text-xs font-mono px-2 py-0.5 rounded-full border"
+            // The badge is positioned by a translate, and tailwindcss-animate's
+            // zoom utilities animate `transform` too — they would fight, and
+            // the badge would fly in from the container's centre. Animating
+            // opacity only keeps the placement transform untouched.
+            className="absolute text-xs font-mono px-2 py-0.5 rounded-full border animate-in fade-in-0 duration-500 fill-mode-backwards"
             suppressHydrationWarning
             style={{
               left: `calc(50% + ${x}px)`,
               top: `calc(50% + ${y}px)`,
               transform: "translate(-50%, -50%)",
+              animationDelay: `${400 + i * 100}ms`,
               backgroundColor: `${badge.color}15`,
               borderColor: `${badge.color}50`,
               color: badge.color,
@@ -67,16 +68,15 @@ function MonogramAvatar() {
             }}
           >
             {badge.label}
-          </motion.div>
+          </div>
         );
       })}
 
-      <motion.div
-        initial={{ scale: 0, opacity: 0 }}
-        animate={{ scale: 1, opacity: 1 }}
-        transition={{ duration: 0.6, type: "spring" }}
-        className="relative z-raised w-36 h-36 rounded-full border-2 border-brand/60 overflow-hidden shadow-neon-lg bg-surface-2"
-      >
+      {/* The spring is gone. This wraps the LCP image, so it must not start at
+          opacity 0 — `zoom-in-95` alone scales it in from very nearly full
+          size, leaving the image painted and measurable from the first frame
+          rather than waiting on hydration. */}
+      <div className="relative z-raised w-36 h-36 rounded-full border-2 border-brand/60 overflow-hidden shadow-neon-lg bg-surface-2 animate-in zoom-in-95 duration-500">
         <Image
           src="/images/asadullah-vector.png"
           alt="Asadullah Shafique"
@@ -85,7 +85,7 @@ function MonogramAvatar() {
           className="object-cover object-top scale-110"
         />
         <div className="absolute inset-0 bg-brand/5 rounded-full" />
-      </motion.div>
+      </div>
     </div>
   );
 }
@@ -123,28 +123,20 @@ function TerminalCard() {
       </div>
 
       <div className="p-4 font-mono text-xs space-y-1.5 min-h-[120px]">
-        <AnimatePresence>
-          {TERMINAL_LINES.slice(0, visibleLines).map((line, i) => (
-            <motion.div
-              key={`${i}-${visibleLines}`}
-              initial={{ opacity: 0, x: -6 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.2 }}
-              style={{ color: line.color }}
-            >
-              {line.text}
-              {i === visibleLines - 1 && (
-                <motion.span
-                  animate={{ opacity: [1, 0] }}
-                  transition={{ repeat: Infinity, duration: 0.7 }}
-                  style={{ color: BRAND }}
-                >
-                  █
-                </motion.span>
-              )}
-            </motion.div>
-          ))}
-        </AnimatePresence>
+        {TERMINAL_LINES.slice(0, visibleLines).map((line, i) => (
+          <div
+            key={`${i}-${visibleLines}`}
+            className="animate-in fade-in-0 slide-in-from-left-1 duration-200"
+            style={{ color: line.color }}
+          >
+            {line.text}
+            {i === visibleLines - 1 && (
+              <span className="animate-caret" style={{ color: BRAND }}>
+                █
+              </span>
+            )}
+          </div>
+        ))}
       </div>
     </div>
   );
@@ -160,10 +152,7 @@ const AGENT_MODES = [
 
 function AgentModeStrip() {
   return (
-    <motion.div
-      initial={{ opacity: 0, y: 10 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ delay: 0.8 }}
+    <Reveal step={8}
       className="w-full max-w-xs"
     >
       <div className="text-eyebrow text-muted-foreground font-mono uppercase mb-2 px-1">
@@ -188,8 +177,44 @@ function AgentModeStrip() {
           </div>
         ))}
       </div>
-    </motion.div>
+    </Reveal>
   );
+}
+
+/**
+ * Replaces framer-motion's `useInView`.
+ *
+ * This is the one place in the file that genuinely needed JS: the count-up
+ * animates a NUMBER's text content, which CSS cannot do. It is ~15 lines of
+ * IntersectionObserver against the ~33 kB runtime it replaces.
+ *
+ * `once` is implicit — the observer disconnects on the first intersection, so
+ * it cannot re-trigger and cannot leak.
+ */
+function useInViewOnce(ref: React.RefObject<Element>, rootMargin = "-100px") {
+  const [inView, setInView] = useState(false);
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    // Guard for jsdom/older browsers: without IO, show the final state rather
+    // than leaving the counters stuck at their initial value.
+    if (typeof IntersectionObserver === "undefined") {
+      setInView(true);
+      return;
+    }
+    const io = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setInView(true);
+          io.disconnect();
+        }
+      },
+      { rootMargin }
+    );
+    io.observe(el);
+    return () => io.disconnect();
+  }, [ref, rootMargin]);
+  return inView;
 }
 
 // Initial state is the real value so server HTML (crawlers, link previews,
@@ -291,7 +316,7 @@ export function HeroSection() {
   );
 
   const statsRef = useRef<HTMLDivElement>(null);
-  const statsInView = useInView(statsRef, { once: true, margin: "-100px" });
+  const statsInView = useInViewOnce(statsRef);
 
   return (
     <section
@@ -317,16 +342,10 @@ export function HeroSection() {
       />
 
       <div className="container flex flex-col lg:flex-row items-center gap-16 relative z-raised py-24">
-        <motion.div
-          className="flex-1 text-center lg:text-left"
-          initial={{ opacity: 0, x: -40 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.7, ease: "easeOut" }}
+        <Reveal
+          className="reveal-x flex-1 text-center lg:text-left"
         >
-          <motion.div
-            initial={{ opacity: 0, y: -10 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.2 }}
+          <Reveal step={2}
             className="inline-flex items-center gap-2 bg-brand/10 border border-brand/25 rounded-full px-4 py-1.5 mb-7"
           >
             <span className="relative flex h-2 w-2">
@@ -336,7 +355,7 @@ export function HeroSection() {
             <span className="text-brand text-sm font-medium">{t("hero.badge")}</span>
             <MapPin className="w-3 h-3 text-brand/60" />
             <span className="text-brand/60 text-xs">{t("hero.location")}</span>
-          </motion.div>
+          </Reveal>
 
           <h1 className="font-display text-display-lg lg:text-display-xl font-bold text-foreground mb-5">
             {t("hero.greeting")}{" "}
@@ -349,13 +368,11 @@ export function HeroSection() {
           <div className="h-9 mb-6 flex items-center justify-center lg:justify-start">
             <span className="text-xl lg:text-2xl text-foreground/70 font-mono">
               {displayed}
-              <motion.span
-                animate={{ opacity: [1, 0] }}
-                transition={{ repeat: Infinity, duration: 0.7 }}
+              <Reveal as="span"
                 className="text-brand"
               >
                 |
-              </motion.span>
+              </Reveal>
             </span>
           </div>
 
@@ -400,18 +417,15 @@ export function HeroSection() {
               </div>
             ))}
           </div>
-        </motion.div>
+        </Reveal>
 
-        <motion.div
-          className="flex-shrink-0 flex flex-col items-center gap-6"
-          initial={{ opacity: 0, x: 40 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.7, delay: 0.15 }}
+        <Reveal step={1}
+          className="reveal-x flex-shrink-0 flex flex-col items-center gap-6"
         >
           <MonogramAvatar />
           <TerminalCard />
           <AgentModeStrip />
-        </motion.div>
+        </Reveal>
       </div>
     </section>
   );

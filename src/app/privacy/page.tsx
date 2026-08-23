@@ -16,7 +16,7 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { Shield, Lock, Unlock, CheckCircle, Loader2, AlertTriangle, Eye, Trash2 } from "lucide-react";
-import { motion } from "framer-motion";
+import { Reveal } from "@/components/Reveal";
 
 const API_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000";
 
@@ -31,10 +31,7 @@ export default function PrivacyPage() {
           two navbars on this route. */}
 
       <main className="container mx-auto px-4 py-16">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
+        <Reveal
           className="text-center mb-12"
         >
           <div className="flex items-center justify-center gap-3 mb-4">
@@ -46,7 +43,7 @@ export default function PrivacyPage() {
           <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
             NoTeachLLM - Control how your data is used for AI training
           </p>
-        </motion.div>
+        </Reveal>
 
         <div className="grid lg:grid-cols-2 gap-8 max-w-6xl mx-auto">
           <OptOutForm />
@@ -176,9 +173,7 @@ function OptOutForm() {
         </form>
 
         {result && (
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
+          <Reveal
             className="mt-6 p-4 bg-green-900/30 border border-green-800 rounded-lg"
           >
             <div className="flex items-start gap-3">
@@ -201,7 +196,7 @@ function OptOutForm() {
                 </p>
               </div>
             </div>
-          </motion.div>
+          </Reveal>
         )}
 
         <div className="mt-6 p-4 bg-surface-2/50 rounded-lg">
@@ -287,9 +282,7 @@ function PrivacyStatus() {
           </div>
 
           {status && (
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
+            <Reveal
               className={`p-4 rounded-lg border ${
                 status.opted_out
                   ? "bg-green-900/30 border-green-800"
@@ -333,7 +326,7 @@ function PrivacyStatus() {
                   </p>
                 </div>
               )}
-            </motion.div>
+            </Reveal>
           )}
 
           <div className="mt-6 p-4 bg-blue-900/20 border border-blue-800 rounded-lg">

@@ -18,7 +18,7 @@ import {
   CheckCircle,
   AlertCircle,
 } from "lucide-react";
-import { motion } from "framer-motion";
+import { Reveal } from "@/components/Reveal";
 
 const API_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000";
 
@@ -69,10 +69,7 @@ export default function VideoUploadPage() {
           two navbars on this route. */}
 
       <main className="container mx-auto px-4 py-16">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
+        <Reveal
           className="text-center mb-12"
         >
           <h1 className="text-5xl font-bold mb-4 bg-gradient-to-r from-purple-400 to-pink-500 bg-clip-text text-transparent">
@@ -81,7 +78,7 @@ export default function VideoUploadPage() {
           <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
             Upload, share, and discover educational videos
           </p>
-        </motion.div>
+        </Reveal>
 
         <div className="grid lg:grid-cols-3 gap-8 max-w-7xl mx-auto">
           {/* Upload Form */}
@@ -257,14 +254,12 @@ function UploadForm({ onUploadSuccess }: { onUploadSuccess: () => void }) {
           </Button>
 
           {success && (
-            <motion.div
-              initial={{ opacity: 0, y: -10 }}
-              animate={{ opacity: 1, y: 0 }}
+            <Reveal
               className="flex items-center gap-2 text-green-400 text-sm"
             >
               <CheckCircle className="w-4 h-4" />
               Video uploaded successfully!
-            </motion.div>
+            </Reveal>
           )}
         </form>
       </CardContent>
@@ -330,11 +325,8 @@ function VideoList({
       ) : (
         <div className="grid gap-4">
           {videos.map((video) => (
-            <motion.div
+            <Reveal
               key={video.id}
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.3 }}
             >
               <Card className="bg-surface-1 border-border hover:border-border transition-colors">
                 <CardContent className="p-6">
@@ -390,7 +382,7 @@ function VideoList({
                   </div>
                 </CardContent>
               </Card>
-            </motion.div>
+            </Reveal>
           ))}
         </div>
       )}

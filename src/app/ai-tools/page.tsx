@@ -18,7 +18,7 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { AlertCircle, CheckCircle, Brain, BookOpen, Lightbulb, Code2, Send, Loader2 } from "lucide-react";
-import { motion } from "framer-motion";
+import { Reveal } from "@/components/Reveal";
 
 const API_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000";
 
@@ -35,10 +35,7 @@ export default function AIToolsPage() {
           two navbars on this route. */}
 
       <main className="container mx-auto px-4 py-16">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
+        <Reveal
           className="text-center mb-12"
         >
           <h1 className="text-5xl font-bold mb-4 bg-gradient-to-r from-green-400 to-blue-500 bg-clip-text text-transparent">
@@ -47,7 +44,7 @@ export default function AIToolsPage() {
           <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
             Leverage the power of AI to solve errors, learn new topics, and contribute knowledge
           </p>
-        </motion.div>
+        </Reveal>
 
         <Tabs value={activeTab} onValueChange={setActiveTab} className="max-w-5xl mx-auto">
           <TabsList className="grid w-full grid-cols-3 mb-8">
@@ -204,9 +201,7 @@ function ErrorSolver() {
         </form>
 
         {result && (
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
+          <Reveal
             className="mt-6 space-y-4"
           >
             <div className="p-4 bg-surface-2 rounded-lg">
@@ -242,7 +237,7 @@ function ErrorSolver() {
               <Progress value={result.confidence * 100} className="w-32" />
               <span className="text-sm text-foreground/80">{(result.confidence * 100).toFixed(0)}%</span>
             </div>
-          </motion.div>
+          </Reveal>
         )}
       </CardContent>
     </Card>
@@ -382,9 +377,7 @@ function LearnTool() {
         </form>
 
         {result && (
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
+          <Reveal
             className="mt-6 space-y-4"
           >
             <div className="p-4 bg-surface-2 rounded-lg">
@@ -424,7 +417,7 @@ function LearnTool() {
               <h3 className="font-semibold mb-2">🚀 Next Steps</h3>
               <p className="text-foreground/80 text-sm">{result.next_steps}</p>
             </div>
-          </motion.div>
+          </Reveal>
         )}
       </CardContent>
     </Card>
@@ -558,9 +551,7 @@ function TeachTool() {
         </form>
 
         {result && (
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
+          <Reveal
             className="mt-6 space-y-4"
           >
             <div className="p-4 bg-green-900/30 border border-green-800 rounded-lg">
@@ -598,7 +589,7 @@ function TeachTool() {
                 ))}
               </div>
             </div>
-          </motion.div>
+          </Reveal>
         )}
       </CardContent>
     </Card>

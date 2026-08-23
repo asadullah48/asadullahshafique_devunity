@@ -441,6 +441,70 @@
     animation-delay: var(--reveal-delay, 0ms);
 }
 
+/* Hero orbit ring. Tailwind's `animate-spin` is a fixed 1s, which reads as a
+   loading spinner; the orbit is ambient and wants to be nearly subliminal. */
+@keyframes orbit-rotate {
+    from { transform: rotate(0deg); }
+    to   { transform: rotate(360deg); }
+}
+.animate-orbit { animation: orbit-rotate 20s linear infinite; }
+
+/* Terminal caret. `animate-pulse` eases opacity to 0.5 and back, which reads as
+   a glow; a caret needs a hard on/off, hence the discrete steps. */
+@keyframes caret-blink {
+    0%, 49%   { opacity: 1; }
+    50%, 100% { opacity: 0; }
+}
+.animate-caret { animation: caret-blink 1.4s steps(1, end) infinite; }
+
+/* ---------------------------------------------------------------------------
+   ROUTE TRANSITION — replaces the framer-motion wrapper in app/template.tsx.
+
+   TRANSFORM ONLY, NO OPACITY FADE. That constraint predates this rule and
+   still holds: template.tsx wraps the LCP element, so anything that starts at
+   opacity 0 ships the page invisible until the animation runs. A translate
+   degrades to "content sits 6px low", which is readable; a fade degrades to a
+   blank page. Keeping it a pure transform is also why this is safe as plain
+   CSS with no JS guard.
+   ------------------------------------------------------------------------ */
+@keyframes route-enter {
+    from { transform: translateY(6px); }
+    to   { transform: translateY(0); }
+}
+.route-enter { animation: route-enter 240ms cubic-bezier(0.22, 1, 0.36, 1) both; }
+
+/* ---------------------------------------------------------------------------
+   SCROLL PROGRESS RAIL — replaces framer-motion's useScroll + useSpring.
+
+   Unlike `.reveal`, this one is gated ENTIRELY behind @supports. The reveal
+   fallback is harmless (content fades in on load instead of on scroll), but a
+   progress bar with no timeline would resolve to a 0s animation and stick at
+   scaleX(1) — a permanent full-width cyan bar across the top of the page. So
+   the default state is scaleX(0) and the animation is only ever attached where
+   a scroll timeline actually exists; elsewhere the feature is simply absent.
+
+   Deliberately NOT in the reduced-motion block below. This is a position
+   readout, not ambient motion: it moves only as a direct response to the
+   user's own scrolling, which is the one thing reduced-motion does not ask us
+   to suppress. Cancelling it would leave the rail permanently invisible.
+   ------------------------------------------------------------------------ */
+@keyframes scroll-progress-grow {
+    from { transform: scaleX(0); }
+    to   { transform: scaleX(1); }
+}
+
+.scroll-progress {
+    transform: scaleX(0);
+    transform-origin: left;
+}
+
+@supports (animation-timeline: scroll()) {
+    .scroll-progress {
+        animation: scroll-progress-grow linear both;
+        animation-timeline: scroll(root block);
+    }
+}
+
 /* Horizontal variant. Overrides only the animation-NAME, so it inherits the
    duration, easing, fill and timeline from `.reveal` and cannot drift from it.
    Declared after `.reveal` so equal specificity resolves in its favour; the
@@ -503,6 +567,9 @@
     .animate-fade-in-up,
     .animate-boot-progress,
     .animate-boot-dissolve,
+    .animate-orbit,
+    .animate-caret,
+    .route-enter,
     /* Safe to cancel outright: reveal-rise ENDS at the natural state, so
        removing the animation leaves the element visible and in position. */
     .reveal {

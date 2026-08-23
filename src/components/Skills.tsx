@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { Reveal } from "@/components/Reveal";
 import { useLocale } from "@/context/LocaleContext";
 
 const DI = "https://cdn.jsdelivr.net/gh/devicons/devicon/icons";
@@ -144,15 +144,10 @@ function SkillCard({ skill }: { skill: Skill }) {
   const isOwn = !!skill.own;
 
   return (
-    <motion.div
-      layout
-      initial={{ opacity: 0, scale: 0.8 }}
-      animate={{ opacity: 1, scale: 1 }}
-      exit={{ opacity: 0, scale: 0.8 }}
-      transition={{ duration: 0.25 }}
+    <div
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
-      className={`group relative flex flex-col items-center justify-center gap-2.5 p-4 rounded-lg border transition-all duration-300 ease-spring cursor-default select-none ${
+      className={`group relative flex flex-col items-center justify-center gap-2.5 p-4 rounded-lg border transition-all duration-300 ease-spring cursor-default select-none animate-in fade-in-0 zoom-in-95 duration-200 ${
         isOwn
           ? "border-brand/20 bg-brand/[0.04] hover:border-brand/50 hover:bg-brand/10 hover:shadow-neon"
           : "border-border"
@@ -210,16 +205,19 @@ function SkillCard({ skill }: { skill: Skill }) {
         {skill.name}
       </span>
 
+      {/* Was layoutId="skill-glow", which made the dot fly across the grid
+          from the previously hovered card. That is a shared-element animation
+          and CSS has no equivalent — it needs a runtime tracking both nodes'
+          positions. Traded for a local zoom-in. The dot now appears on the
+          hovered card instead of travelling to it; at 8px, moving between
+          cards a pointer-flick apart, the flight was rarely legible anyway. */}
       {hovered && (
-        <motion.div
-          layoutId="skill-glow"
-          className={`absolute -top-1 -right-1 w-2 h-2 rounded-full ${isOwn ? "bg-brand" : ""}`}
+        <div
+          className={`absolute -top-1 -right-1 w-2 h-2 rounded-full animate-in zoom-in-50 duration-200 ${isOwn ? "bg-brand" : ""}`}
           style={isOwn ? undefined : { backgroundColor: skill.color }}
-          initial={{ scale: 0 }}
-          animate={{ scale: 1 }}
         />
       )}
-    </motion.div>
+    </div>
   );
 }
 
@@ -243,11 +241,7 @@ export function SkillsSection() {
     <section id="skills" className="py-24 bg-background">
       <div className="container mx-auto px-6">
 
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5 }}
+        <Reveal
           className="text-center mb-14"
         >
           <h2 className="text-4xl lg:text-5xl font-bold text-foreground mb-4">
@@ -257,7 +251,7 @@ export function SkillsSection() {
           <p className="text-muted-foreground max-w-xl mx-auto">
             {t("skills.subtitle")}
           </p>
-        </motion.div>
+        </Reveal>
 
         {/* View Toggle */}
         <div className="flex justify-center mb-6">
@@ -300,29 +294,23 @@ export function SkillsSection() {
               ))}
             </div>
 
-            <AnimatePresence mode="wait">
-              <motion.div
-                key={activeTab}
-                initial={{ opacity: 0, y: 10 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -10 }}
-                transition={{ duration: 0.3 }}
-                className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 lg:grid-cols-8 gap-3"
-              >
-                {SKILL_TABS[activeTab].map((skill) => (
-                  <SkillCard key={skill.name} skill={skill} />
-                ))}
-              </motion.div>
-            </AnimatePresence>
+            {/* `key={activeTab}` still forces a remount on every tab change,
+                which is what replays the CSS enter animation — the same
+                mechanism AnimatePresence was keying off, minus the exit. */}
+            <div
+              key={activeTab}
+              className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 lg:grid-cols-8 gap-3 animate-in fade-in-0 slide-in-from-bottom-2 duration-300"
+            >
+              {SKILL_TABS[activeTab].map((skill) => (
+                <SkillCard key={skill.name} skill={skill} />
+              ))}
+            </div>
           </>
         ) : (
           <div className="space-y-10">
             {Object.entries(AGENT_ROLE_GROUPS).map(([role, skills], groupIdx) => (
-              <motion.div
+              <Reveal step={groupIdx}
                 key={role}
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: groupIdx * 0.1 }}
               >
                 <div className="flex items-center gap-3 mb-4">
                   <span className="text-xs font-mono text-brand uppercase tracking-widest">
@@ -336,20 +324,16 @@ export function SkillsSection() {
                     <SkillCard key={skill.name} skill={skill} />
                   ))}
                 </div>
-              </motion.div>
+              </Reveal>
             ))}
           </div>
         )}
 
-        <motion.p
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true }}
-          transition={{ delay: 0.4 }}
+        <Reveal as="p" step={4}
           className="text-center text-muted-foreground/70 text-sm mt-10"
         >
           {t("skills.footer")}
-        </motion.p>
+        </Reveal>
       </div>
     </section>
   );

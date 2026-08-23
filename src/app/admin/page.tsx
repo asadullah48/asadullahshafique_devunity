@@ -6,7 +6,7 @@
 // The real ADMIN_SECRET is injected by the /api/admin/messages route (server-only).
 
 import React, { useState, useEffect } from "react";
-import { motion } from "framer-motion";
+import { Reveal } from "@/components/Reveal";
 import { Mail, Clock, Lock, Loader2, RefreshCw } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
@@ -68,9 +68,7 @@ export default function AdminPage() {
   if (!authed) {
     return (
       <div className="min-h-screen bg-background flex items-center justify-center">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
+        <Reveal
           className="w-full max-w-sm p-8 rounded-xl bg-surface-1 border border-border"
         >
           <div className="flex items-center gap-3 mb-6">
@@ -94,7 +92,7 @@ export default function AdminPage() {
               Login
             </Button>
           </form>
-        </motion.div>
+        </Reveal>
       </div>
     );
   }
@@ -141,10 +139,8 @@ export default function AdminPage() {
           /* Message cards — keyed by stable id from the backend */
           <div className="space-y-4">
             {messages.map((msg) => (
-              <motion.div
+              <Reveal
                 key={msg.id}
-                initial={{ opacity: 0, y: 10 }}
-                animate={{ opacity: 1, y: 0 }}
                 className={`p-6 rounded-xl border ${
                   msg.read
                     ? "bg-surface-1/50 border-border"
@@ -175,7 +171,7 @@ export default function AdminPage() {
                 <p className="text-muted-foreground text-sm leading-relaxed whitespace-pre-wrap">
                   {msg.message}
                 </p>
-              </motion.div>
+              </Reveal>
             ))}
           </div>
         )}

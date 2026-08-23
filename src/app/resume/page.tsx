@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import { motion } from "framer-motion";
+import { Reveal } from "@/components/Reveal";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
@@ -187,20 +187,14 @@ const tierColor: Record<string, string> = {
   Bronze: "bg-amber-700/10 text-amber-500 border-amber-500/40",
 };
 
-const fade = { hidden: { opacity: 0, y: 20 }, show: { opacity: 1, y: 0 } };
-
 export default function ResumePage() {
   return (
     <main className="min-h-screen bg-background text-foreground">
       {/* Header */}
       <div className="bg-gradient-to-br from-background via-surface-1 to-background border-b border-border">
         <div className="container mx-auto px-4 py-12 max-w-5xl">
-          <motion.div
-            initial="hidden"
-            animate="show"
-            variants={{ show: { transition: { staggerChildren: 0.08 } } }}
-          >
-            <motion.div variants={fade} className="mb-8">
+          <div>
+            <Reveal className="mb-8">
               <Link
                 href="/"
                 className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-brand transition-colors"
@@ -208,10 +202,10 @@ export default function ResumePage() {
                 <ArrowLeft className="w-4 h-4" />
                 Back to Portfolio
               </Link>
-            </motion.div>
+            </Reveal>
 
             <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-6">
-              <motion.div variants={fade}>
+              <Reveal >
                 <div className="flex items-center gap-3 mb-1">
                   <Code2 className="w-8 h-8 text-brand" />
                   <h1 className="text-4xl font-bold text-foreground">Asadullah Shafique</h1>
@@ -244,9 +238,9 @@ export default function ResumePage() {
                     Medium
                   </Link>
                 </div>
-              </motion.div>
+              </Reveal>
 
-              <motion.div variants={fade} className="flex flex-col gap-2 flex-shrink-0">
+              <Reveal className="flex flex-col gap-2 flex-shrink-0">
                 <a href="/resume.pdf" download="Asadullah_Shafique_Resume_2025.pdf">
                   <Button className="w-full bg-brand text-primary-foreground font-semibold hover:bg-brand/90 h-11 px-6">
                     <FileDown className="w-4 h-4 mr-2" />
@@ -259,9 +253,9 @@ export default function ResumePage() {
                     Download Markdown
                   </Button>
                 </a>
-              </motion.div>
+              </Reveal>
             </div>
-          </motion.div>
+          </div>
         </div>
       </div>
 
@@ -325,12 +319,8 @@ export default function ResumePage() {
           </p>
           <div className="space-y-3">
             {hackathons.map((h) => (
-              <motion.div
+              <Reveal
                 key={h.name}
-                variants={fade}
-                initial="hidden"
-                whileInView="show"
-                viewport={{ once: true }}
               >
                 <Card className="bg-surface-1/60 border-border hover:border-border transition-colors">
                   <CardContent className="p-4">
@@ -358,7 +348,7 @@ export default function ResumePage() {
                     </div>
                   </CardContent>
                 </Card>
-              </motion.div>
+              </Reveal>
             ))}
           </div>
         </Section>
@@ -367,12 +357,8 @@ export default function ResumePage() {
         <Section title="Key Projects" icon={<Code2 className="w-5 h-5" />}>
           <div className="space-y-4">
             {projects.map((p) => (
-              <motion.div
+              <Reveal
                 key={p.name}
-                variants={fade}
-                initial="hidden"
-                whileInView="show"
-                viewport={{ once: true }}
               >
                 <Card className="bg-surface-1/60 border-border hover:border-border transition-colors">
                   <CardContent className="p-5">
@@ -413,7 +399,7 @@ export default function ResumePage() {
                     </div>
                   </CardContent>
                 </Card>
-              </motion.div>
+              </Reveal>
             ))}
           </div>
         </Section>
@@ -422,12 +408,8 @@ export default function ResumePage() {
         <Section title="Professional Experience" icon={<Briefcase className="w-5 h-5" />}>
           <div className="space-y-4">
             {experience.map((job) => (
-              <motion.div
+              <Reveal
                 key={job.role}
-                variants={fade}
-                initial="hidden"
-                whileInView="show"
-                viewport={{ once: true }}
               >
                 <Card className="bg-surface-1/60 border-border hover:border-border transition-colors">
                   <CardContent className="p-5">
@@ -451,7 +433,7 @@ export default function ResumePage() {
                     </ul>
                   </CardContent>
                 </Card>
-              </motion.div>
+              </Reveal>
             ))}
           </div>
         </Section>
@@ -498,11 +480,7 @@ export default function ResumePage() {
         </Section>
 
         {/* CTA */}
-        <motion.div
-          variants={fade}
-          initial="hidden"
-          whileInView="show"
-          viewport={{ once: true }}
+        <Reveal
           className="border border-border rounded-xl p-8 text-center bg-surface-1/40"
         >
           <h3 className="text-xl font-bold text-foreground mb-2">Let&apos;s Work Together</h3>
@@ -526,7 +504,7 @@ export default function ResumePage() {
               </Button>
             </Link>
           </div>
-        </motion.div>
+        </Reveal>
 
       </div>
     </main>
@@ -543,18 +521,13 @@ function Section({
   children: React.ReactNode;
 }) {
   return (
-    <motion.section
-      variants={fade}
-      initial="hidden"
-      whileInView="show"
-      viewport={{ once: true }}
-    >
+    <Reveal as="section">
       <div className="flex items-center gap-3 mb-5">
         <span className="text-brand">{icon}</span>
         <h2 className="text-xl font-bold text-foreground">{title}</h2>
         <div className="flex-1 h-px bg-surface-2" />
       </div>
       {children}
-    </motion.section>
+    </Reveal>
   );
 }

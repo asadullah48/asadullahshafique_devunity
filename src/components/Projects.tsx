@@ -2,7 +2,7 @@
 
 import { useState, type MouseEvent } from "react";
 import Image from "next/image";
-import { motion, AnimatePresence } from "framer-motion";
+import { Reveal } from "@/components/Reveal";
 import { Github, ExternalLink, ChevronDown, ChevronUp, Zap, Star, Clock, ShoppingBag, Terminal, LayoutGrid } from "lucide-react";
 import { useLocale } from "@/context/LocaleContext";
 
@@ -367,14 +367,13 @@ function ProjectCard({
   // glass-panel supplies the blur, lit rim and tinted drop shadow; the status
   // tone supplies only the border. Cards sit over the ambient command-field,
   // so the blur has something real to refract instead of frosting flat carbon.
+  // `layout` (framer's automatic layout animation) is gone and not replaced.
+  // Its only job was to ease the card's height change when the case study
+  // expanded, and the grid-template-rows transition on that section now
+  // animates the same resize directly.
   return (
-    <motion.div
-      layout
+    <Reveal
       onMouseMove={handleSpotlight}
-      initial={{ opacity: 0, y: 24 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: "-60px" }}
-      transition={{ duration: 0.4 }}
       className={`group glass-panel relative rounded-panel overflow-hidden transition-all duration-300 ease-spring flex flex-col spotlight-border hover:-translate-y-1 ${tone.card}`}
     >
       <div
@@ -467,55 +466,45 @@ function ProjectCard({
             </button>
           </div>
 
-          {/* `mode="wait"` so the two views never overlap mid-crossfade, and
-              initial={false} so the chips do not animate in on first paint. */}
-          <AnimatePresence mode="wait" initial={false}>
-            {terminalView ? (
-              <motion.div
-                key="terminal"
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                exit={{ opacity: 0 }}
-                transition={{ duration: 0.18 }}
-                className="rounded-lg border border-border bg-surface-1 p-3 font-mono text-xs"
-              >
-                <div className="mb-2 flex items-center gap-1.5 border-b border-border pb-2">
-                  <span className="h-2 w-2 rounded-full bg-surface-3" />
-                  <span className="h-2 w-2 rounded-full bg-surface-3" />
-                  <span className="h-2 w-2 rounded-full bg-surface-3" />
-                  <span className="ml-1.5 truncate text-muted-foreground/60">{project.id}</span>
-                </div>
-                <p className="text-brand">$ inspect --stack</p>
-                <ul className="mt-1 space-y-0.5">
-                  {project.tech.map((tech) => (
-                    <li key={tech} className="flex items-center gap-2">
-                      <span className="text-brand/50">›</span>
-                      <span className="text-muted-foreground">{tech.toLowerCase()}</span>
-                      <span className="ml-auto text-brand-soft">ok</span>
-                    </li>
-                  ))}
-                </ul>
-                <p className="mt-2 text-brand-soft">
-                  ✓ {project.tech.length} {labels.modulesResolved}
-                </p>
-              </motion.div>
-            ) : (
-              <motion.div
-                key="chips"
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                exit={{ opacity: 0 }}
-                transition={{ duration: 0.18 }}
-                className="flex flex-wrap gap-2"
-              >
+          {/* Was AnimatePresence mode="wait". The two views are mutually
+              exclusive and each remounts when `terminalView` flips, so a CSS
+              enter animation replays on its own and they can never overlap —
+              exactly what mode="wait" was there to guarantee. The outgoing
+              view now disappears instantly instead of fading out. */}
+          {terminalView ? (
+            <div
+              key="terminal"
+              className="rounded-lg border border-border bg-surface-1 p-3 font-mono text-xs animate-in fade-in-0 duration-200"
+            >
+              <div className="mb-2 flex items-center gap-1.5 border-b border-border pb-2">
+                <span className="h-2 w-2 rounded-full bg-surface-3" />
+                <span className="h-2 w-2 rounded-full bg-surface-3" />
+                <span className="h-2 w-2 rounded-full bg-surface-3" />
+                <span className="ml-1.5 truncate text-muted-foreground/60">{project.id}</span>
+              </div>
+              <p className="text-brand">$ inspect --stack</p>
+              <ul className="mt-1 space-y-0.5">
                 {project.tech.map((tech) => (
-                  <span key={tech} className="px-2.5 py-1 bg-surface-3/60 border border-border text-muted-foreground text-xs rounded-md font-mono hover:border-brand/30 hover:text-brand-soft transition-colors">
-                    {tech}
-                  </span>
+                  <li key={tech} className="flex items-center gap-2">
+                    <span className="text-brand/50">›</span>
+                    <span className="text-muted-foreground">{tech.toLowerCase()}</span>
+                    <span className="ml-auto text-brand-soft">ok</span>
+                  </li>
                 ))}
-              </motion.div>
-            )}
-          </AnimatePresence>
+              </ul>
+              <p className="mt-2 text-brand-soft">
+                ✓ {project.tech.length} {labels.modulesResolved}
+              </p>
+            </div>
+          ) : (
+            <div key="chips" className="flex flex-wrap gap-2">
+              {project.tech.map((tech) => (
+                <span key={tech} className="px-2.5 py-1 bg-surface-3/60 border border-border text-muted-foreground text-xs rounded-md font-mono hover:border-brand/30 hover:text-brand-soft transition-colors">
+                  {tech}
+                </span>
+              ))}
+            </div>
+          )}
         </div>
 
         {hasCaseStudy && (
@@ -535,15 +524,23 @@ function ProjectCard({
           </button>
         )}
 
-        <AnimatePresence>
-          {expanded && hasCaseStudy && (
-            <motion.div
-              initial={{ height: 0, opacity: 0 }}
-              animate={{ height: "auto", opacity: 1 }}
-              exit={{ height: 0, opacity: 0 }}
-              transition={{ duration: 0.3 }}
-              className="overflow-hidden"
-            >
+        {/* The grid-template-rows 0fr -> 1fr idiom. CSS cannot transition to
+            `height: auto`, which is the whole reason this was a JS animation,
+            but it CAN transition a grid track between those two values and let
+            the row resolve to the content's natural height.
+            This is the one conversion that gains a capability: the element
+            stays mounted, so unlike every other AnimatePresence removal here
+            the CLOSE animates too. Kept out of the DOM entirely when the
+            project has no case study, and hidden from assistive tech while
+            collapsed since it is visually inert then. */}
+        {hasCaseStudy && (
+          <div
+            aria-hidden={!expanded}
+            className={`grid transition-[grid-template-rows] duration-300 ease-out ${
+              expanded ? "grid-rows-[1fr]" : "grid-rows-[0fr]"
+            }`}
+          >
+            <div className="overflow-hidden">
               {/* Problem → Solution → Impact reads as a progression, so it is
                   keyed to RISING cyan intensity rather than to three unrelated
                   hues. The previous version paired a `bg-brand` cyan dot with
@@ -564,9 +561,9 @@ function ProjectCard({
                   </div>
                 ))}
               </div>
-            </motion.div>
-          )}
-        </AnimatePresence>
+            </div>
+          </div>
+        )}
 
         <div className="flex gap-3 mt-auto">
           {project.github && (
@@ -581,7 +578,7 @@ function ProjectCard({
           )}
         </div>
       </div>
-    </motion.div>
+    </Reveal>
   );
 }
 
@@ -617,11 +614,7 @@ export function ProjectsSection() {
     <section id="projects" className="py-24 bg-background">
       <div className="container mx-auto px-6">
 
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5 }}
+        <Reveal
           className="text-center mb-14"
         >
           <div className="text-xs font-mono text-brand/60 uppercase tracking-widest mb-3">
@@ -634,7 +627,7 @@ export function ProjectsSection() {
           <p className="text-muted-foreground max-w-xl mx-auto">
             {t("projects.subtitle")}
           </p>
-        </motion.div>
+        </Reveal>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {PROJECTS.map((project, i) => (
@@ -642,11 +635,7 @@ export function ProjectsSection() {
           ))}
         </div>
 
-        <motion.div
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true }}
-          transition={{ delay: 0.3 }}
+        <Reveal step={3}
           className="text-center mt-12"
         >
           <a
@@ -658,7 +647,7 @@ export function ProjectsSection() {
             <Github className="w-4 h-4" />
             {t("projects.viewAllGithub")}
           </a>
-        </motion.div>
+        </Reveal>
       </div>
     </section>
   );

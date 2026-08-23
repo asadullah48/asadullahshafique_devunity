@@ -27,7 +27,7 @@ import {
   Loader2,
   CheckCircle,
 } from "lucide-react";
-import { motion } from "framer-motion";
+import { Reveal } from "@/components/Reveal";
 
 const API_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000";
 
@@ -58,10 +58,7 @@ export default function BackendlessPage() {
           two navbars on this route. */}
 
       <main className="container mx-auto px-4 py-16">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
+        <Reveal
           className="text-center mb-12"
         >
           <div className="flex items-center justify-center gap-3 mb-4">
@@ -73,7 +70,7 @@ export default function BackendlessPage() {
           <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
             Showcase your frontend-only projects, static sites, and JAMstack applications
           </p>
-        </motion.div>
+        </Reveal>
 
         <div className="grid lg:grid-cols-3 gap-8 max-w-7xl mx-auto">
           <div className="lg:col-span-1">
@@ -276,14 +273,12 @@ function CreateProjectForm({ onProjectCreated }: { onProjectCreated: () => void 
           </Button>
 
           {success && (
-            <motion.div
-              initial={{ opacity: 0, y: -10 }}
-              animate={{ opacity: 1, y: 0 }}
+            <Reveal
               className="flex items-center gap-2 text-green-400 text-sm"
             >
               <CheckCircle className="w-4 h-4" />
               Project created successfully!
-            </motion.div>
+            </Reveal>
           )}
         </form>
 
@@ -397,11 +392,8 @@ function ProjectList({
       ) : (
         <div className="grid gap-4">
           {filteredProjects.map((project) => (
-            <motion.div
+            <Reveal
               key={project.id}
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.3 }}
             >
               <Card className="bg-surface-1 border-border hover:border-purple-500/30 transition-colors">
                 <CardContent className="p-6">
@@ -464,7 +456,7 @@ function ProjectList({
                   </div>
                 </CardContent>
               </Card>
-            </motion.div>
+            </Reveal>
           ))}
         </div>
       )}

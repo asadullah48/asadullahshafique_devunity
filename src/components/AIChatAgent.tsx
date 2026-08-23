@@ -4,7 +4,7 @@
 "use client";
 
 import React, { useState, useRef, useEffect } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { Reveal } from "@/components/Reveal";
 import { MessageCircle, X, Send, Bot, User, Loader2, Sparkles } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
@@ -184,13 +184,12 @@ const AIChatAgent = () => {
   return (
     <>
       {/* Chat Toggle Button */}
-      <motion.button
-        initial={{ scale: 0 }}
-        animate={{ scale: 1 }}
-        whileHover={{ scale: 1.1 }}
-        whileTap={{ scale: 0.9 }}
+      {/* whileHover/whileTap become hover:/active: utilities; the entry zoom is
+          a one-shot CSS animation. `transition-transform` has to join
+          `transition-colors` or the scale would snap instead of easing. */}
+      <button
         onClick={() => setIsOpen(!isOpen)}
-        className="fixed bottom-6 right-6 z-50 w-14 h-14 bg-brand rounded-full shadow-lg flex items-center justify-center hover:bg-brand/90 transition-colors"
+        className="fixed bottom-6 right-6 z-50 w-14 h-14 bg-brand rounded-full shadow-lg flex items-center justify-center hover:bg-brand/90 transition-[color,background-color,transform] duration-200 hover:scale-110 active:scale-90 animate-in zoom-in-50"
         aria-label="Toggle chat"
       >
         {isOpen ? (
@@ -198,17 +197,11 @@ const AIChatAgent = () => {
         ) : (
           <MessageCircle className="w-6 h-6 text-primary-foreground" />
         )}
-      </motion.button>
+      </button>
 
       {/* Chat Window */}
-      <AnimatePresence>
-        {isOpen && (
-          <motion.div
-            initial={{ opacity: 0, y: 20, scale: 0.9 }}
-            animate={{ opacity: 1, y: 0, scale: 1 }}
-            exit={{ opacity: 0, y: 20, scale: 0.9 }}
-            className="fixed bottom-24 right-6 z-50 w-96 max-w-[calc(100vw-3rem)]"
-          >
+      {isOpen && (
+        <div className="fixed bottom-24 right-6 z-50 w-96 max-w-[calc(100vw-3rem)] animate-in fade-in-0 zoom-in-95 slide-in-from-bottom-4 duration-200">
             <Card className="border border-border bg-surface-1/95 backdrop-blur-md shadow-2xl overflow-hidden">
               {/* Header */}
               <div className="bg-gradient-to-r from-brand to-brand-dim p-4">
@@ -258,10 +251,8 @@ const AIChatAgent = () => {
               {/* Messages */}
               <div className="h-80 overflow-y-auto p-4 space-y-4">
                 {messages.map((message, index) => (
-                  <motion.div
+                  <Reveal
                     key={index}
-                    initial={{ opacity: 0, y: 10 }}
-                    animate={{ opacity: 1, y: 0 }}
                     className={`flex items-start gap-3 ${
                       message.role === "user" ? "flex-row-reverse" : ""
                     }`}
@@ -288,12 +279,10 @@ const AIChatAgent = () => {
                     >
                       {message.content}
                     </div>
-                  </motion.div>
+                  </Reveal>
                 ))}
                 {streamingContent && (
-                  <motion.div
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
+                  <Reveal
                     className="flex items-start gap-3"
                   >
                     <div className="w-8 h-8 rounded-full bg-surface-3 flex items-center justify-center shrink-0">
@@ -303,12 +292,10 @@ const AIChatAgent = () => {
                       {streamingContent}
                       <span className="inline-block w-1 h-3 ml-0.5 bg-brand animate-pulse" />
                     </div>
-                  </motion.div>
+                  </Reveal>
                 )}
                 {isLoading && !streamingContent && (
-                  <motion.div
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
+                  <Reveal
                     className="flex items-center gap-3"
                   >
                     <div className="w-8 h-8 rounded-full bg-surface-3 flex items-center justify-center flex-shrink-0">
@@ -316,20 +303,16 @@ const AIChatAgent = () => {
                     </div>
                     <div className="bg-surface-2 px-3 py-2 rounded-lg flex items-center gap-2">
                       <Loader2 className="w-3 h-3 animate-spin text-muted-foreground flex-shrink-0" />
-                      <AnimatePresence mode="wait">
-                        <motion.span
-                          key={thinkingStep}
-                          initial={{ opacity: 0, y: 4 }}
-                          animate={{ opacity: 1, y: 0 }}
-                          exit={{ opacity: 0, y: -4 }}
-                          transition={{ duration: 0.2 }}
-                          className="text-xs text-muted-foreground font-mono"
-                        >
-                          {THINKING_STEPS[thinkingStep]}
-                        </motion.span>
-                      </AnimatePresence>
+                      {/* `key={thinkingStep}` remounts the span each time the
+                          step advances, replaying the CSS enter animation. */}
+                      <span
+                        key={thinkingStep}
+                        className="text-xs text-muted-foreground font-mono animate-in fade-in-0 slide-in-from-bottom-1 duration-200"
+                      >
+                        {THINKING_STEPS[thinkingStep]}
+                      </span>
                     </div>
-                  </motion.div>
+                  </Reveal>
                 )}
                 <div ref={messagesEndRef} />
               </div>
@@ -382,9 +365,8 @@ const AIChatAgent = () => {
                 </div>
               </form>
             </Card>
-          </motion.div>
-        )}
-      </AnimatePresence>
+        </div>
+      )}
     </>
   );
 };
