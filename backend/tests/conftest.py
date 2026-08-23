@@ -11,9 +11,22 @@ sys.path.insert(0, str(Path(__file__).parent.parent))
 from main import app
 
 
-@pytest.fixture
+@pytest.fixture(scope="session")
 def client():
-    """Create a test client for the FastAPI app."""
+    """
+    Test client for the FastAPI app, scoped to the whole session.
+
+    Session scope is required, not a preference. Entering TestClient runs the
+    app's lifespan, and that lifespan starts the MCP StreamableHTTPSessionManager
+    (see main.py). That manager raises
+
+        RuntimeError: StreamableHTTPSessionManager .run() can only be called
+        once per instance.
+
+    on a second run, so a function-scoped client fails every test after the
+    first. One lifecycle per session also matches production, where uvicorn
+    starts the app exactly once per process.
+    """
     with TestClient(app) as test_client:
         yield test_client
 

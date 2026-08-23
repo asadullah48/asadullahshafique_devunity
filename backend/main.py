@@ -41,6 +41,7 @@ import asyncio
 import httpx
 import os
 import logging
+from contextlib import asynccontextmanager
 import base64
 import json
 import shutil
@@ -53,7 +54,7 @@ from slowapi.middleware import SlowAPIMiddleware
 
 # Local modules
 from agent import run_agent, run_error_solver_agent, run_learning_agent, run_teaching_agent
-from mcp_server import router as mcp_router
+from mcp_server import router as mcp_router, portfolio_mcp
 from database import engine, get_db, init_db, Base
 from models import ContactMessage, Video, LearningProgress, TaughtContent, BackendlessProject, NoTeachLLM
 from db_helpers import (
@@ -72,6 +73,33 @@ logging.basicConfig(
     format="%(asctime)s - %(name)s - %(levelname)s - %(message)s"
 )
 logger = logging.getLogger(__name__)
+
+
+# ─── Lifespan ────────────────────────────────────────────────────────────────
+@asynccontextmanager
+async def lifespan(app: FastAPI):
+    """
+    Startup/shutdown for the app.
+
+    Two things happen here, and both are load-bearing:
+
+    1. Database tables are created. This used to be an `@app.on_event("startup")`
+       handler. FastAPI IGNORES on_event handlers once `lifespan=` is passed, so
+       that handler had to move here — leaving it in place would have silently
+       stopped creating tables.
+
+    2. The MCP session manager is started. A mounted ASGI sub-application never
+       runs its own lifespan, so if the host does not enter
+       `portfolio_mcp.session_manager.run()` here, every request to /mcp/server
+       fails at runtime with a task-group error. See mcp_server.py.
+    """
+    Base.metadata.create_all(bind=engine)
+    logger.info("✅ Database initialized")
+
+    async with portfolio_mcp.session_manager.run():
+        logger.info("✅ MCP server ready at /mcp/server (streamable-http, stateless)")
+        yield
+
 
 # ─── App Setup ───────────────────────────────────────────────────────────────
 app = FastAPI(
@@ -102,6 +130,7 @@ Uses SQLite for development, PostgreSQL for production.
     docs_url="/docs",
     redoc_url="/redoc",
     openapi_url="/openapi.json",
+    lifespan=lifespan,
 )
 
 # ─── Rate Limiting Setup ──────────────────────────────────────────────────────
@@ -138,11 +167,8 @@ app.add_middleware(
 app.include_router(mcp_router)
 
 # ─── Database Initialization ──────────────────────────────────────────────────
-@app.on_event("startup")
-async def startup_db():
-    """Initialize database on startup."""
-    Base.metadata.create_all(bind=engine)
-    logger.info("✅ Database initialized")
+# Moved into `lifespan` above. FastAPI ignores @app.on_event once lifespan= is
+# set, so re-adding an on_event startup handler here would be dead code.
 
 # ─── Environment Variables ────────────────────────────────────────────────────
 DISCORD_WEBHOOK_URL = os.getenv("DISCORD_WEBHOOK_URL", "")
@@ -722,7 +748,7 @@ async def agent_chat(request: AgentRequest):
         answer=result["answer"],
         mode=result.get("mode", "static"),
         session_id=request.session_id,
-        confidence=0.95 if result.get("mode") == "langgraph" else 0.7,
+        confidence=0.95 if result.get("mode") in ("agents-sdk", "langgraph") else 0.7,
     )
 
 
@@ -783,17 +809,46 @@ async def agent_info():
     except ImportError:
         lg_available = False
 
+    # NOTE: `mode` deliberately still describes only the LEGACY LangGraph path.
+    # tests/test_agent_mcp.py::test_agent_info_mode asserts exactly this
+    # relationship, and it is a published field. `primary_path` below is the
+    # honest answer to "what actually serves a request".
     mode = "langgraph" if (has_key and lg_available) else "static"
-    logger.info(f"Agent mode: {mode}")
+
+    try:
+        from orchestration import orchestration_status
+
+        orchestration = orchestration_status()
+    except ImportError:
+        orchestration = {"sdk_installed": False, "model": None, "available": False}
+
+    primary_path = "agents-sdk" if orchestration["available"] else mode
+    logger.info(f"Agent primary path: {primary_path}")
 
     return {
-        "agent_type": "LangGraph StateGraph with tool-calling",
-        "llm": "claude-haiku-4-5-20251001 (Anthropic)",
-        "tools": ["get_portfolio_info"],
+        "agent_type": "OpenAI Agents SDK orchestrator with specialist handoffs",
+        "llm": orchestration["model"] or "claude-haiku-4-5-20251001 (Anthropic)",
+        "tools": [
+            "get_skills",
+            "get_projects",
+            "get_contact",
+            "get_about",
+            "get_hackathons",
+            "get_agent_engineering",
+        ],
+        "specialists": [
+            "Portfolio Specialist",
+            "Error Solver Specialist",
+            "Learning Specialist",
+            "Teaching Specialist",
+        ],
+        "orchestration": orchestration,
+        "primary_path": primary_path,
+        "fallback_order": ["agents-sdk", "langgraph", "static"],
         "langgraph_installed": lg_available,
         "llm_configured": has_key,
         "mode": mode,
-        "fallback": "Static portfolio responses when LLM not configured",
+        "fallback": "Static portfolio responses when no model is reachable",
     }
 
 
@@ -1277,7 +1332,19 @@ async def api_info():
             "noteachllm": "/api/noteachllm",
             "backendless": "/api/backendless",
             "mcp": "/mcp",
+            "mcp_server": "/mcp/server",
             "docs": "/docs",
         },
         "documentation": "/docs",
     }
+
+
+# ─── MCP Server Mount ────────────────────────────────────────────────────────
+# Mounted LAST, deliberately. Starlette matches routes in registration order, so
+# every route above wins before this catch-all sub-application is consulted.
+#
+# This is the real, spec-compliant MCP endpoint (Streamable HTTP). The /mcp/*
+# REST paths registered earlier via mcp_router are a convenience shim and are
+# NOT MCP — see mcp_server.py. The session manager backing this mount is started
+# in `lifespan`; without that, requests here fail with a task-group error.
+app.mount("/mcp/server", portfolio_mcp.streamable_http_app())

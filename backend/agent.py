@@ -18,6 +18,27 @@ from __future__ import annotations
 import os
 from typing import Annotated, TypedDict
 
+# Single source of truth for portfolio facts. See knowledge/portfolio.json.
+from knowledge import PORTFOLIO_DATA
+
+# Phase 3: the OpenAI Agents SDK orchestrator is the preferred path. Guarded the
+# same way LangGraph is below — a missing SDK must degrade, never break import.
+#
+# Fallback ladder for every entry point in this module:
+#   Agents SDK orchestrator  ->  LangGraph  ->  static keyword answers
+# Each rung returns None (or is skipped) rather than raising, so a dead API key
+# or an exhausted quota costs quality, not availability.
+try:
+    import orchestration as _orchestration
+
+    _sdk_chat = _orchestration.run_orchestrated_chat
+    _sdk_error_solution = _orchestration.run_error_solution
+    _sdk_lesson = _orchestration.run_lesson
+    _sdk_teaching = _orchestration.run_teaching
+    ORCHESTRATION_AVAILABLE = True
+except ImportError:  # pragma: no cover - only on a broken install
+    ORCHESTRATION_AVAILABLE = False
+
 # Graceful import — LangGraph is optional (falls back if not installed)
 try:
     from langgraph.graph import StateGraph, END
@@ -29,22 +50,13 @@ except ImportError:
     LANGGRAPH_AVAILABLE = False
 
 # ─── Portfolio Data (used by tools) ──────────────────────────────────────────
-PORTFOLIO_DATA = {
-    "name": "Asadullah Shafique",
-    "github": "https://github.com/asadullah48",
-    "discord": "https://discord.gg/kXfEYVGX",
-    "email": "asadullahshafique@hotmail.com",
-    "skills": ["TypeScript", "JavaScript", "Python", "Next.js", "React", "FastAPI", "Docker", "Agentic AI", "Generative AI"],
-    "focus": "Agentic AI development, Full-stack engineering, Spec-first development (SpecifyKit)",
-    "projects": [
-        {"name": "Textbook RAG Chatbot", "tech": ["RAG", "FastAPI", "Next.js"], "type": "Hackathon"},
-        {"name": "Portfolio (Asadullah.dev)", "tech": ["Next.js", "FastAPI", "Docker"], "type": "Production"},
-        {"name": "Agentic AI Systems", "tech": ["LangGraph", "Claude API", "SpecifyKit"], "type": "Research"},
-    ],
-    "hackathons": ["Panaversity Physical AI & Humanoid Robotics Hackathon 2025-26"],
-    "education": "Student pursuing Agentic AI development at Panaversity",
-    "interests": ["Generative AI", "Agentic AI", "RAG", "MCP Servers", "Full-stack development"],
-}
+# PORTFOLIO_DATA is imported from `knowledge` at the top of this module.
+#
+# It used to be a dict literal right here, and it had drifted badly: it still
+# named "Textbook RAG Chatbot" and "Agentic AI Systems" as the current work
+# while the live site had moved on to Bazaar, AI TradeFlow and the Textile ERP.
+# Two other copies of the same facts existed (mcp_server.py, agent-knowledge.ts)
+# and disagreed with it and with each other. Edit knowledge/portfolio.json.
 
 
 def get_static_response(question: str) -> str:
@@ -164,9 +176,17 @@ if LANGGRAPH_AVAILABLE:
 
 async def run_agent(question: str) -> dict:
     """
-    Run the portfolio agent. Uses LangGraph if available + ANTHROPIC_API_KEY set,
-    otherwise falls back to static response.
+    Run the portfolio agent.
+
+    Order: Agents SDK orchestrator (triage -> specialist), then LangGraph,
+    then static. The orchestrator returns None when the SDK, a model, or the
+    provider quota is unavailable — that is the signal to drop a rung.
     """
+    if ORCHESTRATION_AVAILABLE:
+        orchestrated = await _sdk_chat(question)
+        if orchestrated is not None:
+            return orchestrated
+
     if not LANGGRAPH_AVAILABLE:
         return {"answer": get_static_response(question), "mode": "static"}
 
@@ -246,7 +266,15 @@ async def run_error_solver_agent(
     """
     AI-powered error solver agent.
     Analyzes coding errors and provides explanations and solutions.
+
+    Prefers the Error Solver Specialist (Agents SDK, structured output), then
+    LangGraph, then the static solution table.
     """
+    if ORCHESTRATION_AVAILABLE:
+        solved = await _sdk_error_solution(error_message, code_snippet, language, context)
+        if solved is not None:
+            return solved
+
     if not LANGGRAPH_AVAILABLE:
         return get_static_error_solution(error_message, code_snippet, language)
     
@@ -321,7 +349,15 @@ async def run_learning_agent(
     """
     Create personalized learning experiences.
     Generates lesson plans, resources, and quizzes.
+
+    Prefers the Learning Specialist (Agents SDK, structured output); the
+    template below is the fallback when no model is reachable.
     """
+    if ORCHESTRATION_AVAILABLE:
+        lesson = await _sdk_lesson(topic, level, learning_style, questions)
+        if lesson is not None:
+            return lesson
+
     # Static fallback
     lesson_plan = f"""# {topic} - {level.capitalize()} Lesson Plan
 
@@ -438,7 +474,15 @@ async def run_teaching_agent(
     """
     Process and structure educational content contributed by users.
     Enhances content with exercises and related topics.
+
+    Prefers the Teaching Specialist (Agents SDK, structured output); the
+    template below is the fallback when no model is reachable.
     """
+    if ORCHESTRATION_AVAILABLE:
+        taught = await _sdk_teaching(topic, content, difficulty, examples)
+        if taught is not None:
+            return taught
+
     examples_str = "\n".join(examples) if examples else "No examples provided"
     
     acknowledgment = f"Thank you for contributing to the {topic} knowledge base! Your content has been processed and added to our learning platform."
