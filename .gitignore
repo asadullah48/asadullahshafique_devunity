@@ -44,3 +44,24 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# python (backend/ and evals/)
+# There was no Python section here, which is why six .pyc files ended up
+# committed under backend/__pycache__/ and why devunity.db showed up as
+# untracked noise in every status.
+__pycache__/
+*.py[cod]
+*.egg-info/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+venv/
+.venv/
+
+# local sqlite databases
+*.db
+
+# eval reports (regenerated; CI uploads them as artifacts)
+eval-report.json
