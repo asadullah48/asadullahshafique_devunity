@@ -1,15 +1,29 @@
-﻿"use client";
+"use client";
 
+import Link from "next/link";
 import { useLocale } from "@/context/LocaleContext";
 
+/**
+ * Language switch.
+ *
+ * This used to call setLocale() and never touch the URL, which meant a visitor
+ * reading Arabic was still sitting on "/" - a page whose canonical, hreflang
+ * and og:locale all declared English. Now that Arabic has its own route the
+ * switch navigates, so the URL and the rendered language can never disagree.
+ *
+ * Routes other than "/" have no Arabic variant (only the marketing components
+ * are translated), so the Arabic target is always the Arabic home rather than
+ * a dead toggle.
+ */
 export function LocaleSwitcher() {
-  const { locale, setLocale, t } = useLocale();
+  const { locale, t } = useLocale();
 
-  const toggle = () => setLocale(locale === "en" ? "ar" : "en");
+  const href = locale === "ar" ? "/" : "/ar";
 
   return (
-    <button
-      onClick={toggle}
+    <Link
+      href={href}
+      hrefLang={locale === "ar" ? "en" : "ar"}
       // `active:` is the CSS equivalent of whileTap and needs no runtime. The
       // existing `transition-all duration-200` already animates the scale back
       // out on release, so the press reads the same as the framer version.
@@ -18,11 +32,11 @@ export function LocaleSwitcher() {
     >
       {/* Flag emoji */}
       <span className="text-sm leading-none">
-        {locale === "en" ? "🇦🇪" : "🇺🇸"}
+        {locale === "en" ? "\u{1F1E6}\u{1F1EA}" : "\u{1F1FA}\u{1F1F8}"}
       </span>
       <span className="font-mono tracking-wide">
         {locale === "en" ? "AR" : "EN"}
       </span>
-    </button>
+    </Link>
   );
 }

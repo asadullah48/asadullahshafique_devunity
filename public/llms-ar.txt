@@ -1,0 +1,31 @@
+# أسد الله شافق — مطور ذكاء اصطناعي وكيل
+
+> ملف تعريف أسد الله شافق: مطور ذكاء اصطناعي وكيل، ومهندس full-stack (Next.js 15 / TypeScript / Python / FastAPI)، ومؤسس شركة Texcot Embroidery Sourcing House، وبطل هاكاثونات Panaversity (ستة انتصارات متتالية، صفر إخفاقات). مقره باكستان، ويخدم أسواق باكستان والإمارات.
+
+هذا الموقع نظام وكيل بحد ذاته: يتضمن وكيل محادثة يعمل بـ OpenAI Agents SDK مع وكلاء متخصصين
+وتوجيه بينهم، وخادم MCP حقيقي، وطبقة ذكاء اصطناعي دستوري تفرض مبادئ مكتوبة.
+
+## كيف أبني الوكلاء
+
+- هندسة التجهيز (البيئة): الأدوات والذاكرة والصلاحيات والمراقبة — شبكة الأمان حول النموذج.
+- هندسة الحلقة (التغذية الراجعة): الدليل قبل الثقة — الوكيل يتوقف عندما تنجح الاختبارات، لا عندما يشعر بالاكتفاء.
+- هندسة الرسم البياني (التدفق): التفرّع والموافقات وإعادة المحاولة والمهام المتوازية — تنسيق سير العمل كاملاً.
+
+## الأقسام
+
+- [نبذة عني](https://asadullahshafique-devunity.vercel.app/ar#about): الخلفية والمشاريع التجارية والمنهجية
+- [المهارات](https://asadullahshafique-devunity.vercel.app/ar#skills): التقنيات وأدوار الوكلاء
+- [هندسة الوكلاء](https://asadullahshafique-devunity.vercel.app/ar#agent-engineering): إطار التجهيز × الحلقة × الرسم البياني
+- [المشاريع](https://asadullahshafique-devunity.vercel.app/ar#projects): أعمال إنتاجية منها منصة Bazaar ومنصة ERP للمنسوجات
+- [الهاكاثون](https://asadullahshafique-devunity.vercel.app/ar#hackathons): برونزية ← فضية ← فضية ← ذهبية ← بلاتينية ← Agent Factory
+- [تواصل معي](https://asadullahshafique-devunity.vercel.app/ar#contact): نموذج تواصل مرتبط بـ Discord
+
+## حقائق أساسية
+
+- التقنيات: Next.js 15، TypeScript، Tailwind CSS، Python، FastAPI، Docker، Kubernetes
+- أدوات الوكلاء: خوادم MCP، OpenAI Agents SDK، Claude API، LangGraph، RAG
+- الأمان: ذكاء اصطناعي دستوري — خمسة مبادئ مكتوبة تُفرض كحواجز على المنسّق
+- الجودة: مجموعة تقييم (evals) تجمع بين فحوصات حتمية وتحكيم بنموذج لغوي
+- النسخة الإنجليزية: https://asadullahshafique-devunity.vercel.app/
+- GitHub: https://github.com/asadullah48
+- السيرة الذاتية: https://asadullahshafique-devunity.vercel.app/resume

@@ -2,9 +2,9 @@
 
 > Portfolio of Asadullah Shafique: agentic AI developer, full-stack engineer (Next.js 15 / TypeScript / Python / FastAPI), founder of Texcot Embroidery Sourcing House, and Panaversity hackathon champion (6 consecutive wins, zero failures). Based in Pakistan, serving Pakistan and UAE markets.
 
-This site is itself an agentic system: the portfolio includes a multi-mode AI chat agent
-(Portfolio Guide, Backend Specialist, Frontend Architect, Agent Builder) backed by a
-FastAPI service with streaming SSE.
+This site is itself an agentic system: an OpenAI Agents SDK orchestrator triages each
+question to one of four specialist agents, a real MCP server exposes the portfolio as
+tools over Streamable HTTP, and a written constitution is enforced as guardrails.
 
 ## How I build agents
 
@@ -17,13 +17,16 @@ FastAPI service with streaming SSE.
 - [About](https://asadullahshafique-devunity.vercel.app/#about): background, ventures, methodology
 - [Skills](https://asadullahshafique-devunity.vercel.app/#skills): stack by technology and by agent role
 - [Agent Engineering](https://asadullahshafique-devunity.vercel.app/#agent-engineering): the harness × loop × graph framework
-- [Projects](https://asadullahshafique-devunity.vercel.app/#projects): production work including the Textile ERP Platform
+- [Projects](https://asadullahshafique-devunity.vercel.app/#projects): production work including Bazaar and the Textile ERP Platform
 - [Hackathons](https://asadullahshafique-devunity.vercel.app/#hackathons): Bronze → Silver → Silver → Gold → Platinum → Agent Factory
 - [Contact](https://asadullahshafique-devunity.vercel.app/#contact): contact form (Discord-webhook backed)
 
 ## Key facts
 
-- Stack: Next.js 15, TypeScript, Tailwind CSS, Framer Motion, Python, FastAPI, Docker, Kubernetes
-- Agent tooling: MCP servers, OpenAI Agents SDK, Claude API, LangChain, RAG, A2A Protocol
+- Stack: Next.js 15, TypeScript, Tailwind CSS, Python, FastAPI, Docker, Kubernetes
+- Agent tooling: MCP servers, OpenAI Agents SDK, Claude API, LangGraph, RAG
+- Safety: Constitutional AI — five written principles enforced as guardrails on the orchestrator
+- Quality: an eval suite pairing deterministic tool/route checks with LLM-as-judge scoring
+- Arabic version: https://asadullahshafique-devunity.vercel.app/ar
 - GitHub: https://github.com/asadullah48
 - Resume: https://asadullahshafique-devunity.vercel.app/resume

@@ -1,4 +1,3 @@
-@import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&family=Noto+Sans+Arabic:wght@400;600;700&display=swap');
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -577,4 +576,19 @@
     }
     .spotlight-border::before { transition: none; }
     html { scroll-behavior: auto; }
+}
+
+@layer utilities {
+  /* Arabic typography keys off the COMPUTED LANGUAGE rather than a wrapper
+     class. `font-arabic` on the /ar wrapper could only reach <main>, leaving
+     the Navbar, ShortcutsDialog and BootSequence — which render as siblings of
+     <main> in the root layout — in Inter.
+
+     This works in both windows: before /ar's inline script runs it matches the
+     server-rendered <div lang="ar"> subtree, and after it runs it matches every
+     element via documentElement.lang. Declared in `utilities` so source order
+     beats the `font-sans` class on <body>. */
+  :lang(ar) {
+    font-family: var(--font-arabic), system-ui, sans-serif;
+  }
 }

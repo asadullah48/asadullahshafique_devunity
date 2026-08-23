@@ -1,6 +1,6 @@
 ﻿import type { Metadata } from "next";
 import "./globals.css";
-import { Inter, JetBrains_Mono, Space_Grotesk } from "next/font/google";
+import { Cairo, Inter, JetBrains_Mono, Space_Grotesk } from "next/font/google";
 import Navbar from "@/components/Navbar";
 import { ThemeProvider } from "@/components/ThemeProvider";
 import { LocaleProvider } from "@/context/LocaleContext";
@@ -8,6 +8,7 @@ import { KeyboardShortcutsProvider } from "@/components/KeyboardShortcutsProvide
 import ShortcutsDialog from "@/components/ShortcutsDialog";
 import ScrollProgress from "@/components/ScrollProgress";
 import BootSequence from "@/components/BootSequence";
+import { BASE_URL, PERSON_ID } from "@/lib/seo";
 
 // Body/UI: Inter stays for small-size readability.
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
@@ -22,8 +23,24 @@ const jetbrainsMono = JetBrains_Mono({
     subsets: ["latin"],
     variable: "--font-mono",
 });
-
-const BASE_URL = "https://asadullahshafique-devunity.vercel.app";
+// Arabic. Declared at the ROOT, not on /ar, because <Navbar />, ShortcutsDialog
+// and BootSequence render here as siblings of <main> — a font variable scoped
+// to the /ar wrapper never reaches them, so Arabic nav labels fell back to
+// Inter while the body rendered in Cairo.
+//
+// `preload: false` is the whole trick: Next still self-hosts the font and emits
+// the @font-face rule, but adds no <link rel="preload">, so English visitors
+// never fetch it. It replaces a render-blocking @import in globals.css that
+// pulled six Arabic font files from two third-party origins for everyone.
+//
+// Latin is in the subset so mixed strings ("OpenAI Agents SDK", "Kubernetes")
+// stay in one family instead of falling back mid-sentence.
+const cairo = Cairo({
+    subsets: ["arabic", "latin"],
+    variable: "--font-arabic",
+    display: "swap",
+    preload: false,
+});
 
 export const metadata: Metadata = {
     metadataBase: new URL(BASE_URL),
@@ -42,7 +59,13 @@ export const metadata: Metadata = {
           "AI Agents",
         ],
     authors: [{ name: "Asadullah Shafique" }],
-    alternates: { canonical: "/" },
+    // NOTE: `alternates` is deliberately NOT here. Metadata inherits into every
+    // segment, and no other route overrides it, so a canonical/hreflang block
+    // at this level is claimed by all ~14 routes. Putting `languages` here made
+    // /resume, /videos, /login and the rest each advertise an Arabic twin at
+    // /ar that /ar does not reciprocate — Search Console reports that as
+    // "no return tag" and discards the annotation. It lives on the page that
+    // actually has a translation: see src/app/page.tsx and src/app/ar/page.tsx.
     robots: { index: true, follow: true },
     icons: {
           icon: [{ url: "/favicon.svg", type: "image/svg+xml" }],
@@ -56,6 +79,7 @@ export const metadata: Metadata = {
           url: BASE_URL,
           siteName: "Asadullah Shafique Portfolio",
           locale: "en_US",
+          alternateLocale: ["ar_AR"],
     },
     twitter: {
           card: "summary_large_image",
@@ -68,6 +92,7 @@ export const metadata: Metadata = {
 const personJsonLd = {
     "@context": "https://schema.org",
     "@type": "Person",
+    "@id": PERSON_ID,
     name: "Asadullah Shafique",
     url: BASE_URL,
     jobTitle: "Agentic AI Developer",
@@ -93,7 +118,7 @@ export default function RootLayout({
     return (
           <html lang="en" suppressHydrationWarning className="scroll-smooth">
                 <body
-                          className={`${inter.variable} ${spaceGrotesk.variable} ${jetbrainsMono.variable} font-sans antialiased`}
+                          className={`${inter.variable} ${spaceGrotesk.variable} ${jetbrainsMono.variable} ${cairo.variable} font-sans antialiased`}
                           suppressHydrationWarning
                         >
                         <ThemeProvider

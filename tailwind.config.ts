@@ -25,7 +25,7 @@ const config: Config = {
         display: ["var(--font-display)", "var(--font-inter)", "sans-serif"],
         // Code, terminals, stat readouts, agent transcripts.
         mono: ["var(--font-mono)", "ui-monospace", "monospace"],
-        arabic: ["Cairo", "Noto Sans Arabic", "sans-serif"],
+        arabic: ["var(--font-arabic)", "Cairo", "Noto Sans Arabic", "sans-serif"],
       },
       fontSize: {
         // Display scale with tracking baked in — stops per-component

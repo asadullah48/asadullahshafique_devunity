@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import Hero from "@/components/Hero";
 import About from "@/components/About";
 import Services from "@/components/Services";
@@ -16,6 +17,22 @@ import Footer from "@/components/Footer";
 import TechMarquee from "@/components/TechMarquee";
 import FloatingWidgets from "@/components/FloatingWidgets";
 import NeuralField from "@/components/NeuralField";
+
+// Page-scoped, NOT layout-scoped. In the root layout these inherit into every
+// route in the app, which is how /resume ended up canonicalising itself to the
+// homepage AND claiming an Arabic twin it does not have. Only "/" has a
+// translation, so only "/" declares one. /ar declares the mirror image, and
+// hreflang is discarded unless the pair is reciprocal.
+export const metadata: Metadata = {
+    alternates: {
+        canonical: "/",
+        languages: {
+            en: "/",
+            ar: "/ar",
+            "x-default": "/",
+        },
+    },
+};
 
 export default function Home() {
     return (
