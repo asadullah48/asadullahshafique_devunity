@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { motion } from "framer-motion";
+import { Reveal } from "@/components/Reveal";
 
 interface ContributionDay {
   date: string;
@@ -61,11 +61,7 @@ export function GitHubHeatmap() {
   if (week.length > 0) weeks.push(week);
 
   return (
-    <motion.div
-      initial={{ opacity: 0, y: 12 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true }}
-      transition={{ duration: 0.5 }}
+    <Reveal
       className="mb-5"
       dir="ltr"
     >
@@ -103,7 +99,7 @@ export function GitHubHeatmap() {
           More
         </span>
       </div>
-    </motion.div>
+    </Reveal>
   );
 }
 

@@ -412,6 +412,58 @@
 }
 .animate-fade-in-up { animation: fade-in-up 0.8s ease-out; }
 
+/* ---------------------------------------------------------------------------
+   SCROLL REVEAL — the CSS replacement for framer-motion's `whileInView`.
+
+   `fade-in-up` above fires on LOAD; this one is driven by scroll position, so
+   it is a different primitive rather than a duplicate. It exists to delete a
+   ~33 kB gzipped dependency: 15 components imported the whole framer-motion
+   runtime to do nothing but this fade.
+
+   Progressive enhancement is why this is safe to ship. Where
+   `animation-timeline` is unsupported (Firefox today) that one declaration is
+   dropped, the animation falls back to the default time-based timeline, and
+   the element simply fades in once on load. It is never left hidden — the
+   degraded state is "animates at the wrong moment", not "invisible".
+
+   The element must END at its natural state, never START there. That is what
+   lets the reduced-motion block below cancel this with `animation: none` and
+   have the content render fully visible rather than stranded at opacity 0.
+   ------------------------------------------------------------------------ */
+@keyframes reveal-rise {
+    from { opacity: 0; transform: translateY(20px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+.reveal {
+    animation: reveal-rise 0.6s ease-out both;
+    /* Fallback path only — see the @supports block for why. */
+    animation-delay: var(--reveal-delay, 0ms);
+}
+
+/* Horizontal variant. Overrides only the animation-NAME, so it inherits the
+   duration, easing, fill and timeline from `.reveal` and cannot drift from it.
+   Declared after `.reveal` so equal specificity resolves in its favour; the
+   reduced-motion `animation: none !important` still outranks it. */
+@keyframes reveal-slide-x {
+    from { opacity: 0; transform: translateX(-20px); }
+    to   { opacity: 1; transform: translateX(0); }
+}
+.reveal-x { animation-name: reveal-slide-x; }
+
+@supports (animation-timeline: view()) {
+    .reveal {
+        /* `animation-delay` is inert on a scroll-progress timeline: progress is
+           a function of scroll offset, not elapsed time. A stagger therefore
+           has to be expressed as a shift of the range START, which is what
+           --reveal-step does. Leaving the delay set would silently do nothing
+           here while still holding the fallback's backwards fill. */
+        animation-delay: 0s;
+        animation-timeline: view();
+        animation-range: entry calc(var(--reveal-step, 0) * 7%) cover 30%;
+    }
+}
+
 /* Determinate progress rail for the one-shot boot overlay. Unlike the
    primitives above this one is FINITE — `forwards` holds the end state so the
    rail does not snap back to empty on the last frame. Duration is supplied by
@@ -450,7 +502,10 @@
     .animate-token-bounce,
     .animate-fade-in-up,
     .animate-boot-progress,
-    .animate-boot-dissolve {
+    .animate-boot-dissolve,
+    /* Safe to cancel outright: reveal-rise ENDS at the natural state, so
+       removing the animation leaves the element visible and in position. */
+    .reveal {
           animation: none !important;
     }
     .spotlight-border::before { transition: none; }

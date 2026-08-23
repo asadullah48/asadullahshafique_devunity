@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import { motion } from "framer-motion";
+import { Reveal } from "@/components/Reveal";
 import { Trophy, Calendar, MapPin, Award } from "lucide-react";
 import { useLocale } from "@/context/LocaleContext";
 
@@ -180,11 +180,7 @@ const Hackathons = () => {
   return (
     <section id="hackathons" className="py-24 relative">
       <div className="container mx-auto px-4">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          viewport={{ once: true }}
+        <Reveal
           className="text-center mb-16"
         >
           <h2 className="text-3xl md:text-5xl font-bold text-foreground mb-4">
@@ -194,19 +190,15 @@ const Hackathons = () => {
           <p className="text-muted-foreground max-w-xl mx-auto">
             {t("hackathons.subtitle")}
           </p>
-        </motion.div>
+        </Reveal>
 
         <div className="max-w-3xl mx-auto relative">
           <div className="absolute left-8 top-0 bottom-0 w-px bg-surface-2 hidden md:block" />
           <div className="space-y-8">
             {hackathons.map((hackathon, index) => (
-              <motion.div
+              <Reveal step={index}
                 key={hackathon.title}
-                initial={{ opacity: 0, x: -20 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
-                viewport={{ once: true }}
-                className="relative"
+                className="reveal-x relative"
               >
                 <div className="absolute left-6 top-6 w-5 h-5 rounded-full border-2 border-brand bg-background hidden md:block z-10" />
                 <div className={`md:ml-20 p-6 rounded-xl border transition-all duration-300 ${
@@ -256,7 +248,7 @@ const Hackathons = () => {
                     ))}
                   </div>
                 </div>
-              </motion.div>
+              </Reveal>
             ))}
           </div>
         </div>

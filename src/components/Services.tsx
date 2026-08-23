@@ -1,9 +1,12 @@
 "use client";
 
+// Still a client component — `useLocale()` reads a React context, which a
+// server component cannot do. What changed is that it no longer pulls in
+// framer-motion just to fade two elements in on scroll; see Reveal.tsx.
 import React from "react";
-import { motion } from "framer-motion";
 import { TrendingUp, Bot, Factory } from "lucide-react";
 import Link from "next/link";
+import { Reveal } from "@/components/Reveal";
 import { useLocale } from "@/context/LocaleContext";
 
 const Icons = [TrendingUp, Bot, Factory];
@@ -43,13 +46,7 @@ const Services = () => {
   return (
     <section id="services" className="py-24 relative">
       <div className="container mx-auto px-4">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          viewport={{ once: true }}
-          className="text-center mb-16"
-        >
+        <Reveal className="text-center mb-16">
           <h2 className="text-3xl md:text-5xl font-bold text-foreground mb-4">
             {t("services.title")} <span className="text-brand">{t("services.titleHighlight")}</span>
           </h2>
@@ -57,16 +54,13 @@ const Services = () => {
           <p className="text-muted-foreground max-w-xl mx-auto">
             {t("services.subtitle")}
           </p>
-        </motion.div>
+        </Reveal>
 
         <div className="grid gap-6 md:grid-cols-3 max-w-5xl mx-auto">
           {services.map((service, index) => (
-            <motion.div
+            <Reveal
               key={service.title}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: index * 0.1 }}
-              viewport={{ once: true }}
+              step={index}
               className="group flex flex-col p-6 rounded-xl bg-surface-1/50 border border-border hover:border-brand/30 transition-all duration-300 hover:bg-surface-1/80"
             >
               <service.Icon className="w-10 h-10 text-brand mb-4 group-hover:scale-110 transition-transform" />
@@ -100,7 +94,7 @@ const Services = () => {
                   </Link>
                 )}
               </div>
-            </motion.div>
+            </Reveal>
           ))}
         </div>
       </div>

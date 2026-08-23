@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { Reveal } from "@/components/Reveal";
 import { ArrowRight, Clock, Tag } from "lucide-react";
 import { useLocale } from "@/context/LocaleContext";
 
@@ -82,11 +82,7 @@ const POSTS_AR: Post[] = [
 
 function PostCard({ post, readArticleLabel }: { post: Post; readArticleLabel: string }) {
   return (
-    <motion.article
-      initial={{ opacity: 0, y: 24 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: "-40px" }}
-      transition={{ duration: 0.4 }}
+    <Reveal as="article"
       className="group relative bg-surface-2 border border-white/8 rounded-2xl overflow-hidden hover:border-brand/30 transition-all duration-300 cursor-pointer flex flex-col"
     >
       <div
@@ -141,7 +137,7 @@ function PostCard({ post, readArticleLabel }: { post: Post; readArticleLabel: st
           <ArrowRight className="w-4 h-4 group-hover/link:translate-x-1 transition-transform duration-200" />
         </a>
       </div>
-    </motion.article>
+    </Reveal>
   );
 }
 
@@ -153,11 +149,7 @@ export function BlogSection() {
     <section id="blog" className="py-24 bg-surface-1">
       <div className="container mx-auto px-6">
 
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5 }}
+        <Reveal
           className="text-center mb-14"
         >
           <h2 className="text-4xl lg:text-5xl font-bold text-foreground mb-4">
@@ -167,7 +159,7 @@ export function BlogSection() {
           <p className="text-muted-foreground max-w-xl mx-auto">
             {t("blog.subtitle")}
           </p>
-        </motion.div>
+        </Reveal>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           {posts.map((post) => (
@@ -175,11 +167,7 @@ export function BlogSection() {
           ))}
         </div>
 
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ delay: 0.3 }}
+        <Reveal step={3}
           className="mt-12 p-8 bg-surface-2 border border-brand/20 rounded-2xl text-center"
         >
           <p className="text-muted-foreground mb-4">
@@ -196,7 +184,7 @@ export function BlogSection() {
             </svg>
             {t("blog.joinHub")}
           </a>
-        </motion.div>
+        </Reveal>
       </div>
     </section>
   );

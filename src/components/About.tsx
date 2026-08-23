@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import { motion } from "framer-motion";
+import { Reveal } from "@/components/Reveal";
 import {
   Brain, Factory, TrendingUp, Trophy, GraduationCap, Terminal,
   Github, Linkedin, Twitter, MessageCircle,
@@ -95,11 +95,7 @@ const About = () => {
   return (
     <section id="about" className="py-24 relative">
       <div className="container mx-auto px-4">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          viewport={{ once: true }}
+        <Reveal
           className="text-center mb-16"
         >
           <h2 className="text-3xl md:text-5xl font-bold text-foreground mb-4">
@@ -109,17 +105,13 @@ const About = () => {
           <p className="text-muted-foreground max-w-2xl mx-auto text-lg">
             {t("about.subtitle")}
           </p>
-        </motion.div>
+        </Reveal>
 
         <div className="max-w-6xl mx-auto flex flex-col lg:flex-row gap-8 items-start mb-8">
 
           {/* LEFT — Bio Card */}
-          <motion.div
-            initial={{ opacity: 0, x: -20 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.6, delay: 0.1 }}
-            viewport={{ once: true }}
-            className="w-full lg:max-w-sm lg:shrink-0"
+          <Reveal step={1}
+            className="reveal-x w-full lg:max-w-sm lg:shrink-0"
           >
             <Card className="bg-surface-1/50 border-border">
               <CardContent className="p-8">
@@ -154,17 +146,13 @@ const About = () => {
                 </div>
               </CardContent>
             </Card>
-          </motion.div>
+          </Reveal>
 
           {/* RIGHT — Highlight Cards */}
           <div className="flex-1 grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6 content-start">
             {highlights.map((item, index) => (
-              <motion.div
+              <Reveal step={index}
                 key={item.title}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
-                viewport={{ once: true }}
               >
                 <Card className="group bg-surface-1/50 border-border hover:border-brand/30 transition-all duration-300 hover:bg-surface-1/80 h-full">
                   <CardContent className="p-6">
@@ -173,7 +161,7 @@ const About = () => {
                     <p className="text-muted-foreground text-sm leading-relaxed">{item.description}</p>
                   </CardContent>
                 </Card>
-              </motion.div>
+              </Reveal>
             ))}
           </div>
         </div>

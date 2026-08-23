@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
-import { motion } from "framer-motion";
+import { Reveal } from "@/components/Reveal";
 import { Mail, Send, CheckCircle, AlertCircle, MessageCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useLocale } from "@/context/LocaleContext";
@@ -49,11 +49,7 @@ const Contact = () => {
   return (
     <section id="contact" className="py-24 relative">
       <div className="container mx-auto px-4">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          viewport={{ once: true }}
+        <Reveal
           className="text-center mb-16"
         >
           <div className="text-xs font-mono text-green-400/60 uppercase tracking-widest mb-3">
@@ -66,16 +62,12 @@ const Contact = () => {
           <p className="text-muted-foreground max-w-xl mx-auto">
             {t("contact.subheadline")}
           </p>
-        </motion.div>
+        </Reveal>
 
         <div className="grid md:grid-cols-2 gap-12 max-w-5xl mx-auto">
           {/* Contact Info */}
-          <motion.div
-            initial={{ opacity: 0, x: -20 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.5 }}
-            viewport={{ once: true }}
-            className="space-y-8"
+          <Reveal
+            className="reveal-x space-y-8"
           >
             <div>
               <h3 className="text-2xl font-bold text-foreground mb-4">
@@ -154,14 +146,10 @@ const Contact = () => {
                 </p>
               </div>
             </div>
-          </motion.div>
+          </Reveal>
 
           {/* Contact Form */}
-          <motion.div
-            initial={{ opacity: 0, x: 20 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.5 }}
-            viewport={{ once: true }}
+          <Reveal className="reveal-x"
           >
             <form onSubmit={handleSubmit} className="space-y-4">
               <div className="grid grid-cols-2 gap-4">
@@ -234,28 +222,24 @@ const Contact = () => {
               </Button>
 
               {status === "success" && (
-                <motion.div
-                  initial={{ opacity: 0, y: 10 }}
-                  animate={{ opacity: 1, y: 0 }}
+                <Reveal
                   className="flex items-center gap-2 p-3 rounded-lg bg-green-500/10 border border-green-500/20 text-green-400 text-sm"
                 >
                   <CheckCircle className="w-4 h-4 shrink-0" />
                   {t("contact.successFull")}
-                </motion.div>
+                </Reveal>
               )}
 
               {status === "error" && (
-                <motion.div
-                  initial={{ opacity: 0, y: 10 }}
-                  animate={{ opacity: 1, y: 0 }}
+                <Reveal
                   className="flex items-center gap-2 p-3 rounded-lg bg-red-500/10 border border-red-500/20 text-red-400 text-sm"
                 >
                   <AlertCircle className="w-4 h-4 shrink-0" />
                   {errorMessage}
-                </motion.div>
+                </Reveal>
               )}
             </form>
-          </motion.div>
+          </Reveal>
         </div>
       </div>
     </section>

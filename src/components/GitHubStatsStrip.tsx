@@ -2,7 +2,7 @@
 
 import { useGitHubStats } from "@/hooks/useGitHubStats";
 import { Star, Users, GitFork } from "lucide-react";
-import { motion } from "framer-motion";
+import { Reveal } from "@/components/Reveal";
 
 /**
  * GitHubStatsStrip
@@ -35,10 +35,7 @@ export function GitHubStatsStrip() {
   ];
 
   return (
-    <motion.div
-      initial={{ opacity: 0, y: 10 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ delay: 0.8 }}
+    <Reveal step={8}
       className="flex items-center justify-center gap-8 mt-12"
     >
       {items.map(({ icon: Icon, label, value }) => (
@@ -48,6 +45,6 @@ export function GitHubStatsStrip() {
           <span className="text-xs text-muted-foreground">{label}</span>
         </div>
       ))}
-    </motion.div>
+    </Reveal>
   );
 }

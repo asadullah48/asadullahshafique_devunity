@@ -1,7 +1,7 @@
 "use client";
 
-import { motion } from "framer-motion";
 import { Quote, Linkedin } from "lucide-react";
+import { Reveal } from "@/components/Reveal";
 import { useLocale } from "@/context/LocaleContext";
 
 type Testimonial = {
@@ -77,11 +77,8 @@ const TESTIMONIALS_AR: Testimonial[] = [
 
 function TestimonialCard({ testimonial, index }: { testimonial: Testimonial; index: number }) {
   return (
-    <motion.div
-      initial={{ opacity: 0, y: 24 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: "-40px" }}
-      transition={{ duration: 0.4, delay: index * 0.1 }}
+    <Reveal
+      step={index}
       className="relative bg-surface-2 border border-white/8 rounded-2xl p-6 hover:border-brand/20 transition-all duration-300 flex flex-col"
     >
       <Quote
@@ -130,7 +127,7 @@ function TestimonialCard({ testimonial, index }: { testimonial: Testimonial; ind
           </div>
         </div>
       </div>
-    </motion.div>
+    </Reveal>
   );
 }
 
@@ -142,13 +139,7 @@ export function TestimonialsSection() {
     <section id="testimonials" className="py-24 bg-background">
       <div className="container mx-auto px-6">
 
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5 }}
-          className="text-center mb-14"
-        >
+        <Reveal className="text-center mb-14">
           <h2 className="text-4xl lg:text-5xl font-bold text-foreground mb-4">
             {t("testimonials.title")} <span className="text-brand">{t("testimonials.titleHighlight")}</span>
           </h2>
@@ -156,7 +147,7 @@ export function TestimonialsSection() {
           <p className="text-muted-foreground max-w-xl mx-auto">
             {t("testimonials.subtitle")}
           </p>
-        </motion.div>
+        </Reveal>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           {testimonials.map((testimonial, i) => (
@@ -164,13 +155,8 @@ export function TestimonialsSection() {
           ))}
         </div>
 
-        <motion.div
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true }}
-          transition={{ delay: 0.4 }}
-          className="text-center mt-10"
-        >
+        {/* step=4 trails the three cards above it, matching the old 0.4s delay. */}
+        <Reveal step={4} className="text-center mt-10">
           <a
             href="https://linkedin.com/in/asadullah-shafique"
             target="_blank"
@@ -180,7 +166,7 @@ export function TestimonialsSection() {
             <Linkedin className="w-4 h-4" />
             {t("testimonials.linkedInCTA")}
           </a>
-        </motion.div>
+        </Reveal>
       </div>
     </section>
   );

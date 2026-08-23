@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import { motion } from "framer-motion";
+import { Reveal } from "@/components/Reveal";
 import { MessageCircle, Users, Zap, Globe, ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
@@ -34,11 +34,7 @@ const Discord = () => {
       <div className="absolute inset-0 bg-gradient-to-b from-transparent via-[#5865F2]/5 to-transparent pointer-events-none" />
 
       <div className="container relative z-10 mx-auto px-4">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          viewport={{ once: true }}
+        <Reveal
           className="text-center mb-16"
         >
           <h2 className="text-3xl md:text-5xl font-bold text-white mb-4">
@@ -48,13 +44,9 @@ const Discord = () => {
           <p className="text-zinc-400 max-w-2xl mx-auto text-lg">
             {t("discord.subtitle")}
           </p>
-        </motion.div>
+        </Reveal>
 
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.2 }}
-          viewport={{ once: true }}
+        <Reveal step={2}
           className="max-w-4xl mx-auto"
         >
           <div className="relative p-8 md:p-12 rounded-2xl bg-gradient-to-br from-[#5865F2]/10 via-zinc-900/80 to-zinc-900/50 border border-[#5865F2]/20 backdrop-blur-sm">
@@ -80,18 +72,14 @@ const Discord = () => {
 
               <div className="grid md:grid-cols-3 gap-4 mb-8">
                 {features.map((feature, index) => (
-                  <motion.div
+                  <Reveal step={index + 3}
                     key={feature.title}
-                    initial={{ opacity: 0, y: 10 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    transition={{ delay: 0.3 + index * 0.1 }}
-                    viewport={{ once: true }}
                     className="p-4 rounded-xl bg-zinc-900/50 border border-zinc-800"
                   >
                     <feature.Icon className="w-8 h-8 text-[#5865F2] mb-3" />
                     <h4 className="text-sm font-semibold text-white mb-1">{feature.title}</h4>
                     <p className="text-xs text-zinc-500 leading-relaxed">{feature.description}</p>
-                  </motion.div>
+                  </Reveal>
                 ))}
               </div>
 
@@ -125,7 +113,7 @@ const Discord = () => {
               </div>
             </div>
           </div>
-        </motion.div>
+        </Reveal>
       </div>
     </section>
   );

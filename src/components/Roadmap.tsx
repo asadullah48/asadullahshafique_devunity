@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { Reveal } from "@/components/Reveal";
 import { useLocale } from "@/context/LocaleContext";
 
 const DI = "https://cdn.jsdelivr.net/gh/devicons/devicon/icons";
@@ -69,13 +69,7 @@ export default function Roadmap() {
     <section id="roadmap" className="py-24 bg-background">
       <div className="container mx-auto px-6">
 
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5 }}
-          className="text-center mb-14"
-        >
+        <Reveal className="text-center mb-14">
           <h2 className="text-4xl lg:text-5xl font-bold text-foreground mb-4">
             {t("roadmap.title")}{" "}
             <span className="text-brand">{t("roadmap.titleHighlight")}</span>
@@ -84,16 +78,13 @@ export default function Roadmap() {
           <p className="text-muted-foreground max-w-xl mx-auto">
             {t("roadmap.subtitle")}
           </p>
-        </motion.div>
+        </Reveal>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
           {TRACKS.map((track, index) => (
-            <motion.div
+            <Reveal
               key={track.id}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: index * 0.1 }}
-              viewport={{ once: true }}
+              step={index}
               className="group p-6 rounded-2xl bg-surface-1/50 border border-border hover:border-brand/30 transition-all duration-300 hover:bg-surface-1/80"
             >
               <div className="flex items-start justify-between mb-4">
@@ -144,7 +135,7 @@ export default function Roadmap() {
                   </li>
                 ))}
               </ul>
-            </motion.div>
+            </Reveal>
           ))}
         </div>
 

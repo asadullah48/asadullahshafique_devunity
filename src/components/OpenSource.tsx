@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { Reveal } from "@/components/Reveal";
 import { Github, GitFork, Star, Code2, Users } from "lucide-react";
 import { useLocale } from "@/context/LocaleContext";
 import { GitHubHeatmap } from "@/components/GitHubHeatmap";
@@ -36,11 +36,7 @@ export function OpenSourceSection() {
     <section id="open-source" className="py-24 bg-surface-1">
       <div className="container mx-auto px-6">
 
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5 }}
+        <Reveal
           className="text-center mb-14"
         >
           <h2 className="text-4xl lg:text-5xl font-bold text-foreground mb-4">
@@ -52,30 +48,22 @@ export function OpenSourceSection() {
           </p>
           {/* Live repo / star / follower counts from /api/github/stats */}
           <GitHubStatsStrip />
-        </motion.div>
+        </Reveal>
 
         <div className="grid grid-cols-2 md:grid-cols-5 gap-4 mb-16">
           {stats.map((stat, i) => (
-            <motion.div
+            <Reveal step={i}
               key={stat.label}
-              initial={{ opacity: 0, scale: 0.9 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.3, delay: i * 0.08 }}
               className="flex flex-col items-center justify-center p-5 bg-surface-2 border border-white/8 rounded-xl hover:border-brand/20 transition-all duration-300"
             >
               <stat.Icon className="w-5 h-5 mb-3" style={{ color: stat.color }} />
               <div className="text-2xl font-bold text-foreground">{stat.value}</div>
               <div className="text-xs text-muted-foreground mt-1 text-center">{stat.label}</div>
-            </motion.div>
+            </Reveal>
           ))}
         </div>
 
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5 }}
+        <Reveal
           className="mb-14 overflow-hidden rounded-2xl border border-white/8 bg-surface-2 p-6"
         >
           <div className="flex items-center gap-3 mb-5">
@@ -120,22 +108,18 @@ export function OpenSourceSection() {
               loading="lazy"
             />
           </div>
-        </motion.div>
+        </Reveal>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
           {values.map((v, i) => (
-            <motion.div
+            <Reveal step={i}
               key={v.title}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.4, delay: i * 0.1 }}
               className="p-6 bg-surface-2 border border-white/8 rounded-2xl hover:border-brand/20 transition-all duration-300"
             >
               <div className="text-3xl mb-4">{v.icon}</div>
               <h3 className="text-foreground font-semibold mb-2">{v.title}</h3>
               <p className="text-muted-foreground text-sm leading-relaxed">{v.desc}</p>
-            </motion.div>
+            </Reveal>
           ))}
         </div>
 

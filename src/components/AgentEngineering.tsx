@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { Reveal } from "@/components/Reveal";
 import { useLocale } from "@/context/LocaleContext";
 
 type Pillar = {
@@ -38,11 +38,7 @@ export default function AgentEngineering() {
     <section id="agent-engineering" className="py-24">
       <div className="container mx-auto px-6">
 
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5 }}
+        <Reveal
           className="text-center mb-14"
         >
           <div className="text-xs font-mono text-brand/60 uppercase tracking-widest mb-3">
@@ -56,16 +52,12 @@ export default function AgentEngineering() {
           <p className="text-muted-foreground max-w-2xl mx-auto">
             {t("agentEngineering.subtitle")}
           </p>
-        </motion.div>
+        </Reveal>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-6xl mx-auto">
           {PILLARS.map((pillar, index) => (
-            <motion.div
+            <Reveal step={index}
               key={pillar.id}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: index * 0.12 }}
               className="group flex flex-col p-6 rounded-2xl bg-surface-1/50 border border-border transition-all duration-300 hover:bg-surface-1/80"
               onMouseEnter={(e) => {
                 e.currentTarget.style.borderColor = `${pillar.color}4d`;
@@ -117,19 +109,15 @@ export default function AgentEngineering() {
                   </span>
                 ))}
               </div>
-            </motion.div>
+            </Reveal>
           ))}
         </div>
 
-        <motion.p
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true }}
-          transition={{ delay: 0.4 }}
+        <Reveal as="p" step={4}
           className="text-center text-muted-foreground/70 text-sm mt-10 font-mono"
         >
           {t("agentEngineering.footer")}
-        </motion.p>
+        </Reveal>
       </div>
     </section>
   );
