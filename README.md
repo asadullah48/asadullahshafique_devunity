@@ -33,7 +33,7 @@
 - 📝 **Blog System** — Share technical knowledge and experiences
 - 💬 **Contact Form** — Discord webhook integration for notifications
 - 📊 **GitHub Stats** — Real-time GitHub profile integration
-- 🔌 **MCP Server** — Model Context Protocol integration for AI tools
+- 🔌 **MCP Server** — a real Model Context Protocol server (official SDK, Streamable HTTP) exposing the portfolio as 6 read-only tools
 - 🎬 **Video Library** — Upload and share educational videos
 - 🧠 **AI Error Solver** — Intelligent coding error debugger
 - 📚 **Learn through LLM** — Personalized AI-generated lessons
@@ -283,6 +283,66 @@ kubectl get services -n asadullah-dev
 
 ---
 
+## 🔌 MCP Server
+
+The portfolio is exposed as a real [Model Context Protocol](https://modelcontextprotocol.io) server, built on the official
+Python SDK and served over **Streamable HTTP**. Any MCP client can complete a full `initialize` → `tools/list` → `tools/call`
+handshake against it.
+
+**Endpoint:** `https://asadullahshafique-devunity.onrender.com/mcp/server`
+
+**Tools** (all read-only, no arguments):
+
+| Tool | Returns |
+|------|---------|
+| `get_skills` | Languages, frameworks, data stores, AI tooling, DevOps |
+| `get_projects` | Every project with status, summary, tech stack, and published metrics |
+| `get_contact` | Email, WhatsApp, GitHub, Discord, portfolio URL |
+| `get_about` | Roles, location, positioning, focus, education |
+| `get_hackathons` | Six Panaversity hackathons with per-event results |
+| `get_agent_engineering` | The harness / loop / graph disciplines |
+
+Every tool reads from `backend/knowledge/portfolio.json`, the single source of truth shared with the site's chat agent — so the
+MCP tools and the website can never disagree.
+
+```jsonc
+// Claude Desktop — claude_desktop_config.json
+{
+  "mcpServers": {
+    "asadullah-portfolio": {
+      "url": "https://asadullahshafique-devunity.onrender.com/mcp/server"
+    }
+  }
+}
+```
+
+> The older `/mcp/tools` and `/mcp/rpc` paths are a plain-REST convenience shim kept for backwards compatibility. They are **not**
+> MCP and no MCP client can connect to them — use `/mcp/server`.
+
+---
+
+## 📊 Agent Evals
+
+Agent quality is measured, not asserted. `evals/` holds golden datasets scored on two layers:
+
+```bash
+python evals/run.py --no-judge   # deterministic checks, no model spend
+python evals/run.py --strict     # full run; exit 1 on failure (what CI runs)
+```
+
+| Layer | Checks | How |
+|-------|--------|-----|
+| **Deterministic** | Did triage route to the right specialist? Did it call the right tool? | Read from the run's typed context — free, exact |
+| **LLM-as-judge** | Is the answer faithful to `portfolio.json`? Did it refuse to invent? | Rubric-scored 1–5, reason required before the score |
+
+The deterministic layer catches the failure that matters most: **an agent answering fluently from memory instead of calling
+its tool.** Prose-only judging passes those; a tool-call trace does not.
+
+One case (`portfolio-contact`) is committed **failing on purpose** — it pins a known defect where the specialist skips
+`get_contact`. A suite that is green on day one has not been tested. See [`evals/README.md`](evals/README.md).
+
+---
+
 ## 🤖 AI-Powered Features
 
 ### 1. Error Solver Agent
@@ -515,8 +575,9 @@ curl -X POST http://localhost:8000/api/backendless/1/upload \
 | `/api/backendless/{id}` | PUT | **NEW** Update project |
 | `/api/backendless/{id}` | DELETE | **NEW** Delete project |
 | `/api/backendless/{id}/upload` | POST | **NEW** Upload static files |
-| `/mcp/tools` | GET | List MCP tools |
-| `/mcp/rpc` | POST | MCP JSON-RPC endpoint |
+| `/mcp/server` | * | **Real MCP endpoint** (Streamable HTTP) — connect MCP clients here |
+| `/mcp/tools` | GET | Plain-REST tool listing (convenience shim, not MCP) |
+| `/mcp/rpc` | POST | JSON-RPC-shaped shim (convenience, not MCP) |
 | `/docs` | GET | Swagger UI documentation |
 
 ### Example: Contact Form
