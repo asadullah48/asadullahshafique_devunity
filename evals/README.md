@@ -67,10 +67,18 @@ opinion with the same blind spots.
 
 ## Known failing case
 
-`portfolio-contact` is expected to **FAIL** as of Phase 3. The Portfolio
-Specialist answers *"use the contact form"* without calling `get_contact`,
-despite instructions to look facts up. It is committed red on purpose — that is
-the defect this harness was built to make visible. Fix the agent, not the case.
+`portfolio-contact` was **observed failing** in Phase 3: the Portfolio
+Specialist answered *"use the contact form"* with an empty `tool_calls` trace,
+while holding the real email, WhatsApp number and Discord link. It is committed
+red on purpose — that is the defect this harness was built to make visible.
+
+A fix has since landed in `orchestration/specialists.py`
+(`PORTFOLIO_INSTRUCTIONS` now names each tool trigger explicitly and forbids
+that specific evasion), but it is **unverified** — every model provider was
+quota-exhausted when it was written. **Run the suite to find out whether it
+worked.** Until then, assume red.
+
+Fix the agent, never the case.
 
 ## Rate limits
 

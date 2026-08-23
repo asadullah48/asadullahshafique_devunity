@@ -315,8 +315,11 @@ The deterministic layer is the one that earns its keep. The failure mode that ac
 from memory instead of calling its tool** — a judge scoring only prose passes a confident, plausible, unsourced answer. `trace()`
 does not. This is why Phase 3 put `route` and `tool_calls` in the context in the first place.
 
-**`portfolio-contact` is committed RED on purpose.** The Portfolio Specialist answers "use the contact form" without calling
-`get_contact`. Fix the agent, never the case. Deleting or loosening a red case to get a green suite defeats the whole point.
+**`portfolio-contact` is committed RED on purpose.** The Portfolio Specialist answered "use the contact form" with an empty
+`tool_calls` trace while holding the real email, phone and Discord link. A fix landed in `specialists.py`
+(`PORTFOLIO_INSTRUCTIONS` now names each tool trigger and forbids that evasion) but is **UNVERIFIED** — all providers were
+quota-exhausted. **Run `python evals/run.py --suite portfolio` to find out.** Fix the agent, never the case: deleting or loosening
+a red case to get a green suite defeats the whole point.
 
 **Rubrics** (`evals/judge.py`) each state explicitly what a 5 and a 1 look like. Vague rubrics produce judges that score everything
 4 and detect nothing. Threshold is 4/5. The judge is handed the full `portfolio.json` as reference facts and must give a reason

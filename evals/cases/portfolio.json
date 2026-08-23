@@ -27,7 +27,7 @@
         "must_not_contain": []
       },
       "rubric": "faithfulness",
-      "note": "KNOWN FAILING as of Phase 3: the specialist answers 'use the contact form' without calling get_contact. This case exists to keep that regression visible, not because the harness is broken."
+      "note": "OBSERVED FAILING in Phase 3: the specialist answered 'use the contact form' with an empty tool_calls trace, while holding the real email, WhatsApp number and Discord link. A fix landed in orchestration/specialists.py (PORTFOLIO_INSTRUCTIONS now names each tool trigger and forbids that specific evasion) but it is UNVERIFIED - every model provider was quota-exhausted when it was written. Treat this case as red until a run proves otherwise, and never loosen the expectation to make it green."
     },
     {
       "id": "portfolio-hackathons",

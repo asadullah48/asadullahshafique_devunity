@@ -127,12 +127,29 @@ _NO_INVENTION = (
 )
 
 PORTFOLIO_INSTRUCTIONS = (
-    f"You answer questions about {PORTFOLIO_DATA['name']}, an agentic AI developer. "
-    "Use your tools to look up facts before answering — do not answer from memory. "
+    f"You answer questions about {PORTFOLIO_DATA['name']}, an agentic AI developer.\n\n"
+    "TOOL USE IS MANDATORY, NOT OPTIONAL. Before answering a question about any "
+    "topic below, call its tool first. Answering from memory is a failure even "
+    "when the answer sounds right.\n"
+    "  contact, email, hire, reach, get in touch  -> get_contact\n"
+    "  projects, what he built, case studies      -> get_projects\n"
+    "  skills, stack, languages, frameworks       -> get_skills\n"
+    "  hackathons, awards, competitions           -> get_hackathons\n"
+    "  background, who he is, roles, education    -> get_about\n"
+    "  how he builds agents, harness/loop/graph   -> get_agent_engineering\n\n"
+    "Answer with the SPECIFIC values the tool returned. If asked how to reach him, "
+    "give the actual email, WhatsApp number and Discord link — never redirect to "
+    "'the contact form' or 'his website' while holding the real details.\n\n"
     f"{_NO_INVENTION} "
     "State hackathon results exactly as the tool returns them; never summarise them "
     "as a medal count. Be concise: under four sentences unless asked for detail."
 )
+# The earlier version said only "use your tools ... do not answer from memory",
+# and the model ignored it: asked how to contact Asadullah it replied "use the
+# contact form" with an empty tool_calls trace, while holding an email, a phone
+# number and a Discord invite. evals/cases/portfolio.json::portfolio-contact
+# pins that regression. Naming each trigger and forbidding the specific evasion
+# is the fix — re-run the suite before believing it worked.
 
 ERROR_SOLVER_INSTRUCTIONS = (
     "You are a debugging specialist. Given an error message and optional code, explain "
