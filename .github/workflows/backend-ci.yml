@@ -53,10 +53,69 @@ jobs:
         run: |
           mypy . --ignore-missing-imports || true
           
+      # NOTE: `|| echo` means this step can NEVER fail the build. 8 tests fail on
+      # a clean tree today, so tightening it is a separate, deliberate change —
+      # but be aware that a green badge here does not mean green tests.
       - name: Run tests
         working-directory: ./backend
         run: |
           pytest -v || echo "No tests found, skipping..."
+
+      # Agent quality gate (CLAUDE.md Rule 4). Unlike the step above, this one
+      # CAN fail the build — but only when a model key exists to measure with.
+      # With no key it emits a visible warning and exits 0, rather than
+      # reporting a green run that measured nothing.
+      - name: Run agent evals
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          ORCHESTRATOR_MODEL: ${{ vars.ORCHESTRATOR_MODEL }}
+        run: |
+          if [ -z "$ANTHROPIC_API_KEY$OPENAI_API_KEY$GEMINI_API_KEY" ]; then
+            echo "::warning title=Agent evals skipped::No model key configured. Agent quality was NOT measured."
+            exit 0
+          fi
+          pip install -r backend/requirements.txt
+          # --delay paces requests; free-tier providers rate-limit per minute and
+          # an unpaced burst gets scored as agent failures.
+          python evals/run.py --strict --delay 6 --report eval-report.json
+
+      - name: Upload eval report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: eval-report
+          path: eval-report.json
+          if-no-files-found: ignore
+
+      # Agent quality gate (CLAUDE.md Rule 4). Unlike the step above, this one
+      # can actually fail the build — but only when a model key exists to
+      # measure with. With no key it emits a visible warning and exits 0 rather
+      # than reporting a green run that measured nothing.
+      - name: Run agent evals
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          ORCHESTRATOR_MODEL: ${{ vars.ORCHESTRATOR_MODEL }}
+        run: |
+          if [ -z "$ANTHROPIC_API_KEY$OPENAI_API_KEY$GEMINI_API_KEY" ]; then
+            echo "::warning title=Agent evals skipped::No model key configured. Agent quality was NOT measured."
+            exit 0
+          fi
+          pip install -r backend/requirements.txt
+          # --delay paces requests; free-tier providers rate-limit per minute and
+          # unpaced bursts get scored as agent failures.
+          python evals/run.py --strict --delay 6 --report eval-report.json
+
+      - name: Upload eval report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: eval-report
+          path: eval-report.json
+          if-no-files-found: ignore
 
   build-docker:
     name: Build Docker Image

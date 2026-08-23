@@ -1,0 +1,74 @@
+{
+  "suite": "routing",
+  "description": "Does the orchestrator hand off to the right specialist? Scores the decision, not the prose.",
+  "cases": [
+    {
+      "id": "route-portfolio",
+      "input": "Tell me about the projects Asadullah has shipped.",
+      "expect": {
+        "route": ["Portfolio Specialist"],
+        "tools_any": [],
+        "must_contain_any": [],
+        "must_not_contain": []
+      },
+      "rubric": "none"
+    },
+    {
+      "id": "route-error-solver",
+      "input": "TypeError: 'int' object is not iterable\nfor i in 5:\n    print(i)",
+      "expect": {
+        "route": ["Error Solver Specialist"],
+        "tools_any": [],
+        "must_contain_any": [],
+        "must_not_contain": []
+      },
+      "rubric": "none"
+    },
+    {
+      "id": "route-learning",
+      "input": "Teach me how retrieval-augmented generation works. I'm a beginner.",
+      "expect": {
+        "route": ["Learning Specialist"],
+        "tools_any": [],
+        "must_contain_any": [],
+        "must_not_contain": []
+      },
+      "rubric": "none"
+    },
+    {
+      "id": "route-teaching",
+      "input": "I'd like to contribute a guide I wrote about FastAPI dependency injection so others can learn from it.",
+      "expect": {
+        "route": ["Teaching Specialist"],
+        "tools_any": [],
+        "must_contain_any": [],
+        "must_not_contain": []
+      },
+      "rubric": "none"
+    },
+    {
+      "id": "route-ambiguous-smalltalk",
+      "input": "hey there",
+      "expect": {
+        "route": ["Portfolio Specialist"],
+        "tools_any": [],
+        "must_contain_any": [],
+        "must_not_contain": []
+      },
+      "rubric": "none",
+      "note": "The orchestrator's instructions say ambiguous input defaults to Portfolio, since the assistant exists to represent Asadullah. This pins that tie-break."
+    },
+    {
+      "id": "route-error-disguised-as-question",
+      "input": "Why does my Next.js build fail with 'Module not found: Can't resolve fs'?",
+      "expect": {
+        "route": ["Error Solver Specialist"],
+        "tools_any": [],
+        "must_contain_any": [],
+        "must_not_contain": []
+      },
+      "rubric": "none",
+      "note": "Phrased as a question rather than a raw trace. Tests that triage reads intent, not formatting."
+    }
+  ]
+}

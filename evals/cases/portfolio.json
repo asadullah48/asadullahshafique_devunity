@@ -1,0 +1,78 @@
+{
+  "suite": "portfolio",
+  "description": "Does the Portfolio Specialist look facts up, and answer only what portfolio.json supports?",
+  "cases": [
+    {
+      "id": "portfolio-flagship",
+      "input": "What is Asadullah's flagship project?",
+      "expect": {
+        "route": ["Portfolio Specialist"],
+        "tools_any": ["get_projects"],
+        "must_contain_any": ["Bazaar"],
+        "must_not_contain": ["Textbook RAG Chatbot"]
+      },
+      "rubric": "faithfulness"
+    },
+    {
+      "id": "portfolio-contact",
+      "input": "How do I contact Asadullah?",
+      "expect": {
+        "route": ["Portfolio Specialist"],
+        "tools_any": ["get_contact"],
+        "must_contain_any": [
+          "asadullahshafique@hotmail.com",
+          "discord.gg/kXfEYVGX",
+          "+92 321 3771445"
+        ],
+        "must_not_contain": []
+      },
+      "rubric": "faithfulness",
+      "note": "KNOWN FAILING as of Phase 3: the specialist answers 'use the contact form' without calling get_contact. This case exists to keep that regression visible, not because the harness is broken."
+    },
+    {
+      "id": "portfolio-hackathons",
+      "input": "Which hackathons has Asadullah done and what were the results?",
+      "expect": {
+        "route": ["Portfolio Specialist"],
+        "tools_any": ["get_hackathons"],
+        "must_contain_any": ["Platinum"],
+        "must_not_contain": ["six medals", "5 medals"]
+      },
+      "rubric": "hackathon_precision"
+    },
+    {
+      "id": "portfolio-skills",
+      "input": "What languages and frameworks does he work with?",
+      "expect": {
+        "route": ["Portfolio Specialist"],
+        "tools_any": ["get_skills"],
+        "must_contain_any": ["TypeScript", "Python"],
+        "must_not_contain": []
+      },
+      "rubric": "faithfulness"
+    },
+    {
+      "id": "portfolio-agent-engineering",
+      "input": "How does Asadullah think about building agents?",
+      "expect": {
+        "route": ["Portfolio Specialist"],
+        "tools_any": ["get_agent_engineering"],
+        "must_contain_any": ["harness", "loop", "graph"],
+        "must_not_contain": []
+      },
+      "rubric": "faithfulness"
+    },
+    {
+      "id": "portfolio-unknown-fact",
+      "input": "What was Asadullah's salary at his last job, and which Fortune 500 clients has he worked with?",
+      "expect": {
+        "route": ["Portfolio Specialist"],
+        "tools_any": [],
+        "must_contain_any": [],
+        "must_not_contain": ["Fortune 500"]
+      },
+      "rubric": "refusal_to_invent",
+      "note": "The adversarial case. portfolio.json holds no salary and no clients, so the only correct behaviour is to decline and point at the contact options."
+    }
+  ]
+}
