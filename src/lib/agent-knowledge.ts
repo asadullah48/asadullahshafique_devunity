@@ -1,31 +1,60 @@
-// Shared knowledge base for the portfolio AI agent routes.
-// Mirrors backend/agent.py's PORTFOLIO_DATA so the serverless agent and the
-// showcased FastAPI/LangGraph implementation stay consistent.
+// Knowledge base for the portfolio AI agent routes.
+//
+// Facts are NOT defined here. They come from backend/knowledge/portfolio.json,
+// the single source of truth shared with the Python backend
+// (backend/knowledge/__init__.py). This module's only job is rendering those
+// facts into the prose an LLM reads, and into the offline fallback answers.
+//
+// Why the import reaches into backend/: that directory is the intersection of
+// all three build contexts. The backend image is built with context ./backend
+// (docker-compose.yml) and Render's root dir is "backend", so a repo-root
+// knowledge/ would not exist inside it. The frontend builds from the repo root
+// with no .vercelignore, so it can read down into backend/. See CLAUDE.md §2.
+//
+// Before this, the same facts lived in three places and had drifted apart.
+// Add a renderer here; never re-add a literal list of projects or skills.
 
-export const PORTFOLIO_FACTS = `
-Name: Asadullah Shafique — Agentic AI Developer (Pakistan · UAE)
-Contact: asadullahshafique@hotmail.com | WhatsApp +92 321 3771445 | GitHub github.com/asadullah48 | Discord discord.gg/kXfEYVGX
-Focus: Agentic AI development, full-stack engineering, spec-first development with Claude Code.
+import portfolio from "../../backend/knowledge/portfolio.json";
 
-Skills: TypeScript, JavaScript, Python, Next.js, React, FastAPI, PostgreSQL, Supabase, Redis, Docker, Kubernetes, OpenAI Agents SDK, Claude MCP, LangGraph, RAG.
+const { identity, contact, skills, agentEngineering, projects, hackathons, thisPortfolio } = portfolio;
 
-Agent engineering framework (three disciplines):
-- Harness engineering: tools, memory, permissions around the model.
-- Loop engineering: testing, evals, iteration until zero failures.
-- Graph engineering: multi-agent orchestration.
+/** Every skill as one ordered list, de-duplicated. Mirrors the Python `_flat_skills`. */
+const ALL_SKILLS: string[] = Array.from(
+  new Set([...skills.languages, ...skills.frameworks, ...skills.data, ...skills.ai, ...skills.devops])
+);
 
-Featured projects:
-- Bazaar (flagship): Pakistan's unified B2C + B2B wholesale/RFQ marketplace. Next.js 15, FastAPI, Supabase, PostgreSQL, Redis, Docker.
-- AI TradeFlow (in development): bilingual AI inventory & accounting platform for Pakistani wholesalers with the "Munshi" AI agent. FastAPI, Next.js, OpenAI Agents SDK, Expo.
-- Agent Factory (Hackathon H5): two-tier agent architecture — a General Agent (Claude Code) that builds Custom Agents (OpenAI SDK), with SKILL.md files as portable units, deployed on Kubernetes + Dapr.
-- DevUnity Platform: open-source developer community hub (this portfolio's sibling project).
-- RAG Textbook Platform (Hackathon H1, Silver): AI chatbot with RAG architecture.
-- Stitching & Packing ERP and a full Textile ERP Platform (2026 launch) for garment exporters.
+/** "H0 — Bronze, H1 — Silver, ..." */
+const HACKATHON_LINE: string = hackathons.results.map((r) => `${r.id} — ${r.result}`).join(", ");
 
-Hackathons: six consecutive Panaversity hackathons (H0–H5): Bronze → Silver → Silver → Gold → Platinum → Agent Factory. Methodology: spec-first, heavy code reuse, evals before shipping.
+function renderProject(p: (typeof projects)[number]): string {
+  const label = "hackathon" in p && p.hackathon ? `Hackathon ${p.hackathon}` : p.status;
+  const metrics = p.metrics.length > 0 ? ` ${p.metrics.join(", ")}.` : "";
+  return `- ${p.name} (${label}): ${p.summary}${metrics} Tech: ${p.tech.join(", ")}.`;
+}
 
-This portfolio itself: Next.js App Router, TypeScript, Tailwind, shadcn/ui, Framer Motion, EN/AR localization, and a FastAPI + LangGraph backend showcased in the repo. The live chat agent runs serverless on Vercel.
-`.trim();
+/**
+ * The fact sheet handed to the model. Rendered from portfolio.json so it can
+ * never disagree with what the backend agent and MCP tools report.
+ */
+export const PORTFOLIO_FACTS: string = [
+  `Name: ${identity.name} — ${identity.roles.join(", ")} (${identity.location})`,
+  `Positioning: ${identity.tagline}`,
+  `Contact: ${contact.email} | WhatsApp ${contact.whatsapp} | GitHub ${contact.github} | Discord ${contact.discord}`,
+  `Focus: ${identity.focus}`,
+  ``,
+  `Skills: ${ALL_SKILLS.join(", ")}.`,
+  `Methodology: ${skills.methodology}.`,
+  ``,
+  `Agent engineering framework (three disciplines):`,
+  ...agentEngineering.disciplines.map((d) => `- ${d.name}: ${d.detail}`),
+  ``,
+  `Featured projects:`,
+  ...projects.map(renderProject),
+  ``,
+  `Hackathons: ${hackathons.summary} Results: ${HACKATHON_LINE}. Methodology: ${hackathons.methodology}`,
+  ``,
+  `This portfolio: ${thisPortfolio}`,
+].join("\n");
 
 export type AgentMode = "general" | "python" | "nextjs" | "agents";
 
@@ -39,7 +68,7 @@ export const MODE_FLAVORS: Record<AgentMode, string> = {
 export function buildSystemPrompt(mode: string): string {
   const key: AgentMode = mode === "python" || mode === "nextjs" || mode === "agents" ? mode : "general";
   return (
-    "You are the AI portfolio assistant for Asadullah Shafique. " +
+    `You are the AI portfolio assistant for ${identity.name}. ` +
     MODE_FLAVORS[key] +
     " Be concise (under 4 sentences unless asked for detail), friendly, and factual. " +
     "Use only the facts below. Never invent awards, metrics, clients, or dates: if a " +
@@ -52,27 +81,34 @@ export function buildSystemPrompt(mode: string): string {
 // Keyword-routed answers served when no LLM API key is configured, so the
 // widget degrades to instant factual answers instead of an error. Each reply
 // is honest about being a static answer.
+//
+// These are composed from portfolio.json rather than written out, so a project
+// added to the JSON shows up here too. The previous version hardcoded the
+// project names and would silently go stale.
 export function offlineAnswer(question: string): string {
   const q = question.toLowerCase();
   let core: string;
+
   if (/skill|tech|stack|language|framework/.test(q)) {
-    core =
-      "Asadullah works across TypeScript, Python, Next.js, FastAPI, PostgreSQL/Supabase, Docker, Kubernetes, and agentic AI (OpenAI Agents SDK, Claude MCP, LangGraph).";
+    core = `Asadullah works across ${ALL_SKILLS.join(", ")}.`;
   } else if (/project|built|work|bazaar|tradeflow|erp/.test(q)) {
-    core =
-      "Flagship projects: Bazaar (B2C+B2B marketplace), AI TradeFlow (bilingual AI inventory platform with the Munshi agent), and Agent Factory (two-tier agent architecture on Kubernetes). Scroll to the Projects section for case studies.";
+    const headline = projects
+      .filter((p) => p.status === "flagship" || p.status === "in development")
+      .slice(0, 3)
+      .map((p) => p.name)
+      .join(", ");
+    core = `Flagship and active projects: ${headline}. Scroll to the Projects section for case studies.`;
   } else if (/contact|email|reach|hire|whatsapp|discord/.test(q)) {
-    core =
-      "Reach Asadullah at asadullahshafique@hotmail.com, WhatsApp +92 321 3771445, or Discord (discord.gg/kXfEYVGX).";
+    core = `Reach Asadullah at ${contact.email}, WhatsApp ${contact.whatsapp}, or Discord (${contact.discord}).`;
   } else if (/hackathon|panaversity|award|medal/.test(q)) {
-    core =
-      "Asadullah completed six consecutive Panaversity hackathons (H0–H5): Bronze → Silver → Silver → Gold → Platinum → Agent Factory.";
+    core = `${hackathons.summary} Results: ${HACKATHON_LINE}.`;
   } else if (/agent|mcp|harness|loop|graph/.test(q)) {
-    core =
-      "His agent engineering framework has three disciplines: harness (tools/memory/permissions), loop (testing/evals), and graph (multi-agent orchestration). See the Agent Engineering section.";
+    const disciplines = agentEngineering.disciplines.map((d) => d.name.replace(" engineering", "")).join(", ");
+    core = `His agent engineering framework has three disciplines: ${disciplines}. See the Agent Engineering section.`;
   } else {
     core =
       "I can tell you about Asadullah's skills, projects, hackathons, agent engineering, or how to contact him — try one of those topics.";
   }
+
   return core + " (Instant answer — the live AI model is currently offline.)";
 }

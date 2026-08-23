@@ -1,0 +1,135 @@
+{
+  "_README": [
+    "CANONICAL SOURCE OF PORTFOLIO FACTS. Edit here and nowhere else.",
+    "",
+    "Consumers:",
+    "  backend/knowledge/__init__.py  -> Python loader (agent.py, mcp_server.py)",
+    "  src/lib/agent-knowledge.ts     -> imports this file directly, renders the LLM prompt",
+    "",
+    "Why this lives under backend/ and not at the repo root:",
+    "  docker-compose.yml sets the backend build context to ./backend, and Render's",
+    "  root directory is 'backend'. A root-level knowledge/ would not exist inside the",
+    "  backend image. The frontend builds from the repo root (no .vercelignore), so it",
+    "  can reach down into backend/. This directory is the intersection of all three",
+    "  build contexts. Moving it up breaks production silently.",
+    "",
+    "Rule: every claim here must be demonstrable. See CLAUDE.md section 0."
+  ],
+
+  "identity": {
+    "name": "Asadullah Shafique",
+    "roles": [
+      "Agentic AI Developer",
+      "Digital Marketing Strategist",
+      "CMT Industry Founder"
+    ],
+    "location": "Pakistan · UAE",
+    "tagline": "Building production-grade AI systems for real businesses, from Dubai construction to Pakistani textile factories. Six hackathons. Zero failures.",
+    "focus": "Agentic AI development, full-stack engineering, spec-first development with Claude Code.",
+    "education": "Panaversity — Agentic AI development"
+  },
+
+  "contact": {
+    "email": "asadullahshafique@hotmail.com",
+    "whatsapp": "+92 321 3771445",
+    "github": "https://github.com/asadullah48",
+    "discord": "https://discord.gg/kXfEYVGX",
+    "portfolio": "https://asadullahshafique-devunity.vercel.app"
+  },
+
+  "skills": {
+    "languages": ["TypeScript", "JavaScript", "Python"],
+    "frameworks": ["Next.js", "React", "FastAPI"],
+    "data": ["PostgreSQL", "Supabase", "Redis"],
+    "ai": ["OpenAI Agents SDK", "Claude MCP", "LangGraph", "RAG"],
+    "devops": ["Docker", "Kubernetes", "GitHub Actions"],
+    "methodology": "Spec-first development (SpecifyKit)"
+  },
+
+  "agentEngineering": {
+    "summary": "Three disciplines that make up agent engineering.",
+    "disciplines": [
+      {
+        "name": "Harness engineering",
+        "detail": "Tools, memory, and permissions around the model."
+      },
+      {
+        "name": "Loop engineering",
+        "detail": "Testing, evals, and iteration until zero failures."
+      },
+      {
+        "name": "Graph engineering",
+        "detail": "Multi-agent orchestration."
+      }
+    ]
+  },
+
+  "projects": [
+    {
+      "name": "Bazaar",
+      "status": "flagship",
+      "summary": "Pakistan's first unified marketplace with a dual B2C retail storefront and a B2B wholesale/RFQ engine.",
+      "metrics": ["500+ verified sellers", "10K+ products"],
+      "tech": ["Next.js 15", "FastAPI", "Supabase", "PostgreSQL", "Redis", "Docker"]
+    },
+    {
+      "name": "AI TradeFlow",
+      "status": "in development",
+      "summary": "Bilingual AI inventory and accounting platform for Pakistani wholesalers, built around the 'Munshi' AI agent.",
+      "metrics": ["90+ tests passing"],
+      "tech": ["FastAPI", "Next.js", "OpenAI Agents SDK", "Expo"]
+    },
+    {
+      "name": "Textile ERP Platform",
+      "status": "in development",
+      "summary": "Full-scale ERP for Pakistan's textile and garment industry. 2026 launch target.",
+      "metrics": [],
+      "tech": ["Next.js", "FastAPI", "PostgreSQL"]
+    },
+    {
+      "name": "DevUnity Platform",
+      "status": "live",
+      "summary": "Open-source developer community platform with Q&A, blogs, and collaboration features. This portfolio's sibling project.",
+      "metrics": [],
+      "tech": ["Next.js 15", "TypeScript", "FastAPI", "Docker"]
+    },
+    {
+      "name": "Stitching & Packing ERP",
+      "status": "in development",
+      "summary": "Specialised ERP for stitching units and packing departments.",
+      "metrics": [],
+      "tech": ["Next.js", "FastAPI", "PostgreSQL"]
+    },
+    {
+      "name": "Agent Factory",
+      "status": "completed",
+      "hackathon": "H5",
+      "summary": "Two-tier agent architecture: a General Agent (Claude Code) that builds Custom Agents (OpenAI Agents SDK), with SKILL.md files as portable units.",
+      "metrics": ["117 slides"],
+      "tech": ["OpenAI Agents SDK", "Claude Code", "Kubernetes", "Dapr"]
+    },
+    {
+      "name": "RAG Textbook Platform",
+      "status": "completed",
+      "hackathon": "H1 (Silver)",
+      "summary": "AI-powered textbook chatbot built on a RAG architecture.",
+      "metrics": [],
+      "tech": ["Python", "FastAPI", "LangChain", "RAG", "Next.js"]
+    }
+  ],
+
+  "hackathons": {
+    "summary": "Six consecutive Panaversity hackathons, H0 through H5.",
+    "results": [
+      { "id": "H0", "result": "Bronze" },
+      { "id": "H1", "result": "Silver" },
+      { "id": "H2", "result": "Silver" },
+      { "id": "H3", "result": "Gold" },
+      { "id": "H4", "result": "Platinum" },
+      { "id": "H5", "result": "Agent Factory" }
+    ],
+    "methodology": "Spec-first, heavy code reuse, evals before shipping."
+  },
+
+  "thisPortfolio": "Next.js App Router, TypeScript, Tailwind, shadcn/ui, EN/AR localization with RTL, and a FastAPI + LangGraph backend showcased in the repo. The live chat agent runs serverless on Vercel against Google Gemini."
+}
