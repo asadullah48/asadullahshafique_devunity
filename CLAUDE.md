@@ -13,7 +13,7 @@ This repo is the flagship artifact behind a public claim: *Agentic AI engineer, 
 
 | Site / README claims | Repository reality |
 | --- | --- |
-| "OpenAI Agents SDK, MCP servers, Constitutional AI" | **Two of three now true.** Agents SDK: real (Phase 3, `backend/orchestration/`). MCP: real (Phase 2). **Constitutional AI: still absent** — there is no guardrail or critique layer anywhere in this repo. Do not claim it. |
+| ~~"OpenAI Agents SDK, MCP servers, Constitutional AI"~~ | **RESOLVED.** Agents SDK: real (`backend/orchestration/`). MCP: real (`/mcp/server`). Constitutional AI: real (`backend/constitution/`) — a written constitution enforced as SDK guardrails, verified blocking 4/4 violations with no model reachable. |
 | "Munshi AI — 5 read-only tools, constitutionally guarded" | `backend/agent.py:98` → `TOOLS = [get_portfolio_info]`. One tool. Not in this repo. |
 | ~~README: "LangGraph AI agents (4 agents)"~~ | **RESOLVED — Phase 3.** There are now four real specialist agents plus a triage orchestrator, on the Agents SDK, with handoffs and typed shared state. The old LangGraph graph and the prompt-function trio survive as fallback rungs. |
 | ~~`mcp_server.py` is not a real MCP server~~ | **RESOLVED — Phase 2.** `portfolio_mcp` is a real `FastMCP` server on the official SDK, mounted at `/mcp/server` over Streamable HTTP. Verified with a live client: `initialize` → `tools/list` (6 tools) → `tools/call`, protocol `2025-11-25`. The `/mcp/*` REST paths remain a shim and are still not MCP. |
@@ -177,6 +177,40 @@ current work while the live site led with Bazaar. **Do not add a fourth copy.** 
 One duplicate remains, deliberately out of Phase 1 scope: `src/components/Projects.tsx` holds `PROJECTS_EN` / `PROJECTS_AR` with
 its own project list plus Arabic translations. It is presentational (images, links, case-study copy) and bilingual, so folding it in
 needs an i18n story for the JSON first. Treat it as known debt, not as license to add more.
+
+### Constitutional AI
+
+`backend/constitution/principles.json` is the written constitution — five principles, three on input (academic dishonesty,
+illegal activity, harmful content) and two on output (no fabricated credentials, no prompt disclosure). Edit it and nowhere else.
+
+Enforced as SDK guardrails: `constitutional_input_guardrail` on the **orchestrator** (one entry point, so nothing slips past by
+taking a different route) and `constitutional_output_guardrail` on the **Portfolio Specialist** only — the one agent emitting free
+prose about a real person, where a fabricated employer or client would do real damage. The other three return structured objects
+already constrained by their `output_type`.
+
+**Two layers, ORed, deterministic first:**
+
+| Layer | Needs a model? | Character |
+| --- | --- | --- |
+| `deterministic_patterns` substring screen | No | High precision, low recall — deliberately narrow |
+| LLM classifier against each principle's `rule` | Yes | Broad recall, costs a call |
+
+The deterministic layer is why this is not decoration. It trips the guardrail **before** any model call, so the constitution stayed
+enforced during development while every provider was out of quota — verified: 4/4 violations blocked with nothing reachable.
+
+**Fail-open is deliberate.** A classifier outage degrades enforcement to deterministic-only and lets the request through, rather
+than refusing everything and taking the site down in front of the audience it exists to impress. `constitution_status()`
+(surfaced at `/api/agent/info`) reports `"full"` or `"deterministic-only"` so the degradation is visible, not silent.
+
+**Never widen `deterministic_patterns` casually.** A pattern that fires on a legitimate question is worse than one that misses —
+over-blocking a portfolio assistant is a visible failure. `evals/cases/constitution.json` carries explicit *allow* cases
+(explaining a concept mentioning "homework", defensive-security questions) precisely to catch that.
+
+**A tripwire is a result, not an error.** `orchestrator._run` re-raises `InputGuardrailTripwireTriggered` /
+`OutputGuardrailTripwireTriggered` instead of swallowing them, and `run_orchestrated_chat` converts them to
+`{"mode": "refused"}`. If they were collapsed to `None` like other failures, `agent.py` would read that as "drop a rung" and
+answer the refused request via the unguarded LangGraph or static path — **the ladder would silently bypass the constitution.**
+This is verified by an eval case; do not refactor that exception handling without re-running it.
 
 ### Frontend conventions
 

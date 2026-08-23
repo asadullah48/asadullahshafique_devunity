@@ -29,7 +29,17 @@ from .context import PortfolioContext
 from .runtime import AGENTS_SDK_AVAILABLE, resolve_model
 
 if AGENTS_SDK_AVAILABLE:
-    from agents import Agent, RunContextWrapper, Runner, handoff
+    from agents import (
+        Agent,
+        InputGuardrailTripwireTriggered,
+        OutputGuardrailTripwireTriggered,
+        RunContextWrapper,
+        Runner,
+        handoff,
+    )
+
+# The constitution is enforced on this agent. See constitution/principles.json.
+from constitution import constitutional_input_guardrail
 
 logger = logging.getLogger(__name__)
 
@@ -78,10 +88,14 @@ def orchestrator_agent() -> Any | None:
     if any(t is None for t in targets):
         return None
 
+    # The constitution is enforced HERE, at the single entry point, for the same
+    # reason routing lives here: one place, so nothing can slip past by taking a
+    # different path. Guardrails on the orchestrator run before any handoff.
     _orchestrator = Agent(
         name="Portfolio Orchestrator",
         instructions=ORCHESTRATOR_INSTRUCTIONS,
         handoffs=[_make_handoff(t) for t in targets],
+        input_guardrails=[constitutional_input_guardrail],
         model=model,
     )
     return _orchestrator
@@ -117,10 +131,20 @@ def _as_text(output: Any) -> str:
 
 
 async def _run(agent: Any, prompt: str, ctx: PortfolioContext) -> Any | None:
-    """Run one agent, converting any failure into None so callers can fall back."""
+    """
+    Run one agent, converting any failure into None so callers can fall back.
+
+    A guardrail tripwire is NOT a failure and must never be turned into None.
+    agent.py reads None as "drop a rung" and would answer the very request the
+    constitution just refused, using the unguarded LangGraph or static path.
+    That would make the guardrails decorative. Tripwires are re-raised here and
+    converted into an explicit refusal by the caller.
+    """
     try:
         result = await Runner.run(agent, prompt, context=ctx)
         return result.final_output
+    except (InputGuardrailTripwireTriggered, OutputGuardrailTripwireTriggered):
+        raise
     except Exception as exc:  # noqa: BLE001 - a model failure must not 500 the site
         logger.warning("Agent run failed (%s): %s", getattr(agent, "name", "?"), exc)
         return None
@@ -137,7 +161,26 @@ async def run_orchestrated_chat(
     if agent is None:
         return None
     ctx = PortfolioContext(session_id=session_id)
-    output = await _run(agent, question, ctx)
+
+    try:
+        output = await _run(agent, question, ctx)
+    except (InputGuardrailTripwireTriggered, OutputGuardrailTripwireTriggered) as tripped:
+        # A refused request is a RESULT, not an error. Returning the refusal
+        # (rather than None) is what stops agent.py falling through to the
+        # unguarded legacy paths. See _run.
+        violation = getattr(getattr(tripped, "guardrail_result", None), "output", None)
+        violation = getattr(violation, "output_info", None)
+        refusal = getattr(violation, "refusal", None) or (
+            "I can't help with that request, but I'm happy to answer questions "
+            "about Asadullah's work."
+        )
+        ctx.record_agent("Constitution")
+        trace = ctx.trace()
+        if violation is not None:
+            trace["refused"] = [violation.principle_id, violation.detected_by]
+        logger.info("Request refused by the constitution: %s", trace.get("refused"))
+        return {"answer": refusal, "mode": "refused", "trace": trace}
+
     if output is None:
         return None
     return {"answer": _as_text(output), "mode": "agents-sdk", "trace": ctx.trace()}

@@ -321,6 +321,33 @@ MCP tools and the website can never disagree.
 
 ---
 
+## ⚖️ Constitutional AI
+
+The agent operates under a written constitution — `backend/constitution/principles.json` — enforced as guardrails on the
+orchestrator, not as prompt suggestions.
+
+| Principle | Applies to |
+|-----------|-----------|
+| Refuse academic dishonesty | input |
+| Refuse assistance with illegal activity | input |
+| Refuse harmful content | input |
+| Never invent facts about Asadullah | output |
+| Never disclose system instructions or credentials | output |
+
+Each principle is enforced twice: a **deterministic substring screen** that needs no model, and an **LLM classifier** against the
+principle's written rule for the nuance substrings miss. Either can trip the wire.
+
+The deterministic layer is the point. It fires *before* any model call, so the constitution holds even when the provider is down —
+verified blocking 4/4 violations with **no model reachable at all**. Conversely, enforcement **fails open**: if the classifier is
+unavailable the request proceeds under deterministic-only screening rather than the site refusing everything. `/api/agent/info`
+reports which mode is live.
+
+Over-blocking is treated as a failure too. `evals/cases/constitution.json` includes explicit *allow* cases — explaining a concept
+that mentions "homework", asking about defensive security — because a portfolio assistant that refuses legitimate questions fails
+in front of exactly the audience it exists to impress.
+
+---
+
 ## 📊 Agent Evals
 
 Agent quality is measured, not asserted. `evals/` holds golden datasets scored on two layers:

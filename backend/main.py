@@ -822,6 +822,13 @@ async def agent_info():
     except ImportError:
         orchestration = {"sdk_installed": False, "model": None, "available": False}
 
+    try:
+        from constitution import constitution_status
+
+        constitution = constitution_status()
+    except ImportError:
+        constitution = {"enforcement": "none"}
+
     primary_path = "agents-sdk" if orchestration["available"] else mode
     logger.info(f"Agent primary path: {primary_path}")
 
@@ -843,6 +850,7 @@ async def agent_info():
             "Teaching Specialist",
         ],
         "orchestration": orchestration,
+        "constitution": constitution,
         "primary_path": primary_path,
         "fallback_order": ["agents-sdk", "langgraph", "static"],
         "langgraph_installed": lg_available,

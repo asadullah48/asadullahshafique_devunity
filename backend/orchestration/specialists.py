@@ -19,6 +19,7 @@ from typing import Any
 
 from pydantic import BaseModel, Field
 
+from constitution import constitutional_output_guardrail
 from knowledge import MCP_TOOL_RESULTS, PORTFOLIO_DATA
 
 from .context import PortfolioContext
@@ -195,7 +196,15 @@ def _build(key: str, **kwargs: Any) -> Any | None:
 
 
 def portfolio_agent() -> Any | None:
-    """Specialist for questions about Asadullah himself."""
+    """
+    Specialist for questions about Asadullah himself.
+
+    This is the only specialist carrying an output guardrail. It is the one that
+    emits free prose about a real person to prospective employers, so it is the
+    one where a fabricated employer, client or credential would do actual
+    damage. The other three return structured objects whose shape is already
+    constrained by their output_type.
+    """
     return _build(
         "portfolio",
         name="Portfolio Specialist",
@@ -204,6 +213,7 @@ def portfolio_agent() -> Any | None:
         ),
         instructions=PORTFOLIO_INSTRUCTIONS,
         tools=PORTFOLIO_TOOLS,
+        output_guardrails=[constitutional_output_guardrail],
     )
 
 
