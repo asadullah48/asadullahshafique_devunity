@@ -1,5 +1,15 @@
-"use client";
-
+// SERVER COMPONENT — deliberately no "use client".
+//
+// Nothing here is interactive: the scroll is the `animate-marquee` CSS
+// keyframe and the hover-pause is the `.group/marquee` rule in globals.css,
+// not a React handler. Its only consumer is page.tsx, which is itself a
+// server component, so dropping the directive keeps this whole subtree —
+// including the 14 react-icons brand SVGs below — out of the client bundle
+// and renders it straight to HTML.
+//
+// If this ever needs a click handler or state, extract that leaf into its own
+// client component rather than re-adding "use client" here; the icons are the
+// expensive part and they must stay on the server.
 import {
   SiNextdotjs,
   SiTypescript,

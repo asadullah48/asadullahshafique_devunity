@@ -347,11 +347,9 @@ function StatusBadge({ status, label }: { status: ProjectStatus; label: string }
 function ProjectCard({
   project,
   labels,
-  index,
 }: {
   project: Project;
   labels: Record<string, string>;
-  index: number;
 }) {
   const [expanded, setExpanded] = useState(false);
   const [terminalView, setTerminalView] = useState(false);
@@ -397,7 +395,12 @@ function ProjectCard({
             alt={`${project.title} — interface preview`}
             fill
             sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
-            priority={index === 0}
+            // NOT `priority`. The Projects grid sits far below the fold —
+            // after Hero, TechMarquee, About, Skills, AgentEngineering and
+            // Roadmap — so preloading the first card stole bandwidth from
+            // Hero's image, which is the real LCP element. next/image lazy
+            // loads by default, which is correct here.
+            loading="lazy"
             // The optimizer rejects SVG unless `dangerouslyAllowSVG` is on.
             // Vectors gain nothing from resizing, so bypass the pipeline for
             // them instead of loosening that flag site-wide.
@@ -635,7 +638,7 @@ export function ProjectsSection() {
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {PROJECTS.map((project, i) => (
-            <ProjectCard key={project.id} project={project} labels={labels} index={i} />
+            <ProjectCard key={project.id} project={project} labels={labels} />
           ))}
         </div>
 

@@ -22,6 +22,7 @@
       "@/*": ["./src/*"]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "src/types/**/*.d.ts"],
-  "exclude": ["node_modules"]
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
+  "//exclude": "src/__tests__ is excluded so that type errors in APP code can fail the build (next.config.js no longer ignores them). That suite cannot compile or run today - no jest types, no @testing-library/react - so including it would mean permanently disabling type enforcement for the entire app to accommodate code that never executes. It needs either a real test setup or removal.",
+  "exclude": ["node_modules", "src/__tests__"]
 }
