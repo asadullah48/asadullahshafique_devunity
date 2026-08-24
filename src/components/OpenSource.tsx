@@ -9,7 +9,10 @@ import { GitHubStatsStrip } from "@/components/GitHubStatsStrip";
 const GITHUB_USERNAME = "asadullah48";
 
 const STAT_ICONS = [Github, GitFork, Code2, Star, Users];
-const STAT_VALUES = ["467+", "6", "85%", "10+", "3"];
+// Repo count: 481 measured 2026-08-24, shown as 480+ so it stays true as the
+// count grows. Keep in step with Hero.tsx STATS and opensrc.subtitle /
+// projects.viewAllGithub in both i18n files — five places, one number.
+const STAT_VALUES = ["480+", "6", "85%", "10+", "3"];
 const STAT_COLORS = ["#84cc16", "#3b82f6", "#a855f7", "#f59e0b", "#10b981"];
 const STAT_LABEL_KEYS = ["s1Label", "s2Label", "s3Label", "s4Label", "s5Label"] as const;
 
