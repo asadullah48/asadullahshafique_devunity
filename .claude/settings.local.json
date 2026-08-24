@@ -171,7 +171,8 @@
       "Bash(grep -c '^```' CLAUDE.md)",
       "Bash(ORCHESTRATOR_MODEL=gemini/gemini-2.5-flash timeout 90 python -c ' *)",
       "Bash(npx --no-install vercel --prod --yes)",
-      "Bash(npx --no-install vercel ls)"
+      "Bash(npx --no-install vercel ls)",
+      "mcp__obsidian-mcp__obsidian_simple_search"
     ]
   }
 }
