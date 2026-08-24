@@ -86,6 +86,12 @@ const config: Config = {
         },
         // AMBIENT ONLY — glows, aurora, mesh gradients. Never a control.
         violet: "hsl(var(--violet))",
+        // AMBIENT ONLY — provenance marks: eyebrows, hairlines, evidence
+        // stamps. Never a control; cyan is the only interactive colour.
+        gold: {
+          DEFAULT: "hsl(var(--gold))",
+          soft: "hsl(var(--gold-soft))",
+        },
         // Elevation scale — replaces ad-hoc bg-[#0d0d0d] / bg-[#111111].
         surface: {
           1: "hsl(var(--surface-1))",

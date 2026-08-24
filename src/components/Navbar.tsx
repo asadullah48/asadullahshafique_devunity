@@ -25,6 +25,7 @@ const Navbar = () => {
     { key: "about",        name: t("nav.about"),        href: "#about"        },
     { key: "skills",       name: t("nav.skills"),       href: "#skills"       },
     { key: "agentEng",     name: t("nav.agentEng"),     href: "#agent-engineering" },
+    { key: "expertise",    name: t("nav.expertise"),    href: "#expertise"    },
     { key: "roadmap",      name: t("nav.roadmap"),      href: "#roadmap"      },
     { key: "projects",     name: t("nav.projects"),     href: "#projects"     },
     { key: "hackathons",   name: t("nav.hackathons"),   href: "#hackathons"   },

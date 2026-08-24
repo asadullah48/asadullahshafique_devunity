@@ -5,7 +5,8 @@
     "industries": "Industries",
     "skills": "Skills",
     "agentEng": "Agent Eng",
-    "roadmap": "Expertise",
+    "expertise": "Expertise",
+    "roadmap": "Learning Path",
     "projects": "Projects",
     "hackathons": "Hackathons",
     "blog": "Blog",
@@ -207,6 +208,13 @@
     "i3Title": "Pakistani SMEs & Factories",
     "i3Sub": "Small and medium enterprises across Pakistan",
     "i3Desc": "AI tools, digital marketing, and SaaS solutions tailored for Pakistani businesses entering the digital economy."
+  },
+  "expertise": {
+    "title": "Expertise &",
+    "titleHighlight": "Use Cases",
+    "subtitle": "Five capabilities running in production. Each one names the code that proves it.",
+    "applyTitle": "Where this applies",
+    "applyNote": "Sectors these systems are built for. Delivered work is under Projects."
   },
   "projects": {
     "title": "Featured",

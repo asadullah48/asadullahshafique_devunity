@@ -5,6 +5,7 @@ import Services from "@/components/Services";
 import Industries from "@/components/Industries";
 import Skills from "@/components/Skills";
 import AgentEngineering from "@/components/AgentEngineering";
+import ExpertiseGrid from "@/components/ExpertiseGrid";
 import Roadmap from "@/components/Roadmap";
 import Projects from "@/components/Projects";
 import Hackathons from "@/components/Hackathons";
@@ -62,6 +63,8 @@ export default function Home() {
             <About />
             <Skills />
             <AgentEngineering />
+            {/* Applied capability follows the methodology that produced it. */}
+            <ExpertiseGrid />
             <Roadmap />
             <Projects />
             <Hackathons />
