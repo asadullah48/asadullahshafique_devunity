@@ -592,3 +592,135 @@
     font-family: var(--font-arabic), system-ui, sans-serif;
   }
 }
+
+@layer components {
+  /* ── Article prose ──────────────────────────────────────────────────────
+     Styles the HTML that `marked` produces in src/lib/content.ts. Written with
+     LOGICAL properties (padding-inline-start, border-inline-start, text-align:
+     start) rather than left/right, so the same rules serve the English article
+     and its RTL Arabic twin with no locale-specific overrides. Adding a
+     `left`/`right` here would silently break one of the two directions. */
+
+  .article-prose {
+    color: hsl(var(--foreground));
+    line-height: 1.8;
+    font-size: 1.0625rem;
+  }
+
+  .article-prose > * + * { margin-block-start: 1.25em; }
+
+  .article-prose h2 {
+    margin-block-start: 2.5em;
+    margin-block-end: 0.75em;
+    font-size: 1.5rem;
+    font-weight: 700;
+    line-height: 1.35;
+    color: hsl(var(--foreground));
+  }
+
+  .article-prose h3 {
+    margin-block-start: 2em;
+    margin-block-end: 0.6em;
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: hsl(var(--foreground));
+  }
+
+  .article-prose p { color: hsl(var(--foreground) / 0.88); }
+
+  .article-prose strong { color: hsl(var(--foreground)); font-weight: 650; }
+
+  .article-prose a {
+    color: hsl(var(--brand-soft));
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    text-decoration-color: hsl(var(--brand) / 0.4);
+  }
+  .article-prose a:hover { text-decoration-color: hsl(var(--brand)); }
+
+  .article-prose ul,
+  .article-prose ol {
+    padding-inline-start: 1.5em;
+    color: hsl(var(--foreground) / 0.88);
+  }
+  .article-prose ul { list-style: disc; }
+  .article-prose ol { list-style: decimal; }
+  .article-prose li { margin-block: 0.4em; }
+  .article-prose li::marker { color: hsl(var(--brand) / 0.65); }
+
+  /* The accent bar sits on the INLINE START edge, so it lands on the left in
+     English and the right in Arabic without a second rule. */
+  .article-prose blockquote {
+    border-inline-start: 2px solid hsl(var(--brand) / 0.5);
+    padding-inline-start: 1.15em;
+    color: hsl(var(--muted-foreground));
+    font-style: italic;
+  }
+  .article-prose blockquote strong { color: hsl(var(--brand-soft)); }
+
+  /* Code is force-fed dir="ltr" by the renderer; these rules make sure the
+     TEXT ALIGNMENT agrees. Inheriting `text-align: right` inside an RTL
+     article would right-align a left-to-right code block — technically
+     readable, but it destroys the visual shape of indented Python. */
+  .article-prose .article-code {
+    direction: ltr;
+    text-align: left;
+    background: hsl(var(--surface-2));
+    border: 1px solid hsl(var(--border));
+    border-radius: 0.6rem;
+    padding: 1em 1.15em;
+    overflow-x: auto;
+    font-size: 0.875rem;
+    line-height: 1.65;
+  }
+  .article-prose .article-code code { color: hsl(var(--foreground) / 0.92); }
+
+  /* `unicode-bidi: isolate` is what stops a token like `stateless_http=True`
+     from having its `=` yanked across the line when it sits mid-sentence in
+     Arabic prose. Without it, inline code in RTL text visibly scrambles. */
+  .article-prose .article-codespan {
+    direction: ltr;
+    unicode-bidi: isolate;
+    background: hsl(var(--surface-3));
+    border: 1px solid hsl(var(--border));
+    border-radius: 0.35rem;
+    padding: 0.1em 0.4em;
+    font-size: 0.875em;
+    color: hsl(var(--brand-soft));
+  }
+
+  /* The WRAPPER scrolls, never the page body. A wide comparison table is the
+     usual cause of horizontal scroll on mobile. */
+  .article-prose .article-table-wrap {
+    overflow-x: auto;
+    border: 1px solid hsl(var(--border));
+    border-radius: 0.6rem;
+  }
+  .article-prose table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.9375rem;
+  }
+  .article-prose th,
+  .article-prose td {
+    padding: 0.65em 0.9em;
+    border-block-end: 1px solid hsl(var(--border));
+    /* `start` resolves to left in LTR and right in RTL. */
+    text-align: start;
+    vertical-align: top;
+  }
+  .article-prose thead th {
+    background: hsl(var(--surface-2));
+    color: hsl(var(--foreground));
+    font-weight: 600;
+    white-space: nowrap;
+  }
+  .article-prose tbody tr:last-child td { border-block-end: none; }
+  .article-prose td { color: hsl(var(--foreground) / 0.85); }
+
+  .article-prose hr {
+    border: none;
+    border-block-start: 1px solid hsl(var(--border));
+    margin-block: 2.5em;
+  }
+}

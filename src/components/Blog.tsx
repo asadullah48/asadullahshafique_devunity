@@ -80,7 +80,18 @@ const POSTS_AR: Post[] = [
   },
 ];
 
-function PostCard({ post, readArticleLabel }: { post: Post; readArticleLabel: string }) {
+function PostCard({
+  post,
+  readArticleLabel,
+  basePath,
+}: {
+  post: Post;
+  readArticleLabel: string;
+  /** "" for English, "/ar" for Arabic. The URL is the only source of locale
+   *  (see LocaleContext), so an Arabic card must link to an Arabic URL —
+   *  linking to /blog/... would drop the reader back into English. */
+  basePath: string;
+}) {
   return (
     <Reveal as="article"
       className="group relative bg-surface-2 border border-white/8 rounded-2xl overflow-hidden hover:border-brand/30 transition-all duration-300 cursor-pointer flex flex-col"
@@ -129,7 +140,7 @@ function PostCard({ post, readArticleLabel }: { post: Post; readArticleLabel: st
         </div>
 
         <a
-          href={`/blog/${post.slug}`}
+          href={`${basePath}/blog/${post.slug}`}
           className="flex items-center gap-2 text-sm font-medium transition-all duration-200 group/link w-fit"
           style={{ color: post.accentColor }}
         >
@@ -163,7 +174,12 @@ export function BlogSection() {
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           {posts.map((post) => (
-            <PostCard key={post.slug} post={post} readArticleLabel={t("blog.readArticle")} />
+            <PostCard
+              key={post.slug}
+              post={post}
+              readArticleLabel={t("blog.readArticle")}
+              basePath={locale === "ar" ? "/ar" : ""}
+            />
           ))}
         </div>
 
