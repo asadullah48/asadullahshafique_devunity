@@ -53,6 +53,7 @@ stated as sector focus and target markets, not as completed client engagements.
 - Safety: Constitutional AI — five written principles enforced as guardrails on the orchestrator
 - Quality: an eval suite pairing deterministic tool/route checks with LLM-as-judge scoring
 - Track record: six consecutive Panaversity hackathons, H0 through H5 (Bronze → Silver → Silver → Gold → Platinum → Agent Factory). H3, the Gold round, shipped a triple-layer constitutional AI system with 149 tests passing — the origin of the guardrail work above.
+- Open-source scale: 480+ public repositories and 135 followers on GitHub (481 repos measured 2026-08-24). Live counts are served from /api/github/stats.
 - Arabic version: https://asadullahshafique-devunity.vercel.app/ar
 - Machine-readable Arabic profile: https://asadullahshafique-devunity.vercel.app/llms-ar.txt
 - GitHub: https://github.com/asadullah48

@@ -307,7 +307,9 @@ export function HeroSection() {
 
   const STATS = useMemo(
     () => [
-      { target: 467, suffix: "+", label: t("hero.stats.repos") },
+      // 481 public repos measured 2026-08-24; shown as 480+ so the figure
+      // stays true as the count grows rather than going stale downward.
+      { target: 480, suffix: "+", label: t("hero.stats.repos") },
       { target: 6, suffix: "", label: t("hero.stats.hackathons") },
       { target: 85, suffix: "%", label: t("hero.stats.codeReuse") },
       { target: 149, suffix: "+", label: t("hero.stats.tests") },
