@@ -172,7 +172,10 @@
       "Bash(ORCHESTRATOR_MODEL=gemini/gemini-2.5-flash timeout 90 python -c ' *)",
       "Bash(npx --no-install vercel --prod --yes)",
       "Bash(npx --no-install vercel ls)",
-      "mcp__obsidian-mcp__obsidian_simple_search"
+      "mcp__obsidian-mcp__obsidian_simple_search",
+      "Bash(NODE_PATH=\"D:/GitHub/asadullahshafique_devunity/node_modules\" node *)",
+      "PowerShell(foreach \\($p in 3000,3737\\) { try { Get-NetTCPConnection -LocalPort $p -State Listen -ErrorAction Stop | Select-Object -ExpandProperty OwningProcess -Unique | ForEach-Object { Stop-Process -Id $_ -Force -ErrorAction SilentlyContinue; \"killed pid $_ on $p\" } } catch { \"nothing listening on $p\" } })",
+      "PowerShell(try { Get-NetTCPConnection -LocalPort 3000 -State Listen -ErrorAction Stop | Select-Object -ExpandProperty OwningProcess -Unique | ForEach-Object { Stop-Process -Id $_ -Force -ErrorAction SilentlyContinue; \"killed pid $_\" } } catch { \"nothing listening on 3000\" })"
     ]
   }
 }
