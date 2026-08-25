@@ -26,6 +26,18 @@ const AgentStatusRail = dynamic(() => import("@/components/AgentStatusRail"), {
   ),
 });
 
+/**
+ * Same lazy/client-only treatment as the rail above, for the same reasons: it
+ * renders nothing but placeholders until a fetch resolves, and Footer is
+ * statically imported by five pages.
+ */
+const AgentActivityLog = dynamic(() => import("@/components/AgentActivityLog"), {
+  ssr: false,
+  loading: () => (
+    <div className="h-[208px] rounded-panel border border-border bg-surface-1/60" />
+  ),
+});
+
 const Footer = () => {
   const { t } = useLocale();
   const currentYear = new Date().getFullYear();
@@ -118,10 +130,16 @@ const Footer = () => {
           </div>
         </div>
 
-        {/* Agent Status Dashboard. Sits above the copyright rule so it reads
-            as instrumentation belonging to the site, not as another link
-            column. Every value in it is measured, never simulated. */}
-        <div className="mt-12">
+        {/* Instrumentation block: the control-plane log, then the measured
+            readouts. Sits above the copyright rule so it reads as belonging to
+            the site, not as another link column.
+
+            BOTH are real. The log streams /api/agent/info and the rail probes
+            /api/health. Neither may ever be given a scripted list of pretend
+            jobs — on a portfolio claiming agent engineering, a fabricated
+            status panel is the single worst detail to be caught inventing. */}
+        <div className="mt-12 space-y-4">
+          <AgentActivityLog />
           <AgentStatusRail />
         </div>
 
