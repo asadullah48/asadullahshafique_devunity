@@ -14,7 +14,7 @@ This repo is the flagship artifact behind a public claim: *Agentic AI engineer, 
 | Site / README claims | Repository reality |
 | --- | --- |
 | ~~"OpenAI Agents SDK, MCP servers, Constitutional AI"~~ | **RESOLVED.** Agents SDK: real (`backend/orchestration/`). MCP: real (`/mcp/server`). Constitutional AI: real (`backend/constitution/`) — a written constitution enforced as SDK guardrails, verified blocking 4/4 violations with no model reachable. |
-| "Munshi AI — 5 read-only tools, constitutionally guarded" | `backend/agent.py:98` → `TOOLS = [get_portfolio_info]`. One tool. Not in this repo. |
+| ~~"Munshi AI — 5 read-only tools, constitutionally guarded"~~ | **RESOLVED — verified 2026-08-25, by reading the other repo.** Munshi belongs to **AI TradeFlow** (`github.com/asadullah48/ai-tradeflow`, public), not here. Verified there: `backend/app/agent/tools.py` defines exactly five read-only tools (`get_sales_velocity`, `get_stock_status`, `get_receivables_aging`, `get_profit_summary`, `get_party_statement`); `munshi_agent.py` registers five `@function_tool`s behind an SDK `InputGuardrail`; `constitution.py` is a deterministic compiled-regex screen — its own docstring says *"NOT an LLM judgment call"* — run against the raw question before any model call, with 10 tests in `test_constitution.py`. The old entry cited `backend/agent.py` as disproof; that is THIS repo's portfolio chatbot, an unrelated agent, so it was never evidence either way. |
 | ~~README: "LangGraph AI agents (4 agents)"~~ | **RESOLVED — Phase 3.** There are now four real specialist agents plus a triage orchestrator, on the Agents SDK, with handoffs and typed shared state. The old LangGraph graph and the prompt-function trio survive as fallback rungs. |
 | ~~`mcp_server.py` is not a real MCP server~~ | **RESOLVED — Phase 2.** `portfolio_mcp` is a real `FastMCP` server on the official SDK, mounted at `/mcp/server` over Streamable HTTP. Verified with a live client: `initialize` → `tools/list` (6 tools) → `tools/call`, protocol `2025-11-25`. The `/mcp/*` REST paths remain a shim and are still not MCP. |
 | ~~Split-brain portfolio facts across three diverged copies~~ | **RESOLVED — Phase 1.** All three consumers now read `backend/knowledge/portfolio.json`. See §2. |
@@ -22,6 +22,11 @@ This repo is the flagship artifact behind a public claim: *Agentic AI engineer, 
 **The Reality Rule — the highest-priority instruction in this file.** Never write a capability claim the repo cannot demonstrate on
 request. When asked to add agentic language to copy, README, or docstrings, first confirm the code exists. If it does not, say so and
 offer to build it. A portfolio that overstates its own substrate fails the exact audit it is meant to pass.
+
+**A claim about a *different* product is checkable, not exempt.** The Munshi row above sat unresolved for months
+because "not in this repo" was treated as the end of the enquiry. It is the beginning of one: name the repo and
+read it. And cite evidence that could actually settle the claim — the old row pointed at an unrelated agent in
+this tree, which could neither prove nor disprove anything about Munshi.
 
 ---
 
