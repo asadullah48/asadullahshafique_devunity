@@ -2,9 +2,34 @@
 
 import React, { useState } from "react";
 import { Reveal } from "@/components/Reveal";
-import { Mail, Send, CheckCircle, AlertCircle, MessageCircle } from "lucide-react";
+import {
+  Mail,
+  Send,
+  CheckCircle,
+  AlertCircle,
+  MessageCircle,
+  ClipboardCheck,
+  Plug,
+  Boxes,
+} from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useLocale } from "@/context/LocaleContext";
+
+/**
+ * Engagement types. Ids map to i18n keys (contact.e1Title, e1For, e1Desc,
+ * e1Proof and so on) so prose stays in the locale files and only the
+ * locale-agnostic axis lives here.
+ *
+ * Icons deliberately reuse ExpertiseGrid's vocabulary — Plug for MCP, Boxes
+ * for cloud — so the same concept wears the same glyph across the site.
+ */
+const ENGAGEMENTS = [
+  { id: "e1", Icon: ClipboardCheck },
+  { id: "e2", Icon: Plug },
+  { id: "e3", Icon: Boxes },
+] as const;
+
+const AFFILIATIONS = [{ id: "aff1" }, { id: "aff2" }] as const;
 
 const Contact = () => {
   const { t } = useLocale();
@@ -52,7 +77,7 @@ const Contact = () => {
         <Reveal
           className="text-center mb-16"
         >
-          <div className="text-xs font-mono text-green-400/60 uppercase tracking-widest mb-3">
+          <div dir="ltr" className="text-xs font-mono text-brand/60 uppercase tracking-widest mb-3">
             {"// contact"}
           </div>
           <h2 className="text-3xl md:text-5xl font-bold text-foreground mb-4">
@@ -61,6 +86,79 @@ const Contact = () => {
           <div className="w-20 h-1 bg-brand mx-auto rounded-full mb-6" />
           <p className="text-muted-foreground max-w-xl mx-auto">
             {t("contact.subheadline")}
+          </p>
+        </Reveal>
+
+        {/* Engagement types. The proof line is gold for the same reason it is
+            gold in ExpertiseGrid: across this site gold means "here is what backs
+            this". A service offer without a path behind it is just a brochure. */}
+        <Reveal className="text-center mb-10">
+          <h3 className="font-display text-2xl lg:text-3xl font-semibold text-foreground mb-3">
+            {t("contact.engageTitle")}
+          </h3>
+          <p className="text-muted-foreground/80 text-sm max-w-2xl mx-auto">
+            {t("contact.engageSubtitle")}
+          </p>
+        </Reveal>
+
+        <div className="grid gap-6 md:grid-cols-3 max-w-5xl mx-auto mb-12">
+          {ENGAGEMENTS.map((e, index) => (
+            <Reveal
+              key={e.id}
+              step={index}
+              className="group flex flex-col bg-surface-2 border border-white/8 rounded-2xl p-6 transition-all duration-300 hover:border-brand/20"
+            >
+              <e.Icon className="w-8 h-8 text-brand-soft mb-4 transition-transform duration-300 group-hover:scale-110" />
+              <h4 className="font-display text-base font-semibold text-foreground mb-1">
+                {t(`contact.${e.id}Title`)}
+              </h4>
+              <p className="text-brand text-xs font-medium mb-3">
+                {t(`contact.${e.id}For`)}
+              </p>
+              <p className="text-muted-foreground text-sm leading-relaxed flex-grow">
+                {t(`contact.${e.id}Desc`)}
+              </p>
+              <div className="mt-5 pt-4 border-t border-gold/15">
+                <span
+                  dir="ltr"
+                  className="block font-mono text-[11px] text-gold/70 truncate"
+                  title={t(`contact.${e.id}Proof`)}
+                >
+                  {"└ "}
+                  {t(`contact.${e.id}Proof`)}
+                </span>
+              </div>
+            </Reveal>
+          ))}
+        </div>
+
+        {/* Affiliations, deliberately NOT "Trusted by". Panaversity is a
+            programme I am a student on and Texcot House is my own company —
+            neither is a client. A heading implying endorsement would be the
+            easiest claim on this page to check and disbelieve, and the
+            constitution this site ships names no-fabricated-credentials as a
+            principle. If real clients land, they get their own section. */}
+        <Reveal className="max-w-5xl mx-auto mb-20 text-center">
+          <div
+            dir="ltr"
+            className="text-eyebrow font-mono text-muted-foreground/50 uppercase tracking-[0.16em] mb-4"
+          >
+            {t("contact.affiliationsTitle")}
+          </div>
+          <div className="flex flex-wrap items-start justify-center gap-x-12 gap-y-4">
+            {AFFILIATIONS.map((a) => (
+              <div key={a.id}>
+                <p className="text-sm font-semibold text-foreground/80">
+                  {t(`contact.${a.id}`)}
+                </p>
+                <p className="text-xs text-muted-foreground/70 mt-0.5">
+                  {t(`contact.${a.id}Role`)}
+                </p>
+              </div>
+            ))}
+          </div>
+          <p className="text-[11px] text-muted-foreground/50 mt-5">
+            {t("contact.affiliationsNote")}
           </p>
         </Reveal>
 
