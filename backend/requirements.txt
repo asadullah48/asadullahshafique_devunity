@@ -1,6 +1,9 @@
 fastapi==0.115.5
 uvicorn[standard]==0.32.1
-pydantic[email]==2.10.3
+# Floor is set by mcp, which requires >=2.11.0 — an exact pin below that
+# made pip unresolvable and silently broke every Render deploy while the
+# last good image kept serving. Keep this compatible with mcp's floor.
+pydantic[email]==2.12.4
 httpx==0.28.1
 python-dotenv==1.0.1
 python-multipart==0.0.20
@@ -11,13 +14,22 @@ langchain-anthropic>=0.3.0
 # MCP (Model Context Protocol) — the real server in mcp_server.py.
 # Not optional: main.py imports portfolio_mcp at module scope and mounts it,
 # so a missing wheel is an import-time crash, not a degraded feature.
-mcp>=1.26.0
+# UPPER BOUND IS LOAD-BEARING. mcp 2.x removed mcp.server.fastmcp, so an
+# unbounded >=1.26.0 resolved to 2.1.0 and main.py died at import with
+# ModuleNotFoundError before serving a single request — while Render kept
+# serving the last good image, so the site looked fine. Verified: 1.26.0
+# boots and answers /mcp/server. Do not widen past <2.0.0 without
+# rebuilding the image and booting it.
+mcp==1.26.0
 # OpenAI Agents SDK — the orchestrator and specialists in orchestration/.
 # The [litellm] extra is what lets the SDK drive Claude and Gemini; without it
 # runtime.py silently skips the Claude path and falls back to OpenAI.
 # NOTE: this wheel installs a TOP-LEVEL module named `agents`. Never create
 # backend/agents/ — it would shadow the SDK. See orchestration/__init__.py.
-openai-agents[litellm]>=0.10.2
+openai-agents[litellm]==0.10.2
+# litellm is deliberately NOT pinned here. It arrives via the [litellm]
+# extra, which already constrains it (0.10.2 requires >=1.81.0,<2) — an
+# explicit pin only ever contradicts that range.
 # Database
 sqlalchemy==2.0.23
 alembic==1.13.0
