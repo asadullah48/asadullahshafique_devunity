@@ -44,5 +44,16 @@ EXPOSE ${PORT}
 HEALTHCHECK --interval=30s --timeout=10s --start-period=5s --retries=3 \
     CMD curl -f http://localhost:${PORT}/health || exit 1
 
-# Start the application
-CMD uvicorn main:app --host 0.0.0.0 --port ${PORT} --workers 2
+# Start the application.
+#
+# ONE worker, deliberately. Render's free tier gives 512MB and 0.1 CPU. The
+# import graph here (langgraph + litellm + Agents SDK + MCP) costs ~270MB
+# per process, so two workers measured 404MB idle with a key set and the
+# service restarted intermittently under load — every endpoint dropping
+# together, then recovering. A second worker also buys nothing on 0.1 CPU,
+# where the two can never run in parallel.
+#
+# mcp_server.py keeps stateless_http=True regardless. It is what makes this
+# safe to scale back up, and turning it off because there is only one worker
+# today would plant the bug for whoever raises this number tomorrow.
+CMD uvicorn main:app --host 0.0.0.0 --port ${PORT} --workers 1

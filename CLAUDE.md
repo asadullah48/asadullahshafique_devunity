@@ -301,7 +301,9 @@ be an MCP tool the orchestrator calls.
 
 Two settings on `portfolio_mcp` are load-bearing:
 
-- **`stateless_http=True`** — `backend/Dockerfile:48` runs `uvicorn --workers 2`. Streamable HTTP session state is in-process, so
+- **`stateless_http=True`** — `backend/Dockerfile` now runs `uvicorn --workers 1` (dropped from 2: two copies of the
+  langgraph + litellm + Agents SDK import graph measured 404MB against Render's 512MB free tier and the service
+  restarted intermittently). **Keep this setting on anyway.** Streamable HTTP session state is in-process, so
   with two workers and no sticky routing a client could `initialize` on one worker and have the next request hit the other.
   Turning this off requires a shared `EventStore` or sticky sessions at the load balancer.
 - **`streamable_http_path="/"`** — the app is mounted *at* `/mcp/server`, so its internal route is the root. Both `/mcp/server`
