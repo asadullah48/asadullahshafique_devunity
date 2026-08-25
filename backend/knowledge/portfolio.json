@@ -66,6 +66,13 @@
 
   "projects": [
     {
+      "name": "FinAgent-Nexus",
+      "status": "flagship",
+      "summary": "Multi-agent financial intelligence for wealth management: Plan-Act-Verify orchestration with Constitutional AI compliance review, deterministic Shari'ah and regulatory screening, and a hash-chained audit trail. Public on GitHub under MIT with a live interactive compliance screener.",
+      "metrics": ["sub-2ms compliance screen with zero model calls", "8 of 14 principles settled by arithmetic", "94 tests passing offline with no API key"],
+      "tech": ["LangGraph", "Anthropic Claude", "Python", "Pydantic", "Vercel"]
+    },
+    {
       "name": "Bazaar",
       "status": "flagship",
       "summary": "Pakistan's first unified marketplace with a dual B2C retail storefront and a B2B wholesale/RFQ engine.",

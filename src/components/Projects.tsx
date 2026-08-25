@@ -3,10 +3,10 @@
 import { useState, type MouseEvent } from "react";
 import Image from "next/image";
 import { Reveal } from "@/components/Reveal";
-import { Github, ExternalLink, ChevronDown, ChevronUp, Zap, Star, Clock, ShoppingBag, Terminal, LayoutGrid } from "lucide-react";
+import { Github, ExternalLink, ChevronDown, ChevronUp, Zap, Star, Clock, ShoppingBag, ShieldCheck, Terminal, LayoutGrid } from "lucide-react";
 import { useLocale } from "@/context/LocaleContext";
 
-type ProjectStatus = "Featured" | "In Development" | "Completed" | "Research" | "Flagship";
+type ProjectStatus = "Featured" | "In Development" | "Completed" | "Research" | "Flagship" | "Enterprise Grade";
 
 /**
  * Status is a SEMANTIC role, not a colour. Each status resolves to tokens via
@@ -34,6 +34,25 @@ type Project = {
 };
 
 const PROJECTS_EN: Project[] = [
+  {
+    id: "finagent-nexus",
+    title: "FinAgent-Nexus: Multi-Agent Financial Intelligence",
+    status: "Enterprise Grade",
+    tagline: "Agentic AI adoption for financial services",
+    problem: "Most agentic pilots in financial services die at the compliance review, not because the models are weak, but because a system that cannot show why it reached a conclusion cannot be signed off by a second line of defence. A control a model can argue its way past is not a control.",
+    solution: "Three specialised agents, MarketAnalyst, ComplianceOfficer and WealthStrategist, on a fixed Plan-Act-Verify state machine rather than a conversation. Compliance is structural: no agent holds two of the three powers (market data, setting weights, rendering the verdict), and there is deliberately no graph edge from drafting a recommendation to approving one, so verification cannot be skipped under load or disabled by a flag. Shari'ah and regulatory principles live in a versioned constitution reviewed like code, and anything expressible as arithmetic is settled in Python with no model involved.",
+    impact: "A full compliance screen runs in under 2ms with zero model calls, settling 8 of 14 principles by arithmetic, reproducible offline at no marginal cost. Every run writes a hash-chained, tamper-evident audit trail. 94 tests pass with no API key and no network, and the screening engine is deployed live and interactive, so every figure here can be checked in one click.",
+    description: "An autonomous multi-agent system automating wealth management research and Sharia-compliant regulatory checks.",
+    tech: ["LangGraph", "Anthropic Claude", "Constitutional AI", "Python 3.12", "Pydantic", "pytest", "Vercel"],
+    github: "https://github.com/asadullah48/finagent-nexus",
+    demo: "https://finagent-nexus.vercel.app",
+    metrics: [
+      { label: "Compliance Screen", value: "<2ms" },
+      { label: "Model Calls",       value: "0"    },
+      { label: "Tests",             value: "94"   },
+    ],
+    isNew: true,
+  },
   {
     id: "bazaar",
     title: "Bazaar: Unified B2B + B2C Marketplace",
@@ -158,6 +177,25 @@ const PROJECTS_EN: Project[] = [
 
 const PROJECTS_AR: Project[] = [
   {
+    id: "finagent-nexus",
+    title: "فِن-إيجنت نكسس: ذكاء مالي متعدد الوكلاء",
+    status: "Enterprise Grade",
+    tagline: "تبنّي الذكاء الاصطناعي الوكيل في الخدمات المالية",
+    problem: "تتعثّر معظم مشاريع الذكاء الاصطناعي الوكيل في القطاع المالي عند مرحلة المراجعة الرقابية، لا لضعف النماذج، بل لأن النظام الذي يعجز عن تبرير كيفية وصوله إلى نتيجته لا يمكن اعتماده من خط الدفاع الثاني. والضابط الذي يستطيع النموذج تجاوزه بالحجّة ليس ضابطًا.",
+    solution: "ثلاثة وكلاء متخصصين، هم محلل السوق ومسؤول الالتزام ومخطط الثروات، يعملون ضمن آلة حالات ثابتة قوامها التخطيط ثم التنفيذ ثم التحقّق، لا حوار مفتوح. والالتزام هنا خاصية بنيوية: لا يجمع أي وكيل بين اثنتين من الصلاحيات الثلاث، وهي بيانات السوق وتحديد الأوزان وإصدار الحكم، ولا يوجد مسار في الرسم البياني ينقل التوصية من الصياغة إلى الاعتماد مباشرة، فلا سبيل إلى تخطّي التحقّق. وتُحفظ مبادئ الشريعة والتنظيم في دستور مُوثّق يُراجَع كما تُراجَع الشيفرة، وكل ما يمكن التعبير عنه حسابيًا يُحسم في بايثون دون تدخّل أي نموذج.",
+    impact: "يتم الفحص الرقابي الكامل في أقل من ملي ثانيتين ودون أي استدعاء للنموذج، محسومًا فيه 8 من أصل 14 مبدأً بالحساب المجرّد، وبصورة قابلة لإعادة الإنتاج دون اتصال وبتكلفة حدية معدومة. ويُسجَّل لكل تشغيل أثر تدقيق مُسلسل بالتجزئة يكشف أي عبث. وتنجح 94 اختبارًا دون مفتاح واجهة برمجية ودون اتصال بالشبكة، ومحرّك الفحص منشور ومتاح للتجربة مباشرةً، فكل رقم هنا قابل للتحقق بنقرة واحدة.",
+    description: "نظام وكلاء ذكاء اصطناعي مستقل لأتمتة أبحاث إدارة الثروات والتدقيق الرقابي المتوافق مع الشريعة.",
+    tech: ["LangGraph", "Anthropic Claude", "Constitutional AI", "Python 3.12", "Pydantic", "pytest", "Vercel"],
+    github: "https://github.com/asadullah48/finagent-nexus",
+    demo: "https://finagent-nexus.vercel.app",
+    metrics: [
+      { label: "زمن الفحص الرقابي", value: "<2ms" },
+      { label: "استدعاءات النموذج", value: "0"    },
+      { label: "الاختبارات",        value: "94"   },
+    ],
+    isNew: true,
+  },
+  {
     id: "bazaar",
     title: "بازار: سوق B2B + B2C الموحد",
     status: "Flagship",
@@ -280,6 +318,7 @@ const PROJECTS_AR: Project[] = [
 ];
 
 const STATUS_ICONS: Record<ProjectStatus, React.ReactNode> = {
+  "Enterprise Grade": <ShieldCheck className="w-3 h-3" />,
   Flagship:         <ShoppingBag className="w-3 h-3" />,
   Featured:         <Star className="w-3 h-3" />,
   "In Development": <Clock className="w-3 h-3" />,
@@ -301,6 +340,14 @@ type StatusTone = {
 };
 
 const STATUS_TOKENS: Record<ProjectStatus, StatusTone> = {
+  // Peer of Flagship at the top tier: same full-brand intensity, distinguished
+  // by icon and label rather than by a second accent hue.
+  "Enterprise Grade": {
+    badge:  "bg-brand/15 text-brand border-brand/40",
+    accent: "text-brand",
+    card:   "border-brand/25 hover:border-brand/50",
+    rule:   "via-brand/70",
+  },
   Flagship: {
     badge:  "bg-brand/15 text-brand border-brand/40",
     accent: "text-brand",
@@ -596,6 +643,7 @@ export function ProjectsSection() {
     solution: t("projects.solution"),
     impact: t("projects.impact"),
     Flagship: t("projects.flagship"),
+    "Enterprise Grade": t("projects.enterpriseGrade"),
     // Hardcoded English, matching the status labels below rather than
     // `t()`: these keys do not exist in the locale files yet, and a missing
     // key renders the raw key string into the card.
