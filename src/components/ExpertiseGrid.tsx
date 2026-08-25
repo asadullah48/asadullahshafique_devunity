@@ -7,8 +7,8 @@ import {
   Plug,
   Languages,
   Banknote,
+  Factory,
   Landmark,
-  Ship,
   type LucideIcon,
 } from "lucide-react";
 import { Reveal } from "@/components/Reveal";
@@ -21,10 +21,16 @@ import { useLocale } from "@/context/LocaleContext";
  * closes with a gold hairline and the path that proves it, so a claim and its
  * evidence travel together.
  *
- * Band B is target sectors. Those cards carry a dashed border and deliberately
- * carry NO evidence stamp — the absence is the honest signal that nothing has
- * shipped there yet. Do not add a stamp to a Band B card to make it look
- * stronger; move the card up to Band A once the code exists, or leave it.
+ * Band B is the business framing of that same substrate — three verticals the
+ * machinery is built for. These cards are deliberately the most premium thing
+ * on the page (gold-edged glass), which creates an obvious hazard: an unshipped
+ * sector card out-ranking a card that has code behind it. The `substrate` field
+ * is what stops that. Gold means exactly one thing across BOTH bands — here is
+ * what backs this — and a Band B card points at an in-repo primitive, never at
+ * a delivered client engagement.
+ *
+ * So: never put a customer name, a logo, or a metric on a Band B card. If the
+ * work ships, it belongs under Projects. If the substrate moves, fix the path.
  */
 
 type Capability = {
@@ -82,10 +88,37 @@ const CAPABILITIES: Capability[] = [
   },
 ];
 
-const VERTICALS: { id: string; Icon: LucideIcon }[] = [
-  { id: "finance", Icon: Banknote },
-  { id: "government", Icon: Landmark },
-  { id: "logistics", Icon: Ship },
+type Solution = {
+  id: string;
+  Icon: LucideIcon;
+  /** Capability names and proper nouns — never translated. */
+  tags: string[];
+  /**
+   * The in-repo primitive this vertical is built ON — not a delivered
+   * engagement. Rendered dir="ltr" so Arabic bidi cannot reorder the path.
+   */
+  substrate: string;
+};
+
+const SOLUTIONS: Solution[] = [
+  {
+    id: "finance",
+    Icon: Banknote,
+    tags: ["Auditable traces", "KYC intake", "Policy guardrails"],
+    substrate: "backend/constitution/principles.json",
+  },
+  {
+    id: "industry",
+    Icon: Factory,
+    tags: ["Supply-chain reasoning", "Inventory reordering", "Textile ERP"],
+    substrate: "backend/orchestration/",
+  },
+  {
+    id: "government",
+    Icon: Landmark,
+    tags: ["MCP", "On-premise", "Read-only by default"],
+    substrate: "/mcp/server",
+  },
 ];
 
 type Entry = { title: string; desc: string };
@@ -115,16 +148,16 @@ const COPY: Record<"en" | "ar", Record<string, Entry>> = {
       desc: "Bilingual from the routing layer up: a canonical Arabic URL, RTL-aware typography, and agents that answer in the language they were asked in.",
     },
     finance: {
-      title: "Finance & Wealth",
-      desc: "Policy-constrained advisory, document-heavy onboarding, and decisions that stay auditable. The guardrail layer above is the substrate this sector actually requires.",
+      title: "Financial & Wealth Agents",
+      desc: "Advice that has to survive an audit. Every run records its route and its tool calls, so an answer can be replayed rather than defended from memory. Suitability, disclosure and Sharia-compliance rules belong in a written constitution — screened deterministically before any model is reached — and KYC intake is the same document problem read under the same constraints.",
+    },
+    industry: {
+      title: "Industrial ERP Agents",
+      desc: "Built on years inside Pakistan's textile value chain — fabric mills, CMT stitching units, exporters — where reordering is still a spreadsheet and a phone call. The orchestration layer is what turns that into reasoning: a specialist that reads stock, lead times and open orders, proposes the reorder, and hands off instead of guessing. The ERP itself is a separate product, launching 2026.",
     },
     government: {
       title: "Government & Enterprise",
-      desc: "Large document estates served through an MCP server, so an agent reads institutional data in place without it leaving the perimeter.",
-    },
-    logistics: {
-      title: "Logistics & Procurement",
-      desc: "Sourcing, inspection and supplier workflows — the domain I ran by hand as a buying agent before there was anything to automate it with.",
+      desc: "Institutional archives that cannot be uploaded anywhere. An MCP server exposes the documents as tools and runs inside the perimeter, so the agent reads the estate in place and the data never moves. Read-only is the default; a write-capable tool needs a stated reason.",
     },
   },
   ar: {
@@ -149,16 +182,16 @@ const COPY: Record<"en" | "ar", Record<string, Entry>> = {
       desc: "ثنائي اللغة من طبقة التوجيه صعوداً: رابط عربي أساسي، وطباعة تراعي الاتجاه من اليمين إلى اليسار، ووكلاء يجيبون باللغة التي سُئلوا بها.",
     },
     finance: {
-      title: "التمويل والثروات",
-      desc: "استشارات مقيّدة بالسياسات، وإجراءات تعريف كثيفة المستندات، وقرارات تبقى قابلة للتدقيق. طبقة الحواجز أعلاه هي الأساس الذي يتطلبه هذا القطاع فعلاً.",
+      title: "وكلاء التمويل وإدارة الثروات",
+      desc: "استشارات لا بد أن تصمد أمام التدقيق. كل تشغيل يسجّل مساره واستدعاءات أدواته، فيمكن إعادة تشغيل أي إجابة بدل الدفاع عنها من الذاكرة. وقواعد الملاءمة والإفصاح والامتثال لأحكام الشريعة مكانها دستور مكتوب يُفحص فحصاً حتمياً قبل الوصول إلى أي نموذج، وإجراءات «اعرف عميلك» هي المسألة المستندية ذاتها تُقرأ تحت القيود ذاتها.",
+    },
+    industry: {
+      title: "وكلاء أنظمة ERP الصناعية",
+      desc: "مبني على سنوات داخل سلسلة قيمة المنسوجات الباكستانية — مطاحن الأقمشة، ووحدات التخييط، والمصدّرين — حيث لا تزال إعادة الطلب جدول بيانات ومكالمة هاتفية. طبقة التنظيم هي ما يحوّل ذلك إلى استدلال: وكيل متخصص يقرأ المخزون ومهل التوريد والطلبات المفتوحة، فيقترح إعادة الطلب ويسلّم المهمة بدل أن يخمّن. أما نظام ERP نفسه فمنتج منفصل يُطلق في 2026.",
     },
     government: {
       title: "الحكومة والمؤسسات",
-      desc: "أرشيفات مستندية ضخمة تُقدَّم عبر خادم MCP، فيقرأ الوكيل البيانات المؤسسية في مكانها دون أن تغادر النطاق المؤمَّن.",
-    },
-    logistics: {
-      title: "اللوجستيات والمشتريات",
-      desc: "سير عمل التوريد والتفتيش والموردين — المجال الذي أدرته يدوياً كوكيل شراء قبل أن يوجد ما يؤتمته.",
+      desc: "أرشيفات مؤسسية لا يمكن رفعها إلى أي مكان. يعرض خادم MCP المستندات كأدوات، ويعمل داخل النطاق المؤمَّن، فيقرأ الوكيل الأرشيف في مكانه ولا تغادر البيانات موضعها. والقراءة فقط هي الوضع الافتراضي؛ وأي أداة قادرة على الكتابة تحتاج سبباً معلناً.",
     },
   },
 };
@@ -236,11 +269,11 @@ export default function ExpertiseGrid() {
           ))}
         </div>
 
-        {/* Band B — target sectors. No stamp, dashed edge: nothing has shipped
-            here yet, and the card is built to say so at a glance. */}
+        {/* Band B — Agentic Business Solutions. Gold-edged glass, and every card
+            names the in-repo primitive it stands on rather than a client. */}
         <Reveal className="text-center mt-20 mb-10">
-          <div dir="ltr" className="text-eyebrow font-mono text-muted-foreground/60 uppercase mb-3">
-            {"// where_this_applies"}
+          <div dir="ltr" className="text-eyebrow font-mono text-gold/70 uppercase mb-3">
+            {"// business_solutions"}
           </div>
           <h3 className="font-display text-2xl lg:text-3xl font-semibold text-foreground mb-3">
             {t("expertise.applyTitle")}
@@ -251,19 +284,55 @@ export default function ExpertiseGrid() {
         </Reveal>
 
         <div className="grid gap-6 md:grid-cols-3 max-w-5xl mx-auto">
-          {VERTICALS.map((v, index) => (
+          {SOLUTIONS.map((sol, index) => (
             <Reveal
-              key={v.id}
+              key={sol.id}
               step={index}
-              className="group p-6 rounded-2xl bg-surface-1/50 border border-dashed border-border transition-all duration-300 hover:border-brand/30 hover:bg-surface-1/80"
+              className="group relative flex flex-col overflow-hidden glass-panel-gold rounded-2xl p-6"
             >
-              <v.Icon className="w-8 h-8 text-muted-foreground mb-4 transition-colors duration-300 group-hover:text-brand-soft" />
-              <h4 className="font-display text-base font-semibold text-foreground mb-2">
-                {copy[v.id].title}
+              {/* Soft gold crown. Ambient only — nothing here is clickable. */}
+              <div
+                aria-hidden="true"
+                className="pointer-events-none absolute inset-x-0 -top-16 h-32 bg-[radial-gradient(ellipse_at_center,hsl(var(--gold)/0.16),transparent_70%)]"
+              />
+
+              <div className="relative flex items-start justify-between gap-3 mb-4">
+                <sol.Icon className="w-9 h-9 text-gold-soft transition-transform duration-300 group-hover:scale-110" />
+                <span className="shrink-0 text-[10px] uppercase tracking-wide px-2 py-0.5 rounded-full border border-gold/25 text-gold/80">
+                  {t("expertise.targetLabel")}
+                </span>
+              </div>
+
+              <h4 className="relative font-display text-lg font-semibold text-foreground mb-2">
+                {copy[sol.id].title}
               </h4>
-              <p className="text-muted-foreground text-sm leading-relaxed">
-                {copy[v.id].desc}
+              <p className="relative text-muted-foreground text-sm leading-relaxed flex-grow">
+                {copy[sol.id].desc}
               </p>
+
+              <div className="relative flex flex-wrap gap-1.5 mt-4">
+                {sol.tags.map((tag) => (
+                  <span
+                    key={tag}
+                    dir="ltr"
+                    className="text-[10px] font-mono px-2 py-0.5 rounded-full border border-gold/20 text-muted-foreground"
+                  >
+                    {tag}
+                  </span>
+                ))}
+              </div>
+
+              {/* Substrate, not a case study. See the file header. */}
+              <div className="relative mt-5 pt-4 border-t border-gold/15">
+                <span
+                  dir="ltr"
+                  className="block font-mono text-[11px] text-gold/70 truncate"
+                  title={sol.substrate}
+                >
+                  {"└ "}
+                  {sol.substrate}
+                </span>
+              </div>
             </Reveal>
           ))}
         </div>

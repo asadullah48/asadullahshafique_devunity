@@ -219,6 +219,37 @@
           0 16px 40px -12px hsl(220 40% 1% / 0.75);
 }
 
+/* Business-band variant: the same glass body wearing a gold edge.
+
+   The Agentic Business Solutions cards have to out-rank the capability cards
+   visually WITHOUT borrowing cyan, which is reserved for interactive elements
+   (see --brand). Gold is ambient-only and a card edge is not clickable, so it
+   is the one accent available here.
+
+   This is a sibling class rather than `.glass-panel border-gold/25` on the
+   element: .glass-panel is unlayered CSS emitted after @tailwind utilities, so
+   its `border` shorthand wins source order against a border-color utility of
+   equal specificity and the gold would silently vanish. */
+.glass-panel-gold {
+    background: hsl(var(--glass-bg) / var(--glass-alpha));
+    backdrop-filter: blur(var(--glass-blur)) saturate(160%);
+    -webkit-backdrop-filter: blur(var(--glass-blur)) saturate(160%);
+    border: 1px solid hsl(var(--gold) / 0.28);
+    box-shadow:
+          inset 0 1px 0 0 hsl(var(--gold) / 0.14),
+          inset 0 -1px 0 0 hsl(0 0% 0% / 0.35),
+          0 16px 40px -12px hsl(220 40% 1% / 0.75);
+    transition: border-color 300ms ease, box-shadow 300ms ease;
+}
+
+.glass-panel-gold:hover {
+    border-color: hsl(var(--gold) / 0.5);
+    box-shadow:
+          inset 0 1px 0 0 hsl(var(--gold) / 0.2),
+          inset 0 -1px 0 0 hsl(0 0% 0% / 0.35),
+          0 20px 48px -12px hsl(220 40% 1% / 0.8);
+}
+
 /* Chrome/rail variant: heavier blur, thinner body. For the navbar, the
    agent status rail, and anything pinned over scrolling content. */
 .glass-chrome {
@@ -234,6 +265,7 @@
    as a distinct surface, it just stops refracting. */
 @media (update: slow), (prefers-reduced-transparency: reduce) {
     .glass-panel,
+    .glass-panel-gold,
     .glass-chrome {
           backdrop-filter: none;
           -webkit-backdrop-filter: none;

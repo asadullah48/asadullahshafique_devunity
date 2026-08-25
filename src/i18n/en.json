@@ -213,8 +213,9 @@
     "title": "Expertise &",
     "titleHighlight": "Use Cases",
     "subtitle": "Five capabilities running in production. Each one names the code that proves it.",
-    "applyTitle": "Where this applies",
-    "applyNote": "Sectors these systems are built for. Delivered work is under Projects."
+    "applyTitle": "Agentic Business Solutions",
+    "applyNote": "Three verticals on one substrate — the orchestration, guardrail and MCP layers above. Each card names the code it stands on. Delivered work is under Projects.",
+    "targetLabel": "Target vertical"
   },
   "projects": {
     "title": "Featured",
