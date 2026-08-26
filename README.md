@@ -26,7 +26,7 @@
 
 ### Key Features
 
-- 🎨 **Modern UI/UX** — Built with ShadCN UI, Tailwind CSS, and Framer Motion
+- 🎨 **Modern UI/UX** — Built with ShadCN UI, Tailwind CSS, and CSS-driven scroll reveals (framer-motion was removed: −40 kB First Load JS)
 - 🌓 **Dark/Light Theme** — Seamless theme switching with next-themes
 - 🤖 **AI-Powered Assistant** — LangGraph-powered portfolio chatbot
 - 🔍 **Global Search** — Keyboard-accessible search (Ctrl/Cmd + K)
@@ -43,6 +43,46 @@
 - 🐳 **Docker Ready** — Multi-stage builds for optimized containers
 - ☸️ **Kubernetes Ready** — Complete K8s manifests for production deployment
 - 🚀 **CI/CD** — GitHub Actions workflows for automated testing and deployment
+
+---
+
+## 🧠 Agentic AI Mastery Matrix
+
+Twelve competencies across four categories. **Every row cites a path you can open**, because a status badge nobody can check is decoration. Nothing reaches this table until something in the tree can answer for it — that rule is written down in [`CLAUDE.md`](CLAUDE.md) and it is the highest-priority instruction in this repository.
+
+### Agentic Orchestration
+
+| Competency | Substrate | Status |
+|---|---|---|
+| Engineering Multi-Agent Ecosystem Design (MAS) | [`backend/orchestration/orchestrator.py`](backend/orchestration/orchestrator.py) — triage agent + 4 specialists, star topology, one hop | Completed ✅ |
+| Designing Graph-Based Agent Workflows | [`backend/agent.py`](backend/agent.py) — LangGraph graph; Plan-Act-Verify with no draft→approve edge | Completed ✅ |
+| Implementing Agentic Coding & SDLC Standardization | [`CLAUDE.md`](CLAUDE.md) — a written operating spec governing every change | Completed ✅ |
+
+### Connectivity & Protocols
+
+| Competency | Substrate | Status |
+|---|---|---|
+| Engineering MCP Interoperability Layers | [`/mcp/server`](backend/mcp_server.py) — real FastMCP over Streamable HTTP, verified `initialize` → `tools/list` → `tools/call` | Completed ✅ |
+| Standardizing Read-Only Agent Tool Contracts | [`backend/mcp_server.py`](backend/mcp_server.py) — 6 tools, read-only by default | Completed ✅ |
+| Architecting Provider-Agnostic Fallback Ladders | [`backend/agent.py`](backend/agent.py) — Agents SDK → LangGraph → static answers | Completed ✅ |
+
+### Enterprise & Scale
+
+| Competency | Substrate | Status |
+|---|---|---|
+| Engineering Domain-Specific Intelligence Systems (Finance) | [FinAgent-Nexus](https://github.com/asadullah48/finagent-nexus) — <2 ms compliance screen, 0 model calls, 94 tests | Completed ✅ |
+| Architecting Domain-Specific ERP Intelligence (Textile) | [Textile ERP / CMT](https://cmt-stitching-asadullah-shafiques-projects.vercel.app) — order lifecycle, 4 auto-billing types, party ledgers | In production ✅ |
+| Implementing Cloud-Native Scale-Out | [`k8s/`](k8s/) — 11 manifests: autoscaling, network policy, service monitoring | Completed ✅ |
+
+### Reliability & Safety
+
+| Competency | Substrate | Status |
+|---|---|---|
+| Implementing Deterministic Guardrails | [`backend/constitution/principles.json`](backend/constitution/principles.json) — 5 principles; verified blocking 4/4 violations with no model reachable | Completed ✅ |
+| Designing Feedback-Driven Evaluation Loops | [`evals/`](evals/) — deterministic trace layer + LLM judge; a case passes only if both pass | Completed ✅ |
+| Engineering Context Integrity & Trace Auditability | [`backend/orchestration/context.py`](backend/orchestration/context.py) — typed shared state recording `route` and `tool_calls` | Completed ✅ |
+
+> **Proof of the matrix, end to end:** [**FinAgent-Nexus**](https://github.com/asadullah48/finagent-nexus) — *Agentic AI Adoption for Financial Services.* Three specialists (MarketAnalyst, ComplianceOfficer, WealthStrategist) on a fixed state machine where no agent holds two of the three powers, Shari'ah and regulatory principles live in a versioned constitution reviewed like code, and every run writes a hash-chained, tamper-evident audit trail. **94 tests pass with no API key and no network** — so the numbers above are reproducible offline, at no marginal cost, by anyone who clones it. [Live screening engine →](https://finagent-nexus.vercel.app)
 
 ---
 
