@@ -765,3 +765,88 @@
     margin-block: 2.5em;
   }
 }
+
+/* ---------------------------------------------------------------------------
+   PRINT — and, more to the point, PDF GENERATION.
+
+   `public/resume.pdf` is produced by printing /resume from headless Chrome
+   (the file's own metadata reads `Producer: Skia/PDF`), so this block IS that
+   PDF's stylesheet. There is no other generator; regenerate with Ctrl+P or:
+
+       npx playwright ... page.pdf({ printBackground: true })
+
+   THE FIRST RULE IS THE LOAD-BEARING ONE. `.reveal` is driven by
+   `animation-timeline: view()`, and Chrome supports it — so at print time
+   every element below the first viewport sits at animation progress 0, which
+   is `opacity: 0`, and prints BLANK. Ctrl+P on this site loses most of the
+   page today. Cancelling the animation restores the end state. This regressed
+   silently when framer-motion's `whileInView` was replaced by `.reveal`;
+   the previously committed resume.pdf predates that migration.
+
+   Backgrounds are deliberately NOT stripped to white. The dark "Midnight
+   Carbon" palette is the brand, the résumé PDF is a portfolio artefact rather
+   than an office document, and it is read on screen far more often than it is
+   put on paper. Printing it needs `printBackground: true` to match.
+   --------------------------------------------------------------------------- */
+@media print {
+    .reveal,
+    .reveal-x {
+        animation: none !important;
+        opacity: 1 !important;
+        transform: none !important;
+    }
+
+    /* Screen chrome with no meaning on a page: site nav, the floating widgets,
+       the scroll rail, and any control that only does something when clicked. */
+    nav,
+    [data-print="hide"] {
+        display: none !important;
+    }
+
+    /* MEASURED, NOT GUESSED: leaving .grain-overlay in produced a 26 MB
+       resume.pdf against 106 KB for the previous one. It is a full-viewport
+       SVG fractal-noise data URI (defined at :277, mounted site-wide by
+       layout.tsx), and Chrome re-rasterises it at print DPI on EVERY page —
+       roughly 3.3 MB per page of film grain that is invisible once flattened.
+       Same reasoning for the ambient field layers below: atmosphere for a
+       scrolling screen, pure bytes on a page.
+
+       If the PDF ever balloons again, look here first, and diagnose it the
+       same way rather than by intuition: print once with printBackground:false
+       to confirm the cost is paint, then query the DOM for the tall element
+       carrying a backgroundImage, maskImage or backdropFilter. */
+    .grain-overlay,
+    .neural-field,
+    .neural-grid,
+    .command-field,
+    .animate-aurora-1,
+    .animate-aurora-2 {
+        display: none !important;
+    }
+
+    /* The boot overlay is `fixed inset-0 z-boot bg-background` — OPAQUE and
+       full-viewport. Printing while it is still on screen yields a first page
+       reading "SYSTEM SCANNING" with the resume hidden behind it. It dissolves
+       on a timer, so whether it lands in the output is a race, which is worse
+       than a reliable failure: the DOM assertions in a print script still pass
+       because the text underneath exists, it is merely occluded. Caught by
+       screenshotting the print rendering, not by querying the DOM. */
+    .z-boot {
+        display: none !important;
+    }
+
+    /* Keep a heading with the block it introduces, and stop a card splitting
+       across a page break mid-sentence. */
+    section,
+    article {
+        break-inside: avoid;
+    }
+
+    h1, h2, h3 {
+        break-after: avoid;
+    }
+
+    @page {
+        margin: 12mm;
+    }
+}
