@@ -35,6 +35,26 @@ type Project = {
 
 const PROJECTS_EN: Project[] = [
   {
+    id: "accessai",
+    title: "AccessAI: Real-Time Audio Description & Accessibility Agent",
+    status: "Enterprise Grade",
+    tagline: "Live Media Stream Ingestion, Zero-Collision SSML Narration & WCAG 2.2 AAA Accessibility Certification",
+    problem: "Live media broadcasts, keynotes, and video conferencing remain largely inaccessible to visually impaired users, while manual audio description post-production takes days.",
+    solution: "A real-time assistive multi-agent framework featuring StreamAgent (detecting visual salience and inter-dialogue silence gaps), NarratorAgent (synthesizing concise SSML audio descriptions fitted into silence windows), and ComplianceAgent (enforcing WCAG 2.2 AAA, Section 508, and ADA Title III with zero speech collisions).",
+    impact: "Sub-120ms stream latency, 0.0% dialogue collision rate, 8.4:1 contrast ratio, and 11/11 passing automated tests.",
+    description: "Assistive multi-agent framework generating live audio descriptions and real-time visual summaries for visually impaired users with WCAG 2.2 AAA compliance.",
+    tech: ["FastAPI", "Python 3.12", "Multimodal AI", "SSML Synthesis", "WCAG 2.2 AAA", "Helm", "Docker", "Pytest"],
+    github: "https://github.com/asadullah48/accessai",
+    demo: "http://127.0.0.1:8015/",
+    metrics: [
+      { label: "Latency", value: "<120ms" },
+      { label: "WCAG Level", value: "2.2 AAA" },
+      { label: "Tests", value: "11/11" },
+    ],
+    featured: true,
+    isNew: true,
+  },
+  {
     id: "collabx",
     title: "CollabX: Multi-Agent Newsletter & Editorial Team",
     status: "Enterprise Grade",
@@ -511,6 +531,26 @@ const PROJECTS_EN: Project[] = [
 ];
 
 const PROJECTS_AR: Project[] = [
+  {
+    id: "accessai",
+    title: "منصة AccessAI: وكيل الوصف الصوتي الفوري وإتاحة الوصول الرقمي الشامل",
+    status: "Enterprise Grade",
+    tagline: "معالجة فورية للبث المرئي المباشر، وتوليد نطق SSML خالٍ من التداخل، واعتماد معايير WCAG 2.2 AAA",
+    problem: "يظل البث المرئي والمؤتمرات الحية غير متاح للمستخدمين ضعاف البصر، بينما يستغرق إعداد الأوصاف الصوتية يدوياً أياماً عديدة.",
+    solution: "إطار عمل ذكي متعدد الوكلاء لإتاحة الوصول يضم StreamAgent (رصد العناصر المرئية وفترات الصمت بين الحوارات)، و NarratorAgent (صياغة الوصف الصوتي بتوقيت مثالي)، و ComplianceAgent (التدقيق الصارم لمعايير WCAG 2.2 AAA و Section 508 مع منع تداخل الأصوات تماماً).",
+    impact: "زمن استجابة أقل من 120 مللي ثانية، نسبة تصادم الحوار 0.0%، تباين النصوص بنسبة 8.4:1، مع اجتياز 11/11 اختباراً آلياً.",
+    description: "إطار عمل متعدد الوكلاء للذكاء الاصطناعي المساعد يقوم بتوليد أوصاف صوتية فورية وتلخيص المشاهد المرئية للمستخدمين ضعاف وفاقدي البصر وفق معايير WCAG 2.2 AAA.",
+    tech: ["FastAPI", "Python 3.12", "Multimodal AI", "SSML Synthesis", "WCAG 2.2 AAA", "Helm", "Docker", "Pytest"],
+    github: "https://github.com/asadullah48/accessai",
+    demo: "http://127.0.0.1:8015/",
+    metrics: [
+      { label: "زمن الاستجابة", value: "<120ms" },
+      { label: "معيار WCAG", value: "2.2 AAA" },
+      { label: "الاختبارات", value: "11/11" },
+    ],
+    featured: true,
+    isNew: true,
+  },
   {
     id: "collabx",
     title: "منصة CollabX: فريق التحرير متعدد الوكلاء لإنتاج النشرات والتقارير الإخبارية",
