@@ -35,6 +35,26 @@ type Project = {
 
 const PROJECTS_EN: Project[] = [
   {
+    id: "collabx",
+    title: "CollabX: Multi-Agent Newsletter & Editorial Team",
+    status: "Enterprise Grade",
+    tagline: "Orchestrated Newsroom State Graph, Autonomous Research Ingestion, Narrative Composition & Flesch-Kincaid Auditing",
+    problem: "Single-prompt LLMs generate generic, uninspired content with hallucinated statistics and inconsistent tone, while manual corporate newsletter production takes days.",
+    solution: "An orchestrated multi-agent collaborative editorial desk featuring ResearcherAgent (discovering verified industry statistics and executive quotes), WriterAgent (composing engaging narrative arcs and catchy hooks), and EditorAgent (Flesch-Kincaid readability scoring >= 80, fact-checking, and dual Markdown/HTML export).",
+    impact: "3.4x publishing velocity speedup, 88.5/100 readability score, 100% verified quote grounding, and 10/10 passing automated tests.",
+    description: "Orchestrated multi-agent framework coordinating specialized Researcher, Writer, and Editor agents in a collaborative state graph to produce publication-ready newsletters.",
+    tech: ["FastAPI", "Python 3.12", "LangGraph Patterns", "Multi-Agent Teams", "Editorial Automation", "Helm", "Docker", "Pytest"],
+    github: "https://github.com/asadullah48/collabx",
+    demo: "http://127.0.0.1:8014/",
+    metrics: [
+      { label: "Velocity", value: "3.4x" },
+      { label: "Readability", value: "88.5" },
+      { label: "Tests", value: "10/10" },
+    ],
+    featured: true,
+    isNew: true,
+  },
+  {
     id: "docucode",
     title: "DocuCode: Contextual Documentation Agent (AST Diff & Auto-Sync)",
     status: "Enterprise Grade",
@@ -491,6 +511,26 @@ const PROJECTS_EN: Project[] = [
 ];
 
 const PROJECTS_AR: Project[] = [
+  {
+    id: "collabx",
+    title: "منصة CollabX: فريق التحرير متعدد الوكلاء لإنتاج النشرات والتقارير الإخبارية",
+    status: "Enterprise Grade",
+    tagline: "مخطط سير عمل تحريري منسق، واستكشاف ذكي للأدلة، وصياغة روائية مقنعة، وتدقيق سهولة القراءة (Flesch-Kincaid)",
+    problem: "تنتج النماذج التقليدية محتوى غير مميز تملؤه الهلوسات الإحصائية والنبرة غير المتناسقة، بينما يستغرق إعداد النشرات المؤسسية يدوياً أياماً عديدة.",
+    solution: "فريق تحريري ذكي منسق يضم ResearcherAgent (استكشاف الإحصائيات والاقتباسات التنفيذية الموثقة)، و WriterAgent (صياغة السرد الروائي والعناوين الجذابة)، و EditorAgent (تقييم سهولة القراءة Flesch-Kincaid >= 80 وتدقيق الحقائق وتصدير كود Markdown و HTML).",
+    impact: "تسريع وتيرة النشر بمعدل 3.4 ضعف، مؤشر سهولة قراءة 88.5/100، دقة توثيق الاقتباسات بنسبة 100%، مع اجتياز 10/10 اختبارات آلياً.",
+    description: "إطار عمل رائد ينظم فريقاً من الوكلاء المتخصصين (الباحث، الكاتب، المحرر) في مخطط سير عمل تعاوني لإنتاج نشرات إخبارية وتقارير استراتيجية جاهزة للنشر فورياً.",
+    tech: ["FastAPI", "Python 3.12", "LangGraph Patterns", "Multi-Agent Teams", "Editorial Automation", "Helm", "Docker", "Pytest"],
+    github: "https://github.com/asadullah48/collabx",
+    demo: "http://127.0.0.1:8014/",
+    metrics: [
+      { label: "سرعة النشر", value: "3.4x" },
+      { label: "سهولة القراءة", value: "88.5" },
+      { label: "الاختبارات", value: "10/10" },
+    ],
+    featured: true,
+    isNew: true,
+  },
   {
     id: "docucode",
     title: "منصة DocuCode: وكيل التوثيق البرمجي التلقائي وتحديث المستندات فورياً",
