@@ -35,6 +35,26 @@ type Project = {
 
 const PROJECTS_EN: Project[] = [
   {
+    id: "guardrailai",
+    title: "GuardrailAI: Deterministic Workflow & Compliance Layer",
+    status: "Enterprise Grade",
+    tagline: "Zero-Trust Agentic Guardrails, Circuit Breakers & Cryptographic SHA-256 Audit Trails",
+    problem: "Probabilistic LLM agents cannot be deployed in high-consequence finance, healthcare, and legal workflows due to non-deterministic hallucinations, lack of hard safety ceilings, and failure to meet evidentiary audit standards (SOC-2, SEC 17a-4, HIPAA).",
+    solution: "A zero-trust multi-agent state machine where compliance is structural: pre-flight statutory interceptors, ProcessAgent bounded executions, ComplianceAgent post-flight threshold enforcement, automated circuit breakers with safe fallbacks, and an immutable SHA-256 blockchain-style audit ledger.",
+    impact: "0.00% state non-determinism, 100% automated enforcement across AML, OFAC, HIPAA Safe Harbor, and liability caps, cryptographic non-repudiation certificates, and 17/17 passing automated tests.",
+    description: "Compliance-critical multi-agent framework enforcing deterministic guardrails, mathematical bounds, circuit breaker fallbacks, and cryptographic hash-chained audit trails.",
+    tech: ["FastAPI", "Python 3.12", "LangGraph", "State Machines", "SHA-256 Cryptography", "Circuit Breakers", "Helm", "Docker"],
+    github: "https://github.com/asadullah48/guardrailai",
+    demo: "http://127.0.0.1:8003/",
+    metrics: [
+      { label: "Non-Determinism", value: "0.00%" },
+      { label: "Audit Ledger", value: "SHA-256" },
+      { label: "Tests", value: "17/17" },
+    ],
+    featured: true,
+    isNew: true,
+  },
+  {
     id: "domainx",
     title: "DomainX: Specialized Multi-Agent Framework",
     status: "Enterprise Grade",
@@ -236,6 +256,26 @@ const PROJECTS_EN: Project[] = [
 ];
 
 const PROJECTS_AR: Project[] = [
+  {
+    id: "guardrailai",
+    title: "GuardrailAI: طبقة حواجز الحماية القطعية والامتثال التنظيمي",
+    status: "Enterprise Grade",
+    tagline: "حواجز حماية غير مشروطة بالثقة ومفاتيح قطع الدائرة وسجلات تدقيق مشفرة بسلسلة SHA-256",
+    problem: "لا يمكن نشر الوكلاء الاحتماليين في البيئات عالية الخطورة (المالية، الصحية، القانونية) بسبب الهلوسات وغياب الحدود الرياضية الإلزامية وعجز السجلات التقليدية عن تلبية معايير التدقيق القضائي.",
+    solution: "هيكل عمل متعدد الوكلاء يفرض الامتثال بنيوياً: اعتراض الطلبات قبل التنفيذ، وتنفيذ منضبط للوكيل ProcessAgent، ومراجعة مخرجات الوكيل ComplianceAgent، ومفاتيح قطع الدائرة التلقائية مع سجل تدقيق مشفر غير قابل للتعديل.",
+    impact: "0.00% لاحتمية سلوكية، وامتثال قطعي بنسبة 100% لقوانين AML و OFAC و HIPAA، وشهادات عدم إنكار مشفرة مع اجتياز 17/17 اختباراً آلياً.",
+    description: "إطار عمل قطعي للوكلاء الأذكياء يفرض حواجز حماية صارمة ومفاتيح قطع الدائرة وبدائل آمنة مع سجل تدقيق مشفر.",
+    tech: ["FastAPI", "Python 3.12", "LangGraph", "State Machines", "SHA-256 Cryptography", "Circuit Breakers", "Helm", "Docker"],
+    github: "https://github.com/asadullah48/guardrailai",
+    demo: "http://127.0.0.1:8003/",
+    metrics: [
+      { label: "اللاحتمية", value: "0.00%" },
+      { label: "التدقيق المشفر", value: "SHA-256" },
+      { label: "الاختبارات", value: "17/17" },
+    ],
+    featured: true,
+    isNew: true,
+  },
   {
     id: "domainx",
     title: "DomainX: إطار عمل الوكلاء الأذكياء المتخصصين",
