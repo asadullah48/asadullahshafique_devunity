@@ -35,6 +35,26 @@ type Project = {
 
 const PROJECTS_EN: Project[] = [
   {
+    id: "docucode",
+    title: "DocuCode: Contextual Documentation Agent (AST Diff & Auto-Sync)",
+    status: "Enterprise Grade",
+    tagline: "Real-Time AST Diff Monitoring, Google-Style Docstring Synthesis, Type Accuracy Auditing & Zero-Drift READMEs",
+    problem: "Software codebases evolve rapidly while documentation stagnates, causing signature drift, broken API references, and hours wasted decoding undocumented parameters.",
+    solution: "An IDE-embedded contextual documentation framework governed by Watch-Doc-Review loops featuring WatcherAgent (AST signature diffing & drift calculation), DocAgent (Google/Sphinx docstrings & README API table synthesis), and ReviewerAgent (type annotation accuracy validation).",
+    impact: "98.5% AST signature accuracy, 100% parameter coverage, sub-4ms sync latency, and 11/11 passing automated tests.",
+    description: "IDE-embedded agent framework auto-updating in-code docstrings, API references, and README tables as developers write code.",
+    tech: ["FastAPI", "Python 3.12", "AST Diffing", "Docstring Generator", "Developer Tools", "Helm", "Docker", "Pytest"],
+    github: "https://github.com/asadullah48/docucode",
+    demo: "http://127.0.0.1:8013/",
+    metrics: [
+      { label: "AST Match", value: "98.5%" },
+      { label: "Coverage", value: "100%" },
+      { label: "Tests", value: "11/11" },
+    ],
+    featured: true,
+    isNew: true,
+  },
+  {
     id: "privatebrain",
     title: "PrivateBrain: Local Finance Memory Agent (Air-Gapped & Zero-Cloud)",
     status: "Enterprise Grade",
@@ -471,6 +491,26 @@ const PROJECTS_EN: Project[] = [
 ];
 
 const PROJECTS_AR: Project[] = [
+  {
+    id: "docucode",
+    title: "منصة DocuCode: وكيل التوثيق البرمجي التلقائي وتحديث المستندات فورياً",
+    status: "Enterprise Grade",
+    tagline: "مراقبة شجرة الإعراب (AST) فورياً، وتوليد التوثيق القياسي (Docstrings)، وتدقيق مطابقة الأنواع، وتحديث مستندات README",
+    problem: "يتطور الكود البرمجي بسرعة بينما يتخلف التوثيق، مما يؤدي إلى فجوات في توقيع الدوال، وجداول API معطلة، وإهدار الوقت في فهم المعاملات غير الموثقة.",
+    solution: "إطار عمل مدمج لبيئات التطوير بنموذج (Watch-Doc-Review) يضم WatcherAgent (فحص فروقات شجرة AST واحتساب فجوة التوثيق)، و DocAgent (صياغة التوثيق البرمجي القياسي وتحديث جداول README)، و ReviewerAgent (التحقق من صحة التوثيق ومطابقته للأنواع البرمجية).",
+    impact: "دقة مطابقة AST بنسبة 98.5%، تغطية المعاملات بنسبة 100%، سرعة المزامنة في أقل من 4 مللي ثانية، مع اجتياز 11/11 اختباراً آلياً.",
+    description: "إطار عمل مدمج في بيئة التطوير (IDE) يقوم بتحديث التوثيق البرمجي ومستندات README تلقائياً بالتزامن مع كتابة المطورين للكود.",
+    tech: ["FastAPI", "Python 3.12", "AST Diffing", "Docstring Generator", "Developer Tools", "Helm", "Docker", "Pytest"],
+    github: "https://github.com/asadullah48/docucode",
+    demo: "http://127.0.0.1:8013/",
+    metrics: [
+      { label: "مطابقة AST", value: "98.5%" },
+      { label: "التغطية", value: "100%" },
+      { label: "الاختبارات", value: "11/11" },
+    ],
+    featured: true,
+    isNew: true,
+  },
   {
     id: "privatebrain",
     title: "منصة PrivateBrain: وكيل الذاكرة المالية المحلية المحمية والمعزولة تماماً عن السحابة",
