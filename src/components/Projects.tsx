@@ -35,6 +35,26 @@ type Project = {
 
 const PROJECTS_EN: Project[] = [
   {
+    id: "conciergeagent",
+    title: "ConciergeAgent: Hyperpersonalized Service AI Platform",
+    status: "Enterprise Grade",
+    tagline: "White-Glove Tier-Adapted Wealth Advisory, Instant Dispute Auto-Credits & Five-Star Hospitality AI",
+    problem: "Generic conversational chatbots alienate high-net-worth and VIP clients in banking, insurance, and luxury retail with rigid scripts, ungrounded responses, and slow escalation during high-distress fraud and claims scenarios.",
+    solution: "A luxury multi-agent concierge architecture featuring AdvisorAgent (tier-adapted asset allocation and tax-loss harvesting), SupportAgent (instant provisional dispute auto-credits up to $50k and fast-tracked VIP claims), and ExperienceAgent (real-time sentiment tracking, luxury gifting, and white-glove executive handover).",
+    impact: "4.98/5.00 predicted CSAT, 30-second guaranteed VIP SLA, zero-liability instant dispute protection, and 13/13 passing automated tests.",
+    description: "Customer-facing multi-agent framework delivering white-glove concierge-level personalization in banking, insurance, and luxury retail.",
+    tech: ["FastAPI", "Python 3.12", "Hyperpersonalization", "Wealth Tier SLA", "Sentiment Modulation", "Helm", "Docker", "Pytest"],
+    github: "https://github.com/asadullah48/conciergeagent",
+    demo: "http://127.0.0.1:8005/",
+    metrics: [
+      { label: "CSAT Score", value: "4.98 / 5.0" },
+      { label: "VIP SLA", value: "30s" },
+      { label: "Tests", value: "13/13" },
+    ],
+    featured: true,
+    isNew: true,
+  },
+  {
     id: "contextx",
     title: "ContextX: Advanced Context Engineering Framework",
     status: "Enterprise Grade",
@@ -294,6 +314,26 @@ const PROJECTS_EN: Project[] = [
 ];
 
 const PROJECTS_AR: Project[] = [
+  {
+    id: "conciergeagent",
+    title: "ConciergeAgent: منصة الوكيل الرقمي الفاخر لخدمة ورفاهية العملاء",
+    status: "Enterprise Grade",
+    tagline: "خدمة راقية فائقة التخصيص واستشارات مالية استباقية وحل فوري للنزاعات بمعايير 5 نجوم",
+    problem: "تتسبب روبوتات الدردشة التقليدية في نفور عملاء الثروات والشرائح المميزة بسبب الردود النمطية وغياب التخصيص وبطء المعالجة في حالات الاحتيال والمطالبات الحرجة.",
+    solution: "هيكل عمل متعدد الوكلاء للخدمات الفاخرة يضم AdvisorAgent (توزيع استثماري مخصص للأصول وتحسين ضريبي)، و SupportAgent (ائتمان فوري للنزاعات حتى 50,000 دولار ومعالجة سريعة للمطالبات)، و ExperienceAgent (مراقبة المشاعر ومنح هدايا الولاء والتصعيد الفوري).",
+    impact: "معدل رضا 4.98 من 5 نجوم، اتفاقية مستوى خدمة خلال 30 ثانية لكبار العملاء، حماية فورية منعدمة المسؤولية، مع اجتياز 13/13 اختباراً آلياً.",
+    description: "إطار عمل متعدد الوكلاء لخدمة العملاء الفاخرة، يقدم استشارات مالية مخصصة، وحلاً فورياً للنزاعات والمطالبات، مع حوكمة تجربة العملاء بمعايير الضيافة الراقية.",
+    tech: ["FastAPI", "Python 3.12", "Hyperpersonalization", "Wealth Tier SLA", "Sentiment Modulation", "Helm", "Docker", "Pytest"],
+    github: "https://github.com/asadullah48/conciergeagent",
+    demo: "http://127.0.0.1:8005/",
+    metrics: [
+      { label: "معدل الرضا", value: "4.98 / 5.0" },
+      { label: "سرعة الخدمة", value: "30 ثانية" },
+      { label: "الاختبارات", value: "13/13" },
+    ],
+    featured: true,
+    isNew: true,
+  },
   {
     id: "contextx",
     title: "ContextX: إطار عمل هندسة السياق المتقدمة للوكلاء الأذكياء",
