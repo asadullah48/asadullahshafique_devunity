@@ -35,6 +35,26 @@ type Project = {
 
 const PROJECTS_EN: Project[] = [
   {
+    id: "privatebrain",
+    title: "PrivateBrain: Local Finance Memory Agent (Air-Gapped & Zero-Cloud)",
+    status: "Enterprise Grade",
+    tagline: "Air-Gapped On-Device Execution, AES-256 Encrypted Memory Vault, PII Redaction & Zero Cloud Egress",
+    problem: "Transmitting confidential wealth records, tax returns (Schedule C/1099), and private bank accounts (IBAN/SSN) to multi-tenant cloud LLMs violates banking secrecy and creates catastrophic data leakage risks.",
+    solution: "A privacy-first local financial memory framework featuring IndexerAgent (local document ingestion into encrypted vector partitions), MemoryAgent (zero-knowledge semantic retrieval with ephemeral in-memory context), and PrivacyAgent (strict air-gap egress firewall and automatic PII sanitization).",
+    impact: "100% on-device air-gap isolation, 0 bytes cloud egress leakage, sub-3ms retrieval latency, and 14/14 passing automated tests.",
+    description: "Privacy-first on-device agent framework indexing personal financial emails, wealth notes, tax slips, and browsing history with strict zero-cloud egress.",
+    tech: ["FastAPI", "Python 3.12", "Local LLMs", "Air-Gapped Security", "AES-256 Vault", "Helm", "Docker", "Pytest"],
+    github: "https://github.com/asadullah48/privatebrain",
+    demo: "http://127.0.0.1:8012/",
+    metrics: [
+      { label: "Air-Gap", value: "100%" },
+      { label: "Cloud Egress", value: "0 Bytes" },
+      { label: "Tests", value: "14/14" },
+    ],
+    featured: true,
+    isNew: true,
+  },
+  {
     id: "researchx",
     title: "ResearchX: Autonomous Analyst Agent & Market Intelligence",
     status: "Enterprise Grade",
@@ -451,6 +471,26 @@ const PROJECTS_EN: Project[] = [
 ];
 
 const PROJECTS_AR: Project[] = [
+  {
+    id: "privatebrain",
+    title: "منصة PrivateBrain: وكيل الذاكرة المالية المحلية المحمية والمعزولة تماماً عن السحابة",
+    status: "Enterprise Grade",
+    tagline: "تنفيذ محلي معزول شبكياً 100%، وخزينة ذاكرة مشفرة بتشفير AES-256، وحجب البيانات الحساسة، وانعدام الاتصال السحابي",
+    problem: "إرسال البيانات المالية السرية والإقرارات الضريبية والحسابات البنكية (IBAN/SSN) إلى السحابة ينتهك السرية المصرفية ويعرض الثروات لمخاطر التسريب.",
+    solution: "إطار عمل محلي للذاكرة المالية يضم IndexerAgent (فهرسة المستندات محلياً في أقسام مشفرة)، و MemoryAgent (استرجاع دلالي فائق السرعة مع تنظيف الذاكرة المؤقتة)، و PrivacyAgent (جدار حماية شبكي لمنع التسريب وحجب البيانات الحساسة).",
+    impact: "عزل شبكي محلي بنسبة 100%، انعدام تام لتسريب البيانات للسحابة (0 بايت)، سرعة استرجاع في أقل من 3 مللي ثانية، مع اجتياز 14/14 اختباراً آلياً.",
+    description: "إطار عمل رائد للأجهزة المحلية يقوم بفهرسة رسائل البريد الإلكتروني والمذكرات المالية والإقرارات الضريبية مع فرض العزل الشبكي التام والتشفير المحلي AES-256.",
+    tech: ["FastAPI", "Python 3.12", "Local LLMs", "Air-Gapped Security", "AES-256 Vault", "Helm", "Docker", "Pytest"],
+    github: "https://github.com/asadullah48/privatebrain",
+    demo: "http://127.0.0.1:8012/",
+    metrics: [
+      { label: "العزل الشبكي", value: "100%" },
+      { label: "التسريب السحابي", value: "0 Bytes" },
+      { label: "الاختبارات", value: "14/14" },
+    ],
+    featured: true,
+    isNew: true,
+  },
   {
     id: "researchx",
     title: "منصة ResearchX: وكيل المحلل المستقل لمعلومات السوق وأبحاث الاستثمار",
