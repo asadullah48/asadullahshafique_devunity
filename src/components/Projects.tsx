@@ -35,6 +35,26 @@ type Project = {
 
 const PROJECTS_EN: Project[] = [
   {
+    id: "securebridge",
+    title: "SecureBridge: Agent Security Layer for MCP/A2A Mesh",
+    status: "Enterprise Grade",
+    tagline: "Compliance-First Zero-Trust Interoperability, Tool Poisoning Defense & Data Loss Prevention (DLP)",
+    problem: "Model Context Protocol (MCP) and Agent-to-Agent (A2A) meshes are vulnerable to tool poisoning, indirect prompt injection inside tool outputs, shadow shell execution, and unauthorized PII/API key exfiltration.",
+    solution: "A zero-trust agent security layer featuring SecurityAgent (handshake authentication, mTLS validation, and token rate-limiting), DefenseAgent (AST deep packet inspection, prompt override blocking, and output sanitization), and ComplianceAgent (least-privilege RBAC, DLP data egress tokenization, and SHA-256 cryptographic audit ledger).",
+    impact: "100% tool poisoning interception rate, 0.42ms gateway latency, 45k+ tokenized confidential secrets, and 14/14 passing automated tests.",
+    description: "Compliance-first security layer for MCP and A2A interoperability defending against tool poisoning and malicious connections.",
+    tech: ["FastAPI", "Python 3.12", "MCP Protocol", "Zero-Trust Security", "DLP Engine", "Helm", "Docker", "Pytest"],
+    github: "https://github.com/asadullah48/securebridge",
+    demo: "http://127.0.0.1:8007/",
+    metrics: [
+      { label: "Attack Block Rate", value: "100%" },
+      { label: "Gateway Latency", value: "0.42ms" },
+      { label: "Tests", value: "14/14" },
+    ],
+    featured: true,
+    isNew: true,
+  },
+  {
     id: "workforceai-academy",
     title: "WorkforceAI Academy: Enterprise AI-Human Teaming & Fluency Platform",
     status: "Enterprise Grade",
@@ -334,6 +354,26 @@ const PROJECTS_EN: Project[] = [
 ];
 
 const PROJECTS_AR: Project[] = [
+  {
+    id: "securebridge",
+    title: "منصة SecureBridge: طبقة الحماية والتوافق الأمني للوكلاء الأذكياء",
+    status: "Enterprise Grade",
+    tagline: "حماية سيبرانية قائمة على الثقة الصفرية واعتراض تسميم الأدوات ومنع تسريب البيانات لبروتوكولات MCP/A2A",
+    problem: "تواجه شبكات الوكلاء وبروتوكولات MCP مخاطر تسميم الأدوات البرمجية، وحقن الأوامر الخفية، والتنفيذ غير المصرح للأوامر، وتسريب مفاتيح API وبيانات الهوية الحساسة.",
+    solution: "طبقة أمان بنموذج الثقة الصفرية تضم SecurityAgent (المصادقة والتحقق من شهادات mTLS وتحديد معدل الطلبات)، و DefenseAgent (فحص عميق لهياكل الأدوات واعتراض الهجمات وتنقية المخرجات)، و ComplianceAgent (إدارة الصلاحيات ومنع تسريب البيانات وسجل تدقيق مشفر برمز SHA-256).",
+    impact: "معدل اعتراض 100% لهجمات تسميم الأدوات، سرعة استجابة 0.42 مللي ثانية، حجب أكثر من 45 ألف بيان سري، مع اجتياز 14/14 اختباراً آلياً.",
+    description: "بوابة أمان مؤسسية قائمة على نموذج الثقة الصفرية لحماية بروتوكولات MCP والتشغيل البيني بين الوكلاء من هجمات تسميم الأدوات وحقن الأوامر وتسريب البيانات.",
+    tech: ["FastAPI", "Python 3.12", "MCP Protocol", "Zero-Trust Security", "DLP Engine", "Helm", "Docker", "Pytest"],
+    github: "https://github.com/asadullah48/securebridge",
+    demo: "http://127.0.0.1:8007/",
+    metrics: [
+      { label: "اعتراض الهجمات", value: "100%" },
+      { label: "سرعة البوابة", value: "0.42ms" },
+      { label: "الاختبارات", value: "14/14" },
+    ],
+    featured: true,
+    isNew: true,
+  },
   {
     id: "workforceai-academy",
     title: "أكاديمية WorkforceAI: منصة التدريب والتأهيل للتعاون بين البشر والذكاء الاصطناعي",
