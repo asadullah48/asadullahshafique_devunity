@@ -35,6 +35,26 @@ type Project = {
 
 const PROJECTS_EN: Project[] = [
   {
+    id: "researchx",
+    title: "ResearchX: Autonomous Analyst Agent & Market Intelligence",
+    status: "Enterprise Grade",
+    tagline: "Multi-Source Evidence Triangulation, SEC Filing Ingestion, Divergence Auditing & SWOT Synthesis",
+    problem: "Financial analysts spend 80% of their time cross-referencing conflicting industry numbers across filings, while traditional LLMs hallucinate statistics and lack verifiable citation provenance.",
+    solution: "An autonomous analyst framework governed by Plan-Act-Verify loops featuring SearchAgent (SEC 10-K & industry benchmark ingestion), VerifyAgent (multi-source triangulation & divergence delta auditing), and ReportAgent (institutional dossiers with SWOT matrices & verifiable inline citations).",
+    impact: "98% triangulation consensus accuracy, 0% hallucinated statistics, sub-50ms synthesis latency, and 10/10 passing automated tests.",
+    description: "Autonomous analyst framework independently discovering, verifying, and cross-referencing industry data to produce full market intelligence reports.",
+    tech: ["FastAPI", "Python 3.12", "Market Intelligence", "Evidence Triangulation", "Equity Research", "Helm", "Docker", "Pytest"],
+    github: "https://github.com/asadullah48/researchx",
+    demo: "http://127.0.0.1:8011/",
+    metrics: [
+      { label: "Consensus", value: "98%" },
+      { label: "Provenance", value: "100%" },
+      { label: "Tests", value: "10/10" },
+    ],
+    featured: true,
+    isNew: true,
+  },
+  {
     id: "graphai",
     title: "GraphAI: Enterprise Workflow Orchestration (DAGs, HITL & Retries)",
     status: "Enterprise Grade",
@@ -431,6 +451,26 @@ const PROJECTS_EN: Project[] = [
 ];
 
 const PROJECTS_AR: Project[] = [
+  {
+    id: "researchx",
+    title: "منصة ResearchX: وكيل المحلل المستقل لمعلومات السوق وأبحاث الاستثمار",
+    status: "Enterprise Grade",
+    tagline: "تثليث ومطابقة البيانات متعددة المصادر، واستخراج إفصاحات SEC، وتدقيق التباين، وصياغة تقارير SWOT",
+    problem: "يستنزف المحللون الماليون 80% من وقتهم في مطابقة الأرقام المتضاربة عبر الإفصاحات، بينما تنتج النماذج التقليدية هلوسات إحصائية تفتقر للمراجع الموثوقة.",
+    solution: "إطار عمل للمحلل المستقل بنموذج (Plan-Act-Verify) يضم SearchAgent (استخراج إفصاحات 10-K وبيانات السوق)، و VerifyAgent (تثليث البيانات ومطابقتها واحتساب التباين)، و ReportAgent (صياغة التقارير المؤسسية الشاملة ومصفوفة SWOT مع التوثيق المرجعي).",
+    impact: "دقة توافق إحصائي بنسبة 98%، انعدام الإحصائيات غير الموثقة، سرعة بناء التقرير في أقل من 50 مللي ثانية، مع اجتياز 10/10 اختبارات آلياً.",
+    description: "إطار عمل رائد يمكّن الوكلاء الأذكياء من البحث الذاتي والتدقيق المتقاطع للأدلة بين مصادر متعددة لإعداد تقارير مؤسسية موثوقة بالكامل.",
+    tech: ["FastAPI", "Python 3.12", "Market Intelligence", "Evidence Triangulation", "Equity Research", "Helm", "Docker", "Pytest"],
+    github: "https://github.com/asadullah48/researchx",
+    demo: "http://127.0.0.1:8011/",
+    metrics: [
+      { label: "التوافق", value: "98%" },
+      { label: "التوثيق", value: "100%" },
+      { label: "الاختبارات", value: "10/10" },
+    ],
+    featured: true,
+    isNew: true,
+  },
   {
     id: "graphai",
     title: "منصة GraphAI: إدارة وتنسيق تدفقات العمل الموجهة (DAGs) والتحكم المؤسسي",
