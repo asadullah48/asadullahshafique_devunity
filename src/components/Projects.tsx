@@ -35,6 +35,26 @@ type Project = {
 
 const PROJECTS_EN: Project[] = [
   {
+    id: "synthdata",
+    title: "SynthData: Privacy-First Synthetic Data Generator",
+    status: "Enterprise Grade",
+    tagline: "Laplace Differential Privacy Noise, Zero-PII Eradication & GDPR/HIPAA Compliant Test Data Harness",
+    problem: "Using production customer data for testing and machine learning exposes enterprises to severe GDPR/HIPAA regulatory fines and catastrophic privacy breach liabilities.",
+    solution: "A privacy-first synthetic data generation multi-agent framework featuring GeneratorAgent (producing domain-tailored records with Laplace differential privacy noise), ValidatorAgent (verifying correlation preservation r >= 0.90), and ComplianceAgent (executing deep zero-PII leak scans and certifying GDPR Article 25 & HIPAA Safe Harbor compliance).",
+    impact: "Strict epsilon <= 0.50 DP guarantee, 0.0% PII leak rate, 94.0% correlation preservation, and 10/10 passing automated tests.",
+    description: "Enterprise multi-agent framework generating realistic synthetic datasets with strict Differential Privacy and Zero-PII certification for GDPR/HIPAA safe testing.",
+    tech: ["FastAPI", "Python 3.12", "Differential Privacy", "Laplace Noise", "PII Scrubber", "Helm", "Docker", "Pytest"],
+    github: "https://github.com/asadullah48/synthdata",
+    demo: "http://127.0.0.1:8016/",
+    metrics: [
+      { label: "Privacy DP", value: "ε <= 0.5" },
+      { label: "PII Leaks", value: "0.0%" },
+      { label: "Tests", value: "10/10" },
+    ],
+    featured: true,
+    isNew: true,
+  },
+  {
     id: "accessai",
     title: "AccessAI: Real-Time Audio Description & Accessibility Agent",
     status: "Enterprise Grade",
@@ -531,6 +551,26 @@ const PROJECTS_EN: Project[] = [
 ];
 
 const PROJECTS_AR: Project[] = [
+  {
+    id: "synthdata",
+    title: "منصة SynthData: مولد البيانات الاصطناعية الموجه لحماية الخصوصية",
+    status: "Enterprise Grade",
+    tagline: "ضوضاء الخصوصية التفاضلية (Laplace)، واستبعاد كامل للهويات (Zero-PII)، وبيئة اختبار معتمدة لـ GDPR و HIPAA",
+    problem: "استخدام بيانات العملاء الحقيقية في بيئات الاختبار وتدريب الذكاء الاصطناعي يعرض الشركات لغرامات تنظيمية باهظة ومخاطر تسريب البيانات الحساسة.",
+    solution: "إطار عمل ذكي متعدد الوكلاء لإنتاج البيانات الاصطناعية يضم GeneratorAgent (توليد سجلات واقعية بضوضاء لابلاس التفاضلية)، و ValidatorAgent (التحقق من دقة الترابط الإحصائي r >= 0.90)، و ComplianceAgent (الفحص العميق لمنع تسريب الهويات واعتماد معايير GDPR و HIPAA).",
+    impact: "ضمان خصوصية تفاضلية إبسيلون <= 0.50، نسبة تسريب هويات 0.0%، الحفاظ على مصفوفة الترابط بنسبة 94.0%، مع اجتياز 10/10 اختبارات آلياً.",
+    description: "إطار عمل رائد متعدد الوكلاء لتوليد مجموعات بيانات اصطناعية عالية الدقة الإحصائية مع ضمانات الخصوصية التفاضلية الرياضية وخلوها التام من البيانات الشخصية.",
+    tech: ["FastAPI", "Python 3.12", "Differential Privacy", "Laplace Noise", "PII Scrubber", "Helm", "Docker", "Pytest"],
+    github: "https://github.com/asadullah48/synthdata",
+    demo: "http://127.0.0.1:8016/",
+    metrics: [
+      { label: "ميزانية DP", value: "ε <= 0.5" },
+      { label: "تسريب PII", value: "0.0%" },
+      { label: "الاختبارات", value: "10/10" },
+    ],
+    featured: true,
+    isNew: true,
+  },
   {
     id: "accessai",
     title: "منصة AccessAI: وكيل الوصف الصوتي الفوري وإتاحة الوصول الرقمي الشامل",
