@@ -35,6 +35,26 @@ type Project = {
 
 const PROJECTS_EN: Project[] = [
   {
+    id: "harnessai",
+    title: "HarnessAI: Safe Operating Environment for Autonomous Agents",
+    status: "Enterprise Grade",
+    tagline: "Deterministic Containment, Sandboxed Capability Broker, Memory Partitioning & Runaway Circuit Breakers",
+    problem: "Autonomous AI agents executing tools and mutating shared context risk infinite recursive execution, context memory poisoning, unhandled timeouts, and dirty state mutations without rollback capabilities.",
+    solution: "A harness-first safe runtime architecture featuring ToolManager (capability-scoped sandboxing and 3.0s timeout ceilings), MemoryAgent (partitioned working/episodic context storage with poison scrubbers), and ObserverAgent (real-time telemetry and automated runaway circuit breaker tripping).",
+    impact: "100% blast radius containment, automatic state rollbacks, 0 dirty memory states, and 15/15 passing automated tests.",
+    description: "Harness layer ensuring autonomous agents operate safely with sandboxed tools, partitioned memory, and deterministic telemetry.",
+    tech: ["FastAPI", "Python 3.12", "Agent Harness", "Sandboxing", "Circuit Breaker", "Helm", "Docker", "Pytest"],
+    github: "https://github.com/asadullah48/harnessai",
+    demo: "http://127.0.0.1:8008/",
+    metrics: [
+      { label: "Containment", value: "100%" },
+      { label: "Trip Latency", value: "<10ms" },
+      { label: "Tests", value: "15/15" },
+    ],
+    featured: true,
+    isNew: true,
+  },
+  {
     id: "securebridge",
     title: "SecureBridge: Agent Security Layer for MCP/A2A Mesh",
     status: "Enterprise Grade",
@@ -354,6 +374,26 @@ const PROJECTS_EN: Project[] = [
 ];
 
 const PROJECTS_AR: Project[] = [
+  {
+    id: "harnessai",
+    title: "منصة HarnessAI: بيئة التشغيل الآمنة وحوكمة الوكلاء الأذكياء",
+    status: "Enterprise Grade",
+    tagline: "بيئة عزل محكمة وحوكمة الصلاحيات وتجزئة الذاكرة مع قواطع دوائر لمنع الحلقات الجامحة",
+    problem: "يتعرض تشغيل الوكلاء المستقلين لمخاطر الحلقات التكرارية اللانهائية، وتسميم الذاكرة المشتركة، وتعديل الحالات التشغيلية بدون إمكانية الاسترجاع عند الفشل.",
+    solution: "هيكل بيئة تشغيل آمنة بنموذج الحاضنة يضم ToolManager (عزل تنفيذ الأدوات في بيئة مشروطة بمهلة 3 ثوانٍ)، و MemoryAgent (تجزئة الذاكرة وتصفية محاولات التسميم)، و ObserverAgent (مراقبة المؤشرات اللحظية وفصل قواطع الدوائر آلياً لمنع الحلقات الجامحة).",
+    impact: "احتواء نطاق الضرر بنسبة 100%، استرجاع فوري للحالة النظيفة، وانعدام الحالات الملوثة للذاكرة، مع اجتياز 15/15 اختباراً آلياً.",
+    description: "إطار عمل رائد لتوفير بيئة تشغيل آمنة ومحددة بدقة تضمن تشغيل الوكلاء ضمن نطاق معزول للأدوات والذاكرة والصلاحيات وقواطع الدوائر الآلية.",
+    tech: ["FastAPI", "Python 3.12", "Agent Harness", "Sandboxing", "Circuit Breaker", "Helm", "Docker", "Pytest"],
+    github: "https://github.com/asadullah48/harnessai",
+    demo: "http://127.0.0.1:8008/",
+    metrics: [
+      { label: "احتواء الضرر", value: "100%" },
+      { label: "سرعة الفصل", value: "<10ms" },
+      { label: "الاختبارات", value: "15/15" },
+    ],
+    featured: true,
+    isNew: true,
+  },
   {
     id: "securebridge",
     title: "منصة SecureBridge: طبقة الحماية والتوافق الأمني للوكلاء الأذكياء",
