@@ -35,6 +35,26 @@ type Project = {
 
 const PROJECTS_EN: Project[] = [
   {
+    id: "loopai",
+    title: "LoopAI: Feedback-Driven Agents (Plan-Act-Verify Self-Correction)",
+    status: "Enterprise Grade",
+    tagline: "Autonomous Reflection, Evidentiary Assertion Auditing, Closed-Loop Replanning & Convergence",
+    problem: "Single-pass linear agent execution produces ungrounded hallucinations, structural formatting omissions, and silent calculation errors with zero autonomous self-correction mechanisms.",
+    solution: "A closed-loop agent framework featuring PlannerAgent (goal decomposition & formal verification assertions), ActorAgent (tool execution & candidate generation), and VerifierAgent (evidentiary auditing, confidence scoring V_score >= 0.90, and actionable critique feedback for iterative replanning).",
+    impact: "100% verification convergence, 0% groundless claims, average 2-iteration self-correction cycle, and 12/12 passing automated tests.",
+    description: "Plan-Act-Verify feedback loop framework enabling autonomous agents to self-correct and verify evidentiary correctness.",
+    tech: ["FastAPI", "Python 3.12", "Feedback Loops", "Self-Correction", "Reflection", "Helm", "Docker", "Pytest"],
+    github: "https://github.com/asadullah48/loopai",
+    demo: "http://127.0.0.1:8009/",
+    metrics: [
+      { label: "Convergence", value: "100%" },
+      { label: "Confidence", value: ">=0.90" },
+      { label: "Tests", value: "12/12" },
+    ],
+    featured: true,
+    isNew: true,
+  },
+  {
     id: "harnessai",
     title: "HarnessAI: Safe Operating Environment for Autonomous Agents",
     status: "Enterprise Grade",
@@ -374,6 +394,26 @@ const PROJECTS_EN: Project[] = [
 ];
 
 const PROJECTS_AR: Project[] = [
+  {
+    id: "loopai",
+    title: "منصة LoopAI: وكلاء أذكياء بنموذج التغذية الراجعة والتصحيح الذاتي (Plan-Act-Verify)",
+    status: "Enterprise Grade",
+    tagline: "حلقة مغلقة للتفكير التأملي وتدقيق الأدلة وإعادة التخطيط التكراري حتى التقارب المؤكد",
+    problem: "يؤدي التنفيذ الخطي الأحادي للنماذج الذكية إلى هلوسات غير موثقة، وأخطاء حسابية وهيكلية صامتة بدون أي آلية للتصحيح الذاتي المستقل.",
+    solution: "إطار عمل للحلقات المغلقة يضم PlannerAgent (تحديد الأهداف ومعايير التحقق الصارمة)، و ActorAgent (تنفيذ الأدوات وتوليد الحلول المرشحة)، و VerifierAgent (تدقيق الأدلة واحتساب درجة الثقة V_score >= 0.90 وتقديم نقد بنّاء لإعادة التخطيط والتصحيح الذاتي).",
+    impact: "معدل اعتماد وتأكيد بنسبة 100%، انعدام الادعاءات غير الموثقة، دورة تقارب سريعة في تكرارين فقط، مع اجتياز 12/12 اختباراً آلياً.",
+    description: "إطار عمل رائد يمكّن الوكلاء الأذكياء من التصحيح الذاتي والتفكير التأملي والوصول إلى الدقة المؤكدة عبر حلقات (تخطيط - تنفيذ - تحقق).",
+    tech: ["FastAPI", "Python 3.12", "Feedback Loops", "Self-Correction", "Reflection", "Helm", "Docker", "Pytest"],
+    github: "https://github.com/asadullah48/loopai",
+    demo: "http://127.0.0.1:8009/",
+    metrics: [
+      { label: "التقارب المعتمد", value: "100%" },
+      { label: "درجة الثقة", value: ">=0.90" },
+      { label: "الاختبارات", value: "12/12" },
+    ],
+    featured: true,
+    isNew: true,
+  },
   {
     id: "harnessai",
     title: "منصة HarnessAI: بيئة التشغيل الآمنة وحوكمة الوكلاء الأذكياء",
