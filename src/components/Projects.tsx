@@ -35,6 +35,26 @@ type Project = {
 
 const PROJECTS_EN: Project[] = [
   {
+    id: "contextx",
+    title: "ContextX: Advanced Context Engineering Framework",
+    status: "Enterprise Grade",
+    tagline: "Beyond Prompt Engineering: Hybrid RRF, Lost-in-the-Middle Attention Windows & Grounded Synthesis",
+    problem: "Standard prompt stuffing in enterprise RAG pipelines suffers from the 'Lost-in-the-Middle' effect (up to 60% attention degradation in mid-context tokens), severe context dilution, and ungrounded hallucinations lacking chunk-level attribution.",
+    solution: "An enterprise context engineering framework featuring RetrieverAgent (dense vectors + BM25 keywords + exponential recency decay RRF), ContextBuilder (boundary-weighted Lost-in-the-Middle mitigation and mathematical token budget clamping), and DecisionAgent (synthesizing multi-hop decisions with explicit chunk citations).",
+    impact: "+34% retrieval precision lift, -42% token waste eliminated, 99.4% boundary attention recall, and 12/12 passing automated tests.",
+    description: "Advanced Context Engineering Framework optimizing agent retrieval, token allocation, boundary-weighted context windows, and cited multi-hop decision synthesis beyond basic prompt engineering.",
+    tech: ["FastAPI", "Python 3.12", "RRF Hybrid Search", "Context Compression", "Lost-in-the-Middle Layout", "Helm", "Docker", "Pytest"],
+    github: "https://github.com/asadullah48/contextx",
+    demo: "http://127.0.0.1:8004/",
+    metrics: [
+      { label: "Precision Lift", value: "+34%" },
+      { label: "Token Savings", value: "42%" },
+      { label: "Tests", value: "12/12" },
+    ],
+    featured: true,
+    isNew: true,
+  },
+  {
     id: "guardrailai",
     title: "GuardrailAI: Deterministic Workflow & Compliance Layer",
     status: "Enterprise Grade",
@@ -256,6 +276,26 @@ const PROJECTS_EN: Project[] = [
 ];
 
 const PROJECTS_AR: Project[] = [
+  {
+    id: "contextx",
+    title: "ContextX: إطار عمل هندسة السياق المتقدمة للوكلاء الأذكياء",
+    status: "Enterprise Grade",
+    tagline: "ما وراء هندسة الأوامر: استرجاع هجين RRF، تخفيف الضياع في المنتصف، وقرارات مسندة",
+    problem: "تعاني أنظمة RAG التقليدية من ظاهرة 'الضياع في المنتصف' (انخفاض تركيز النموذج بنسبة تصل إلى 60% في منتصف السياق)، بالإضافة إلى هدر الرموز وتوليد إجابات غير مسندة بمصادر دقيقة.",
+    solution: "إطار عمل مؤسسي متكامل يضم RetrieverAgent (استرجاع هجين دلالي وكلمات مفتاحية مع اضمحلال زمني)، و ContextBuilder (ترتيب حدودي لتفادي الضياع في المنتصف وضبط صارم للميزانية)، و DecisionAgent (استدلال موثق باقتباسات دقيقة).",
+    impact: "+34% زيادة في دقة الاسترجاع، 42% توفير في هدر الرموز، 99.4% استرجاع لمعلومات الأطراف، واجتياز 12/12 اختباراً آلياً.",
+    description: "إطار عمل متطور لهندسة وتخصيص نوافذ السياق، وضغط الرموز، وتخفيف ظاهرة الضياع في المنتصف، وتوليد القرارات الموثقة بالاقتباسات الدقيقة.",
+    tech: ["FastAPI", "Python 3.12", "RRF Hybrid Search", "Context Compression", "Lost-in-the-Middle Layout", "Helm", "Docker", "Pytest"],
+    github: "https://github.com/asadullah48/contextx",
+    demo: "http://127.0.0.1:8004/",
+    metrics: [
+      { label: "دقة الاسترجاع", value: "+34%" },
+      { label: "توفير الرموز", value: "42%" },
+      { label: "الاختبارات", value: "12/12" },
+    ],
+    featured: true,
+    isNew: true,
+  },
   {
     id: "guardrailai",
     title: "GuardrailAI: طبقة حواجز الحماية القطعية والامتثال التنظيمي",
