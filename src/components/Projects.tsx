@@ -35,6 +35,26 @@ type Project = {
 
 const PROJECTS_EN: Project[] = [
   {
+    id: "workforceai-academy",
+    title: "WorkforceAI Academy: Enterprise AI-Human Teaming & Fluency Platform",
+    status: "Enterprise Grade",
+    tagline: "Interactive AI Enablement, Real-Time In-Workflow Co-Pilot Scaffolding & Collaboration Index Certifications",
+    problem: "Enterprise AI adoption fails when employees treat advanced reasoning agents as generic search engines, succumb to hallucination blindness, and lack structured guidance when designing agentic tool schemas.",
+    solution: "An enterprise enablement multi-agent suite featuring TrainerAgent (interactive multi-track AI fluency curriculum from Zero-Shot to Multi-Agent Choreography), MentorAgent (real-time in-flight co-pilot scaffolding and prompt refactoring), and AssessmentAgent (mathematical Collaboration Index scoring and verifiable SHA-256 certifications).",
+    impact: "88.5% workforce fluency rate, +3.4x task speedup delta, 94.2% evidentiary hallucination interception, and 12/12 passing automated tests.",
+    description: "Enterprise multi-agent framework that trains, mentors, and certifies employees in high-value AI collaboration, prompt engineering, and agentic orchestration.",
+    tech: ["FastAPI", "Python 3.12", "Human-AI Teaming", "Collaboration Index", "Workflow Scaffolding", "Helm", "Docker", "Pytest"],
+    github: "https://github.com/asadullah48/workforceai-academy",
+    demo: "http://127.0.0.1:8006/",
+    metrics: [
+      { label: "Fluency Rate", value: "88.5%" },
+      { label: "Speedup Delta", value: "+3.4x" },
+      { label: "Tests", value: "12/12" },
+    ],
+    featured: true,
+    isNew: true,
+  },
+  {
     id: "conciergeagent",
     title: "ConciergeAgent: Hyperpersonalized Service AI Platform",
     status: "Enterprise Grade",
@@ -314,6 +334,26 @@ const PROJECTS_EN: Project[] = [
 ];
 
 const PROJECTS_AR: Project[] = [
+  {
+    id: "workforceai-academy",
+    title: "أكاديمية WorkforceAI: منصة التدريب والتأهيل للتعاون بين البشر والذكاء الاصطناعي",
+    status: "Enterprise Grade",
+    tagline: "تمكين مؤسسي تفاعلي وتوجيه فوري لمهام العمل وشهادات معتمدة لمؤشر التعاون الذكي",
+    problem: "يتعثر تبني الذكاء الاصطناعي المؤسسي عندما يتعامل الموظفون مع الوكلاء كأدوات بحث تقليدية، مع غياب القدرة على اكتشاف الهلوسات وانعدام التوجيه الفوري أثناء صياغة الأوامر.",
+    solution: "منظومة متعددة الوكلاء للتأهيل المؤسسي تضم TrainerAgent (منهج تفاعلي لمهارات الذكاء الاصطناعي من هندسة الأوامر حتى إدارة الوكلاء)، و MentorAgent (مرشد فوري أثناء العمل لإعادة صياغة الأوامر وإضافة أدوات الحماية)، و AssessmentAgent (تقييم مؤشر التعاون وإصدار شهادات مشفرة).",
+    impact: "معدل طلاقة 88.5%، تسريع إنجاز المهام بمعدل 3.4 ضعف، واكتشاف 94.2% من الهلوسات، مع اجتياز 12/12 اختباراً آلياً.",
+    description: "إطار عمل متعدد الوكلاء لتمكين وتأهيل القوى العاملة المؤسسية، وتدريب الموظفين على هندسة الأوامر واستخدام الأدوات وحوكمة أنظمة الذكاء الاصطناعي.",
+    tech: ["FastAPI", "Python 3.12", "Human-AI Teaming", "Collaboration Index", "Workflow Scaffolding", "Helm", "Docker", "Pytest"],
+    github: "https://github.com/asadullah48/workforceai-academy",
+    demo: "http://127.0.0.1:8006/",
+    metrics: [
+      { label: "نسبة الطلاقة", value: "88.5%" },
+      { label: "تسريع العمل", value: "+3.4x" },
+      { label: "الاختبارات", value: "12/12" },
+    ],
+    featured: true,
+    isNew: true,
+  },
   {
     id: "conciergeagent",
     title: "ConciergeAgent: منصة الوكيل الرقمي الفاخر لخدمة ورفاهية العملاء",
