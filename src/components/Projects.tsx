@@ -35,6 +35,26 @@ type Project = {
 
 const PROJECTS_EN: Project[] = [
   {
+    id: "actionnews",
+    title: "ActionNews: Financial Newsletter & Alpha Intelligence Agent",
+    status: "Enterprise Grade",
+    tagline: "100+ Feeds Ingestion, FinBERT Cross-Asset Sentiment & Actionable Investor Insights",
+    problem: "Investors face severe information overload from 10,000+ daily financial headlines, SEC filings, and central bank releases without actionable synthesis.",
+    solution: "An autonomous financial intelligence multi-agent framework featuring AggregatorAgent (ingesting & clustering 100+ live feeds from Bloomberg, Reuters, SEC 10-Q & Fed minutes), AnalyzerAgent (quantifying FinBERT sentiment index & cross-asset volatility), and AdvisorAgent (formulating high-conviction trade signals, risk-adjusted allocations, and daily executive newsletters).",
+    impact: "100+ sources synthesized, 94.5% peak trade conviction, <15ms generation latency, and 12/12 passing automated tests.",
+    description: "Enterprise multi-agent framework summarizing 100+ financial sources into actionable daily investor insights and executive newsletters.",
+    tech: ["FastAPI", "Python 3.12", "FinBERT", "Multi-Feed Aggregator", "Cross-Asset Sentiment", "Docker", "Helm", "Pytest"],
+    github: "https://github.com/asadullah48/actionnews",
+    demo: "http://127.0.0.1:8018/",
+    metrics: [
+      { label: "Sources Ingested", value: "100+" },
+      { label: "Top Conviction", value: "94.5%" },
+      { label: "Tests", value: "12/12" },
+    ],
+    featured: true,
+    isNew: true,
+  },
+  {
     id: "legacyx",
     title: "LegacyX: Automated COBOL & Java Migration Agent",
     status: "Enterprise Grade",
@@ -588,6 +608,26 @@ const PROJECTS_EN: Project[] = [
 ];
 
 const PROJECTS_AR: Project[] = [
+  {
+    id: "actionnews",
+    title: "منصة ActionNews: وكيل النشرة المالية والذكاء الاستثماري",
+    status: "Enterprise Grade",
+    tagline: "تجميع 100+ مصدر مالي، ونمذجة معنويات FinBERT، وتوصيات استثمارية يومية دقيقة",
+    problem: "يواجه المستثمرون تشتتاً معرفياً هائلاً من آلاف العناوين المالية اليومية وإفصاحات الهيئات التنظيمية دون وجود تلخيص استثماري فوري.",
+    solution: "إطار عمل ذكي متعدد الوكلاء يضم AggregatorAgent (جمع وتصنيف أكثر من 100 تدفق إخباري وإفصاح مالي)، و AnalyzerAgent (تحليل معنويات الأسواق FinBERT وتقييم مخاطر الأصول المتقاطعة)، و AdvisorAgent (صياغة توصيات تداول تكتيكية وتحديد توزيع الأصول وإنتاج النشرة التنفيذية).",
+    impact: "تلخيص 100+ مصدر مالي، أعلى نسبة ثقة استثمارية 94.5%، سرعة توليد فائقة أقل من 15 مللي ثانية، مع اجتياز 12/12 اختباراً آلياً.",
+    description: "إطار عمل رائد متعدد الوكلاء لجمع وتحليل أكثر من 100 مصدر إخباري مالي وصياغة توصيات استثمارية ونشرات تنفيذية يومية دقيقة.",
+    tech: ["FastAPI", "Python 3.12", "FinBERT", "Multi-Feed Aggregator", "Cross-Asset Sentiment", "Docker", "Helm", "Pytest"],
+    github: "https://github.com/asadullah48/actionnews",
+    demo: "http://127.0.0.1:8018/",
+    metrics: [
+      { label: "المصادر المجمعة", value: "100+" },
+      { label: "أعلى ثقة", value: "94.5%" },
+      { label: "الاختبارات", value: "12/12" },
+    ],
+    featured: true,
+    isNew: true,
+  },
   {
     id: "legacyx",
     title: "منصة LegacyX: وكيل التحديث البرمجي وتحويل الأنظمة القديمة",
