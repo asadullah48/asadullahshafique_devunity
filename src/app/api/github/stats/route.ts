@@ -11,12 +11,12 @@ interface GitHubProfile {
 // Last-known-good values served when the GitHub API is unreachable or
 // rate-limited (unauthenticated requests share 60/hr per IP on Vercel).
 // Keeping the strip populated beats an eternal "Loading…" state.
-// Re-measured against the live API on 2026-08-24. The previous values had
+// Re-measured on 2026-08-27 (repos 481 -> 507). Earlier values had
 // drifted badly in both directions — repos and followers were understated
 // (467/40), stars were overstated (25). A fallback that lies is worse than
 // no fallback, so re-measure these when you touch this file.
 const FALLBACK_STATS = {
-  public_repos: 481,
+  public_repos: 507,
   followers: 135,
   following: 1429,
   total_stars: 19,

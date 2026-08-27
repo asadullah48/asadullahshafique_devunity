@@ -3,6 +3,7 @@
 import { useState, type MouseEvent } from "react";
 import Image from "next/image";
 import { Reveal } from "@/components/Reveal";
+import { AgentEcosystem } from "@/components/AgentEcosystem";
 import { Github, ExternalLink, ChevronDown, ChevronUp, Zap, Star, Clock, ShoppingBag, ShieldCheck, Terminal, LayoutGrid } from "lucide-react";
 import { useLocale } from "@/context/LocaleContext";
 
@@ -129,7 +130,6 @@ const PROJECTS_EN: Project[] = [
       { label: "Dependencies", value: "0"  },
       { label: "Layers",       value: "4"  },
     ],
-    isNew: true,
   },
   {
     id: "synthdata",
@@ -149,7 +149,6 @@ const PROJECTS_EN: Project[] = [
       { label: "Tests", value: "10/10" },
     ],
     featured: true,
-    isNew: true,
   },
   {
     id: "accessai",
@@ -169,7 +168,6 @@ const PROJECTS_EN: Project[] = [
       { label: "Tests", value: "11/11" },
     ],
     featured: true,
-    isNew: true,
   },
   {
     id: "collabx",
@@ -189,7 +187,6 @@ const PROJECTS_EN: Project[] = [
       { label: "Tests", value: "10/10" },
     ],
     featured: true,
-    isNew: true,
   },
   {
     id: "docucode",
@@ -209,7 +206,6 @@ const PROJECTS_EN: Project[] = [
       { label: "Tests", value: "11/11" },
     ],
     featured: true,
-    isNew: true,
   },
   {
     id: "privatebrain",
@@ -229,7 +225,6 @@ const PROJECTS_EN: Project[] = [
       { label: "Tests", value: "14/14" },
     ],
     featured: true,
-    isNew: true,
   },
   {
     id: "researchx",
@@ -249,7 +244,6 @@ const PROJECTS_EN: Project[] = [
       { label: "Tests", value: "10/10" },
     ],
     featured: true,
-    isNew: true,
   },
   {
     id: "graphai",
@@ -269,7 +263,6 @@ const PROJECTS_EN: Project[] = [
       { label: "Tests", value: "12/12" },
     ],
     featured: true,
-    isNew: true,
   },
   {
     id: "loopai",
@@ -306,7 +299,6 @@ const PROJECTS_EN: Project[] = [
       { label: "Invariants", value: "6"  },
       { label: "API Keys",   value: "0"  },
     ],
-    isNew: true,
   },
   {
     id: "harnessai",
@@ -326,7 +318,6 @@ const PROJECTS_EN: Project[] = [
       { label: "Tests", value: "15/15" },
     ],
     featured: true,
-    isNew: true,
   },
   {
     id: "securebridge",
@@ -346,7 +337,6 @@ const PROJECTS_EN: Project[] = [
       { label: "Tests", value: "14/14" },
     ],
     featured: true,
-    isNew: true,
   },
   {
     id: "workforceai-academy",
@@ -366,7 +356,6 @@ const PROJECTS_EN: Project[] = [
       { label: "Tests", value: "12/12" },
     ],
     featured: true,
-    isNew: true,
   },
   {
     id: "conciergeagent",
@@ -386,7 +375,6 @@ const PROJECTS_EN: Project[] = [
       { label: "Tests", value: "13/13" },
     ],
     featured: true,
-    isNew: true,
   },
   {
     id: "contextx",
@@ -406,7 +394,6 @@ const PROJECTS_EN: Project[] = [
       { label: "Tests", value: "12/12" },
     ],
     featured: true,
-    isNew: true,
   },
   {
     id: "guardrailai",
@@ -426,7 +413,6 @@ const PROJECTS_EN: Project[] = [
       { label: "Tests", value: "17/17" },
     ],
     featured: true,
-    isNew: true,
   },
   {
     id: "domainx",
@@ -446,7 +432,6 @@ const PROJECTS_EN: Project[] = [
       { label: "Tests", value: "16/16" },
     ],
     featured: true,
-    isNew: true,
   },
   {
     id: "marketagenthub",
@@ -466,7 +451,6 @@ const PROJECTS_EN: Project[] = [
       { label: "Tests", value: "19/19" },
     ],
     featured: true,
-    isNew: true,
   },
   {
     id: "workforceai",
@@ -504,7 +488,6 @@ const PROJECTS_EN: Project[] = [
       { label: "Tests",     value: "41"        },
       { label: "API Keys",  value: "0"         },
     ],
-    isNew: true,
   },
   {
     id: "finagent-nexus",
@@ -523,7 +506,6 @@ const PROJECTS_EN: Project[] = [
       { label: "Model Calls",       value: "0"    },
       { label: "Tests",             value: "94"   },
     ],
-    isNew: true,
   },
   {
     id: "bazaar",
@@ -544,7 +526,6 @@ const PROJECTS_EN: Project[] = [
       { label: "Products", value: "10K+"       },
     ],
     featured: true,
-    isNew: true,
   },
   {
     id: "ai-tradeflow",
@@ -563,7 +544,6 @@ const PROJECTS_EN: Project[] = [
       { label: "Agent Tools", value: "5"          },
     ],
     featured: true,
-    isNew: true,
   },
   {
     id: "textile-erp",
@@ -743,7 +723,6 @@ const PROJECTS_AR: Project[] = [
       { label: "الاعتماديات",  value: "0"  },
       { label: "الطبقات",      value: "4"  },
     ],
-    isNew: true,
   },
   {
     id: "synthdata",
@@ -763,7 +742,6 @@ const PROJECTS_AR: Project[] = [
       { label: "الاختبارات", value: "10/10" },
     ],
     featured: true,
-    isNew: true,
   },
   {
     id: "accessai",
@@ -783,7 +761,6 @@ const PROJECTS_AR: Project[] = [
       { label: "الاختبارات", value: "11/11" },
     ],
     featured: true,
-    isNew: true,
   },
   {
     id: "collabx",
@@ -803,7 +780,6 @@ const PROJECTS_AR: Project[] = [
       { label: "الاختبارات", value: "10/10" },
     ],
     featured: true,
-    isNew: true,
   },
   {
     id: "docucode",
@@ -823,7 +799,6 @@ const PROJECTS_AR: Project[] = [
       { label: "الاختبارات", value: "11/11" },
     ],
     featured: true,
-    isNew: true,
   },
   {
     id: "privatebrain",
@@ -843,7 +818,6 @@ const PROJECTS_AR: Project[] = [
       { label: "الاختبارات", value: "14/14" },
     ],
     featured: true,
-    isNew: true,
   },
   {
     id: "researchx",
@@ -863,7 +837,6 @@ const PROJECTS_AR: Project[] = [
       { label: "الاختبارات", value: "10/10" },
     ],
     featured: true,
-    isNew: true,
   },
   {
     id: "graphai",
@@ -883,7 +856,6 @@ const PROJECTS_AR: Project[] = [
       { label: "الاختبارات", value: "12/12" },
     ],
     featured: true,
-    isNew: true,
   },
   {
     id: "loopai",
@@ -920,7 +892,6 @@ const PROJECTS_AR: Project[] = [
       { label: "الثوابت",        value: "6"  },
       { label: "مفاتيح الواجهة", value: "0"  },
     ],
-    isNew: true,
   },
   {
     id: "harnessai",
@@ -940,7 +911,6 @@ const PROJECTS_AR: Project[] = [
       { label: "الاختبارات", value: "15/15" },
     ],
     featured: true,
-    isNew: true,
   },
   {
     id: "securebridge",
@@ -960,7 +930,6 @@ const PROJECTS_AR: Project[] = [
       { label: "الاختبارات", value: "14/14" },
     ],
     featured: true,
-    isNew: true,
   },
   {
     id: "workforceai-academy",
@@ -980,7 +949,6 @@ const PROJECTS_AR: Project[] = [
       { label: "الاختبارات", value: "12/12" },
     ],
     featured: true,
-    isNew: true,
   },
   {
     id: "conciergeagent",
@@ -1000,7 +968,6 @@ const PROJECTS_AR: Project[] = [
       { label: "الاختبارات", value: "13/13" },
     ],
     featured: true,
-    isNew: true,
   },
   {
     id: "contextx",
@@ -1020,7 +987,6 @@ const PROJECTS_AR: Project[] = [
       { label: "الاختبارات", value: "12/12" },
     ],
     featured: true,
-    isNew: true,
   },
   {
     id: "guardrailai",
@@ -1040,7 +1006,6 @@ const PROJECTS_AR: Project[] = [
       { label: "الاختبارات", value: "17/17" },
     ],
     featured: true,
-    isNew: true,
   },
   {
     id: "domainx",
@@ -1060,7 +1025,6 @@ const PROJECTS_AR: Project[] = [
       { label: "الاختبارات", value: "16/16" },
     ],
     featured: true,
-    isNew: true,
   },
   {
     id: "marketagenthub",
@@ -1080,7 +1044,6 @@ const PROJECTS_AR: Project[] = [
       { label: "الاختبارات", value: "19/19" },
     ],
     featured: true,
-    isNew: true,
   },
   {
     id: "workforceai",
@@ -1118,7 +1081,6 @@ const PROJECTS_AR: Project[] = [
       { label: "الاختبارات",     value: "41"        },
       { label: "مفاتيح الواجهة", value: "0"         },
     ],
-    isNew: true,
   },
   {
     id: "finagent-nexus",
@@ -1137,7 +1099,6 @@ const PROJECTS_AR: Project[] = [
       { label: "استدعاءات النموذج", value: "0"    },
       { label: "الاختبارات",        value: "94"   },
     ],
-    isNew: true,
   },
   {
     id: "bazaar",
@@ -1158,7 +1119,6 @@ const PROJECTS_AR: Project[] = [
       { label: "المنتجات",  value: "10K+"       },
     ],
     featured: true,
-    isNew: true,
   },
   {
     id: "ai-tradeflow",
@@ -1177,7 +1137,6 @@ const PROJECTS_AR: Project[] = [
       { label: "أدوات الوكيل", value: "5"           },
     ],
     featured: true,
-    isNew: true,
   },
   {
     id: "textile-erp",
@@ -1620,6 +1579,12 @@ export function ProjectsSection() {
             {t("projects.subtitle")}
           </p>
         </Reveal>
+
+        {/* The 21-platform matrix indexes the ecosystem; the grid below
+            argues individual platforms in depth. Index first, then depth -
+            a reviewer checking coverage should not have to scroll a few
+            dozen cards to find out how many platforms there are. */}
+        <AgentEcosystem />
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {PROJECTS.map((project, i) => (
