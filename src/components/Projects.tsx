@@ -35,6 +35,26 @@ type Project = {
 
 const PROJECTS_EN: Project[] = [
   {
+    id: "legacyx",
+    title: "LegacyX: Automated COBOL & Java Migration Agent",
+    status: "Enterprise Grade",
+    tagline: "AST Intermediate Representation, Fixed-Point Arithmetic & 100% Semantic Parity Transpilation",
+    problem: "Global enterprises run over 220B lines of legacy COBOL and aging Java J2EE code where manual rewrites take 3-7 years and fail 70%+ of the time due to undocumented business rules.",
+    solution: "A loop-driven legacy modernization multi-agent framework featuring ParserAgent (deconstructing COBOL divisions & EJB patterns into an AST Intermediate Representation), TranslatorAgent (transpiling into typed Python 3.12 & TypeScript with Decimal precision), and VerifierAgent (executing automated boundary condition tests to certify 100% semantic equivalence).",
+    impact: "100% semantic parity, zero fixed-point rounding drift, <25ms transpilation latency, and 11/11 passing automated tests.",
+    description: "Enterprise multi-agent framework that translates monolithic COBOL and legacy Java into modern TypeScript and Python 3.12 with guaranteed semantic parity.",
+    tech: ["FastAPI", "Python 3.12", "AST Parser", "TypeScript", "Pydantic", "Zod", "Docker", "Helm", "Pytest"],
+    github: "https://github.com/asadullah48/legacyx",
+    demo: "http://127.0.0.1:8017/",
+    metrics: [
+      { label: "Semantic Parity", value: "100.0%" },
+      { label: "Math Drift", value: "0.0%" },
+      { label: "Tests", value: "11/11" },
+    ],
+    featured: true,
+    isNew: true,
+  },
+  {
     id: "synthdata",
     title: "SynthData: Privacy-First Synthetic Data Generator",
     status: "Enterprise Grade",
@@ -551,6 +571,26 @@ const PROJECTS_EN: Project[] = [
 ];
 
 const PROJECTS_AR: Project[] = [
+  {
+    id: "legacyx",
+    title: "منصة LegacyX: وكيل التحديث البرمجي وتحويل الأنظمة القديمة",
+    status: "Enterprise Grade",
+    tagline: "تحليل شجرة AST، وضمان دقة الحسابات المالية، وترجمة برمجية بتطابق دلالي 100%",
+    problem: "تشغل المؤسسات العالمية أكثر من 220 مليار سطر برمجي من أنظمة COBOL و Java القديمة حيث تستغرق إعادة الكتابة اليدوية سنوات وتفشل في أغلب الأحيان لغياب التوثيق.",
+    solution: "إطار عمل ذكي متعدد الوكلاء لتحديث الأنظمة الموروثة يضم ParserAgent (تفكيك كود COBOL وأقسام البيانات إلى مخطط وسيط IR)، و TranslatorAgent (ترجمة الكود إلى Python 3.12 و TypeScript بدقة Decimal تامة)، و VerifierAgent (التدقيق الآلي للشروط الحدية واعتماد التطابق السلوكي بنسبة 100%).",
+    impact: "تطابق دلالي بنسبة 100%، انعدام أخطاء التقريب الحسابي، سرعة تحويل فائقة أقل من 25 مللي ثانية، مع اجتياز 11/11 اختباراً آلياً.",
+    description: "إطار عمل رائد متعدد الوكلاء لتحويل أنظمة COBOL و Java القديمة إلى لغات حديثة مثل TypeScript و Python 3.12 مع ضمان التطابق الدلالي والرياضي التام.",
+    tech: ["FastAPI", "Python 3.12", "AST Parser", "TypeScript", "Pydantic", "Zod", "Docker", "Helm", "Pytest"],
+    github: "https://github.com/asadullah48/legacyx",
+    demo: "http://127.0.0.1:8017/",
+    metrics: [
+      { label: "التطابق الدلالي", value: "100.0%" },
+      { label: "أخطاء الحساب", value: "0.0%" },
+      { label: "الاختبارات", value: "11/11" },
+    ],
+    featured: true,
+    isNew: true,
+  },
   {
     id: "synthdata",
     title: "منصة SynthData: مولد البيانات الاصطناعية الموجه لحماية الخصوصية",
