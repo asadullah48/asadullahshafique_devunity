@@ -18,6 +18,8 @@ Founder of Texcot Embroidery Sourcing House and creator of the **Textile ERP Pla
 
 Completed **6 consecutive Panaversity Hackathons** (Bronze → Silver → Silver → Gold → Platinum → Agent Factory) with **85% code reusability** and **zero failed attempts**.
 
+Ships at volume: **21 production multi-agent platforms**, each with its own FastAPI gateway, test suite and public repository — **263 automated tests green** across them, all open source.
+
 ---
 
 ## AGENTIC AI MASTERY MATRIX
@@ -64,6 +66,14 @@ A three-pillar framework — a way of building agents, not a product line.
 
 ## FLAGSHIP PROJECTS
 
+### The Autonomous Agent Ecosystem — 21 Production Platforms *(Shipped)*
+[github.com/asadullah48](https://github.com/asadullah48?tab=repositories) · [Index](https://asadullahshafique-devunity.vercel.app/#projects)
+
+**Impact:** 21 production multi-agent platforms, each with its own FastAPI gateway, test suite and public repository. 263 automated tests green in aggregate across the 21 repositories, all open source.
+
+Not twenty-one variations on one template — each platform owns a distinct problem domain and a purpose-built agent team: **LegacyX** (COBOL and legacy-Java transpilation), **SecureBridge** (zero-trust MCP/A2A security and tool-poisoning defence), **StockAI** (autonomous inventory monitoring and demand forecasting), **GraphAI** (DAG workflow orchestration with human-in-the-loop approvals), and seventeen more spanning synthetic data, accessibility, context engineering, deterministic guardrails and multi-cloud marketplace agents. Each ships Docker and Kubernetes deployment configs and serves its own dashboard locally.  
+**Stack:** OpenAI Agents SDK, FastAPI, Python 3.12, pytest, Docker, Kubernetes
+
 ### FinAgent-Nexus — Multi-Agent Financial Intelligence *(Shipped)*
 *Agentic AI Adoption for Financial Services* · [github.com/asadullah48/finagent-nexus](https://github.com/asadullah48/finagent-nexus) · [Live](https://finagent-nexus.vercel.app)
 
@@ -94,7 +104,7 @@ Every agent path degrades gracefully without an API key — the deployed site ne
 **Impact:** 500+ verified sellers and 10K+ products across one codebase serving both retail checkout and a wholesale RFQ engine. PKR-native, three languages.  
 **Stack:** Next.js 15, FastAPI, Supabase, PostgreSQL, Redis, Docker
 
-### Textile ERP Platform — Pakistan *(In build — launching 2026)*
+### Textile ERP Platform — Pakistan *(In build)*
 **Founder | 2024 – Present** · [Live demo](https://cmt-stitching-asadullah-shafiques-projects.vercel.app)
 
 **Impact:** Targets Faisalabad, Sialkot, Gujranwala, Karachi and Lahore — Pakistan's full textile heartland — as multi-tenant SaaS on Kubernetes.
@@ -185,7 +195,26 @@ Full-spectrum digital marketing strategy for Dubai real estate, UAE construction
 
 ---
 
-## EDUCATION
+## EDUCATION & CERTIFICATIONS
+
+### Governor Sindh Initiative for Artificial Intelligence & Computing (Panaversity)
+**Feb 2024 – Present** · Advanced study in Agentic AI and Generative AI
+
+**Forward Deployed Engineer Training — Track B (Accelerated), 13 weeks.** Governed Vertical
+Systems of Record, stateless MCP (rev. 2026-07-28), multi-agent research systems, and
+structured extraction pipelines with validation and human review.
+
+Coursework across TypeScript/JavaScript, React and Next.js, Python, agent SDKs and AI
+frameworks, and Loop / Harness / Graph-based agent architectures.
+
+**Certifications — expected, not yet awarded.** Listed by awarding body, because PCAR-F is
+Panaversity’s own exam aligned to Anthropic’s CCAR-F blueprint rather than an Anthropic exam:
+
+- **Sindh Board / University of Karachi** — programme certification
+- **Panaversity** — PCAR-F, Architect Foundations, aligned to Anthropic’s CCAR-F blueprint
+- **Anthropic** — [Claude Certified Associate – Foundations](https://anthropic-partners.skilljar.com/claude-certified-associate-foundations-certification) → Claude Certified Architect – Foundations
+
+### Prior qualifications
 
 - **Alim — 5-Year Islamic Studies Course** | Burooj Institute, Karachi, Pakistan
 - **Associate Degree — Textile Technology** | Textile Institute of Pakistan (APTMA Project), Karachi, 1997

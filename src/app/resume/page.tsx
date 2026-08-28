@@ -84,6 +84,15 @@ const mastery = [
  */
 const flagship = [
   {
+    name: "The Autonomous Agent Ecosystem",
+    tagline: "21 production platforms, one per problem domain",
+    impact:
+      "21 production multi-agent platforms, each with its own FastAPI gateway, test suite and public repository. 263 automated tests green in aggregate across the 21 repositories, all open source.",
+    href: "https://github.com/asadullah48?tab=repositories",
+    stack: ["Agents SDK", "FastAPI", "Kubernetes"],
+    shipped: true,
+  },
+  {
     name: "FinAgent-Nexus",
     tagline: "Multi-Agent Financial Intelligence",
     impact:
@@ -123,7 +132,7 @@ const flagship = [
     name: "Textile ERP Platform",
     tagline: "Multi-tenant SaaS for Pakistan's textile heartland",
     impact:
-      "Targets Faisalabad, Sialkot, Gujranwala, Karachi and Lahore. Order lifecycle, four auto-billing types, party ledgers and BOM inventory. Launching 2026.",
+      "Targets Faisalabad, Sialkot, Gujranwala, Karachi and Lahore. Order lifecycle, four auto-billing types, party ledgers and BOM inventory. In build.",
     href: "https://cmt-stitching-asadullah-shafiques-projects.vercel.app",
     stack: ["Kubernetes", "FastAPI", "PostgreSQL"],
     shipped: false,
@@ -272,7 +281,68 @@ const experience = [
   },
 ];
 
-const education = [
+/**
+ * `focus` and `certifications` are optional because only the in-progress
+ * programme carries them — the completed rows stay exactly as they were.
+ * Without the explicit type, TypeScript infers a union from the array literal
+ * and `e.focus` fails to compile on the entries that lack it.
+ *
+ * `certifications` are NOT YET EARNED. They render under an explicit EXPECTED
+ * label and must never be moved into `degree` or presented as awarded — a
+ * résumé is the one document where an unearned credential read as earned is
+ * the difference between a strong candidate and a withdrawn offer.
+ */
+type Education = {
+  degree: string;
+  institution: string;
+  period: string;
+  /** The named programme inside the institution, where there is one. */
+  detail?: string;
+  focus?: string[];
+  /**
+   * `body` is separate from `name` because the awarding bodies differ and
+   * conflating them would misstate a credential. PCAR-F is Panaversity's own
+   * exam, aligned to Anthropic's CCAR-F blueprint — it is NOT an Anthropic
+   * exam, and the syllabus says so explicitly. A flat string list could not
+   * carry that distinction, which is exactly why this is a pair.
+   */
+  certifications?: { body: string; name: string }[];
+};
+
+const education: Education[] = [
+  {
+    /* Both affiliations named: the initiative is the Governor Sindh
+       programme, delivered through Panaversity. Naming only one of them
+       misstates the other. */
+    degree:
+      "Governor Sindh Initiative for Artificial Intelligence & Computing (Panaversity)",
+    institution: "Advanced study in Agentic AI and Generative AI",
+    period: "Feb 2024 – Present",
+    detail:
+      "Forward Deployed Engineer Training — Track B (Accelerated), 13 weeks: governed Vertical Systems of Record, stateless MCP (rev. 2026-07-28), multi-agent research systems, and structured extraction pipelines with validation and human review.",
+    focus: [
+      "TypeScript / JavaScript",
+      "React / Next.js",
+      "Python",
+      "Agent SDKs & AI frameworks",
+      "Loop / Harness / Graph architectures",
+    ],
+    /* Certification titles are quoted as the awarding body writes them,
+       verified against anthropic-partners.skilljar.com on 2026-08-28. A
+       paraphrased credential is an unverifiable one, and the en dash is
+       Anthropic's own. */
+    certifications: [
+      { body: "Sindh Board / University of Karachi", name: "Programme certification" },
+      {
+        body: "Panaversity",
+        name: "PCAR-F — Architect Foundations, aligned to Anthropic's CCAR-F blueprint",
+      },
+      {
+        body: "Anthropic",
+        name: "Claude Certified Associate – Foundations → Architect – Foundations",
+      },
+    ],
+  },
   { degree: "Alim (5-Year Islamic Studies Course)", institution: "Burooj Institute, Karachi", period: "" },
   { degree: "Associate Degree in Textile Technology", institution: "Textile Institute of Pakistan (APTMA)", period: "1997" },
   { degree: "H.S.C Pre-Engineering", institution: "Pakistan Shipowner's Government College, Karachi", period: "1994" },
@@ -347,13 +417,17 @@ export default function ResumePage() {
               </Reveal>
 
               <Reveal className="flex flex-col gap-2 flex-shrink-0" data-print="hide">
-                <a href="/resume.pdf" download="Asadullah_Shafique_Resume_2025.pdf">
+                <a href="/resume.pdf" download="Asadullah_Shafique_Resume_2026.pdf">
                   <Button className="w-full bg-brand text-primary-foreground font-semibold hover:bg-brand/90 h-11 px-6">
                     <FileDown className="w-4 h-4 mr-2" />
                     Download PDF
                   </Button>
                 </a>
-                <a href="/Asadullah_Shafique_Resume_2025.md" download>
+                {/* resume.md on disk so it pairs with resume.pdf, but served
+                    to the visitor under the full name — the same split the
+                    PDF link above already uses. The file must stay in public/
+                    to be served at all; only its name was the problem. */}
+                <a href="/resume.md" download="Asadullah_Shafique_Resume_2026.md">
                   <Button variant="outline" className="w-full border-border text-muted-foreground hover:border-brand/50 hover:text-brand h-9 px-6 text-sm">
                     <FileDown className="w-3.5 h-3.5 mr-2" />
                     Download Markdown
@@ -669,18 +743,75 @@ export default function ResumePage() {
         </Section>
 
         {/* Education */}
-        <Section title="Education" icon={<GraduationCap className="w-5 h-5" />}>
+        <Section title="Education & Certifications" icon={<GraduationCap className="w-5 h-5" />}>
           <div className="space-y-0">
             {education.map((e) => (
               <div
                 key={e.degree}
-                className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-1 py-3.5 border-b border-border/60 last:border-0"
+                /* items-start, not items-center: the in-progress entry is
+                   several lines tall, and centring pushed its period out of
+                   line with the degree it belongs to. */
+                className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-1 py-3.5 border-b border-border/60 last:border-0"
               >
                 <div>
                   <p className="font-medium text-foreground text-sm">{e.degree}</p>
                   <p className="text-muted-foreground text-sm">{e.institution}</p>
+
+                  {/* max-w-2xl: the training line is a full sentence and would
+                      otherwise run the width of the page against the short
+                      degree titles above it. */}
+                  {e.detail && (
+                    <p className="mt-2 text-sm text-muted-foreground/80 leading-relaxed max-w-2xl text-pretty">
+                      {e.detail}
+                    </p>
+                  )}
+
+                  {e.focus && (
+                    <div className="flex flex-wrap gap-1.5 mt-2.5">
+                      {e.focus.map((f) => (
+                        <span
+                          key={f}
+                          className="font-mono text-[11px] leading-none px-2 py-1 rounded-full border border-border text-muted-foreground/80"
+                        >
+                          {f}
+                        </span>
+                      ))}
+                    </div>
+                  )}
+
+                  {/* EXPECTED carries the whole meaning of this line, so it is
+                      a filled badge rather than a parenthetical — a reader
+                      skimming must not be able to mistake these for earned. */}
+                  {e.certifications && (
+                    <div className="mt-3">
+                      <span className="inline-block px-1.5 py-0.5 rounded bg-brand/15 text-brand font-semibold text-[10px] uppercase tracking-wider">
+                        Expected
+                      </span>
+                      {/* One row per awarding body. Stacked rather than
+                          comma-joined so no reader can attach a credential to
+                          the wrong institution by skim-reading a run-on line. */}
+                      <ul className="mt-1.5 space-y-1">
+                        {e.certifications.map((c) => (
+                          <li
+                            key={c.body}
+                            className="text-xs text-muted-foreground/70 leading-relaxed"
+                          >
+                            <span className="text-muted-foreground/90 font-medium">
+                              {c.body}
+                            </span>
+                            {" — "}
+                            {c.name}
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  )}
                 </div>
-                {e.period && <span className="text-muted-foreground text-sm flex-shrink-0">{e.period}</span>}
+                {e.period && (
+                  <span className="text-muted-foreground text-sm flex-shrink-0 sm:pt-0.5">
+                    {e.period}
+                  </span>
+                )}
               </div>
             ))}
           </div>
