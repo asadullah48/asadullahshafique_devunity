@@ -68,8 +68,6 @@ const SPECIALTY_AR: Record<string, string> = {
 const COPY = {
   en: {
     eyebrow: "// agent ecosystem",
-    title: "The Autonomous Agent",
-    titleHighlight: "Ecosystem",
     headline: "Production-grade autonomous AI platforms",
     subtitle:
       "Twenty-one production multi-agent platforms, each with its own FastAPI gateway, test suite and public repository.",
@@ -87,8 +85,6 @@ const COPY = {
   },
   ar: {
     eyebrow: "// منظومة الوكلاء",
-    title: "منظومة الوكلاء",
-    titleHighlight: "المستقلين",
     headline: "منصات ذكاء اصطناعي مستقلة بجودة إنتاجية",
     subtitle:
       "إحدى وعشرون منصة إنتاجية متعددة الوكلاء، لكل منها بوابة FastAPI ومجموعة اختبارات ومستودع عام.",
@@ -110,30 +106,23 @@ export function AgentEcosystem() {
   const specialty = locale === "ar" ? SPECIALTY_AR : SPECIALTY_EN;
 
   return (
-    <div className="mb-20">
-      <Reveal className="text-center mb-10">
-        {/* dir="ltr" so Arabic bidi does not flip the leading "//" to the
-            trailing edge, matching the eyebrow idiom used site-wide. */}
-        <div
-          dir="ltr"
-          className="text-xs font-mono text-brand/60 uppercase tracking-widest mb-3"
-        >
-          {copy.eyebrow}
-        </div>
-        <h3 className="text-3xl lg:text-4xl font-bold text-foreground mb-4">
-          {copy.title}{" "}
-          <span className="text-brand">{copy.titleHighlight}</span>
-        </h3>
-        <div className="w-16 h-0.5 bg-brand mx-auto mb-5" />
-        {/* brand-soft, not brand: full-saturation cyan vibrates badly in
-            paragraph-length copy on near-black. */}
-        <p className="text-brand-soft/80 max-w-2xl mx-auto text-sm leading-relaxed">
-          {copy.subtitle}
-        </p>
-      </Reveal>
+    /* mb-14 matches the rhythm the section headers set, so the gap below this
+       panel equals the gap above it. */
+    <div className="mb-14">
+      {/* Deliberately NO header block of its own. This renders inside
+          <section id="projects">, directly beneath that section's
+          eyebrow/title/rule/subtitle — a second centered masthead put two
+          identical header stacks fourteen pixels apart and restated the same
+          claim twice over. The eyebrow now sits inside the panel as a
+          left-aligned label: it keeps the section identity, and the asymmetry
+          against the centered header above is the point, not an accident.
 
-      <Reveal step={1} className="glass-panel rounded-panel overflow-hidden">
-        <div className="relative p-6 sm:p-8 lg:p-12">
+          spotlight-border + ease-spring are the house card treatment
+          (Projects.tsx:1327). The hover lift those cards carry is omitted on
+          purpose — a full-bleed panel rising under the cursor reads as a
+          glitch, where a 380px card reads as a card. */}
+      <Reveal className="glass-panel spotlight-border relative rounded-panel overflow-hidden transition-all duration-300 ease-spring">
+        <div className="relative p-6 sm:p-8 lg:p-10">
           {/* Ambient only — violet never touches a clickable control, and
               the layer is inert so it cannot swallow a click on the links
               stacked above it. */}
@@ -141,6 +130,20 @@ export function AgentEcosystem() {
             aria-hidden
             className="pointer-events-none absolute -top-24 -start-16 w-72 h-72 rounded-full bg-violet/10 blur-3xl"
           />
+
+          {/* The block inherits the page direction and uses text-start, so the
+              label sits on the reading edge — left in English, right in
+              Arabic, like everything else in the panel. Only the inner span is
+              dir="ltr", which is what keeps the leading "//" from flipping to
+              the trailing edge. Putting dir="ltr" on the block instead pins it
+              left in BOTH locales, because on a block that attribute sets the
+              default text-align too. Harmless while this was text-center;
+              wrong the moment it became a left-aligned masthead. */}
+          <div className="relative text-xs font-mono text-brand/60 uppercase tracking-widest mb-6 lg:mb-8 text-start">
+            <span dir="ltr" className="inline-block">
+              {copy.eyebrow}
+            </span>
+          </div>
 
           <div className="relative flex flex-col sm:flex-row sm:items-center gap-5 sm:gap-8 lg:gap-10">
             {/* tabular-nums with tight leading and negative tracking is what
@@ -155,9 +158,19 @@ export function AgentEcosystem() {
             </div>
             <div>
               <div className="w-10 h-1 bg-brand mb-4 rounded-full" />
-              <h4 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-foreground leading-[1.1] max-w-md">
+              {/* h3, not h4: the enclosing section owns the h2, and this is
+                  now the only heading in the block — the outline stays
+                  h2 → h3 with nothing skipped. text-balance keeps the last
+                  line from orphaning a single word. */}
+              <h3 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-foreground leading-[1.1] max-w-xl text-balance">
                 {copy.headline}
-              </h4>
+              </h3>
+              {/* muted-foreground, matching every other section subtitle in
+                  the portfolio. This is the one fact the removed header block
+                  carried that the card did not already state. */}
+              <p className="mt-3 text-muted-foreground text-sm leading-relaxed max-w-xl text-pretty">
+                {copy.subtitle}
+              </p>
             </div>
           </div>
 
@@ -191,7 +204,22 @@ export function AgentEcosystem() {
                   <span className="row-start-2 col-start-2 col-span-2 sm:row-start-1 sm:col-start-3 sm:col-span-1 text-muted-foreground text-sm leading-snug">
                     {specialty[item.id]}
                   </span>
-                  <Github className="row-start-1 col-start-3 sm:col-start-4 self-center w-4 h-4 shrink-0 text-muted-foreground/40 transition-colors duration-200 group-hover:text-brand" />
+                  {/* The repo path, restored from the old table. At 1440 the
+                      glyph alone sat ~800px from its own row with nothing
+                      between, which read as a layout fault rather than as
+                      whitespace. The path fills that span with the thing the
+                      row actually promises, and doubles as the classic
+                      editorial index treatment: name left, source right.
+                      Hidden below sm, where the row is already two lines. */}
+                  <div
+                    dir="ltr"
+                    className="row-start-1 col-start-3 sm:col-start-4 self-center flex items-center gap-2"
+                  >
+                    <span className="hidden sm:inline font-mono text-xs text-muted-foreground/50 transition-colors duration-200 group-hover:text-brand-soft">
+                      {`${GITHUB_OWNER}/${item.id}`}
+                    </span>
+                    <Github className="w-4 h-4 shrink-0 text-muted-foreground/40 transition-colors duration-200 group-hover:text-brand" />
+                  </div>
                 </a>
               </li>
             ))}
@@ -231,12 +259,15 @@ export function AgentEcosystem() {
         </div>
       </Reveal>
 
-      <Reveal step={2} className="mt-6 text-center">
+      <Reveal step={1} className="mt-6 text-center">
+        {/* The house CTA, identical to the one closing the Projects section
+            (Projects.tsx:1602) plus the press feedback the tab pills use.
+            A bare text link here read as a footnote, not an invitation. */}
         <a
           href={`https://github.com/${GITHUB_OWNER}?tab=repositories`}
           target="_blank"
           rel="noopener noreferrer"
-          className="inline-flex items-center gap-2 text-sm font-medium text-brand hover:text-brand-soft transition-colors duration-200"
+          className="inline-flex items-center gap-2 border border-brand/40 text-brand hover:bg-brand/10 px-6 py-3 rounded-lg transition-all duration-200 ease-spring active:scale-[0.97]"
         >
           <Github className="w-4 h-4 shrink-0" />
           {copy.cta}
@@ -244,7 +275,7 @@ export function AgentEcosystem() {
               Arabic instead of back at its own label. */}
           <ArrowRight className="w-4 h-4 shrink-0 rtl:rotate-180" />
         </a>
-        <p className="text-xs text-muted-foreground/70 mt-4 max-w-2xl mx-auto leading-relaxed">
+        <p className="text-xs text-muted-foreground/70 mt-5 max-w-2xl mx-auto leading-relaxed text-pretty">
           {copy.footnote}
         </p>
       </Reveal>
