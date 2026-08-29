@@ -15,9 +15,32 @@ type Post = {
 };
 
 const POSTS_EN: Post[] = [
-  // Newest first. EN only for now: content/ar/ has no translation of this one,
-  // and POSTS_AR must not list a slug whose Arabic markdown does not exist —
-  // generateStaticParams reads content/<locale>/, so the /ar route would 404.
+  // Newest first. The top three are EN only: content/ar/ has no translation of
+  // them, and POSTS_AR must not list a slug whose Arabic markdown does not
+  // exist — generateStaticParams reads content/<locale>/, so the /ar route
+  // would 404.
+  {
+    slug: "closing-the-deployment-gap",
+    title:
+      "Closing the Deployment Gap: Why the Next Job Is Forward-Deployed, Not Another Demo Agent",
+    excerpt:
+      "Two groups are stuck for what look like opposite reasons — developers watching their work commoditise, companies watching pilots collapse on contact with real workflows. It is the same wall from two sides. The gap is not talent and not the model; it is deployment, and it closes with a System of Context.",
+    readTime: "8 min read",
+    date: "August 2026",
+    tags: ["Forward-Deployed", "Agent Factory", "System of Context", "AI Engineering"],
+    accentColor: "#ec4899",
+  },
+  {
+    slug: "claude-certification-by-job-function",
+    title:
+      "Which Claude Certification Should You Actually Sit? Pick by Job Function, Not Job Title",
+    excerpt:
+      "There are four Claude certifications and most people choose the wrong one, because they read the names as a ladder and pick the rung matching their title. The names are a lie about difficulty. Here is what each exam actually tests, and the one question that sorts you into the right room.",
+    readTime: "9 min read",
+    date: "August 2026",
+    tags: ["Claude", "Certification", "AI Engineering", "Career"],
+    accentColor: "#14b8a6",
+  },
   {
     slug: "graph-engineering-with-claude",
     title: "Graph Engineering with Claude: A 14-Step Roadmap From 0 to Graph Architect",
