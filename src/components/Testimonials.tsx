@@ -13,6 +13,11 @@ type Testimonial = {
   text: string;
   linkedIn?: string;
   context: string;
+  // Marks the one quote promoted into <FeaturedTestimonial /> high on the page.
+  // A flag rather than an index because the EN and AR arrays are ordered
+  // independently and the names differ between them, so position is not a
+  // stable identity across locales.
+  featured?: boolean;
 };
 
 const TESTIMONIALS_EN: Testimonial[] = [
@@ -42,6 +47,7 @@ const TESTIMONIALS_EN: Testimonial[] = [
     avatarColor: "#a855f7",
     text: "Asadullah has been one of the most consistent contributors in our hackathon series. His spec-first methodology and zero-defect delivery across six consecutive hackathons is a benchmark for other students.",
     context: "Panaversity Hackathon Series Mentor",
+    featured: true,
   },
 ];
 
@@ -72,6 +78,7 @@ const TESTIMONIALS_AR: Testimonial[] = [
     avatarColor: "#a855f7",
     text: "كان أسد الله من أكثر المساهمين ثباتاً في سلسلة الهاكاثونات لدينا. منهجيته Spec-First وتسليمه خالياً من الأخطاء عبر ستة هاكاثونات متتالية هو معيار يُحتذى به للطلاب الآخرين.",
     context: "مرشد سلسلة هاكاثونات Panaversity",
+    featured: true,
   },
 ];
 
@@ -128,6 +135,60 @@ function TestimonialCard({ testimonial, index }: { testimonial: Testimonial; ind
         </div>
       </div>
     </Reveal>
+  );
+}
+
+// One promoted quote, mounted high on the page (directly under About) so that
+// third-party validation is read BEFORE the reader has scrolled past thirty-odd
+// project cards. The full grid still lives at #testimonials.
+//
+// Deliberately NOT the py-24 + centred-header section contract: this is an
+// interstitial band between two real sections, and giving it its own heading
+// would make it a fourth section competing with the ones it sits between.
+//
+// It renders the SAME entry the grid renders further down, selected by the
+// `featured` flag — never re-declared here. Copying the quote into this
+// component would create a second literal free to drift from the first, which
+// is the precise failure mode backend/knowledge/portfolio.json exists to end.
+export function FeaturedTestimonial() {
+  const { locale } = useLocale();
+  const list = locale === "ar" ? TESTIMONIALS_AR : TESTIMONIALS_EN;
+  const featured = list.find((x) => x.featured);
+  // No flag set (someone removed it) is a content gap, not a crash: render
+  // nothing rather than silently promoting whichever quote happens to be first.
+  if (!featured) return null;
+
+  return (
+    <section className="py-16 bg-background" aria-label={featured.context}>
+      <div className="container mx-auto px-6">
+        <Reveal className="max-w-3xl mx-auto text-center">
+          <Quote className="w-7 h-7 mx-auto mb-5 text-brand/40" />
+
+          <blockquote className="text-lg lg:text-xl leading-relaxed text-foreground/90 italic">
+            &ldquo;{featured.text}&rdquo;
+          </blockquote>
+
+          <div className="w-12 h-px bg-brand/40 mx-auto my-6" />
+
+          <div className="flex items-center justify-center gap-3">
+            <div
+              className="w-9 h-9 rounded-full flex items-center justify-center text-xs font-bold text-primary-foreground flex-shrink-0"
+              style={{ backgroundColor: featured.avatarColor }}
+            >
+              {featured.avatar}
+            </div>
+            <div>
+              <div className="text-foreground font-semibold text-sm">
+                {featured.name}
+              </div>
+              <div className="text-muted-foreground text-xs">
+                {featured.role} · {featured.company}
+              </div>
+            </div>
+          </div>
+        </Reveal>
+      </div>
+    </section>
   );
 }
 

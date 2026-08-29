@@ -30,9 +30,35 @@ type Project = {
   demo?: string;
   image?: string;
   metrics?: { label: string; value: string }[];
+  // NOTE: `featured` is currently DEAD — it is set on 25 of the 32 entries and
+  // read by nothing. It marks over three quarters of the list, so it cannot
+  // express "lead with these". The Spotlight view below deliberately does NOT
+  // use it; see SPOTLIGHT_IDS. Left in place because removing it would mean a
+  // 50-line diff across both locale arrays for no behavioural gain.
   featured?: boolean;
   isNew?: boolean;
 };
+
+// The curated Spotlight set, in render order. Editorial, so it lives in ONE
+// list you can reorder by hand rather than being smeared across the records it
+// selects — reordering the grid means reordering these six lines.
+//
+// Selected by `id` because PROJECTS_EN and PROJECTS_AR carry identical id
+// sequences (verified), so this one list curates both locales at once. A
+// `spotlight: true` field would have needed the same decision applied twice,
+// in two languages, and would drift the moment someone edited only one array.
+//
+// One platform per capability, so six cards cover the whole argument instead
+// of six variations on it:
+//   orchestration · guardrails · MCP interop · vertical business · hackathon · open source
+const SPOTLIGHT_IDS: readonly string[] = [
+  "orchestratorx",
+  "guardrailai",
+  "protobridge",
+  "bazaar",
+  "agent-factory",
+  "devunity",
+];
 
 const PROJECTS_EN: Project[] = [
   {
@@ -1536,6 +1562,23 @@ export function ProjectsSection() {
   const { t, locale } = useLocale();
   const PROJECTS = locale === "ar" ? PROJECTS_AR : PROJECTS_EN;
 
+  // Spotlight is the default view: 32 cards is a wall, and a reader deciding
+  // whether to make contact should not have to survive all of them to find the
+  // six that carry the argument. Nothing is hidden — the count on the second
+  // tab states the real total, and the GitHub CTA below still leads to all of
+  // it. Collapsed-by-default is the editorial claim; expandable is the proof.
+  const [showAll, setShowAll] = useState(false);
+
+  // Built in SPOTLIGHT_IDS order, not source order, so the curation controls
+  // sequence as well as membership. A miss is dropped rather than rendered as
+  // a hole: an id renamed in the data should quietly shorten the row, never
+  // crash the section or leave a blank card behind.
+  const spotlight = SPOTLIGHT_IDS.map((id) =>
+    PROJECTS.find((p) => p.id === id)
+  ).filter((p): p is Project => Boolean(p));
+
+  const visible = showAll ? PROJECTS : spotlight;
+
   const labels = {
     new: t("projects.new"),
     viewCode: t("projects.viewCode"),
@@ -1586,8 +1629,49 @@ export function ProjectsSection() {
             dozen cards to find out how many platforms there are. */}
         <AgentEcosystem />
 
+        {/* Segmented control, not a "load more". Both counts are stated up
+            front so the collapsed view reads as curation rather than as all
+            there is — the honest version of showing six.
+            bg-brand/15 + text-brand rather than the bg-brand + text-black
+            pairing flagged in CLAUDE.md §5: --brand resolves to a dark teal in
+            light mode, so that combination renders black-on-teal. */}
+        <Reveal className="flex justify-center mb-10">
+          <div
+            role="group"
+            aria-label={t("projects.title")}
+            className="inline-flex items-center gap-1 rounded-lg border border-brand/20 bg-surface-2 p-1"
+          >
+            <button
+              type="button"
+              onClick={() => setShowAll(false)}
+              aria-pressed={!showAll}
+              className={`px-4 py-2 rounded-md font-mono text-sm transition-colors duration-200 ${
+                showAll
+                  ? "text-muted-foreground hover:text-foreground"
+                  : "bg-brand/15 text-brand"
+              }`}
+            >
+              {t("projects.spotlight")}{" "}
+              <span className="opacity-60 tabular-nums">{spotlight.length}</span>
+            </button>
+            <button
+              type="button"
+              onClick={() => setShowAll(true)}
+              aria-pressed={showAll}
+              className={`px-4 py-2 rounded-md font-mono text-sm transition-colors duration-200 ${
+                showAll
+                  ? "bg-brand/15 text-brand"
+                  : "text-muted-foreground hover:text-foreground"
+              }`}
+            >
+              {t("projects.allProjects")}{" "}
+              <span className="opacity-60 tabular-nums">{PROJECTS.length}</span>
+            </button>
+          </div>
+        </Reveal>
+
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {PROJECTS.map((project, i) => (
+          {visible.map((project) => (
             <ProjectCard key={project.id} project={project} labels={labels} />
           ))}
         </div>

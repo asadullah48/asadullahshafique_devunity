@@ -45,8 +45,12 @@ const cairo = Cairo({
 export const metadata: Metadata = {
     metadataBase: new URL(BASE_URL),
     title: "Asadullah Shafique | Agentic AI Developer",
+    // Names the substrate, not the aspiration. Every claim here is one the
+    // repo can demonstrate on request: the Agents SDK orchestrator lives in
+    // backend/orchestration/, the MCP server is mounted at /mcp/server, and
+    // the constitution in backend/constitution/ is enforced as SDK guardrails.
     description:
-          "Portfolio of Asadullah Shafique - Agentic AI Developer, Full-Stack Engineer, and Open Source Contributor. Building the future with AI.",
+          "Asadullah Shafique — Agentic AI engineer. Production multi-agent systems on the OpenAI Agents SDK, real MCP servers, and Constitutional AI guardrails. Pakistan · UAE.",
     keywords: [
           "Asadullah Shafique",
           "Agentic AI",
@@ -74,7 +78,7 @@ export const metadata: Metadata = {
     openGraph: {
           title: "Asadullah Shafique | Agentic AI Developer",
           description:
-                  "Building the future with Agentic AI, Full-Stack Development, and Open Source.",
+                  "Production multi-agent systems — OpenAI Agents SDK, real MCP servers, Constitutional AI guardrails. Spec-first delivery across six consecutive hackathons.",
           type: "website",
           url: BASE_URL,
           siteName: "Asadullah Shafique Portfolio",
@@ -85,7 +89,7 @@ export const metadata: Metadata = {
           card: "summary_large_image",
           title: "Asadullah Shafique | Agentic AI Developer",
           description:
-                  "Building the future with Agentic AI, Full-Stack Development, and Open Source.",
+                  "Production multi-agent systems — OpenAI Agents SDK, real MCP servers, Constitutional AI guardrails. Spec-first delivery across six consecutive hackathons.",
     },
 };
 

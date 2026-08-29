@@ -232,6 +232,8 @@
     "flagship": "المشروع الرئيسي",
     "enterpriseGrade": "درجة المؤسسات",
     "new": "جديد",
+    "spotlight": "مختارة",
+    "allProjects": "كل المشاريع",
     "viewAllGithub": "عرض جميع مستودعات 507+ على GitHub"
   },
   "hackathons": {
@@ -340,7 +342,7 @@
     "affiliationsTitle": "الانتماءات",
     "affiliationsNote": "من أين تأتي هذه الخبرة. وليست توصيات من عملاء.",
     "aff1": "Panaversity",
-    "aff1Role": "برنامج الذكاء الاصطناعي الوكيل — طالب",
+    "aff1Role": "برنامج الذكاء الاصطناعي الوكيل — 6/6 هاكاثونات مُنجزة",
     "aff2": "Texcot House",
     "aff2Role": "توريد المنسوجات — عملي الخاص"
   },

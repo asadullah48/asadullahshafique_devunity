@@ -11,7 +11,7 @@ import Projects from "@/components/Projects";
 import Hackathons from "@/components/Hackathons";
 import Blog from "@/components/Blog";
 import OpenSourceSection from "@/components/OpenSource";
-import Testimonials from "@/components/Testimonials";
+import Testimonials, { FeaturedTestimonial } from "@/components/Testimonials";
 import Discord from "@/components/Discord";
 import Contact from "@/components/Contact";
 import Footer from "@/components/Footer";
@@ -61,6 +61,12 @@ export default function Home() {
             <Hero />
             <TechMarquee />
             <About />
+            {/* One promoted quote, immediately after About. Third-party
+                validation was previously unreachable until position 13 of 17,
+                below every project card — read by almost nobody. The full
+                grid still renders at #testimonials further down; this is the
+                same entry, not a copy. */}
+            <FeaturedTestimonial />
             <Skills />
             <AgentEngineering />
             {/* Applied capability follows the methodology that produced it. */}

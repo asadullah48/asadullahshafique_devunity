@@ -254,13 +254,29 @@ function StatCounter({
   inView: boolean;
 }) {
   const count = useCountUp(target, 1600, inView);
+  // The settled figure is carried by a real text node, not only the animating
+  // one. useCountUp already initialises to `target` so no-JS crawlers read the
+  // truth — but an agent that RUNS the JS and reads within the 1.6s tween
+  // samples a partial value. One such review reported 1 / 15% / 26+ against
+  // real targets of 6 / 85% / 149+: a single frame 288ms in, mistaken for four
+  // separate typos. sr-only rather than aria-label because a bare <div> has no
+  // ARIA role and is not guaranteed to expose an accessible name; a text node
+  // always is — and it reaches text scrapers too, which aria-label would not.
   return (
     <div className="text-center lg:text-left">
       <div className="font-display text-2xl font-bold text-foreground tabular-nums">
-        {count}
-        {suffix}
+        <span className="sr-only">
+          {target}
+          {suffix} {label}
+        </span>
+        <span aria-hidden="true">
+          {count}
+          {suffix}
+        </span>
       </div>
-      <div className="text-xs text-muted-foreground mt-0.5">{label}</div>
+      <div className="text-xs text-muted-foreground mt-0.5" aria-hidden="true">
+        {label}
+      </div>
     </div>
   );
 }

@@ -232,6 +232,8 @@
     "flagship": "Flagship",
     "enterpriseGrade": "Enterprise Grade",
     "new": "NEW",
+    "spotlight": "Spotlight",
+    "allProjects": "All projects",
     "viewAllGithub": "View All 507+ Repositories on GitHub"
   },
   "hackathons": {
@@ -340,7 +342,7 @@
     "affiliationsTitle": "Affiliations",
     "affiliationsNote": "Where the experience comes from. Not client endorsements.",
     "aff1": "Panaversity",
-    "aff1Role": "Agentic AI program — student",
+    "aff1Role": "Agentic AI program — 6/6 hackathons shipped",
     "aff2": "Texcot House",
     "aff2Role": "Textile sourcing — own operation"
   },

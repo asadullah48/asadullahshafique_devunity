@@ -132,12 +132,16 @@ const Contact = () => {
           ))}
         </div>
 
-        {/* Affiliations, deliberately NOT "Trusted by". Panaversity is a
-            programme I am a student on and Texcot House is my own company —
+        {/* Affiliations, deliberately NOT "Trusted by". Panaversity is the
+            programme I trained through and Texcot House is my own company —
             neither is a client. A heading implying endorsement would be the
             easiest claim on this page to check and disbelieve, and the
             constitution this site ships names no-fabricated-credentials as a
-            principle. If real clients land, they get their own section. */}
+            principle. That same principle is why aff1Role now states what was
+            SHIPPED (6/6 hackathons) rather than "graduate": the programme is
+            ongoing, so a completion credential would be precisely the kind of
+            claim this section exists to avoid. If real clients land, they get
+            their own section. */}
         <Reveal className="max-w-5xl mx-auto mb-20 text-center">
           <div
             dir="ltr"
