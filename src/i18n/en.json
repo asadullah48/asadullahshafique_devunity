@@ -35,6 +35,7 @@
     "descBold3": "Pakistani textile factories",
     "descSuffix": ". Six hackathons. Zero failures.",
     "viewWork": "View My Work",
+    "engagementModels": "Engagement Models",
     "githubProfile": "GitHub Profile",
     "downloadResume": "Download Resume",
     "downloadingResume": "Checking...",
@@ -46,7 +47,7 @@
     "role4": "Digital Marketing Strategist",
     "scroll": "scroll",
     "stats": {
-      "repos": "GitHub Repos",
+      "repos": "Original Repos",
       "hackathons": "Hackathons Won",
       "codeReuse": "Code Reuse Rate",
       "tests": "Tests Passing"
@@ -186,12 +187,15 @@
     "subtitle": "AI development, digital marketing, and industry-specific SaaS, built for real businesses.",
     "s1Title": "Digital Marketing",
     "s1Desc": "Full-spectrum digital marketing for Dubai real estate, UAE construction, and Pakistani businesses. Strategy, social media, paid ads, property portals, and monthly reporting.",
+    "s1Metric": "40% lower cost-per-lead — Al Rashidi Real Estate, Dubai",
     "s1CTA": "See Marketing Plan →",
     "s2Title": "AI-Powered SaaS Development",
     "s2Desc": "Production-grade agentic systems, cloud-native deployment, MCP servers, and custom AI agents. Built and deployed, not just prototyped.",
+    "s2Metric": "Live MCP server, 6 tools · guardrails verified with no model reachable",
     "s2CTA": "View GitHub →",
     "s3Title": "Textile ERP Platform (Pakistan)",
     "s3Desc": "A full-spectrum ERP for Pakistan's textile industry, from fabric mills to garment exporters. Module 1 (Fabric Mill): roll/lot management, weaving and knitting stage tracking, yarn inventory, and imported fabric. Further modules: CMT order lifecycle, auto-billing, production sessions, dispatch, party ledgers, and financial accounts.",
+    "s3Metric": "Module 1 of 7 in build · fabric mill to garment export",
     "s3CTA": "Join Waitlist →",
     "s3Badge": "Launching 2026"
   },
@@ -234,7 +238,7 @@
     "new": "NEW",
     "spotlight": "Spotlight",
     "allProjects": "All projects",
-    "viewAllGithub": "View All 507+ Repositories on GitHub"
+    "viewAllGithub": "Browse All Repositories on GitHub"
   },
   "hackathons": {
     "title": "Hackathons &",
@@ -258,7 +262,7 @@
   "opensrc": {
     "title": "Open",
     "titleHighlight": "Source",
-    "subtitle": "All projects are open source. 507+ repositories and counting, built in public and shipped with purpose.",
+    "subtitle": "506 public repositories: 498 original, 8 forks. Built in public and shipped with purpose.",
     "githubActivity": "GitHub Activity",
     "contributeGithub": "Contribute on GitHub",
     "joinDiscord": "Join Discord Community",
@@ -268,7 +272,7 @@
     "v2Desc": "Clean, documented, well-tested code. 149+ tests passing. CLAUDE.md-driven spec-first delivery.",
     "v3Title": "Community Impact",
     "v3Desc": "Sharing knowledge through blog posts, Discord, and open-source tools. DevUnity is the flagship.",
-    "s1Label": "Repositories",
+    "s1Label": "Original Repos",
     "s2Label": "Hackathons",
     "s3Label": "Code Reuse Rate",
     "s4Label": "Technologies",
@@ -345,6 +349,28 @@
     "aff1Role": "Agentic AI program — 6/6 hackathons shipped",
     "aff2": "Texcot House",
     "aff2Role": "Textile sourcing — own operation"
+  },
+  "fde": {
+    "title": "Forward Deployed",
+    "titleHighlight": "Engineering",
+    "subtitle": "Seven disciplines between a customer problem and a system in production. Each one names where it lives in this codebase, so none of it has to be taken on trust.",
+    "s1Title": "Full-Stack Depth",
+    "s1Desc": "Linux, frontend, backend, APIs, databases and auth — enough to trace a failure end to end instead of guessing which layer broke.",
+    "s2Title": "Systems & Design",
+    "s2Desc": "Services, queues, state and failure paths. Plan for scale before adding more agents, not after they start timing out.",
+    "s3Title": "AI Engineering",
+    "s3Desc": "RAG, memory, tool calling, structured outputs, guardrails and evaluations — the six things that separate an agent from a demo.",
+    "s4Title": "Production Delivery",
+    "s4Desc": "Cloud, infrastructure as code, CI/CD, network policy and health checks, with a fallback ladder that degrades instead of failing.",
+    "s5Title": "Problem Discovery",
+    "s5Desc": "Find the bottleneck that costs real money, then ship the smallest slice that works end to end before widening it.",
+    "s5Ev": "Problem → Solution → Impact, on every project card",
+    "s6Title": "Business Impact",
+    "s6Desc": "Tie the delivery to time saved, errors removed or revenue moved — not to tokens served or agents spawned.",
+    "s6Ev": "40% lower cost-per-lead · Al Rashidi Real Estate, Dubai",
+    "s7Title": "Closing the Loop",
+    "s7Desc": "Turn the one-off fix into a capability the next engagement inherits, so the second delivery is cheaper than the first.",
+    "s7Ev": "85% code reuse across six consecutive hackathons"
   },
   "footer": {
     "rights": "All rights reserved.",

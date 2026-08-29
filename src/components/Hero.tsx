@@ -4,7 +4,7 @@ import { useState, useEffect, useMemo, useRef } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { Reveal } from "@/components/Reveal";
-import { ArrowDown, ExternalLink, MapPin } from "lucide-react";
+import { ArrowDown, ExternalLink, MapPin, Handshake } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useLocale } from "@/context/LocaleContext";
 
@@ -323,9 +323,13 @@ export function HeroSection() {
 
   const STATS = useMemo(
     () => [
-      // 507 public repos measured 2026-08-27; shown as 507+ so the figure
-      // stays true as the count grows rather than going stale downward.
-      { target: 507, suffix: "+", label: t("hero.stats.repos") },
+      // Measured against the GitHub API 2026-08-29: 506 public repos, of
+      // which 498 are original and 8 are forks. Leads with the ORIGINAL count,
+      // not the raw total — a bulk number invites "are these tutorial forks?",
+      // and the honest answer (98.4% original) is the stronger claim. Shown
+      // as 498+ so it stays true as the count grows rather than going stale
+      // downward. The previous 507 was already off by one.
+      { target: 498, suffix: "+", label: t("hero.stats.repos") },
       { target: 6, suffix: "", label: t("hero.stats.hackathons") },
       { target: 85, suffix: "%", label: t("hero.stats.codeReuse") },
       { target: 149, suffix: "+", label: t("hero.stats.tests") },
@@ -410,6 +414,16 @@ export function HeroSection() {
             <Button asChild variant="neon" size="lg">
               <Link href="#projects">
                 {t("hero.viewWork")} <ArrowDown className="w-4 h-4" />
+              </Link>
+            </Button>
+            {/* High-intent shortcut. The three engagement models sit in
+                #contact, roughly eight sections down — a visitor who already
+                knows they want to hire should not have to scroll the whole
+                argument to find the price list. `outline`, not a second
+                `neon`, per the one-primary rule above. */}
+            <Button asChild variant="outline" size="lg">
+              <Link href="#contact">
+                <Handshake className="w-4 h-4" /> {t("hero.engagementModels")}
               </Link>
             </Button>
             <Button asChild variant="outline" size="lg">

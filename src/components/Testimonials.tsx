@@ -29,6 +29,10 @@ const TESTIMONIALS_EN: Testimonial[] = [
     avatarColor: "#84cc16",
     text: "Asadullah transformed how we generate leads online. The digital marketing system he built (property portals, social campaigns, and the analytics dashboard) cut our cost-per-lead by over 40% in the first quarter.",
     context: "Dubai Real Estate Digital Marketing",
+    // Promoted over the Panaversity quote deliberately: a paying client
+    // outranks a programme mentor for the enterprise reader, and this is the
+    // only hard business number anywhere on the site (40% cost-per-lead).
+    featured: true,
   },
   {
     name: "Tariq Mahmood",
@@ -47,7 +51,6 @@ const TESTIMONIALS_EN: Testimonial[] = [
     avatarColor: "#a855f7",
     text: "Asadullah has been one of the most consistent contributors in our hackathon series. His spec-first methodology and zero-defect delivery across six consecutive hackathons is a benchmark for other students.",
     context: "Panaversity Hackathon Series Mentor",
-    featured: true,
   },
 ];
 
@@ -60,6 +63,7 @@ const TESTIMONIALS_AR: Testimonial[] = [
     avatarColor: "#84cc16",
     text: "أسد الله غيّر طريقة توليد العملاء المحتملين عبر الإنترنت. نظام التسويق الرقمي الذي بناه (بوابات العقارات والحملات الاجتماعية ولوحة التحليلات) خفّض تكلفة الحصول على العميل بأكثر من 40% في الربع الأول.",
     context: "التسويق الرقمي للعقارات في دبي",
+    featured: true,
   },
   {
     name: "طارق محمود",
@@ -78,7 +82,6 @@ const TESTIMONIALS_AR: Testimonial[] = [
     avatarColor: "#a855f7",
     text: "كان أسد الله من أكثر المساهمين ثباتاً في سلسلة الهاكاثونات لدينا. منهجيته Spec-First وتسليمه خالياً من الأخطاء عبر ستة هاكاثونات متتالية هو معيار يُحتذى به للطلاب الآخرين.",
     context: "مرشد سلسلة هاكاثونات Panaversity",
-    featured: true,
   },
 ];
 
@@ -194,7 +197,15 @@ export function FeaturedTestimonial() {
 
 export function TestimonialsSection() {
   const { t, locale } = useLocale();
-  const testimonials = locale === "ar" ? TESTIMONIALS_AR : TESTIMONIALS_EN;
+  const all = locale === "ar" ? TESTIMONIALS_AR : TESTIMONIALS_EN;
+  // The promoted quote already renders in <FeaturedTestimonial /> up under
+  // About, so it is excluded here rather than shown twice on one page.
+  const testimonials = all.filter((x) => !x.featured);
+  // Column count follows the surviving list: dropping one from three would
+  // otherwise leave a gap in a hardcoded 3-up grid, and if the `featured`
+  // flag is ever removed this silently returns to a full row.
+  const cols =
+    testimonials.length >= 3 ? "md:grid-cols-3" : "md:grid-cols-2 max-w-4xl";
 
   return (
     <section id="testimonials" className="py-24 bg-background">
@@ -210,7 +221,7 @@ export function TestimonialsSection() {
           </p>
         </Reveal>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div className={`grid grid-cols-1 ${cols} gap-6 mx-auto`}>
           {testimonials.map((testimonial, i) => (
             <TestimonialCard key={testimonial.name} testimonial={testimonial} index={i} />
           ))}

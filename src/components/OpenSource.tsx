@@ -9,11 +9,14 @@ import { GitHubStatsStrip } from "@/components/GitHubStatsStrip";
 const GITHUB_USERNAME = "asadullah48";
 
 const STAT_ICONS = [Github, GitFork, Code2, Star, Users];
-// Repo count: 507 measured 2026-08-27, shown as 507+ so it stays true as the
-// count grows. Keep in step with Hero.tsx STATS, the github/stats route
-// fallback, and opensrc.subtitle / projects.viewAllGithub in both i18n
-// files — six places, one number.
-const STAT_VALUES = ["507+", "6", "85%", "10+", "3"];
+// Repo count re-measured against the GitHub API 2026-08-29: 506 public repos
+// = 498 original + 8 forks. The displayed figure is the ORIGINAL count, since
+// a raw total invites the "are these tutorial forks?" question and 98.4%
+// original answers it outright. Shown as 498+ so it stays true as the count
+// grows. Keep in step with Hero.tsx STATS, the github/stats route fallback,
+// and opensrc.subtitle / projects.viewAllGithub in both i18n files — six
+// places, one number.
+const STAT_VALUES = ["498+", "6", "85%", "10+", "3"];
 const STAT_COLORS = ["#84cc16", "#3b82f6", "#a855f7", "#f59e0b", "#10b981"];
 const STAT_LABEL_KEYS = ["s1Label", "s2Label", "s3Label", "s4Label", "s5Label"] as const;
 

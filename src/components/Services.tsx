@@ -19,6 +19,12 @@ const Services = () => {
       Icon: Icons[0],
       title: t("services.s1Title"),
       description: t("services.s1Desc"),
+      // One outcome line per service, matching the proof density of the
+      // project cards. Every figure is backed: s1 by the Al Rashidi
+      // testimonial, s2 by the live /mcp/server tool count and the
+      // constitution's verified offline block, s3 by the module list in
+      // s3Desc. Do not add a metric here that nothing can demonstrate.
+      metric: t("services.s1Metric"),
       cta: t("services.s1CTA"),
       ctaHref: "#contact",
       external: false,
@@ -27,6 +33,7 @@ const Services = () => {
       Icon: Icons[1],
       title: t("services.s2Title"),
       description: t("services.s2Desc"),
+      metric: t("services.s2Metric"),
       cta: t("services.s2CTA"),
       ctaHref: "https://github.com/asadullah48",
       external: true,
@@ -35,6 +42,7 @@ const Services = () => {
       Icon: Icons[2],
       title: t("services.s3Title"),
       description: t("services.s3Desc"),
+      metric: t("services.s3Metric"),
       cta: t("services.s3CTA"),
       ctaHref: "",
       external: false,
@@ -71,6 +79,14 @@ const Services = () => {
                 </span>
               )}
               <p className="text-muted-foreground text-sm leading-relaxed flex-grow">{service.description}</p>
+              {/* Short mono label, so --brand rather than --brand-soft. */}
+              <div
+                dir="ltr"
+                className="mt-4 font-mono text-[11px] leading-relaxed text-brand/75"
+              >
+                {"└ "}
+                {service.metric}
+              </div>
               <div className="mt-6 pt-4 border-t border-border">
                 {service.waitlist ? (
                   <span className="text-brand text-sm font-medium">

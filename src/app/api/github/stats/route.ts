@@ -15,9 +15,15 @@ interface GitHubProfile {
 // drifted badly in both directions — repos and followers were understated
 // (467/40), stars were overstated (25). A fallback that lies is worse than
 // no fallback, so re-measure these when you touch this file.
+//
+// Re-measured again 2026-08-29 against the live API: repos 507 -> 506 (the
+// total can go DOWN when a repo is deleted or made private, which is exactly
+// why a "+" suffix belongs on the display and not in this object), followers
+// 135 -> 136. following/total_stars/top_languages verified unchanged.
+// Of the 506, 498 are original and 8 are forks.
 const FALLBACK_STATS = {
-  public_repos: 507,
-  followers: 135,
+  public_repos: 506,
+  followers: 136,
   following: 1429,
   total_stars: 19,
   top_languages: ["TypeScript", "Python", "JavaScript", "Jupyter Notebook", "HTML"],

@@ -5,6 +5,7 @@ import Services from "@/components/Services";
 import Industries from "@/components/Industries";
 import Skills from "@/components/Skills";
 import AgentEngineering from "@/components/AgentEngineering";
+import ForwardDeployed from "@/components/ForwardDeployed";
 import ExpertiseGrid from "@/components/ExpertiseGrid";
 import Roadmap from "@/components/Roadmap";
 import Projects from "@/components/Projects";
@@ -69,6 +70,11 @@ export default function Home() {
             <FeaturedTestimonial />
             <Skills />
             <AgentEngineering />
+            {/* The FDE model sits directly after the harness/loop/graph
+                framework: that section argues HOW agents are built, this one
+                argues how they reach a customer and get paid for. Each of its
+                seven steps cites the directory that proves it. */}
+            <ForwardDeployed />
             {/* Applied capability follows the methodology that produced it. */}
             <ExpertiseGrid />
             <Roadmap />

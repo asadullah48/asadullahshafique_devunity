@@ -1,4 +1,4 @@
-# DevUnity - Full-Stack Developer Portfolio & Community Platform
+# Asadullah Shafique — Agentic AI Portfolio & Platform
 
 <div align="center">
 
@@ -14,7 +14,7 @@
 [![Kubernetes](https://img.shields.io/badge/Kubernetes-✓-blue?logo=kubernetes)](https://kubernetes.io/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-[Live Demo](https://asadullahshafique-devunity.vercel.app) • [API Docs](https://asadullah-dev-portfolio-api.hf.space/docs) • [Discord Community](https://discord.gg/kXfEYVGX)
+[Live Site](https://asadullahshafique-devunity.vercel.app) • [API Docs](https://asadullahshafique-devunity.onrender.com/docs) • [Discord Community](https://discord.gg/kXfEYVGX)
 
 </div>
 
@@ -22,13 +22,19 @@
 
 ## 🌟 Overview
 
-**DevUnity** is a production-ready, full-stack developer portfolio and community platform built with modern technologies. It showcases the work of **Asadullah Shafique** — an Agentic AI Developer & Full-Stack Engineer — while providing features for developer collaboration, knowledge sharing, and community engagement.
+The portfolio and working substrate of **Asadullah Shafique**, Agentic AI Engineer — a Next.js front end over a FastAPI backend that runs a real multi-agent system rather than describing one.
+
+The claim this repository exists to survive is *production systems, not prototypes*, so every agentic capability it advertises is reachable in the tree: a triage orchestrator with four specialists on the **OpenAI Agents SDK** ([`backend/orchestration/`](backend/orchestration/)), a real **MCP server** on the official SDK mounted at `/mcp/server`, a written **constitution** enforced as SDK guardrails ([`backend/constitution/`](backend/constitution/)), and an **eval suite** that reads execution traces rather than grading prose ([`evals/`](evals/)).
+
+> A note on scope: the repo also still ships thirteen legacy "DevUnity community platform" routes (`/about`, `/community`, `/dashboard`, `/videos`, …). They render real pages and are **not** redirect stubs, but they predate the agentic positioning and contradict it in places. They are tracked as a known defect, not presented as the product.
 
 ### Key Features
 
 - 🎨 **Modern UI/UX** — Built with ShadCN UI, Tailwind CSS, and CSS-driven scroll reveals (framer-motion was removed: −40 kB First Load JS)
 - 🌓 **Dark/Light Theme** — Seamless theme switching with next-themes
-- 🤖 **AI-Powered Assistant** — LangGraph-powered portfolio chatbot
+- 🤖 **Portfolio Assistant** — two independent agent paths, both degrading gracefully without an API key. The live widget streams from Google Gemini at the edge; the showcased backend agent runs a fallback ladder of **Agents SDK → LangGraph → static keyword answers**
+- ⚖️ **Constitutional Guardrails** — five written principles enforced as SDK guardrails, with a deterministic screen that trips *before* any model call (verified blocking 4/4 violations with no model reachable)
+- 📐 **Agent Evals** — trace-based scoring that catches an agent answering from memory instead of calling its tool, which a prose-only judge passes
 - 🔍 **Global Search** — Keyboard-accessible search (Ctrl/Cmd + K)
 - 📝 **Blog System** — Share technical knowledge and experiences
 - 💬 **Contact Form** — Discord webhook integration for notifications
@@ -107,7 +113,7 @@ Twelve competencies across four categories. **Every row cites a path you can ope
 ┌─────────────────────────────────────────────────────────────────┐
 │                       Backend (FastAPI)                          │
 │  ┌─────────────┐  ┌──────────────┐  ┌──────────────┐           │
-│  │   Contact   │  │  LangGraph   │  │  MCP Server  │           │
+│  │   Contact   │  │ Orchestrator │  │  MCP Server  │           │
 │  │    API      │  │    Agent     │  │   Tools      │           │
 │  └─────────────┘  └──────────────┘  └──────────────┘           │
 │  ┌─────────────┐  ┌──────────────┐  ┌──────────────┐           │
@@ -221,8 +227,15 @@ asadullahshafique_devunity/
 │   └── types/                # TypeScript types
 ├── backend/                  # FastAPI backend
 │   ├── main.py               # FastAPI application
-│   ├── agent.py              # LangGraph AI agents (4 agents)
-│   ├── mcp_server.py         # MCP server implementation
+│   ├── orchestration/        # OpenAI Agents SDK — triage + 4 specialists
+│   │   ├── orchestrator.py   #   star topology, one hop, owns all routing
+│   │   ├── specialists.py    #   domain agents + structured output models
+│   │   ├── context.py        #   typed shared state (route, tool_calls)
+│   │   └── runtime.py        #   SDK availability + model resolution
+│   ├── constitution/         # 5 written principles, enforced as guardrails
+│   ├── knowledge/            # portfolio.json — the single source of truth
+│   ├── agent.py              # legacy LangGraph graph; now a fallback rung
+│   ├── mcp_server.py         # real FastMCP server (/mcp/server) + REST shim
 │   ├── requirements.txt      # Python dependencies
 │   └── Dockerfile            # Backend Docker config
 ├── k8s/                      # Kubernetes manifests
@@ -267,7 +280,9 @@ asadullahshafique_devunity/
 | Technology | Version | Purpose |
 |------------|---------|---------|
 | **FastAPI** | 0.115 | Async Python web framework |
-| **LangGraph** | 0.2+ | Agentic AI workflows |
+| **OpenAI Agents SDK** | — | Primary agent substrate: triage + 4 specialists, handoffs, typed context |
+| **MCP (official SDK)** | — | `FastMCP` server over Streamable HTTP at `/mcp/server` |
+| **LangGraph** | 0.2+ | Legacy graph, retained as the second rung of the fallback ladder |
 | **LangChain** | 0.3+ | AI/LLM integration |
 | **Pydantic** | 2.10 | Data validation |
 | **httpx** | 0.28 | Async HTTP client |
@@ -281,7 +296,8 @@ asadullahshafique_devunity/
 | **Kubernetes** | Orchestration |
 | **GitHub Actions** | CI/CD |
 | **Vercel** | Frontend hosting |
-| **Hugging Face Spaces** | Backend hosting |
+| **Render** | Backend hosting (primary) |
+| **Hugging Face Spaces** | Backup backend — currently stuck, not a live fallback |
 
 ---
 
@@ -295,15 +311,22 @@ The frontend is automatically deployed to Vercel on push to `main`:
 2. Set environment variables in Vercel dashboard
 3. Push to `main` branch
 
-### Backend (Hugging Face Spaces)
+### Backend (Render)
 
-Deploy to Hugging Face Spaces with Docker SDK:
+The backend deploys to [Render](https://render.com) from the same push to `main` — **not** from the Vercel CLI, which only ever ships the frontend. `render.yaml` sets the root directory to `backend`.
 
-1. Create a new Space with Docker SDK
-2. Add environment variables in Space settings
-3. Push backend files to Space repository
+- Live: <https://asadullahshafique-devunity.onrender.com> · Swagger at [`/docs`](https://asadullahshafique-devunity.onrender.com/docs)
+- `PORT` defaults to `7860` in deployment; local dev uses `8000`, which is what `NEXT_PUBLIC_API_URL` falls back to
+- The Dockerfile runs `uvicorn --workers 1` deliberately: two copies of the LangGraph + LiteLLM + Agents SDK import graph measured 404 MB against Render's 512 MB free tier and restarted intermittently
 
-Or use the automated GitHub Actions workflow.
+Because the agent, MCP and constitution work all lives server-side, **verify Render separately after any backend push** — a green Vercel deploy says nothing about it.
+
+<details>
+<summary>Backup: Hugging Face Spaces (currently stuck)</summary>
+
+A Docker-SDK Space exists as a backup backend but is **not a live fallback** — its `/docs` currently returns 404. Do not document it as the API host.
+
+</details>
 
 ### Kubernetes (Production)
 
@@ -604,9 +627,12 @@ curl -X POST http://localhost:8000/api/backendless/1/upload \
 | `GITHUB_TOKEN` | GitHub API token | No |
 | `ANTHROPIC_API_KEY` | Anthropic API for AI agent | No* |
 | `GITHUB_USERNAME` | GitHub username | `asadullah48` |
+| `DATABASE_URL` | SQLAlchemy connection string — **sync driver only** | No† |
 | `PORT` | Server port | `7860` |
 
-*Required for LangGraph agent features
+\* Powers the agent rungs. Absent, the ladder falls through to static keyword answers rather than erroring — every agent path degrades gracefully with no key, on both sides. That is a load-bearing property, not a convenience.
+
+† **Must name a synchronous driver.** `backend/database.py` uses `create_engine()` with a synchronous `Session`, so an async URL such as `postgresql+asyncpg://…` kills startup with `sqlalchemy.exc.MissingGreenlet` from deep inside the asyncpg dialect. The traceback names greenlet and reads like an environment problem; it is not. Use `postgresql://` or `postgresql+psycopg2://`. This bites locally too — run the backend suite as `DATABASE_URL="sqlite:///./devunity.db" pytest -q`.
 
 ---
 
