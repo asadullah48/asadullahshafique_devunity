@@ -15,6 +15,19 @@ type Post = {
 };
 
 const POSTS_EN: Post[] = [
+  // Newest first. EN only for now: content/ar/ has no translation of this one,
+  // and POSTS_AR must not list a slug whose Arabic markdown does not exist —
+  // generateStaticParams reads content/<locale>/, so the /ar route would 404.
+  {
+    slug: "graph-engineering-with-claude",
+    title: "Graph Engineering with Claude: A 14-Step Roadmap From 0 to Graph Architect",
+    excerpt:
+      "Most multi-step agents are a straight line — one head, one context, one thing at a time, until the window fills up. This is the 14-step roadmap that turns that line into a graph: one that fans out across a fleet, verifies its own findings, and converges on a result a lone agent could never hold.",
+    readTime: "18 min read",
+    date: "August 2026",
+    tags: ["Graph Engineering", "Claude Code", "Multi-Agent", "Workflows"],
+    accentColor: "#f59e0b",
+  },
   {
     slug: "six-hackathons-one-methodology",
     title: "How I Won 6 Consecutive Hackathons With a Single Methodology",
