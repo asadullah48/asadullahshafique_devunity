@@ -158,11 +158,15 @@ function AgentModeStrip() {
       <div className="text-eyebrow text-muted-foreground font-mono uppercase mb-2 px-1">
         {"// available_agents"}
       </div>
+      {/* No hover lift on these chips. They are <div>s with nowhere to go: one
+          that rises under the cursor promises a click it never honours, and on
+          touch there is no hover at all. This is a status readout — the pulsing
+          dot already says "live" — so it sits still. */}
       <div className="grid grid-cols-2 gap-1.5">
         {AGENT_MODES.map((mode) => (
           <div
             key={mode.id}
-            className="flex items-center gap-2 px-3 py-2 rounded-md border text-xs font-mono transition-transform duration-200 ease-spring hover:-translate-y-0.5"
+            className="flex items-center gap-2 px-3 py-2 rounded-md border text-xs font-mono"
             style={{
               borderColor: `${mode.color}30`,
               backgroundColor: `${mode.color}08`,

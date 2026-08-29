@@ -149,7 +149,13 @@ const About = () => {
           </Reveal>
 
           {/* RIGHT — Highlight Cards */}
-          <div className="flex-1 grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6 content-start">
+          {/* Two columns at xl, not three. Three put ~196px of text inside a
+              p-6 card, which measured 26 characters per line — roughly four
+              words, against a 45-75 ideal. The copy came out as shredded
+              fragments ("Production-grade agents / using OpenAI Agents SDK, /
+              MCP servers, and"). Two columns give ~330px ≈ 47ch, and the taller
+              block balances the tall bio card beside it better than 3x2 did. */}
+          <div className="flex-1 grid grid-cols-1 md:grid-cols-2 gap-6 content-start">
             {highlights.map((item, index) => (
               <Reveal step={index}
                 key={item.title}

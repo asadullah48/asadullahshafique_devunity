@@ -78,12 +78,15 @@ export function ForwardDeployedSection() {
               className="relative flex gap-5 pb-8 last:pb-0"
             >
               <div className="flex flex-col items-center flex-shrink-0">
+                {/* Zero-padded to match AgentEngineering's 01/02/03. Two
+                    numbered rails on one page reading "1" and "01" looks
+                    accidental rather than deliberate. */}
                 <span
                   dir="ltr"
-                  className="grid place-items-center w-8 h-8 rounded-full border border-brand/30 bg-surface-2 font-mono text-xs text-brand"
+                  className="grid place-items-center w-8 h-8 rounded-full border border-brand/30 bg-surface-2 font-mono text-xs text-brand tabular-nums"
                   aria-hidden="true"
                 >
-                  {i + 1}
+                  {String(i + 1).padStart(2, "0")}
                 </span>
                 {i < STEPS.length - 1 && (
                   <span
