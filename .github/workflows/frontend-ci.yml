@@ -28,7 +28,10 @@ on:
       - 'tsconfig.json'
 
 env:
-  NODE_VERSION: '20'
+  # Must track engines.node in package.json. Vercel builds production from that
+  # field (it overrides the dashboard's nodeVersion), so a CI runner on a
+  # different major is testing a runtime that never ships.
+  NODE_VERSION: '24'
   VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
   VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
 
