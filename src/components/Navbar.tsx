@@ -103,7 +103,7 @@ const Navbar = () => {
         {/* Logo */}
         <Link href="#home" className="flex items-center space-x-2 group flex-shrink-0">
           <Code2 className="h-7 w-7 text-brand group-hover:rotate-12 transition-transform" />
-          <span className="font-display text-lg font-bold text-foreground">
+          <span className="font-display text-base sm:text-lg font-bold text-foreground">
             Asadullah<span className="text-brand">.dev</span>
           </span>
         </Link>
@@ -196,16 +196,28 @@ const Navbar = () => {
               {t("nav.resume")}
             </Button>
           </Link>
+          {/* The full label is 206px wide. Below `sm` that pushed the locale
+              switcher to x=396 and the hamburger to x=463 on a 375px viewport —
+              both off-screen, and the bar clips rather than scrolls, so mobile
+              navigation was unreachable on every common phone. The CTA keeps
+              its slot (it is the conversion path) but wears a short label until
+              there is room for the long one. */}
           <Link href="#contact">
             <Button
               variant="neon"
               size="sm"
               className="h-9"
             >
-              {t("nav.contactMe")}
+              <span className="sm:hidden">{t("nav.contactMeShort")}</span>
+              <span className="hidden sm:inline">{t("nav.contactMe")}</span>
             </Button>
           </Link>
-          <LocaleSwitcher />
+          {/* Moved into the mobile menu below `sm` rather than dropped: the
+              site ships a full Arabic translation and targets the UAE, so the
+              locale toggle must stay reachable on a phone. */}
+          <div className="hidden sm:flex">
+            <LocaleSwitcher />
+          </div>
           {/* Mobile menu button */}
           <button
             className="lg:hidden p-2 rounded-sm text-muted-foreground hover:text-foreground transition-colors"
@@ -259,6 +271,12 @@ const Navbar = () => {
               <FileDown className="w-4 h-4" />
               {t("nav.resume")}
             </Link>
+            {/* The locale toggle lives here below `sm`, where it is hidden
+                from the top bar. Without this, Arabic would be unreachable on
+                a phone. */}
+            <div className="sm:hidden pt-2 border-t border-border">
+              <LocaleSwitcher />
+            </div>
           </div>
         </div>
       )}

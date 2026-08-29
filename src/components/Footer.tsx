@@ -120,12 +120,18 @@ const Footer = () => {
             <p className="text-muted-foreground text-sm mb-4">
               {t("footer.getInTouchDesc")}
             </p>
+            {/* max-w-full + min-w-0 + break-all: this chip is 272px of
+                unbreakable address text. In the 768px tablet grid its column is
+                narrower than that, so it overhung the viewport by 32px and gave
+                the WHOLE PAGE a horizontal scrollbar (scrollW 800 vs clientW
+                768). An inline-flex child will not shrink below its content
+                width without min-w-0. */}
             <Link
               href="mailto:asadullahshafique@hotmail.com"
-              className="inline-flex items-center gap-2 px-4 py-2 bg-surface-1 border border-border rounded-lg text-sm text-foreground/80 hover:border-brand/30 hover:text-brand transition-all"
+              className="inline-flex max-w-full min-w-0 items-center gap-2 px-4 py-2 bg-surface-1 border border-border rounded-lg text-sm text-foreground/80 hover:border-brand/30 hover:text-brand transition-all"
             >
-              <Mail className="w-4 h-4" />
-              asadullahshafique@hotmail.com
+              <Mail className="w-4 h-4 flex-shrink-0" />
+              <span className="break-all">asadullahshafique@hotmail.com</span>
             </Link>
           </div>
         </div>
