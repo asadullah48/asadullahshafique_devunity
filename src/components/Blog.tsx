@@ -20,6 +20,16 @@ const POSTS_EN: Post[] = [
   // exist — generateStaticParams reads content/<locale>/, so the /ar route
   // would 404.
   {
+    slug: "books-that-shaped-my-thinking",
+    title: "10 Books That Shaped How I Think",
+    excerpt:
+      "People who follow my engineering work rarely see the shelf behind it. Here are the ten books I keep coming back to, split into two piles: what grounds me, and what sharpens me.",
+    readTime: "6 min read",
+    date: "August 2026",
+    tags: ["Reading List", "Books", "Philosophy", "Self-Improvement"],
+    accentColor: "#22c55e",
+  },
+  {
     slug: "the-1-9-1-rule",
     title: "The 1–9–1 Rule: How AI Expands Possibility Before You Decide",
     excerpt:
