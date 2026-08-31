@@ -7,6 +7,7 @@ import Skills from "@/components/Skills";
 import AgentEngineering from "@/components/AgentEngineering";
 import ForwardDeployed from "@/components/ForwardDeployed";
 import ExpertiseGrid from "@/components/ExpertiseGrid";
+import GrowthSkills from "@/components/GrowthSkills";
 import Roadmap from "@/components/Roadmap";
 import Projects from "@/components/Projects";
 import Hackathons from "@/components/Hackathons";
@@ -82,6 +83,12 @@ export default function Home() {
             <Hackathons />
             <Services />
             <Industries />
+            {/* Non-engineering leverage, deliberately AFTER the services and
+                verticals block and immediately BEFORE Blog: its "Read the
+                writing" proof link points at #blog, so the evidence sits one
+                scroll below the claim. It cites no file paths and carries no
+                gold — see the header of GrowthSkills.tsx for why that matters. */}
+            <GrowthSkills />
             <Blog />
             <OpenSourceSection />
             <Testimonials />

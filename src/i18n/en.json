@@ -6,6 +6,7 @@
     "skills": "Skills",
     "agentEng": "Agent Eng",
     "expertise": "Expertise",
+    "leverage": "Beyond the Code",
     "roadmap": "Learning Path",
     "projects": "Projects",
     "hackathons": "Hackathons",
@@ -221,6 +222,12 @@
     "applyTitle": "Agentic Business Solutions",
     "applyNote": "Three verticals on one substrate — the orchestration, guardrail and MCP layers above. Each card names the code it stands on. Delivered work is under Projects.",
     "targetLabel": "Target vertical"
+  },
+  "leverage": {
+    "title": "Beyond the",
+    "titleHighlight": "Code",
+    "subtitle": "Engineering builds the system; these decide whether it reaches anyone. Unlike every other section here, none of them cites a file path — which is exactly why they get their own.",
+    "multiplierLabel": "Multiplier"
   },
   "projects": {
     "title": "Featured",
