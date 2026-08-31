@@ -15,10 +15,20 @@ type Post = {
 };
 
 const POSTS_EN: Post[] = [
-  // Newest first. The top three are EN only: content/ar/ has no translation of
+  // Newest first. The top posts are EN only: content/ar/ has no translation of
   // them, and POSTS_AR must not list a slug whose Arabic markdown does not
   // exist — generateStaticParams reads content/<locale>/, so the /ar route
   // would 404.
+  {
+    slug: "the-1-9-1-rule",
+    title: "The 1–9–1 Rule: How AI Expands Possibility Before You Decide",
+    excerpt:
+      "Most people treat AI as a faster way to reach an answer. That's the least interesting thing it does. The real shift is upstream of the answer entirely — in how cheap it has become to see nine paths before committing to one.",
+    readTime: "6 min read",
+    date: "August 2026",
+    tags: ["AI", "Decision-Making", "Agentic Engineering", "Future of Work"],
+    accentColor: "#6366f1",
+  },
   {
     slug: "closing-the-deployment-gap",
     title:
