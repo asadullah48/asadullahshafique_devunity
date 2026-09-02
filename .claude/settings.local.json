@@ -182,7 +182,8 @@
       "WebFetch(domain:www.linkedin.com)",
       "WebFetch(domain:www.pearsonvue.com)",
       "mcp__claude_ai_Vercel__search_vercel_documentation",
-      "mcp__claude_ai_Vercel__get_project"
+      "mcp__claude_ai_Vercel__get_project",
+      "WebFetch(domain:www.googleapis.com)"
     ]
   }
 }
