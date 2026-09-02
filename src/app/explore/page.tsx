@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -10,6 +11,13 @@ import {
   Smartphone,
   Terminal,
 } from "lucide-react";
+
+// Legacy DevUnity category browser. Not in sitemap.ts by design; noindex
+// finishes that call so it stops sharing the homepage's title/description
+// as a duplicate in search.
+export const metadata: Metadata = {
+  robots: { index: false, follow: false },
+};
 
 export default function ExplorePage() {
   const categories = [
@@ -33,6 +41,7 @@ export default function ExplorePage() {
             placeholder="Search topics..."
           />
         </div>
+        <h2 className="sr-only">Topic Categories</h2>
         <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
           {categories.map((category, index) => (
             <Card key={index} className="bg-surface-1 border-border">

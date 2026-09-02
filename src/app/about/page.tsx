@@ -1,8 +1,17 @@
+import type { Metadata } from "next";
 import React from "react";
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Users, MessageSquare, BookOpen, Code, ArrowRight } from "lucide-react";
+
+// Legacy DevUnity community page — pitches "Vibrant Community," which
+// contradicts the agentic-engineer positioning on `/` (see CLAUDE.md §2).
+// Not in sitemap.ts by design; noindex finishes that call so it stops
+// sharing the homepage's title/description as a duplicate in search.
+export const metadata: Metadata = {
+  robots: { index: false, follow: false },
+};
 
 export default function AboutPage() {
   const features = [
@@ -57,6 +66,7 @@ export default function AboutPage() {
           </div>
         </div>
 
+        <h2 className="sr-only">Community Features</h2>
         <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4 animate-fade-in-up animation-delay-300">
           {features.map((feature, index) => (
             <Card

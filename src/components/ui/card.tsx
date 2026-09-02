@@ -67,15 +67,22 @@ const CardHeader = React.forwardRef<
 CardHeader.displayName = "CardHeader"
 
 const CardTitle = React.forwardRef<
-  HTMLParagraphElement,
-  React.HTMLAttributes<HTMLHeadingElement>
->(({ className, ...props }, ref) => (
-  <h3
-    ref={ref}
-    className={cn("font-display font-semibold leading-none tracking-tight", className)}
-    {...props}
-  />
-))
+  HTMLHeadingElement,
+  React.HTMLAttributes<HTMLHeadingElement> & { as?: "h1" | "h2" | "h3" | "h4" }
+>(({ className, as = "h3", ...props }, ref) => {
+  const classes = cn("font-display font-semibold leading-none tracking-tight", className)
+  // Defaults to h3 -- correct wherever a page already has its own h2 section
+  // header above the card grid (every homepage section does). Pass as="h2"
+  // where this CardTitle IS the top-level heading for its section (no other
+  // h2 between it and the page's h1), or as="h1" for a single-card page
+  // (login/signup) where the card title is the page's only heading --
+  // otherwise the hierarchy skips a level. See CLAUDE.md's
+  // heading-order-skip audit finding.
+  if (as === "h1") return <h1 ref={ref} className={classes} {...props} />
+  if (as === "h2") return <h2 ref={ref} className={classes} {...props} />
+  if (as === "h4") return <h4 ref={ref} className={classes} {...props} />
+  return <h3 ref={ref} className={classes} {...props} />
+})
 CardTitle.displayName = "CardTitle"
 
 const CardDescription = React.forwardRef<

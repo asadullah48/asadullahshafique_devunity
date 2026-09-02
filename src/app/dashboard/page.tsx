@@ -121,7 +121,8 @@ export default function DashboardPage() {
   return (
     <div className="min-h-screen bg-zinc-100 dark:bg-zinc-950">
       <div className="container mx-auto px-4 py-8">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mt-14">
+        <h1 className="mb-8 text-4xl font-bold text-foreground mt-14">Dashboard</h1>
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
           {/* Sidebar */}
           <div className="md:col-span-1">
             <Card className="bg-white dark:bg-zinc-900 border-zinc-200 dark:border-zinc-800">
@@ -135,7 +136,7 @@ export default function DashboardPage() {
                       .join("")}
                   </AvatarFallback>
                 </Avatar>
-                <CardTitle className="mt-4 text-zinc-900 dark:text-white">
+                <CardTitle as="h2" className="mt-4 text-zinc-900 dark:text-white">
                   {user.name}
                 </CardTitle>
                 <CardDescription className="text-zinc-500 dark:text-zinc-400">

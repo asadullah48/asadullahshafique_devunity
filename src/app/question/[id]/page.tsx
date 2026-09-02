@@ -123,7 +123,7 @@ export default function QuestionDetailPage() {
           </Link>
           <Card className="bg-white dark:bg-zinc-900 border-zinc-200 dark:border-zinc-800">
             <CardHeader>
-              <CardTitle className="text-zinc-900 dark:text-white">
+              <CardTitle as="h1" className="text-zinc-900 dark:text-white">
                 {question.title}
               </CardTitle>
               <div className="flex items-center space-x-4 mt-2">

@@ -120,7 +120,7 @@ function ErrorSolver() {
   return (
     <Card className="bg-surface-1 border-border">
       <CardHeader>
-        <CardTitle className="flex items-center gap-2">
+        <CardTitle as="h2" className="flex items-center gap-2">
           <AlertCircle className="w-5 h-5 text-yellow-500" />
           AI Error Solver
         </CardTitle>
@@ -291,7 +291,7 @@ function LearnTool() {
   return (
     <Card className="bg-surface-1 border-border">
       <CardHeader>
-        <CardTitle className="flex items-center gap-2">
+        <CardTitle as="h2" className="flex items-center gap-2">
           <BookOpen className="w-5 h-5 text-blue-500" />
           Learn Through LLM
         </CardTitle>
@@ -471,7 +471,7 @@ function TeachTool() {
   return (
     <Card className="bg-surface-1 border-border">
       <CardHeader>
-        <CardTitle className="flex items-center gap-2">
+        <CardTitle as="h2" className="flex items-center gap-2">
           <Lightbulb className="w-5 h-5 text-yellow-500" />
           Teach to LLM
         </CardTitle>

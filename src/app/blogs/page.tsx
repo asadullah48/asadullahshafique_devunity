@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import {
@@ -8,6 +9,13 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+
+// Legacy DevUnity blog list — hardcoded placeholder posts, duplicates the
+// real blog at /blog/[slug]. Not in sitemap.ts by design; noindex finishes
+// that call so it stops sharing the homepage's title/description in search.
+export const metadata: Metadata = {
+  robots: { index: false, follow: false },
+};
 import { PenSquare } from "lucide-react";
 
 export default function BlogPage() {
@@ -50,6 +58,7 @@ export default function BlogPage() {
             Create New Post
           </Button>
         </div>
+        <h2 className="sr-only">Blog Posts</h2>
         <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
           {blogPosts.map((post, index) => (
             <Card key={index} className="bg-surface-1 border-border">

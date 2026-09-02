@@ -157,7 +157,7 @@ function CreateProjectForm({ onProjectCreated }: { onProjectCreated: () => void 
   return (
     <Card className="bg-surface-1 border-border sticky top-24">
       <CardHeader>
-        <CardTitle className="flex items-center gap-2">
+        <CardTitle as="h2" className="flex items-center gap-2">
           <Plus className="w-5 h-5 text-purple-500" />
           Create Project
         </CardTitle>

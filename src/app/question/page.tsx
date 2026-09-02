@@ -116,6 +116,7 @@ export default function QuestionPage() {
           </Card>
         )}
 
+        <h2 className="sr-only">Recent Questions</h2>
         <div className="space-y-6">
           {questions.map((question) => (
             <Card key={question.id} className="bg-surface-1 border-border">

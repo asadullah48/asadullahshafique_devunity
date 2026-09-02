@@ -1,7 +1,15 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Github, Linkedin } from "lucide-react";
+
+// Legacy DevUnity community directory. Not in sitemap.ts by design; noindex
+// finishes that call so it stops sharing the homepage's title/description
+// as a duplicate in search.
+export const metadata: Metadata = {
+  robots: { index: false, follow: false },
+};
 
 export default function CommunityPage() {
   const members = [
@@ -39,6 +47,7 @@ export default function CommunityPage() {
         <h1 className="mb-8 text-4xl font-bold text-foreground mt-14">
           Our Community
         </h1>
+        <h2 className="sr-only">Community Members</h2>
         <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
           {members.map((member, index) => (
             <Card key={index} className="bg-surface-1 border-border">

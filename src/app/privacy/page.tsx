@@ -94,7 +94,7 @@ function OptOutForm() {
   return (
     <Card className="bg-surface-1 border-border">
       <CardHeader>
-        <CardTitle className="flex items-center gap-2">
+        <CardTitle as="h2" className="flex items-center gap-2">
           <Lock className="w-5 h-5 text-brand" />
           Opt Out of AI Training
         </CardTitle>
@@ -200,10 +200,10 @@ function OptOutForm() {
         )}
 
         <div className="mt-6 p-4 bg-surface-2/50 rounded-lg">
-          <h4 className="font-semibold mb-2 flex items-center gap-2">
+          <h3 className="font-semibold mb-2 flex items-center gap-2">
             <AlertTriangle className="w-4 h-4 text-yellow-500" />
             What does opting out mean?
-          </h4>
+          </h3>
           <ul className="text-sm text-muted-foreground space-y-1">
             <li>• Your data won't be used for AI training</li>
             <li>• Learning progress won't be tracked (if selected)</li>
@@ -258,7 +258,7 @@ function PrivacyStatus() {
   return (
     <Card className="bg-surface-1 border-border">
       <CardHeader>
-        <CardTitle className="flex items-center gap-2">
+        <CardTitle as="h2" className="flex items-center gap-2">
           <Eye className="w-5 h-5 text-blue-500" />
           Check Privacy Status
         </CardTitle>
@@ -330,9 +330,9 @@ function PrivacyStatus() {
           )}
 
           <div className="mt-6 p-4 bg-blue-900/20 border border-blue-800 rounded-lg">
-            <h4 className="font-semibold text-blue-300 mb-2">
+            <h3 className="font-semibold text-blue-300 mb-2">
               Your Privacy Rights
-            </h4>
+            </h3>
             <ul className="text-sm text-muted-foreground space-y-2">
               <li className="flex items-start gap-2">
                 <CheckCircle className="w-4 h-4 text-blue-500 mt-0.5" />
