@@ -11,7 +11,7 @@ export async function POST(request: Request) {
 
     // Validate required fields
     const { name, email, subject, message } = body;
-    if (!name || !email || !subject || message) {
+    if (!name || !email || !subject || !message) {
       return NextResponse.json(
         { error: "All fields are required" },
         { status: 400 }
