@@ -38,11 +38,18 @@ export default function AIToolsPage() {
         <Reveal
           className="text-center mb-12"
         >
-          <h1 className="text-5xl font-bold mb-4 bg-gradient-to-r from-green-400 to-blue-500 bg-clip-text text-transparent">
+          <h1 className="text-5xl font-bold mb-4 text-brand">
             AI-Powered Tools
           </h1>
-          <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-            Leverage the power of AI to solve errors, learn new topics, and contribute knowledge
+          <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
+            These three tools aren&apos;t static demo forms — each one is a live call into
+            this site&apos;s own backend, routed to a dedicated specialist agent (Error
+            Solver, Learning, or Teaching) running on the OpenAI Agents SDK. Every call
+            degrades gracefully across three rungs — Agents SDK, then LangGraph, then a
+            static keyword-matched fallback — so a missing or exhausted API key never
+            produces a spinner or a 500; you still get a useful answer. That&apos;s the
+            difference between a demo and production: a demo breaks when the quota runs
+            out, production keeps answering.
           </p>
         </Reveal>
 
