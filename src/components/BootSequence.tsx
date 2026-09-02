@@ -30,8 +30,20 @@ import { useCallback, useEffect, useState } from "react";
 
 const SESSION_KEY = "acc.boot.v1";
 
-/** Total scan time before the exit begins. */
-const BOOT_MS = 1400;
+/**
+ * Total scan time before the exit begins.
+ *
+ * Was 1400ms (1820ms total with EXIT_MS). This overlay is `fixed inset-0` and
+ * opaque, so Chrome's LCP algorithm — which excludes elements fully covered
+ * by another layer — cannot record the real hero content as painted until it
+ * is gone. And it plays on EVERY session with no `acc.boot.v1` sessionStorage
+ * key, which describes every Lighthouse/PSI run: there is no "returning
+ * visitor" to a headless audit. Measured effect: mobile LCP on `/` (3089ms)
+ * was ~2.2s worse than desktop (841ms) on the same content, far more than
+ * mobile CPU throttling alone explains. 500ms keeps the "system coming
+ * online" beat legible while cutting most of that self-inflicted tax.
+ */
+const BOOT_MS = 500;
 /** Must match the boot-dissolve duration in globals.css. */
 const EXIT_MS = 420;
 
