@@ -246,7 +246,9 @@
     "new": "جديد",
     "spotlight": "مختارة",
     "allProjects": "كل المشاريع",
-    "viewAllGithub": "تصفّح جميع المستودعات على GitHub"
+    "viewAllGithub": "تصفّح جميع المستودعات على GitHub",
+    "inspectSystem": "استكشاف النظام",
+    "close": "إغلاق"
   },
   "hackathons": {
     "title": "الهاكاثونات &",

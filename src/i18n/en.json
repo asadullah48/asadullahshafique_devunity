@@ -246,7 +246,9 @@
     "new": "NEW",
     "spotlight": "Spotlight",
     "allProjects": "All projects",
-    "viewAllGithub": "Browse All Repositories on GitHub"
+    "viewAllGithub": "Browse All Repositories on GitHub",
+    "inspectSystem": "Inspect the System",
+    "close": "Close"
   },
   "hackathons": {
     "title": "Hackathons &",

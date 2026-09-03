@@ -117,19 +117,44 @@ files, since they're per-project facts rather than generic UI chrome.
 
 ## CSS
 
-One new `@keyframes flow-dash` in `globals.css`, placed beside `animate-think-pulse`
-and covered by the same `prefers-reduced-motion` block already there.
+**Revised during implementation:** no new keyframes were needed. `globals.css`
+already has a full "AI-SYSTEM MOTION PRIMITIVES" section (`animate-think-pulse`,
+`animate-think-ring`, `animate-data-flow`) built for exactly this — a stroke-
+dasharray/dashoffset "signal travelling" animation and a node pulse, already
+covered by the existing `prefers-reduced-motion` guard, already used the same
+way in `NeuralField.tsx`. `ModuleFlowDialog.tsx` reuses those classes directly.
 
-## Verification plan
+## Interaction — one refinement made while building
 
-1. `npx tsc --noEmit` — the real build gate (`ignoreBuildErrors: false`).
-2. Manual pass in both locales × both views (Spotlight, All Projects): button
-   appears only on the 6 flow-mapped ids; Arabic renders RTL-correctly (edges/
-   arrows mirror the way `ArrowRight` already does with `rtl:rotate-180`
-   elsewhere in this file).
-3. Toggle `prefers-reduced-motion` in devtools; diagram still renders, statically.
-4. `npm run build` — confirms no bundle-size surprise (expected near-zero: no new
-   npm dependency, SVG + CSS only).
+Text ended up living in plain HTML `<div>`s positioned over the SVG (percentage-
+based `left`/`top` + `transform: translate(...)`) rather than as SVG `<text>` —
+real Arabic shaping and `dir` inheritance for free, versus SVG text's RTL/
+`text-anchor` quirks. The SVG itself draws only geometry (edges, small dots).
+For the radial diagram, the dot marking each node had to be its own absolutely-
+positioned element pinned to the exact coordinate the edge line terminates at,
+with the label positioned separately below it by a fixed pixel offset — centering
+a combined dot+label block on that same coordinate pulled the dot off the line's
+true endpoint and let lines visibly run through the label text (caught and fixed
+during the manual browser check below).
+
+## Verification plan — results
+
+1. `npx tsc --noEmit` — **passed clean** (exit 0).
+2. `npm run build` — **passed.** Homepage First Load JS: 218 kB → 232 kB
+   (**+14 kB**). Worth stating plainly rather than burying it: this is the cost
+   of `@radix-ui/react-dialog` entering the bundle for the first time — the
+   `Dialog` primitives existed in `components/ui/dialog.tsx` already but had no
+   caller anywhere in the app before this feature, so they were never actually
+   bundled. Every other piece of this feature (the diagram, `module-flows.ts`)
+   added no new dependency.
+3. Manual browser check (Spotlight view, English locale): confirmed via
+   screenshots — button appears on all 6 flow-mapped cards beside "View Case
+   Study"; OrchestratorX's radial diagram and GuardrailAI's chain diagram both
+   render correctly with the fix from the section above applied.
+4. **Not yet done** (session ended before reaching it): the "All Projects" view,
+   the Arabic/RTL locale, the architecture-variant diagrams (Bazaar, DevUnity)
+   were not visually checked, nor was `prefers-reduced-motion`. Do this before
+   calling the feature fully verified.
 
 ## Not in scope (this session)
 

@@ -4,8 +4,10 @@ import { useState, type MouseEvent } from "react";
 import Image from "next/image";
 import { Reveal } from "@/components/Reveal";
 import { AgentEcosystem } from "@/components/AgentEcosystem";
+import { ModuleFlowDialog } from "@/components/ModuleFlowDialog";
 import { Github, ExternalLink, ChevronDown, ChevronUp, Zap, Star, Clock, ShoppingBag, ShieldCheck, Terminal, LayoutGrid } from "lucide-react";
 import { useLocale } from "@/context/LocaleContext";
+import { MODULE_FLOWS } from "@/lib/module-flows";
 
 type ProjectStatus = "Featured" | "In Development" | "Completed" | "Research" | "Flagship" | "Enterprise Grade";
 
@@ -1331,6 +1333,10 @@ function ProjectCard({
   const [terminalView, setTerminalView] = useState(false);
   const hasCaseStudy = !!(project.problem && project.solution && project.impact);
   const tone = STATUS_TOKENS[project.status];
+  // Only the 6 spotlight ids curated in module-flows.ts get this button — a
+  // project with no entry there gets nothing extra, same drop-rather-than-
+  // fabricate convention SPOTLIGHT_IDS itself uses.
+  const flow = MODULE_FLOWS[project.id];
 
   // Spotlight: track the cursor via CSS vars so the glow follows the mouse
   // without triggering React re-renders on every pointer move.
@@ -1483,21 +1489,46 @@ function ProjectCard({
           )}
         </div>
 
-        {hasCaseStudy && (
-          <button
-            type="button"
-            onClick={() => setExpanded(!expanded)}
-            aria-expanded={expanded}
-            className={`flex items-center gap-2 text-xs font-medium transition-colors duration-200 mb-4 w-fit hover:text-brand ${
-              expanded ? "text-brand" : "text-muted-foreground"
-            }`}
-          >
-            {expanded ? (
-              <><ChevronUp className="w-3.5 h-3.5" /> {labels.hideCaseStudy}</>
-            ) : (
-              <><ChevronDown className="w-3.5 h-3.5" /> {labels.viewCaseStudy}</>
+        {(hasCaseStudy || flow) && (
+          <div className="flex flex-wrap items-center gap-x-5 gap-y-2 mb-4">
+            {hasCaseStudy && (
+              <button
+                type="button"
+                onClick={() => setExpanded(!expanded)}
+                aria-expanded={expanded}
+                className={`flex items-center gap-2 text-xs font-medium transition-colors duration-200 w-fit hover:text-brand ${
+                  expanded ? "text-brand" : "text-muted-foreground"
+                }`}
+              >
+                {expanded ? (
+                  <><ChevronUp className="w-3.5 h-3.5" /> {labels.hideCaseStudy}</>
+                ) : (
+                  <><ChevronDown className="w-3.5 h-3.5" /> {labels.viewCaseStudy}</>
+                )}
+              </button>
             )}
-          </button>
+            {flow && (
+              <ModuleFlowDialog
+                flow={flow}
+                title={project.title}
+                statusBadge={<StatusBadge status={project.status} label={labels[project.status] ?? project.status} />}
+                problem={project.problem}
+                solution={project.solution}
+                impact={project.impact}
+                tech={project.tech}
+                github={project.github}
+                demo={project.demo}
+                labels={{
+                  inspectSystem: labels.inspectSystem,
+                  problem: labels.problem,
+                  solution: labels.solution,
+                  impact: labels.impact,
+                  viewCode: labels.viewCode,
+                  viewDemo: labels.viewDemo,
+                }}
+              />
+            )}
+          </div>
         )}
 
         {/* The grid-template-rows 0fr -> 1fr idiom. CSS cannot transition to
@@ -1585,6 +1616,7 @@ export function ProjectsSection() {
     viewDemo: t("projects.viewDemo"),
     viewCaseStudy: t("projects.viewCaseStudy"),
     hideCaseStudy: t("projects.hideCaseStudy"),
+    inspectSystem: t("projects.inspectSystem"),
     problem: t("projects.problem"),
     solution: t("projects.solution"),
     impact: t("projects.impact"),
