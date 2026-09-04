@@ -74,7 +74,6 @@ const PROJECTS_EN: Project[] = [
     description: "Enterprise multi-agent framework that monitors stock levels, predicts seasonal demand, and drafts supplier reorder purchase orders automatically.",
     tech: ["FastAPI", "Python 3.12", "Demand Forecasting", "Supply Chain ROP", "PO Automation", "Docker", "Helm", "Pytest"],
     github: "https://github.com/asadullah48/stockai",
-    demo: "http://127.0.0.1:8019/",
     metrics: [
       { label: "Stockout Uptime", value: "99.4%" },
       { label: "Forecast Fit", value: "96.4%" },
@@ -94,7 +93,6 @@ const PROJECTS_EN: Project[] = [
     description: "Enterprise multi-agent framework that analyzes thousands of customer reviews to identify missing features and synthesize prioritized RICE roadmaps.",
     tech: ["FastAPI", "Python 3.12", "ABSA Sentiment", "Review Scraper", "RICE Matrix", "Docker", "Helm", "Pytest"],
     github: "https://github.com/asadullah48/feedbackx",
-    demo: "http://127.0.0.1:8020/",
     metrics: [
       { label: "Reviews Mined", value: "1,500+" },
       { label: "Top RICE Score", value: "94.5" },
@@ -114,7 +112,6 @@ const PROJECTS_EN: Project[] = [
     description: "Enterprise multi-agent framework summarizing 100+ financial sources into actionable daily investor insights and executive newsletters.",
     tech: ["FastAPI", "Python 3.12", "FinBERT", "Multi-Feed Aggregator", "Cross-Asset Sentiment", "Docker", "Helm", "Pytest"],
     github: "https://github.com/asadullah48/actionnews",
-    demo: "http://127.0.0.1:8018/",
     metrics: [
       { label: "Sources Ingested", value: "100+" },
       { label: "Top Conviction", value: "94.5%" },
@@ -134,7 +131,6 @@ const PROJECTS_EN: Project[] = [
     description: "Enterprise multi-agent framework that translates monolithic COBOL and legacy Java into modern TypeScript and Python 3.12 with guaranteed semantic parity.",
     tech: ["FastAPI", "Python 3.12", "AST Parser", "TypeScript", "Pydantic", "Zod", "Docker", "Helm", "Pytest"],
     github: "https://github.com/asadullah48/legacyx",
-    demo: "http://127.0.0.1:8017/",
     metrics: [
       { label: "Semantic Parity", value: "100.0%" },
       { label: "Math Drift", value: "0.0%" },
@@ -170,7 +166,6 @@ const PROJECTS_EN: Project[] = [
     description: "Enterprise multi-agent framework generating realistic synthetic datasets with strict Differential Privacy and Zero-PII certification for GDPR/HIPAA safe testing.",
     tech: ["FastAPI", "Python 3.12", "Differential Privacy", "Laplace Noise", "PII Scrubber", "Helm", "Docker", "Pytest"],
     github: "https://github.com/asadullah48/synthdata",
-    demo: "http://127.0.0.1:8016/",
     metrics: [
       { label: "Privacy DP", value: "ε <= 0.5" },
       { label: "PII Leaks", value: "0.0%" },
@@ -189,7 +184,6 @@ const PROJECTS_EN: Project[] = [
     description: "Assistive multi-agent framework generating live audio descriptions and real-time visual summaries for visually impaired users with WCAG 2.2 AAA compliance.",
     tech: ["FastAPI", "Python 3.12", "Multimodal AI", "SSML Synthesis", "WCAG 2.2 AAA", "Helm", "Docker", "Pytest"],
     github: "https://github.com/asadullah48/accessai",
-    demo: "http://127.0.0.1:8015/",
     metrics: [
       { label: "Latency", value: "<120ms" },
       { label: "WCAG Level", value: "2.2 AAA" },
@@ -208,7 +202,6 @@ const PROJECTS_EN: Project[] = [
     description: "Orchestrated multi-agent framework coordinating specialized Researcher, Writer, and Editor agents in a collaborative state graph to produce publication-ready newsletters.",
     tech: ["FastAPI", "Python 3.12", "LangGraph Patterns", "Multi-Agent Teams", "Editorial Automation", "Helm", "Docker", "Pytest"],
     github: "https://github.com/asadullah48/collabx",
-    demo: "http://127.0.0.1:8014/",
     metrics: [
       { label: "Velocity", value: "3.4x" },
       { label: "Readability", value: "88.5" },
@@ -227,7 +220,6 @@ const PROJECTS_EN: Project[] = [
     description: "IDE-embedded agent framework auto-updating in-code docstrings, API references, and README tables as developers write code.",
     tech: ["FastAPI", "Python 3.12", "AST Diffing", "Docstring Generator", "Developer Tools", "Helm", "Docker", "Pytest"],
     github: "https://github.com/asadullah48/docucode",
-    demo: "http://127.0.0.1:8013/",
     metrics: [
       { label: "AST Match", value: "98.5%" },
       { label: "Coverage", value: "100%" },
@@ -246,7 +238,6 @@ const PROJECTS_EN: Project[] = [
     description: "Privacy-first on-device agent framework indexing personal financial emails, wealth notes, tax slips, and browsing history with strict zero-cloud egress.",
     tech: ["FastAPI", "Python 3.12", "Local LLMs", "Air-Gapped Security", "AES-256 Vault", "Helm", "Docker", "Pytest"],
     github: "https://github.com/asadullah48/privatebrain",
-    demo: "http://127.0.0.1:8012/",
     metrics: [
       { label: "Air-Gap", value: "100%" },
       { label: "Cloud Egress", value: "0 Bytes" },
@@ -265,7 +256,6 @@ const PROJECTS_EN: Project[] = [
     description: "Autonomous analyst framework independently discovering, verifying, and cross-referencing industry data to produce full market intelligence reports.",
     tech: ["FastAPI", "Python 3.12", "Market Intelligence", "Evidence Triangulation", "Equity Research", "Helm", "Docker", "Pytest"],
     github: "https://github.com/asadullah48/researchx",
-    demo: "http://127.0.0.1:8011/",
     metrics: [
       { label: "Consensus", value: "98%" },
       { label: "Provenance", value: "100%" },
@@ -284,7 +274,6 @@ const PROJECTS_EN: Project[] = [
     description: "Enterprise graph orchestration engine enabling multi-agent DAG execution with HITL approvals and exponential retries.",
     tech: ["FastAPI", "Python 3.12", "DAG Workflows", "HITL Approvals", "Exponential Backoff", "Helm", "Docker", "Pytest"],
     github: "https://github.com/asadullah48/graphai",
-    demo: "http://127.0.0.1:8010/",
     metrics: [
       { label: "DAG Integrity", value: "100%" },
       { label: "Speedup", value: "2.4x" },
@@ -303,7 +292,6 @@ const PROJECTS_EN: Project[] = [
     description: "Plan-Act-Verify feedback loop framework enabling autonomous agents to self-correct and verify evidentiary correctness.",
     tech: ["FastAPI", "Python 3.12", "Feedback Loops", "Self-Correction", "Reflection", "Helm", "Docker", "Pytest"],
     github: "https://github.com/asadullah48/loopai",
-    demo: "http://127.0.0.1:8009/",
     metrics: [
       { label: "Convergence", value: "100%" },
       { label: "Confidence", value: ">=0.90" },
@@ -339,7 +327,6 @@ const PROJECTS_EN: Project[] = [
     description: "Harness layer ensuring autonomous agents operate safely with sandboxed tools, partitioned memory, and deterministic telemetry.",
     tech: ["FastAPI", "Python 3.12", "Agent Harness", "Sandboxing", "Circuit Breaker", "Helm", "Docker", "Pytest"],
     github: "https://github.com/asadullah48/harnessai",
-    demo: "http://127.0.0.1:8008/",
     metrics: [
       { label: "Containment", value: "100%" },
       { label: "Trip Latency", value: "<10ms" },
@@ -358,7 +345,6 @@ const PROJECTS_EN: Project[] = [
     description: "Compliance-first security layer for MCP and A2A interoperability defending against tool poisoning and malicious connections.",
     tech: ["FastAPI", "Python 3.12", "MCP Protocol", "Zero-Trust Security", "DLP Engine", "Helm", "Docker", "Pytest"],
     github: "https://github.com/asadullah48/securebridge",
-    demo: "http://127.0.0.1:8007/",
     metrics: [
       { label: "Attack Block Rate", value: "100%" },
       { label: "Gateway Latency", value: "0.42ms" },
@@ -377,7 +363,6 @@ const PROJECTS_EN: Project[] = [
     description: "Enterprise multi-agent framework that trains, mentors, and certifies employees in high-value AI collaboration, prompt engineering, and agentic orchestration.",
     tech: ["FastAPI", "Python 3.12", "Human-AI Teaming", "Collaboration Index", "Workflow Scaffolding", "Helm", "Docker", "Pytest"],
     github: "https://github.com/asadullah48/workforceai-academy",
-    demo: "http://127.0.0.1:8006/",
     metrics: [
       { label: "Fluency Rate", value: "88.5%" },
       { label: "Speedup Delta", value: "+3.4x" },
@@ -396,7 +381,6 @@ const PROJECTS_EN: Project[] = [
     description: "Customer-facing multi-agent framework delivering white-glove concierge-level personalization in banking, insurance, and luxury retail.",
     tech: ["FastAPI", "Python 3.12", "Hyperpersonalization", "Wealth Tier SLA", "Sentiment Modulation", "Helm", "Docker", "Pytest"],
     github: "https://github.com/asadullah48/conciergeagent",
-    demo: "http://127.0.0.1:8005/",
     metrics: [
       { label: "CSAT Score", value: "4.98 / 5.0" },
       { label: "VIP SLA", value: "30s" },
@@ -415,7 +399,6 @@ const PROJECTS_EN: Project[] = [
     description: "Advanced Context Engineering Framework optimizing agent retrieval, token allocation, boundary-weighted context windows, and cited multi-hop decision synthesis beyond basic prompt engineering.",
     tech: ["FastAPI", "Python 3.12", "RRF Hybrid Search", "Context Compression", "Lost-in-the-Middle Layout", "Helm", "Docker", "Pytest"],
     github: "https://github.com/asadullah48/contextx",
-    demo: "http://127.0.0.1:8004/",
     metrics: [
       { label: "Precision Lift", value: "+34%" },
       { label: "Token Savings", value: "42%" },
@@ -434,7 +417,6 @@ const PROJECTS_EN: Project[] = [
     description: "Compliance-critical multi-agent framework enforcing deterministic guardrails, mathematical bounds, circuit breaker fallbacks, and cryptographic hash-chained audit trails.",
     tech: ["FastAPI", "Python 3.12", "LangGraph", "State Machines", "SHA-256 Cryptography", "Circuit Breakers", "Helm", "Docker"],
     github: "https://github.com/asadullah48/guardrailai",
-    demo: "http://127.0.0.1:8003/",
     metrics: [
       { label: "Non-Determinism", value: "0.00%" },
       { label: "Audit Ledger", value: "SHA-256" },
@@ -453,7 +435,6 @@ const PROJECTS_EN: Project[] = [
     description: "High-precision vertical multi-agent framework outperforming generalist models across Legal, Medical, and Supply Chain domains.",
     tech: ["FastAPI", "Python 3.12", "HIPAA Safe Harbor", "ICD-10 / CPT", "EOQ Optimization", "Helm", "Docker", "Pytest"],
     github: "https://github.com/asadullah48/domainx",
-    demo: "http://127.0.0.1:8002/",
     metrics: [
       { label: "Legal Precision", value: "99.4%" },
       { label: "Medical Accuracy", value: "99.2%" },
@@ -472,7 +453,6 @@ const PROJECTS_EN: Project[] = [
     description: "Production-ready autonomous agent suite designed for deployment in AWS, Microsoft Azure, Google Cloud, and Salesforce marketplaces.",
     tech: ["FastAPI", "Python 3.12", "A2A Protocol", "AWS Bedrock", "Azure AI", "GCP Vertex", "Salesforce Agentforce", "Docker"],
     github: "https://github.com/asadullah48/marketagenthub",
-    demo: "http://127.0.0.1:8000/",
     metrics: [
       { label: "Cloud Giants", value: "4 Clouds" },
       { label: "Deterministic SLA", value: "100%" },
@@ -491,7 +471,6 @@ const PROJECTS_EN: Project[] = [
     description: "Enterprise agent workforce orchestration platform with outcome-based pricing models based on task completion rates.",
     tech: ["FastAPI", "Python 3.12", "Supervisor Governance", "Outcome Pricing", "Async Worker Pools", "Docker", "Pytest"],
     github: "https://github.com/asadullah48/workforceai",
-    demo: "http://127.0.0.1:8001/",
     metrics: [
       { label: "Task SLA", value: "98%+" },
       { label: "FTE Savings", value: "85%" },
@@ -667,7 +646,6 @@ const PROJECTS_AR: Project[] = [
     description: "إطار عمل رائد متعدد الوكلاء لمراقبة مستويات المخزون والتنبؤ بالطلب المستقبلي وصياغة أوامر الشراء ورسائل الموردين تلقائياً لرفع كفاءة الشركات.",
     tech: ["FastAPI", "Python 3.12", "Demand Forecasting", "Supply Chain ROP", "PO Automation", "Docker", "Helm", "Pytest"],
     github: "https://github.com/asadullah48/stockai",
-    demo: "http://127.0.0.1:8019/",
     metrics: [
       { label: "توافر المخزون", value: "99.4%" },
       { label: "دقة التنبؤ", value: "96.4%" },
@@ -687,7 +665,6 @@ const PROJECTS_AR: Project[] = [
     description: "إطار عمل رائد متعدد الوكلاء لجمع وتحليل آلاف التقييمات واكتشاف المزايا الناقصة وصياغة خارطة طريق المنتجات وفق نموذج RICE.",
     tech: ["FastAPI", "Python 3.12", "ABSA Sentiment", "Review Scraper", "RICE Matrix", "Docker", "Helm", "Pytest"],
     github: "https://github.com/asadullah48/feedbackx",
-    demo: "http://127.0.0.1:8020/",
     metrics: [
       { label: "التقييمات المجمعة", value: "1,500+" },
       { label: "أعلى درجة RICE", value: "94.5" },
@@ -707,7 +684,6 @@ const PROJECTS_AR: Project[] = [
     description: "إطار عمل رائد متعدد الوكلاء لجمع وتحليل أكثر من 100 مصدر إخباري مالي وصياغة توصيات استثمارية ونشرات تنفيذية يومية دقيقة.",
     tech: ["FastAPI", "Python 3.12", "FinBERT", "Multi-Feed Aggregator", "Cross-Asset Sentiment", "Docker", "Helm", "Pytest"],
     github: "https://github.com/asadullah48/actionnews",
-    demo: "http://127.0.0.1:8018/",
     metrics: [
       { label: "المصادر المجمعة", value: "100+" },
       { label: "أعلى ثقة", value: "94.5%" },
@@ -727,7 +703,6 @@ const PROJECTS_AR: Project[] = [
     description: "إطار عمل رائد متعدد الوكلاء لتحويل أنظمة COBOL و Java القديمة إلى لغات حديثة مثل TypeScript و Python 3.12 مع ضمان التطابق الدلالي والرياضي التام.",
     tech: ["FastAPI", "Python 3.12", "AST Parser", "TypeScript", "Pydantic", "Zod", "Docker", "Helm", "Pytest"],
     github: "https://github.com/asadullah48/legacyx",
-    demo: "http://127.0.0.1:8017/",
     metrics: [
       { label: "التطابق الدلالي", value: "100.0%" },
       { label: "أخطاء الحساب", value: "0.0%" },
@@ -763,7 +738,6 @@ const PROJECTS_AR: Project[] = [
     description: "إطار عمل رائد متعدد الوكلاء لتوليد مجموعات بيانات اصطناعية عالية الدقة الإحصائية مع ضمانات الخصوصية التفاضلية الرياضية وخلوها التام من البيانات الشخصية.",
     tech: ["FastAPI", "Python 3.12", "Differential Privacy", "Laplace Noise", "PII Scrubber", "Helm", "Docker", "Pytest"],
     github: "https://github.com/asadullah48/synthdata",
-    demo: "http://127.0.0.1:8016/",
     metrics: [
       { label: "ميزانية DP", value: "ε <= 0.5" },
       { label: "تسريب PII", value: "0.0%" },
@@ -782,7 +756,6 @@ const PROJECTS_AR: Project[] = [
     description: "إطار عمل متعدد الوكلاء للذكاء الاصطناعي المساعد يقوم بتوليد أوصاف صوتية فورية وتلخيص المشاهد المرئية للمستخدمين ضعاف وفاقدي البصر وفق معايير WCAG 2.2 AAA.",
     tech: ["FastAPI", "Python 3.12", "Multimodal AI", "SSML Synthesis", "WCAG 2.2 AAA", "Helm", "Docker", "Pytest"],
     github: "https://github.com/asadullah48/accessai",
-    demo: "http://127.0.0.1:8015/",
     metrics: [
       { label: "زمن الاستجابة", value: "<120ms" },
       { label: "معيار WCAG", value: "2.2 AAA" },
@@ -801,7 +774,6 @@ const PROJECTS_AR: Project[] = [
     description: "إطار عمل رائد ينظم فريقاً من الوكلاء المتخصصين (الباحث، الكاتب، المحرر) في مخطط سير عمل تعاوني لإنتاج نشرات إخبارية وتقارير استراتيجية جاهزة للنشر فورياً.",
     tech: ["FastAPI", "Python 3.12", "LangGraph Patterns", "Multi-Agent Teams", "Editorial Automation", "Helm", "Docker", "Pytest"],
     github: "https://github.com/asadullah48/collabx",
-    demo: "http://127.0.0.1:8014/",
     metrics: [
       { label: "سرعة النشر", value: "3.4x" },
       { label: "سهولة القراءة", value: "88.5" },
@@ -820,7 +792,6 @@ const PROJECTS_AR: Project[] = [
     description: "إطار عمل مدمج في بيئة التطوير (IDE) يقوم بتحديث التوثيق البرمجي ومستندات README تلقائياً بالتزامن مع كتابة المطورين للكود.",
     tech: ["FastAPI", "Python 3.12", "AST Diffing", "Docstring Generator", "Developer Tools", "Helm", "Docker", "Pytest"],
     github: "https://github.com/asadullah48/docucode",
-    demo: "http://127.0.0.1:8013/",
     metrics: [
       { label: "مطابقة AST", value: "98.5%" },
       { label: "التغطية", value: "100%" },
@@ -839,7 +810,6 @@ const PROJECTS_AR: Project[] = [
     description: "إطار عمل رائد للأجهزة المحلية يقوم بفهرسة رسائل البريد الإلكتروني والمذكرات المالية والإقرارات الضريبية مع فرض العزل الشبكي التام والتشفير المحلي AES-256.",
     tech: ["FastAPI", "Python 3.12", "Local LLMs", "Air-Gapped Security", "AES-256 Vault", "Helm", "Docker", "Pytest"],
     github: "https://github.com/asadullah48/privatebrain",
-    demo: "http://127.0.0.1:8012/",
     metrics: [
       { label: "العزل الشبكي", value: "100%" },
       { label: "التسريب السحابي", value: "0 Bytes" },
@@ -858,7 +828,6 @@ const PROJECTS_AR: Project[] = [
     description: "إطار عمل رائد يمكّن الوكلاء الأذكياء من البحث الذاتي والتدقيق المتقاطع للأدلة بين مصادر متعددة لإعداد تقارير مؤسسية موثوقة بالكامل.",
     tech: ["FastAPI", "Python 3.12", "Market Intelligence", "Evidence Triangulation", "Equity Research", "Helm", "Docker", "Pytest"],
     github: "https://github.com/asadullah48/researchx",
-    demo: "http://127.0.0.1:8011/",
     metrics: [
       { label: "التوافق", value: "98%" },
       { label: "التوثيق", value: "100%" },
@@ -877,7 +846,6 @@ const PROJECTS_AR: Project[] = [
     description: "إطار عمل رائد لتنسيق تدفقات عمل الوكلاء بالاعتماد على المخططات الموجهة (DAGs) والتفريع الشرطي والموافقات البشرية والتعافي الذاتي.",
     tech: ["FastAPI", "Python 3.12", "DAG Workflows", "HITL Approvals", "Exponential Backoff", "Helm", "Docker", "Pytest"],
     github: "https://github.com/asadullah48/graphai",
-    demo: "http://127.0.0.1:8010/",
     metrics: [
       { label: "سلامة DAG", value: "100%" },
       { label: "التسريع", value: "2.4x" },
@@ -896,7 +864,6 @@ const PROJECTS_AR: Project[] = [
     description: "إطار عمل رائد يمكّن الوكلاء الأذكياء من التصحيح الذاتي والتفكير التأملي والوصول إلى الدقة المؤكدة عبر حلقات (تخطيط - تنفيذ - تحقق).",
     tech: ["FastAPI", "Python 3.12", "Feedback Loops", "Self-Correction", "Reflection", "Helm", "Docker", "Pytest"],
     github: "https://github.com/asadullah48/loopai",
-    demo: "http://127.0.0.1:8009/",
     metrics: [
       { label: "التقارب المعتمد", value: "100%" },
       { label: "درجة الثقة", value: ">=0.90" },
@@ -932,7 +899,6 @@ const PROJECTS_AR: Project[] = [
     description: "إطار عمل رائد لتوفير بيئة تشغيل آمنة ومحددة بدقة تضمن تشغيل الوكلاء ضمن نطاق معزول للأدوات والذاكرة والصلاحيات وقواطع الدوائر الآلية.",
     tech: ["FastAPI", "Python 3.12", "Agent Harness", "Sandboxing", "Circuit Breaker", "Helm", "Docker", "Pytest"],
     github: "https://github.com/asadullah48/harnessai",
-    demo: "http://127.0.0.1:8008/",
     metrics: [
       { label: "احتواء الضرر", value: "100%" },
       { label: "سرعة الفصل", value: "<10ms" },
@@ -951,7 +917,6 @@ const PROJECTS_AR: Project[] = [
     description: "بوابة أمان مؤسسية قائمة على نموذج الثقة الصفرية لحماية بروتوكولات MCP والتشغيل البيني بين الوكلاء من هجمات تسميم الأدوات وحقن الأوامر وتسريب البيانات.",
     tech: ["FastAPI", "Python 3.12", "MCP Protocol", "Zero-Trust Security", "DLP Engine", "Helm", "Docker", "Pytest"],
     github: "https://github.com/asadullah48/securebridge",
-    demo: "http://127.0.0.1:8007/",
     metrics: [
       { label: "اعتراض الهجمات", value: "100%" },
       { label: "سرعة البوابة", value: "0.42ms" },
@@ -970,7 +935,6 @@ const PROJECTS_AR: Project[] = [
     description: "إطار عمل متعدد الوكلاء لتمكين وتأهيل القوى العاملة المؤسسية، وتدريب الموظفين على هندسة الأوامر واستخدام الأدوات وحوكمة أنظمة الذكاء الاصطناعي.",
     tech: ["FastAPI", "Python 3.12", "Human-AI Teaming", "Collaboration Index", "Workflow Scaffolding", "Helm", "Docker", "Pytest"],
     github: "https://github.com/asadullah48/workforceai-academy",
-    demo: "http://127.0.0.1:8006/",
     metrics: [
       { label: "نسبة الطلاقة", value: "88.5%" },
       { label: "تسريع العمل", value: "+3.4x" },
@@ -989,7 +953,6 @@ const PROJECTS_AR: Project[] = [
     description: "إطار عمل متعدد الوكلاء لخدمة العملاء الفاخرة، يقدم استشارات مالية مخصصة، وحلاً فورياً للنزاعات والمطالبات، مع حوكمة تجربة العملاء بمعايير الضيافة الراقية.",
     tech: ["FastAPI", "Python 3.12", "Hyperpersonalization", "Wealth Tier SLA", "Sentiment Modulation", "Helm", "Docker", "Pytest"],
     github: "https://github.com/asadullah48/conciergeagent",
-    demo: "http://127.0.0.1:8005/",
     metrics: [
       { label: "معدل الرضا", value: "4.98 / 5.0" },
       { label: "سرعة الخدمة", value: "30 ثانية" },
@@ -1008,7 +971,6 @@ const PROJECTS_AR: Project[] = [
     description: "إطار عمل متطور لهندسة وتخصيص نوافذ السياق، وضغط الرموز، وتخفيف ظاهرة الضياع في المنتصف، وتوليد القرارات الموثقة بالاقتباسات الدقيقة.",
     tech: ["FastAPI", "Python 3.12", "RRF Hybrid Search", "Context Compression", "Lost-in-the-Middle Layout", "Helm", "Docker", "Pytest"],
     github: "https://github.com/asadullah48/contextx",
-    demo: "http://127.0.0.1:8004/",
     metrics: [
       { label: "دقة الاسترجاع", value: "+34%" },
       { label: "توفير الرموز", value: "42%" },
@@ -1027,7 +989,6 @@ const PROJECTS_AR: Project[] = [
     description: "إطار عمل قطعي للوكلاء الأذكياء يفرض حواجز حماية صارمة ومفاتيح قطع الدائرة وبدائل آمنة مع سجل تدقيق مشفر.",
     tech: ["FastAPI", "Python 3.12", "LangGraph", "State Machines", "SHA-256 Cryptography", "Circuit Breakers", "Helm", "Docker"],
     github: "https://github.com/asadullah48/guardrailai",
-    demo: "http://127.0.0.1:8003/",
     metrics: [
       { label: "اللاحتمية", value: "0.00%" },
       { label: "التدقيق المشفر", value: "SHA-256" },
@@ -1046,7 +1007,6 @@ const PROJECTS_AR: Project[] = [
     description: "إطار عمل فائق الدقة للوكلاء الأذكياء المتخصصين يتفوق على النماذج العامة في المجالات القانونية والطبية وسلاسل الإمداد.",
     tech: ["FastAPI", "Python 3.12", "HIPAA Safe Harbor", "ICD-10 / CPT", "EOQ Optimization", "Helm", "Docker", "Pytest"],
     github: "https://github.com/asadullah48/domainx",
-    demo: "http://127.0.0.1:8002/",
     metrics: [
       { label: "الدقة القانونية", value: "99.4%" },
       { label: "الترميز الطبي", value: "99.2%" },
@@ -1065,7 +1025,6 @@ const PROJECTS_AR: Project[] = [
     description: "منظومة وكلاء ذكاء اصطناعي مستقلة جاهزة لإعادة الاستخدام والبيع في المتاجر السحابية العالمية.",
     tech: ["FastAPI", "Python 3.12", "A2A Protocol", "AWS Bedrock", "Azure AI", "GCP Vertex", "Salesforce Agentforce", "Docker"],
     github: "https://github.com/asadullah48/marketagenthub",
-    demo: "http://127.0.0.1:8000/",
     metrics: [
       { label: "السحابات الكبرى", value: "4 سحابات" },
       { label: "الامتثال الرقابي", value: "100%" },
@@ -1084,7 +1043,6 @@ const PROJECTS_AR: Project[] = [
     description: "منصة متطورة لإدارة وتوزيع مهام الوكلاء الأذكياء بنماذج تسعير حسب معدلات إتمام المهام.",
     tech: ["FastAPI", "Python 3.12", "Supervisor Governance", "Outcome Pricing", "Async Worker Pools", "Docker", "Pytest"],
     github: "https://github.com/asadullah48/workforceai",
-    demo: "http://127.0.0.1:8001/",
     metrics: [
       { label: "ضمان الخدمة", value: "98%+" },
       { label: "توفير التكلفة", value: "85%" },

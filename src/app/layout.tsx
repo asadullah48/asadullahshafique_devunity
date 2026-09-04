@@ -93,24 +93,81 @@ export const metadata: Metadata = {
     },
 };
 
+/**
+ * The entity definition Google and the AI answer engines read to decide what
+ * this person is "known for". Two rules govern what may go in here.
+ *
+ * 1. `sameAs` lists ONLY profiles this site already links somewhere else
+ *    (About, Footer, Testimonials, resume). sameAs exists for entity
+ *    consolidation; an unreachable or invented profile weakens the graph
+ *    rather than strengthening it, and would be a new claim besides.
+ * 2. `knowsAbout` is phrased as what people actually search for, not as a
+ *    dependency list. Every entry must be demonstrable in this repo per
+ *    CLAUDE.md §0 — the constitution is in backend/constitution/, the real
+ *    MCP server at /mcp/server, the SDK orchestrator in backend/orchestration/,
+ *    and the bilingual/RTL system is the /ar route.
+ *
+ * Deliberately ABSENT, each for a reason. Do not add them back casually:
+ *   - `aggregateRating`: it could only be built from the two testimonials
+ *     hosted on this site, about this site's owner. Google treats such
+ *     self-serving reviews as ineligible for rich results, and Person is not
+ *     a supported type for them regardless. No upside, and it invites a
+ *     structured-data penalty on the one page whose whole job is trust.
+ *   - `worksFor`: naming an unrelated business here reintroduces exactly the
+ *     split identity the rest of the page works to remove.
+ *   - `knowsLanguage`: shipping an Arabic locale says what was BUILT, not
+ *     which languages the person speaks. Add only when independently true.
+ *   - `alternateName`: NOT free. src/app/ar/layout.tsx already attaches
+ *     `alternateName: "أسد الله شافق"` to this same @id. A second one here
+ *     would collide on merge — and a job title is not a name anyway.
+ *
+ * `jobTitle` matches the openGraph and twitter titles above verbatim. Entity
+ * search rewards one consistent identity string, so changing it here alone
+ * would manufacture the inconsistency it is meant to remove.
+ */
 const personJsonLd = {
     "@context": "https://schema.org",
     "@type": "Person",
     "@id": PERSON_ID,
     name: "Asadullah Shafique",
     url: BASE_URL,
+    image: `${BASE_URL}/opengraph-image`,
     jobTitle: "Agentic AI Developer",
-    sameAs: ["https://github.com/asadullah48"],
+    description:
+          "Agentic AI engineer building production multi-agent systems with the OpenAI Agents SDK, real MCP servers, and Constitutional AI guardrails.",
+    sameAs: [
+          "https://github.com/asadullah48",
+          "https://www.linkedin.com/in/asadullah-shafique-a00679325/",
+          "https://x.com/texcotembroide1",
+          "https://medium.com/@texcotembroiderysourcinghouse",
+          "https://facebook.com/asadullahshafique",
+          "https://instagram.com/shafiqueasadullah",
+        ],
     knowsAbout: [
-          "Agentic AI",
+          "Agentic AI Development",
+          "AI Agent Automation",
+          "Multi-Agent Orchestration",
+          "Model Context Protocol (MCP)",
+          "OpenAI Agents SDK",
+          "Constitutional AI",
+          "AI Guardrails",
+          "LangGraph",
+          "LangChain",
+          "Bilingual and RTL AI Systems",
           "Next.js",
           "TypeScript",
           "Python",
           "FastAPI",
-          "MCP",
-          "LangChain",
           "Docker",
           "Kubernetes",
+        ],
+    areaServed: [
+          "United States",
+          "United Kingdom",
+          "European Union",
+          "United Arab Emirates",
+          "Saudi Arabia",
+          "Pakistan",
         ],
 };
 
