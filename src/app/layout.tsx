@@ -107,34 +107,45 @@ export const metadata: Metadata = {
  *    MCP server at /mcp/server, the SDK orchestrator in backend/orchestration/,
  *    and the bilingual/RTL system is the /ar route.
  *
- * Deliberately ABSENT, each for a reason. Do not add them back casually:
- *   - `aggregateRating`: it could only be built from the two testimonials
- *     hosted on this site, about this site's owner. Google treats such
- *     self-serving reviews as ineligible for rich results, and Person is not
- *     a supported type for them regardless. No upside, and it invites a
- *     structured-data penalty on the one page whose whole job is trust.
- *   - `worksFor`: naming an unrelated business here reintroduces exactly the
- *     split identity the rest of the page works to remove.
- *   - `knowsLanguage`: shipping an Arabic locale says what was BUILT, not
- *     which languages the person speaks. Add only when independently true.
- *   - `alternateName`: NOT free. src/app/ar/layout.tsx already attaches
- *     `alternateName: "أسد الله شافق"` to this same @id. A second one here
- *     would collide on merge — and a job title is not a name anyway.
+ * Two properties below were added at the owner's explicit direction after the
+ * trade-offs were raised. Recorded here so the decision is not silently
+ * re-litigated:
+ *   - `worksFor` names a business unrelated to the agentic-AI positioning.
+ *     It is true, and truth is the higher bar; it does broaden the entity.
+ *   - `knowsLanguage` asserts the PERSON reads these, which is a separate
+ *     claim from the site shipping an Arabic locale. Owner-confirmed.
  *
- * `jobTitle` matches the openGraph and twitter titles above verbatim. Entity
- * search rewards one consistent identity string, so changing it here alone
- * would manufacture the inconsistency it is meant to remove.
+ * `aggregateRating` was requested and is deliberately NOT here, on facts
+ * rather than taste. src/components/Testimonials.tsx holds THREE testimonials,
+ * not two, and its `Testimonial` type is {name, role, text, context} — there
+ * is no rating field anywhere in the data, so a "5" is sourced from nothing
+ * and a reviewCount of "2" is simply wrong. One of the three is also explicit
+ * pre-delivery feedback on a concept, not a review of delivered work. Add
+ * this block only once real, rated reviews exist to count — and note that
+ * even then, self-hosted reviews about this site's owner are ineligible for
+ * Google review rich results and unsupported on Person.
+ *
+ * `alternateName` here coexists with `alternateName: "أسد الله شافق"` on the
+ * same @id in src/app/ar/layout.tsx. Multiple alternateName values are valid
+ * schema.org, so these merge rather than conflict.
+ *
+ * NOTE: `jobTitle` is "Agentic AI & Automation Engineer" while the openGraph
+ * and twitter titles above still say "Agentic AI Developer". Entity search
+ * rewards ONE identity string everywhere, so these want to be reconciled in
+ * a single pass across metadata, LinkedIn, GitHub and Medium — not drifted
+ * one file at a time.
  */
 const personJsonLd = {
     "@context": "https://schema.org",
     "@type": "Person",
     "@id": PERSON_ID,
     name: "Asadullah Shafique",
+    alternateName: "Asadullah Shafique — Agentic AI & Automation Engineer",
     url: BASE_URL,
     image: `${BASE_URL}/opengraph-image`,
-    jobTitle: "Agentic AI Developer",
+    jobTitle: "Agentic AI & Automation Engineer",
     description:
-          "Agentic AI engineer building production multi-agent systems with the OpenAI Agents SDK, real MCP servers, and Constitutional AI guardrails.",
+          "Agentic AI engineer building production multi-agent systems with the OpenAI Agents SDK, real MCP servers, and Constitutional AI guardrails, for clients in Western markets and the Gulf.",
     sameAs: [
           "https://github.com/asadullah48",
           "https://www.linkedin.com/in/asadullah-shafique-a00679325/",
@@ -149,17 +160,17 @@ const personJsonLd = {
           "Multi-Agent Orchestration",
           "Model Context Protocol (MCP)",
           "OpenAI Agents SDK",
-          "Constitutional AI",
-          "AI Guardrails",
           "LangGraph",
           "LangChain",
-          "Bilingual and RTL AI Systems",
+          "Constitutional AI",
+          "AI Guardrails",
+          "Cloud-Native AI Deployment",
+          "Kubernetes",
+          "FastAPI",
           "Next.js",
           "TypeScript",
           "Python",
-          "FastAPI",
-          "Docker",
-          "Kubernetes",
+          "Bilingual & RTL AI Systems",
         ],
     areaServed: [
           "United States",
@@ -169,6 +180,11 @@ const personJsonLd = {
           "Saudi Arabia",
           "Pakistan",
         ],
+    worksFor: {
+          "@type": "Organization",
+          name: "Texcot Embroidery Sourcing House",
+        },
+    knowsLanguage: ["en", "ar", "ur"],
 };
 
 export default function RootLayout({
