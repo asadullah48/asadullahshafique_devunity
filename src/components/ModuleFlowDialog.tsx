@@ -71,7 +71,9 @@ export function ModuleFlowDialog({
 
       <DialogContent className="max-w-2xl max-h-[85vh] overflow-y-auto">
         <DialogHeader>
-          <div className="flex flex-wrap items-center gap-3">
+          {/* pe-8 reserves the close button's corner. Project titles here run
+              long enough to reach it in either direction once wrapped. */}
+          <div className="flex flex-wrap items-center gap-3 pe-8">
             <DialogTitle className="text-xl">{title}</DialogTitle>
             {statusBadge}
           </div>
@@ -223,25 +225,47 @@ function RadialFlow({ flow, locale }: { flow: ModuleFlow; locale: "en" | "ar" })
   const cx = 50;
   const cy = 50;
   const radius = 36;
+  // Edges start this far out from the centre instead of at the exact centre.
+  // The hub's own label sits directly under the hub dot, so a spoke drawn from
+  // (cx, cy) runs straight down through that text. Starting every spoke
+  // outside the label's box clears it without moving the label off the node —
+  // and all four spokes are trimmed identically, so the gap reads as a hub
+  // rather than as one broken line. 12 units = 36px at the 300px max width,
+  // which clears a one-line label plus its 14px offset. A hub label that
+  // wrapped to two lines would need more.
+  const hubClearance = 12;
   const angleStep = (2 * Math.PI) / satellites.length;
 
   const positions = satellites.map((node, i) => {
     const angle = -Math.PI / 2 + i * angleStep;
-    return { node, x: cx + radius * Math.cos(angle), y: cy + radius * Math.sin(angle) };
+    const ux = Math.cos(angle);
+    const uy = Math.sin(angle);
+    return {
+      node,
+      x: cx + radius * ux,
+      y: cy + radius * uy,
+      x0: cx + hubClearance * ux,
+      y0: cy + hubClearance * uy,
+      // A label always sits on the side of its dot AWAY from the hub. Below is
+      // the natural reading position, but for a satellite in the upper half
+      // "below" points back at the centre, so the label lands on top of its own
+      // incoming edge — the bug this rule exists to prevent.
+      above: uy < -0.01,
+    };
   });
 
   return (
-    // mb-12: satellite labels sit BELOW their dot, outside the aspect-square
-    // box itself (see the split-position comment above), so the box needs
-    // reserved space beneath it or the bottom node's two-line detail text
-    // overlaps whatever renders next (the caption).
-    <div className="relative mx-auto aspect-square w-full max-w-[300px] mb-12">
+    // mt-8/mb-12: labels sit outside the aspect-square box itself (see the
+    // split-position comment above), so the box needs reserved space on both
+    // sides — beneath for the bottom node's two-line detail text, above for
+    // the top node's, which would otherwise ride up into the dialog title.
+    <div className="relative mx-auto aspect-square w-full max-w-[300px] mt-8 mb-12">
       <svg viewBox="0 0 100 100" className="absolute inset-0 h-full w-full" aria-hidden>
-        {positions.map(({ node, x, y }, i) => (
+        {positions.map(({ node, x, y, x0, y0 }, i) => (
           <line
             key={node.id}
-            x1={cx}
-            y1={cy}
+            x1={x0}
+            y1={y0}
             x2={x}
             y2={y}
             stroke="hsl(var(--brand) / 0.45)"
@@ -275,16 +299,22 @@ function RadialFlow({ flow, locale }: { flow: ModuleFlow; locale: "en" | "ar" })
       </div>
 
       {/* Satellites — same split: a dot pinned to the exact (x, y) the edge
-          terminates at, and a label block offset below it by a fixed pixel
-          gap so it never overlaps the line. */}
-      {positions.map(({ node, x, y }, i) => (
+          terminates at, and a label block offset off it by a fixed pixel gap,
+          on the side facing away from the hub, so it never overlaps the line.
+          `above` flips both the anchor edge and the translate: -100% pins the
+          block's BOTTOM to the offset point, 0 pins its top. */}
+      {positions.map(({ node, x, y, above }, i) => (
         <Fragment key={node.id}>
           <div className="absolute" style={{ left: `${x}%`, top: `${y}%`, transform: "translate(-50%, -50%)" }}>
             <span className="h-2 w-2 rounded-full bg-brand animate-think-pulse block" style={{ animationDelay: `${i * 0.28}s` }} />
           </div>
           <div
             className="absolute flex flex-col items-center text-center w-24"
-            style={{ left: `${x}%`, top: `calc(${y}% + 10px)`, transform: "translate(-50%, 0)" }}
+            style={{
+              left: `${x}%`,
+              top: above ? `calc(${y}% - 10px)` : `calc(${y}% + 10px)`,
+              transform: above ? "translate(-50%, -100%)" : "translate(-50%, 0)",
+            }}
           >
             <div dir="ltr" className="font-mono text-[11px] font-semibold text-foreground leading-tight">
               {node.label[locale]}
