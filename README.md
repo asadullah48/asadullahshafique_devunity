@@ -56,6 +56,16 @@ The claim this repository exists to survive is *production systems, not prototyp
 
 Twelve competencies across four categories. **Every row cites a path you can open**, because a status badge nobody can check is decoration. Nothing reaches this table until something in the tree can answer for it — that rule is written down in [`CLAUDE.md`](CLAUDE.md) and it is the highest-priority instruction in this repository.
 
+**In Autonomy/Resilience/Adaptivity terms** (no new claims, just naming what's
+already verified above): *Agentic Orchestration* and *Connectivity & Protocols*
+are the **Autonomy** layer (the triage star topology and the SDK→LangGraph→
+static fallback ladder decide and act without a human in the loop);
+*Reliability & Safety* is the **Resilience** layer (deterministic guardrails
+that trip before any model call, plus a dual-layer eval that catches an agent
+answering from memory instead of calling its tool); *Enterprise & Scale* is
+the **Adaptivity** layer (the same orchestration substrate re-deployed across
+FinAgent-Nexus, the Textile ERP, and Kubernetes autoscaling).
+
 ### Agentic Orchestration
 
 | Competency | Substrate | Status |
