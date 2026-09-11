@@ -306,8 +306,9 @@
   "blog": {
     "title": "Latest",
     "titleHighlight": "Articles",
-    "subtitle": "Lessons from 6 hackathons, production AI systems, and building real businesses with technology.",
+    "subtitle": "Essays on agentic architecture, reliability, decision-making and technical communication — linked to the code wherever the code exists.",
     "readArticle": "Read Article",
+    "viewAll": "Explore the Knowledge Hub",
     "historicalNote": "Summaries describe each article as published. Figures inside them are the article's own claims at the time of writing, not metrics this site independently verifies.",
     "discordNote": "New articles drop in the Discord first, along with code snippets, WIP demos, and hackathon post-mortems.",
     "joinHub": "Join Asadullah's Dev Hub"

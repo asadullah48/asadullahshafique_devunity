@@ -788,6 +788,90 @@
     border-block-start: 1px solid hsl(var(--border));
     margin-block: 2.5em;
   }
+
+  /* Callouts — `> [!KIND]` in the markdown (see content.ts). The KIND only
+     changes the inline-start rule and the label colour; the body stays
+     foreground text so it is readable in both themes at every kind. Gold is
+     the provenance colour (see --gold), so it marks "In this codebase". */
+  .article-prose .article-callout {
+    --callout: var(--brand);
+    --callout-label: var(--brand-soft);
+    border: 1px solid hsl(var(--border));
+    border-inline-start: 3px solid hsl(var(--callout) / 0.75);
+    border-radius: 0.6rem;
+    background: hsl(var(--surface-1));
+    padding: 1em 1.15em;
+  }
+  .article-prose .article-callout > * + * { margin-block-start: 0.7em; }
+  .article-prose .article-callout p { color: hsl(var(--foreground) / 0.9); }
+  .article-prose .article-callout .article-callout-label {
+    font-size: 0.72rem;
+    font-weight: 650;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: hsl(var(--callout-label));
+  }
+  .article-prose .article-callout[data-kind="evidence"] {
+    --callout: var(--gold);
+    --callout-label: var(--gold-soft);
+  }
+  .article-prose .article-callout[data-kind="failure"] {
+    --callout: var(--destructive);
+    --callout-label: var(--foreground);
+  }
+  .article-prose .article-callout[data-kind="note"],
+  .article-prose .article-callout[data-kind="illustrative"] {
+    --callout: var(--muted-foreground);
+    --callout-label: var(--muted-foreground);
+  }
+
+  /* Flow diagrams — a ```flow fence rendered as an <ol>. Vertical on purpose:
+     it reflows at 320px where an ASCII arrow diagram would force a scroll
+     bar, and the connectors are drawn here instead of typed as "↓". */
+  .article-prose .article-flow {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .article-prose .article-flow > li {
+    position: relative;
+    margin: 0;
+    padding: 0.4em 0.9em;
+    border: 1px solid hsl(var(--border));
+    border-radius: 0.5rem;
+    background: hsl(var(--surface-1));
+    font-size: 0.9375rem;
+    line-height: 1.5;
+    color: hsl(var(--foreground) / 0.92);
+  }
+  .article-prose .article-flow > li + li { margin-block-start: 1.25em; }
+  .article-prose .article-flow > li + li::before {
+    content: "";
+    position: absolute;
+    inset-inline-start: 1.2em;
+    inset-block-start: calc(-1.25em - 1px);
+    block-size: 1.25em;
+    inline-size: 1px;
+    background: hsl(var(--brand) / 0.5);
+  }
+  .article-prose .article-flow > li.article-flow-loop {
+    border-style: dashed;
+    background: transparent;
+    color: hsl(var(--muted-foreground));
+    font-size: 0.875rem;
+  }
+  .article-prose .article-flow > li.article-flow-loop::before {
+    background: hsl(var(--muted-foreground) / 0.4);
+  }
+}
+
+/* Table-of-contents active state. Set by TocTracker as aria-current, so the
+   visual state and the accessible state cannot disagree. */
+.toc-link[aria-current="true"] {
+  color: hsl(var(--brand-soft));
+  border-inline-start-color: hsl(var(--brand));
 }
 
 /* ---------------------------------------------------------------------------

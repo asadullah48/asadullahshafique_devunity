@@ -183,7 +183,8 @@
       "WebFetch(domain:www.pearsonvue.com)",
       "mcp__claude_ai_Vercel__search_vercel_documentation",
       "mcp__claude_ai_Vercel__get_project",
-      "WebFetch(domain:www.googleapis.com)"
+      "WebFetch(domain:www.googleapis.com)",
+      "PowerShell($c = Get-NetTCPConnection -LocalPort 3000 -State Listen -ErrorAction SilentlyContinue; if \\($c\\) { $c | ForEach-Object { Stop-Process -Id $_.OwningProcess -Force }; \"freed port 3000\" } else { \"port 3000 already free\" })"
     ]
   }
 }

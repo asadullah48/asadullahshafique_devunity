@@ -1,147 +1,36 @@
 "use client";
 
+import Link from "next/link";
 import { Reveal } from "@/components/Reveal";
 import { ArrowRight, Clock, Tag } from "lucide-react";
 import { useLocale } from "@/context/LocaleContext";
+import type { ArticleMeta } from "@/lib/content";
 
-type Post = {
-  slug: string;
-  title: string;
-  excerpt: string;
-  readTime: string;
-  date: string;
-  tags: string[];
-  accentColor: string;
-};
+/**
+ * The homepage slice of the blog.
+ *
+ * This component used to hold POSTS_EN / POSTS_AR — a hand-copied duplicate
+ * of every article's frontmatter that had to be edited in step with the
+ * markdown. It now receives the list from the server (src/app/page.tsx reads
+ * content/ through src/lib/content.ts), so an article exists on the homepage
+ * the moment its .md file does. Only frontmatter crosses into this client
+ * component — never article HTML — so the payload stays a few kilobytes.
+ */
 
-const POSTS_EN: Post[] = [
-  // Newest first. The top posts are EN only: content/ar/ has no translation of
-  // them, and POSTS_AR must not list a slug whose Arabic markdown does not
-  // exist — generateStaticParams reads content/<locale>/, so the /ar route
-  // would 404.
-  {
-    slug: "books-that-shaped-my-thinking",
-    title: "10 Books That Shaped How I Think",
-    excerpt:
-      "People who follow my engineering work rarely see the shelf behind it. Here are the ten books I keep coming back to, split into two piles: what grounds me, and what sharpens me.",
-    readTime: "6 min read",
-    date: "August 2026",
-    tags: ["Reading List", "Books", "Philosophy", "Self-Improvement"],
-    accentColor: "#22c55e",
-  },
-  {
-    slug: "the-1-9-1-rule",
-    title: "The 1–9–1 Rule: How AI Expands Possibility Before You Decide",
-    excerpt:
-      "Most people treat AI as a faster way to reach an answer. That's the least interesting thing it does. The real shift is upstream of the answer entirely — in how cheap it has become to see nine paths before committing to one.",
-    readTime: "6 min read",
-    date: "August 2026",
-    tags: ["AI", "Decision-Making", "Agentic Engineering", "Future of Work"],
-    accentColor: "#6366f1",
-  },
-  {
-    slug: "closing-the-deployment-gap",
-    title:
-      "Closing the Deployment Gap: Why the Next Job Is Forward-Deployed, Not Another Demo Agent",
-    excerpt:
-      "Two groups are stuck for what look like opposite reasons — developers watching their work commoditise, companies watching pilots collapse on contact with real workflows. It is the same wall from two sides. The gap is not talent and not the model; it is deployment, and it closes with a System of Context.",
-    readTime: "8 min read",
-    date: "August 2026",
-    tags: ["Forward-Deployed", "Agent Factory", "System of Context", "AI Engineering"],
-    accentColor: "#ec4899",
-  },
-  {
-    slug: "claude-certification-by-job-function",
-    title:
-      "Which Claude Certification Should You Actually Sit? Pick by Job Function, Not Job Title",
-    excerpt:
-      "There are four Claude certifications and most people choose the wrong one, because they read the names as a ladder and pick the rung matching their title. The names are a lie about difficulty. Here is what each exam actually tests, and the one question that sorts you into the right room.",
-    readTime: "9 min read",
-    date: "August 2026",
-    tags: ["Claude", "Certification", "AI Engineering", "Career"],
-    accentColor: "#14b8a6",
-  },
-  {
-    slug: "graph-engineering-with-claude",
-    title: "Graph Engineering with Claude: A 14-Step Roadmap From 0 to Graph Architect",
-    excerpt:
-      "Most multi-step agents are a straight line — one head, one context, one thing at a time, until the window fills up. This is the 14-step roadmap that turns that line into a graph: one that fans out across a fleet, verifies its own findings, and converges on a result a lone agent could never hold.",
-    readTime: "18 min read",
-    date: "August 2026",
-    tags: ["Graph Engineering", "Claude Code", "Multi-Agent", "Workflows"],
-    accentColor: "#f59e0b",
-  },
-  {
-    slug: "six-hackathons-one-methodology",
-    title: "How I Won 6 Consecutive Hackathons With a Single Methodology",
-    excerpt:
-      "Panaversity, Bronze → Platinum → Agent Factory. Zero failures across 6 hackathons, 85% code reuse, and a four-session execution model that any developer can copy. Here's the exact playbook.",
-    readTime: "8 min read",
-    date: "April 2025",
-    tags: ["Methodology", "Hackathon", "Spec-First", "CLAUDE.md"],
-    accentColor: "#84cc16",
-  },
-  {
-    slug: "constitutional-ai-todo-spec-first",
-    title: "Building a Constitutional AI Todo App: The Spec-First Way",
-    excerpt:
-      "149 tests passing. Triple-layer Constitutional AI with 7 BLOCK and 5 FLAG patterns. Team collaboration, recurring todos, and calendar integration, built in four 3-hour sessions from a single SPEC.md file.",
-    readTime: "12 min read",
-    date: "March 2025",
-    tags: ["Constitutional AI", "FastAPI", "Next.js", "TDD"],
-    accentColor: "#3b82f6",
-  },
-  {
-    slug: "agent-factory-claude-builds-openai",
-    title: "Agent Factory: How Claude Code Builds OpenAI Agents at Scale",
-    excerpt:
-      "Two-tier architecture where a General Agent (Claude Code) manufactures Custom Agents (OpenAI Agents SDK) using SKILL.md files as portable, monetizable intelligence units. The Digital FTE model explained.",
-    readTime: "15 min read",
-    date: "May 2025",
-    tags: ["Agentic AI", "SKILL.md", "OpenAI SDK", "Digital FTE"],
-    accentColor: "#a855f7",
-  },
-];
+export type PostSummary = Pick<
+  ArticleMeta,
+  "slug" | "title" | "excerpt" | "readTime" | "displayDate" | "tags" | "accentColor"
+>;
 
-const POSTS_AR: Post[] = [
-  {
-    slug: "six-hackathons-one-methodology",
-    title: "كيف فزت بـ 6 هاكاثونات متتالية بمنهجية واحدة",
-    excerpt:
-      "Panaversity، برونزي → بلاتيني → مصنع الوكلاء. صفر إخفاقات عبر 6 هاكاثونات، 85% إعادة استخدام الكود، ونموذج تنفيذ من أربع جلسات يمكن لأي مطور نسخه. هذا هو الدليل التفصيلي بالضبط.",
-    readTime: "8 دقائق قراءة",
-    date: "أبريل 2025",
-    tags: ["المنهجية", "هاكاثون", "Spec-First", "CLAUDE.md"],
-    accentColor: "#84cc16",
-  },
-  {
-    slug: "constitutional-ai-todo-spec-first",
-    title: "بناء تطبيق مهام بالذكاء الاصطناعي الدستوري: الطريقة Spec-First",
-    excerpt:
-      "149 اختباراً ناجحاً. ذكاء اصطناعي دستوري ثلاثي الطبقات بـ 7 أنماط BLOCK و5 أنماط FLAG. تعاون جماعي ومهام متكررة وتكامل التقويم، مبني في أربع جلسات من 3 ساعات من ملف SPEC.md واحد.",
-    readTime: "12 دقيقة قراءة",
-    date: "مارس 2025",
-    tags: ["الذكاء الاصطناعي الدستوري", "FastAPI", "Next.js", "TDD"],
-    accentColor: "#3b82f6",
-  },
-  {
-    slug: "agent-factory-claude-builds-openai",
-    title: "مصنع الوكلاء: كيف يبني Claude Code وكلاء OpenAI على نطاق واسع",
-    excerpt:
-      "هندسة من طبقتين حيث يصنع وكيل عام (Claude Code) وكلاء مخصصين (OpenAI Agents SDK) باستخدام ملفات SKILL.md كوحدات ذكاء قابلة للنقل والتسييل. نموذج الموظف الرقمي مشروحاً.",
-    readTime: "15 دقيقة قراءة",
-    date: "مايو 2025",
-    tags: ["الذكاء الاصطناعي الوكيل", "SKILL.md", "OpenAI SDK", "Digital FTE"],
-    accentColor: "#a855f7",
-  },
-];
+/** Two clean rows of the md:grid-cols-3 layout. The rest live on /blog. */
+const HOMEPAGE_LIMIT = 6;
 
 function PostCard({
   post,
   readArticleLabel,
   basePath,
 }: {
-  post: Post;
+  post: PostSummary;
   readArticleLabel: string;
   /** "" for English, "/ar" for Arabic. The URL is the only source of locale
    *  (see LocaleContext), so an Arabic card must link to an Arabic URL —
@@ -150,7 +39,7 @@ function PostCard({
 }) {
   return (
     <Reveal as="article"
-      className="group relative bg-surface-2 border border-white/8 rounded-2xl overflow-hidden hover:border-brand/30 transition-all duration-300 cursor-pointer flex flex-col"
+      className="group relative bg-surface-2 border border-white/8 rounded-2xl overflow-hidden hover:border-brand/30 transition-all duration-300 flex flex-col"
     >
       <div
         className="h-0.5 w-full"
@@ -161,7 +50,7 @@ function PostCard({
 
       <div className="p-6 flex flex-col flex-1">
         <div className="flex items-center gap-3 mb-4">
-          <span className="text-xs text-muted-foreground">{post.date}</span>
+          <span className="text-xs text-muted-foreground">{post.displayDate}</span>
           <span className="w-1 h-1 rounded-full bg-muted" />
           <span className="flex items-center gap-1.5 text-xs text-muted-foreground">
             <Clock className="w-3 h-3" />
@@ -195,22 +84,27 @@ function PostCard({
           ))}
         </div>
 
-        <a
+        {/* Cyan, not the per-post accent: the accent is decoration (hairline,
+            tags), and cyan is this site's only interactive colour. The
+            aria-label carries the title so six "Read Article" links are not
+            indistinguishable in a screen reader's link list. */}
+        <Link
           href={`${basePath}/blog/${post.slug}`}
-          className="flex items-center gap-2 text-sm font-medium transition-all duration-200 group/link w-fit"
-          style={{ color: post.accentColor }}
+          aria-label={`${readArticleLabel}: ${post.title}`}
+          className="flex items-center gap-2 text-sm font-medium text-brand hover:text-brand-soft transition-colors duration-200 group/link w-fit"
         >
           {readArticleLabel}
-          <ArrowRight className="w-4 h-4 group-hover/link:translate-x-1 transition-transform duration-200" />
-        </a>
+          <ArrowRight className="w-4 h-4 rtl:rotate-180 group-hover/link:translate-x-1 transition-transform duration-200" />
+        </Link>
       </div>
     </Reveal>
   );
 }
 
-export function BlogSection() {
+export function BlogSection({ posts }: { posts: { en: PostSummary[]; ar: PostSummary[] } }) {
   const { t, locale } = useLocale();
-  const posts = locale === "ar" ? POSTS_AR : POSTS_EN;
+  const all = locale === "ar" ? posts.ar : posts.en;
+  const shown = all.slice(0, HOMEPAGE_LIMIT);
 
   return (
     <section id="blog" className="py-24 bg-surface-1">
@@ -237,7 +131,7 @@ export function BlogSection() {
         </Reveal>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          {posts.map((post) => (
+          {shown.map((post) => (
             <PostCard
               key={post.slug}
               post={post}
@@ -245,6 +139,20 @@ export function BlogSection() {
               basePath={locale === "ar" ? "/ar" : ""}
             />
           ))}
+        </div>
+
+        {/* The hub is English-only (content/ar holds a subset of the
+            archive), so the Arabic label says so rather than surprising the
+            reader. The count is the real number of English articles. */}
+        <div className="mt-10 text-center">
+          <Link
+            href="/blog"
+            className="inline-flex items-center gap-2 rounded-lg border border-brand/40 px-5 py-2.5 text-sm font-semibold text-brand transition-colors hover:border-brand hover:bg-brand/10"
+          >
+            {t("blog.viewAll")}
+            <span className="text-muted-foreground tabular-nums">· {posts.en.length}</span>
+            <ArrowRight className="h-4 w-4 rtl:rotate-180" aria-hidden />
+          </Link>
         </div>
 
         <Reveal step={3}

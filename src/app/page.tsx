@@ -15,7 +15,8 @@ import GrowthSkills from "@/components/GrowthSkills";
 import Roadmap from "@/components/Roadmap";
 import Projects from "@/components/Projects";
 import Hackathons from "@/components/Hackathons";
-import Blog from "@/components/Blog";
+import Blog, { type PostSummary } from "@/components/Blog";
+import { listArticleMeta, type ArticleMeta } from "@/lib/content";
 import OpenSourceSection from "@/components/OpenSource";
 import Testimonials, { FeaturedTestimonial } from "@/components/Testimonials";
 import Discord from "@/components/Discord";
@@ -117,7 +118,7 @@ export default function Home() {
                 scroll below the claim. It cites no file paths and carries no
                 gold — see the header of GrowthSkills.tsx for why that matters. */}
             <GrowthSkills />
-            <Blog />
+            <Blog posts={posts} />
             <OpenSourceSection />
             <Testimonials />
             <Discord />
