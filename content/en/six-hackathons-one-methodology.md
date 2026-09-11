@@ -10,6 +10,7 @@ displayDate: "April 2025"
 readTime: "8 min read"
 tags: ["Methodology", "Hackathon", "Spec-First", "CLAUDE.md"]
 accentColor: "#84cc16"
+category: strategy
 ---
 
 H3 shipped with 149 tests passing. I wrote maybe 22 of them.

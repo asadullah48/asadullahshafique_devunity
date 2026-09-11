@@ -13,6 +13,19 @@ import { hasTranslation, type ArticleMeta, type Locale } from "@/lib/content";
 import { getCategory } from "@/lib/blog-taxonomy";
 import { BASE_URL, PERSON_ID } from "@/lib/seo";
 
+/**
+ * Declared explicitly because it is NOT inherited. Measured on the built HTML:
+ * once a page sets its own `openGraph`, the root app/opengraph-image no longer
+ * reaches it, and every article shipped with a summary_large_image card and no
+ * image at all. Relative, so metadataBase resolves it.
+ */
+export const OG_IMAGE = {
+  url: "/opengraph-image",
+  width: 1200,
+  height: 630,
+  alt: "Asadullah Shafique — Agentic AI Systems Engineer",
+};
+
 export function articleHref(locale: Locale, slug: string): string {
   return `${locale === "ar" ? "/ar" : ""}/blog/${slug}`;
 }
@@ -56,11 +69,13 @@ export function buildArticleMetadata(article: ArticleMeta): Metadata {
       ...(category && { section: category.label }),
       authors: [article.author],
       tags: article.tags,
+      images: [OG_IMAGE],
     },
     twitter: {
       card: "summary_large_image",
       title: article.title,
       description: article.description,
+      images: [OG_IMAGE.url],
     },
   };
 }

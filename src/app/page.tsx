@@ -42,7 +42,17 @@ export const metadata: Metadata = {
     },
 };
 
+// Frontmatter only — the homepage never receives article HTML. See Blog.tsx.
+function toSummary(a: ArticleMeta): PostSummary {
+    const { slug, title, excerpt, readTime, displayDate, tags, accentColor } = a;
+    return { slug, title, excerpt, readTime, displayDate, tags, accentColor };
+}
+
 export default function Home() {
+    const posts = {
+        en: listArticleMeta("en").map(toSummary),
+        ar: listArticleMeta("ar").map(toSummary),
+    };
     return (
         // 100dvh, not 100vh — avoids the iOS Safari toolbar layout jump.
         <div className="min-h-[100dvh] bg-background">

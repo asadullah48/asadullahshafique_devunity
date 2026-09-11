@@ -10,6 +10,7 @@ displayDate: "August 2026"
 readTime: "9 min read"
 tags: ["Claude", "Certification", "AI Engineering", "Career"]
 accentColor: "#14b8a6"
+category: strategy
 ---
 
 Four certifications. Four codes that look like a difficulty ladder:

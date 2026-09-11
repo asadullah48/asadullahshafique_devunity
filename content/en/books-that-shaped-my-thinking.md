@@ -10,6 +10,7 @@ displayDate: "August 2026"
 readTime: "6 min read"
 tags: ["Reading List", "Books", "Philosophy", "Self-Improvement"]
 accentColor: "#22c55e"
+category: perspective
 ---
 
 Most of what people see from me is the engineering — agents, orchestration, systems that are supposed to hold up under real use. What's usually invisible is the reading underneath it: the books that shaped the judgment doing the engineering, not the code itself.

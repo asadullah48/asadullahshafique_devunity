@@ -102,11 +102,29 @@ A **single-page portfolio** (`src/app/page.tsx`, section anchors: `#about`, `#sk
 `#hackathons`, `#blog`, `#opensource`, `#discord`, `#contact`) sitting on top of **13 full legacy "DevUnity community platform"
 routes** that were never removed.
 
-**No page in `src/app/` calls `redirect()`.** Any note claiming these are redirect stubs is stale. `about/`, `blogs/`, `community/`,
+**Exactly one legacy page redirects: `blogs/` issues a permanent (308) redirect to the `/blog` knowledge hub** (2026-09-11; it
+used to render placeholder posts under invented author names). The rest are not redirect stubs: `about/`, `community/`,
 `explore/`, `dashboard/` (482 lines), `videos/` (391), `ai-tools/` (597), `backendless/` (465), `resume/` (533), `privacy/` (359),
 `login/`, `signup/`, `question/` all render real pages. `src/app/about/page.tsx` pitches "Vibrant Community — Connect with
 developers from around the world," which directly contradicts the agentic-engineer positioning on `/`. Treat this split identity as
 a known defect, not as intent.
+
+### Blog / knowledge hub
+
+`content/<locale>/<slug>.md` is the **single source** for every article. `src/lib/content.ts` (server-only; `gray-matter` +
+`marked` never reach the client) parses it, and `/blog`, `/blog/[slug]`, `/ar/blog/[slug]`, the homepage `Blog.tsx` slice and
+`sitemap.ts` all read it. **Adding an article means adding one file** — never a second literal list of posts.
+
+- Frontmatter `category` must be an id in `src/lib/blog-taxonomy.ts`; `evidence:` entries must be an id from
+  `src/lib/evidence.ts` or a path that exists in this repo. Both are checked **at build time** and fail `next build`, so an
+  article cannot cite code the repo does not contain.
+- `readTime` is computed from word count unless frontmatter sets it (the Arabic files set localized strings).
+- Markdown extensions: `> [!IMPLICATION|EVIDENCE|FAILURE|NOTE|ILLUSTRATIVE]` callouts, and ```` ```flow ```` fences, which render
+  as step diagrams that reflow at 320px. A markdown `#` is demoted to H2 — the page owns the only H1.
+- Metadata and JSON-LD come from `src/lib/article-seo.ts` for both locales. `og:image` is declared explicitly there: a page that
+  sets its own `openGraph` does **not** inherit `app/opengraph-image`.
+- `e2e/blog.spec.ts` discovers every article from the hub and asserts one H1, canonical, JSON-LD, resolvable TOC anchors and no
+  horizontal overflow at 320px.
 
 ### Request path
 

@@ -10,6 +10,7 @@ displayDate: "May 2025"
 readTime: "15 min read"
 tags: ["Agentic AI", "SKILL.md", "OpenAI SDK", "Digital FTE"]
 accentColor: "#a855f7"
+category: agentic-ai
 ---
 
 There are two agents in this architecture and only one of them ships.

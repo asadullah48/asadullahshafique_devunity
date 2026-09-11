@@ -10,6 +10,8 @@ displayDate: "August 2026"
 readTime: "8 min read"
 tags: ["Forward-Deployed", "Agent Factory", "System of Context", "AI Engineering"]
 accentColor: "#ec4899"
+category: strategy
+related: ["ksor-knowledge-system-of-record", "agent-factory-claude-builds-openai"]
 ---
 
 Two groups are stuck right now, and they think they have opposite problems.

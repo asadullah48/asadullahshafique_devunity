@@ -10,6 +10,8 @@ displayDate: "August 2026"
 readTime: "6 min read"
 tags: ["AI", "Decision-Making", "Agentic Engineering", "Future of Work"]
 accentColor: "#6366f1"
+category: decision-science
+related: ["negotiation-and-competitive-decision-making"]
 ---
 
 Most people think of AI as a way to get to an answer faster. That's useful. It's also the least interesting thing it does.

@@ -10,6 +10,7 @@ displayDate: "مايو 2025"
 readTime: "15 دقيقة قراءة"
 tags: ["الذكاء الاصطناعي الوكيل", "SKILL.md", "OpenAI SDK", "Digital FTE"]
 accentColor: "#a855f7"
+category: agentic-ai
 ---
 
 في هذه الهندسة وكيلان، وواحد منهما فقط يُشحن.

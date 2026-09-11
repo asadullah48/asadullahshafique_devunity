@@ -10,6 +10,8 @@ displayDate: "March 2025"
 readTime: "12 min read"
 tags: ["Constitutional AI", "FastAPI", "Next.js", "TDD"]
 accentColor: "#3b82f6"
+category: reliability
+related: ["architecture-of-agentic-ai", "ksor-knowledge-system-of-record"]
 ---
 
 "Break my thesis into daily tasks."

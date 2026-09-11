@@ -10,6 +10,8 @@ displayDate: "August 2026"
 readTime: "18 min read"
 tags: ["Graph Engineering", "Claude Code", "Multi-Agent", "Workflows"]
 accentColor: "#f59e0b"
+category: agentic-ai
+related: ["architecture-of-agentic-ai", "agent-factory-claude-builds-openai"]
 ---
 
 Most people who try to build a multi-step agent end up with a straight line. Step one, step two, step three — each waiting politely for the last to finish before it starts. And nine times out of ten, half those steps never needed to wait at all.

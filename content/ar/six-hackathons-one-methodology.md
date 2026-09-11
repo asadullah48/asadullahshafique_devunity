@@ -10,6 +10,7 @@ displayDate: "أبريل 2025"
 readTime: "8 دقائق قراءة"
 tags: ["المنهجية", "هاكاثون", "Spec-First", "CLAUDE.md"]
 accentColor: "#84cc16"
+category: strategy
 ---
 
 شُحن H3 ومعه 149 اختباراً ناجحاً. كتبتُ منها ربما 22.

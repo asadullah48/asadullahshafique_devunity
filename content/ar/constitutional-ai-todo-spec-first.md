@@ -10,6 +10,7 @@ displayDate: "مارس 2025"
 readTime: "12 دقيقة قراءة"
 tags: ["الذكاء الاصطناعي الدستوري", "FastAPI", "Next.js", "TDD"]
 accentColor: "#3b82f6"
+category: reliability
 ---
 
 «قسّم أطروحتي إلى مهام يومية.»
