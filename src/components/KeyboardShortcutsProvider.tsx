@@ -8,9 +8,23 @@ interface KeyboardShortcutsProviderProps {
 }
 
 export function KeyboardShortcutsProvider({ children }: KeyboardShortcutsProviderProps) {
-  // Enable all default shortcuts
+  // enableSearch is OFF deliberately.
+  //
+  // The handler called preventDefault() on Ctrl/Cmd+K and then dispatched an
+  // "open-search" CustomEvent that NOTHING listens for. Its only listener was
+  // SearchDialog, which was mounted nowhere — and which has since been deleted
+  // outright, because alongside being dead it carried a hardcoded results list
+  // with an "author: John Doe" placeholder and a fake 300ms "API call" delay.
+  //
+  // The net effect of leaving the binding armed was worse than a missing
+  // feature: it swallowed a shortcut the browser and several extensions bind,
+  // and gave nothing back.
+  //
+  // The advertised row has been removed from ShortcutsDialog to match. Turn
+  // this back on in the same commit that mounts a search UI over real content
+  // — not before, or the shortcut starts lying again.
   useKeyboardShortcuts({
-    enableSearch: true,
+    enableSearch: false,
     enableHelp: true,
     enableNavigation: true,
   });

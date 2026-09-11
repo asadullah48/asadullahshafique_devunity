@@ -9,15 +9,31 @@ import { GitHubStatsStrip } from "@/components/GitHubStatsStrip";
 const GITHUB_USERNAME = "asadullah48";
 
 const STAT_ICONS = [Github, GitFork, Code2, Star, Users];
-// Repo count re-measured against the GitHub API 2026-08-29: 506 public repos
-// = 498 original + 8 forks. The displayed figure is the ORIGINAL count, since
-// a raw total invites the "are these tutorial forks?" question and 98.4%
-// original answers it outright. Shown as 498+ so it stays true as the count
-// grows. Keep in step with Hero.tsx STATS, the github/stats route fallback,
-// and opensrc.subtitle / projects.viewAllGithub in both i18n files — six
-// places, one number.
-const STAT_VALUES = ["498+", "6", "85%", "10+", "3"];
-const STAT_COLORS = ["#84cc16", "#3b82f6", "#a855f7", "#f59e0b", "#10b981"];
+// Repo count re-measured against the GitHub API 2026-09-11: 512 public repos
+// = 504 original + 8 forks (was 506 = 498 + 8 on 2026-08-29). The displayed
+// figure is the ORIGINAL count, since a raw total invites the "are these
+// tutorial forks?" question and 98.4% original answers it outright. Shown with
+// a "+" so it stays true as the count grows. Keep in step with the github/stats
+// route fallback and opensrc.subtitle in both i18n files.
+// (Hero.tsx no longer carries a STATS array — its four count-up counters were
+// removed in the 2026-09-10 pass and replaced by <ProofStrip />, so this list
+// is one place shorter than it used to be.)
+// Slot 3 was "85%" / "Code Reuse Rate": self-reported, with nothing anywhere
+// measuring it. Replaced with a figure that was actually counted — 736 is the
+// total of `def test_` occurrences across the 21 AGENTIC repositories, counted
+// on 2026-09-10 from the GitHub trees API over files named test_*.py and
+// *_test.py. (An earlier looser pass over 23 repos produced 835; that figure
+// is superseded and must not reappear.) Scoped to the 21, not all 504 — hence
+// the explicit label; a bare "tests" beside a 504 repo count would imply the
+// wrong denominator. Only 6 of the 21 run their tests in CI, which
+// AgentEcosystem's footnote states outright.
+const STAT_VALUES = ["504+", "6", "736", "10+", "3"];
+// Was ["#84cc16", "#3b82f6", "#a855f7", "#f59e0b", "#10b981"] — five literal
+// hex accents, including the retired lime brand and the violet that CLAUDE.md
+// reserves for ambient use only. Five colours across five adjacent tiles encode
+// nothing: the stats are peers, so they should read as one set. Opacity now
+// carries the only variation.
+const STAT_OPACITIES = [1, 0.88, 0.76, 0.64, 0.52];
 const STAT_LABEL_KEYS = ["s1Label", "s2Label", "s3Label", "s4Label", "s5Label"] as const;
 
 const VALUE_KEYS = ["v1", "v2", "v3"] as const;
@@ -30,7 +46,7 @@ export function OpenSourceSection() {
     Icon: STAT_ICONS[i],
     value: STAT_VALUES[i],
     label: t(`opensrc.${k}`),
-    color: STAT_COLORS[i],
+    opacity: STAT_OPACITIES[i],
   }));
 
   const values = VALUE_KEYS.map((k, i) => ({
@@ -63,7 +79,11 @@ export function OpenSourceSection() {
               key={stat.label}
               className="flex flex-col items-center justify-center p-5 bg-surface-2 border border-white/8 rounded-xl hover:border-brand/20 transition-all duration-300"
             >
-              <stat.Icon className="w-5 h-5 mb-3" style={{ color: stat.color }} />
+              <stat.Icon
+                className="w-5 h-5 mb-3 text-brand"
+                style={{ opacity: stat.opacity }}
+                aria-hidden="true"
+              />
               <div className="text-2xl font-bold text-foreground">{stat.value}</div>
               <div className="text-xs text-muted-foreground mt-1 text-center">{stat.label}</div>
             </Reveal>
@@ -92,14 +112,14 @@ export function OpenSourceSection() {
           <div className="flex flex-col md:flex-row gap-4 items-center justify-center flex-wrap">
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
-              src={`https://github-readme-stats.vercel.app/api?username=${GITHUB_USERNAME}&show_icons=true&theme=chartreuse-dark&bg_color=111111&border_color=ffffff15&title_color=84cc16&icon_color=84cc16&text_color=9ca3af&hide_border=false&rank_icon=github`}
+              src={`https://github-readme-stats.vercel.app/api?username=${GITHUB_USERNAME}&show_icons=true&theme=transparent&bg_color=00000000&border_color=ffffff15&title_color=2FD2DA&icon_color=2FD2DA&text_color=9ca3af&hide_border=false&rank_icon=github`}
               alt="GitHub Stats"
               className="rounded-xl max-w-sm w-full"
               loading="lazy"
             />
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
-              src={`https://github-readme-stats.vercel.app/api/top-langs/?username=${GITHUB_USERNAME}&layout=compact&theme=chartreuse-dark&bg_color=111111&border_color=ffffff15&title_color=84cc16&text_color=9ca3af&hide_border=false`}
+              src={`https://github-readme-stats.vercel.app/api/top-langs/?username=${GITHUB_USERNAME}&layout=compact&theme=transparent&bg_color=00000000&border_color=ffffff15&title_color=2FD2DA&text_color=9ca3af&hide_border=false`}
               alt="Top Languages"
               className="rounded-xl max-w-sm w-full"
               loading="lazy"
@@ -109,7 +129,7 @@ export function OpenSourceSection() {
           <div className="mt-4 flex justify-center">
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
-              src={`https://github-readme-streak-stats.herokuapp.com?user=${GITHUB_USERNAME}&theme=chartreuse-dark&background=111111&border=ffffff15&stroke=84cc16&ring=84cc16&fire=84cc16&currStreakLabel=84cc16`}
+              src={`https://github-readme-streak-stats.herokuapp.com?user=${GITHUB_USERNAME}&background=00000000&border=ffffff15&stroke=2FD2DA&ring=2FD2DA&fire=2FD2DA&currStreakLabel=2FD2DA&dates=9ca3af&sideLabels=9ca3af&currStreakNum=E8EBF1&sideNums=E8EBF1`}
               alt="GitHub Streak"
               className="rounded-xl w-full max-w-lg"
               loading="lazy"

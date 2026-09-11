@@ -1,10 +1,14 @@
 import type { Metadata } from "next";
 import Hero from "@/components/Hero";
+import ProofStrip from "@/components/ProofStrip";
 import About from "@/components/About";
 import Services from "@/components/Services";
 import Industries from "@/components/Industries";
 import Skills from "@/components/Skills";
 import AgentEngineering from "@/components/AgentEngineering";
+import AgentTrace from "@/components/AgentTrace";
+import EngineeringEvidence from "@/components/EngineeringEvidence";
+import AgentRuntime from "@/components/AgentRuntime";
 import ForwardDeployed from "@/components/ForwardDeployed";
 import ExpertiseGrid from "@/components/ExpertiseGrid";
 import GrowthSkills from "@/components/GrowthSkills";
@@ -61,6 +65,13 @@ export default function Home() {
             <NeuralField />
             {/* AI-engineering proof first; business services follow it */}
             <Hero />
+            {/* The credibility layer, immediately after the hero and before
+                anything decorative. Every cell links to the artefact that
+                verifies it — a live endpoint, a repo path, or a directory in
+                this tree. It replaces the four count-up counters that used to
+                sit inside the hero, two of which a stranger could not check.
+                See src/lib/evidence.ts for the provenance of each. */}
+            <ProofStrip />
             <TechMarquee />
             <About />
             {/* One promoted quote, immediately after About. Third-party
@@ -71,6 +82,23 @@ export default function Home() {
             <FeaturedTestimonial />
             <Skills />
             <AgentEngineering />
+            {/* Philosophy -> trace -> evidence, read as one block. The order is
+                the argument: HOW I think about agents, then what one actual run
+                does stage by stage, then the disciplines that make the run
+                trustworthy. Splitting these across the page would leave the
+                methodology section asserting things the reader cannot yet
+                check. AgentTrace is labelled illustrative in two places; the
+                file paths in its source column are real. */}
+            <AgentTrace />
+            <EngineeringEvidence />
+            {/* The argument closes with the system actually running. AgentTrace
+                above is explicitly illustrative; this is not — both panels here
+                read live endpoints and print the outage when the free-tier
+                backend is asleep. Putting the labelled-illustrative section
+                immediately before the measured one is deliberate: the contrast
+                is the point, and a reader just told "representative values"
+                then meets real ones and can tell which is which. */}
+            <AgentRuntime />
             {/* The FDE model sits directly after the harness/loop/graph
                 framework: that section argues HOW agents are built, this one
                 argues how they reach a customer and get paid for. Each of its

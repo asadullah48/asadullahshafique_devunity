@@ -208,7 +208,7 @@ function UploadForm({ onUploadSuccess }: { onUploadSuccess: () => void }) {
             <Label htmlFor="uploader">Your Name (Optional)</Label>
             <Input
               id="uploader"
-              placeholder="John Doe"
+              placeholder="Ayesha Raza"
               value={formData.uploader}
               onChange={(e) => setFormData({ ...formData, uploader: e.target.value })}
               className="bg-surface-2 border-border"

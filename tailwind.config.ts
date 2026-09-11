@@ -111,9 +111,17 @@ const config: Config = {
         // black shadows on a tinted carbon surface read as dirty smudges.
         elevated: "0 12px 32px -12px hsl(220 40% 2% / 0.75)",
         panel: "0 24px 60px -20px hsl(220 40% 2% / 0.8)",
-        // Cyan bloom for the primary CTA and "live" indicators.
-        neon: "0 0 0 1px hsl(var(--brand) / 0.35), 0 0 24px -4px hsl(var(--brand) / 0.45)",
-        "neon-lg": "0 0 0 1px hsl(var(--brand) / 0.4), 0 0 44px -6px hsl(var(--brand) / 0.55)",
+        // Cyan edge for the primary CTA and "live" indicators.
+        //
+        // Deliberately a LIT EDGE, not a bloom. The previous values (24px/0.45
+        // and 44px/0.55) threw a halo large enough to read as a glowing sign;
+        // combined with full-saturation cyan that is the exact "neon gaming UI"
+        // register this design is trying not to occupy. Keeping the crisp 1px
+        // ring and shrinking the spread preserves the affordance — the control
+        // still announces itself as primary — while the light stays contained,
+        // the way an indicator LED on real instrumentation does.
+        neon: "0 0 0 1px hsl(var(--brand) / 0.30), 0 0 12px -6px hsl(var(--brand) / 0.30)",
+        "neon-lg": "0 0 0 1px hsl(var(--brand) / 0.36), 0 0 20px -8px hsl(var(--brand) / 0.38)",
         "inner-hairline": "inset 0 1px 0 0 hsl(var(--foreground) / 0.06)",
         // Glass edge refraction without the .glass-panel background — for
         // elements that need the lit rim but supply their own fill.

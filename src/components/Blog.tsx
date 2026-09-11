@@ -226,6 +226,14 @@ export function BlogSection() {
           <p className="text-muted-foreground max-w-xl mx-auto">
             {t("blog.subtitle")}
           </p>
+          {/* Several excerpts carry figures from the article as published
+              ("85% code reuse", "zero failures") that the homepage no longer
+              states as its own. They are not rewritten — that would falsify
+              the historical record — but they are framed as the article's
+              claims, not as metrics this site verifies. */}
+          <p className="mx-auto mt-3 max-w-xl text-pretty text-xs text-muted-foreground/70">
+            {t("blog.historicalNote")}
+          </p>
         </Reveal>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">

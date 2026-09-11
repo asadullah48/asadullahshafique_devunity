@@ -34,7 +34,7 @@ const STACK: { Icon: IconType; label: string; color: string }[] = [
   { Icon: SiReact,       label: "React",       color: "#61DAFB" },
   { Icon: SiPython,      label: "Python",      color: "#3776AB" },
   { Icon: SiFastapi,     label: "FastAPI",     color: "#009688" },
-  { Icon: SiOpenai,      label: "OpenAI SDK",  color: "#10a37f" },
+  { Icon: SiOpenai,      label: "OpenAI Agents SDK", color: "#10a37f" },
   { Icon: SiDocker,      label: "Docker",      color: "#2496ED" },
   { Icon: SiKubernetes,  label: "Kubernetes",  color: "#326CE5" },
   { Icon: SiTailwindcss, label: "Tailwind",    color: "#06B6D4" },

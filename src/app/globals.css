@@ -47,13 +47,21 @@
           --radius: 0.625rem;
 
           /* --- brand layer (beyond shadcn) --------------------------------- */
-          --brand: 183 100% 50%;             /* #00F2FF — fills, hairlines, glow */
+          /* Instrument cyan, not neon cyan. Was 183 100% 50% (#00F2FF):
+             full-saturation cyan on near-black is the single strongest
+             "gaming UI / cyberpunk dashboard" signal a palette can send, and
+             the positioning this site argues for is a calibrated lab, not a
+             hacker movie. Dropping saturation to 72% keeps the hue identity
+             intact — it still reads unmistakably as the same brand — while
+             removing the glare. Contrast against --background stays ~10:1, so
+             this is a readability gain as well as a taste one. */
+          --brand: 183 72% 52%;              /* #2FD2DA — fills, hairlines, glow */
           /* Full-saturation cyan chromatically vibrates in sustained body copy
              on near-black. `--brand-soft` is the reading-safe sibling: use it
              for paragraphs and long labels; use --brand for anything that is
              a fill, a hairline, a glow, or a short label. */
-          --brand-soft: 186 78% 62%;         /* #57DEEB                  */
-          --brand-dim: 187 90% 28%;          /* pressed / disabled cyan  */
+          --brand-soft: 186 60% 68%;         /* #7FD6E0                  */
+          --brand-dim: 187 62% 30%;          /* pressed / disabled cyan  */
           --violet: 258 89% 66%;             /* #8B5CF6 AMBIENT ONLY     */
           /* Brass. Marks provenance: eyebrows, hairlines, evidence stamps.
              Same law as --violet — AMBIENT ONLY, never on a clickable
@@ -111,9 +119,11 @@
           --input: 220 13% 88%;
           --ring: 187 92% 27%;
 
-          --brand: 187 92% 27%;
-          --brand-soft: 187 88% 33%;
-          --brand-dim: 187 92% 19%;
+          /* Light-mode counterparts, desaturated in step with :root so the
+             two themes stay the same brand rather than drifting apart. */
+          --brand: 187 70% 27%;
+          --brand-soft: 187 66% 33%;
+          --brand-dim: 187 70% 19%;
           --violet: 258 72% 52%;
           /* Raw brass fails AA on white, so it darkens here — same reason
              --brand drops to 187 92% 27%. */
@@ -554,6 +564,20 @@
     to   { opacity: 1; transform: translateX(0); }
 }
 .reveal-x { animation-name: reveal-slide-x; }
+
+/* RTL mirror. Before an element is revealed it sits at translateX(-20px). In
+   LTR that pokes out the START edge, which a browser never lets you scroll to.
+   In RTL, left is the END edge, so the same offset became real scroll width:
+   measured 2026-09-11, /ar scrolled sideways by 4px at 375 and 5px at 320.
+   Mirroring the offset restores parity and also makes the slide come from the
+   reading-start side, which is what the effect was meant to do. Higher
+   specificity than `.reveal-x`; the reduced-motion and print blocks still win
+   via `!important` on the class. */
+@keyframes reveal-slide-x-rtl {
+    from { opacity: 0; transform: translateX(20px); }
+    to   { opacity: 1; transform: translateX(0); }
+}
+[dir="rtl"] .reveal-x { animation-name: reveal-slide-x-rtl; }
 
 @supports (animation-timeline: view()) {
     .reveal {

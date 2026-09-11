@@ -36,7 +36,9 @@ export function GitHubStatsStrip() {
 
   return (
     <Reveal step={8}
-      className="flex items-center justify-center gap-8 mt-12"
+      // flex-wrap: three unwrapped stat groups measured 336px wide against a
+      // 320px viewport — the only LTR horizontal overflow on the homepage.
+      className="flex flex-wrap items-center justify-center gap-x-8 gap-y-3 mt-12"
     >
       {items.map(({ icon: Icon, label, value }) => (
         <div key={label} className="flex items-center gap-2 text-muted-foreground">

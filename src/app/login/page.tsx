@@ -18,6 +18,9 @@ export default function LoginPage() {
     email: "",
     password: "",
   });
+  // Surfaced on submit. This route has no authentication backend, and saying
+  // so is the honest alternative to a form that silently swallows a password.
+  const [notice, setNotice] = useState("");
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -53,9 +56,18 @@ export default function LoginPage() {
     e.preventDefault();
     
     if (validateForm()) {
-      // Handle form submission
-      console.log("Form submitted:", formData);
-      // Here you would typically call an API to authenticate the user
+      // The console.log that stood here printed `formData` — which includes
+      // the password field — in plaintext to the browser console on every
+      // submit. This route is an orphaned legacy DevUnity page with no auth
+      // backend (nothing links to it and its layout sets robots noindex), but
+      // logging a credential is worth removing wherever it appears.
+      //
+      // It is NOT replaced with a fake success state. The form genuinely
+      // authenticates nobody, so it says that instead of pretending.
+      setNotice(
+        "This sign-in form is part of an earlier community build and is not " +
+          "connected to an authentication service. Nothing was submitted or stored."
+      );
     }
   };
 
@@ -70,13 +82,22 @@ export default function LoginPage() {
         </CardHeader>
         <CardContent>
           <form onSubmit={handleSubmit} className="space-y-4">
+            {notice && (
+              <p
+                role="status"
+                className="rounded-md border border-border bg-surface-1 px-3 py-2 text-sm text-muted-foreground"
+              >
+                {notice}
+              </p>
+            )}
+
             <div className="space-y-2">
               <Label htmlFor="email">Email</Label>
               <Input
                 id="email"
                 name="email"
                 type="email"
-                placeholder="john@example.com"
+                placeholder="ayesha@studio.dev"
                 value={formData.email}
                 onChange={handleChange}
                 className={errors.email ? "border-red-500" : ""}

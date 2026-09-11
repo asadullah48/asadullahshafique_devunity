@@ -39,7 +39,13 @@ const STEPS = [
   { key: "s4", ev: "k8s/ · .github/workflows/ · backend/Dockerfile" },
   { key: "s5", ev: null },
   { key: "s6", ev: null },
-  { key: "s7", ev: null },
+  // s7 previously cited "85% code reuse across six consecutive hackathons".
+  // evidence.ts:108 already rejects that number in its own words - self-reported,
+  // nothing measures it - so citing it HERE, on a line labelled evidence, was the
+  // one place it did the most damage. portfolio.json is the same claim made
+  // checkable: one file, three consumers, which is exactly a one-off turned into
+  // a capability the next thing inherits.
+  { key: "s7", ev: "backend/knowledge/portfolio.json · one source, three renderers" },
 ] as const;
 
 export function ForwardDeployedSection() {

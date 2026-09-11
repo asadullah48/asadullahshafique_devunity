@@ -39,7 +39,11 @@ export function ShortcutsDialog() {
     {
       category: "Actions",
       items: [
-        { keys: ["Ctrl", "K"], description: "Open Search" },
+        // "Ctrl+K — Open Search" was listed here while no search UI was mounted
+        // to receive the event. A shortcuts dialog is a promise about what the
+        // interface does; listing a binding that does nothing is the cheapest
+        // possible way to look unreliable. Restore this row in the same commit
+        // that mounts a real search. See KeyboardShortcutsProvider.
         { keys: ["?"], description: "Show Shortcuts" },
         { keys: ["Esc"], description: "Close Modals" },
       ],

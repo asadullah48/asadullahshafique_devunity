@@ -63,7 +63,9 @@ const SKILL_TABS: Record<string, Skill[]> = {
     { name: "n8n",               custom: true, icon: "", badge: "n8n",   color: "#ea4b71" },
     { name: "Hugging Face",      custom: true, icon: "", badge: "HF",    color: "#FFD21E" },
     { name: "A2A Protocol",      custom: true, icon: "", badge: "A2A",   color: "#4285F4" },
-    { name: "Computer Use",      custom: true, icon: "", badge: "CU",    color: "#CC785C" },
+    // "Computer Use" removed 2026-09-11: a GitHub code search across every
+    // public repo on the account (computer_use, computer-use, computer_20*)
+    // returned zero hits. A skill tile with no artefact behind it is a claim.
   ],
   "Cloud & DevOps": [
     { name: "Kubernetes",     icon: "kubernetes/kubernetes-original.svg",   color: "#326CE5" },
@@ -120,7 +122,9 @@ const AGENT_ROLE_GROUPS: Record<string, Skill[]> = {
     { name: "React",      icon: "react/react-original.svg",             color: "#61DAFB" },
     { name: "Tailwind",   icon: "tailwindcss/tailwindcss-original.svg", color: "#06B6D4" },
     { name: "shadcn/ui",  custom: true, icon: "", badge: "UI",          color: "#ffffff" },
-    { name: "Framer",     custom: true, icon: "", badge: "FM",          color: "#0055FF" },
+    // Was "Framer". framer-motion was removed from this site (CLAUDE.md §5);
+    // Radix primitives are what the interface actually runs on.
+    { name: "Radix UI",   custom: true, icon: "", badge: "RX",          color: "#ffffff" },
   ],
   "Infrastructure": [
     { name: "Kubernetes",     icon: "kubernetes/kubernetes-original.svg",    color: "#326CE5" },
@@ -265,7 +269,7 @@ const MASTERY_COPY: Record<
       },
       guardrails: {
         title: "Implementing Deterministic Guardrails",
-        desc: "Five written principles enforced as SDK guardrails, screened deterministically before any model call. Verified blocking 4 of 4 violations with no model reachable at all.",
+        desc: "Five written principles enforced as SDK guardrails, with a deterministic pattern layer that needs no model. Verified blocking 4 of 4 violations with no model reachable at all.",
       },
       evals: {
         title: "Designing Feedback-Driven Evaluation Loops",

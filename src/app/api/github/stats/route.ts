@@ -21,8 +21,11 @@ interface GitHubProfile {
 // why a "+" suffix belongs on the display and not in this object), followers
 // 135 -> 136. following/total_stars/top_languages verified unchanged.
 // Of the 506, 498 are original and 8 are forks.
+//
+// Re-measured 2026-09-11: repos 506 -> 512 (504 original + 8 forks).
+// followers/stars/languages NOT re-measured in that pass.
 const FALLBACK_STATS = {
-  public_repos: 506,
+  public_repos: 512,
   followers: 136,
   following: 1429,
   total_stars: 19,

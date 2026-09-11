@@ -10,7 +10,12 @@ import { useLocale } from "@/context/LocaleContext";
 // Only these stay on the top-level bar; everything else folds into the
 // "More" dropdown. Keeping the priority list explicit (rather than deriving
 // it from page order) keeps the nav's own hierarchy legible on its own.
-const PRIMARY_KEYS = ["about", "skills", "projects", "blog", "contact"] as const;
+// "skills" held a top-level slot for a technology inventory while the section
+// carrying the actual argument — harness / loop / graph — sat inside the "More"
+// dropdown. For a visitor deciding whether this person engineers agents or
+// merely lists tools, that was the wrong one to surface. Skills is still one
+// click away; the methodology is now zero.
+const PRIMARY_KEYS = ["about", "agentEng", "projects", "blog", "contact"] as const;
 
 const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -187,6 +192,24 @@ const Navbar = () => {
 
         {/* Right side — one quiet outline (Resume) + one primary CTA */}
         <div className="flex items-center space-x-2">
+          {/* Source is a first-class destination on a portfolio whose whole
+              argument is "go and check". Icon-only and gated at `md`: the
+              comment below records that a full-width label here pushed the
+              locale switcher and hamburger off a 375px viewport, and a 36px
+              square cannot reproduce that. It is a plain <a>, not a Button —
+              this is a quiet utility, and a third button would flatten the
+              hierarchy the Contact CTA depends on. The mobile menu carries its
+              own GitHub entry, so nothing is lost below `md`. */}
+          <a
+            href="https://github.com/asadullah48"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label={t("nav.github")}
+            title={t("nav.github")}
+            className="hidden h-9 w-9 items-center justify-center rounded-md text-muted-foreground transition-colors hover:bg-surface-2 hover:text-brand md:inline-flex"
+          >
+            <Github className="h-[18px] w-[18px]" aria-hidden="true" />
+          </a>
           <Link href="/resume" className="hidden sm:block">
             <Button
               variant="outline"
@@ -203,9 +226,20 @@ const Navbar = () => {
               navigation was unreachable on every common phone. The CTA keeps
               its slot (it is the conversion path) but wears a short label until
               there is room for the long one. */}
+          {/* `outline`, not `neon`. This was the site's second full-strength
+              primary button, and it sits in a STICKY navbar — so it was on
+              screen simultaneously with the hero's "Explore systems". Two
+              competing primaries, against CLAUDE.md's one-`neon`-per-viewport
+              rule.
+
+              The homepage's first screen exists to establish what this person
+              builds, not to book a call; the conversion is earned further down.
+              Nothing is lost: the path is still one click, #contact remains in
+              the primary nav beside it, and the Contact section keeps its own
+              `neon` submit button as the real conversion action. */}
           <Link href="#contact">
             <Button
-              variant="neon"
+              variant="outline"
               size="sm"
               className="h-9"
             >

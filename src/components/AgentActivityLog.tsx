@@ -13,7 +13,8 @@ import type { AgentInfo } from "@/app/api/agent/info/route";
  * scripted, and there is no array of pretend jobs anywhere in this file.
  *
  * That is deliberate, and it is the same constraint AgentStatusRail states
- * directly below this panel in the footer. Two adjacent instruments, one
+ * directly below this panel in the Agent Runtime section. Two adjacent
+ * instruments, one
  * claiming measurement and the other quietly running on setTimeout, would
  * discredit both — and this sits on a portfolio whose entire pitch is
  * production systems over prototypes.
@@ -28,7 +29,7 @@ type Status =
   | "FULL"
   | "ARMED"
   | "READY"
-  | "VERIFIED"
+  | "REPORTED"
   | "ACTIVE"
   | "NOMINAL"
   | "DEGRADED"
@@ -52,7 +53,7 @@ const STATUS_TONE: Record<Status, string> = {
   FULL: "text-brand",
   ARMED: "text-brand",
   READY: "text-brand",
-  VERIFIED: "text-brand",
+  REPORTED: "text-brand-soft",
   ACTIVE: "text-brand",
   NOMINAL: "text-brand-soft",
   DEGRADED: "text-muted-foreground",
@@ -69,7 +70,7 @@ function latencyStatus(ms: number): Status {
 }
 
 /**
- * The single place raw telemetry becomes log lines.
+ * The single place the raw /api/agent/info payload becomes log lines.
  *
  * Kept pure and separate from the streaming effect so the mapping is
  * inspectable on its own: given this payload, exactly these lines. There is no
@@ -123,12 +124,14 @@ function buildLines(info: AgentInfo | null): Line[] {
           : "UNKNOWN",
   });
 
-  // The deterministic screen runs before any model call, so it is armed
-  // whenever the constitution module answered at all — including the
-  // classifier-down case. That is the fail-open behaviour, reported honestly.
+  // The deterministic screen needs no model, so it is armed whenever the
+  // constitution module answered at all — including the classifier-down case.
+  // That is the fail-open behaviour, reported honestly. Not "pre-model": the
+  // SDK's input guardrail runs alongside triage (run_in_parallel defaults to
+  // True), so claiming it runs before the orchestrator's model call is false.
   lines.push({
     channel: "guardrail",
-    detail: "deterministic screen, pre-model",
+    detail: "deterministic screen, no model needed",
     status: info.constitution ? "ARMED" : "UNKNOWN",
   });
 
@@ -146,13 +149,16 @@ function buildLines(info: AgentInfo | null): Line[] {
           : "UNKNOWN",
   });
 
+  // Was channel "mcp/server" with status VERIFIED. Nothing here verifies the
+  // MCP server: `tools` in /api/agent/info is a literal list in main.py, not a
+  // handshake. So the line says what it is — a roster the service reports.
   lines.push({
-    channel: "mcp/server",
+    channel: "tools",
     detail:
       info.toolCount !== null
-        ? `${info.toolCount} read-only tools exposed`
+        ? `${info.toolCount} read-only tools declared`
         : "tool roster unreported",
-    status: info.toolCount !== null ? "VERIFIED" : "UNKNOWN",
+    status: info.toolCount !== null ? "REPORTED" : "UNKNOWN",
   });
 
   lines.push({

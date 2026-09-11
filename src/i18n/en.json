@@ -18,7 +18,7 @@
     "discord": "Discord",
     "github": "GitHub",
     "resume": "Resume",
-    "contactMe": "Request a Consultancy Session",
+    "contactMe": "Let's Talk",
     "contactMeShort": "Let's Talk",
     "toggleMenu": "Toggle menu",
     "discordCommunity": "Discord Community"
@@ -28,54 +28,82 @@
     "location": "Pakistan · UAE",
     "greeting": "Hi, I'm",
     "name": "Asadullah",
-    "description": "Building production-grade AI systems for real businesses, from Dubai construction to Pakistani textile factories. Six hackathons. Zero failures.",
-    "descPre": "Building",
-    "descBold1": "production-grade AI systems",
-    "descMid1": "for real businesses, from",
-    "descBold2": "Dubai construction",
-    "descMid2": "to",
-    "descBold3": "Pakistani textile factories",
-    "descSuffix": ". Six hackathons. Zero failures.",
-    "viewWork": "View My Work",
+    "viewWork": "Explore systems",
     "engagementModels": "Engagement Models",
     "githubProfile": "GitHub Profile",
     "downloadResume": "Download Resume",
     "downloadingResume": "Checking...",
     "resumeNotFound": "PDF not found",
     "resumeMissingHint": "Add resume.pdf to your /public folder & redeploy",
-    "role1": "Agentic AI Developer",
-    "role2": "Full-Stack SaaS Builder",
-    "role3": "Cloud-Native Engineer",
-    "role4": "Digital Marketing Strategist",
-    "scroll": "scroll",
-    "stats": {
-      "repos": "Original Repos",
-      "hackathons": "Hackathons Won",
-      "codeReuse": "Code Reuse Rate",
-      "tests": "Tests Passing"
+    "title": "Agentic AI Systems Engineer",
+    "headline": "I engineer AI agents that actually ship.",
+    "supporting": "Designing reliable agentic systems — orchestration, tool use, evaluation, governance, interoperability and cloud-native deployment.",
+    "capabilities": "Agent Orchestration · MCP · A2A · Guardrails · Evaluation · Kubernetes",
+    "sourceCta": "GitHub"
+  },
+  "runtime": {
+    "eyebrow": "// agent_runtime",
+    "title": "Agent",
+    "titleHighlight": "Runtime",
+    "subtitle": "The stack behind this site, reporting its own state as you read this.",
+    "precision": "Reachability and latency are measured on request. Capability figures — tools, specialists, enforcement mode, fallback order — are reported by the running service. This is a service readout, not execution telemetry: the endpoint exposes no per-request traces, token counts or error rates, so none are shown.",
+    "degraded": "When the backend is asleep or unreachable, both panels say so and print the outage. A status panel that only renders when the news is good is decoration.",
+    "sourceLabel": "Source"
+  },
+  "evidence": {
+    "eyebrow": "// engineering_evidence",
+    "title": "Engineering",
+    "titleHighlight": "Evidence",
+    "subtitle": "Six disciplines, and the artefact that proves each one. Every figure below was measured by reading the source, not carried over from a description.",
+    "inspect": "Inspect source"
+  },
+  "trace": {
+    "eyebrow": "// agent_trace",
+    "title": "Agent",
+    "titleHighlight": "Trace",
+    "subtitle": "One request through the orchestrator, stage by stage. Select a stage to inspect what the system does there — and which file does it.",
+    "illustrative": "Illustrative execution trace — representative values, real topology",
+    "illustrativeDetail": "The stages, the order and the file references below are the ones this site's agent actually implements. The field values are a representative run, not captured production telemetry.",
+    "fieldState": "State",
+    "fieldOperation": "Operation",
+    "fieldTool": "Tool",
+    "fieldDecision": "Decision",
+    "fieldOutcome": "Outcome",
+    "fieldSource": "Implemented in"
+  },
+  "proof": {
+    "heading": "Verified engineering evidence",
+    "verify": "Verify",
+    "orchestration": {
+      "label": "Orchestration",
+      "value": "SDK + 4 specialists"
+    },
+    "interop": {
+      "label": "Interoperability",
+      "value": "6 MCP tools"
+    },
+    "governance": {
+      "label": "Governance",
+      "value": "5 principles"
+    },
+    "evaluation": {
+      "label": "Evaluation",
+      "value": "3 eval suites"
+    },
+    "open-source": {
+      "label": "Open source",
+      "value": "29 public repos"
     }
   },
   "about": {
     "title": "About",
     "titleHighlight": "Me",
-    "subtitle": "Agentic AI Developer, Digital Marketing Strategist, and CMT Industry Founder, building AI-powered systems for real businesses across Pakistan and UAE.",
+    "subtitle": "Agentic AI Systems Engineer. I build multi-agent systems — orchestration, guardrails, evaluation — and the businesses they run inside, across Pakistan and the UAE.",
     "bioName": "Asadullah Shafique",
-    "badgeAI": "Agentic AI Developer",
+    "badgeAI": "Agentic AI Systems Engineer",
     "badgeCMT": "CMT Industry Founder",
     "badgeMarketing": "Digital Marketer",
-    "bio": "I build production-grade AI systems and run real businesses. Founder of Texcot Embroidery Sourcing House and creator of the Textile ERP Platform targeting Pakistan's full textile value chain. Completing the Panaversity Hackathon Series: 6 consecutive hackathons, 85% code reusability, zero failed attempts. Bridging AI development and digital marketing for Pakistan and UAE markets.",
-    "h1Title": "Agentic AI Builder",
-    "h1Desc": "Production-grade agents using OpenAI Agents SDK, MCP servers, and Constitutional AI, deployed on Kubernetes.",
-    "h2Title": "CMT Industry Founder",
-    "h2Desc": "Founded Texcot Embroidery Sourcing House. Building Textile ERP Platform for Pakistan's full textile value chain.",
-    "h3Title": "Digital Marketing",
-    "h3Desc": "Full-spectrum strategy for Dubai real estate, UAE construction, and Pakistani SMEs entering the digital economy.",
-    "h4Title": "Hackathon Champion",
-    "h4Desc": "6 consecutive Panaversity hackathons: Bronze → Silver → Silver → Gold → Platinum → Agent Factory. Zero failures.",
-    "h5Title": "OpenClaw + AI Track",
-    "h5Desc": "Advancing through OpenClaw Python curriculum and Panaversity's Foundation of General & Custom Agent track.",
-    "h6Title": "Spec-First Dev",
-    "h6Desc": "Four-session methodology with 85% code reuse. CLAUDE.md-driven, zero-defect delivery across 6 hackathons."
+    "bio": "I build production-grade AI systems and run real businesses. Founder of Texcot Embroidery Sourcing House and creator of the Textile ERP Platform targeting Pakistan's full textile value chain. Completing the Panaversity Hackathon Series: six consecutive builds, Bronze through Platinum, each one reusing the last. Bridging AI development and digital marketing for Pakistan and UAE markets."
   },
   "skills": {
     "title": "Tech",
@@ -90,26 +118,30 @@
     "tabOpenClaw": "OpenClaw Track"
   },
   "agentEngineering": {
+    "seenIn": "Demonstrated in",
+    "stackLabel": "// the whole stack, bottom to top",
+    "closing": "Reliable intelligence is an engineered system, not a prompt.",
     "title": "Agent",
     "titleHighlight": "Engineering",
-    "subtitle": "The three disciplines behind every production agent I ship. A model is not a product. The harness, the loop, and the graph around it are.",
+    "subtitle": "The three disciplines I apply to every agent build. A model is not a product. The harness, the loop, and the graph around it are.",
+    "thesis": "A model generates intelligence. The system determines whether that intelligence can be trusted.",
     "harness": {
       "tag": "The Environment",
       "title": "Harness Engineering",
-      "desc": "The safety net around the model: tools, memory, permissions, observability. The harness decides what an agent can see, touch, and remember.",
-      "callout": "Agent forgot what it did 5 steps ago? Deleted the wrong file? That's not a model failure. It's a harness problem."
+      "desc": "What an agent can see and touch, decided in code rather than in a prompt: protocol-level tool access, read-only by default, a written constitution screened on the way in and on the way out, and typed state the model never reads.",
+      "callout": "An agent that can call a write tool will eventually call it wrong. Capability is scoped before the model gets a vote: every tool on this site's MCP server is read-only."
     },
     "loop": {
       "tag": "The Feedback",
       "title": "Loop Engineering",
-      "desc": "How the agent evaluates its own work and gets better at the job: tests, evals, and verification wired into every iteration.",
-      "callout": "Evidence over confidence. A coding agent stops when the tests pass, not when it feels done."
+      "desc": "How quality is measured rather than asserted: eval suites that check the execution trace (which specialist ran, which tools it called) before a judge scores the prose. An answer that is fluent but never touched its tool fails.",
+      "callout": "Evidence over confidence. When an eval case goes red, the fix goes into the agent, never into the case."
     },
     "graph": {
       "tag": "The Flow",
       "title": "Graph Engineering",
-      "desc": "Orchestration of the full workflow (branching, approvals, retries, parallel tasks) that turns a single agent into a dependable system.",
-      "callout": "One agent is a demo. A graph with retries, approval gates, and parallel branches is a product."
+      "desc": "Routing held in typed state and code, not in prompt text: an orchestrator hands off to exactly one specialist, specialists cannot hand off to each other, and a failed model or exhausted quota drops one rung down a fallback ladder instead of returning an error.",
+      "callout": "A mesh of agents calling agents cannot be explained afterwards. A star with one recorded route can, and its routing can be tested with no API key."
     },
     "footer": "harness × loop × graph: the framework I apply to every agent build"
   },
@@ -230,9 +262,19 @@
     "multiplierLabel": "Multiplier"
   },
   "projects": {
+    "tierFlagship": "Flagship systems",
+    "tierFlagshipDesc": "Four systems that carry the argument: orchestration, protocol interoperability, deterministic governance, and the site you are reading. Each one runs on real data and each links to its source.",
+    "tierEngineering": "Engineering projects",
+    "tierEngineeringDesc": "Shipped platforms and products built on the same methods, with real data behind them.",
+    "tierReference": "Reference implementations",
+    "tierReferenceDesc": "Real multi-agent code and real test suites running against synthetic domain data. They demonstrate an architecture; they are not deployments with a production track record.",
+    "showReference": "Show reference implementations",
+    "hideReference": "Hide reference implementations",
+    "referenceData": "Reference implementation",
+    "referenceDataTitle": "Real multi-agent code and a real test suite, running against synthetic data rather than a live production integration.",
     "title": "Featured",
     "titleHighlight": "Projects",
-    "subtitle": "Production-grade systems, not prototypes. Click View Case Study on any card for the full problem, solution, and impact breakdown.",
+    "subtitle": "Three tiers, not thirty-two peers: four flagship systems running on real data, shipped engineering projects, and reference implementations on synthetic data. Click View Case Study on any card for the full problem, solution, and impact breakdown.",
     "viewCode": "Code",
     "viewLive": "Live",
     "viewDemo": "Demo",
@@ -253,7 +295,7 @@
   "hackathons": {
     "title": "Hackathons &",
     "titleHighlight": "Achievements",
-    "subtitle": "6 consecutive Panaversity hackathons, Bronze through Agent Factory. Zero failures, 85% code reuse.",
+    "subtitle": "6 consecutive Panaversity hackathons, Bronze through Agent Factory. Each build starts from the one before it.",
     "agentFactory": "Agent Factory",
     "platinum": "Platinum",
     "gold": "Gold",
@@ -266,25 +308,26 @@
     "titleHighlight": "Articles",
     "subtitle": "Lessons from 6 hackathons, production AI systems, and building real businesses with technology.",
     "readArticle": "Read Article",
+    "historicalNote": "Summaries describe each article as published. Figures inside them are the article's own claims at the time of writing, not metrics this site independently verifies.",
     "discordNote": "New articles drop in the Discord first, along with code snippets, WIP demos, and hackathon post-mortems.",
     "joinHub": "Join Asadullah's Dev Hub"
   },
   "opensrc": {
     "title": "Open",
     "titleHighlight": "Source",
-    "subtitle": "506 public repositories: 498 original, 8 forks. Built in public and shipped with purpose.",
+    "subtitle": "512 public repositories: 504 original, 8 forks — counted from the GitHub API on 2026-09-11. Built in public.",
     "githubActivity": "GitHub Activity",
     "contributeGithub": "Contribute on GitHub",
     "joinDiscord": "Join Discord Community",
     "v1Title": "Global Collaboration",
     "v1Desc": "Contributing to projects that empower developer communities worldwide: Pakistan, UAE, and beyond.",
     "v2Title": "Quality Code",
-    "v2Desc": "Clean, documented, well-tested code. 149+ tests passing. CLAUDE.md-driven spec-first delivery.",
+    "v2Desc": "Documented code with a test suite in each agentic repository — counted per project, with CI coverage stated rather than implied. CLAUDE.md-driven spec-first delivery.",
     "v3Title": "Community Impact",
     "v3Desc": "Sharing knowledge through blog posts, Discord, and open-source tools. DevUnity is the flagship.",
     "s1Label": "Original Repos",
     "s2Label": "Hackathons",
-    "s3Label": "Code Reuse Rate",
+    "s3Label": "Tests · 21 agentic repos",
     "s4Label": "Technologies",
     "s5Label": "Active Communities"
   },
@@ -379,13 +422,12 @@
     "s6Desc": "Tie the delivery to time saved, errors removed or revenue moved — not to tokens served or agents spawned.",
     "s6Ev": "40% lower cost-per-lead · Al Rashidi Real Estate, Dubai",
     "s7Title": "Closing the Loop",
-    "s7Desc": "Turn the one-off fix into a capability the next engagement inherits, so the second delivery is cheaper than the first.",
-    "s7Ev": "85% code reuse across six consecutive hackathons"
+    "s7Desc": "Turn the one-off fix into a capability the next engagement inherits, so the second delivery is cheaper than the first."
   },
   "footer": {
     "rights": "All rights reserved.",
     "builtWith": "Built with Next.js · Deployed on Vercel",
-    "bio": "Agentic AI Developer, CMT Industry Founder, and Digital Marketing Strategist. Building AI-powered systems and real businesses across Pakistan and UAE.",
+    "bio": "Agentic AI Systems Engineer. Multi-agent orchestration, guardrails and evaluation — and the real businesses they run inside, across Pakistan and the UAE.",
     "quickLinksTitle": "Quick Links",
     "getInTouchTitle": "Get in Touch",
     "getInTouchDesc": "Open to collaborations, hackathons, and interesting AI projects.",

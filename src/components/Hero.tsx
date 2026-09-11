@@ -1,466 +1,179 @@
 "use client";
 
-import { useState, useEffect, useMemo, useRef } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { Reveal } from "@/components/Reveal";
-import { ArrowDown, ExternalLink, MapPin, Handshake } from "lucide-react";
+import { ArrowRight, Download, Github, MapPin } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useLocale } from "@/context/LocaleContext";
-
-// Terminal palette is token-driven so the transcript retints with the theme
-// instead of staying lime on a carbon background.
-const BRAND = "hsl(var(--brand))";
-const DIM = "hsl(var(--muted-foreground))";
-
-const TERMINAL_LINES = [
-  { text: "$ claude code --spec-first", color: BRAND },
-  { text: "> Booting SKILL.md agent...", color: DIM },
-  { text: "> Spawning OpenAI Custom Agent", color: DIM },
-  { text: "> Deploying → Kubernetes cluster", color: DIM },
-  { text: "✓ Zero failures. 6/6 hackathons.", color: BRAND },
-];
-
-// Official vendor colors — these are identity marks, not UI accents, so they
-// stay literal. The brand-cyan rule applies to interactive elements only.
-const ORBIT_BADGES = [
-  { label: "Next.js", color: "#ffffff", angle: 0 },
-  { label: "Kubernetes", color: "#326CE5", angle: 60 },
-  { label: "FastAPI", color: "#009688", angle: 120 },
-  { label: "OpenAI SDK", color: "#10a37f", angle: 180 },
-  { label: "Claude MCP", color: "#CC785C", angle: 240 },
-  { label: "TypeScript", color: "#3178C6", angle: 300 },
-];
-
-function MonogramAvatar() {
-  return (
-    <div className="relative w-72 h-72 flex items-center justify-center">
-      <div className="absolute inset-0 rounded-full bg-brand/10 blur-3xl" />
-      {/* A 20s infinite rotate is the worst possible thing to run through a JS
-          animation runtime: it never settles, so the main thread does work on
-          every frame forever. As CSS it is handed to the compositor once. */}
-      <div className="animate-orbit absolute inset-0 rounded-full border border-dashed border-brand/20" />
-      <div className="absolute inset-4 rounded-full border border-brand/30" />
-
-      {ORBIT_BADGES.map((badge, i) => {
-        const rad = (badge.angle * Math.PI) / 180;
-        const r = 128;
-        const x = Math.round(Math.cos(rad) * r);
-        const y = Math.round(Math.sin(rad) * r);
-        return (
-          <div
-            key={badge.label}
-            // The badge is positioned by a translate, and tailwindcss-animate's
-            // zoom utilities animate `transform` too — they would fight, and
-            // the badge would fly in from the container's centre. Animating
-            // opacity only keeps the placement transform untouched.
-            className="absolute text-xs font-mono px-2 py-0.5 rounded-full border animate-in fade-in-0 duration-500 fill-mode-backwards"
-            suppressHydrationWarning
-            style={{
-              left: `calc(50% + ${x}px)`,
-              top: `calc(50% + ${y}px)`,
-              transform: "translate(-50%, -50%)",
-              animationDelay: `${400 + i * 100}ms`,
-              backgroundColor: `${badge.color}15`,
-              borderColor: `${badge.color}50`,
-              color: badge.color,
-              whiteSpace: "nowrap",
-            }}
-          >
-            {badge.label}
-          </div>
-        );
-      })}
-
-      {/* The spring is gone. This wraps the LCP image, so it must not start at
-          opacity 0 — `zoom-in-95` alone scales it in from very nearly full
-          size, leaving the image painted and measurable from the first frame
-          rather than waiting on hydration. */}
-      <div className="relative z-raised w-36 h-36 rounded-full border-2 border-brand/60 overflow-hidden shadow-neon-lg bg-surface-2 animate-in zoom-in-95 duration-500">
-        <Image
-          src="/images/asadullah-vector.png"
-          alt="Asadullah Shafique"
-          fill
-          priority
-          className="object-cover object-top scale-110"
-        />
-        <div className="absolute inset-0 bg-brand/5 rounded-full" />
-      </div>
-    </div>
-  );
-}
-
-function TerminalCard() {
-  const [visibleLines, setVisibleLines] = useState(1);
-  const done = visibleLines >= TERMINAL_LINES.length;
-
-  useEffect(() => {
-    if (visibleLines >= TERMINAL_LINES.length) {
-      const reset = setTimeout(() => setVisibleLines(1), 3000);
-      return () => clearTimeout(reset);
-    }
-    const timer = setTimeout(() => setVisibleLines((v) => v + 1), 900);
-    return () => clearTimeout(timer);
-  }, [visibleLines]);
-
-  return (
-    <div className="relative w-full max-w-xs bg-surface-1 border border-border rounded-panel overflow-hidden shadow-panel">
-      {/* Scanline sweep — reads as the agent indexing its own output. */}
-      {!done && (
-        <div
-          aria-hidden="true"
-          className="animate-scan-sweep pointer-events-none absolute inset-x-0 top-0 h-16 bg-gradient-to-b from-transparent via-brand/[0.07] to-transparent"
-        />
-      )}
-
-      <div className="flex items-center gap-1.5 px-4 py-2.5 bg-surface-2 border-b border-border">
-        <div className="w-2.5 h-2.5 rounded-full bg-destructive/60" />
-        <div className="w-2.5 h-2.5 rounded-full bg-muted-foreground/40" />
-        <div className="w-2.5 h-2.5 rounded-full bg-brand/60" />
-        <span className="ml-2 text-xs text-muted-foreground font-mono">
-          agent-factory ~ asadullah
-        </span>
-      </div>
-
-      <div className="p-4 font-mono text-xs space-y-1.5 min-h-[120px]">
-        {TERMINAL_LINES.slice(0, visibleLines).map((line, i) => (
-          <div
-            key={`${i}-${visibleLines}`}
-            className="animate-in fade-in-0 slide-in-from-left-1 duration-200"
-            style={{ color: line.color }}
-          >
-            {line.text}
-            {i === visibleLines - 1 && (
-              <span className="animate-caret" style={{ color: BRAND }}>
-                █
-              </span>
-            )}
-          </div>
-        ))}
-      </div>
-    </div>
-  );
-}
-
-// Vendor identity colors again — the lead agent now carries brand cyan.
-const AGENT_MODES = [
-  { id: "general", label: "Portfolio Guide", color: "#22D3EE" },
-  { id: "python", label: "Backend Expert", color: "#009688" },
-  { id: "nextjs", label: "Frontend Arch", color: "#3178C6" },
-  { id: "agents", label: "Agent Builder", color: "#CC785C" },
-] as const;
-
-function AgentModeStrip() {
-  return (
-    <Reveal step={8}
-      className="w-full max-w-xs"
-    >
-      <div className="text-eyebrow text-muted-foreground font-mono uppercase mb-2 px-1">
-        {"// available_agents"}
-      </div>
-      {/* No hover lift on these chips. They are <div>s with nowhere to go: one
-          that rises under the cursor promises a click it never honours, and on
-          touch there is no hover at all. This is a status readout — the pulsing
-          dot already says "live" — so it sits still. */}
-      <div className="grid grid-cols-2 gap-1.5">
-        {AGENT_MODES.map((mode) => (
-          <div
-            key={mode.id}
-            className="flex items-center gap-2 px-3 py-2 rounded-md border text-xs font-mono"
-            style={{
-              borderColor: `${mode.color}30`,
-              backgroundColor: `${mode.color}08`,
-              color: mode.color,
-            }}
-          >
-            <span
-              className="animate-think-pulse w-1.5 h-1.5 rounded-full flex-shrink-0"
-              style={{ backgroundColor: mode.color }}
-            />
-            {mode.label}
-          </div>
-        ))}
-      </div>
-    </Reveal>
-  );
-}
+import HeroSystemDiagram from "@/components/HeroSystemDiagram";
 
 /**
- * Replaces framer-motion's `useInView`.
+ * HERO — identity, thesis, proof path.
  *
- * This is the one place in the file that genuinely needed JS: the count-up
- * animates a NUMBER's text content, which CSS cannot do. It is ~15 lines of
- * IntersectionObserver against the ~33 kB runtime it replaces.
+ * WHAT WAS REMOVED, AND WHY
+ * -------------------------
+ * 1. THE ROTATING JOB TITLE. The typewriter cycled four roles, the last of
+ *    which was "Digital Marketing Strategist". A visitor who landed mid-cycle
+ *    read that as the headline claim. A rotating title cannot establish a
+ *    primary identity — it establishes four competing ones and lets timing
+ *    decide which the reader gets. The role is now a single static line.
  *
- * `once` is implicit — the observer disconnects on the first intersection, so
- * it cannot re-trigger and cannot leak.
+ * 2. THE FOUR COUNT-UP STATISTICS. Two did not survive the question "where
+ *    would a stranger check this?":
+ *      - "85% Code Reuse Rate" — self-reported; nothing measures it.
+ *      - "149+ Tests Passing" — traces to ONE hackathon project
+ *        (Hackathons.tsx:60), presented as a career-wide figure.
+ *    A third, "Hackathons Won", overclaimed: the six entries' own `achievement`
+ *    fields read Bronze / Silver / Silver / Gold / Platinum (in progress) /
+ *    Completed. That is a progression ladder, not six competitive wins, and one
+ *    is explicitly still in progress.
+ *    Proof now lives one screen down in <ProofStrip />, where every figure is a
+ *    link to the thing that verifies it.
+ *
+ * 3. THE ORBITING LOGO AVATAR, THE FAKE TERMINAL, THE AGENT CHIP STRIP.
+ *    Between them: a 20s infinite rotation and a setTimeout chain that re-armed
+ *    itself every 900ms for the lifetime of the tab. Replaced by
+ *    <HeroSystemDiagram />, a server-rendered SVG of the topology the backend
+ *    actually implements. The terminal in particular was a prop — it printed a
+ *    scripted transcript ending "✓ Zero failures. 6/6 hackathons." A simulated
+ *    console on a site arguing for engineering rigour is the wrong first
+ *    impression.
+ *
+ * This stays a client component only because useLocale() is one. It now holds
+ * no state, no effects and no timers.
  */
-function useInViewOnce(ref: React.RefObject<Element>, rootMargin = "-100px") {
-  const [inView, setInView] = useState(false);
-  useEffect(() => {
-    const el = ref.current;
-    if (!el) return;
-    // Guard for jsdom/older browsers: without IO, show the final state rather
-    // than leaving the counters stuck at their initial value.
-    if (typeof IntersectionObserver === "undefined") {
-      setInView(true);
-      return;
-    }
-    const io = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setInView(true);
-          io.disconnect();
-        }
-      },
-      { rootMargin }
-    );
-    io.observe(el);
-    return () => io.disconnect();
-  }, [ref, rootMargin]);
-  return inView;
-}
-
-// Initial state is the real value so server HTML (crawlers, link previews,
-// no-JS readers) shows true numbers; the count-up runs only on the client
-// and is skipped for prefers-reduced-motion.
-function useCountUp(target: number, duration = 1800, inView = false) {
-  const [count, setCount] = useState(target);
-  const started = useRef(false);
-  useEffect(() => {
-    if (!inView || started.current) return;
-    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
-    started.current = true;
-    let start = 0;
-    setCount(0);
-    const step = target / (duration / 16);
-    const timer = setInterval(() => {
-      start += step;
-      if (start >= target) {
-        setCount(target);
-        clearInterval(timer);
-      } else setCount(Math.floor(start));
-    }, 16);
-    return () => clearInterval(timer);
-  }, [target, duration, inView]);
-  return count;
-}
-
-function StatCounter({
-  target,
-  suffix,
-  label,
-  inView,
-}: {
-  target: number;
-  suffix: string;
-  label: string;
-  inView: boolean;
-}) {
-  const count = useCountUp(target, 1600, inView);
-  // The settled figure is carried by a real text node, not only the animating
-  // one. useCountUp already initialises to `target` so no-JS crawlers read the
-  // truth — but an agent that RUNS the JS and reads within the 1.6s tween
-  // samples a partial value. One such review reported 1 / 15% / 26+ against
-  // real targets of 6 / 85% / 149+: a single frame 288ms in, mistaken for four
-  // separate typos. sr-only rather than aria-label because a bare <div> has no
-  // ARIA role and is not guaranteed to expose an accessible name; a text node
-  // always is — and it reaches text scrapers too, which aria-label would not.
-  return (
-    <div className="text-center lg:text-left">
-      <div className="font-display text-2xl font-bold text-foreground tabular-nums">
-        <span className="sr-only">
-          {target}
-          {suffix} {label}
-        </span>
-        <span aria-hidden="true">
-          {count}
-          {suffix}
-        </span>
-      </div>
-      <div className="text-xs text-muted-foreground mt-0.5" aria-hidden="true">
-        {label}
-      </div>
-    </div>
-  );
-}
-
 export function HeroSection() {
   const { t } = useLocale();
-
-  const ROLES = useMemo(
-    () => [t("hero.role1"), t("hero.role2"), t("hero.role3"), t("hero.role4")],
-    [t]
-  );
-
-  const [roleIndex, setRoleIndex] = useState(0);
-  const [displayed, setDisplayed] = useState("");
-  const [deleting, setDeleting] = useState(false);
-
-  useEffect(() => {
-    setDisplayed("");
-    setDeleting(false);
-    setRoleIndex(0);
-  }, [ROLES]);
-
-  useEffect(() => {
-    const role = ROLES[roleIndex];
-    const speed = deleting ? 35 : 65;
-    const timer = setTimeout(() => {
-      if (!deleting) {
-        if (displayed.length < role.length) {
-          setDisplayed(role.slice(0, displayed.length + 1));
-        } else {
-          setTimeout(() => setDeleting(true), 2200);
-        }
-      } else {
-        if (displayed.length > 0) {
-          setDisplayed(displayed.slice(0, -1));
-        } else {
-          setDeleting(false);
-          setRoleIndex((p) => (p + 1) % ROLES.length);
-        }
-      }
-    }, speed);
-    return () => clearTimeout(timer);
-  }, [displayed, deleting, roleIndex, ROLES]);
-
-  const STATS = useMemo(
-    () => [
-      // Measured against the GitHub API 2026-08-29: 506 public repos, of
-      // which 498 are original and 8 are forks. Leads with the ORIGINAL count,
-      // not the raw total — a bulk number invites "are these tutorial forks?",
-      // and the honest answer (98.4% original) is the stronger claim. Shown
-      // as 498+ so it stays true as the count grows rather than going stale
-      // downward. The previous 507 was already off by one.
-      { target: 498, suffix: "+", label: t("hero.stats.repos") },
-      { target: 6, suffix: "", label: t("hero.stats.hackathons") },
-      { target: 85, suffix: "%", label: t("hero.stats.codeReuse") },
-      { target: 149, suffix: "+", label: t("hero.stats.tests") },
-    ],
-    [t]
-  );
-
-  const statsRef = useRef<HTMLDivElement>(null);
-  const statsInView = useInViewOnce(statsRef);
 
   return (
     <section
       id="home"
       // 100dvh, not 100vh — avoids the iOS Safari toolbar layout jump.
-      className="min-h-[100dvh] flex items-center justify-center relative overflow-hidden bg-background"
+      className="relative flex min-h-[100dvh] items-center justify-center overflow-hidden bg-background"
     >
       <div className="neural-grid absolute inset-0" aria-hidden="true" />
+      {/* One ambient wash, down from three overlapping layers (radial plus two
+          animated aurora blobs). Restraint is the brief. */}
       <div
-        className="absolute inset-0 bg-[radial-gradient(ellipse_80%_80%_at_50%_-20%,hsl(var(--brand)/0.07),transparent)]"
         aria-hidden="true"
+        className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_70%_60%_at_50%_-10%,hsl(var(--brand)/0.06),transparent)]"
       />
 
-      {/* Aurora blobs. Cyan leads; violet is ambient-only and never sits
-          under an interactive element. */}
-      <div
-        aria-hidden="true"
-        className="animate-aurora-1 absolute -top-40 -left-40 w-[520px] h-[520px] rounded-full bg-brand/[0.07] blur-[130px] pointer-events-none"
-      />
-      <div
-        aria-hidden="true"
-        className="animate-aurora-2 absolute -bottom-32 -right-24 w-[440px] h-[440px] rounded-full bg-violet/[0.08] blur-[110px] pointer-events-none"
-      />
-
-      <div className="container flex flex-col lg:flex-row items-center gap-16 relative z-raised py-24">
-        <Reveal
-          className="reveal-x flex-1 text-center lg:text-left"
-        >
-          <Reveal step={2}
-            className="inline-flex items-center gap-2 bg-brand/10 border border-brand/25 rounded-full px-4 py-1.5 mb-7"
+      <div className="container relative z-raised flex flex-col items-center gap-14 py-24 lg:flex-row lg:gap-20">
+        {/* ---------------------------------------------------------------
+            COPY COLUMN — hierarchy reads top to bottom:
+            identity -> role -> thesis -> supporting -> capabilities -> action.
+            --------------------------------------------------------------- */}
+        <Reveal className="reveal-x flex-1 text-center lg:text-start">
+          <Reveal
+            step={2}
+            className="mb-8 inline-flex items-center gap-2 rounded-full border border-brand/25 bg-brand/10 px-4 py-1.5"
           >
             <span className="relative flex h-2 w-2">
-              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-brand opacity-75" />
-              <span className="relative inline-flex rounded-full h-2 w-2 bg-brand" />
+              <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-brand opacity-60" />
+              <span className="relative inline-flex h-2 w-2 rounded-full bg-brand" />
             </span>
-            <span className="text-brand text-sm font-medium">{t("hero.badge")}</span>
-            <MapPin className="w-3 h-3 text-brand/60" />
-            <span className="text-brand/60 text-xs">{t("hero.location")}</span>
+            <span className="text-sm font-medium text-brand-soft">
+              {t("hero.badge")}
+            </span>
+            <MapPin className="h-3 w-3 text-brand/60" aria-hidden="true" />
+            <span className="text-xs text-brand/60">{t("hero.location")}</span>
           </Reveal>
 
-          <h1 className="font-display text-display-lg lg:text-display-xl font-bold text-foreground mb-5">
-            {t("hero.greeting")}{" "}
-            <span className="text-brand relative">
-              {t("hero.name")}
-              <span className="absolute -bottom-1 left-0 w-full h-px bg-brand/40" />
-            </span>
+          {/* The only <h1> on the page. */}
+          <h1 className="mb-3 font-display text-display-md font-bold tracking-tight text-foreground lg:text-display-lg">
+            Asadullah Shafique
           </h1>
 
-          <div className="h-9 mb-6 flex items-center justify-center lg:justify-start">
-            <span className="text-xl lg:text-2xl text-foreground/70 font-mono">
-              {displayed}
-              <Reveal as="span"
-                className="text-brand"
-              >
-                |
-              </Reveal>
-            </span>
-          </div>
-
-          <p className="text-muted-foreground text-base lg:text-lg mb-8 max-w-[62ch] leading-relaxed">
-            {t("hero.descPre")}{" "}
-            <span className="text-foreground font-semibold">{t("hero.descBold1")}</span>{" "}
-            {t("hero.descMid1")}{" "}
-            <span className="text-brand font-semibold">{t("hero.descBold2")}</span>{" "}
-            {t("hero.descMid2")}{" "}
-            <span className="text-brand font-semibold">{t("hero.descBold3")}</span>
-            {t("hero.descSuffix")}
+          {/* The role, stated once and held still. */}
+          <p className="mb-7 font-mono text-sm uppercase tracking-[0.2em] text-brand-soft lg:text-base">
+            {t("hero.title")}
           </p>
 
-          {/* One `neon` per viewport — the resume download is deliberately
-              quieter so the primary path stays unambiguous. */}
-          <div className="flex flex-wrap gap-3 justify-center lg:justify-start mb-10">
+          {/* The thesis. Sized between the name and the body so the eye lands
+              here second — this is the sentence the visitor should leave with. */}
+          <p className="mb-5 max-w-[24ch] text-balance text-2xl font-semibold leading-snug text-foreground lg:max-w-[26ch] lg:text-3xl">
+            {t("hero.headline")}
+          </p>
+
+          <p className="mb-8 max-w-[62ch] text-pretty leading-relaxed text-muted-foreground">
+            {t("hero.supporting")}
+          </p>
+
+          {/* Capability line. Every term is backed by something in the repo:
+              orchestration (backend/orchestration), MCP (a live FastMCP server
+              at /mcp/server), A2A (protobridge/protocols/a2a.py), guardrails
+              (backend/constitution), evaluation (evals/), Kubernetes (11
+              manifests in k8s/). "Memory" appeared in the brief's suggested
+              copy and is deliberately absent: no conversation or episodic
+              memory exists in this codebase, and claiming an agentic capability
+              the system does not have is the exact failure the rest of this
+              pass is correcting. */}
+          <p className="mb-10 border-s-2 border-brand/30 ps-4 font-mono text-xs leading-relaxed text-muted-foreground/80">
+            {t("hero.capabilities")}
+          </p>
+
+          <div className="flex flex-wrap justify-center gap-3 lg:justify-start">
             <Button asChild variant="neon" size="lg">
+              {/* #projects, not #systems: the anchor is referenced by the
+                  Navbar, the Footer and several in-page links, so the id stays
+                  put and only the LABEL changes to the brief's wording. */}
               <Link href="#projects">
-                {t("hero.viewWork")} <ArrowDown className="w-4 h-4" />
+                {t("hero.viewWork")}
+                <ArrowRight className="h-4 w-4" aria-hidden="true" />
               </Link>
             </Button>
-            {/* High-intent shortcut. The three engagement models sit in
-                #contact, roughly eight sections down — a visitor who already
-                knows they want to hire should not have to scroll the whole
-                argument to find the price list. `outline`, not a second
-                `neon`, per the one-primary rule above. */}
+
             <Button asChild variant="outline" size="lg">
-              <Link href="#contact">
-                <Handshake className="w-4 h-4" /> {t("hero.engagementModels")}
-              </Link>
+              <a
+                href="https://github.com/asadullah48"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <Github className="h-4 w-4" aria-hidden="true" />
+                {t("hero.sourceCta")}
+              </a>
             </Button>
-            <Button asChild variant="outline" size="lg">
+
+            {/* Tertiary, not a third button — the one-primary rule in
+                CLAUDE.md, extended: three equal-weight buttons is no
+                hierarchy at all. */}
+            <Button asChild variant="ghost" size="lg">
               <a
                 href="/resume.pdf"
                 download="Asadullah_Shafique_Resume.pdf"
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                <ExternalLink className="w-4 h-4" /> {t("hero.downloadResume")}
+                <Download className="h-4 w-4" aria-hidden="true" />
+                {t("hero.downloadResume")}
               </a>
             </Button>
           </div>
-
-          <div
-            ref={statsRef}
-            className="flex flex-wrap items-center gap-6 justify-center lg:justify-start"
-          >
-            {STATS.map((s, i) => (
-              <div key={s.label} className="flex items-center gap-6">
-                {i > 0 && <div className="w-px h-8 bg-border" />}
-                <StatCounter {...s} inView={statsInView} />
-              </div>
-            ))}
-          </div>
         </Reveal>
 
-        <Reveal step={1}
-          className="reveal-x flex-shrink-0 flex flex-col items-center gap-6"
+        {/* ---------------------------------------------------------------
+            SYSTEM COLUMN — architecture, not decoration.
+            --------------------------------------------------------------- */}
+        <Reveal
+          step={1}
+          className="reveal-x flex flex-shrink-0 flex-col items-center gap-8"
         >
-          <MonogramAvatar />
-          <TerminalCard />
-          <AgentModeStrip />
+          {/* The portrait stays, at a fraction of its former size. Identity
+              belongs on a personal site; six orbiting vendor logos do not. */}
+          <div className="relative h-16 w-16 overflow-hidden rounded-full border border-brand/40 bg-surface-2">
+            <Image
+              src="/images/asadullah-vector.png"
+              alt="Asadullah Shafique"
+              fill
+              priority
+              sizes="64px"
+              className="scale-110 object-cover object-top"
+            />
+          </div>
+
+          <HeroSystemDiagram />
         </Reveal>
       </div>
     </section>

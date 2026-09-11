@@ -22,6 +22,9 @@ export default function SignUpPage() {
     password: "",
     confirmPassword: "",
   });
+  // Surfaced on submit. This route has no auth backend, and saying so is the
+  // honest alternative to a form that silently swallows a password.
+  const [notice, setNotice] = useState("");
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -76,9 +79,18 @@ export default function SignUpPage() {
     e.preventDefault();
     
     if (validateForm()) {
-      // Handle form submission
-      console.log("Form submitted:", formData);
-      // Here you would typically call an API to register the user
+      // The console.log that stood here printed `formData` — which includes
+      // the password field — in plaintext to the browser console on every
+      // submit. This is an orphaned legacy DevUnity route with no auth backend
+      // (nothing links to it, and its layout sets robots noindex), but logging
+      // a credential is worth removing wherever it appears.
+      //
+      // It is NOT replaced with a fake success state. The form genuinely
+      // registers nobody, so it says so instead of pretending.
+      setNotice(
+        "This form is part of an earlier community build and is not connected " +
+          "to an authentication service. Nothing was submitted or stored."
+      );
     }
   };
 
@@ -93,12 +105,21 @@ export default function SignUpPage() {
         </CardHeader>
         <CardContent>
           <form onSubmit={handleSubmit} className="space-y-4">
+            {notice && (
+              <p
+                role="status"
+                className="rounded-md border border-border bg-surface-1 px-3 py-2 text-sm text-muted-foreground"
+              >
+                {notice}
+              </p>
+            )}
+
             <div className="space-y-2">
               <Label htmlFor="name">Name</Label>
               <Input
                 id="name"
                 name="name"
-                placeholder="John Doe"
+                placeholder="Ayesha Raza"
                 value={formData.name}
                 onChange={handleChange}
                 className={errors.name ? "border-red-500" : ""}
@@ -111,7 +132,7 @@ export default function SignUpPage() {
                 id="email"
                 name="email"
                 type="email"
-                placeholder="john@example.com"
+                placeholder="ayesha@studio.dev"
                 value={formData.email}
                 onChange={handleChange}
                 className={errors.email ? "border-red-500" : ""}

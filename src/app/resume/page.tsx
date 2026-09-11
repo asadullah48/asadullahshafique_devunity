@@ -85,11 +85,11 @@ const mastery = [
 const flagship = [
   {
     name: "The Autonomous Agent Ecosystem",
-    tagline: "21 production platforms, one per problem domain",
+    tagline: "21 open-source platforms, one per problem domain",
     impact:
-      "21 production multi-agent platforms, each with its own FastAPI gateway, test suite and public repository. 263 automated tests green in aggregate across the 21 repositories, all open source.",
+      "21 multi-agent platforms, each with its own FastAPI gateway, Helm chart, test suite and public repository — reference implementations running on synthetic domain data. 736 test functions across the 21 repositories, counted from source on 2026-09-10; 6 of them run those tests in CI. All open source.",
     href: "https://github.com/asadullah48?tab=repositories",
-    stack: ["Agents SDK", "FastAPI", "Kubernetes"],
+    stack: ["FastAPI", "Pytest", "Helm"],
     shipped: true,
   },
   {
@@ -251,7 +251,7 @@ const experience = [
     bullets: [
       "Engineered a multi-agent orchestration layer for financial-services research and Shari'ah screening, with separation of powers enforced structurally — no agent holds two of market data, weighting and verdict — rather than by prompt",
       "Implemented MCP interoperability so agent capability is exposed as read-only tools on a protocol server, verified against a live client, instead of as bespoke HTTP endpoints",
-      "Architected deterministic guardrails from a written constitution, screened before any model call — verified blocking 4 of 4 violations with no model reachable, so enforcement survives a provider outage",
+      "Architected deterministic guardrails from a written constitution, with a pattern layer that needs no model — verified blocking 4 of 4 violations with no model reachable, so enforcement survives a provider outage",
       "Architected the Textile ERP Platform — order lifecycle, four auto-billing types, party ledgers and BOM inventory — to digitize Pakistan's textile value chain",
       "Founded and operate a CMT stitching unit of 30–35 staff, running the full manufacturing lifecycle from sample fabric and design analysis through machine allocation, bulk production and inspection",
       "Directed digital marketing across social channels, property portals and lead-generation funnels for textile and GCC real-estate clients",
@@ -449,7 +449,7 @@ export default function ResumePage() {
             Most agentic pilots in financial services die at the compliance review — not because the models are
             weak, but because a system that cannot show <em>why</em> it reached a conclusion cannot be signed off
             by a second line of defence. My work makes that reviewable: typed orchestration with an auditable
-            route, a written constitution screened deterministically before any model call, and evaluation that
+            route, a written constitution with a deterministic layer that needs no model, and evaluation that
             reads the execution trace rather than trusting the prose.
           </p>
           <p className="text-foreground/80 leading-relaxed mt-3">
@@ -458,9 +458,8 @@ export default function ResumePage() {
             units and garment exporters across Faisalabad, Sialkot, Gujranwala, Karachi and Lahore — so the
             domain intelligence is built from inside an industry rather than modelled from outside one.
             Completed <span className="text-foreground font-medium">6 consecutive Panaversity Hackathons</span>{" "}
-            (Bronze → Silver → Silver → Gold → Platinum → Agent Factory) with{" "}
-            <span className="text-brand font-medium">85% code reusability</span> and{" "}
-            <span className="text-brand font-medium">zero failed attempts</span>.
+            (Bronze → Silver → Silver → Gold → Platinum → Agent Factory), each build{" "}
+            <span className="text-brand font-medium">carrying the last one forward</span>.
           </p>
         </Section>
 
@@ -538,7 +537,13 @@ export default function ResumePage() {
         {/* Hackathons */}
         <Section title="Hackathon Achievements" icon={<Trophy className="w-5 h-5" />}>
           <p className="text-sm text-muted-foreground mb-5">
-            Panaversity Hackathon Series: <span className="text-foreground/80">6 Consecutive Wins</span> · 85% Code Reuse · Zero Failed Attempts
+            {/* Was "6 Consecutive Wins · 85% Code Reuse · Zero Failed Attempts".
+                The entries' own `achievement` fields below read Bronze, Silver,
+                Silver, Gold, Platinum (in progress) and Completed — a tier
+                ladder, not six competitive wins, with one still open. The
+                ladder is the stronger claim anyway: it shows compounding
+                (89 tests -> 149), which "won" does not. */}
+            Panaversity Hackathon Series: <span className="text-foreground/80">6 consecutive builds</span> · Bronze → Agent Factory
           </p>
           <div className="space-y-3">
             {hackathons.map((h) => (

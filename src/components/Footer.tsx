@@ -4,39 +4,6 @@ import { Github, Linkedin, Twitter, Mail, Heart } from "lucide-react";
 import Link from "next/link";
 import React from "react";
 import { useLocale } from "@/context/LocaleContext";
-import dynamic from "next/dynamic";
-
-/**
- * Lazily loaded, and deliberately not server-rendered.
- *
- * The rail is the only consumer of the Radix Tooltip primitive, and Footer is
- * statically imported by five pages — so a static import here put Tooltip +
- * Popper + floating-ui into the initial bundle of the entire site (+23 kB)
- * purely to explain five readouts that sit below the fold.
- *
- * It is also client-only by nature: every value it shows comes from Navigation
- * Timing, a session timer, or a fetch, so SSR would render nothing but "—".
- * Mounting late costs no layout shift because CLS only counts shifts inside
- * the viewport, and the footer is below it.
- */
-const AgentStatusRail = dynamic(() => import("@/components/AgentStatusRail"), {
-  ssr: false,
-  loading: () => (
-    <div className="h-[74px] rounded-panel border border-border bg-surface-1/60" />
-  ),
-});
-
-/**
- * Same lazy/client-only treatment as the rail above, for the same reasons: it
- * renders nothing but placeholders until a fetch resolves, and Footer is
- * statically imported by five pages.
- */
-const AgentActivityLog = dynamic(() => import("@/components/AgentActivityLog"), {
-  ssr: false,
-  loading: () => (
-    <div className="h-[208px] rounded-panel border border-border bg-surface-1/60" />
-  ),
-});
 
 const Footer = () => {
   const { t } = useLocale();
@@ -136,18 +103,24 @@ const Footer = () => {
           </div>
         </div>
 
-        {/* Instrumentation block: the control-plane log, then the measured
-            readouts. Sits above the copyright rule so it reads as belonging to
-            the site, not as another link column.
+        {/* The instrumentation block that used to sit here — the control-plane
+            log and the measured status rail — MOVED to <AgentRuntime /> on the
+            homepage (src/components/AgentRuntime.tsx).
 
-            BOTH are real. The log streams /api/agent/info and the rail probes
-            /api/health. Neither may ever be given a scripted list of pretend
-            jobs — on a portfolio claiming agent engineering, a fabricated
-            status panel is the single worst detail to be caught inventing. */}
-        <div className="mt-12 space-y-4">
-          <AgentActivityLog />
-          <AgentStatusRail />
-        </div>
+            Both are real: the log streams /api/agent/info, the rail probes
+            /api/health. That is precisely why they no longer live below the
+            copyright rule. The site had a scripted terminal in the hero and its
+            two genuine instruments in the footer; the hero prop is gone and
+            these were promoted to where the technical argument is being made.
+
+            MOVED, not copied. Footer is statically imported by five pages, so a
+            second mount here would run two more poll loops against both
+            endpoints on every one of them, for one visible readout.
+
+            The rule they carried travels with them: neither may ever be given a
+            scripted list of pretend jobs. On a portfolio claiming agent
+            engineering, a fabricated status panel is the single worst detail to
+            be caught inventing. */}
 
         <div className="mt-8 pt-8 border-t border-border text-center">
           <p className="text-sm text-muted-foreground">

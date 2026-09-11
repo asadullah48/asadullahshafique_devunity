@@ -230,7 +230,16 @@ export function TestimonialsSection() {
         {/* step=4 trails the three cards above it, matching the old 0.4s delay. */}
         <Reveal step={4} className="text-center mt-10">
           <a
-            href="https://linkedin.com/in/asadullah-shafique"
+            // Was "https://linkedin.com/in/asadullah-shafique" — the bare
+            // vanity slug, and the only place on the site using it. Every other
+            // reference (Footer, the résumé, and the JSON-LD sameAs in
+            // layout.tsx) uses the -a00679325 form, which is the account's real
+            // URL. LinkedIn appends that disambiguating suffix only when the
+            // plain name is ALREADY TAKEN, so the bare slug most likely
+            // resolved to a different person entirely — on a "connect with me"
+            // call to action. It also split the sameAs entity signal in two,
+            // which layout.tsx's own rule for that property forbids.
+            href="https://www.linkedin.com/in/asadullah-shafique-a00679325/"
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center gap-2 text-blue-400/70 hover:text-blue-400 text-sm transition-colors duration-200"

@@ -68,35 +68,37 @@ const SPECIALTY_AR: Record<string, string> = {
 const COPY = {
   en: {
     eyebrow: "// agent ecosystem",
-    headline: "Production-grade autonomous AI platforms",
+    headline: "Twenty-one open-source multi-agent platforms",
     subtitle:
-      "Twenty-one production multi-agent platforms, each with its own FastAPI gateway, test suite and public repository.",
+      "Each with its own agent architecture, FastAPI gateway, test suite and public repository — reference implementations running on synthetic domain data, not deployed products.",
     /* No count in the string — the gutter already carries "+17", and in RTL
        a second one renders mirrored as "17+" beside it. */
-    more: "further platforms, all open source and live",
+    // Was "…all open source and live". "Live" contradicted the footnote below:
+    // each platform serves its dashboard from localhost and none is deployed.
+    more: "further platforms, all open source",
     cta: `View all ${TOTAL_PLATFORMS} repositories`,
     stats: [
-      { value: "263/263", label: "Tests passing" },
+      { value: "736", label: "Tests defined" },
       { value: "100%", label: "Open source" },
       { value: "EN / AR", label: "RTL localization" },
     ],
     footnote:
-      "263 automated tests green is the aggregate across the 21 public repositories, not a single suite in this one. Each platform serves its dashboard from localhost, so no dashboard is linked — clone the repo and it comes up there.",
+      "736 is the count of test functions across all 21 public repositories, not a single suite in this one — every file named test_*.py, counted from source on 2026-09-10. It replaces an earlier 263, which one repository in this list now exceeds on its own. Two caveats, stated because they matter: 6 of the 21 run those tests in CI, and a test count measures engineering activity, not system quality. Each platform serves its dashboard from localhost, so no dashboard is linked — clone the repo and it comes up there.",
   },
   ar: {
     eyebrow: "// منظومة الوكلاء",
-    headline: "منصات ذكاء اصطناعي مستقلة بجودة إنتاجية",
+    headline: "إحدى وعشرون منصة مفتوحة المصدر متعددة الوكلاء",
     subtitle:
-      "إحدى وعشرون منصة إنتاجية متعددة الوكلاء، لكل منها بوابة FastAPI ومجموعة اختبارات ومستودع عام.",
-    more: "منصة أخرى، جميعها مفتوحة المصدر وتعمل",
+      "لكل منها بنية وكلاء خاصة بها وبوابة FastAPI ومجموعة اختبارات ومستودع عام — تطبيقات مرجعية تعمل على بيانات مجال اصطناعية، لا منتجات منشورة.",
+    more: "منصة أخرى، جميعها مفتوحة المصدر",
     cta: `استعرض المستودعات الـ${TOTAL_PLATFORMS}`,
     stats: [
-      { value: "263/263", label: "اختبار ناجح" },
+      { value: "736", label: "اختبار معرّف" },
       { value: "100%", label: "مفتوح المصدر" },
       { value: "EN / AR", label: "دعم الاتجاهين" },
     ],
     footnote:
-      "رقم 263 اختبارًا ناجحًا هو الإجمالي عبر المستودعات العامة الواحد والعشرين، لا مجموعة اختبارات واحدة في هذا المستودع. وتقدّم كل منصة لوحتها من الجهاز المحلي، لذا لا تُربط أي لوحة — استنسخ المستودع وستعمل عليه.",
+      "رقم 736 هو عدد دوال الاختبار عبر المستودعات العامة الواحد والعشرين جميعها، لا مجموعة اختبارات واحدة في هذا المستودع — كل ملف باسم test_*.py، محسوب من الشيفرة المصدرية بتاريخ 2026-09-10. ويستبدل الرقم السابق 263، الذي يتجاوزه اليوم مستودع واحد من هذه القائمة بمفرده. وثمة تحفّظان يستحقان الذكر: ستة من الواحد والعشرين تشغّل هذه الاختبارات في التكامل المستمر، وعدد الاختبارات يقيس النشاط الهندسي لا جودة النظام. وتقدّم كل منصة لوحتها من الجهاز المحلي، لذا لا تُربط أي لوحة — استنسخ المستودع وستعمل عليه.",
   },
 } as const;
 

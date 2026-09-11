@@ -44,13 +44,17 @@ const cairo = Cairo({
 
 export const metadata: Metadata = {
     metadataBase: new URL(BASE_URL),
-    title: "Asadullah Shafique | Agentic AI Developer",
+    // "Systems Engineer", not "Developer". The distinction is the whole
+    // positioning: a developer writes the agent; a systems engineer is
+    // accountable for whether it can be trusted in production — which is what
+    // the orchestration, guardrail and eval layers in this repo exist for.
+    title: "Asadullah Shafique — Agentic AI Systems Engineer",
     // Names the substrate, not the aspiration. Every claim here is one the
     // repo can demonstrate on request: the Agents SDK orchestrator lives in
     // backend/orchestration/, the MCP server is mounted at /mcp/server, and
     // the constitution in backend/constitution/ is enforced as SDK guardrails.
     description:
-          "Asadullah Shafique — Agentic AI engineer. Production multi-agent systems on the OpenAI Agents SDK, real MCP servers, and Constitutional AI guardrails. Pakistan · UAE.",
+          "Asadullah Shafique — Agentic AI Systems Engineer. Multi-agent orchestration on the OpenAI Agents SDK, real MCP servers, constitutional guardrails and trace-level evaluation. Pakistan · UAE.",
     keywords: [
           "Asadullah Shafique",
           "Agentic AI",
@@ -76,9 +80,9 @@ export const metadata: Metadata = {
           shortcut: "/favicon.svg",
     },
     openGraph: {
-          title: "Asadullah Shafique | Agentic AI Developer",
+          title: "Asadullah Shafique — Agentic AI Systems Engineer",
           description:
-                  "Production multi-agent systems — OpenAI Agents SDK, real MCP servers, Constitutional AI guardrails. Spec-first delivery across six consecutive hackathons.",
+                  "Multi-agent orchestration on the OpenAI Agents SDK, a real MCP server, constitutional guardrails and trace-level evaluation. Every claim links to its source.",
           type: "website",
           url: BASE_URL,
           siteName: "Asadullah Shafique Portfolio",
@@ -87,9 +91,9 @@ export const metadata: Metadata = {
     },
     twitter: {
           card: "summary_large_image",
-          title: "Asadullah Shafique | Agentic AI Developer",
+          title: "Asadullah Shafique — Agentic AI Systems Engineer",
           description:
-                  "Production multi-agent systems — OpenAI Agents SDK, real MCP servers, Constitutional AI guardrails. Spec-first delivery across six consecutive hackathons.",
+                  "Multi-agent orchestration on the OpenAI Agents SDK, a real MCP server, constitutional guardrails and trace-level evaluation. Every claim links to its source.",
     },
 };
 
@@ -129,21 +133,23 @@ export const metadata: Metadata = {
  * same @id in src/app/ar/layout.tsx. Multiple alternateName values are valid
  * schema.org, so these merge rather than conflict.
  *
- * NOTE: `jobTitle` is "Agentic AI & Automation Engineer" while the openGraph
- * and twitter titles above still say "Agentic AI Developer". Entity search
- * rewards ONE identity string everywhere, so these want to be reconciled in
- * a single pass across metadata, LinkedIn, GitHub and Medium — not drifted
- * one file at a time.
+ * IDENTITY STRING — reconciled 2026-09-10. `jobTitle`, `alternateName`, the
+ * document title, openGraph and twitter now all read "Agentic AI Systems
+ * Engineer". They previously disagreed three ways ("Agentic AI Developer",
+ * "Agentic AI & Automation Engineer", "Agentic AI Developer"), and entity
+ * search rewards ONE string everywhere. The off-site half of that pass is NOT
+ * done: LinkedIn, GitHub and Medium still carry the old titles, and the
+ * consolidation only pays off once they match.
  */
 const personJsonLd = {
     "@context": "https://schema.org",
     "@type": "Person",
     "@id": PERSON_ID,
     name: "Asadullah Shafique",
-    alternateName: "Asadullah Shafique — Agentic AI & Automation Engineer",
+    alternateName: "Asadullah Shafique — Agentic AI Systems Engineer",
     url: BASE_URL,
     image: `${BASE_URL}/opengraph-image`,
-    jobTitle: "Agentic AI & Automation Engineer",
+    jobTitle: "Agentic AI Systems Engineer",
     description:
           "Agentic AI engineer building production multi-agent systems with the OpenAI Agents SDK, real MCP servers, and Constitutional AI guardrails, for clients in Western markets and the Gulf.",
     sameAs: [

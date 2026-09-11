@@ -133,7 +133,7 @@ const COPY: Record<"en" | "ar", Record<string, Entry>> = {
     },
     constitution: {
       title: "Constitutional AI",
-      desc: "Five written principles enforced as SDK guardrails, screened deterministically before any model call. Verified blocking 4 of 4 violations with no model reachable. It fails open, so a classifier outage degrades enforcement instead of taking the site down.",
+      desc: "Five written principles enforced as SDK guardrails, with a deterministic pattern layer that needs no model. Verified blocking 4 of 4 violations with no model reachable. It fails open, so a classifier outage degrades enforcement instead of taking the site down.",
     },
     cloud: {
       title: "Cloud-Native Deployment",

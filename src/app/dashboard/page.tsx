@@ -26,12 +26,18 @@ import {
 import Link from "next/link";
 
 export default function DashboardPage() {
-  // Mock user data
+  // Demo profile for this legacy DevUnity route. Named unambiguously as a
+  // sample: "John Doe" / "john@example.com" reads as a real record to a
+  // reader who lands here, and this page is not linked from anywhere on the
+  // portfolio (it is orphaned and carries robots noindex in its layout).
+  // The avatar previously pointed at /placeholder.svg, which does not exist
+  // in /public — a broken image on every render. Uses the real portrait the
+  // rest of the site already ships.
   const [user, setUser] = useState({
-    name: "John Doe",
-    username: "johndoe",
-    email: "john@example.com",
-    avatar: "/placeholder.svg?height=100&width=100",
+    name: "Demo Account",
+    username: "demo",
+    email: "demo@devunity.local",
+    avatar: "/images/asadullah-vector.png",
     joinDate: "January 2024",
     reputation: 450,
     badges: {

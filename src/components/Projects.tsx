@@ -22,6 +22,29 @@ type Project = {
   id: string;
   title: string;
   status: ProjectStatus;
+  /**
+   * How real the DATA in this repository is — distinct from how real the CODE
+   * is, which is what `status` describes.
+   *
+   * "reference" means: genuine multi-agent Python, exercised by a genuine test
+   * suite, running against SYNTHETIC inputs. Twenty entries carry it, and the
+   * marker exists because the site previously did not draw this distinction and
+   * therefore drew it wrongly. ActionNews advertised "ingesting 100+ live feeds
+   * from Bloomberg, Reuters, SEC 10-Q & Fed minutes"; the implementation is
+   * feed_aggregator_engine.py, whose own line 13 reads "Simulates continuous
+   * multi-stream ingestion" over a hardcoded SAMPLE_SOURCES list of feed NAMES.
+   * The headline figures were literals too — advisor_agent.py:17 sets
+   * conviction_score=94.5, which the card rendered as "94.5% peak trade
+   * conviction".
+   *
+   * Undefined means the data is as real as the code (OrchestratorX, ProtoBridge,
+   * GuardrailAI, the shipped platforms).
+   *
+   * Stating this costs nothing and buys the rest of the portfolio its
+   * credibility: a reviewer who finds the word "Simulates" for himself discounts
+   * everything else on the page, including the work that deserved better.
+   */
+  dataMode?: "reference";
   tagline: string;
   problem?: string;
   solution?: string;
@@ -41,43 +64,68 @@ type Project = {
   isNew?: boolean;
 };
 
-// The curated Spotlight set, in render order. Editorial, so it lives in ONE
-// list you can reorder by hand rather than being smeared across the records it
-// selects — reordering the grid means reordering these six lines.
-//
-// Selected by `id` because PROJECTS_EN and PROJECTS_AR carry identical id
-// sequences (verified), so this one list curates both locales at once. A
-// `spotlight: true` field would have needed the same decision applied twice,
-// in two languages, and would drift the moment someone edited only one array.
-//
-// One platform per capability, so six cards cover the whole argument instead
-// of six variations on it:
-//   orchestration · guardrails · MCP interop · vertical business · hackathon · open source
-const SPOTLIGHT_IDS: readonly string[] = [
+/**
+ * THREE TIERS, NOT THIRTY-TWO PEERS.
+ *
+ * The previous arrangement was a binary: six spotlight cards or all thirty-two,
+ * every card the same size. Thirty-two equal cards flatten a portfolio — a
+ * reader cannot tell which four represent the strongest work, so they assume
+ * none do, and the weakest entry sets the impression for all of them.
+ *
+ * FLAGSHIP is chosen on engineering substance, deliberately not on how good the
+ * UI looks. Each of the four owns one pillar of the argument this site makes,
+ * each runs on REAL data, and each is independently checkable:
+ *
+ *   orchestratorx  orchestration      routing as typed state, not prompt text
+ *   protobridge    interoperability   MCP + A2A implemented to the wire
+ *   guardrailai    governance         deterministic OFAC / AML / HIPAA screens
+ *   devunity       the live system    this site: SDK orchestrator, real MCP
+ *                                     server, constitution, evals — and the
+ *                                     visitor is already standing inside it
+ *
+ * Bazaar and Agent Factory left the top tier despite being genuinely shipped:
+ * a marketplace and a hackathon capstone are strong work, but neither is the
+ * clearest evidence of AGENTIC systems engineering, which is what the top slot
+ * has to argue. They lead the engineering tier instead.
+ */
+const FLAGSHIP_IDS: readonly string[] = [
   "orchestratorx",
-  "guardrailai",
   "protobridge",
-  "bazaar",
-  "agent-factory",
+  "guardrailai",
   "devunity",
 ];
+
+type Tier = "flagship" | "engineering" | "reference";
+
+/**
+ * Tier is DERIVED, never stored on the record, so it cannot drift out of step
+ * with `dataMode` the way a hand-maintained third field would. One rule wins
+ * over all others: synthetic domain data means reference, whatever else is
+ * true of the project.
+ */
+function tierOf(p: Project): Tier {
+  if (FLAGSHIP_IDS.includes(p.id)) return "flagship";
+  if (p.dataMode === "reference") return "reference";
+  return "engineering";
+}
 
 const PROJECTS_EN: Project[] = [
   {
     id: "stockai",
     title: "StockAI: Supply Chain & Inventory Automation Agent",
     status: "Enterprise Grade",
+    dataMode: "reference",
     tagline: "Autonomous SKU Velocity Monitoring, 30-Day Demand Forecasting & Draft PO Generation",
     problem: "SMEs lose $1.75T annually to stockouts and excess holding costs due to manual inventory counting and slow supplier reordering.",
     solution: "An autonomous supply chain multi-agent framework featuring MonitorAgent (tracking SKU stockout probability and ROP thresholds), ForecastAgent (30-day seasonal demand forecasting with lead-time jitter modeling), and OrderAgent (automated Purchase Order drafting and multi-currency vendor email composition).",
-    impact: "99.4% stockout prevention, 96.4% forecast accuracy, <10ms PO drafting latency, and 8/8 passing automated tests.",
+    impact:
+      "11 test functions defined in the suite, counted from source. This is a reference implementation: the agents, the state machine and the test suite are real, and the domain data is synthetic - so the architecture is the claim here, not a production track record.",
     description: "Enterprise multi-agent framework that monitors stock levels, predicts seasonal demand, and drafts supplier reorder purchase orders automatically.",
     tech: ["FastAPI", "Python 3.12", "Demand Forecasting", "Supply Chain ROP", "PO Automation", "Docker", "Helm", "Pytest"],
     github: "https://github.com/asadullah48/stockai",
     metrics: [
-      { label: "Stockout Uptime", value: "99.4%" },
-      { label: "Forecast Fit", value: "96.4%" },
-      { label: "Tests", value: "8/8" },
+      { label: "Tests", value: "11" },
+      { label: "Data", value: "Synthetic" },
     ],
     featured: true,
     isNew: true,
@@ -86,17 +134,18 @@ const PROJECTS_EN: Project[] = [
     id: "feedbackx",
     title: "FeedbackX: Customer Feedback & Market Intelligence Agent",
     status: "Enterprise Grade",
+    dataMode: "reference",
     tagline: "Thousands of Reviews Ingested, Aspect-Based Sentiment Analysis & RICE Roadmap Prioritization",
     problem: "Product teams struggle to manually sift through thousands of fragmented reviews across App Store, G2, Trustpilot, and Reddit, burying critical churn friction.",
-    solution: "An autonomous customer intelligence multi-agent framework featuring ScraperAgent (ingesting & deduplicating reviews across 5+ channels), AnalyzerAgent (Aspect-Based Sentiment Analysis & churn risk quantification), and InsightAgent (RICE prioritization scoring & executive product strategy synthesis).",
-    impact: "1,500+ reviews analyzed, 88.5% churn friction identification, -22.7% projected churn reduction, and 9/9 passing automated tests.",
+    solution: "An autonomous customer intelligence multi-agent framework featuring ScraperAgent (generating and deduplicating a synthetic multi-channel review corpus — the platforms named above are the target domain, not a live scrape), AnalyzerAgent (Aspect-Based Sentiment Analysis & churn risk quantification), and InsightAgent (RICE prioritization scoring & executive product strategy synthesis).",
+    impact:
+      "13 test functions defined in the suite, counted from source. This is a reference implementation: the agents, the state machine and the test suite are real, and the domain data is synthetic - so the architecture is the claim here, not a production track record.",
     description: "Enterprise multi-agent framework that analyzes thousands of customer reviews to identify missing features and synthesize prioritized RICE roadmaps.",
     tech: ["FastAPI", "Python 3.12", "ABSA Sentiment", "Review Scraper", "RICE Matrix", "Docker", "Helm", "Pytest"],
     github: "https://github.com/asadullah48/feedbackx",
     metrics: [
-      { label: "Reviews Mined", value: "1,500+" },
-      { label: "Top RICE Score", value: "94.5" },
-      { label: "Tests", value: "9/9" },
+      { label: "Tests", value: "13" },
+      { label: "Data", value: "Synthetic" },
     ],
     featured: true,
     isNew: true,
@@ -105,17 +154,19 @@ const PROJECTS_EN: Project[] = [
     id: "actionnews",
     title: "ActionNews: Financial Newsletter & Alpha Intelligence Agent",
     status: "Enterprise Grade",
-    tagline: "100+ Feeds Ingestion, FinBERT Cross-Asset Sentiment & Actionable Investor Insights",
+    dataMode: "reference",
+    tagline: "Simulated multi-source ingestion, deterministic sentiment scoring and a synthesised investor brief",
     problem: "Investors face severe information overload from 10,000+ daily financial headlines, SEC filings, and central bank releases without actionable synthesis.",
-    solution: "An autonomous financial intelligence multi-agent framework featuring AggregatorAgent (ingesting & clustering 100+ live feeds from Bloomberg, Reuters, SEC 10-Q & Fed minutes), AnalyzerAgent (quantifying FinBERT sentiment index & cross-asset volatility), and AdvisorAgent (formulating high-conviction trade signals, risk-adjusted allocations, and daily executive newsletters).",
-    impact: "100+ sources synthesized, 94.5% peak trade conviction, <15ms generation latency, and 12/12 passing automated tests.",
+    solution:
+      "A three-agent pipeline: AggregatorAgent clusters a simulated multi-stream feed (the source labels model Bloomberg, Reuters, SEC EDGAR and FOMC wires — there is no vendor integration and no market-data licence behind them), AnalyzerAgent scores sentiment and cross-asset volatility with deterministic Python, and AdvisorAgent composes the ranked brief. The value on show is the agent topology and the scoring pipeline, not a market-data feed.",
+    impact:
+      "12 test functions defined in the suite, counted from source. This is a reference implementation: the agents, the state machine and the test suite are real, and the domain data is synthetic - so the architecture is the claim here, not a production track record.",
     description: "Enterprise multi-agent framework summarizing 100+ financial sources into actionable daily investor insights and executive newsletters.",
-    tech: ["FastAPI", "Python 3.12", "FinBERT", "Multi-Feed Aggregator", "Cross-Asset Sentiment", "Docker", "Helm", "Pytest"],
+    tech: ["FastAPI", "Python 3.12", "Sentiment Scoring", "Multi-Feed Aggregator", "Cross-Asset Sentiment", "Docker", "Helm", "Pytest"],
     github: "https://github.com/asadullah48/actionnews",
     metrics: [
-      { label: "Sources Ingested", value: "100+" },
-      { label: "Top Conviction", value: "94.5%" },
-      { label: "Tests", value: "12/12" },
+      { label: "Tests", value: "12" },
+      { label: "Data", value: "Synthetic" },
     ],
     featured: true,
     isNew: true,
@@ -124,17 +175,18 @@ const PROJECTS_EN: Project[] = [
     id: "legacyx",
     title: "LegacyX: Automated COBOL & Java Migration Agent",
     status: "Enterprise Grade",
-    tagline: "AST Intermediate Representation, Fixed-Point Arithmetic & 100% Semantic Parity Transpilation",
+    dataMode: "reference",
+    tagline: "AST Intermediate Representation, Fixed-Point Arithmetic & Semantic-Parity Checking",
     problem: "Global enterprises run over 220B lines of legacy COBOL and aging Java J2EE code where manual rewrites take 3-7 years and fail 70%+ of the time due to undocumented business rules.",
-    solution: "A loop-driven legacy modernization multi-agent framework featuring ParserAgent (deconstructing COBOL divisions & EJB patterns into an AST Intermediate Representation), TranslatorAgent (transpiling into typed Python 3.12 & TypeScript with Decimal precision), and VerifierAgent (executing automated boundary condition tests to certify 100% semantic equivalence).",
-    impact: "100% semantic parity, zero fixed-point rounding drift, <25ms transpilation latency, and 11/11 passing automated tests.",
-    description: "Enterprise multi-agent framework that translates monolithic COBOL and legacy Java into modern TypeScript and Python 3.12 with guaranteed semantic parity.",
+    solution: "A loop-driven legacy modernization multi-agent framework featuring ParserAgent (deconstructing COBOL divisions & EJB patterns into an AST Intermediate Representation), TranslatorAgent (transpiling into typed Python 3.12 & TypeScript with Decimal precision), and VerifierAgent (executing automated boundary-condition tests to check semantic equivalence).",
+    impact:
+      "18 test functions defined in the suite, counted from source. This is a reference implementation: the agents, the state machine and the test suite are real, and the domain data is synthetic - so the architecture is the claim here, not a production track record.",
+    description: "Enterprise multi-agent framework that translates monolithic COBOL and legacy Java into modern TypeScript and Python 3.12, with semantic parity checked by a dedicated verifier agent rather than assumed.",
     tech: ["FastAPI", "Python 3.12", "AST Parser", "TypeScript", "Pydantic", "Zod", "Docker", "Helm", "Pytest"],
     github: "https://github.com/asadullah48/legacyx",
     metrics: [
-      { label: "Semantic Parity", value: "100.0%" },
-      { label: "Math Drift", value: "0.0%" },
-      { label: "Tests", value: "11/11" },
+      { label: "Tests", value: "18" },
+      { label: "Data", value: "Synthetic" },
     ],
     featured: true,
   },
@@ -159,17 +211,18 @@ const PROJECTS_EN: Project[] = [
     id: "synthdata",
     title: "SynthData: Privacy-First Synthetic Data Generator",
     status: "Enterprise Grade",
+    dataMode: "reference",
     tagline: "Laplace Differential Privacy Noise, Zero-PII Eradication & GDPR/HIPAA Compliant Test Data Harness",
     problem: "Using production customer data for testing and machine learning exposes enterprises to severe GDPR/HIPAA regulatory fines and catastrophic privacy breach liabilities.",
     solution: "A privacy-first synthetic data generation multi-agent framework featuring GeneratorAgent (producing domain-tailored records with Laplace differential privacy noise), ValidatorAgent (verifying correlation preservation r >= 0.90), and ComplianceAgent (executing deep zero-PII leak scans and certifying GDPR Article 25 & HIPAA Safe Harbor compliance).",
-    impact: "Strict epsilon <= 0.50 DP guarantee, 0.0% PII leak rate, 94.0% correlation preservation, and 10/10 passing automated tests.",
+    impact:
+      "10 test functions defined in the suite, counted from source. This is a reference implementation: the agents, the state machine and the test suite are real, and the domain data is synthetic - so the architecture is the claim here, not a production track record.",
     description: "Enterprise multi-agent framework generating realistic synthetic datasets with strict Differential Privacy and Zero-PII certification for GDPR/HIPAA safe testing.",
     tech: ["FastAPI", "Python 3.12", "Differential Privacy", "Laplace Noise", "PII Scrubber", "Helm", "Docker", "Pytest"],
     github: "https://github.com/asadullah48/synthdata",
     metrics: [
-      { label: "Privacy DP", value: "ε <= 0.5" },
-      { label: "PII Leaks", value: "0.0%" },
-      { label: "Tests", value: "10/10" },
+      { label: "Tests", value: "10" },
+      { label: "Data", value: "Synthetic" },
     ],
     featured: true,
   },
@@ -177,17 +230,18 @@ const PROJECTS_EN: Project[] = [
     id: "accessai",
     title: "AccessAI: Real-Time Audio Description & Accessibility Agent",
     status: "Enterprise Grade",
+    dataMode: "reference",
     tagline: "Live Media Stream Ingestion, Zero-Collision SSML Narration & WCAG 2.2 AAA Accessibility Certification",
     problem: "Live media broadcasts, keynotes, and video conferencing remain largely inaccessible to visually impaired users, while manual audio description post-production takes days.",
     solution: "A real-time assistive multi-agent framework featuring StreamAgent (detecting visual salience and inter-dialogue silence gaps), NarratorAgent (synthesizing concise SSML audio descriptions fitted into silence windows), and ComplianceAgent (enforcing WCAG 2.2 AAA, Section 508, and ADA Title III with zero speech collisions).",
-    impact: "Sub-120ms stream latency, 0.0% dialogue collision rate, 8.4:1 contrast ratio, and 11/11 passing automated tests.",
+    impact:
+      "113 test functions defined in the suite, counted from source. This is a reference implementation: the agents, the state machine and the test suite are real, and the domain data is synthetic - so the architecture is the claim here, not a production track record.",
     description: "Assistive multi-agent framework generating live audio descriptions and real-time visual summaries for visually impaired users with WCAG 2.2 AAA compliance.",
-    tech: ["FastAPI", "Python 3.12", "Multimodal AI", "SSML Synthesis", "WCAG 2.2 AAA", "Helm", "Docker", "Pytest"],
+    tech: ["FastAPI", "Python 3.12", "Description Pipeline", "SSML Synthesis", "WCAG 2.2 AAA", "Helm", "Docker", "Pytest"],
     github: "https://github.com/asadullah48/accessai",
     metrics: [
-      { label: "Latency", value: "<120ms" },
-      { label: "WCAG Level", value: "2.2 AAA" },
-      { label: "Tests", value: "11/11" },
+      { label: "Tests", value: "113" },
+      { label: "Data", value: "Synthetic" },
     ],
     featured: true,
   },
@@ -195,17 +249,18 @@ const PROJECTS_EN: Project[] = [
     id: "collabx",
     title: "CollabX: Multi-Agent Newsletter & Editorial Team",
     status: "Enterprise Grade",
+    dataMode: "reference",
     tagline: "Orchestrated Newsroom State Graph, Autonomous Research Ingestion, Narrative Composition & Flesch-Kincaid Auditing",
     problem: "Single-prompt LLMs generate generic, uninspired content with hallucinated statistics and inconsistent tone, while manual corporate newsletter production takes days.",
     solution: "An orchestrated multi-agent collaborative editorial desk featuring ResearcherAgent (discovering verified industry statistics and executive quotes), WriterAgent (composing engaging narrative arcs and catchy hooks), and EditorAgent (Flesch-Kincaid readability scoring >= 80, fact-checking, and dual Markdown/HTML export).",
-    impact: "3.4x publishing velocity speedup, 88.5/100 readability score, 100% verified quote grounding, and 10/10 passing automated tests.",
+    impact:
+      "122 test functions defined in the suite, counted from source. This is a reference implementation: the agents, the state machine and the test suite are real, and the domain data is synthetic - so the architecture is the claim here, not a production track record.",
     description: "Orchestrated multi-agent framework coordinating specialized Researcher, Writer, and Editor agents in a collaborative state graph to produce publication-ready newsletters.",
     tech: ["FastAPI", "Python 3.12", "LangGraph Patterns", "Multi-Agent Teams", "Editorial Automation", "Helm", "Docker", "Pytest"],
     github: "https://github.com/asadullah48/collabx",
     metrics: [
-      { label: "Velocity", value: "3.4x" },
-      { label: "Readability", value: "88.5" },
-      { label: "Tests", value: "10/10" },
+      { label: "Tests", value: "122" },
+      { label: "Data", value: "Synthetic" },
     ],
     featured: true,
   },
@@ -213,17 +268,18 @@ const PROJECTS_EN: Project[] = [
     id: "docucode",
     title: "DocuCode: Contextual Documentation Agent (AST Diff & Auto-Sync)",
     status: "Enterprise Grade",
+    dataMode: "reference",
     tagline: "Real-Time AST Diff Monitoring, Google-Style Docstring Synthesis, Type Accuracy Auditing & Zero-Drift READMEs",
     problem: "Software codebases evolve rapidly while documentation stagnates, causing signature drift, broken API references, and hours wasted decoding undocumented parameters.",
     solution: "An IDE-embedded contextual documentation framework governed by Watch-Doc-Review loops featuring WatcherAgent (AST signature diffing & drift calculation), DocAgent (Google/Sphinx docstrings & README API table synthesis), and ReviewerAgent (type annotation accuracy validation).",
-    impact: "98.5% AST signature accuracy, 100% parameter coverage, sub-4ms sync latency, and 11/11 passing automated tests.",
+    impact:
+      "23 test functions defined in the suite, counted from source. This is a reference implementation: the agents, the state machine and the test suite are real, and the domain data is synthetic - so the architecture is the claim here, not a production track record.",
     description: "IDE-embedded agent framework auto-updating in-code docstrings, API references, and README tables as developers write code.",
     tech: ["FastAPI", "Python 3.12", "AST Diffing", "Docstring Generator", "Developer Tools", "Helm", "Docker", "Pytest"],
     github: "https://github.com/asadullah48/docucode",
     metrics: [
-      { label: "AST Match", value: "98.5%" },
-      { label: "Coverage", value: "100%" },
-      { label: "Tests", value: "11/11" },
+      { label: "Tests", value: "23" },
+      { label: "Data", value: "Synthetic" },
     ],
     featured: true,
   },
@@ -231,17 +287,18 @@ const PROJECTS_EN: Project[] = [
     id: "privatebrain",
     title: "PrivateBrain: Local Finance Memory Agent (Air-Gapped & Zero-Cloud)",
     status: "Enterprise Grade",
+    dataMode: "reference",
     tagline: "Air-Gapped On-Device Execution, AES-256 Encrypted Memory Vault, PII Redaction & Zero Cloud Egress",
     problem: "Transmitting confidential wealth records, tax returns (Schedule C/1099), and private bank accounts (IBAN/SSN) to multi-tenant cloud LLMs violates banking secrecy and creates catastrophic data leakage risks.",
     solution: "A privacy-first local financial memory framework featuring IndexerAgent (local document ingestion into encrypted vector partitions), MemoryAgent (zero-knowledge semantic retrieval with ephemeral in-memory context), and PrivacyAgent (strict air-gap egress firewall and automatic PII sanitization).",
-    impact: "100% on-device air-gap isolation, 0 bytes cloud egress leakage, sub-3ms retrieval latency, and 14/14 passing automated tests.",
+    impact:
+      "14 test functions defined in the suite, counted from source. This is a reference implementation: the agents, the state machine and the test suite are real, and the domain data is synthetic - so the architecture is the claim here, not a production track record.",
     description: "Privacy-first on-device agent framework indexing personal financial emails, wealth notes, tax slips, and browsing history with strict zero-cloud egress.",
-    tech: ["FastAPI", "Python 3.12", "Local LLMs", "Air-Gapped Security", "AES-256 Vault", "Helm", "Docker", "Pytest"],
+    tech: ["FastAPI", "Python 3.12", "Local-Only Design", "Air-Gapped Security", "Vault Abstraction", "Helm", "Docker", "Pytest"],
     github: "https://github.com/asadullah48/privatebrain",
     metrics: [
-      { label: "Air-Gap", value: "100%" },
-      { label: "Cloud Egress", value: "0 Bytes" },
-      { label: "Tests", value: "14/14" },
+      { label: "Tests", value: "14" },
+      { label: "Data", value: "Synthetic" },
     ],
     featured: true,
   },
@@ -249,17 +306,18 @@ const PROJECTS_EN: Project[] = [
     id: "researchx",
     title: "ResearchX: Autonomous Analyst Agent & Market Intelligence",
     status: "Enterprise Grade",
+    dataMode: "reference",
     tagline: "Multi-Source Evidence Triangulation, SEC Filing Ingestion, Divergence Auditing & SWOT Synthesis",
     problem: "Financial analysts spend 80% of their time cross-referencing conflicting industry numbers across filings, while traditional LLMs hallucinate statistics and lack verifiable citation provenance.",
     solution: "An autonomous analyst framework governed by Plan-Act-Verify loops featuring SearchAgent (SEC 10-K & industry benchmark ingestion), VerifyAgent (multi-source triangulation & divergence delta auditing), and ReportAgent (institutional dossiers with SWOT matrices & verifiable inline citations).",
-    impact: "98% triangulation consensus accuracy, 0% hallucinated statistics, sub-50ms synthesis latency, and 10/10 passing automated tests.",
+    impact:
+      "10 test functions defined in the suite, counted from source. This is a reference implementation: the agents, the state machine and the test suite are real, and the domain data is synthetic - so the architecture is the claim here, not a production track record.",
     description: "Autonomous analyst framework independently discovering, verifying, and cross-referencing industry data to produce full market intelligence reports.",
     tech: ["FastAPI", "Python 3.12", "Market Intelligence", "Evidence Triangulation", "Equity Research", "Helm", "Docker", "Pytest"],
     github: "https://github.com/asadullah48/researchx",
     metrics: [
-      { label: "Consensus", value: "98%" },
-      { label: "Provenance", value: "100%" },
-      { label: "Tests", value: "10/10" },
+      { label: "Tests", value: "10" },
+      { label: "Data", value: "Synthetic" },
     ],
     featured: true,
   },
@@ -267,17 +325,18 @@ const PROJECTS_EN: Project[] = [
     id: "graphai",
     title: "GraphAI: Enterprise Workflow Orchestration (DAGs, HITL & Retries)",
     status: "Enterprise Grade",
+    dataMode: "reference",
     tagline: "Topological DAG Scheduling, Parallel Fan-Out Execution, HITL Compliance Gating & Exponential Retries",
     problem: "Linear unstructured agent execution causes unhandled dependency race conditions, lack of human-in-the-loop compliance authorization, and fatal workflow halts on transient downstream network errors.",
     solution: "A graph-first enterprise workflow framework featuring WorkflowAgent (topological sorting, parallel fan-out/fan-in dispatch, and branching), ApprovalAgent (compliance policy evaluation and HMAC signature validation), and RetryAgent (exponential backoff with jitter and idempotent fault recovery).",
-    impact: "100% DAG topological integrity, 2.4x parallel execution speedup, 99.99% self-healing error recovery, and 12/12 passing automated tests.",
+    impact:
+      "17 test functions defined in the suite, counted from source. This is a reference implementation: the agents, the state machine and the test suite are real, and the domain data is synthetic - so the architecture is the claim here, not a production track record.",
     description: "Enterprise graph orchestration engine enabling multi-agent DAG execution with HITL approvals and exponential retries.",
     tech: ["FastAPI", "Python 3.12", "DAG Workflows", "HITL Approvals", "Exponential Backoff", "Helm", "Docker", "Pytest"],
     github: "https://github.com/asadullah48/graphai",
     metrics: [
-      { label: "DAG Integrity", value: "100%" },
-      { label: "Speedup", value: "2.4x" },
-      { label: "Tests", value: "12/12" },
+      { label: "Tests", value: "17" },
+      { label: "Data", value: "Synthetic" },
     ],
     featured: true,
   },
@@ -285,17 +344,18 @@ const PROJECTS_EN: Project[] = [
     id: "loopai",
     title: "LoopAI: Feedback-Driven Agents (Plan-Act-Verify Self-Correction)",
     status: "Enterprise Grade",
+    dataMode: "reference",
     tagline: "Autonomous Reflection, Evidentiary Assertion Auditing, Closed-Loop Replanning & Convergence",
     problem: "Single-pass linear agent execution produces ungrounded hallucinations, structural formatting omissions, and silent calculation errors with zero autonomous self-correction mechanisms.",
     solution: "A closed-loop agent framework featuring PlannerAgent (goal decomposition & formal verification assertions), ActorAgent (tool execution & candidate generation), and VerifierAgent (evidentiary auditing, confidence scoring V_score >= 0.90, and actionable critique feedback for iterative replanning).",
-    impact: "100% verification convergence, 0% groundless claims, average 2-iteration self-correction cycle, and 12/12 passing automated tests.",
+    impact:
+      "12 test functions defined in the suite, counted from source. This is a reference implementation: the agents, the state machine and the test suite are real, and the domain data is synthetic - so the architecture is the claim here, not a production track record.",
     description: "Plan-Act-Verify feedback loop framework enabling autonomous agents to self-correct and verify evidentiary correctness.",
     tech: ["FastAPI", "Python 3.12", "Feedback Loops", "Self-Correction", "Reflection", "Helm", "Docker", "Pytest"],
     github: "https://github.com/asadullah48/loopai",
     metrics: [
-      { label: "Convergence", value: "100%" },
-      { label: "Confidence", value: ">=0.90" },
-      { label: "Tests", value: "12/12" },
+      { label: "Tests", value: "12" },
+      { label: "Data", value: "Synthetic" },
     ],
     featured: true,
   },
@@ -311,26 +371,26 @@ const PROJECTS_EN: Project[] = [
     tech: ["LangGraph", "Python 3.13", "Pydantic", "FastAPI", "Docker", "GitHub Actions", "pytest"],
     github: "https://github.com/asadullah48/orchestratorx",
     metrics: [
-      { label: "Tests",      value: "41" },
-      { label: "Invariants", value: "6"  },
-      { label: "API Keys",   value: "0"  },
+      { label: "Tests", value: "39" },
+      { label: "API Keys", value: "0" },
     ],
   },
   {
     id: "harnessai",
     title: "HarnessAI: Safe Operating Environment for Autonomous Agents",
     status: "Enterprise Grade",
+    dataMode: "reference",
     tagline: "Deterministic Containment, Sandboxed Capability Broker, Memory Partitioning & Runaway Circuit Breakers",
     problem: "Autonomous AI agents executing tools and mutating shared context risk infinite recursive execution, context memory poisoning, unhandled timeouts, and dirty state mutations without rollback capabilities.",
     solution: "A harness-first safe runtime architecture featuring ToolManager (capability-scoped sandboxing and 3.0s timeout ceilings), MemoryAgent (partitioned working/episodic context storage with poison scrubbers), and ObserverAgent (real-time telemetry and automated runaway circuit breaker tripping).",
-    impact: "100% blast radius containment, automatic state rollbacks, 0 dirty memory states, and 15/15 passing automated tests.",
+    impact:
+      "15 test functions defined in the suite, counted from source. This is a reference implementation: the agents, the state machine and the test suite are real, and the domain data is synthetic - so the architecture is the claim here, not a production track record.",
     description: "Harness layer ensuring autonomous agents operate safely with sandboxed tools, partitioned memory, and deterministic telemetry.",
     tech: ["FastAPI", "Python 3.12", "Agent Harness", "Sandboxing", "Circuit Breaker", "Helm", "Docker", "Pytest"],
     github: "https://github.com/asadullah48/harnessai",
     metrics: [
-      { label: "Containment", value: "100%" },
-      { label: "Trip Latency", value: "<10ms" },
-      { label: "Tests", value: "15/15" },
+      { label: "Tests", value: "15" },
+      { label: "Data", value: "Synthetic" },
     ],
     featured: true,
   },
@@ -338,17 +398,18 @@ const PROJECTS_EN: Project[] = [
     id: "securebridge",
     title: "SecureBridge: Agent Security Layer for MCP/A2A Mesh",
     status: "Enterprise Grade",
+    dataMode: "reference",
     tagline: "Compliance-First Zero-Trust Interoperability, Tool Poisoning Defense & Data Loss Prevention (DLP)",
     problem: "Model Context Protocol (MCP) and Agent-to-Agent (A2A) meshes are vulnerable to tool poisoning, indirect prompt injection inside tool outputs, shadow shell execution, and unauthorized PII/API key exfiltration.",
     solution: "A zero-trust agent security layer featuring SecurityAgent (handshake authentication, mTLS validation, and token rate-limiting), DefenseAgent (AST deep packet inspection, prompt override blocking, and output sanitization), and ComplianceAgent (least-privilege RBAC, DLP data egress tokenization, and SHA-256 cryptographic audit ledger).",
-    impact: "100% tool poisoning interception rate, 0.42ms gateway latency, 45k+ tokenized confidential secrets, and 14/14 passing automated tests.",
+    impact:
+      "14 test functions defined in the suite, counted from source. This is a reference implementation: the agents, the state machine and the test suite are real, and the domain data is synthetic - so the architecture is the claim here, not a production track record.",
     description: "Compliance-first security layer for MCP and A2A interoperability defending against tool poisoning and malicious connections.",
     tech: ["FastAPI", "Python 3.12", "MCP Protocol", "Zero-Trust Security", "DLP Engine", "Helm", "Docker", "Pytest"],
     github: "https://github.com/asadullah48/securebridge",
     metrics: [
-      { label: "Attack Block Rate", value: "100%" },
-      { label: "Gateway Latency", value: "0.42ms" },
-      { label: "Tests", value: "14/14" },
+      { label: "Tests", value: "14" },
+      { label: "Data", value: "Synthetic" },
     ],
     featured: true,
   },
@@ -356,17 +417,18 @@ const PROJECTS_EN: Project[] = [
     id: "workforceai-academy",
     title: "WorkforceAI Academy: Enterprise AI-Human Teaming & Fluency Platform",
     status: "Enterprise Grade",
+    dataMode: "reference",
     tagline: "Interactive AI Enablement, Real-Time In-Workflow Co-Pilot Scaffolding & Collaboration Index Certifications",
     problem: "Enterprise AI adoption fails when employees treat advanced reasoning agents as generic search engines, succumb to hallucination blindness, and lack structured guidance when designing agentic tool schemas.",
     solution: "An enterprise enablement multi-agent suite featuring TrainerAgent (interactive multi-track AI fluency curriculum from Zero-Shot to Multi-Agent Choreography), MentorAgent (real-time in-flight co-pilot scaffolding and prompt refactoring), and AssessmentAgent (mathematical Collaboration Index scoring and verifiable SHA-256 certifications).",
-    impact: "88.5% workforce fluency rate, +3.4x task speedup delta, 94.2% evidentiary hallucination interception, and 12/12 passing automated tests.",
+    impact:
+      "12 test functions defined in the suite, counted from source. This is a reference implementation: the agents, the state machine and the test suite are real, and the domain data is synthetic - so the architecture is the claim here, not a production track record.",
     description: "Enterprise multi-agent framework that trains, mentors, and certifies employees in high-value AI collaboration, prompt engineering, and agentic orchestration.",
     tech: ["FastAPI", "Python 3.12", "Human-AI Teaming", "Collaboration Index", "Workflow Scaffolding", "Helm", "Docker", "Pytest"],
     github: "https://github.com/asadullah48/workforceai-academy",
     metrics: [
-      { label: "Fluency Rate", value: "88.5%" },
-      { label: "Speedup Delta", value: "+3.4x" },
-      { label: "Tests", value: "12/12" },
+      { label: "Tests", value: "12" },
+      { label: "Data", value: "Synthetic" },
     ],
     featured: true,
   },
@@ -374,17 +436,18 @@ const PROJECTS_EN: Project[] = [
     id: "conciergeagent",
     title: "ConciergeAgent: Hyperpersonalized Service AI Platform",
     status: "Enterprise Grade",
+    dataMode: "reference",
     tagline: "White-Glove Tier-Adapted Wealth Advisory, Instant Dispute Auto-Credits & Five-Star Hospitality AI",
     problem: "Generic conversational chatbots alienate high-net-worth and VIP clients in banking, insurance, and luxury retail with rigid scripts, ungrounded responses, and slow escalation during high-distress fraud and claims scenarios.",
     solution: "A luxury multi-agent concierge architecture featuring AdvisorAgent (tier-adapted asset allocation and tax-loss harvesting), SupportAgent (instant provisional dispute auto-credits up to $50k and fast-tracked VIP claims), and ExperienceAgent (real-time sentiment tracking, luxury gifting, and white-glove executive handover).",
-    impact: "4.98/5.00 predicted CSAT, 30-second guaranteed VIP SLA, zero-liability instant dispute protection, and 13/13 passing automated tests.",
+    impact:
+      "233 test functions defined in the suite, counted from source. This is a reference implementation: the agents, the state machine and the test suite are real, and the domain data is synthetic - so the architecture is the claim here, not a production track record.",
     description: "Customer-facing multi-agent framework delivering white-glove concierge-level personalization in banking, insurance, and luxury retail.",
     tech: ["FastAPI", "Python 3.12", "Hyperpersonalization", "Wealth Tier SLA", "Sentiment Modulation", "Helm", "Docker", "Pytest"],
     github: "https://github.com/asadullah48/conciergeagent",
     metrics: [
-      { label: "CSAT Score", value: "4.98 / 5.0" },
-      { label: "VIP SLA", value: "30s" },
-      { label: "Tests", value: "13/13" },
+      { label: "Tests", value: "233" },
+      { label: "Data", value: "Synthetic" },
     ],
     featured: true,
   },
@@ -392,17 +455,18 @@ const PROJECTS_EN: Project[] = [
     id: "contextx",
     title: "ContextX: Advanced Context Engineering Framework",
     status: "Enterprise Grade",
+    dataMode: "reference",
     tagline: "Beyond Prompt Engineering: Hybrid RRF, Lost-in-the-Middle Attention Windows & Grounded Synthesis",
     problem: "Standard prompt stuffing in enterprise RAG pipelines suffers from the 'Lost-in-the-Middle' effect (up to 60% attention degradation in mid-context tokens), severe context dilution, and ungrounded hallucinations lacking chunk-level attribution.",
     solution: "An enterprise context engineering framework featuring RetrieverAgent (dense vectors + BM25 keywords + exponential recency decay RRF), ContextBuilder (boundary-weighted Lost-in-the-Middle mitigation and mathematical token budget clamping), and DecisionAgent (synthesizing multi-hop decisions with explicit chunk citations).",
-    impact: "+34% retrieval precision lift, -42% token waste eliminated, 99.4% boundary attention recall, and 12/12 passing automated tests.",
+    impact:
+      "12 test functions defined in the suite, counted from source. This is a reference implementation: the agents, the state machine and the test suite are real, and the domain data is synthetic - so the architecture is the claim here, not a production track record.",
     description: "Advanced Context Engineering Framework optimizing agent retrieval, token allocation, boundary-weighted context windows, and cited multi-hop decision synthesis beyond basic prompt engineering.",
     tech: ["FastAPI", "Python 3.12", "RRF Hybrid Search", "Context Compression", "Lost-in-the-Middle Layout", "Helm", "Docker", "Pytest"],
     github: "https://github.com/asadullah48/contextx",
     metrics: [
-      { label: "Precision Lift", value: "+34%" },
-      { label: "Token Savings", value: "42%" },
-      { label: "Tests", value: "12/12" },
+      { label: "Tests", value: "12" },
+      { label: "Data", value: "Synthetic" },
     ],
     featured: true,
   },
@@ -418,9 +482,8 @@ const PROJECTS_EN: Project[] = [
     tech: ["FastAPI", "Python 3.12", "LangGraph", "State Machines", "SHA-256 Cryptography", "Circuit Breakers", "Helm", "Docker"],
     github: "https://github.com/asadullah48/guardrailai",
     metrics: [
-      { label: "Non-Determinism", value: "0.00%" },
+      { label: "Tests", value: "17" },
       { label: "Audit Ledger", value: "SHA-256" },
-      { label: "Tests", value: "17/17" },
     ],
     featured: true,
   },
@@ -428,17 +491,18 @@ const PROJECTS_EN: Project[] = [
     id: "domainx",
     title: "DomainX: Specialized Multi-Agent Framework",
     status: "Enterprise Grade",
+    dataMode: "reference",
     tagline: "Specialized Vertical Intelligence (Legal • Medical • Supply Chain) Outperforming Generalist LLMs",
     problem: "Generalist foundation models suffer from 14%+ hallucination rates and regulatory non-compliance in high-stakes legal, healthcare, and supply chain applications.",
     solution: "Specialized multi-agent architecture fusing deterministic rule engines, clinical ontologies (ICD-10-CM / CPT), HIPAA Safe Harbor 18 PHI scrubber, and mathematical Economic Order Quantity (EOQ) inventory optimization.",
-    impact: "99.4% legal precision with automated redlines, 99.2% clinical coding accuracy with 100% PHI redaction, 22% inventory holding cost reduction with Scope 1-3 ESG carbon tracking, and 16/16 passing automated tests.",
+    impact:
+      "24 test functions defined in the suite, counted from source. This is a reference implementation: the agents, the state machine and the test suite are real, and the domain data is synthetic - so the architecture is the claim here, not a production track record.",
     description: "High-precision vertical multi-agent framework outperforming generalist models across Legal, Medical, and Supply Chain domains.",
     tech: ["FastAPI", "Python 3.12", "HIPAA Safe Harbor", "ICD-10 / CPT", "EOQ Optimization", "Helm", "Docker", "Pytest"],
     github: "https://github.com/asadullah48/domainx",
     metrics: [
-      { label: "Legal Precision", value: "99.4%" },
-      { label: "Medical Accuracy", value: "99.2%" },
-      { label: "Tests", value: "16/16" },
+      { label: "Tests", value: "24" },
+      { label: "Data", value: "Synthetic" },
     ],
     featured: true,
   },
@@ -446,17 +510,18 @@ const PROJECTS_EN: Project[] = [
     id: "marketagenthub",
     title: "MarketAgentHub: Marketplace-Ready Multi-Agent Suite",
     status: "Enterprise Grade",
+    dataMode: "reference",
     tagline: "Multi-Cloud A2A & MCP Autonomous Agents for AWS, Azure, GCP & Salesforce",
     problem: "Deploying autonomous agentic AI across major cloud marketplaces (AWS Bedrock, Azure AI, GCP Vertex, Salesforce Agentforce) requires fragmented action schemas, custom metering, and unstandardized inter-agent protocols.",
     solution: "Marketplace-ready multi-agent framework featuring PortfolioAgent, ComplianceAgent, and ClientEngagementAgent with native OpenAPI action group adapters, SaaS token metering engine, and A2A inter-agent protocol.",
-    impact: "Universal multi-cloud packaging with 100% deterministic regulatory checks (SEC, FINRA, MiFID II). Interactive glassmorphic command center with 19/19 passing automated tests.",
+    impact:
+      "19 test functions defined in the suite, counted from source. This is a reference implementation: the agents, the state machine and the test suite are real, and the domain data is synthetic - so the architecture is the claim here, not a production track record.",
     description: "Production-ready autonomous agent suite designed for deployment in AWS, Microsoft Azure, Google Cloud, and Salesforce marketplaces.",
-    tech: ["FastAPI", "Python 3.12", "A2A Protocol", "AWS Bedrock", "Azure AI", "GCP Vertex", "Salesforce Agentforce", "Docker"],
+    tech: ["FastAPI", "Python 3.12", "A2A Protocol", "Marketplace Adapters", "Docker"],
     github: "https://github.com/asadullah48/marketagenthub",
     metrics: [
-      { label: "Cloud Giants", value: "4 Clouds" },
-      { label: "Deterministic SLA", value: "100%" },
-      { label: "Tests", value: "19/19" },
+      { label: "Tests", value: "19" },
+      { label: "Data", value: "Synthetic" },
     ],
     featured: true,
   },
@@ -464,17 +529,18 @@ const PROJECTS_EN: Project[] = [
     id: "workforceai",
     title: "WorkforceAI: Agent-as-a-Worker Automation Platform",
     status: "Enterprise Grade",
+    dataMode: "reference",
     tagline: "Scalable Agent Workforce Automation with Outcome-Based Pricing & Supervisor Governance",
     problem: "Traditional RPA and generalist LLMs charge per-token without accountability for task completion, leading to unpredictable SaaS costs and zero SLA guarantees.",
     solution: "Outcome-based agent workforce platform with TaskRunner workers, BillingAgent tracking per-task completion rates and SLA penalty discounts, and SupervisorAgent dynamically balancing workforce bottlenecks.",
-    impact: "98%+ SLA completion rate with automated penalty credits, cryptographic Proof-of-Work task signatures, interactive ROI calculator against $75k human FTEs, and 15/15 passing tests.",
+    impact:
+      "15 test functions defined in the suite, counted from source. This is a reference implementation: the agents, the state machine and the test suite are real, and the domain data is synthetic - so the architecture is the claim here, not a production track record.",
     description: "Enterprise agent workforce orchestration platform with outcome-based pricing models based on task completion rates.",
     tech: ["FastAPI", "Python 3.12", "Supervisor Governance", "Outcome Pricing", "Async Worker Pools", "Docker", "Pytest"],
     github: "https://github.com/asadullah48/workforceai",
     metrics: [
-      { label: "Task SLA", value: "98%+" },
-      { label: "FTE Savings", value: "85%" },
-      { label: "Tests", value: "15/15" },
+      { label: "Tests", value: "15" },
+      { label: "Data", value: "Synthetic" },
     ],
     featured: true,
   },
@@ -491,9 +557,8 @@ const PROJECTS_EN: Project[] = [
     github: "https://github.com/asadullah48/protobridge",
     demo: "https://asadullah48.github.io/protobridge/",
     metrics: [
-      { label: "Protocols", value: "MCP + A2A" },
-      { label: "Tests",     value: "41"        },
-      { label: "API Keys",  value: "0"         },
+      { label: "Tests", value: "61" },
+      { label: "API Keys", value: "0" },
     ],
   },
   {
@@ -577,10 +642,11 @@ const PROJECTS_EN: Project[] = [
     tagline: "Open-source developer community hub",
     problem: "Pakistani developers lack a local, context-aware Q&A platform. Most alternatives are too generic and not community-driven.",
     solution: "Open-source community platform with threaded Q&A, blogs, project collaboration, and AI-powered answer suggestions. Built with Next.js 15 App Router and shadcn/ui.",
-    impact: "Live with Code + Demo. Modular codebase with 85% reuse for future community products.",
+    impact:
+      "Live, with source and a running deployment. This site is that codebase: the Agents SDK orchestrator, the MCP server and the constitution all ship from this repository.",
     description: "Open-source developer community platform with Q&A, blogs, and collaboration features.",
     tech: ["Next.js 15", "TypeScript", "Tailwind CSS", "shadcn/ui", "PostgreSQL"],
-    github: "https://github.com/asadullah48",
+    github: "https://github.com/asadullah48/asadullahshafique_devunity",
     demo:   "https://asadullahshafique-devunity.vercel.app",
     image:  "/images/devunity-preview.svg",
     metrics: [
@@ -639,17 +705,18 @@ const PROJECTS_AR: Project[] = [
     id: "stockai",
     title: "منصة StockAI: وكيل أتمتة المخزون وسلاسل الإمداد",
     status: "Enterprise Grade",
+    dataMode: "reference",
     tagline: "مراقبة مستويات المخزون، والتنبؤ بالطلب المستقبلي، وصياغة أوامر الشراء للموردين تلقائياً",
     problem: "تخسر الشركات الصغيرة والمتوسطة مليارات الدولارات سنوياً نتيجة نفاد المخزون وتكاليف التخزين الفائض وإجراءات إعادة الطلب اليدوية البطيئة.",
     solution: "إطار عمل ذكي متعدد الوكلاء يضم MonitorAgent (مراقبة سرعة سحب المنتجات ونقاط ROP)، و ForecastAgent (التنبؤ بالطلب لـ 30 يوماً مع معاملات النمو الموسمي)، و OrderAgent (توليد أوامر الشراء ورسائل البريد الموجهة للموردين آلياً).",
-    impact: "منع نفاد المخزون بنسبة 99.4%، دقة تنبؤ 96.4%، صياغة فورية لأمر الشراء في أقل من 10 مللي ثانية، مع اجتياز 8/8 اختبارات آلياً.",
+    impact:
+      "تُعرّف 11 دالة اختبار في المجموعة، محسوبة من الشيفرة المصدرية. هذا تنفيذ مرجعي: الوكلاء وآلة الحالة ومجموعة الاختبارات حقيقية، والبيانات تمثيلية، فالبنية هي الادعاء هنا لا سجل تشغيل إنتاجي.",
     description: "إطار عمل رائد متعدد الوكلاء لمراقبة مستويات المخزون والتنبؤ بالطلب المستقبلي وصياغة أوامر الشراء ورسائل الموردين تلقائياً لرفع كفاءة الشركات.",
     tech: ["FastAPI", "Python 3.12", "Demand Forecasting", "Supply Chain ROP", "PO Automation", "Docker", "Helm", "Pytest"],
     github: "https://github.com/asadullah48/stockai",
     metrics: [
-      { label: "توافر المخزون", value: "99.4%" },
-      { label: "دقة التنبؤ", value: "96.4%" },
-      { label: "الاختبارات", value: "8/8" },
+      { label: "اختبارات", value: "11" },
+      { label: "البيانات", value: "تمثيلية" },
     ],
     featured: true,
     isNew: true,
@@ -658,17 +725,18 @@ const PROJECTS_AR: Project[] = [
     id: "feedbackx",
     title: "منصة FeedbackX: وكيل استخبارات السوق وتحليل آراء العملاء",
     status: "Enterprise Grade",
+    dataMode: "reference",
     tagline: "تحليل آلاف التقييمات عبر المتاجر، ونمذجة المشاعر الدقيقة، وخارطة طريق وفق نموذج RICE",
     problem: "تتشتت فرق المنتجات في قراءة آلاف التقييمات غير المنظمة عبر المتاجر ومنصات G2 و Reddit، مما يحجب أسباب تراجع العملاء والمزايا المطلوبة.",
-    solution: "إطار عمل ذكي متعدد الوكلاء يضم ScraperAgent (جمع التقييمات وتنقية الضوضاء عبر 5 منصات)، و AnalyzerAgent (التحليل الدقيق للمشاعر حسب المزايا وتحديد مخاطر التراجع)، و InsightAgent (أولويات نموذج RICE وصياغة خارطة طريق المنتجات التنفيذية).",
-    impact: "تحليل 1,500+ تقييم، تحديد أكبر سبب للتراجع بنسبة 88.5%، خفض متوقع للتراجع بنسبة 22.7%، مع اجتياز 9/9 اختبارات آلياً.",
+    solution: "إطار عمل ذكي متعدد الوكلاء يضم ScraperAgent (توليد مجموعة تقييمات تمثيلية متعددة القنوات وتنقيتها من التكرار — والمنصات المذكورة أعلاه هي المجال المستهدف، لا عملية جمع حية)، و AnalyzerAgent (التحليل الدقيق للمشاعر حسب المزايا وتحديد مخاطر التراجع)، و InsightAgent (أولويات نموذج RICE وصياغة خارطة طريق المنتجات التنفيذية).",
+    impact:
+      "تُعرّف 13 دالة اختبار في المجموعة، محسوبة من الشيفرة المصدرية. هذا تنفيذ مرجعي: الوكلاء وآلة الحالة ومجموعة الاختبارات حقيقية، والبيانات تمثيلية، فالبنية هي الادعاء هنا لا سجل تشغيل إنتاجي.",
     description: "إطار عمل رائد متعدد الوكلاء لجمع وتحليل آلاف التقييمات واكتشاف المزايا الناقصة وصياغة خارطة طريق المنتجات وفق نموذج RICE.",
     tech: ["FastAPI", "Python 3.12", "ABSA Sentiment", "Review Scraper", "RICE Matrix", "Docker", "Helm", "Pytest"],
     github: "https://github.com/asadullah48/feedbackx",
     metrics: [
-      { label: "التقييمات المجمعة", value: "1,500+" },
-      { label: "أعلى درجة RICE", value: "94.5" },
-      { label: "الاختبارات", value: "9/9" },
+      { label: "اختبارات", value: "13" },
+      { label: "البيانات", value: "تمثيلية" },
     ],
     featured: true,
     isNew: true,
@@ -677,17 +745,19 @@ const PROJECTS_AR: Project[] = [
     id: "actionnews",
     title: "منصة ActionNews: وكيل النشرة المالية والذكاء الاستثماري",
     status: "Enterprise Grade",
-    tagline: "تجميع 100+ مصدر مالي، ونمذجة معنويات FinBERT، وتوصيات استثمارية يومية دقيقة",
+    dataMode: "reference",
+    tagline: "تجميع تمثيلي متعدد المصادر، وتقييم معنويات حتمي، ونشرة استثمارية مركّبة",
     problem: "يواجه المستثمرون تشتتاً معرفياً هائلاً من آلاف العناوين المالية اليومية وإفصاحات الهيئات التنظيمية دون وجود تلخيص استثماري فوري.",
-    solution: "إطار عمل ذكي متعدد الوكلاء يضم AggregatorAgent (جمع وتصنيف أكثر من 100 تدفق إخباري وإفصاح مالي)، و AnalyzerAgent (تحليل معنويات الأسواق FinBERT وتقييم مخاطر الأصول المتقاطعة)، و AdvisorAgent (صياغة توصيات تداول تكتيكية وتحديد توزيع الأصول وإنتاج النشرة التنفيذية).",
-    impact: "تلخيص 100+ مصدر مالي، أعلى نسبة ثقة استثمارية 94.5%، سرعة توليد فائقة أقل من 15 مللي ثانية، مع اجتياز 12/12 اختباراً آلياً.",
+    solution:
+      "خط أنابيب من ثلاثة وكلاء: يجمّع AggregatorAgent تدفقاً تمثيلياً متعدد المصادر (تحاكي تسمياتُ المصادر Bloomberg وReuters وSEC EDGAR ونشرات FOMC، دون أي تكامل مع مزوّد أو ترخيص بيانات سوق)، ويقيّم AnalyzerAgent المعنويات وتقلّب الأصول المتقاطعة بكود Python حتمي، ويؤلّف AdvisorAgent النشرة المرتّبة. المعروض هنا هو بنية الوكلاء وخط التقييم، لا تدفق بيانات سوق.",
+    impact:
+      "تُعرّف 12 دالة اختبار في المجموعة، محسوبة من الشيفرة المصدرية. هذا تنفيذ مرجعي: الوكلاء وآلة الحالة ومجموعة الاختبارات حقيقية، والبيانات تمثيلية، فالبنية هي الادعاء هنا لا سجل تشغيل إنتاجي.",
     description: "إطار عمل رائد متعدد الوكلاء لجمع وتحليل أكثر من 100 مصدر إخباري مالي وصياغة توصيات استثمارية ونشرات تنفيذية يومية دقيقة.",
-    tech: ["FastAPI", "Python 3.12", "FinBERT", "Multi-Feed Aggregator", "Cross-Asset Sentiment", "Docker", "Helm", "Pytest"],
+    tech: ["FastAPI", "Python 3.12", "Sentiment Scoring", "Multi-Feed Aggregator", "Cross-Asset Sentiment", "Docker", "Helm", "Pytest"],
     github: "https://github.com/asadullah48/actionnews",
     metrics: [
-      { label: "المصادر المجمعة", value: "100+" },
-      { label: "أعلى ثقة", value: "94.5%" },
-      { label: "الاختبارات", value: "12/12" },
+      { label: "اختبارات", value: "12" },
+      { label: "البيانات", value: "تمثيلية" },
     ],
     featured: true,
     isNew: true,
@@ -696,17 +766,18 @@ const PROJECTS_AR: Project[] = [
     id: "legacyx",
     title: "منصة LegacyX: وكيل التحديث البرمجي وتحويل الأنظمة القديمة",
     status: "Enterprise Grade",
-    tagline: "تحليل شجرة AST، وضمان دقة الحسابات المالية، وترجمة برمجية بتطابق دلالي 100%",
+    dataMode: "reference",
+    tagline: "تحليل شجرة AST، وضمان دقة الحسابات المالية، وفحص التطابق الدلالي",
     problem: "تشغل المؤسسات العالمية أكثر من 220 مليار سطر برمجي من أنظمة COBOL و Java القديمة حيث تستغرق إعادة الكتابة اليدوية سنوات وتفشل في أغلب الأحيان لغياب التوثيق.",
-    solution: "إطار عمل ذكي متعدد الوكلاء لتحديث الأنظمة الموروثة يضم ParserAgent (تفكيك كود COBOL وأقسام البيانات إلى مخطط وسيط IR)، و TranslatorAgent (ترجمة الكود إلى Python 3.12 و TypeScript بدقة Decimal تامة)، و VerifierAgent (التدقيق الآلي للشروط الحدية واعتماد التطابق السلوكي بنسبة 100%).",
-    impact: "تطابق دلالي بنسبة 100%، انعدام أخطاء التقريب الحسابي، سرعة تحويل فائقة أقل من 25 مللي ثانية، مع اجتياز 11/11 اختباراً آلياً.",
-    description: "إطار عمل رائد متعدد الوكلاء لتحويل أنظمة COBOL و Java القديمة إلى لغات حديثة مثل TypeScript و Python 3.12 مع ضمان التطابق الدلالي والرياضي التام.",
+    solution: "إطار عمل ذكي متعدد الوكلاء لتحديث الأنظمة الموروثة يضم ParserAgent (تفكيك كود COBOL وأقسام البيانات إلى مخطط وسيط IR)، و TranslatorAgent (ترجمة الكود إلى Python 3.12 و TypeScript بدقة Decimal تامة)، و VerifierAgent (التدقيق الآلي للشروط الحدية وفحص التطابق السلوكي).",
+    impact:
+      "تُعرّف 18 دالة اختبار في المجموعة، محسوبة من الشيفرة المصدرية. هذا تنفيذ مرجعي: الوكلاء وآلة الحالة ومجموعة الاختبارات حقيقية، والبيانات تمثيلية، فالبنية هي الادعاء هنا لا سجل تشغيل إنتاجي.",
+    description: "إطار عمل رائد متعدد الوكلاء لتحويل أنظمة COBOL و Java القديمة إلى لغات حديثة مثل TypeScript و Python 3.12 مع فحص التطابق الدلالي والرياضي بدل افتراضه.",
     tech: ["FastAPI", "Python 3.12", "AST Parser", "TypeScript", "Pydantic", "Zod", "Docker", "Helm", "Pytest"],
     github: "https://github.com/asadullah48/legacyx",
     metrics: [
-      { label: "التطابق الدلالي", value: "100.0%" },
-      { label: "أخطاء الحساب", value: "0.0%" },
-      { label: "الاختبارات", value: "11/11" },
+      { label: "اختبارات", value: "18" },
+      { label: "البيانات", value: "تمثيلية" },
     ],
     featured: true,
   },
@@ -717,7 +788,7 @@ const PROJECTS_AR: Project[] = [
     tagline: "صفر اعتماديات تشغيل، عن قصد لا عن مصادفة",
     problem: "تستورد معظم أمثلة «المعمارية النظيفة» إطار ويب ومخطّط ORM من السطر الأول، فتغدو المعمارية غير قابلة للاختبار منفردة ويغدو الادّعاء غير قابل للدحض. والسؤال الجدير بالطرح هو: هل تصمد الطبقات فعلًا حين لا يسندها شيء خارجي؟",
     solution: "أربع طبقات باتجاه اعتماد واحد: كيانات مجال تتحقّق من نفسها، وواجهة مستودع مجرّدة، وتنفيذ في الذاكرة خلفها، وطبقة خدمة تحمل قواعد العمل. وواجهة سطر الأوامر مجرّد مُهايئ رفيع يُحقَن عند جذر التركيب. ولأنّ التخزين واجهة لا استدعاء قاعدة بيانات، يعمل التطبيق كلّه على المكتبة القياسية وحدها، فقائمة الاعتماديات فارغة، وهذا هو البرهان لا الدعاية.",
-    impact: "ينجح 50 اختبارًا دون أيّ اعتمادية تشغيل خارجية. وقد كشفت مراجعته عن خللين حقيقيّين كانت مجموعة الاختبارات ترسب بسببهما فعلًا: كانت المهمّة المستحقّة «اليوم» تُرفَض، لأنّ التواريخ تُحلَّل إلى منتصف الليل ثم تُقارَن بالوقت الحالي، فيصير «اليوم» ماضيًا في كل لحظة عدا منتصف الليل نفسه، بينما تقول رسالة الخطأ إنّ الحاضر مسموح. والثاني أنّ التحديث كان يحلّل تاريخ الاستحقاق ولا يتحقّق منه، فتُتخطّى بصمت القاعدة المفروضة عند الإنشاء. وقد أُصلح الخللان ويتشاركان دالة تحقّق واحدة، وتثبّتهما اختبارات انحدار محسوبة نسبةً إلى الوقت الحالي فلا تتقادم كما يتقادم تاريخ ثابت.",
+    impact: "تُعرّف 50 اختبارًا دون أيّ اعتمادية تشغيل خارجية. وقد كشفت مراجعته عن خللين حقيقيّين كانت مجموعة الاختبارات ترسب بسببهما فعلًا: كانت المهمّة المستحقّة «اليوم» تُرفَض، لأنّ التواريخ تُحلَّل إلى منتصف الليل ثم تُقارَن بالوقت الحالي، فيصير «اليوم» ماضيًا في كل لحظة عدا منتصف الليل نفسه، بينما تقول رسالة الخطأ إنّ الحاضر مسموح. والثاني أنّ التحديث كان يحلّل تاريخ الاستحقاق ولا يتحقّق منه، فتُتخطّى بصمت القاعدة المفروضة عند الإنشاء. وقد أُصلح الخللان ويتشاركان دالة تحقّق واحدة، وتثبّتهما اختبارات انحدار محسوبة نسبةً إلى الوقت الحالي فلا تتقادم كما يتقادم تاريخ ثابت.",
     description: "تطبيق مهامّ على سطر الأوامر بُني ليثبت أنّ المعمارية النظيفة تصمد دون إطار عمل: نمط المستودع، وطبقة خدمة، وحقن اعتماديات، وقائمة اعتماديات فارغة.",
     tech: ["Python 3.10+", "Clean Architecture", "Repository Pattern", "Dependency Injection", "pytest", "dataclasses"],
     github: "https://github.com/asadullah48/phase-1-console-todo",
@@ -731,17 +802,18 @@ const PROJECTS_AR: Project[] = [
     id: "synthdata",
     title: "منصة SynthData: مولد البيانات الاصطناعية الموجه لحماية الخصوصية",
     status: "Enterprise Grade",
+    dataMode: "reference",
     tagline: "ضوضاء الخصوصية التفاضلية (Laplace)، واستبعاد كامل للهويات (Zero-PII)، وبيئة اختبار معتمدة لـ GDPR و HIPAA",
     problem: "استخدام بيانات العملاء الحقيقية في بيئات الاختبار وتدريب الذكاء الاصطناعي يعرض الشركات لغرامات تنظيمية باهظة ومخاطر تسريب البيانات الحساسة.",
     solution: "إطار عمل ذكي متعدد الوكلاء لإنتاج البيانات الاصطناعية يضم GeneratorAgent (توليد سجلات واقعية بضوضاء لابلاس التفاضلية)، و ValidatorAgent (التحقق من دقة الترابط الإحصائي r >= 0.90)، و ComplianceAgent (الفحص العميق لمنع تسريب الهويات واعتماد معايير GDPR و HIPAA).",
-    impact: "ضمان خصوصية تفاضلية إبسيلون <= 0.50، نسبة تسريب هويات 0.0%، الحفاظ على مصفوفة الترابط بنسبة 94.0%، مع اجتياز 10/10 اختبارات آلياً.",
+    impact:
+      "تُعرّف 10 دالة اختبار في المجموعة، محسوبة من الشيفرة المصدرية. هذا تنفيذ مرجعي: الوكلاء وآلة الحالة ومجموعة الاختبارات حقيقية، والبيانات تمثيلية، فالبنية هي الادعاء هنا لا سجل تشغيل إنتاجي.",
     description: "إطار عمل رائد متعدد الوكلاء لتوليد مجموعات بيانات اصطناعية عالية الدقة الإحصائية مع ضمانات الخصوصية التفاضلية الرياضية وخلوها التام من البيانات الشخصية.",
     tech: ["FastAPI", "Python 3.12", "Differential Privacy", "Laplace Noise", "PII Scrubber", "Helm", "Docker", "Pytest"],
     github: "https://github.com/asadullah48/synthdata",
     metrics: [
-      { label: "ميزانية DP", value: "ε <= 0.5" },
-      { label: "تسريب PII", value: "0.0%" },
-      { label: "الاختبارات", value: "10/10" },
+      { label: "اختبارات", value: "10" },
+      { label: "البيانات", value: "تمثيلية" },
     ],
     featured: true,
   },
@@ -749,17 +821,18 @@ const PROJECTS_AR: Project[] = [
     id: "accessai",
     title: "منصة AccessAI: وكيل الوصف الصوتي الفوري وإتاحة الوصول الرقمي الشامل",
     status: "Enterprise Grade",
+    dataMode: "reference",
     tagline: "معالجة فورية للبث المرئي المباشر، وتوليد نطق SSML خالٍ من التداخل، واعتماد معايير WCAG 2.2 AAA",
     problem: "يظل البث المرئي والمؤتمرات الحية غير متاح للمستخدمين ضعاف البصر، بينما يستغرق إعداد الأوصاف الصوتية يدوياً أياماً عديدة.",
     solution: "إطار عمل ذكي متعدد الوكلاء لإتاحة الوصول يضم StreamAgent (رصد العناصر المرئية وفترات الصمت بين الحوارات)، و NarratorAgent (صياغة الوصف الصوتي بتوقيت مثالي)، و ComplianceAgent (التدقيق الصارم لمعايير WCAG 2.2 AAA و Section 508 مع منع تداخل الأصوات تماماً).",
-    impact: "زمن استجابة أقل من 120 مللي ثانية، نسبة تصادم الحوار 0.0%، تباين النصوص بنسبة 8.4:1، مع اجتياز 11/11 اختباراً آلياً.",
+    impact:
+      "تُعرّف 113 دالة اختبار في المجموعة، محسوبة من الشيفرة المصدرية. هذا تنفيذ مرجعي: الوكلاء وآلة الحالة ومجموعة الاختبارات حقيقية، والبيانات تمثيلية، فالبنية هي الادعاء هنا لا سجل تشغيل إنتاجي.",
     description: "إطار عمل متعدد الوكلاء للذكاء الاصطناعي المساعد يقوم بتوليد أوصاف صوتية فورية وتلخيص المشاهد المرئية للمستخدمين ضعاف وفاقدي البصر وفق معايير WCAG 2.2 AAA.",
-    tech: ["FastAPI", "Python 3.12", "Multimodal AI", "SSML Synthesis", "WCAG 2.2 AAA", "Helm", "Docker", "Pytest"],
+    tech: ["FastAPI", "Python 3.12", "Description Pipeline", "SSML Synthesis", "WCAG 2.2 AAA", "Helm", "Docker", "Pytest"],
     github: "https://github.com/asadullah48/accessai",
     metrics: [
-      { label: "زمن الاستجابة", value: "<120ms" },
-      { label: "معيار WCAG", value: "2.2 AAA" },
-      { label: "الاختبارات", value: "11/11" },
+      { label: "اختبارات", value: "113" },
+      { label: "البيانات", value: "تمثيلية" },
     ],
     featured: true,
   },
@@ -767,17 +840,18 @@ const PROJECTS_AR: Project[] = [
     id: "collabx",
     title: "منصة CollabX: فريق التحرير متعدد الوكلاء لإنتاج النشرات والتقارير الإخبارية",
     status: "Enterprise Grade",
+    dataMode: "reference",
     tagline: "مخطط سير عمل تحريري منسق، واستكشاف ذكي للأدلة، وصياغة روائية مقنعة، وتدقيق سهولة القراءة (Flesch-Kincaid)",
     problem: "تنتج النماذج التقليدية محتوى غير مميز تملؤه الهلوسات الإحصائية والنبرة غير المتناسقة، بينما يستغرق إعداد النشرات المؤسسية يدوياً أياماً عديدة.",
     solution: "فريق تحريري ذكي منسق يضم ResearcherAgent (استكشاف الإحصائيات والاقتباسات التنفيذية الموثقة)، و WriterAgent (صياغة السرد الروائي والعناوين الجذابة)، و EditorAgent (تقييم سهولة القراءة Flesch-Kincaid >= 80 وتدقيق الحقائق وتصدير كود Markdown و HTML).",
-    impact: "تسريع وتيرة النشر بمعدل 3.4 ضعف، مؤشر سهولة قراءة 88.5/100، دقة توثيق الاقتباسات بنسبة 100%، مع اجتياز 10/10 اختبارات آلياً.",
+    impact:
+      "تُعرّف 122 دالة اختبار في المجموعة، محسوبة من الشيفرة المصدرية. هذا تنفيذ مرجعي: الوكلاء وآلة الحالة ومجموعة الاختبارات حقيقية، والبيانات تمثيلية، فالبنية هي الادعاء هنا لا سجل تشغيل إنتاجي.",
     description: "إطار عمل رائد ينظم فريقاً من الوكلاء المتخصصين (الباحث، الكاتب، المحرر) في مخطط سير عمل تعاوني لإنتاج نشرات إخبارية وتقارير استراتيجية جاهزة للنشر فورياً.",
     tech: ["FastAPI", "Python 3.12", "LangGraph Patterns", "Multi-Agent Teams", "Editorial Automation", "Helm", "Docker", "Pytest"],
     github: "https://github.com/asadullah48/collabx",
     metrics: [
-      { label: "سرعة النشر", value: "3.4x" },
-      { label: "سهولة القراءة", value: "88.5" },
-      { label: "الاختبارات", value: "10/10" },
+      { label: "اختبارات", value: "122" },
+      { label: "البيانات", value: "تمثيلية" },
     ],
     featured: true,
   },
@@ -785,17 +859,18 @@ const PROJECTS_AR: Project[] = [
     id: "docucode",
     title: "منصة DocuCode: وكيل التوثيق البرمجي التلقائي وتحديث المستندات فورياً",
     status: "Enterprise Grade",
+    dataMode: "reference",
     tagline: "مراقبة شجرة الإعراب (AST) فورياً، وتوليد التوثيق القياسي (Docstrings)، وتدقيق مطابقة الأنواع، وتحديث مستندات README",
     problem: "يتطور الكود البرمجي بسرعة بينما يتخلف التوثيق، مما يؤدي إلى فجوات في توقيع الدوال، وجداول API معطلة، وإهدار الوقت في فهم المعاملات غير الموثقة.",
     solution: "إطار عمل مدمج لبيئات التطوير بنموذج (Watch-Doc-Review) يضم WatcherAgent (فحص فروقات شجرة AST واحتساب فجوة التوثيق)، و DocAgent (صياغة التوثيق البرمجي القياسي وتحديث جداول README)، و ReviewerAgent (التحقق من صحة التوثيق ومطابقته للأنواع البرمجية).",
-    impact: "دقة مطابقة AST بنسبة 98.5%، تغطية المعاملات بنسبة 100%، سرعة المزامنة في أقل من 4 مللي ثانية، مع اجتياز 11/11 اختباراً آلياً.",
+    impact:
+      "تُعرّف 23 دالة اختبار في المجموعة، محسوبة من الشيفرة المصدرية. هذا تنفيذ مرجعي: الوكلاء وآلة الحالة ومجموعة الاختبارات حقيقية، والبيانات تمثيلية، فالبنية هي الادعاء هنا لا سجل تشغيل إنتاجي.",
     description: "إطار عمل مدمج في بيئة التطوير (IDE) يقوم بتحديث التوثيق البرمجي ومستندات README تلقائياً بالتزامن مع كتابة المطورين للكود.",
     tech: ["FastAPI", "Python 3.12", "AST Diffing", "Docstring Generator", "Developer Tools", "Helm", "Docker", "Pytest"],
     github: "https://github.com/asadullah48/docucode",
     metrics: [
-      { label: "مطابقة AST", value: "98.5%" },
-      { label: "التغطية", value: "100%" },
-      { label: "الاختبارات", value: "11/11" },
+      { label: "اختبارات", value: "23" },
+      { label: "البيانات", value: "تمثيلية" },
     ],
     featured: true,
   },
@@ -803,17 +878,18 @@ const PROJECTS_AR: Project[] = [
     id: "privatebrain",
     title: "منصة PrivateBrain: وكيل الذاكرة المالية المحلية المحمية والمعزولة تماماً عن السحابة",
     status: "Enterprise Grade",
+    dataMode: "reference",
     tagline: "تنفيذ محلي معزول شبكياً 100%، وخزينة ذاكرة مشفرة بتشفير AES-256، وحجب البيانات الحساسة، وانعدام الاتصال السحابي",
     problem: "إرسال البيانات المالية السرية والإقرارات الضريبية والحسابات البنكية (IBAN/SSN) إلى السحابة ينتهك السرية المصرفية ويعرض الثروات لمخاطر التسريب.",
     solution: "إطار عمل محلي للذاكرة المالية يضم IndexerAgent (فهرسة المستندات محلياً في أقسام مشفرة)، و MemoryAgent (استرجاع دلالي فائق السرعة مع تنظيف الذاكرة المؤقتة)، و PrivacyAgent (جدار حماية شبكي لمنع التسريب وحجب البيانات الحساسة).",
-    impact: "عزل شبكي محلي بنسبة 100%، انعدام تام لتسريب البيانات للسحابة (0 بايت)، سرعة استرجاع في أقل من 3 مللي ثانية، مع اجتياز 14/14 اختباراً آلياً.",
+    impact:
+      "تُعرّف 14 دالة اختبار في المجموعة، محسوبة من الشيفرة المصدرية. هذا تنفيذ مرجعي: الوكلاء وآلة الحالة ومجموعة الاختبارات حقيقية، والبيانات تمثيلية، فالبنية هي الادعاء هنا لا سجل تشغيل إنتاجي.",
     description: "إطار عمل رائد للأجهزة المحلية يقوم بفهرسة رسائل البريد الإلكتروني والمذكرات المالية والإقرارات الضريبية مع فرض العزل الشبكي التام والتشفير المحلي AES-256.",
-    tech: ["FastAPI", "Python 3.12", "Local LLMs", "Air-Gapped Security", "AES-256 Vault", "Helm", "Docker", "Pytest"],
+    tech: ["FastAPI", "Python 3.12", "Local-Only Design", "Air-Gapped Security", "Vault Abstraction", "Helm", "Docker", "Pytest"],
     github: "https://github.com/asadullah48/privatebrain",
     metrics: [
-      { label: "العزل الشبكي", value: "100%" },
-      { label: "التسريب السحابي", value: "0 Bytes" },
-      { label: "الاختبارات", value: "14/14" },
+      { label: "اختبارات", value: "14" },
+      { label: "البيانات", value: "تمثيلية" },
     ],
     featured: true,
   },
@@ -821,17 +897,18 @@ const PROJECTS_AR: Project[] = [
     id: "researchx",
     title: "منصة ResearchX: وكيل المحلل المستقل لمعلومات السوق وأبحاث الاستثمار",
     status: "Enterprise Grade",
+    dataMode: "reference",
     tagline: "تثليث ومطابقة البيانات متعددة المصادر، واستخراج إفصاحات SEC، وتدقيق التباين، وصياغة تقارير SWOT",
     problem: "يستنزف المحللون الماليون 80% من وقتهم في مطابقة الأرقام المتضاربة عبر الإفصاحات، بينما تنتج النماذج التقليدية هلوسات إحصائية تفتقر للمراجع الموثوقة.",
     solution: "إطار عمل للمحلل المستقل بنموذج (Plan-Act-Verify) يضم SearchAgent (استخراج إفصاحات 10-K وبيانات السوق)، و VerifyAgent (تثليث البيانات ومطابقتها واحتساب التباين)، و ReportAgent (صياغة التقارير المؤسسية الشاملة ومصفوفة SWOT مع التوثيق المرجعي).",
-    impact: "دقة توافق إحصائي بنسبة 98%، انعدام الإحصائيات غير الموثقة، سرعة بناء التقرير في أقل من 50 مللي ثانية، مع اجتياز 10/10 اختبارات آلياً.",
+    impact:
+      "تُعرّف 10 دالة اختبار في المجموعة، محسوبة من الشيفرة المصدرية. هذا تنفيذ مرجعي: الوكلاء وآلة الحالة ومجموعة الاختبارات حقيقية، والبيانات تمثيلية، فالبنية هي الادعاء هنا لا سجل تشغيل إنتاجي.",
     description: "إطار عمل رائد يمكّن الوكلاء الأذكياء من البحث الذاتي والتدقيق المتقاطع للأدلة بين مصادر متعددة لإعداد تقارير مؤسسية موثوقة بالكامل.",
     tech: ["FastAPI", "Python 3.12", "Market Intelligence", "Evidence Triangulation", "Equity Research", "Helm", "Docker", "Pytest"],
     github: "https://github.com/asadullah48/researchx",
     metrics: [
-      { label: "التوافق", value: "98%" },
-      { label: "التوثيق", value: "100%" },
-      { label: "الاختبارات", value: "10/10" },
+      { label: "اختبارات", value: "10" },
+      { label: "البيانات", value: "تمثيلية" },
     ],
     featured: true,
   },
@@ -839,17 +916,18 @@ const PROJECTS_AR: Project[] = [
     id: "graphai",
     title: "منصة GraphAI: إدارة وتنسيق تدفقات العمل الموجهة (DAGs) والتحكم المؤسسي",
     status: "Enterprise Grade",
+    dataMode: "reference",
     tagline: "جدولة المخططات الموجهة، والتنفيذ المتوازي، وبوابات الموافقة البشرية، وإعادة المحاولة التلقائية",
     problem: "تؤدي التدفقات الخطية غير المنظمة إلى تعارضات في الاعتماديات، وانعدام الرقابة البشرية على القرارات الحساسة، وفشل العمليات عند حدوث أخطاء شبكية عابرة.",
     solution: "إطار عمل لإدارة المخططات الموجهة (DAGs) يضم WorkflowAgent (الترتيب الطوبولوجي والتفرع المتوازي والدمج)، و ApprovalAgent (تقييم المخاطر وتوثيق التوقيعات الرقمية)، و RetryAgent (التراجع الأسي التلقائي مع التشتت العشوائي والتعافي الذاتي).",
-    impact: "سلامة المخططات الموجهة بنسبة 100%، تسريع التنفيذ المتوازي بمعدل 2.4 ضعف، وتعافي ذاتي بنسبة 99.99%، مع اجتياز 12/12 اختباراً آلياً.",
+    impact:
+      "تُعرّف 17 دالة اختبار في المجموعة، محسوبة من الشيفرة المصدرية. هذا تنفيذ مرجعي: الوكلاء وآلة الحالة ومجموعة الاختبارات حقيقية، والبيانات تمثيلية، فالبنية هي الادعاء هنا لا سجل تشغيل إنتاجي.",
     description: "إطار عمل رائد لتنسيق تدفقات عمل الوكلاء بالاعتماد على المخططات الموجهة (DAGs) والتفريع الشرطي والموافقات البشرية والتعافي الذاتي.",
     tech: ["FastAPI", "Python 3.12", "DAG Workflows", "HITL Approvals", "Exponential Backoff", "Helm", "Docker", "Pytest"],
     github: "https://github.com/asadullah48/graphai",
     metrics: [
-      { label: "سلامة DAG", value: "100%" },
-      { label: "التسريع", value: "2.4x" },
-      { label: "الاختبارات", value: "12/12" },
+      { label: "اختبارات", value: "17" },
+      { label: "البيانات", value: "تمثيلية" },
     ],
     featured: true,
   },
@@ -857,17 +935,18 @@ const PROJECTS_AR: Project[] = [
     id: "loopai",
     title: "منصة LoopAI: وكلاء أذكياء بنموذج التغذية الراجعة والتصحيح الذاتي (Plan-Act-Verify)",
     status: "Enterprise Grade",
+    dataMode: "reference",
     tagline: "حلقة مغلقة للتفكير التأملي وتدقيق الأدلة وإعادة التخطيط التكراري حتى التقارب المؤكد",
     problem: "يؤدي التنفيذ الخطي الأحادي للنماذج الذكية إلى هلوسات غير موثقة، وأخطاء حسابية وهيكلية صامتة بدون أي آلية للتصحيح الذاتي المستقل.",
     solution: "إطار عمل للحلقات المغلقة يضم PlannerAgent (تحديد الأهداف ومعايير التحقق الصارمة)، و ActorAgent (تنفيذ الأدوات وتوليد الحلول المرشحة)، و VerifierAgent (تدقيق الأدلة واحتساب درجة الثقة V_score >= 0.90 وتقديم نقد بنّاء لإعادة التخطيط والتصحيح الذاتي).",
-    impact: "معدل اعتماد وتأكيد بنسبة 100%، انعدام الادعاءات غير الموثقة، دورة تقارب سريعة في تكرارين فقط، مع اجتياز 12/12 اختباراً آلياً.",
+    impact:
+      "تُعرّف 12 دالة اختبار في المجموعة، محسوبة من الشيفرة المصدرية. هذا تنفيذ مرجعي: الوكلاء وآلة الحالة ومجموعة الاختبارات حقيقية، والبيانات تمثيلية، فالبنية هي الادعاء هنا لا سجل تشغيل إنتاجي.",
     description: "إطار عمل رائد يمكّن الوكلاء الأذكياء من التصحيح الذاتي والتفكير التأملي والوصول إلى الدقة المؤكدة عبر حلقات (تخطيط - تنفيذ - تحقق).",
     tech: ["FastAPI", "Python 3.12", "Feedback Loops", "Self-Correction", "Reflection", "Helm", "Docker", "Pytest"],
     github: "https://github.com/asadullah48/loopai",
     metrics: [
-      { label: "التقارب المعتمد", value: "100%" },
-      { label: "درجة الثقة", value: ">=0.90" },
-      { label: "الاختبارات", value: "12/12" },
+      { label: "اختبارات", value: "12" },
+      { label: "البيانات", value: "تمثيلية" },
     ],
     featured: true,
   },
@@ -878,31 +957,31 @@ const PROJECTS_AR: Project[] = [
     tagline: "التوجيه ثابتٌ قابل للإثبات لا موجّهٌ نصّي",
     problem: "على أيّ نظام متعدّد الوكلاء أن يجيب عن أربعة أسئلة: مَن يعمل تاليًا، وماذا يحدث حين يجد أحد المتخصّصين مخالفة، وماذا يحدث حين يُخفق أحدهم، وكيف تُثبت لاحقًا ما جرى فعلًا. والإجابة الشائعة تضع الأربعة داخل الموجّه النصّي، فيغدو أهمّ سلوك في النظام غير قابل للاختبار دون نموذج حيّ، وغير حتميّ بين التشغيلات، وغير قابل للإثبات أمام مراجع.",
     solution: "تنتقل الأربعة جميعًا إلى حالة مُنمّطة وبايثون خالصة فوق مشرف مبنيّ على LangGraph. والوكلاء المتخصّصون (RiskModeler و ComplianceChecker و ClientAdvisor و Reporter) يعودون إلى المشرف فقط ولا يسلّم أحدهم إلى الآخر، فيبقى كل قرار توجيه في دالة واحدة قابلة للاختبار منفردة. وتُفرض ستّة ثوابت بنيويًّا لا عُرفيًّا: المشرف وحده يوجّه، والمتخصّصون المطلوبون يعملون دائمًا قبل إصدار أيّ تقرير، وكل تشغيل ينتهي حتمًا، وكل قفزة تُسجَّل في حالتَي النجاح والإخفاق، والتوجيه لا يستشير أيّ نموذج، والتشغيلات المتزامنة معزولة بمعرّف التشغيل فلا تتسرّب حالة القاطع بينها.",
-    impact: "ينجح 41 اختبارًا دون مفتاح واجهة برمجية ودون شبكة، لأنّ التوجيه خالٍ من النماذج — وهذا ما يجعل عبارة «المشرف لا يتخطّى ComplianceChecker أبدًا» تأكيدًا يُنفَّذ في أجزاء من الألف من الثانية بدل أن يكون ادّعاءً في ملف تعريفي. والمشرف الدوّار يحتاج ميزانية قفزات لا مجرّد سقف لإعادة المحاولة: فإعادة المحاولة تحدّ من إخفاقات عقدة واحدة، أمّا الدورة فلا يحدّها إلّا ميزانية. والتصعيد متدرّج ومعزول في دالة واحدة موسومة بـ POLICY SEAM — إيقاف عند الحرج، وجولة تخفيف واحدة محدودة عند المرتفع — فيصبح موقف المؤسسة من المخاطر تعديلًا في دالة واحدة. ويأتي المشروع بواجهة سطر أوامر، وخدمة FastAPI يتيح مسارها GET /trace/{run_id} استجواب أيّ تشغيل بعد وقوعه، وملف Docker، وتكامل مستمر على بايثون 3.11 حتى 3.13.",
+    impact: "تُعرّف 41 اختبارًا دون مفتاح واجهة برمجية ودون شبكة، لأنّ التوجيه خالٍ من النماذج — وهذا ما يجعل عبارة «المشرف لا يتخطّى ComplianceChecker أبدًا» تأكيدًا يُنفَّذ في أجزاء من الألف من الثانية بدل أن يكون ادّعاءً في ملف تعريفي. والمشرف الدوّار يحتاج ميزانية قفزات لا مجرّد سقف لإعادة المحاولة: فإعادة المحاولة تحدّ من إخفاقات عقدة واحدة، أمّا الدورة فلا يحدّها إلّا ميزانية. والتصعيد متدرّج ومعزول في دالة واحدة موسومة بـ POLICY SEAM — إيقاف عند الحرج، وجولة تخفيف واحدة محدودة عند المرتفع — فيصبح موقف المؤسسة من المخاطر تعديلًا في دالة واحدة. ويأتي المشروع بواجهة سطر أوامر، وخدمة FastAPI يتيح مسارها GET /trace/{run_id} استجواب أيّ تشغيل بعد وقوعه، وملف Docker، وتكامل مستمر على بايثون 3.11 حتى 3.13.",
     description: "إطار متعدّد الوكلاء بنمط المشرف، تكون فيه قواعد التوجيه حالةً مُنمّطة لا نصًّا في موجّه، وتُسجَّل كل قفزة في أثر تدقيق مُرتّب يشمل الإخفاقات، وتعمل المجموعة كلّها دون اتصال.",
     tech: ["LangGraph", "Python 3.13", "Pydantic", "FastAPI", "Docker", "GitHub Actions", "pytest"],
     github: "https://github.com/asadullah48/orchestratorx",
     metrics: [
-      { label: "الاختبارات",     value: "41" },
-      { label: "الثوابت",        value: "6"  },
-      { label: "مفاتيح الواجهة", value: "0"  },
+      { label: "اختبارات", value: "39" },
+      { label: "مفاتيح API", value: "0" },
     ],
   },
   {
     id: "harnessai",
     title: "منصة HarnessAI: بيئة التشغيل الآمنة وحوكمة الوكلاء الأذكياء",
     status: "Enterprise Grade",
+    dataMode: "reference",
     tagline: "بيئة عزل محكمة وحوكمة الصلاحيات وتجزئة الذاكرة مع قواطع دوائر لمنع الحلقات الجامحة",
     problem: "يتعرض تشغيل الوكلاء المستقلين لمخاطر الحلقات التكرارية اللانهائية، وتسميم الذاكرة المشتركة، وتعديل الحالات التشغيلية بدون إمكانية الاسترجاع عند الفشل.",
     solution: "هيكل بيئة تشغيل آمنة بنموذج الحاضنة يضم ToolManager (عزل تنفيذ الأدوات في بيئة مشروطة بمهلة 3 ثوانٍ)، و MemoryAgent (تجزئة الذاكرة وتصفية محاولات التسميم)، و ObserverAgent (مراقبة المؤشرات اللحظية وفصل قواطع الدوائر آلياً لمنع الحلقات الجامحة).",
-    impact: "احتواء نطاق الضرر بنسبة 100%، استرجاع فوري للحالة النظيفة، وانعدام الحالات الملوثة للذاكرة، مع اجتياز 15/15 اختباراً آلياً.",
+    impact:
+      "تُعرّف 15 دالة اختبار في المجموعة، محسوبة من الشيفرة المصدرية. هذا تنفيذ مرجعي: الوكلاء وآلة الحالة ومجموعة الاختبارات حقيقية، والبيانات تمثيلية، فالبنية هي الادعاء هنا لا سجل تشغيل إنتاجي.",
     description: "إطار عمل رائد لتوفير بيئة تشغيل آمنة ومحددة بدقة تضمن تشغيل الوكلاء ضمن نطاق معزول للأدوات والذاكرة والصلاحيات وقواطع الدوائر الآلية.",
     tech: ["FastAPI", "Python 3.12", "Agent Harness", "Sandboxing", "Circuit Breaker", "Helm", "Docker", "Pytest"],
     github: "https://github.com/asadullah48/harnessai",
     metrics: [
-      { label: "احتواء الضرر", value: "100%" },
-      { label: "سرعة الفصل", value: "<10ms" },
-      { label: "الاختبارات", value: "15/15" },
+      { label: "اختبارات", value: "15" },
+      { label: "البيانات", value: "تمثيلية" },
     ],
     featured: true,
   },
@@ -910,17 +989,18 @@ const PROJECTS_AR: Project[] = [
     id: "securebridge",
     title: "منصة SecureBridge: طبقة الحماية والتوافق الأمني للوكلاء الأذكياء",
     status: "Enterprise Grade",
+    dataMode: "reference",
     tagline: "حماية سيبرانية قائمة على الثقة الصفرية واعتراض تسميم الأدوات ومنع تسريب البيانات لبروتوكولات MCP/A2A",
     problem: "تواجه شبكات الوكلاء وبروتوكولات MCP مخاطر تسميم الأدوات البرمجية، وحقن الأوامر الخفية، والتنفيذ غير المصرح للأوامر، وتسريب مفاتيح API وبيانات الهوية الحساسة.",
     solution: "طبقة أمان بنموذج الثقة الصفرية تضم SecurityAgent (المصادقة والتحقق من شهادات mTLS وتحديد معدل الطلبات)، و DefenseAgent (فحص عميق لهياكل الأدوات واعتراض الهجمات وتنقية المخرجات)، و ComplianceAgent (إدارة الصلاحيات ومنع تسريب البيانات وسجل تدقيق مشفر برمز SHA-256).",
-    impact: "معدل اعتراض 100% لهجمات تسميم الأدوات، سرعة استجابة 0.42 مللي ثانية، حجب أكثر من 45 ألف بيان سري، مع اجتياز 14/14 اختباراً آلياً.",
+    impact:
+      "تُعرّف 14 دالة اختبار في المجموعة، محسوبة من الشيفرة المصدرية. هذا تنفيذ مرجعي: الوكلاء وآلة الحالة ومجموعة الاختبارات حقيقية، والبيانات تمثيلية، فالبنية هي الادعاء هنا لا سجل تشغيل إنتاجي.",
     description: "بوابة أمان مؤسسية قائمة على نموذج الثقة الصفرية لحماية بروتوكولات MCP والتشغيل البيني بين الوكلاء من هجمات تسميم الأدوات وحقن الأوامر وتسريب البيانات.",
     tech: ["FastAPI", "Python 3.12", "MCP Protocol", "Zero-Trust Security", "DLP Engine", "Helm", "Docker", "Pytest"],
     github: "https://github.com/asadullah48/securebridge",
     metrics: [
-      { label: "اعتراض الهجمات", value: "100%" },
-      { label: "سرعة البوابة", value: "0.42ms" },
-      { label: "الاختبارات", value: "14/14" },
+      { label: "اختبارات", value: "14" },
+      { label: "البيانات", value: "تمثيلية" },
     ],
     featured: true,
   },
@@ -928,17 +1008,18 @@ const PROJECTS_AR: Project[] = [
     id: "workforceai-academy",
     title: "أكاديمية WorkforceAI: منصة التدريب والتأهيل للتعاون بين البشر والذكاء الاصطناعي",
     status: "Enterprise Grade",
+    dataMode: "reference",
     tagline: "تمكين مؤسسي تفاعلي وتوجيه فوري لمهام العمل وشهادات معتمدة لمؤشر التعاون الذكي",
     problem: "يتعثر تبني الذكاء الاصطناعي المؤسسي عندما يتعامل الموظفون مع الوكلاء كأدوات بحث تقليدية، مع غياب القدرة على اكتشاف الهلوسات وانعدام التوجيه الفوري أثناء صياغة الأوامر.",
     solution: "منظومة متعددة الوكلاء للتأهيل المؤسسي تضم TrainerAgent (منهج تفاعلي لمهارات الذكاء الاصطناعي من هندسة الأوامر حتى إدارة الوكلاء)، و MentorAgent (مرشد فوري أثناء العمل لإعادة صياغة الأوامر وإضافة أدوات الحماية)، و AssessmentAgent (تقييم مؤشر التعاون وإصدار شهادات مشفرة).",
-    impact: "معدل طلاقة 88.5%، تسريع إنجاز المهام بمعدل 3.4 ضعف، واكتشاف 94.2% من الهلوسات، مع اجتياز 12/12 اختباراً آلياً.",
+    impact:
+      "تُعرّف 12 دالة اختبار في المجموعة، محسوبة من الشيفرة المصدرية. هذا تنفيذ مرجعي: الوكلاء وآلة الحالة ومجموعة الاختبارات حقيقية، والبيانات تمثيلية، فالبنية هي الادعاء هنا لا سجل تشغيل إنتاجي.",
     description: "إطار عمل متعدد الوكلاء لتمكين وتأهيل القوى العاملة المؤسسية، وتدريب الموظفين على هندسة الأوامر واستخدام الأدوات وحوكمة أنظمة الذكاء الاصطناعي.",
     tech: ["FastAPI", "Python 3.12", "Human-AI Teaming", "Collaboration Index", "Workflow Scaffolding", "Helm", "Docker", "Pytest"],
     github: "https://github.com/asadullah48/workforceai-academy",
     metrics: [
-      { label: "نسبة الطلاقة", value: "88.5%" },
-      { label: "تسريع العمل", value: "+3.4x" },
-      { label: "الاختبارات", value: "12/12" },
+      { label: "اختبارات", value: "12" },
+      { label: "البيانات", value: "تمثيلية" },
     ],
     featured: true,
   },
@@ -946,17 +1027,18 @@ const PROJECTS_AR: Project[] = [
     id: "conciergeagent",
     title: "ConciergeAgent: منصة الوكيل الرقمي الفاخر لخدمة ورفاهية العملاء",
     status: "Enterprise Grade",
+    dataMode: "reference",
     tagline: "خدمة راقية فائقة التخصيص واستشارات مالية استباقية وحل فوري للنزاعات بمعايير 5 نجوم",
     problem: "تتسبب روبوتات الدردشة التقليدية في نفور عملاء الثروات والشرائح المميزة بسبب الردود النمطية وغياب التخصيص وبطء المعالجة في حالات الاحتيال والمطالبات الحرجة.",
     solution: "هيكل عمل متعدد الوكلاء للخدمات الفاخرة يضم AdvisorAgent (توزيع استثماري مخصص للأصول وتحسين ضريبي)، و SupportAgent (ائتمان فوري للنزاعات حتى 50,000 دولار ومعالجة سريعة للمطالبات)، و ExperienceAgent (مراقبة المشاعر ومنح هدايا الولاء والتصعيد الفوري).",
-    impact: "معدل رضا 4.98 من 5 نجوم، اتفاقية مستوى خدمة خلال 30 ثانية لكبار العملاء، حماية فورية منعدمة المسؤولية، مع اجتياز 13/13 اختباراً آلياً.",
+    impact:
+      "تُعرّف 233 دالة اختبار في المجموعة، محسوبة من الشيفرة المصدرية. هذا تنفيذ مرجعي: الوكلاء وآلة الحالة ومجموعة الاختبارات حقيقية، والبيانات تمثيلية، فالبنية هي الادعاء هنا لا سجل تشغيل إنتاجي.",
     description: "إطار عمل متعدد الوكلاء لخدمة العملاء الفاخرة، يقدم استشارات مالية مخصصة، وحلاً فورياً للنزاعات والمطالبات، مع حوكمة تجربة العملاء بمعايير الضيافة الراقية.",
     tech: ["FastAPI", "Python 3.12", "Hyperpersonalization", "Wealth Tier SLA", "Sentiment Modulation", "Helm", "Docker", "Pytest"],
     github: "https://github.com/asadullah48/conciergeagent",
     metrics: [
-      { label: "معدل الرضا", value: "4.98 / 5.0" },
-      { label: "سرعة الخدمة", value: "30 ثانية" },
-      { label: "الاختبارات", value: "13/13" },
+      { label: "اختبارات", value: "233" },
+      { label: "البيانات", value: "تمثيلية" },
     ],
     featured: true,
   },
@@ -964,17 +1046,18 @@ const PROJECTS_AR: Project[] = [
     id: "contextx",
     title: "ContextX: إطار عمل هندسة السياق المتقدمة للوكلاء الأذكياء",
     status: "Enterprise Grade",
+    dataMode: "reference",
     tagline: "ما وراء هندسة الأوامر: استرجاع هجين RRF، تخفيف الضياع في المنتصف، وقرارات مسندة",
     problem: "تعاني أنظمة RAG التقليدية من ظاهرة 'الضياع في المنتصف' (انخفاض تركيز النموذج بنسبة تصل إلى 60% في منتصف السياق)، بالإضافة إلى هدر الرموز وتوليد إجابات غير مسندة بمصادر دقيقة.",
     solution: "إطار عمل مؤسسي متكامل يضم RetrieverAgent (استرجاع هجين دلالي وكلمات مفتاحية مع اضمحلال زمني)، و ContextBuilder (ترتيب حدودي لتفادي الضياع في المنتصف وضبط صارم للميزانية)، و DecisionAgent (استدلال موثق باقتباسات دقيقة).",
-    impact: "+34% زيادة في دقة الاسترجاع، 42% توفير في هدر الرموز، 99.4% استرجاع لمعلومات الأطراف، واجتياز 12/12 اختباراً آلياً.",
+    impact:
+      "تُعرّف 12 دالة اختبار في المجموعة، محسوبة من الشيفرة المصدرية. هذا تنفيذ مرجعي: الوكلاء وآلة الحالة ومجموعة الاختبارات حقيقية، والبيانات تمثيلية، فالبنية هي الادعاء هنا لا سجل تشغيل إنتاجي.",
     description: "إطار عمل متطور لهندسة وتخصيص نوافذ السياق، وضغط الرموز، وتخفيف ظاهرة الضياع في المنتصف، وتوليد القرارات الموثقة بالاقتباسات الدقيقة.",
     tech: ["FastAPI", "Python 3.12", "RRF Hybrid Search", "Context Compression", "Lost-in-the-Middle Layout", "Helm", "Docker", "Pytest"],
     github: "https://github.com/asadullah48/contextx",
     metrics: [
-      { label: "دقة الاسترجاع", value: "+34%" },
-      { label: "توفير الرموز", value: "42%" },
-      { label: "الاختبارات", value: "12/12" },
+      { label: "اختبارات", value: "12" },
+      { label: "البيانات", value: "تمثيلية" },
     ],
     featured: true,
   },
@@ -990,9 +1073,8 @@ const PROJECTS_AR: Project[] = [
     tech: ["FastAPI", "Python 3.12", "LangGraph", "State Machines", "SHA-256 Cryptography", "Circuit Breakers", "Helm", "Docker"],
     github: "https://github.com/asadullah48/guardrailai",
     metrics: [
-      { label: "اللاحتمية", value: "0.00%" },
-      { label: "التدقيق المشفر", value: "SHA-256" },
-      { label: "الاختبارات", value: "17/17" },
+      { label: "اختبارات", value: "17" },
+      { label: "سجل التدقيق", value: "SHA-256" },
     ],
     featured: true,
   },
@@ -1000,17 +1082,18 @@ const PROJECTS_AR: Project[] = [
     id: "domainx",
     title: "DomainX: إطار عمل الوكلاء الأذكياء المتخصصين",
     status: "Enterprise Grade",
+    dataMode: "reference",
     tagline: "ذكاء اصطناعي متخصص في القطاعات الحساسة (القانوني • الطبي • سلاسل الإمداد)",
     problem: "تعاني نماذج الذكاء الاصطناعي العامة من معدلات هلوسة تتجاوز 14% وعدم مطابقة للوائح في التطبيقات القانونية والطبية واللوجستية.",
     solution: "إطار عمل متعدد الوكلاء يدمج محركات القواعد القطعية، وقواعد المعرفة السريرية (ICD-10-CM / CPT)، وتطهير البيانات الصحية وفق معايير HIPAA Safe Harbor، والمعادلات الرياضية لكمية الطلب الاقتصادية (EOQ).",
-    impact: "دقة قانونية بنسبة 99.4% مع توليد تلقائي للتعديلات، ودقة ترميز طبي 99.2%، وخفض تكاليف المخزون بنسبة 22% مع تتبع البصمة الكربونية، واجتياز 16/16 اختباراً آلياً.",
+    impact:
+      "تُعرّف 24 دالة اختبار في المجموعة، محسوبة من الشيفرة المصدرية. هذا تنفيذ مرجعي: الوكلاء وآلة الحالة ومجموعة الاختبارات حقيقية، والبيانات تمثيلية، فالبنية هي الادعاء هنا لا سجل تشغيل إنتاجي.",
     description: "إطار عمل فائق الدقة للوكلاء الأذكياء المتخصصين يتفوق على النماذج العامة في المجالات القانونية والطبية وسلاسل الإمداد.",
     tech: ["FastAPI", "Python 3.12", "HIPAA Safe Harbor", "ICD-10 / CPT", "EOQ Optimization", "Helm", "Docker", "Pytest"],
     github: "https://github.com/asadullah48/domainx",
     metrics: [
-      { label: "الدقة القانونية", value: "99.4%" },
-      { label: "الترميز الطبي", value: "99.2%" },
-      { label: "الاختبارات", value: "16/16" },
+      { label: "اختبارات", value: "24" },
+      { label: "البيانات", value: "تمثيلية" },
     ],
     featured: true,
   },
@@ -1018,17 +1101,18 @@ const PROJECTS_AR: Project[] = [
     id: "marketagenthub",
     title: "MarketAgentHub: منظومة الوكلاء الجاهزة للمتاجر السحابية",
     status: "Enterprise Grade",
+    dataMode: "reference",
     tagline: "وكلاء مستقلون متوافقون مع A2A و MCP لمتاجر AWS و Azure و GCP و Salesforce",
     problem: "يتطلب نشر الوكلاء الأذكياء عبر المتاجر السحابية الكبرى مواءمة معقدة لمخططات الإجراءات وأنظمة الفوترة وبروتوكولات التواصل بين الوكلاء.",
     solution: "منظومة وكلاء جاهزة للمتاجر السحابية تضم PortfolioAgent و ComplianceAgent و ClientEngagementAgent مع محولات مدمجة ومحرك فوترة SaaS وبروتوكول A2A.",
-    impact: "تغليف عالمي متعدد السحابات مع امتثال قطعي 100% للوائح المالية (SEC, FINRA, MiFID II). لوحة تحكم تفاعلية مع اجتياز 19/19 اختباراً آلياً.",
+    impact:
+      "تُعرّف 19 دالة اختبار في المجموعة، محسوبة من الشيفرة المصدرية. هذا تنفيذ مرجعي: الوكلاء وآلة الحالة ومجموعة الاختبارات حقيقية، والبيانات تمثيلية، فالبنية هي الادعاء هنا لا سجل تشغيل إنتاجي.",
     description: "منظومة وكلاء ذكاء اصطناعي مستقلة جاهزة لإعادة الاستخدام والبيع في المتاجر السحابية العالمية.",
-    tech: ["FastAPI", "Python 3.12", "A2A Protocol", "AWS Bedrock", "Azure AI", "GCP Vertex", "Salesforce Agentforce", "Docker"],
+    tech: ["FastAPI", "Python 3.12", "A2A Protocol", "Marketplace Adapters", "Docker"],
     github: "https://github.com/asadullah48/marketagenthub",
     metrics: [
-      { label: "السحابات الكبرى", value: "4 سحابات" },
-      { label: "الامتثال الرقابي", value: "100%" },
-      { label: "الاختبارات", value: "19/19" },
+      { label: "اختبارات", value: "19" },
+      { label: "البيانات", value: "تمثيلية" },
     ],
     featured: true,
   },
@@ -1036,17 +1120,18 @@ const PROJECTS_AR: Project[] = [
     id: "workforceai",
     title: "WorkforceAI: منصة الوكيل كعامل رقمي مستقل",
     status: "Enterprise Grade",
+    dataMode: "reference",
     tagline: "أتمتة القوى العاملة الذكية مع نماذج تسعير قائمة على الإنجاز وإشراف ذاتي",
     problem: "تفرض أدوات RPA والنماذج العامة تكاليف لكل رمز دون مسؤولية عن إتمام المهام، مما يسبب عدم استقرار التكاليف وغياب ضمانات مستوى الخدمة.",
     solution: "منصة قوى عاملة قائمة على نتائج المهام مع وكلاء TaskRunner و BillingAgent لحساب معدلات الإنجاز وخصومات الأداء، و SupervisorAgent لموازنة الضغط.",
-    impact: "معدل إنجاز 98%+ مع خصومات تلقائية عند التأخير، وتوقيعات إثبات العمل المشفرة، وحاسبة عائد تفاعلية توفر 85% مقارنة بالموظف البشري، مع 15/15 اختباراً ناجحاً.",
+    impact:
+      "تُعرّف 15 دالة اختبار في المجموعة، محسوبة من الشيفرة المصدرية. هذا تنفيذ مرجعي: الوكلاء وآلة الحالة ومجموعة الاختبارات حقيقية، والبيانات تمثيلية، فالبنية هي الادعاء هنا لا سجل تشغيل إنتاجي.",
     description: "منصة متطورة لإدارة وتوزيع مهام الوكلاء الأذكياء بنماذج تسعير حسب معدلات إتمام المهام.",
     tech: ["FastAPI", "Python 3.12", "Supervisor Governance", "Outcome Pricing", "Async Worker Pools", "Docker", "Pytest"],
     github: "https://github.com/asadullah48/workforceai",
     metrics: [
-      { label: "ضمان الخدمة", value: "98%+" },
-      { label: "توفير التكلفة", value: "85%" },
-      { label: "الاختبارات", value: "15/15" },
+      { label: "اختبارات", value: "15" },
+      { label: "البيانات", value: "تمثيلية" },
     ],
     featured: true,
   },
@@ -1057,15 +1142,14 @@ const PROJECTS_AR: Project[] = [
     tagline: "تشغيل بيني قائم على البروتوكولات للذكاء الاصطناعي الوكيل",
     problem: "يعالج بروتوكول MCP من Anthropic وبروتوكول A2A من Google مشكلتين متجاورتين، ويحتاج أي وكيل مؤسسي حقيقي إليهما معًا: الأول لاستدعاء أدوات تستضيفها أنت عبر stdio، والثاني لتفويض العمل إلى وكلاء تشغّلهم شركة أخرى عبر HTTP. وربطهما ارتجالًا يولّد عددًا تربيعيًا من المترجمات، والأسوأ أنه يُسقط سياق الحوكمة عند كل وصلة، فتتبخّر هوية المستدعي وتصنيف حساسية البيانات ومعرّف الارتباط لحظة تغيّر البروتوكول.",
     solution: "مغلّف بروتوكول واحد مُوحّد تُرفَع إليه كل رسالة ثم تُخفَض منه، فتصبح كلفة إضافة بروتوكول زوج مُرمِّزات واحدًا لا عددًا تربيعيًا من المحوّلات. وتسافر الحوكمة داخل الرسالة لا في ترويسات النقل، لأن الترويسات لا تنجو من قفزة stdio في MCP. وثلاثة وكلاء على آلة حالات LangGraph: وكيل MCPConnector يربط الأدوات الخارجية، ووكيل A2AGateway يفوّض عبر حدود المورّدين، ووكيل AuditAgent يفحص مرّتين في كل قفزة، مرّة قبل الإرسال ومرّة بعده، لأن مرحلة القبول لا يمكنها معرفة أن الاستجابة ستحمل رقم هوية وطنية، ومرحلة الخروج لا يمكنها سحب طلب أُرسِل. والبروتوكولان منفّذان على مستوى السلك لا محاكاةً: JSON-RPC حقيقي عبر stdio في عملية فرعية، ونظير HTTP حقيقي يقدّم بطاقة وكيل على المسار ‎/.well-known/agent.json.",
-    impact: "ينجح 41 اختبارًا دون مفتاح واجهة برمجية ودون اتصال بالشبكة. وتُسجَّل كل قفزة في دفتر مرتبط بالتجزئة يغطّي بصمة الحمولة لا الحمولة نفسها، فيبقى إثبات السلامة قائمًا حتى بعد إسقاط البايتات الحسّاسة. ويعيد العرض المباشر تشغيل ستّة مسارات حقيقية ويحسب بصمات SHA-256 العشر داخل متصفّح الزائر نفسه، فيغدو كشف العبث قابلًا للتحقّق لا مأخوذًا على الثقة. والتنفيذ معزول في دالة واحدة موسومة بـ POLICY SEAM، فيصبح تعديل موقف المؤسسة من المخاطر تعديلًا في دالة واحدة.",
+    impact: "تُعرّف 41 اختبارًا دون مفتاح واجهة برمجية ودون اتصال بالشبكة. وتُسجَّل كل قفزة في دفتر مرتبط بالتجزئة يغطّي بصمة الحمولة لا الحمولة نفسها، فيبقى إثبات السلامة قائمًا حتى بعد إسقاط البايتات الحسّاسة. ويعيد العرض المباشر تشغيل ستّة مسارات حقيقية ويحسب بصمات SHA-256 العشر داخل متصفّح الزائر نفسه، فيغدو كشف العبث قابلًا للتحقّق لا مأخوذًا على الثقة. والتنفيذ معزول في دالة واحدة موسومة بـ POLICY SEAM، فيصبح تعديل موقف المؤسسة من المخاطر تعديلًا في دالة واحدة.",
     description: "طبقة تشغيل بيني متوافقة مع المعايير تتحدّث MCP من Anthropic وA2A من Google عبر مسار واحد محكوم، تفحص كل رسالة تعبر الحدود ثم تمرّرها أو تحجب حقولها أو ترفضها.",
     tech: ["LangGraph", "MCP", "A2A", "JSON-RPC 2.0", "Python 3.13", "Pydantic", "GitHub Pages"],
     github: "https://github.com/asadullah48/protobridge",
     demo: "https://asadullah48.github.io/protobridge/",
     metrics: [
-      { label: "البروتوكولات",   value: "MCP + A2A" },
-      { label: "الاختبارات",     value: "41"        },
-      { label: "مفاتيح الواجهة", value: "0"         },
+      { label: "اختبارات", value: "61" },
+      { label: "مفاتيح API", value: "0" },
     ],
   },
   {
@@ -1149,10 +1233,11 @@ const PROJECTS_AR: Project[] = [
     tagline: "مركز مجتمع مطورين مفتوح المصدر",
     problem: "المطورون الباكستانيون يفتقرون إلى منصة أسئلة وأجوبة محلية تراعي السياق. معظم البدائل عامة جداً وليست مجتمعية.",
     solution: "منصة مجتمع مفتوحة المصدر مع أسئلة وأجوبة متسلسلة ومدونات وتعاون في المشاريع واقتراحات إجابات بالذكاء الاصطناعي. مبنية بـ Next.js 15 App Router وshadcn/ui.",
-    impact: "متاحة مع الكود والعرض التجريبي. قاعدة كود معيارية بنسبة 85% إعادة استخدام للمنتجات المجتمعية المستقبلية.",
+    impact:
+      "متاحة مع الشيفرة ونشر حي. هذا الموقع هو تلك الشيفرة نفسها: منسّق Agents SDK وخادم MCP والدستور تُشحن جميعها من هذا المستودع.",
     description: "منصة مجتمع مطورين مفتوحة المصدر مع أسئلة وأجوبة ومدونات وميزات تعاون.",
     tech: ["Next.js 15", "TypeScript", "Tailwind CSS", "shadcn/ui", "PostgreSQL"],
-    github: "https://github.com/asadullah48",
+    github: "https://github.com/asadullah48/asadullahshafique_devunity",
     demo:   "https://asadullahshafique-devunity.vercel.app",
     image:  "/images/devunity-preview.svg",
     metrics: [
@@ -1291,9 +1376,9 @@ function ProjectCard({
   const [terminalView, setTerminalView] = useState(false);
   const hasCaseStudy = !!(project.problem && project.solution && project.impact);
   const tone = STATUS_TOKENS[project.status];
-  // Only the 6 spotlight ids curated in module-flows.ts get this button — a
-  // project with no entry there gets nothing extra, same drop-rather-than-
-  // fabricate convention SPOTLIGHT_IDS itself uses.
+  // Only the ids curated in module-flows.ts get this button — a project with
+  // no entry there gets nothing extra, the same drop-rather-than-fabricate
+  // convention FLAGSHIP_IDS uses.
   const flow = MODULE_FLOWS[project.id];
 
   // Spotlight: track the cursor via CSS vars so the glow follows the mouse
@@ -1361,7 +1446,25 @@ function ProjectCard({
       )}
 
       <div className="p-6 flex flex-col flex-1">
-        <StatusBadge status={project.status} label={labels[project.status] ?? project.status} />
+        <div className="flex flex-wrap items-center gap-2">
+          <StatusBadge status={project.status} label={labels[project.status] ?? project.status} />
+          {/* Sits beside the status badge, not buried in the expandable case
+              study, because the two answer different questions and a reader who
+              never expands the card still needs the second answer. `status`
+              says how mature the CODE is; this says how real the DATA is.
+              Deliberately neutral styling — muted, not a warning colour. This
+              is a factual classification of a legitimate reference
+              implementation, not a defect notice, and dressing it as a warning
+              would misrepresent the work in the opposite direction. */}
+          {project.dataMode === "reference" && (
+            <span
+              title={labels.referenceDataTitle}
+              className="rounded-full border border-border bg-surface-2 px-2 py-0.5 font-mono text-eyebrow text-muted-foreground"
+            >
+              {labels.referenceData}
+            </span>
+          )}
+        </div>
         <h3 className="font-display text-xl font-bold text-foreground mt-3 mb-1.5 group-hover:text-brand transition-colors duration-200 pr-12">
           {project.title}
         </h3>
@@ -1556,20 +1659,23 @@ export function ProjectsSection() {
   // six that carry the argument. Nothing is hidden — the count on the second
   // tab states the real total, and the GitHub CTA below still leads to all of
   // it. Collapsed-by-default is the editorial claim; expandable is the proof.
-  const [showAll, setShowAll] = useState(false);
+  const [showReference, setShowReference] = useState(false);
 
-  // Built in SPOTLIGHT_IDS order, not source order, so the curation controls
-  // sequence as well as membership. A miss is dropped rather than rendered as
-  // a hole: an id renamed in the data should quietly shorten the row, never
-  // crash the section or leave a blank card behind.
-  const spotlight = SPOTLIGHT_IDS.map((id) =>
+  // Flagship keeps FLAGSHIP_IDS order so the sequence is editorial, not
+  // whatever order the source array happens to be in. A miss is dropped rather
+  // than rendered as a hole: an id renamed in the data should quietly shorten
+  // the row, never crash the section or leave a blank card.
+  const flagship = FLAGSHIP_IDS.map((id) =>
     PROJECTS.find((p) => p.id === id)
   ).filter((p): p is Project => Boolean(p));
 
-  const visible = showAll ? PROJECTS : spotlight;
+  const engineering = PROJECTS.filter((p) => tierOf(p) === "engineering");
+  const reference = PROJECTS.filter((p) => tierOf(p) === "reference");
 
   const labels = {
     new: t("projects.new"),
+    referenceData: t("projects.referenceData"),
+    referenceDataTitle: t("projects.referenceDataTitle"),
     viewCode: t("projects.viewCode"),
     viewDemo: t("projects.viewDemo"),
     viewCaseStudy: t("projects.viewCaseStudy"),
@@ -1619,52 +1725,135 @@ export function ProjectsSection() {
             dozen cards to find out how many platforms there are. */}
         <AgentEcosystem />
 
-        {/* Segmented control, not a "load more". Both counts are stated up
-            front so the collapsed view reads as curation rather than as all
-            there is — the honest version of showing six.
-            bg-brand/15 + text-brand rather than the bg-brand + text-black
-            pairing flagged in CLAUDE.md §5: --brand resolves to a dark teal in
-            light mode, so that combination renders black-on-teal. */}
-        <Reveal className="flex justify-center mb-10">
-          <div
-            role="group"
-            aria-label={t("projects.title")}
-            className="inline-flex items-center gap-1 rounded-lg border border-brand/20 bg-surface-2 p-1"
-          >
-            <button
-              type="button"
-              onClick={() => setShowAll(false)}
-              aria-pressed={!showAll}
-              className={`px-4 py-2 rounded-md font-mono text-sm transition-colors duration-200 ${
-                showAll
-                  ? "text-muted-foreground hover:text-foreground"
-                  : "bg-brand/15 text-brand"
-              }`}
-            >
-              {t("projects.spotlight")}{" "}
-              <span className="opacity-60 tabular-nums">{spotlight.length}</span>
-            </button>
-            <button
-              type="button"
-              onClick={() => setShowAll(true)}
-              aria-pressed={showAll}
-              className={`px-4 py-2 rounded-md font-mono text-sm transition-colors duration-200 ${
-                showAll
-                  ? "bg-brand/15 text-brand"
-                  : "text-muted-foreground hover:text-foreground"
-              }`}
-            >
-              {t("projects.allProjects")}{" "}
-              <span className="opacity-60 tabular-nums">{PROJECTS.length}</span>
-            </button>
-          </div>
+        {/* ------------------------------------------------------------------
+            TIER 1 — FLAGSHIP. Two columns, not three, so these cards are
+            physically larger than everything below them. Size is the hierarchy
+            signal here; a heading alone would not survive a reader who skims.
+            ------------------------------------------------------------------ */}
+        <Reveal className="mb-8">
+          <h3 className="font-display text-2xl font-bold text-foreground">
+            {t("projects.tierFlagship")}{" "}
+            <span className="font-mono text-base font-normal tabular-nums text-muted-foreground">
+              {flagship.length}
+            </span>
+          </h3>
+          <p className="mt-2 max-w-3xl text-pretty text-sm leading-relaxed text-muted-foreground">
+            {t("projects.tierFlagshipDesc")}
+          </p>
         </Reveal>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {visible.map((project) => (
+        <div className="mb-20 grid grid-cols-1 gap-6 lg:grid-cols-2">
+          {flagship.map((project) => (
             <ProjectCard key={project.id} project={project} labels={labels} />
           ))}
         </div>
+
+        {/* ------------------------------------------------------------------
+            TIER 2 — ENGINEERING. Three columns: present in full, visibly
+            secondary to the four above.
+            ------------------------------------------------------------------ */}
+        <Reveal className="mb-8">
+          <h3 className="font-display text-2xl font-bold text-foreground">
+            {t("projects.tierEngineering")}{" "}
+            <span className="font-mono text-base font-normal tabular-nums text-muted-foreground">
+              {engineering.length}
+            </span>
+          </h3>
+          <p className="mt-2 max-w-3xl text-pretty text-sm leading-relaxed text-muted-foreground">
+            {t("projects.tierEngineeringDesc")}
+          </p>
+        </Reveal>
+
+        <div className="mb-20 grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
+          {engineering.map((project) => (
+            <ProjectCard key={project.id} project={project} labels={labels} />
+          ))}
+        </div>
+
+        {/* ------------------------------------------------------------------
+            TIER 3 — REFERENCE. Collapsed by default and rendered as rows, not
+            cards. Twenty full cards of synthetic-data implementations is
+            precisely what makes a portfolio read as a pile of experiments; a
+            compact index reads as a catalogue, which is what this is.
+
+            Nothing is hidden: the count is stated on the toggle, and every row
+            still links to its source. Collapsed-by-default is the editorial
+            claim; expandable is the proof.
+            ------------------------------------------------------------------ */}
+        <Reveal className="mb-6">
+          <h3 className="font-display text-2xl font-bold text-foreground">
+            {t("projects.tierReference")}{" "}
+            <span className="font-mono text-base font-normal tabular-nums text-muted-foreground">
+              {reference.length}
+            </span>
+          </h3>
+          <p className="mt-2 max-w-3xl text-pretty text-sm leading-relaxed text-muted-foreground">
+            {t("projects.tierReferenceDesc")}
+          </p>
+        </Reveal>
+
+        <Reveal className="mb-6">
+          <button
+            type="button"
+            onClick={() => setShowReference(!showReference)}
+            aria-expanded={showReference}
+            aria-controls="reference-implementations"
+            className="inline-flex items-center gap-2 rounded-lg border border-brand/20 bg-surface-2 px-4 py-2 font-mono text-sm text-brand transition-colors duration-200 hover:bg-brand/10"
+          >
+            {showReference ? (
+              <>
+                <ChevronUp className="h-4 w-4" aria-hidden="true" />
+                {t("projects.hideReference")}
+              </>
+            ) : (
+              <>
+                <ChevronDown className="h-4 w-4" aria-hidden="true" />
+                {t("projects.showReference")}
+                <span className="opacity-60 tabular-nums">
+                  {reference.length}
+                </span>
+              </>
+            )}
+          </button>
+        </Reveal>
+
+        {showReference && (
+          <ul
+            id="reference-implementations"
+            className="mb-4 grid grid-cols-1 gap-px bg-border/50"
+          >
+            {reference.map((project) => (
+              <li
+                key={project.id}
+                className="flex flex-col gap-1 bg-background px-4 py-4 transition-colors duration-200 hover:bg-surface-1/50 sm:flex-row sm:items-baseline sm:gap-4"
+              >
+                <span className="min-w-[9rem] font-semibold text-foreground">
+                  {project.title.split(":")[0]}
+                </span>
+                <span className="flex-1 text-sm text-muted-foreground">
+                  {project.tagline}
+                </span>
+                <span className="font-mono text-xs tabular-nums text-muted-foreground/70">
+                  {project.metrics?.[0]?.value} {project.metrics?.[0]?.label}
+                </span>
+                {project.github && (
+                  <a
+                    href={project.github}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-1 font-mono text-xs text-brand-soft transition-colors hover:text-brand"
+                  >
+                    <Github className="h-3 w-3" aria-hidden="true" />
+                    <span className="sr-only">
+                      {labels.viewCode}: {project.title}
+                    </span>
+                    {t("projects.viewCode")}
+                  </a>
+                )}
+              </li>
+            ))}
+          </ul>
+        )}
 
         <Reveal step={3}
           className="text-center mt-12"
