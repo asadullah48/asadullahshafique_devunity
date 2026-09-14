@@ -1,6 +1,7 @@
 import type { MetadataRoute } from "next";
 import { hasTranslation, listArticleMeta } from "@/lib/content";
 import { BASE_URL } from "@/lib/seo";
+import { FLAGSHIP_SYSTEMS } from "@/lib/flagship-systems";
 
 // English and Arabic cross-reference each other. Next renders this as
 // <xhtml:link rel="alternate" hreflang="..."> inside each <url> entry, which
@@ -36,6 +37,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
   // claims every page changed on every build teaches crawlers to ignore it.
   const en = listArticleMeta("en");
   const ar = listArticleMeta("ar");
+
+  const systems: MetadataRoute.Sitemap = FLAGSHIP_SYSTEMS.map(({ slug }) => ({
+    url: `${BASE_URL}/systems/${slug}`,
+    lastModified: new Date("2026-09-14"),
+    changeFrequency: "monthly" as const,
+    priority: 0.9,
+  }));
 
   const articles: MetadataRoute.Sitemap = [
     ...en.map((a) => ({
@@ -75,18 +83,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: "weekly",
       priority: 0.8,
     },
+    ...systems,
     ...articles,
     {
       url: `${BASE_URL}/resume`,
       lastModified: new Date(),
       changeFrequency: "monthly",
       priority: 0.8,
-    },
-    {
-      url: `${BASE_URL}/ai-tools`,
-      lastModified: new Date(),
-      changeFrequency: "monthly",
-      priority: 0.6,
     },
   ];
 }
