@@ -451,5 +451,37 @@
     "switchLanguage": "العربية",
     "new": "NEW",
     "online": "Online"
+  },
+  "audiences": {
+    "eyebrow": "Choose your evidence path",
+    "title": "What are you here to evaluate?",
+    "subtitle": "One portfolio, four direct routes into the evidence that matters to you.",
+    "hiringTitle": "Hiring manager",
+    "hiringDesc": "Inspect deterministic routing, guardrails, evaluation, failure handling, and source-backed claims.",
+    "hiringCta": "Review engineering evidence",
+    "clientTitle": "Business or AI team",
+    "clientDesc": "Start with the operational problem, current stack, risk boundary, and outcome the system must produce.",
+    "clientCta": "Discuss an AI system",
+    "developerTitle": "AI developer",
+    "developerDesc": "Study three flagship architectures and follow every important decision into the repository.",
+    "developerCta": "Open technical case studies",
+    "communityTitle": "Builder or contributor",
+    "communityDesc": "Join focused discussions, build reviews, and open-source collaboration around reliable agent systems.",
+    "communityCta": "Join the developer community"
+  },
+  "caseStudies": {
+    "eyebrow": "Three systems · three engineering arguments",
+    "title": "Flagship Agentic AI Case Studies",
+    "subtitle": "Dedicated architecture reviews for orchestration, interoperability, and governance—with verification paths and limitations stated plainly.",
+    "cta": "Read the architecture case study",
+    "orchestratorxTag": "Orchestration",
+    "orchestratorxTitle": "OrchestratorX",
+    "orchestratorxDesc": "A single supervisor keeps multi-agent routing deterministic, testable, terminating, and auditable.",
+    "protobridgeTag": "Interoperability",
+    "protobridgeTitle": "ProtoBridge",
+    "protobridgeDesc": "MCP and A2A messages cross one governed envelope without losing identity, sensitivity, or correlation context.",
+    "guardrailaiTag": "Governance",
+    "guardrailaiTitle": "GuardrailAI",
+    "guardrailaiDesc": "Deterministic controls, bounded execution, circuit breakers, and tamper-evident audit records around probabilistic agents."
   }
 }
