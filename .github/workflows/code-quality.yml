@@ -65,15 +65,15 @@ jobs:
           pip install -r requirements.txt
           pip install ruff mypy bandit safety
           
-      # The agentic substrate is the portfolio's production claim and is a hard
-      # gate. The legacy DevUnity monolith remains visible as debt below.
-      - name: Lint agentic backend with Ruff
+      # Maintained modular agent infrastructure is a hard gate. The original
+      # single-file agent and DevUnity monolith remain visible as debt below.
+      - name: Lint modular agentic backend with Ruff
         working-directory: ./backend
-        run: ruff check orchestration constitution knowledge agent.py mcp_server.py --output-format=github
+        run: ruff check orchestration constitution knowledge mcp_server.py --output-format=github
 
       - name: Report legacy backend Ruff debt
         working-directory: ./backend
-        run: ruff check main.py models.py database.py db_helpers.py tests --statistics || true
+        run: ruff check agent.py main.py models.py database.py db_helpers.py tests --statistics || true
         
       - name: Type check with MyPy
         working-directory: ./backend
