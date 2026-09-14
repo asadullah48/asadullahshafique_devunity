@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import Hero from "@/components/Hero";
 import ProofStrip from "@/components/ProofStrip";
+import AudiencePaths from "@/components/AudiencePaths";
+import FlagshipCaseStudies from "@/components/FlagshipCaseStudies";
 import About from "@/components/About";
 import Services from "@/components/Services";
 import Industries from "@/components/Industries";
@@ -83,6 +85,7 @@ export default function Home() {
                 sit inside the hero, two of which a stranger could not check.
                 See src/lib/evidence.ts for the provenance of each. */}
             <ProofStrip />
+            <AudiencePaths />
             <TechMarquee />
             <About />
             {/* One promoted quote, immediately after About. Third-party
@@ -118,6 +121,7 @@ export default function Home() {
             {/* Applied capability follows the methodology that produced it. */}
             <ExpertiseGrid />
             <Roadmap />
+            <FlagshipCaseStudies />
             <Projects />
             <Hackathons />
             <Services />
