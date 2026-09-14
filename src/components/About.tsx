@@ -3,7 +3,7 @@
 import React from "react";
 import { Reveal } from "@/components/Reveal";
 import {
-  Brain, Factory, TrendingUp, Trophy, GraduationCap, Terminal,
+  Brain, Factory, TrendingUp,
   Github, Linkedin, Twitter, MessageCircle,
 } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
@@ -11,8 +11,8 @@ import { Badge } from "@/components/ui/badge";
 import Link from "next/link";
 import { useLocale } from "@/context/LocaleContext";
 
-const HIGHLIGHT_ICONS = [Brain, Factory, TrendingUp, Trophy, GraduationCap, Terminal];
-const HIGHLIGHT_KEYS = ["h1", "h2", "h3", "h4", "h5", "h6"] as const;
+const HIGHLIGHT_ICONS = [Brain, Factory, TrendingUp];
+const HIGHLIGHT_KEYS = ["h1", "h2", "h3"] as const;
 
 const socialLinks = [
   {
