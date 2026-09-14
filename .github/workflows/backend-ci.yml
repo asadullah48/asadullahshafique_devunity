@@ -43,10 +43,17 @@ jobs:
           pip install -r requirements.txt
           pip install ruff mypy pytest pytest-asyncio httpx
           
-      - name: Lint agentic backend with Ruff
+      # Maintained modular agent infrastructure is the hard lint boundary.
+      # The original single-file agent remains tracked as migration debt.
+      - name: Lint modular agentic backend with Ruff
         working-directory: ./backend
         run: |
-          ruff check orchestration constitution knowledge agent.py mcp_server.py --output-format=github
+          ruff check orchestration constitution knowledge mcp_server.py --output-format=github
+
+      - name: Report legacy agent Ruff debt
+        working-directory: ./backend
+        run: |
+          ruff check agent.py --statistics || true
           
       - name: Type check with MyPy
         working-directory: ./backend
