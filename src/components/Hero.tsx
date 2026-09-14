@@ -101,6 +101,14 @@ export function HeroSection() {
             {t("hero.supporting")}
           </p>
 
+          {/* Names the "watch it operate" frame before the visitor scrolls,
+              without repeating the per-system pitch Projects.tsx and
+              ProofStrip already make with citations — this line points at
+              the mechanism (source-linked claims), not the systems. */}
+          <p className="mb-8 max-w-[62ch] text-pretty text-sm leading-relaxed text-muted-foreground/80">
+            {t("hero.ecosystemNote")}
+          </p>
+
           {/* Capability line. Every term is backed by something in the repo:
               orchestration (backend/orchestration), MCP (a live FastMCP server
               at /mcp/server), A2A (protobridge/protocols/a2a.py), guardrails

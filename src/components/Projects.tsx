@@ -1742,11 +1742,24 @@ export function ProjectsSection() {
           </p>
         </Reveal>
 
-        <div className="mb-20 grid grid-cols-1 gap-6 lg:grid-cols-2">
+        <div className="mb-6 grid grid-cols-1 gap-6 lg:grid-cols-2">
           {flagship.map((project) => (
             <ProjectCard key={project.id} project={project} labels={labels} />
           ))}
         </div>
+
+        {/* Links to the #discord section below rather than duplicating the
+            invite URL — Discord.tsx already owns the full pitch, channel
+            list and CTA button; this is a pointer for a reader who's just
+            seen the flagship systems and wants to go deeper. */}
+        <Reveal className="mb-20 text-center">
+          <a
+            href="#discord"
+            className="inline-flex items-center gap-2 text-sm text-muted-foreground transition-colors hover:text-brand"
+          >
+            {t("projects.discordCta")}
+          </a>
+        </Reveal>
 
         {/* ------------------------------------------------------------------
             TIER 2 — ENGINEERING. Three columns: present in full, visibly

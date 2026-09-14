@@ -38,6 +38,7 @@
     "title": "Agentic AI Systems Engineer",
     "headline": "I engineer AI agents that actually ship.",
     "supporting": "Designing reliable agentic systems — orchestration, tool use, evaluation, governance, interoperability and cloud-native deployment.",
+    "ecosystemNote": "This isn't a portfolio of screenshots — it's systems you can inspect: every claim below links to the file that proves it. Explore them, or drop into the Discord to watch the next one get built.",
     "capabilities": "Agent Orchestration · MCP · A2A · Guardrails · Evaluation · Kubernetes",
     "sourceCta": "GitHub"
   },
@@ -264,6 +265,7 @@
   "projects": {
     "tierFlagship": "Flagship systems",
     "tierFlagshipDesc": "Four systems that carry the argument: orchestration, protocol interoperability, deterministic governance, and the site you are reading. Each one runs on real data and each links to its source.",
+    "discordCta": "See how these get built — join #agentic-ai on Discord →",
     "tierEngineering": "Engineering projects",
     "tierEngineeringDesc": "Shipped platforms and products built on the same methods, with real data behind them.",
     "tierReference": "Reference implementations",
