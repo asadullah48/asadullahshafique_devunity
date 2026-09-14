@@ -156,9 +156,9 @@ export const PROOF: readonly Evidence[] = [
   {
     id: "open-source",
     label: "Open source",
-    value: "29 public repos",
+    value: "21 agentic repos",
     detail:
-      "Every system named on this site links to source. All 29 links were re-checked against the GitHub API on 2026-09-11 and resolve to public repositories.",
+      "Twenty-one agentic reference implementations are public, each with its own architecture, gateway, test suite, and repository. The homepage distinguishes these from deployed products.",
     source: { kind: "repo", slug: "" },
   },
 ] as const;

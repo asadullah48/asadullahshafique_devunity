@@ -28,17 +28,17 @@
     "location": "Pakistan · UAE",
     "greeting": "Hi, I'm",
     "name": "Asadullah",
-    "viewWork": "Explore systems",
-    "engagementModels": "Engagement Models",
+    "viewWork": "Explore flagship systems",
+    "engagementModels": "Discuss an AI system",
     "githubProfile": "GitHub Profile",
     "downloadResume": "Download Resume",
     "downloadingResume": "Checking...",
     "resumeNotFound": "PDF not found",
     "resumeMissingHint": "Add resume.pdf to your /public folder & redeploy",
     "title": "Agentic AI Systems Engineer",
-    "headline": "I engineer AI agents that actually ship.",
-    "supporting": "Designing reliable agentic systems — orchestration, tool use, evaluation, governance, interoperability and cloud-native deployment.",
-    "ecosystemNote": "This isn't a portfolio of screenshots — it's systems you can inspect: every claim below links to the file that proves it. Explore them, or drop into the Discord to watch the next one get built.",
+    "headline": "I engineer AI systems that move from reasoning to reliable execution.",
+    "supporting": "Production-oriented agents that coordinate workflows, use tools, preserve state, operate under guardrails, and leave an auditable trail.",
+    "ecosystemNote": "Every engineering claim below links to source code or live runtime evidence. Inspect the systems, then join the Discord to follow the next build.",
     "capabilities": "Agent Orchestration · MCP · A2A · Guardrails · Evaluation · Kubernetes",
     "sourceCta": "GitHub"
   },
@@ -93,18 +93,24 @@
     },
     "open-source": {
       "label": "Open source",
-      "value": "29 public repos"
+      "value": "21 agentic repos"
     }
   },
   "about": {
     "title": "About",
     "titleHighlight": "Me",
-    "subtitle": "Agentic AI Systems Engineer. I build multi-agent systems — orchestration, guardrails, evaluation — and the businesses they run inside, across Pakistan and the UAE.",
+    "subtitle": "I connect agent architecture with real operational problems across Pakistan and the UAE.",
     "bioName": "Asadullah Shafique",
     "badgeAI": "Agentic AI Systems Engineer",
     "badgeCMT": "CMT Industry Founder",
     "badgeMarketing": "Digital Marketer",
-    "bio": "I build production-grade AI systems and run real businesses. Founder of Texcot Embroidery Sourcing House and creator of the Textile ERP Platform targeting Pakistan's full textile value chain. Completing the Panaversity Hackathon Series: six consecutive builds, Bronze through Platinum, each one reusing the last. Bridging AI development and digital marketing for Pakistan and UAE markets."
+    "bio": "I build production-oriented AI systems and run a textile sourcing business. That combination keeps my engineering grounded in real workflows, deadlines, inventory, customers, and measurable outcomes.",
+    "h1Title": "Agentic Systems",
+    "h1Desc": "Orchestration, typed state, tool use, guardrails, evaluations, and graceful degradation—implemented as inspectable systems rather than presentation-only demos.",
+    "h2Title": "Operational Perspective",
+    "h2Desc": "Founder experience in Pakistan’s textile value chain shapes how I translate messy business workflows into practical software.",
+    "h3Title": "Business Delivery",
+    "h3Desc": "Engineering, digital strategy, and communication come together around one goal: moving a useful system from problem discovery to adoption."
   },
   "skills": {
     "title": "Tech",
@@ -318,7 +324,7 @@
   "opensrc": {
     "title": "Open",
     "titleHighlight": "Source",
-    "subtitle": "512 public repositories: 504 original, 8 forks — counted from the GitHub API on 2026-09-11. Built in public.",
+    "subtitle": "A public engineering archive spanning agent systems, full-stack applications, and business software. Selected work is curated by relevance, not volume.",
     "githubActivity": "GitHub Activity",
     "contributeGithub": "Contribute on GitHub",
     "joinDiscord": "Join Discord Community",
@@ -332,7 +338,7 @@
     "s2Label": "Hackathons",
     "s3Label": "Tests · 21 agentic repos",
     "s4Label": "Technologies",
-    "s5Label": "Active Communities"
+    "s5Label": "Communities"
   },
   "testimonials": {
     "title": "What People",
@@ -341,28 +347,28 @@
     "linkedInCTA": "View LinkedIn Recommendations"
   },
   "discord": {
-    "title": "Join My",
-    "titleHighlight": "Discord",
-    "subtitle": "Be part of a growing community of developers building the future with AI. Ask questions, share projects, and grow together.",
+    "title": "Build Reliable AI",
+    "titleHighlight": "In Public",
+    "subtitle": "A focused developer community for agent orchestration, MCP, guardrails, evaluations, and production AI architecture.",
     "hubTitle": "Asadullah's Dev Hub",
-    "communityGrowing": "Community Growing",
+    "communityGrowing": "Build in public",
     "channelsLabel": "Channels",
-    "joinButton": "Join Discord Server",
-    "freeNote": "Free to join · No spam · Active community",
-    "f1Title": "Developer Community",
-    "f1Desc": "Connect with fellow AI developers, full-stack engineers, and tech enthusiasts.",
-    "f2Title": "Live Discussions",
-    "f2Desc": "Real-time conversations about Agentic AI, Next.js, FastAPI, and cutting-edge tech.",
-    "f3Title": "Project Collaborations",
-    "f3Desc": "Find partners for hackathons, open source projects, and innovative AI applications."
+    "joinButton": "Join the Developer Community",
+    "freeNote": "Free to join · Focused discussions · Practical builds",
+    "f1Title": "Architecture Teardowns",
+    "f1Desc": "Study the decisions behind real agent systems, including routing, tools, state, failure paths, and evaluation.",
+    "f2Title": "Build Logs & Reviews",
+    "f2Desc": "Share work in progress, get practical feedback, and learn from repository and portfolio reviews.",
+    "f3Title": "Open-Source Collaboration",
+    "f3Desc": "Find contribution opportunities, project partners, and focused discussions around systems being built now."
   },
   "contact": {
     "title": "Get In",
     "titleHighlight": "Touch",
-    "subtitle": "Open for AI projects, freelance work, and collaborations.",
+    "subtitle": "For agent architecture, MCP integrations, AI system audits, and production-focused collaborations.",
     "subheadline": "Have a project idea, want to collaborate, or just say hello? Drop me a message!",
-    "buildTogether": "Let's build something amazing together",
-    "buildDesc": "I'm always excited to discuss new projects, creative ideas, or opportunities to be part of your vision. Whether it's an AI project, hackathon collaboration, or open-source contribution.",
+    "buildTogether": "Turn an AI workflow into a reliable system.",
+    "buildDesc": "If you have an AI prototype, operational bottleneck, or integration challenge, share the context, desired outcome, and current stack. I’ll respond with the most useful next step.",
     "emailLabel": "Email",
     "whatsappLabel": "WhatsApp",
     "whatsappHint": "For Pakistan/UAE: WhatsApp preferred for faster response",
