@@ -1,6 +1,7 @@
 "use client";
 
 import React from "react";
+import { ClaudeCredential } from "@/components/ClaudeCredential";
 import { Reveal } from "@/components/Reveal";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -748,6 +749,10 @@ export default function ResumePage() {
         </Section>
 
         {/* Education */}
+        <Section title="Completed Courses" icon={<GraduationCap className="w-5 h-5" />}>
+          <ClaudeCredential />
+        </Section>
+
         <Section title="Education & Certifications" icon={<GraduationCap className="w-5 h-5" />}>
           <div className="space-y-0">
             {education.map((e) => (

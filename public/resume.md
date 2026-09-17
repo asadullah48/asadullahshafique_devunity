@@ -197,6 +197,14 @@ Full-spectrum digital marketing strategy for Dubai real estate, UAE construction
 
 ## EDUCATION & CERTIFICATIONS
 
+### Completed courses
+
+**Claude 101 — Claude Academy (Anthropic’s learning platform)**
+
+Verified completion badge issued to Asadullah Shafique on September 18, 2026.
+
+[Verify completion badge](https://academy.claude.com/verify/6d808a4f90c00a98b326959280f5c280)
+
 ### Governor Sindh Initiative for Artificial Intelligence & Computing (Panaversity)
 **Feb 2024 – Present** · Advanced study in Agentic AI and Generative AI
 

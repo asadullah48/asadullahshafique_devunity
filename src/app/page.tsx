@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { ClaudeCredential } from "@/components/ClaudeCredential";
 import Hero from "@/components/Hero";
 import ProofStrip from "@/components/ProofStrip";
 import AudiencePaths from "@/components/AudiencePaths";
@@ -88,6 +89,9 @@ export default function Home() {
             <AudiencePaths />
             <TechMarquee />
             <About />
+            <section aria-label="Claude Academy" className="container mx-auto px-6 py-10">
+                <ClaudeCredential />
+            </section>
             {/* One promoted quote, immediately after About. Third-party
                 validation was previously unreachable until position 13 of 17,
                 below every project card — read by almost nobody. The full
