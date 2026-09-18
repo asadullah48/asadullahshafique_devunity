@@ -5,6 +5,10 @@ import { useLocale } from "@/context/LocaleContext";
 
 const credentials = [
   {
+    title: "Claude Code 101",
+    verifyCode: "64b43e3f91ee11516e562d2c35801e3a",
+  },
+  {
     title: "AI Fluency for builders",
     verifyCode: "2cfb8dd802a841177aba39028ef6cf4e",
   },

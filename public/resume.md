@@ -199,6 +199,12 @@ Full-spectrum digital marketing strategy for Dubai real estate, UAE construction
 
 ### Completed courses
 
+**Claude Code 101 — Claude Academy (Anthropic’s learning platform)**
+
+Verified completion badge issued to Asadullah Shafique on September 18, 2026.
+
+[Verify completion badge](https://academy.claude.com/verify/64b43e3f91ee11516e562d2c35801e3a)
+
 **AI Fluency for builders — Claude Academy (Anthropic’s learning platform)**
 
 Verified completion badge issued to Asadullah Shafique on September 18, 2026.
