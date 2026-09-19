@@ -33,6 +33,11 @@ const credentials = [
     verifyCode: "f8192381a00c3d85b011b7cd94673286",
     issued: false,
   },
+  {
+    title: "Claude Academy completion badge",
+    verifyCode: "881db997d7957558e2d108c9ab9d174e",
+    issued: false,
+  },
 ];
 
 export function ClaudeCredential() {
