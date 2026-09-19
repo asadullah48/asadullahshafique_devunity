@@ -235,11 +235,11 @@ Verified completion badge issued to Asadullah Shafique on September 18, 2026.
 
 [Verify completion badge](https://academy.claude.com/verify/6d808a4f90c00a98b326959280f5c280)
 
-**Claude Academy completion badge — Claude Academy (Anthropic’s learning platform)**
+**Introduction to Model Context Protocol — Claude Academy (Anthropic’s learning platform)**
 
 [Verify completion badge](https://academy.claude.com/verify/f8192381a00c3d85b011b7cd94673286)
 
-**Claude Academy completion badge — Claude Academy (Anthropic’s learning platform)**
+**Claude Code in action — Claude Academy (Anthropic’s learning platform)**
 
 [Verify completion badge](https://academy.claude.com/verify/881db997d7957558e2d108c9ab9d174e)
 
