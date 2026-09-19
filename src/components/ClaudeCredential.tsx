@@ -29,12 +29,12 @@ const credentials = [
     verifyCode: "6d808a4f90c00a98b326959280f5c280",
   },
   {
-    title: "Introduction to Model Context Protocol",
+    title: "Claude Code in action",
     verifyCode: "f8192381a00c3d85b011b7cd94673286",
     issued: false,
   },
   {
-    title: "Claude Code in action",
+    title: "Introduction to Model Context Protocol",
     verifyCode: "881db997d7957558e2d108c9ab9d174e",
     issued: false,
   },
