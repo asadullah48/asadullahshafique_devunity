@@ -235,6 +235,10 @@ Verified completion badge issued to Asadullah Shafique on September 18, 2026.
 
 [Verify completion badge](https://academy.claude.com/verify/6d808a4f90c00a98b326959280f5c280)
 
+**Claude Academy completion badge — Claude Academy (Anthropic’s learning platform)**
+
+[Verify completion badge](https://academy.claude.com/verify/f8192381a00c3d85b011b7cd94673286)
+
 ### Governor Sindh Initiative for Artificial Intelligence & Computing (Panaversity)
 **Feb 2024 – Present** · Advanced study in Agentic AI and Generative AI
 

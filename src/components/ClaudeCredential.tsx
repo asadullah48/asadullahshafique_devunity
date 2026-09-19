@@ -28,6 +28,11 @@ const credentials = [
     title: "Claude 101",
     verifyCode: "6d808a4f90c00a98b326959280f5c280",
   },
+  {
+    title: "Claude Academy completion badge",
+    verifyCode: "f8192381a00c3d85b011b7cd94673286",
+    issued: false,
+  },
 ];
 
 export function ClaudeCredential() {
@@ -49,7 +54,9 @@ export function ClaudeCredential() {
                 {ar ? "Claude Academy · منصة التعلّم من Anthropic" : "Claude Academy · Anthropic’s learning platform"}
               </p>
               <p className="mt-2 text-sm text-muted-foreground">
-                {ar ? "أسد الله شفيق · صدرت في 18 سبتمبر 2026" : "Asadullah Shafique · Issued September 18, 2026"}
+                {credential.issued === false
+                  ? (ar ? "أسد الله شفيق" : "Asadullah Shafique")
+                  : (ar ? "أسد الله شفيق · صدرت في 18 سبتمبر 2026" : "Asadullah Shafique · Issued September 18, 2026")}
               </p>
               <a
                 href={`https://academy.claude.com/verify/${credential.verifyCode}`}
