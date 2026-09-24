@@ -43,6 +43,7 @@
     "data": ["PostgreSQL", "Supabase", "Redis"],
     "ai": ["OpenAI Agents SDK", "Claude MCP", "LangGraph", "RAG"],
     "devops": ["Docker", "Kubernetes", "GitHub Actions"],
+    "marketing": ["Meta Ads", "Google Ads", "Funnel design", "Conversion rate optimisation", "A/B testing", "Cost per lead", "CTR and CPC", "Retargeting", "Lookalike audiences", "Hook rate", "ROAS", "Attribution models", "Creative fatigue management"],
     "methodology": "Spec-first development (SpecifyKit)"
   },
 

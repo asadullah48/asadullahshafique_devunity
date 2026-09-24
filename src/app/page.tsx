@@ -15,6 +15,7 @@ import AgentRuntime from "@/components/AgentRuntime";
 import ForwardDeployed from "@/components/ForwardDeployed";
 import ExpertiseGrid from "@/components/ExpertiseGrid";
 import GrowthSkills from "@/components/GrowthSkills";
+import PerformanceMarketing from "@/components/PerformanceMarketing";
 import Roadmap from "@/components/Roadmap";
 import Projects from "@/components/Projects";
 import Hackathons from "@/components/Hackathons";
@@ -130,6 +131,10 @@ export default function Home() {
             <Hackathons />
             <Services />
             <Industries />
+            {/* Paid-acquisition craft sits right after the verticals it serves
+                and before the softer GrowthSkills leverage. Its calculator is
+                the checkable part; its presets are labelled illustrative. */}
+            <PerformanceMarketing />
             {/* Non-engineering leverage, deliberately AFTER the services and
                 verticals block and immediately BEFORE Blog: its "Read the
                 writing" proof link points at #blog, so the evidence sits one

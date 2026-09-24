@@ -37,6 +37,7 @@ const Navbar = () => {
     { key: "hackathons",   name: t("nav.hackathons"),   href: "#hackathons"   },
     { key: "services",     name: t("nav.services"),     href: "#services"     },
     { key: "industries",   name: t("nav.industries"),   href: "#industries"   },
+    { key: "marketing",    name: t("nav.marketing"),    href: "#marketing"    },
     { key: "blog",         name: t("nav.blog"),         href: "#blog"         },
     { key: "openSource",   name: t("nav.openSource"),   href: "#open-source"  },
     { key: "testimonials", name: t("nav.testimonials"), href: "#testimonials" },

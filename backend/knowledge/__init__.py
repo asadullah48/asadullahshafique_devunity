@@ -89,6 +89,7 @@ MCP_TOOL_RESULTS: dict[str, Any] = {
         "ai_tools": _SKILLS["ai"],
         "devops": _SKILLS["devops"],
         "methodology": _SKILLS["methodology"],
+        "marketing": _SKILLS.get("marketing", []),
     },
     "get_projects": [
         {
