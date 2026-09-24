@@ -44,6 +44,7 @@ export const PORTFOLIO_FACTS: string = [
   ``,
   `Skills: ${ALL_SKILLS.join(", ")}.`,
   `Methodology: ${skills.methodology}.`,
+  `Performance marketing: ${skills.marketing.join(", ")}.`,
   ``,
   `Agent engineering framework (three disciplines):`,
   ...agentEngineering.disciplines.map((d) => `- ${d.name}: ${d.detail}`),

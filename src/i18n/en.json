@@ -3,6 +3,7 @@
     "about": "About",
     "services": "Services",
     "industries": "Industries",
+    "marketing": "Marketing",
     "skills": "Skills",
     "agentEng": "Agent Eng",
     "expertise": "Expertise",
@@ -253,6 +254,41 @@
     "i3Title": "Pakistani SMEs & Factories",
     "i3Sub": "Small and medium enterprises across Pakistan",
     "i3Desc": "AI tools, digital marketing, and SaaS solutions tailored for Pakistani businesses entering the digital economy."
+  },
+  "marketing": {
+    "title": "Paid Growth,",
+    "titleHighlight": "Measured",
+    "subtitle": "Full-funnel paid acquisition on Meta and Google for Dubai real estate, UAE construction and Pakistani SMEs. Twelve disciplines, from the first three seconds of an ad to break-even ROAS, run as one loop: test, measure, refine, scale.",
+    "calc": {
+      "title": "Funnel math, live",
+      "desc": "The arithmetic behind every campaign decision on this page. Change any input and CPC, CPL, CPA and ROAS respond, because a paid funnel is a chain of multiplied rates.",
+      "presetsLabel": "Example markets",
+      "preset": {
+        "realEstate": "Dubai off-plan",
+        "construction": "UAE contractor",
+        "ecommerce": "Pakistani e-commerce"
+      },
+      "field": {
+        "budget": "Monthly budget",
+        "cpm": "CPM",
+        "ctr": "CTR %",
+        "cvr": "Landing → lead %",
+        "close": "Lead → sale %",
+        "value": "Revenue per sale",
+        "margin": "Gross margin %"
+      },
+      "leads": "Leads",
+      "breakEven": "Break-even ROAS",
+      "status": {
+        "scale": "Profitable with room to scale",
+        "hold": "Near break-even",
+        "loss": "Losing money"
+      },
+      "illustrative": "Illustrative inputs for each market, not client data."
+    },
+    "proofLead": "One client outcome is on record, in the client's own words.",
+    "proofTestimonial": "Read the Al Rashidi testimonial",
+    "proofContact": "Plan a campaign together"
   },
   "expertise": {
     "title": "Expertise &",
