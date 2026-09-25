@@ -48,6 +48,24 @@ class TestContactEndpoint:
         
         assert response.status_code == 422
 
+    @pytest.mark.parametrize("field", ["name", "subject", "message"])
+    def test_submit_contact_whitespace_only_field(self, client: TestClient, sample_contact_data, field):
+        """Whitespace-only text fields are rejected like empty ones."""
+        sample_contact_data[field] = "   "
+        response = client.post("/api/contact", json=sample_contact_data)
+
+        assert response.status_code == 422
+
+    def test_rate_limit_still_applies(self, client: TestClient, sample_contact_data):
+        """The per-test reset clears counters; it does not disable the limit."""
+        codes = [
+            client.post("/api/contact", json=sample_contact_data).status_code
+            for _ in range(6)
+        ]
+
+        assert codes[:5] == [200] * 5
+        assert codes[5] == 429
+
     @patch("main.send_discord_notification")
     def test_discord_notification_called(self, mock_discord, client: TestClient, sample_contact_data, mock_discord_webhook):
         """Test that Discord notification is triggered."""
@@ -60,13 +78,13 @@ class TestContactEndpoint:
 class TestGetMessages:
     """Test get messages endpoint."""
 
-    def test_get_messages(self, client: TestClient, sample_contact_data):
+    def test_get_messages(self, client: TestClient, sample_contact_data, admin_headers):
         """Test retrieving contact messages."""
         # First submit a message
         client.post("/api/contact", json=sample_contact_data)
         
         # Then retrieve messages
-        response = client.get("/api/contact/messages")
+        response = client.get("/api/contact/messages", headers=admin_headers)
         
         assert response.status_code == 200
         data = response.json()
@@ -74,17 +92,17 @@ class TestGetMessages:
         assert "total" in data
         assert data["total"] >= 1
 
-    def test_get_messages_empty(self, client: TestClient):
-        """Test retrieving messages when empty."""
-        # Clear any existing messages (in a real app, use database)
-        from main import contact_messages
-        contact_messages.clear()
-        
-        response = client.get("/api/contact/messages")
-        
-        assert response.status_code == 200
-        data = response.json()
-        assert data["total"] == 0
+    def test_get_messages_requires_admin_token(self, client: TestClient, admin_headers):
+        """Messages are private: no token or a wrong token is rejected.
+
+        Replaces test_get_messages_empty, which cleared an in-memory
+        `contact_messages` list that no longer exists (messages now live in
+        the database, behind the admin token).
+        """
+        assert client.get("/api/contact/messages").status_code == 401
+        assert client.get(
+            "/api/contact/messages", headers={"X-Admin-Token": "wrong"}
+        ).status_code == 401
 
 
 class TestContactValidation:

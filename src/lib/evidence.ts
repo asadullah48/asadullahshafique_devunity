@@ -223,23 +223,25 @@ export const ENGINEERING_EVIDENCE: readonly Evidence[] = [
   {
     id: "backend-tests",
     label: "Service tests",
-    // Measured 2026-09-25 with the SQLite override (CLAUDE.md §1): 45 collected,
-    // 37 pass, 8 fail — the documented clean-tree baseline (contact x5, GitHub
-    // stats x2, health x1). The 4 added since the 2026-09-11 count (41/33) are
-    // tests/test_mcp_transport.py, which pins the MCP server's host allow-list. backend-ci.yml runs `pytest -v || echo`, so the
-    // step cannot fail the build. The previous copy ("under test on every
-    // push") was literally true and left both facts out; a failure count
-    // stated plainly reads as engineering, one discovered by a reviewer reads
-    // as concealment.
-    value: "45 tests · 37 pass",
+    // Measured 2026-09-25 (CLAUDE.md §1): 49 collected, 49 pass. The eight
+    // that failed from 2026-09-11 to 2026-09-25 were fixed then: one real gap
+    // (blank contact fields were accepted) and seven stale tests. The same
+    // change found that CI was not running the suite at all: pyproject.toml
+    // passes --cov, pytest-cov was not installed, and `pytest -v || echo`
+    // swallowed the usage error (seen in the 2026-09-25 "Lint & Test" log:
+    // "unrecognized arguments: --cov=." then "No tests found, skipping...").
+    // The step is now blocking. The earlier copy
+    // ("41 tests · 33 pass") stated the failures instead of hiding them; this
+    // one states how they were closed, for the same reason.
+    value: "49 tests · 49 pass",
     detail:
-      "The FastAPI service behind this site — agent, MCP, contact, blog, GitHub and health paths. 8 tests fail on a clean tree (contact, GitHub stats, health), and CI runs the suite without blocking the build. Both are known and stated, not rounded away.",
+      "The FastAPI service behind this site — agent, MCP, contact, blog, GitHub and health paths. All pass, and CI now runs them as a blocking gate on every push. Until September 2026 it did not: eight tests were failing, and a missing coverage plugin meant CI was not actually running them. Both were fixed rather than hidden.",
     source: { kind: "local", path: "backend/tests" },
     ar: {
       label: "اختبارات الخدمة",
-      value: "45 اختباراً · 37 ناجحاً",
+      value: "49 اختباراً · 49 ناجحاً",
       detail:
-        "خدمة FastAPI التي تشغّل هذا الموقع — مسارات الوكيل وMCP والتواصل والمدونة وGitHub والصحة. ثمانية اختبارات تفشل على شجرة نظيفة (التواصل وإحصاءات GitHub والصحة)، ويشغّل التكامل المستمر المجموعة دون أن يوقف البناء. كلا الأمرين معروف ومذكور صراحةً، لا مُقرَّب أو مُخفى.",
+        "خدمة FastAPI التي تشغّل هذا الموقع — مسارات الوكيل وMCP والتواصل والمدونة وGitHub والصحة. جميعها ناجحة، ويشغّلها التكامل المستمر الآن كبوابة إلزامية مع كل دفعة. لم يكن الأمر كذلك حتى سبتمبر 2026: كانت ثمانية اختبارات تفشل، وكانت إضافة التغطية مفقودة فلم يكن التكامل المستمر يشغّل الاختبارات فعلياً. عولج الأمران ولم يُخفيا.",
     },
   },
   {

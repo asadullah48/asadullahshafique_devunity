@@ -8,7 +8,7 @@ from pathlib import Path
 # Add parent directory to path
 sys.path.insert(0, str(Path(__file__).parent.parent))
 
-from main import app
+from main import app, limiter
 
 
 @pytest.fixture(scope="session")
@@ -29,6 +29,27 @@ def client():
     """
     with TestClient(app) as test_client:
         yield test_client
+
+
+@pytest.fixture(autouse=True)
+def reset_rate_limits():
+    """
+    Clear slowapi's counters before every test.
+
+    The client is session-scoped (see above), so every request comes from the
+    same address and the 5/minute contact limit accumulated across tests,
+    turning later submissions into 429s. Resetting the storage keeps the limit
+    itself in force; test_rate_limit_still_applies proves it.
+    """
+    limiter.reset()
+    yield
+
+
+@pytest.fixture
+def admin_headers():
+    """X-Admin-Token header matching a patched ADMIN_SECRET."""
+    with patch("main.ADMIN_SECRET", "test-admin-secret"):
+        yield {"X-Admin-Token": "test-admin-secret"}
 
 
 @pytest.fixture
