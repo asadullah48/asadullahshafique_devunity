@@ -322,13 +322,18 @@ be an MCP tool the orchestrator calls.
 - **`router`** — the legacy `/mcp/*` REST shim. **Not MCP**: no handshake, no capability negotiation. Kept only because the README
   documents it and `tests/test_agent_mcp.py` pins it. Never call it an MCP server in user-facing copy.
 
-Two settings on `portfolio_mcp` are load-bearing:
+Three settings on `portfolio_mcp` are load-bearing:
 
 - **`stateless_http=True`** — `backend/Dockerfile` now runs `uvicorn --workers 1` (dropped from 2: two copies of the
   langgraph + litellm + Agents SDK import graph measured 404MB against Render's 512MB free tier and the service
   restarted intermittently). **Keep this setting on anyway.** Streamable HTTP session state is in-process, so
   with two workers and no sticky routing a client could `initialize` on one worker and have the next request hit the other.
   Turning this off requires a shared `EventStore` or sticky sessions at the load balancer.
+- **`transport_security=MCP_TRANSPORT_SECURITY`** — FastMCP's default host is `127.0.0.1`, for which the SDK auto-enables
+  DNS-rebinding protection with a **localhost-only** host allow-list. Behind Render every request carries
+  `Host: asadullahshafique-devunity.onrender.com`, so without this setting the public endpoint answers `421 Invalid Host header`
+  to every remote client while local tests still pass. Keep protection on; add hosts via `_PUBLIC_HOSTS` or the
+  `MCP_ALLOWED_HOSTS` env var. `tests/test_mcp_transport.py` pins both the accept and the reject cases.
 - **`streamable_http_path="/"`** — the app is mounted *at* `/mcp/server`, so its internal route is the root. Both `/mcp/server`
   and `/mcp/server/` were verified working.
 

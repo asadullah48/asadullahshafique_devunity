@@ -52,6 +52,23 @@
     "degraded": "When the backend is asleep or unreachable, both panels say so and print the outage. A status panel that only renders when the news is good is decoration.",
     "sourceLabel": "Source"
   },
+  "connectMcp": {
+    "eyebrow": "Model Context Protocol",
+    "title": "Connect this portfolio to",
+    "titleHighlight": "your AI",
+    "subtitle": "This portfolio is also a live MCP server. Add it to your own AI assistant and ask about my skills, projects and how to reach me. The answers come from the same data file this site uses.",
+    "claudeCode": "Claude Code: run in your terminal",
+    "endpoint": "Endpoint for any MCP client (Streamable HTTP)",
+    "otherClients": "In Claude on desktop or the web, add it as a custom connector in Settings using the endpoint URL. Other clients that support Streamable HTTP take the same URL.",
+    "toolsLabel": "Six read-only tools",
+    "tryLabel": "Then try asking",
+    "try1": "“What has Asadullah built with MCP and guardrails?”",
+    "try2": "“How can I contact Asadullah about an agentic AI project?”",
+    "readOnly": "Read-only by design: the tools take no arguments and cannot write anything.",
+    "coldStart": "It runs on a free tier that sleeps when idle, so the first request can take about a minute while it wakes. If the connection times out, try again.",
+    "copy": "Copy",
+    "copied": "Copied"
+  },
   "evidence": {
     "eyebrow": "// engineering_evidence",
     "title": "Engineering",

@@ -116,7 +116,7 @@ The single page is ordered as an argument: agentic evidence first, then methodol
 | 3 | Flagship case studies | `#flagship-case-studies` | OrchestratorX, ProtoBridge, GuardrailAI |
 | 4 | About · Claude Academy · featured testimonial | `#about` | Background, verified credentials, one promoted quote |
 | 5 | Skills · Agent Engineering | `#skills`, `#agent-engineering` | Stack, and the harness × loop × graph framework |
-| 6 | Agent trace → evidence → runtime | `#agent-trace`, `#evidence`, `#agent-runtime` | An illustrative run, the disciplines behind it, then live endpoints |
+| 6 | Agent trace → evidence → runtime → connect | `#agent-trace`, `#evidence`, `#agent-runtime`, `#connect-mcp` | An illustrative run, the disciplines behind it, live endpoints, then how to connect the MCP server to your own AI |
 | 7 | Forward-deployed model · Expertise · Roadmap | `#forward-deployed`, `#expertise`, `#roadmap` | How systems reach a customer; capabilities with source paths |
 | 8 | Projects · Hackathons | `#projects`, `#hackathons` | Production work; H0–H5 series |
 | 9 | Services · Industries | `#services`, `#industries` | Agentic AI systems, Textile ERP, digital marketing |
@@ -428,16 +428,19 @@ handshake against it.
 Every tool reads from `backend/knowledge/portfolio.json`, the single source of truth shared with the site's chat agent — so the
 MCP tools and the website can never disagree.
 
-```jsonc
-// Claude Desktop — claude_desktop_config.json
-{
-  "mcpServers": {
-    "asadullah-portfolio": {
-      "url": "https://asadullahshafique-devunity.onrender.com/mcp/server"
-    }
-  }
-}
+**Connect it:**
+
+```bash
+# Claude Code
+claude mcp add --transport http asadullah-portfolio https://asadullahshafique-devunity.onrender.com/mcp/server
 ```
+
+- **Claude (desktop or web):** add a custom connector in Settings and paste the endpoint URL.
+- **Any other client** that supports Streamable HTTP: use the endpoint URL as-is.
+
+The same instructions are on the homepage at `#connect-mcp` ([`src/components/ConnectMcp.tsx`](src/components/ConnectMcp.tsx)). The backend runs on a free tier that sleeps, so the first request can take about a minute while it wakes.
+
+> **Host allow-list.** The SDK enables DNS-rebinding protection with a localhost-only allow-list by default, which rejects the public host with `421 Invalid Host header` (reproduced locally by sending the production Host header). `mcp_server.py` keeps the protection on and adds the production host; extra hosts go in `MCP_ALLOWED_HOSTS` (comma-separated). [`backend/tests/test_mcp_transport.py`](backend/tests/test_mcp_transport.py) pins this behaviour.
 
 > The older `/mcp/tools` and `/mcp/rpc` paths are a plain-REST convenience shim kept for backwards compatibility. They are **not**
 > MCP and no MCP client can connect to them — use `/mcp/server`.

@@ -12,6 +12,7 @@ import AgentEngineering from "@/components/AgentEngineering";
 import AgentTrace from "@/components/AgentTrace";
 import EngineeringEvidence from "@/components/EngineeringEvidence";
 import AgentRuntime from "@/components/AgentRuntime";
+import ConnectMcp from "@/components/ConnectMcp";
 import ForwardDeployed from "@/components/ForwardDeployed";
 import ExpertiseGrid from "@/components/ExpertiseGrid";
 import GrowthSkills from "@/components/GrowthSkills";
@@ -124,6 +125,10 @@ export default function Home() {
                 is the point, and a reader just told "representative values"
                 then meets real ones and can tell which is which. */}
             <AgentRuntime />
+            {/* The runtime panels prove the system is up; this invites the
+                visitor to use it from their own AI client. Same endpoint, same
+                data file, so nothing here can drift from what the panels show. */}
+            <ConnectMcp />
             {/* The FDE model sits directly after the harness/loop/graph
                 framework: that section argues HOW agents are built, this one
                 argues how they reach a customer and get paid for. Each of its

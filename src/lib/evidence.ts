@@ -223,20 +223,21 @@ export const ENGINEERING_EVIDENCE: readonly Evidence[] = [
   {
     id: "backend-tests",
     label: "Service tests",
-    // Measured 2026-09-11 with the SQLite override (CLAUDE.md §1): 41 collected,
-    // 33 pass, 8 fail — the documented clean-tree baseline (contact x5, GitHub
-    // stats x2, health x1). backend-ci.yml runs `pytest -v || echo`, so the
+    // Measured 2026-09-25 with the SQLite override (CLAUDE.md §1): 45 collected,
+    // 37 pass, 8 fail — the documented clean-tree baseline (contact x5, GitHub
+    // stats x2, health x1). The 4 added since the 2026-09-11 count (41/33) are
+    // tests/test_mcp_transport.py, which pins the MCP server's host allow-list. backend-ci.yml runs `pytest -v || echo`, so the
     // step cannot fail the build. The previous copy ("under test on every
     // push") was literally true and left both facts out; a failure count
     // stated plainly reads as engineering, one discovered by a reviewer reads
     // as concealment.
-    value: "41 tests · 33 pass",
+    value: "45 tests · 37 pass",
     detail:
       "The FastAPI service behind this site — agent, MCP, contact, blog, GitHub and health paths. 8 tests fail on a clean tree (contact, GitHub stats, health), and CI runs the suite without blocking the build. Both are known and stated, not rounded away.",
     source: { kind: "local", path: "backend/tests" },
     ar: {
       label: "اختبارات الخدمة",
-      value: "41 اختباراً · 33 ناجحاً",
+      value: "45 اختباراً · 37 ناجحاً",
       detail:
         "خدمة FastAPI التي تشغّل هذا الموقع — مسارات الوكيل وMCP والتواصل والمدونة وGitHub والصحة. ثمانية اختبارات تفشل على شجرة نظيفة (التواصل وإحصاءات GitHub والصحة)، ويشغّل التكامل المستمر المجموعة دون أن يوقف البناء. كلا الأمرين معروف ومذكور صراحةً، لا مُقرَّب أو مُخفى.",
     },
