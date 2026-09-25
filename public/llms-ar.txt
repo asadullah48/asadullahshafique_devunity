@@ -54,6 +54,7 @@
 - الجودة: مجموعة تقييم (evals) تجمع بين فحوصات حتمية وتحكيم بنموذج لغوي
 - السجل: ستة هاكاثونات متتالية في Panaversity، من H0 إلى H5 (برونزية ← فضية ← فضية ← ذهبية ← بلاتينية ← Agent Factory). وقد شحنت الجولة الذهبية H3 نظام ذكاء اصطناعي دستوري ثلاثي الطبقات مع نجاح 149 اختباراً — وهي أصل عمل الحواجز المذكور أعلاه.
 - حجم المساهمة مفتوحة المصدر: أكثر من 480 مستودعاً عاماً و135 متابعاً على GitHub (قيست 481 مستودعاً في 2026-08-24). وتُقدَّم الأعداد الحيّة من /api/github/stats.
+- الاتصال عبر MCP: https://asadullahshafique-devunity.onrender.com/mcp/server ‏(Streamable HTTP، ست أدوات للقراءة فقط؛ في Claude Code: `claude mcp add --transport http asadullah-portfolio https://asadullahshafique-devunity.onrender.com/mcp/server`). الخادم على خطة مجانية، لذا قد يستغرق الطلب الأول نحو دقيقة حتى يستيقظ.
 - النسخة الإنجليزية: https://asadullahshafique-devunity.vercel.app/
 - الملف التعريفي الإنجليزي للنماذج: https://asadullahshafique-devunity.vercel.app/llms.txt
 - GitHub: https://github.com/asadullah48

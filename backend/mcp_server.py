@@ -28,10 +28,12 @@ requirement. Do not turn this off without adding a shared EventStore or sticky
 sessions at the load balancer.
 """
 
+import os
 from typing import Any
 
 from fastapi import APIRouter
 from mcp.server.fastmcp import FastMCP
+from mcp.server.transport_security import TransportSecuritySettings
 from pydantic import BaseModel
 
 from knowledge import MCP_TOOL_RESULTS as TOOL_RESULTS
@@ -93,6 +95,35 @@ TOOLS = [
 # THE REAL MCP SERVER
 # ═════════════════════════════════════════════════════════════════════════════
 
+# --- Why transport_security is set explicitly ---
+# FastMCP's default host is 127.0.0.1, and for that host the SDK auto-enables
+# DNS-rebinding protection with an allow-list of localhost ONLY. Mounted behind
+# Render, every real request arrives with `Host: <service>.onrender.com`, which
+# that allow-list rejects with 421 "Invalid Host header" (reproduced locally on
+# mcp 1.26.0 by sending the production Host header). No test sent a public Host
+# header, so nothing caught it.
+# Protection stays ON; the production host is added to the allow-list.
+# MCP_ALLOWED_HOSTS (comma-separated) adds hosts for other deployments, e.g. a
+# custom domain or the Hugging Face Space. tests/test_mcp_transport.py pins it.
+_LOCAL_HOSTS = ["127.0.0.1:*", "localhost:*", "[::1]:*"]
+_PUBLIC_HOSTS = ["asadullahshafique-devunity.onrender.com"]
+_EXTRA_HOSTS = [
+    h.strip() for h in os.getenv("MCP_ALLOWED_HOSTS", "").split(",") if h.strip()
+]
+
+MCP_TRANSPORT_SECURITY = TransportSecuritySettings(
+    enable_dns_rebinding_protection=True,
+    allowed_hosts=_LOCAL_HOSTS + _PUBLIC_HOSTS + _EXTRA_HOSTS,
+    # Only browser-based clients send Origin; CLI and desktop clients send none,
+    # which the SDK accepts. The portfolio's own origin is allowed for browsers.
+    allowed_origins=[
+        "http://127.0.0.1:*",
+        "http://localhost:*",
+        "http://[::1]:*",
+        "https://asadullahshafique-devunity.vercel.app",
+    ],
+)
+
 portfolio_mcp = FastMCP(
     name="asadullah-portfolio",
     instructions=(
@@ -104,6 +135,7 @@ portfolio_mcp = FastMCP(
     ),
     website_url="https://asadullahshafique-devunity.vercel.app",
     stateless_http=True,
+    transport_security=MCP_TRANSPORT_SECURITY,
     # main.py mounts this app at /mcp/server, so its internal route is the root.
     streamable_http_path="/",
 )

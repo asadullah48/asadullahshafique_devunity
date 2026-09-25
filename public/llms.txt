@@ -55,6 +55,7 @@ stated as sector focus and target markets, not as completed client engagements.
 - Quality: an eval suite pairing deterministic tool/route checks with LLM-as-judge scoring
 - Track record: six consecutive Panaversity hackathons, H0 through H5 (Bronze → Silver → Silver → Gold → Platinum → Agent Factory). H3, the Gold round, shipped a triple-layer constitutional AI system with 149 tests passing — the origin of the guardrail work above.
 - Open-source scale: 480+ public repositories and 135 followers on GitHub (481 repos measured 2026-08-24). Live counts are served from /api/github/stats.
+- Connect via MCP: https://asadullahshafique-devunity.onrender.com/mcp/server (Streamable HTTP, six read-only tools; Claude Code: `claude mcp add --transport http asadullah-portfolio https://asadullahshafique-devunity.onrender.com/mcp/server`). Free-tier host: the first request can take about a minute while it wakes.
 - Arabic version: https://asadullahshafique-devunity.vercel.app/ar
 - Machine-readable Arabic profile: https://asadullahshafique-devunity.vercel.app/llms-ar.txt
 - GitHub: https://github.com/asadullah48
