@@ -41,7 +41,10 @@ jobs:
         run: |
           python -m pip install --upgrade pip
           pip install -r requirements.txt
-          pip install ruff mypy pytest pytest-asyncio httpx
+          # requirements-test.txt carries pytest-cov. pyproject.toml's addopts
+          # always passes --cov, so without it pytest exits with a usage error
+          # before collecting a single test.
+          pip install -r requirements-test.txt
           
       # Maintained modular agent infrastructure is the hard lint boundary.
       # The original single-file agent remains tracked as migration debt.
@@ -60,13 +63,14 @@ jobs:
         run: |
           mypy . --ignore-missing-imports || true
           
-      # NOTE: `|| echo` means this step can NEVER fail the build. 8 tests fail on
-      # a clean tree today, so tightening it is a separate, deliberate change —
-      # but be aware that a green badge here does not mean green tests.
+      # Blocking. This step used to end in `|| echo`, which hid two things: 8
+      # failing tests, and the fact that pytest never ran at all here (pytest-cov
+      # was not installed, so `--cov` in addopts was a usage error). Both are
+      # fixed; a red run now means a real failure.
       - name: Run tests
         working-directory: ./backend
         run: |
-          pytest -v || echo "No tests found, skipping..."
+          pytest -v
 
       # Agent quality gate (CLAUDE.md Rule 4). Unlike the step above, this one
       # CAN fail the build — but only when a model key exists to measure with.

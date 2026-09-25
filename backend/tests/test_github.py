@@ -9,62 +9,54 @@ import httpx
 class TestGitHubStats:
     """Test GitHub stats endpoint."""
 
-    @patch("httpx.AsyncClient.get")
+    @staticmethod
+    def _response(url: str, payload) -> httpx.Response:
+        """A real httpx.Response, so .json() and .raise_for_status() behave as
+        they do in production. The previous hand-rolled objects defined
+        `json` as a zero-argument lambda, which raised TypeError when called
+        as a method, so the route answered 500 and the test failed."""
+        return httpx.Response(200, json=payload, request=httpx.Request("GET", url))
+
+    @patch("httpx.AsyncClient.get", new_callable=AsyncMock)
     def test_get_github_stats(self, mock_get, client: TestClient):
         """Test retrieving GitHub stats with mocked API."""
-        # Mock user data
-        mock_user_data = {
-            "public_repos": 50,
-            "followers": 100,
-            "following": 20,
-        }
-        
-        # Mock repos data
+        mock_user_data = {"public_repos": 50, "followers": 100, "following": 20}
         mock_repos_data = [
             {"stargazers_count": 10, "language": "Python"},
             {"stargazers_count": 20, "language": "TypeScript"},
             {"stargazers_count": 5, "language": "Python"},
         ]
-        
-        # Create async mock responses
-        async def mock_user(*args, **kwargs):
-            return type('obj', (object,), {
-                'json': lambda: mock_user_data,
-                'raise_for_status': lambda: None,
-            })()
-        
-        async def mock_repos(*args, **kwargs):
-            return type('obj', (object,), {
-                'json': lambda: mock_repos_data,
-                'raise_for_status': lambda: None,
-            })()
-        
-        mock_get.side_effect = [mock_user(), mock_repos()]
-        
+        mock_get.side_effect = [
+            self._response("https://api.github.com/users/x", mock_user_data),
+            self._response("https://api.github.com/users/x/repos", mock_repos_data),
+        ]
+
         response = client.get("/api/github/stats")
-        
+
         assert response.status_code == 200
         data = response.json()
-        assert "public_repos" in data
-        assert "followers" in data
-        assert "following" in data
-        assert "total_stars" in data
-        assert "top_languages" in data
+        assert data["public_repos"] == 50
+        assert data["followers"] == 100
+        assert data["following"] == 20
+        assert data["total_stars"] == 35
+        assert data["top_languages"] == ["Python", "TypeScript"]
 
-    @patch("httpx.AsyncClient.get")
+    @patch("httpx.AsyncClient.get", new_callable=AsyncMock)
     def test_github_stats_with_token(self, mock_get, client: TestClient, mock_github_token):
         """Test GitHub stats request includes token when configured."""
-        async def mock_response(*args, **kwargs):
-            return type('obj', (object,), {
-                'json': lambda: {"public_repos": 10, "followers": 50, "following": 10},
-                'raise_for_status': lambda: None,
-            })()
-        
-        mock_get.side_effect = [mock_response(), mock_response()]
-        
+        mock_get.side_effect = [
+            self._response(
+                "https://api.github.com/users/x",
+                {"public_repos": 10, "followers": 50, "following": 10},
+            ),
+            self._response("https://api.github.com/users/x/repos", []),
+        ]
+
         response = client.get("/api/github/stats")
-        
+
         assert response.status_code == 200
+        for call in mock_get.call_args_list:
+            assert call.kwargs["headers"]["Authorization"] == "token test_token"
 
     def test_github_stats_structure(self, client: TestClient):
         """Test GitHub stats response structure."""

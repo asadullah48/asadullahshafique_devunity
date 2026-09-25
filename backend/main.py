@@ -34,8 +34,8 @@ from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import JSONResponse, HTMLResponse, StreamingResponse
 from fastapi.staticfiles import StaticFiles
 from fastapi.responses import FileResponse
-from pydantic import BaseModel, EmailStr
-from typing import Optional, List, Dict, Any
+from pydantic import BaseModel, EmailStr, StringConstraints
+from typing import Annotated, Optional, List, Dict, Any
 from datetime import datetime
 import asyncio
 import httpx
@@ -184,11 +184,18 @@ def require_admin(request: Request) -> None:
         raise HTTPException(status_code=401, detail="Unauthorized")
 
 # ─── Models ──────────────────────────────────────────────────────────────────
+# Blank or whitespace-only fields are rejected with 422. The form and the
+# Next.js proxy (src/app/api/contact/route.ts) already require all four; this
+# makes the API enforce the same rule for direct callers. No max length on
+# message: long messages are accepted and truncated for Discord.
+NonBlankStr = Annotated[str, StringConstraints(strip_whitespace=True, min_length=1)]
+
+
 class ContactRequest(BaseModel):
-    name: str
+    name: NonBlankStr
     email: EmailStr
-    subject: str
-    message: str
+    subject: NonBlankStr
+    message: NonBlankStr
 
     class Config:
         json_schema_extra = {

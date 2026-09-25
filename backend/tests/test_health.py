@@ -63,4 +63,5 @@ class TestAPIInfo:
         assert "contact" in endpoints
         assert "blog" in endpoints
         assert "github" in endpoints
-        assert "agent" in endpoints
+        assert "agent_chat" in endpoints
+        assert "mcp_server" in endpoints

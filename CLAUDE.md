@@ -66,8 +66,9 @@ pytest tests/test_agent_mcp.py -v             # one file
 pytest tests/test_agent_mcp.py::test_name -v  # one test
 pytest -k "mcp" -v                            # by keyword
 
-# 8 tests fail on a clean tree (contact/github/health). That is the known
-# baseline, not something you broke. Compare counts before and after a change.
+# All 49 pass on a clean tree (2026-09-25). CI runs `pytest -v` as a blocking
+# step, with requirements-test.txt installed: pyproject.toml's addopts always
+# passes --cov, so pytest-cov must be present or pytest exits before collecting.
 
 alembic upgrade head                          # apply migrations
 alembic revision --autogenerate -m "message"  # new migration
