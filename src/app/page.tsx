@@ -88,6 +88,12 @@ export default function Home() {
                 See src/lib/evidence.ts for the provenance of each. */}
             <ProofStrip />
             <AudiencePaths />
+            {/* The three flagship architecture reviews come straight after the
+                audience router: they are the strongest agentic-AI evidence on
+                the page, and the hero's "Explore flagship systems" button and
+                the AI-developer path both land here. They used to sit below
+                Roadmap, roughly two thirds of the way down. */}
+            <FlagshipCaseStudies />
             <TechMarquee />
             <About />
             <section aria-label="Claude Academy" className="container mx-auto px-6 py-10">
@@ -126,7 +132,6 @@ export default function Home() {
             {/* Applied capability follows the methodology that produced it. */}
             <ExpertiseGrid />
             <Roadmap />
-            <FlagshipCaseStudies />
             <Projects />
             <Hackathons />
             <Services />

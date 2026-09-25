@@ -124,10 +124,11 @@ export function HeroSection() {
 
           <div className="flex flex-wrap justify-center gap-3 lg:justify-start">
             <Button asChild variant="neon" size="lg">
-              {/* #projects, not #systems: the anchor is referenced by the
-                  Navbar, the Footer and several in-page links, so the id stays
-                  put and only the LABEL changes to the brief's wording. */}
-              <Link href="#projects">
+              {/* The label promises flagship systems, so it lands on the three
+                  architecture case studies (#flagship-case-studies), which now
+                  sit directly under the audience paths. #projects keeps its id
+                  for the Navbar, Footer and other in-page links. */}
+              <Link href="#flagship-case-studies">
                 {t("hero.viewWork")}
                 <ArrowRight className="h-4 w-4" aria-hidden="true" />
               </Link>

@@ -35,8 +35,11 @@ The claim this repository exists to survive is *production systems, not prototyp
 - 🤖 **Portfolio Assistant** — two independent agent paths, both degrading gracefully without an API key. The live widget streams from Google Gemini at the edge; the showcased backend agent runs a fallback ladder of **Agents SDK → LangGraph → static keyword answers**
 - ⚖️ **Constitutional Guardrails** — five written principles enforced as SDK guardrails, with a deterministic screen that trips *before* any model call (verified blocking 4/4 violations with no model reachable)
 - 📐 **Agent Evals** — trace-based scoring that catches an agent answering from memory instead of calling its tool, which a prose-only judge passes
-- 🔍 **Global Search** — Keyboard-accessible search (Ctrl/Cmd + K)
-- 📝 **Blog System** — Share technical knowledge and experiences
+- 🏛️ **Flagship Case Studies** — dedicated architecture reviews for [OrchestratorX](https://asadullahshafique-devunity.vercel.app/systems/orchestratorx), [ProtoBridge](https://asadullahshafique-devunity.vercel.app/systems/protobridge) and [GuardrailAI](https://asadullahshafique-devunity.vercel.app/systems/guardrailai) at `/systems/[slug]`, with verification paths and limitations stated ([`src/lib/flagship-systems.ts`](src/lib/flagship-systems.ts))
+- 🧾 **Verified Proof Strip** — every figure under the hero links to the live endpoint, repo path or directory that backs it ([`src/lib/evidence.ts`](src/lib/evidence.ts))
+- 🎓 **Claude Academy Credentials** — eight completions issued by Anthropic's Claude Academy, each linking to its public `academy.claude.com/verify/…` page ([`src/components/ClaudeCredential.tsx`](src/components/ClaudeCredential.tsx))
+- 📈 **Performance Marketing** — twelve paid-acquisition competencies grouped by funnel stage (attention, click, conversion, profit), each with its formula, plus a live in-browser funnel calculator (see [below](#-performance-marketing))
+- 📝 **Knowledge Hub** — `/blog` in English and Arabic, one markdown file per article in `content/<locale>/`; article evidence citations are checked at build time
 - 💬 **Contact Form** — Discord webhook integration for notifications
 - 📊 **GitHub Stats** — Real-time GitHub profile integration
 - 🔌 **MCP Server** — a real Model Context Protocol server (official SDK, Streamable HTTP) exposing the portfolio as 6 read-only tools
@@ -99,6 +102,40 @@ FinAgent-Nexus, the Textile ERP, and Kubernetes autoscaling).
 | Engineering Context Integrity & Trace Auditability | [`backend/orchestration/context.py`](backend/orchestration/context.py) — typed shared state recording `route` and `tool_calls` | Completed ✅ |
 
 > **Proof of the matrix, end to end:** [**FinAgent-Nexus**](https://github.com/asadullah48/finagent-nexus) — *Agentic AI Adoption for Financial Services.* Three specialists (MarketAnalyst, ComplianceOfficer, WealthStrategist) on a fixed state machine where no agent holds two of the three powers, Shari'ah and regulatory principles live in a versioned constitution reviewed like code, and every run writes a hash-chained, tamper-evident audit trail. **94 tests pass with no API key and no network** — so the numbers above are reproducible offline, at no marginal cost, by anyone who clones it. [Live screening engine →](https://finagent-nexus.vercel.app)
+
+---
+
+## 🗺️ Homepage at a Glance
+
+The single page is ordered as an argument: agentic evidence first, then methodology, then applied work and services. Current section order:
+
+| # | Section | Anchor | What it shows |
+|---|---|---|---|
+| 1 | Hero | `#home` | Static role line, headline, primary CTA to the flagship systems |
+| 2 | Proof strip + audience paths | — | Checkable evidence cells; four routes (hiring, business, developer, community) |
+| 3 | Flagship case studies | `#flagship-case-studies` | OrchestratorX, ProtoBridge, GuardrailAI |
+| 4 | About · Claude Academy · featured testimonial | `#about` | Background, verified credentials, one promoted quote |
+| 5 | Skills · Agent Engineering | `#skills`, `#agent-engineering` | Stack, and the harness × loop × graph framework |
+| 6 | Agent trace → evidence → runtime | `#agent-trace`, `#evidence`, `#agent-runtime` | An illustrative run, the disciplines behind it, then live endpoints |
+| 7 | Forward-deployed model · Expertise · Roadmap | `#forward-deployed`, `#expertise`, `#roadmap` | How systems reach a customer; capabilities with source paths |
+| 8 | Projects · Hackathons | `#projects`, `#hackathons` | Production work; H0–H5 series |
+| 9 | Services · Industries | `#services`, `#industries` | Agentic AI systems, Textile ERP, digital marketing |
+| 10 | Performance Marketing | `#marketing` | Funnel competencies and the live calculator |
+| 11 | Growth skills · Blog · Open source | `#leverage`, `#blog`, `#open-source` | Non-engineering leverage, writing, repositories |
+| 12 | Testimonials · Discord · Contact | `#testimonials`, `#discord`, `#contact` | Third-party quotes, community, engagement models and form |
+
+---
+
+## 📈 Performance Marketing
+
+Added in [#6](https://github.com/asadullah48/asadullahshafique_devunity/pull/6). Lives in [`src/components/PerformanceMarketing.tsx`](src/components/PerformanceMarketing.tsx), anchored at `#marketing` and linked from the navbar.
+
+- **Twelve competencies by funnel stage.** Attention (hook rate, CTR, creative fatigue), click (CPC, lookalike audiences, retargeting), conversion (funnel math, CVR, cost per lead, A/B testing) and profit (ROAS, attribution). Each card shows the formula it works from.
+- **Live funnel calculator.** Budget, CPM, CTR, landing conversion, close rate, deal value and margin in; CPC, CPL, CPA, ROAS and break-even ROAS out. Everything runs in the visitor's browser.
+- **Three presets:** Dubai off-plan (AED), UAE contractor (AED) and Pakistani e-commerce (PKR). They are **illustrative round numbers, labelled as such on screen, not client data**.
+- **Evidence posture.** The competency cards are self-reported skill, so they carry no gold evidence styling. The only client outcome the section refers to is the Al Rashidi testimonial, which it links to rather than restating.
+- **One source of facts.** The same skills are in `skills.marketing` in [`backend/knowledge/portfolio.json`](backend/knowledge/portfolio.json), so the chat assistant and the MCP `get_skills` tool report them too.
+- **Bilingual.** English and Arabic copy in `src/i18n/en.json` / `ar.json`; formulas render left-to-right in both.
 
 ---
 
@@ -214,7 +251,10 @@ asadullahshafique_devunity/
 │   ├── app/                  # App Router pages
 │   │   ├── about/            # About page
 │   │   ├── ai-tools/         # AI tools (Error Solver, Learn, Teach)
-│   │   ├── blogs/            # Blog listing
+│   │   ├── blog/             # Knowledge hub (/blog, /blog/[slug])
+│   │   ├── blogs/            # Legacy path — 308 redirect to /blog
+│   │   ├── systems/[slug]/   # Flagship case-study pages
+│   │   ├── ar/               # Arabic homepage and articles
 │   │   ├── community/        # Community features
 │   │   ├── dashboard/        # User dashboard
 │   │   ├── explore/          # Explore content
@@ -225,16 +265,22 @@ asadullahshafique_devunity/
 │   │   ├── api/              # API routes
 │   │   ├── layout.tsx        # Root layout
 │   │   └── page.tsx          # Home page
-│   ├── components/           # React components
+│   ├── components/           # React components (one per homepage section)
 │   │   ├── ui/               # ShadCN UI components
-│   │   ├── Navbar.tsx
-│   │   ├── Footer.tsx
 │   │   ├── Hero.tsx
-│   │   ├── SearchDialog.tsx
-│   │   └── ThemeProvider.tsx
-│   ├── lib/                  # Utilities
-│   │   └── utils.ts          # cn() helper
-│   └── types/                # TypeScript types
+│   │   ├── ProofStrip.tsx
+│   │   ├── FlagshipCaseStudies.tsx
+│   │   ├── ClaudeCredential.tsx
+│   │   ├── PerformanceMarketing.tsx
+│   │   └── …
+│   ├── i18n/                 # en.json / ar.json
+│   └── lib/
+│       ├── evidence.ts       # Provenance for every proof-strip figure
+│       ├── flagship-systems.ts
+│       ├── content.ts        # Markdown article loader (server-only)
+│       └── utils.ts          # cn() helper
+├── content/                  # Articles: content/<locale>/<slug>.md
+├── evals/                    # Agent eval suite (trace checks + LLM judge)
 ├── backend/                  # FastAPI backend
 │   ├── main.py               # FastAPI application
 │   ├── orchestration/        # OpenAI Agents SDK — triage + 4 specialists
@@ -254,15 +300,19 @@ asadullahshafique_devunity/
 │   ├── secrets.yaml
 │   ├── backend-deployment.yaml
 │   ├── frontend-deployment.yaml
-│   ├── services/
-│   └── ingress.yaml
+│   ├── *-service.yaml
+│   ├── ingress.yaml
+│   ├── hpa.yaml
+│   ├── network-policy.yaml
+│   └── service-monitor.yaml
 ├── .github/workflows/        # GitHub Actions CI/CD
 │   ├── frontend-ci.yml
 │   ├── backend-ci.yml
 │   ├── docker-build.yml
 │   └── k8s-deploy.yml
 ├── scripts/                  # Utility scripts
-│   └── build-docker.sh
+│   ├── build-docker.sh
+│   └── generate-resume-pdf.mjs
 ├── docker-compose.yml        # Docker Compose config
 ├── Dockerfile.frontend       # Frontend Docker config
 └── README.md                 # This file
