@@ -9,45 +9,45 @@ import Link from "next/link";
 import { Reveal } from "@/components/Reveal";
 import { useLocale } from "@/context/LocaleContext";
 
-const Icons = [TrendingUp, Bot, Factory];
-
 const Services = () => {
   const { t } = useLocale();
 
+  // Agentic AI leads: it is the primary positioning, and the other two are
+  // where that engineering is applied (an industry SaaS) or sold alongside it
+  // (paid acquisition). Translation keys keep their original s1/s2/s3 names so
+  // en.json and ar.json stay aligned.
   const services = [
     {
-      Icon: Icons[0],
-      title: t("services.s1Title"),
-      description: t("services.s1Desc"),
-      // One outcome line per service, matching the proof density of the
-      // project cards. Every figure is backed: s1 by the Al Rashidi
-      // testimonial, s2 by the live /mcp/server tool count and the
-      // constitution's verified offline block, s3 by the module list in
-      // s3Desc. Do not add a metric here that nothing can demonstrate.
-      metric: t("services.s1Metric"),
-      cta: t("services.s1CTA"),
-      ctaHref: "#contact",
-      external: false,
-    },
-    {
-      Icon: Icons[1],
+      Icon: Bot,
       title: t("services.s2Title"),
       description: t("services.s2Desc"),
+      // One outcome line per service, matching the proof density of the
+      // project cards. Every figure is backed: s2 by the live /mcp/server tool
+      // count and the constitution's verified offline block, s3 by the module
+      // list in s3Desc, s1 by the Al Rashidi testimonial. Do not add a metric
+      // here that nothing can demonstrate.
       metric: t("services.s2Metric"),
       cta: t("services.s2CTA"),
-      ctaHref: "https://github.com/asadullah48",
-      external: true,
+      ctaHref: "#flagship-case-studies",
     },
     {
-      Icon: Icons[2],
+      Icon: Factory,
       title: t("services.s3Title"),
       description: t("services.s3Desc"),
       metric: t("services.s3Metric"),
       cta: t("services.s3CTA"),
-      ctaHref: "",
-      external: false,
+      // The waitlist is collected through the contact form; this used to be an
+      // unlinked span, so the CTA did nothing when clicked.
+      ctaHref: "#contact",
       badge: t("services.s3Badge"),
-      waitlist: true,
+    },
+    {
+      Icon: TrendingUp,
+      title: t("services.s1Title"),
+      description: t("services.s1Desc"),
+      metric: t("services.s1Metric"),
+      cta: t("services.s1CTA"),
+      ctaHref: "#marketing",
     },
   ];
 
@@ -74,7 +74,7 @@ const Services = () => {
               <service.Icon className="w-10 h-10 text-brand mb-4 group-hover:scale-110 transition-transform" />
               <h3 className="text-xl font-semibold text-foreground mb-2">{service.title}</h3>
               {service.badge && (
-                <span className="inline-block px-2 py-0.5 mb-3 text-xs font-semibold text-primary-foreground bg-brand rounded-full">
+                <span className="self-start inline-block px-2 py-0.5 mb-3 text-xs font-semibold text-primary-foreground bg-brand rounded-full">
                   {service.badge}
                 </span>
               )}
@@ -88,27 +88,12 @@ const Services = () => {
                 {service.metric}
               </div>
               <div className="mt-6 pt-4 border-t border-border">
-                {service.waitlist ? (
-                  <span className="text-brand text-sm font-medium">
-                    {service.cta}
-                  </span>
-                ) : service.external ? (
-                  <Link
-                    href={service.ctaHref}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-brand text-sm font-medium hover:underline"
-                  >
-                    {service.cta}
-                  </Link>
-                ) : (
-                  <Link
-                    href={service.ctaHref}
-                    className="text-brand text-sm font-medium hover:underline"
-                  >
-                    {service.cta}
-                  </Link>
-                )}
+                <Link
+                  href={service.ctaHref}
+                  className="text-brand text-sm font-medium hover:underline"
+                >
+                  {service.cta}
+                </Link>
               </div>
             </Reveal>
           ))}

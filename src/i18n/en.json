@@ -226,19 +226,19 @@
   "services": {
     "title": "What I",
     "titleHighlight": "Offer",
-    "subtitle": "AI development, digital marketing, and industry-specific SaaS, built for real businesses.",
+    "subtitle": "Agentic AI systems first, then the industry software and growth work they power, built for real businesses.",
     "s1Title": "Digital Marketing",
     "s1Desc": "Full-spectrum digital marketing for Dubai real estate, UAE construction, and Pakistani businesses. Strategy, social media, paid ads, property portals, and monthly reporting.",
     "s1Metric": "40% lower cost-per-lead — Al Rashidi Real Estate, Dubai",
     "s1CTA": "See Marketing Plan →",
-    "s2Title": "AI-Powered SaaS Development",
+    "s2Title": "Agentic AI Systems",
     "s2Desc": "Production-grade agentic systems, cloud-native deployment, MCP servers, and custom AI agents. Built and deployed, not just prototyped.",
     "s2Metric": "Live MCP server, 6 tools · guardrails verified with no model reachable",
-    "s2CTA": "View GitHub →",
+    "s2CTA": "Explore flagship systems →",
     "s3Title": "Textile ERP Platform (Pakistan)",
     "s3Desc": "A full-spectrum ERP for Pakistan's textile industry, from fabric mills to garment exporters. Module 1 (Fabric Mill): roll/lot management, weaving and knitting stage tracking, yarn inventory, and imported fabric. Further modules: CMT order lifecycle, auto-billing, production sessions, dispatch, party ledgers, and financial accounts.",
     "s3Metric": "Module 1 of 7 in build · fabric mill to garment export",
-    "s3CTA": "Join Waitlist →",
+    "s3CTA": "Join the waitlist →",
     "s3Badge": "Launching 2026"
   },
   "industries": {
