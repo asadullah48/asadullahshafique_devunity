@@ -90,12 +90,23 @@ export function offlineAnswer(question: string): string {
   const q = question.toLowerCase();
   let core: string;
 
-  if (/skill|tech|stack|language|framework/.test(q)) {
+  // A question naming a project gets that project, not a generic menu.
+  const named = projects.find((p) => {
+    const name = p.name.toLowerCase();
+    const short = name.split(/[:(&]/)[0].trim();
+    return q.includes(name) || (short.length > 3 && q.includes(short));
+  });
+
+  if (named) {
+    const metrics = named.metrics.length > 0 ? ` ${named.metrics.join("; ")}.` : "";
+    const link = "demo" in named && named.demo ? ` Live: ${named.demo}` : "github" in named && named.github ? ` Code: ${named.github}` : "";
+    core = `${named.name} (${named.status}): ${named.summary}${metrics}${link}`;
+  } else if (/skill|tech|stack|language|framework/.test(q)) {
     core = `Asadullah works across ${ALL_SKILLS.join(", ")}.`;
-  } else if (/project|built|work|bazaar|tradeflow|erp/.test(q)) {
+  } else if (/project|built|work|portfolio|system/.test(q)) {
     const headline = projects
-      .filter((p) => p.status === "flagship" || p.status === "in development")
-      .slice(0, 3)
+      .filter((p) => ["flagship", "flagship system", "live demo", "module 1 live"].includes(p.status))
+      .slice(0, 6)
       .map((p) => p.name)
       .join(", ");
     core = `Flagship and active projects: ${headline}. Scroll to the Projects section for case studies.`;

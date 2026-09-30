@@ -8,7 +8,11 @@ import { buildArticleJsonLd, buildArticleMetadata } from "@/lib/article-seo";
 // article with no Arabic translation yields no /ar/blog route at all, which is
 // correct: a 404 is honest, whereas serving the English body under an Arabic
 // URL is the duplicate-content bug the URL-only-locale refactor removed.
-export const dynamicParams = false;
+//
+// dynamicParams stays true (unlike /blog/[slug]) so an unknown slug reaches
+// notFound() below and its 404 is rendered for the /ar pathname. With it false,
+// Next serves the prebuilt English /_not-found and hydration fails (#418).
+export const dynamicParams = true;
 
 export function generateStaticParams() {
   return listSlugs("ar").map((slug) => ({ slug }));

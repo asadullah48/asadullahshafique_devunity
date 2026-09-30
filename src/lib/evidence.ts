@@ -166,24 +166,24 @@ export const PROOF: readonly Evidence[] = [
 /**
  * ENGINEERING EVIDENCE — the deeper layer, one entry per discipline.
  *
- * Each `value` is a fact measured during the 2026-09-10 audit by reading the
- * repositories, not a figure carried over from existing marketing copy. Test
- * counts are `def test_` occurrences counted from the GitHub trees API. Where
- * the site previously claimed a different number the MEASURED one is kept —
- * including the two cases where measurement came in higher than the claim
- * (ProtoBridge claimed 41, has 61).
+ * Each `value` is measured, not carried over from marketing copy. Test counts
+ * are what `pytest` collects and passes on a fresh clone of each repository
+ * (re-measured 2026-09-30: OrchestratorX 41 passed, ProtoBridge 62 passed,
+ * GuardrailAI 17 passed). The 2026-09-10 audit had counted `def test_`
+ * occurrences instead (39 and 61), which misses parametrized cases, so the
+ * site briefly showed two different numbers for the same repository.
  */
 export const ENGINEERING_EVIDENCE: readonly Evidence[] = [
   {
     id: "model-free-routing",
     label: "Deterministic routing",
-    value: "39 tests · 0 API keys",
+    value: "41 tests · 0 API keys",
     detail:
       "OrchestratorX keeps routing in typed state and plain Python, never in a prompt. That turns “the supervisor never skips ComplianceChecker” from a README claim into a millisecond CI assertion that runs offline.",
     source: { kind: "repo", slug: "orchestratorx", path: "tests" },
     ar: {
       label: "التوجيه الحتمي",
-      value: "39 اختباراً · 0 مفاتيح API",
+      value: "41 اختباراً · 0 مفاتيح API",
       detail:
         "يُبقي OrchestratorX منطق التوجيه داخل حالة مُصنّفة وكود Python صريح، لا داخل موجّه نصي. هذا ما يحوّل عبارة «المنسّق لا يتخطى ComplianceChecker أبداً» من ادعاء في ملف README إلى تأكيد يُنفَّذ في أجزاء من الثانية وبدون اتصال بالشبكة.",
     },
@@ -191,7 +191,7 @@ export const ENGINEERING_EVIDENCE: readonly Evidence[] = [
   {
     id: "protocol-wire",
     label: "Protocol interop",
-    value: "61 tests · MCP + A2A",
+    value: "62 tests · MCP + A2A",
     detail:
       "ProtoBridge implements both protocols to the wire — real JSON-RPC over stdio in a subprocess, and a real HTTP peer serving an Agent Card — rather than simulating them. Governance rides inside the envelope, because transport headers do not survive an stdio hop.",
     source: {
@@ -201,7 +201,7 @@ export const ENGINEERING_EVIDENCE: readonly Evidence[] = [
     },
     ar: {
       label: "التشغيل البيني للبروتوكولات",
-      value: "61 اختباراً · MCP + A2A",
+      value: "62 اختباراً · MCP + A2A",
       detail:
         "ينفّذ ProtoBridge البروتوكولين على مستوى السلك فعلياً — JSON-RPC حقيقي عبر stdio في عملية فرعية، ونظير HTTP حقيقي يقدّم Agent Card — بدلاً من محاكاتهما. وتنتقل الحوكمة داخل الظرف نفسه، لأن ترويسات النقل لا تنجو من قفزة stdio.",
     },

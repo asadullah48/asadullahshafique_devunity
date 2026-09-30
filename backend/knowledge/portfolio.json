@@ -130,6 +130,199 @@
       "tech": ["Docusaurus", "TypeScript", "FastAPI", "Gemini", "Qdrant", "Neon Postgres"],
       "github": "https://github.com/asadullah48/physical-ai-textbook-speckit",
       "demo": "https://asadullah48.github.io/physical-ai-textbook-speckit/"
+    },
+    {
+      "name": "StockAI",
+      "status": "reference architecture",
+      "summary": "Enterprise multi-agent framework that monitors stock levels, predicts seasonal demand, and drafts supplier reorder purchase orders automatically.",
+      "metrics": [],
+      "tech": ["FastAPI", "Python 3.12", "Demand Forecasting", "Supply Chain ROP", "PO Automation", "Docker", "Helm", "Pytest"],
+      "github": "https://github.com/asadullah48/stockai"
+    },
+    {
+      "name": "FeedbackX",
+      "status": "reference architecture",
+      "summary": "Enterprise multi-agent framework that analyzes thousands of customer reviews to identify missing features and synthesize prioritized RICE roadmaps.",
+      "metrics": [],
+      "tech": ["FastAPI", "Python 3.12", "ABSA Sentiment", "Review Scraper", "RICE Matrix", "Docker", "Helm", "Pytest"],
+      "github": "https://github.com/asadullah48/feedbackx"
+    },
+    {
+      "name": "ActionNews",
+      "status": "reference architecture",
+      "summary": "Enterprise multi-agent framework summarizing 100+ financial sources into actionable daily investor insights and executive newsletters.",
+      "metrics": [],
+      "tech": ["FastAPI", "Python 3.12", "Sentiment Scoring", "Multi-Feed Aggregator", "Cross-Asset Sentiment", "Docker", "Helm", "Pytest"],
+      "github": "https://github.com/asadullah48/actionnews"
+    },
+    {
+      "name": "LegacyX",
+      "status": "reference architecture",
+      "summary": "Enterprise multi-agent framework that translates monolithic COBOL and legacy Java into modern TypeScript and Python 3.12, with semantic parity checked by a dedicated verifier agent rather than assumed.",
+      "metrics": [],
+      "tech": ["FastAPI", "Python 3.12", "AST Parser", "TypeScript", "Pydantic", "Zod", "Docker", "Helm", "Pytest"],
+      "github": "https://github.com/asadullah48/legacyx"
+    },
+    {
+      "name": "Phase I Console Todo",
+      "status": "completed",
+      "summary": "A console todo application built to prove that clean architecture holds without a framework: repository pattern, service layer, dependency injection, and an empty dependency list.",
+      "metrics": [],
+      "tech": ["Python 3.10+", "Clean Architecture", "Repository Pattern", "Dependency Injection", "pytest", "dataclasses"],
+      "github": "https://github.com/asadullah48/phase-1-console-todo"
+    },
+    {
+      "name": "SynthData",
+      "status": "reference architecture",
+      "summary": "Enterprise multi-agent framework generating realistic synthetic datasets with strict Differential Privacy and Zero-PII certification for GDPR/HIPAA safe testing.",
+      "metrics": [],
+      "tech": ["FastAPI", "Python 3.12", "Differential Privacy", "Laplace Noise", "PII Scrubber", "Helm", "Docker", "Pytest"],
+      "github": "https://github.com/asadullah48/synthdata"
+    },
+    {
+      "name": "AccessAI",
+      "status": "reference architecture",
+      "summary": "Assistive multi-agent framework generating live audio descriptions and real-time visual summaries for visually impaired users with WCAG 2.2 AAA compliance.",
+      "metrics": [],
+      "tech": ["FastAPI", "Python 3.12", "Description Pipeline", "SSML Synthesis", "WCAG 2.2 AAA", "Helm", "Docker", "Pytest"],
+      "github": "https://github.com/asadullah48/accessai"
+    },
+    {
+      "name": "CollabX",
+      "status": "reference architecture",
+      "summary": "Orchestrated multi-agent framework coordinating specialized Researcher, Writer, and Editor agents in a collaborative state graph to produce publication-ready newsletters.",
+      "metrics": [],
+      "tech": ["FastAPI", "Python 3.12", "LangGraph Patterns", "Multi-Agent Teams", "Editorial Automation", "Helm", "Docker", "Pytest"],
+      "github": "https://github.com/asadullah48/collabx"
+    },
+    {
+      "name": "DocuCode",
+      "status": "reference architecture",
+      "summary": "IDE-embedded agent framework auto-updating in-code docstrings, API references, and README tables as developers write code.",
+      "metrics": [],
+      "tech": ["FastAPI", "Python 3.12", "AST Diffing", "Docstring Generator", "Developer Tools", "Helm", "Docker", "Pytest"],
+      "github": "https://github.com/asadullah48/docucode"
+    },
+    {
+      "name": "PrivateBrain",
+      "status": "reference architecture",
+      "summary": "Privacy-first on-device agent framework indexing personal financial emails, wealth notes, tax slips, and browsing history with strict zero-cloud egress.",
+      "metrics": [],
+      "tech": ["FastAPI", "Python 3.12", "Local-Only Design", "Air-Gapped Security", "Vault Abstraction", "Helm", "Docker", "Pytest"],
+      "github": "https://github.com/asadullah48/privatebrain"
+    },
+    {
+      "name": "ResearchX",
+      "status": "reference architecture",
+      "summary": "Autonomous analyst framework independently discovering, verifying, and cross-referencing industry data to produce full market intelligence reports.",
+      "metrics": [],
+      "tech": ["FastAPI", "Python 3.12", "Market Intelligence", "Evidence Triangulation", "Equity Research", "Helm", "Docker", "Pytest"],
+      "github": "https://github.com/asadullah48/researchx"
+    },
+    {
+      "name": "GraphAI",
+      "status": "reference architecture",
+      "summary": "Enterprise graph orchestration engine enabling multi-agent DAG execution with HITL approvals and exponential retries.",
+      "metrics": [],
+      "tech": ["FastAPI", "Python 3.12", "DAG Workflows", "HITL Approvals", "Exponential Backoff", "Helm", "Docker", "Pytest"],
+      "github": "https://github.com/asadullah48/graphai"
+    },
+    {
+      "name": "LoopAI",
+      "status": "reference architecture",
+      "summary": "Plan-Act-Verify feedback loop framework enabling autonomous agents to self-correct and verify evidentiary correctness.",
+      "metrics": [],
+      "tech": ["FastAPI", "Python 3.12", "Feedback Loops", "Self-Correction", "Reflection", "Helm", "Docker", "Pytest"],
+      "github": "https://github.com/asadullah48/loopai"
+    },
+    {
+      "name": "OrchestratorX",
+      "status": "flagship system",
+      "summary": "A supervisor-pattern multi-agent framework that keeps routing in typed state and plain Python, so execution order is tested without a model or API key. Only the supervisor selects the next node, a hop budget guarantees termination, and every hop is written to an audit trace. Reference architecture, not a customer deployment.",
+      "metrics": ["41 tests pass with no API key or network", "CLI, FastAPI service with GET /trace/{run_id}, Docker, CI on Python 3.11-3.13"],
+      "tech": ["LangGraph", "Python 3.13", "Pydantic", "FastAPI", "Docker", "GitHub Actions", "pytest"],
+      "github": "https://github.com/asadullah48/orchestratorx"
+    },
+    {
+      "name": "HarnessAI",
+      "status": "reference architecture",
+      "summary": "Harness layer ensuring autonomous agents operate safely with sandboxed tools, partitioned memory, and deterministic telemetry.",
+      "metrics": [],
+      "tech": ["FastAPI", "Python 3.12", "Agent Harness", "Sandboxing", "Circuit Breaker", "Helm", "Docker", "Pytest"],
+      "github": "https://github.com/asadullah48/harnessai"
+    },
+    {
+      "name": "SecureBridge",
+      "status": "reference architecture",
+      "summary": "Compliance-first security layer for MCP and A2A interoperability defending against tool poisoning and malicious connections.",
+      "metrics": [],
+      "tech": ["FastAPI", "Python 3.12", "MCP Protocol", "Zero-Trust Security", "DLP Engine", "Helm", "Docker", "Pytest"],
+      "github": "https://github.com/asadullah48/securebridge"
+    },
+    {
+      "name": "WorkforceAI Academy",
+      "status": "reference architecture",
+      "summary": "Enterprise multi-agent framework that trains, mentors, and certifies employees in high-value AI collaboration, prompt engineering, and agentic orchestration.",
+      "metrics": [],
+      "tech": ["FastAPI", "Python 3.12", "Human-AI Teaming", "Collaboration Index", "Workflow Scaffolding", "Helm", "Docker", "Pytest"],
+      "github": "https://github.com/asadullah48/workforceai-academy"
+    },
+    {
+      "name": "ConciergeAgent",
+      "status": "reference architecture",
+      "summary": "Customer-facing multi-agent framework delivering white-glove concierge-level personalization in banking, insurance, and luxury retail.",
+      "metrics": [],
+      "tech": ["FastAPI", "Python 3.12", "Hyperpersonalization", "Wealth Tier SLA", "Sentiment Modulation", "Helm", "Docker", "Pytest"],
+      "github": "https://github.com/asadullah48/conciergeagent"
+    },
+    {
+      "name": "ContextX",
+      "status": "reference architecture",
+      "summary": "Advanced Context Engineering Framework optimizing agent retrieval, token allocation, boundary-weighted context windows, and cited multi-hop decision synthesis beyond basic prompt engineering.",
+      "metrics": [],
+      "tech": ["FastAPI", "Python 3.12", "RRF Hybrid Search", "Context Compression", "Lost-in-the-Middle Layout", "Helm", "Docker", "Pytest"],
+      "github": "https://github.com/asadullah48/contextx"
+    },
+    {
+      "name": "GuardrailAI",
+      "status": "flagship system",
+      "summary": "A compliance layer that enforces AML, OFAC and HIPAA Safe Harbor rules in deterministic Python before any model is called, with a SHA-256 hash-chained audit ledger.",
+      "metrics": ["17 tests"],
+      "tech": ["FastAPI", "Python 3.12", "LangGraph", "State Machines", "SHA-256 Cryptography", "Circuit Breakers", "Helm", "Docker"],
+      "github": "https://github.com/asadullah48/guardrailai"
+    },
+    {
+      "name": "DomainX",
+      "status": "reference architecture",
+      "summary": "High-precision vertical multi-agent framework outperforming generalist models across Legal, Medical, and Supply Chain domains.",
+      "metrics": [],
+      "tech": ["FastAPI", "Python 3.12", "HIPAA Safe Harbor", "ICD-10 / CPT", "EOQ Optimization", "Helm", "Docker", "Pytest"],
+      "github": "https://github.com/asadullah48/domainx"
+    },
+    {
+      "name": "MarketAgentHub",
+      "status": "reference architecture",
+      "summary": "Production-ready autonomous agent suite designed for deployment in AWS, Microsoft Azure, Google Cloud, and Salesforce marketplaces.",
+      "metrics": [],
+      "tech": ["FastAPI", "Python 3.12", "A2A Protocol", "Marketplace Adapters", "Docker"],
+      "github": "https://github.com/asadullah48/marketagenthub"
+    },
+    {
+      "name": "WorkforceAI",
+      "status": "reference architecture",
+      "summary": "Enterprise agent workforce orchestration platform with outcome-based pricing models based on task completion rates.",
+      "metrics": [],
+      "tech": ["FastAPI", "Python 3.12", "Supervisor Governance", "Outcome Pricing", "Async Worker Pools", "Docker", "Pytest"],
+      "github": "https://github.com/asadullah48/workforceai"
+    },
+    {
+      "name": "ProtoBridge",
+      "status": "flagship system",
+      "summary": "An interoperability layer that normalises MCP and A2A messages into one governed ProtocolEnvelope, inspects them on the way in and on the way out, and records every hop in a hash-chained ledger of payload digests. Implements both protocols on the wire: JSON-RPC over stdio and a real HTTP A2A peer.",
+      "metrics": ["62 tests pass with no API key or network", "Live demo recomputes SHA-256 ledger digests in the visitor's browser"],
+      "tech": ["LangGraph", "MCP", "A2A", "JSON-RPC 2.0", "Python 3.13", "Pydantic", "GitHub Pages"],
+      "github": "https://github.com/asadullah48/protobridge",
+      "demo": "https://asadullah48.github.io/protobridge/"
     }
   ],
 
