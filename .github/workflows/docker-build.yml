@@ -1,8 +1,9 @@
 # Docker Build and Push
 # =====================
-# - Builds both frontend and backend Docker images
-# - Pushes to Docker Hub on main branch push
-# - Supports multi-architecture builds
+# - Builds both frontend and backend Docker images on every push to main,
+#   so a broken Dockerfile is caught even when nothing is published
+# - Pushes to Docker Hub only when DOCKER_USERNAME / DOCKER_PASSWORD secrets
+#   exist; without them it builds (linux/amd64) and verifies, never fails on login
 
 name: Docker Build & Push
 
@@ -19,6 +20,7 @@ on:
 
 env:
   REGISTRY: docker.io/asadullah48
+  CAN_PUSH: ${{ secrets.DOCKER_USERNAME != '' && secrets.DOCKER_PASSWORD != '' }}
 
 jobs:
   build-images:
@@ -33,6 +35,7 @@ jobs:
         uses: docker/setup-buildx-action@v3
         
       - name: Login to Docker Hub
+        if: env.CAN_PUSH == 'true'
         uses: docker/login-action@v3
         with:
           username: ${{ secrets.DOCKER_USERNAME }}
@@ -54,29 +57,29 @@ jobs:
         with:
           context: ./backend
           file: ./backend/Dockerfile
-          push: true
+          push: ${{ env.CAN_PUSH == 'true' }}
           tags: |
             ${{ env.REGISTRY }}/portfolio-backend:${{ steps.version.outputs.version }}
             ${{ env.REGISTRY }}/portfolio-backend:latest
           cache-from: type=gha
           cache-to: type=gha,mode=max
-          platforms: linux/amd64,linux/arm64
+          platforms: ${{ env.CAN_PUSH == 'true' && 'linux/amd64,linux/arm64' || 'linux/amd64' }}
           
       - name: Build and push frontend image
         uses: docker/build-push-action@v5
         with:
           context: .
           file: ./Dockerfile.frontend
-          push: true
+          push: ${{ env.CAN_PUSH == 'true' }}
           tags: |
             ${{ env.REGISTRY }}/portfolio-frontend:${{ steps.version.outputs.version }}
             ${{ env.REGISTRY }}/portfolio-frontend:latest
           cache-from: type=gha
           cache-to: type=gha,mode=max
-          platforms: linux/amd64,linux/arm64
+          platforms: ${{ env.CAN_PUSH == 'true' && 'linux/amd64,linux/arm64' || 'linux/amd64' }}
           
       - name: Generate image digest
         run: |
-          echo "✅ Docker images built and pushed successfully!"
+          if [ "$CAN_PUSH" = "true" ]; then echo "✅ Docker images built and pushed"; else echo "✅ Docker images built (not pushed: no Docker Hub secrets)"; fi
           echo "Backend: ${{ env.REGISTRY }}/portfolio-backend:${{ steps.version.outputs.version }}"
           echo "Frontend: ${{ env.REGISTRY }}/portfolio-frontend:${{ steps.version.outputs.version }}"

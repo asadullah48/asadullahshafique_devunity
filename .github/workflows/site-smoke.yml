@@ -1,0 +1,58 @@
+# Live site smoke test
+# ====================
+# Guards "the portfolio does not fail at any point" against the DEPLOYED site,
+# not a local build: pages, 404s, internal links, APIs and the chat agent.
+# See scripts/smoke-live.mjs for the exact checks.
+#
+# Triggers:
+# - deployment_status: Vercel's Git integration reports each deployment to
+#   GitHub; a successful Production deployment runs this against its URL.
+# - schedule: every 6 hours, so an expired key or a dead backend shows up
+#   even when nobody pushes.
+# - workflow_dispatch: run it by hand.
+
+name: Site Smoke
+
+on:
+  deployment_status:
+  schedule:
+    - cron: '17 */6 * * *'
+  workflow_dispatch:
+    inputs:
+      site:
+        description: 'Site URL'
+        required: false
+        default: 'https://asadullahshafique-devunity.vercel.app'
+
+concurrency:
+  group: site-smoke
+  cancel-in-progress: true
+
+jobs:
+  smoke:
+    name: Smoke test live site
+    if: >-
+      github.event_name != 'deployment_status' ||
+      (github.event.deployment_status.state == 'success' &&
+       github.event.deployment.environment == 'Production')
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+          cache: npm
+
+      - name: Install Playwright
+        run: |
+          npm ci --ignore-scripts
+          npx playwright install --with-deps chromium
+
+      - name: Run smoke test
+        # The production alias, not the per-deployment URL: that is what
+        # visitors hit, and preview URLs sit behind Vercel deployment protection.
+        env:
+          SITE: ${{ github.event.inputs.site || 'https://asadullahshafique-devunity.vercel.app' }}
+        run: node scripts/smoke-live.mjs

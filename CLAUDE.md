@@ -424,7 +424,16 @@ Required Vercel environment variables:
 Backend env: `DISCORD_WEBHOOK_URL`, `GITHUB_TOKEN`, `ANTHROPIC_API_KEY`, `ADMIN_SECRET`. All optional; absence degrades features
 rather than breaking the app.
 
-CI lives in `.github/workflows/`: `frontend-ci`, `backend-ci`, `code-quality`, `docker-build`, `k8s-deploy`.
+CI lives in `.github/workflows/`: `frontend-ci`, `backend-ci`, `code-quality`, `docker-build`, `k8s-deploy`, `site-smoke`.
+
+- **Deploys are Vercel's Git integration only.** `frontend-ci` lints, type-checks and builds; it does not deploy. (Its old CLI
+  deploy job duplicated the integration and failed on a missing `VERCEL_TOKEN`.)
+- `docker-build` always builds both images; it pushes to Docker Hub only when `DOCKER_USERNAME`/`DOCKER_PASSWORD` secrets exist.
+- **`site-smoke` is the guard for the live site.** It runs `scripts/smoke-live.mjs` against production after every successful
+  Vercel Production deployment (`deployment_status`), every 6 hours, and on demand: every sitemap + legacy page at desktop and
+  390px (200, no page error, no same-origin 4xx, no overflow), EN/AR 404s (404, no hydration error), every internal link, and
+  four APIs (health; admin must 401 without a token; contact validates; the chat must name OrchestratorX). Run it locally with
+  `node scripts/smoke-live.mjs` (`SITE=…` to target another host). When it goes red, fix the site, never the check.
 
 ---
 
