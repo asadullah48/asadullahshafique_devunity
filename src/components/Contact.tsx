@@ -45,12 +45,14 @@ const Contact = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setStatus("loading");
+    const controller = new AbortController();
+    const requestTimeout = window.setTimeout(() => controller.abort(), 15000);
     try {
       const res = await fetch("/api/contact", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(formData),
-        signal: AbortSignal.timeout(15000),
+        signal: controller.signal,
       });
       if (res.ok) {
         setStatus("success");
@@ -66,6 +68,8 @@ const Contact = () => {
       setErrorMessage(t("contact.errorNetwork"));
       setStatus("error");
       setTimeout(() => setStatus("idle"), 5000);
+    } finally {
+      window.clearTimeout(requestTimeout);
     }
   };
 
