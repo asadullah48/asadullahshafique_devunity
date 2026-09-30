@@ -1,6 +1,9 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
+  // Dockerfile.frontend sets NEXT_OUTPUT=standalone and copies .next/standalone.
+  // Vercel builds leave it unset and use their own output format.
+  ...(process.env.NEXT_OUTPUT === 'standalone' ? { output: 'standalone' } : {}),
   transpilePackages: ['next-themes'],
   // Type errors now FAIL the build. This was set to `true` during an earlier
   // Vercel firefight, which meant `strict: true` in tsconfig bought nothing —

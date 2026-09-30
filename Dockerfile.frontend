@@ -9,7 +9,9 @@ WORKDIR /app
 
 # Copy package files
 COPY package.json package-lock.json* ./
-RUN npm ci --only=production
+# Full install: the build needs devDependencies (TypeScript, Tailwind, PostCSS).
+# The runner stage ships only .next/standalone, so they never reach the image.
+RUN npm ci
 
 # Stage 2: Builder
 FROM node:24-alpine AS builder
@@ -21,6 +23,7 @@ COPY . .
 
 # Disable telemetry during build
 ENV NEXT_TELEMETRY_DISABLED=1
+ENV NEXT_OUTPUT=standalone
 
 # Build arguments for environment variables
 ARG NEXT_PUBLIC_API_URL

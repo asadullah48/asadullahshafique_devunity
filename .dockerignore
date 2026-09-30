@@ -13,6 +13,8 @@ out
 .git
 .gitignore
 *.md
+# Articles are markdown and are read at build time (src/lib/content.ts).
+!content/**/*.md
 .env.local
 .env.development*
 
@@ -34,8 +36,15 @@ docker-compose*.yml
 # Kubernetes
 k8s/
 
-# Backend
-backend/
+# Backend sources stay IN the build context: src/lib/agent-knowledge.ts imports
+# backend/knowledge/portfolio.json, and articles' `evidence:` paths (many under
+# backend/) are checked to exist at build time. Excluding backend/ broke the
+# image build. Nothing from it reaches the runner stage (standalone output only).
+backend/.venv
+backend/venv
+backend/**/__pycache__
+backend/htmlcov
+backend/*.db
 
 # Misc
 .DS_Store
