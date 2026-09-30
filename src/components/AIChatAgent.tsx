@@ -31,8 +31,8 @@ const THINKING_STEPS = [
   "Composing response...",
 ];
 
-const AIChatAgent = () => {
-  const [isOpen, setIsOpen] = useState(false);
+const AIChatAgent = ({ initiallyOpen = false }: { initiallyOpen?: boolean }) => {
+  const [isOpen, setIsOpen] = useState(initiallyOpen);
   const [mode, setMode] = useState<AgentMode>("general");
   const [thinkingStep, setThinkingStep] = useState(0);
   const [messages, setMessages] = useState<Message[]>([
@@ -191,6 +191,7 @@ const AIChatAgent = () => {
         onClick={() => setIsOpen(!isOpen)}
         className="fixed bottom-6 right-6 z-50 w-14 h-14 bg-brand rounded-full shadow-lg flex items-center justify-center hover:bg-brand/90 transition-[color,background-color,transform] duration-200 hover:scale-110 active:scale-90 animate-in zoom-in-50"
         aria-label="Toggle chat"
+        aria-expanded={isOpen}
       >
         {isOpen ? (
           <X className="w-6 h-6 text-primary-foreground" />
@@ -221,6 +222,7 @@ const AIChatAgent = () => {
                     variant="ghost"
                     size="sm"
                     onClick={() => setIsOpen(false)}
+                    aria-label="Close chat"
                     className="text-primary-foreground hover:bg-white/20"
                   >
                     <X className="w-5 h-5" />

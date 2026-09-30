@@ -50,7 +50,7 @@ export function HeroSection() {
     <section
       id="home"
       // 100dvh, not 100vh — avoids the iOS Safari toolbar layout jump.
-      className="relative flex min-h-[100dvh] items-center justify-center overflow-hidden bg-background"
+      className="relative flex min-h-[min(100dvh,56rem)] items-center justify-center overflow-hidden bg-background"
     >
       <div className="neural-grid absolute inset-0" aria-hidden="true" />
       {/* One ambient wash, down from three overlapping layers (radial plus two
@@ -60,7 +60,7 @@ export function HeroSection() {
         className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_70%_60%_at_50%_-10%,hsl(var(--brand)/0.06),transparent)]"
       />
 
-      <div className="container relative z-raised flex flex-col items-center gap-14 py-24 lg:flex-row lg:gap-20">
+      <div className="container relative z-raised flex flex-col items-center gap-10 px-6 pb-16 pt-28 lg:flex-row lg:gap-20">
         {/* ---------------------------------------------------------------
             COPY COLUMN — hierarchy reads top to bottom:
             identity -> role -> thesis -> supporting -> capabilities -> action.
@@ -68,10 +68,10 @@ export function HeroSection() {
         <Reveal className="reveal-x flex-1 text-center lg:text-start">
           <Reveal
             step={2}
-            className="mb-8 inline-flex items-center gap-2 rounded-full border border-brand/25 bg-brand/10 px-4 py-1.5"
+            className="mb-6 inline-flex items-center gap-2 rounded-full border border-brand/25 bg-brand/10 px-4 py-1.5"
           >
             <span className="relative flex h-2 w-2">
-              <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-brand opacity-60" />
+              <span className="absolute inline-flex h-full w-full rounded-full bg-brand opacity-60" />
               <span className="relative inline-flex h-2 w-2 rounded-full bg-brand" />
             </span>
             <span className="text-sm font-medium text-brand-soft">

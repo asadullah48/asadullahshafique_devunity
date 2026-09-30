@@ -50,6 +50,7 @@ const Contact = () => {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(formData),
+        signal: AbortSignal.timeout(15000),
       });
       if (res.ok) {
         setStatus("success");
@@ -254,12 +255,15 @@ const Contact = () => {
           <Reveal className="reveal-x"
           >
             <form onSubmit={handleSubmit} className="space-y-4">
-              <div className="grid grid-cols-2 gap-4">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div>
-                  <label className="block text-sm text-muted-foreground mb-1.5">{t("contact.nameLabel")}</label>
+                  <label htmlFor="contact-name" className="block text-sm text-muted-foreground mb-1.5">{t("contact.nameLabel")}</label>
                   <input
                     type="text"
                     required
+                    id="contact-name"
+                    name="name"
+                    autoComplete="name"
                     value={formData.name}
                     onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                     className={inputClass}
@@ -267,10 +271,13 @@ const Contact = () => {
                   />
                 </div>
                 <div>
-                  <label className="block text-sm text-muted-foreground mb-1.5">{t("contact.emailFieldLabel")}</label>
+                  <label htmlFor="contact-email" className="block text-sm text-muted-foreground mb-1.5">{t("contact.emailFieldLabel")}</label>
                   <input
                     type="email"
                     required
+                    id="contact-email"
+                    name="email"
+                    autoComplete="email"
                     value={formData.email}
                     onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                     className={inputClass}
@@ -280,10 +287,12 @@ const Contact = () => {
               </div>
 
               <div>
-                <label className="block text-sm text-muted-foreground mb-1.5">{t("contact.subjectLabel")}</label>
+                <label htmlFor="contact-subject" className="block text-sm text-muted-foreground mb-1.5">{t("contact.subjectLabel")}</label>
                 <input
                   type="text"
                   required
+                  id="contact-subject"
+                  name="subject"
                   value={formData.subject}
                   onChange={(e) => setFormData({ ...formData, subject: e.target.value })}
                   className={inputClass}
@@ -292,10 +301,12 @@ const Contact = () => {
               </div>
 
               <div>
-                <label className="block text-sm text-muted-foreground mb-1.5">{t("contact.messageLabel")}</label>
+                <label htmlFor="contact-message" className="block text-sm text-muted-foreground mb-1.5">{t("contact.messageLabel")}</label>
                 <textarea
                   required
                   rows={5}
+                  id="contact-message"
+                  name="message"
                   value={formData.message}
                   onChange={(e) => setFormData({ ...formData, message: e.target.value })}
                   className={`${inputClass} resize-none`}
@@ -325,6 +336,7 @@ const Contact = () => {
 
               {status === "success" && (
                 <Reveal
+                  role="status"
                   className="flex items-center gap-2 p-3 rounded-lg bg-green-500/10 border border-green-500/20 text-green-400 text-sm"
                 >
                   <CheckCircle className="w-4 h-4 shrink-0" />
@@ -334,6 +346,7 @@ const Contact = () => {
 
               {status === "error" && (
                 <Reveal
+                  role="alert"
                   className="flex items-center gap-2 p-3 rounded-lg bg-red-500/10 border border-red-500/20 text-red-400 text-sm"
                 >
                   <AlertCircle className="w-4 h-4 shrink-0" />

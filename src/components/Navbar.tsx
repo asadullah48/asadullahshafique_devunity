@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect, useMemo, useRef } from "react";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { Button } from "@/components/ui/button";
 import { Code2, Github, Menu, X, MessageCircle, FileDown, ChevronDown } from "lucide-react";
 import { LocaleSwitcher } from "./LocaleSwitcher";
@@ -23,7 +24,10 @@ const Navbar = () => {
   const [isMoreOpen, setIsMoreOpen] = useState(false);
   const [activeId, setActiveId] = useState("home");
   const moreRef = useRef<HTMLDivElement>(null);
-  const { t } = useLocale();
+  const { t, locale } = useLocale();
+  const pathname = usePathname();
+  const homePath = locale === "ar" ? "/ar" : "/";
+  const sectionHref = (hash: string) => pathname === homePath ? hash : `${homePath}${hash}`;
 
   // Order mirrors the page's section flow (AI-engineering proof first).
   const navLinks = useMemo(() => [
@@ -56,7 +60,8 @@ const Navbar = () => {
 
   useEffect(() => {
     const handleScroll = () => setIsScrolled(window.scrollY > 50);
-    window.addEventListener("scroll", handleScroll);
+    handleScroll();
+    window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
@@ -77,7 +82,7 @@ const Navbar = () => {
       if (el) observer.observe(el);
     });
     return () => observer.disconnect();
-  }, [navLinks]);
+  }, [navLinks, pathname]);
 
   // Close the "More" dropdown on outside click.
   useEffect(() => {
@@ -90,6 +95,24 @@ const Navbar = () => {
     document.addEventListener("mousedown", handleClick);
     return () => document.removeEventListener("mousedown", handleClick);
   }, [isMoreOpen]);
+
+  useEffect(() => {
+    setIsMobileOpen(false);
+    setIsMoreOpen(false);
+    setActiveId("home");
+  }, [pathname]);
+
+  useEffect(() => {
+    if (!isMobileOpen && !isMoreOpen) return;
+    const closeOnEscape = (event: KeyboardEvent) => {
+      if (event.key === "Escape") {
+        setIsMobileOpen(false);
+        setIsMoreOpen(false);
+      }
+    };
+    document.addEventListener("keydown", closeOnEscape);
+    return () => document.removeEventListener("keydown", closeOnEscape);
+  }, [isMobileOpen, isMoreOpen]);
 
   // Rendered server-side (locale is always "en" at SSR, switching after
   // hydration), so the header never pops in late.
@@ -108,7 +131,7 @@ const Navbar = () => {
     >
       <div className="container mx-auto flex items-center justify-between px-4 py-4">
         {/* Logo */}
-        <Link href="#home" className="flex items-center space-x-2 group flex-shrink-0">
+        <Link href={sectionHref("#home")} className="flex items-center space-x-2 group flex-shrink-0">
           <Code2 className="h-7 w-7 text-brand group-hover:rotate-12 transition-transform" />
           <span className="font-display text-base sm:text-lg font-bold text-foreground">
             Asadullah<span className="text-brand">.dev</span>
@@ -120,7 +143,7 @@ const Navbar = () => {
           {primaryLinks.map((link) => (
             <Link
               key={link.href}
-              href={link.href}
+              href={sectionHref(link.href)}
               className={linkClass(link.href)}
               aria-current={link.href === `#${activeId}` ? "true" : undefined}
             >
@@ -153,7 +176,7 @@ const Navbar = () => {
                   {moreLinks.map((link) => (
                     <Link
                       key={link.href}
-                      href={link.href}
+                      href={sectionHref(link.href)}
                       onClick={() => setIsMoreOpen(false)}
                       aria-current={link.href === `#${activeId}` ? "true" : undefined}
                       className={`block px-4 py-2 text-sm transition-colors ${
@@ -238,7 +261,7 @@ const Navbar = () => {
               Nothing is lost: the path is still one click, #contact remains in
               the primary nav beside it, and the Contact section keeps its own
               `neon` submit button as the real conversion action. */}
-          <Link href="#contact">
+          <Link href={sectionHref("#contact")}>
             <Button
               variant="outline"
               size="sm"
@@ -259,6 +282,8 @@ const Navbar = () => {
             className="lg:hidden p-2 rounded-sm text-muted-foreground hover:text-foreground transition-colors"
             onClick={() => setIsMobileOpen(!isMobileOpen)}
             aria-label={t("nav.toggleMenu")}
+            aria-expanded={isMobileOpen}
+            aria-controls="mobile-navigation"
           >
             {isMobileOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
           </button>
@@ -268,12 +293,12 @@ const Navbar = () => {
       {/* Mobile menu — full list, all sections reachable regardless of the
           desktop "More" split */}
       {isMobileOpen && (
-        <div className="lg:hidden glass-chrome">
+        <div id="mobile-navigation" className="lg:hidden glass-chrome max-h-[calc(100dvh-5rem)] overflow-y-auto overscroll-contain">
           <div className="container mx-auto px-4 py-4 space-y-3">
             {navLinks.map((link) => (
               <Link
                 key={link.href}
-                href={link.href}
+                href={sectionHref(link.href)}
                 onClick={() => setIsMobileOpen(false)}
                 aria-current={link.href === `#${activeId}` ? "true" : undefined}
                 className={`block py-2 transition-colors ${
