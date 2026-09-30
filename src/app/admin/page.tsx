@@ -1,11 +1,12 @@
 "use client";
 
 // Admin dashboard page at /admin
-// UI password gate uses NEXT_PUBLIC_ADMIN_GATE (safe to expose — it only controls
-// the client-side gate, not the actual secret injected server-side).
-// The real ADMIN_SECRET is injected by the /api/admin/messages route (server-only).
+// The password typed here is ADMIN_SECRET itself. It is kept in memory only and
+// sent as X-Admin-Token to /api/admin/messages, which verifies it server-side.
+// There is no client-side gate any more: a NEXT_PUBLIC_ value ships in the JS
+// bundle, so it could never protect anything.
 
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { Reveal } from "@/components/Reveal";
 import { Mail, Clock, Lock, Loader2, RefreshCw } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -27,42 +28,33 @@ export default function AdminPage() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
 
-  // NEXT_PUBLIC_ prefix is intentional here: this is only a lightweight UI gate,
-  // not the real authentication secret (which lives server-side in ADMIN_SECRET).
-  const GATE_PASSWORD = process.env.NEXT_PUBLIC_ADMIN_GATE ?? "";
-
-  const handleLogin = (e: React.FormEvent) => {
-    e.preventDefault();
-    if (!GATE_PASSWORD) {
-      setError("Admin gate not configured. Set NEXT_PUBLIC_ADMIN_GATE.");
-      return;
-    }
-    if (password.trim() === GATE_PASSWORD.trim()) {
-      setAuthed(true);
-    } else {
-      setError("Wrong password");
-    }
-  };
-
-  const fetchMessages = async () => {
+  const fetchMessages = async (token: string = password) => {
     setLoading(true);
     setError("");
     try {
-      const r = await fetch("/api/admin/messages");
-      const data = await r.json();
+      const r = await fetch("/api/admin/messages", {
+        headers: { "X-Admin-Token": token },
+        cache: "no-store",
+      });
+      const data = await r.json().catch(() => ({}));
+      if (r.status === 401) {
+        setAuthed(false);
+        throw new Error("Wrong password");
+      }
       if (!r.ok) throw new Error(`${r.status}: ${data?.error ?? r.statusText}`);
       setMessages(Array.isArray(data) ? data : data.messages || []);
+      setAuthed(true);
     } catch (err) {
-      setError(`Failed to load messages: ${err instanceof Error ? err.message : "unknown error"}`);
+      setError(err instanceof Error ? err.message : "unknown error");
     } finally {
       setLoading(false);
     }
   };
 
-  // Only fetch after the UI gate is passed
-  useEffect(() => {
-    if (authed) fetchMessages();
-  }, [authed]);
+  const handleLogin = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (password.trim()) fetchMessages(password);
+  };
 
   // ---- Login gate ----
   if (!authed) {
@@ -87,9 +79,10 @@ export default function AdminPage() {
             {error && <p className="text-red-400 text-sm">{error}</p>}
             <Button
               type="submit"
+              disabled={loading}
               className="w-full bg-brand text-primary-foreground hover:bg-brand/90"
             >
-              Login
+              {loading ? "Checking…" : "Login"}
             </Button>
           </form>
         </Reveal>
@@ -111,7 +104,7 @@ export default function AdminPage() {
             </span>
           </div>
           <Button
-            onClick={fetchMessages}
+            onClick={() => fetchMessages()}
             variant="outline"
             className="border-border text-foreground/80 hover:border-brand"
             disabled={loading}

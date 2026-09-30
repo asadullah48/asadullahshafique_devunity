@@ -150,9 +150,11 @@ the clock once it starts), and `maxDuration = 30`. The comment at `route.ts:12` 
 models are reasoning models that spend the token budget thinking and blow the function limit. Do not "upgrade" that model without
 re-measuring.
 
-`/api/admin/messages` injects the `X-Admin-Token: $ADMIN_SECRET` header server-side so the secret never reaches the client. The
-`/admin` page itself is gated client-side by `NEXT_PUBLIC_ADMIN_GATE`, which is a UI convenience, **not** a security boundary — the
-real check is the header the proxy adds.
+`/api/admin/messages` **requires the caller to send `X-Admin-Token` equal to `ADMIN_SECRET`** (constant-time compare) and returns
+401 otherwise; only then does it forward upstream. The `/admin` page asks for that secret and keeps it in memory. Until 2026-09-30
+the proxy injected the secret for *any* caller while `/admin` relied on a client-side `NEXT_PUBLIC_ADMIN_GATE` — the contact inbox
+was publicly readable at that URL. A proxy that adds credentials must authenticate its caller first; never reintroduce a
+client-side gate in front of one.
 
 ### Backend
 
@@ -417,8 +419,7 @@ Required Vercel environment variables:
 | `GEMINI_MODEL` | Optional override; defaults to `gemini-3.5-flash-lite`. See the pinning note in §2. |
 | `NEXT_PUBLIC_API_URL` | FastAPI origin for the proxy routes (blog, contact, health) |
 | `FASTAPI_BACKEND_URL` | Server-only backend origin; preferred by `/api/admin/messages`. Use for new non-public routes. |
-| `ADMIN_SECRET` | Server-only; must match the Render value. Injected by `/api/admin/messages`. |
-| `NEXT_PUBLIC_ADMIN_GATE` | Client-side UI gate for `/admin` — not a security control |
+| `ADMIN_SECRET` | Server-only; must match the Render value. Also the password typed at `/admin`; verified by `/api/admin/messages`. |
 
 Backend env: `DISCORD_WEBHOOK_URL`, `GITHUB_TOKEN`, `ANTHROPIC_API_KEY`, `ADMIN_SECRET`. All optional; absence degrades features
 rather than breaking the app.
