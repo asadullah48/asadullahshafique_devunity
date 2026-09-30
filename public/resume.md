@@ -107,11 +107,12 @@ No production customer yet; the backend is Docker-ready with migration-only prod
 Every agent path degrades gracefully without an API key — the deployed site never 500s or hangs because a key is missing. Bilingual EN/AR with full RTL; AI-discoverable via llms.txt, JSON-LD and dynamic OG images.  
 **Stack:** Next.js 15, TypeScript, FastAPI, OpenAI Agents SDK, FastMCP, Render, Vercel
 
-### Bazaar — Unified B2B + B2C Marketplace *(Shipped)*
+### Bazaar / ShopUnity — Retail + Wholesale Marketplace *(Portfolio demo)*
 [github.com/asadullah48/bazaar](https://github.com/asadullah48/bazaar)
 
-**Impact:** 500+ verified sellers and 10K+ products across one codebase serving both retail checkout and a wholesale RFQ engine. PKR-native, three languages.  
-**Stack:** Next.js 15, FastAPI, Supabase, PostgreSQL, Redis, Docker
+**Impact:** 12 illustrative products, catalog filters, a persisted cart, simulated checkout, explainable wholesale comparison with human approval, and seller fulfilment simulation. Three demo journeys work without paid backend hosting. Live commerce requires backend acceptance testing.
+
+**Stack:** Next.js 14, FastAPI, PostgreSQL, Redis, JWT, Docker
 
 ### Textile ERP Platform — Pakistan *(Module 1 live · platform in build)*
 **Founder | 2024 – Present** · [Live demo](https://textile-erp-platform.vercel.app) · [Code](https://github.com/asadullah48/textile-erp-platform)

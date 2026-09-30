@@ -124,9 +124,9 @@ const flagship = [
     name: "Bazaar",
     tagline: "Unified B2B + B2C Marketplace",
     impact:
-      "500+ verified sellers and 10K+ products across one codebase serving both retail checkout and a wholesale RFQ engine. PKR-native, three languages.",
+      "12 illustrative products and three backend-free demo journeys: wholesale comparison with human approval, seller fulfilment, and simulated checkout. Live commerce requires backend acceptance testing.",
     href: "https://github.com/asadullah48/bazaar",
-    stack: ["Next.js 15", "FastAPI", "Supabase"],
+    stack: ["Next.js 14", "FastAPI", "PostgreSQL"],
     shipped: true,
   },
   {
