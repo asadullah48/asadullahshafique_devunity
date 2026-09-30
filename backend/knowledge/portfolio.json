@@ -124,10 +124,12 @@
     {
       "name": "RAG Textbook Platform",
       "status": "completed",
-      "hackathon": "H1 (Silver)",
-      "summary": "AI-powered textbook chatbot built on a RAG architecture.",
-      "metrics": [],
-      "tech": ["Python", "FastAPI", "LangChain", "RAG", "Next.js"]
+      "hackathon": "Panaversity Physical AI hackathon (Spec-Kit Plus)",
+      "summary": "Physical AI & Humanoid Robotics textbook: 5 modules, 16 chapters (ROS 2, Gazebo, NVIDIA Isaac, Vision-Language-Action). Its RAG tutor answers from the book with links to the exact section; with no server it retrieves in the browser (BM25 over a build-time index) and refuses out-of-scope questions, and when the FastAPI backend is healthy it uses Gemini embeddings over Qdrant.",
+      "metrics": ["16 chapters", "48 automated tests (17 retrieval tests on the real book index, 31 backend)", "Live on GitHub Pages"],
+      "tech": ["Docusaurus", "TypeScript", "FastAPI", "Gemini", "Qdrant", "Neon Postgres"],
+      "github": "https://github.com/asadullah48/physical-ai-textbook-speckit",
+      "demo": "https://asadullah48.github.io/physical-ai-textbook-speckit/"
     }
   ],
 
