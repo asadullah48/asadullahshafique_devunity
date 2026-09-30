@@ -104,11 +104,12 @@
       "tech": ["Next.js 15", "TypeScript", "FastAPI", "Docker"]
     },
     {
-      "name": "Stitching & Packing ERP",
-      "status": "in development",
-      "summary": "Specialised ERP for stitching units and packing departments.",
-      "metrics": [],
-      "tech": ["Next.js", "FastAPI", "PostgreSQL"]
+      "name": "CMT Stitching & Packing System",
+      "status": "in private daily use at the author's own CMT unit",
+      "summary": "Production and billing system for a CMT stitching and packing unit: order lifecycle to dispatch, stitching/packing sessions with QC, four bill series generated on dispatch, cash and bank accounts, party ledgers with CSV/XLSX export, BOM inventory and read-only bill share links.",
+      "metrics": ["4 bill series", "24 database migrations"],
+      "tech": ["Next.js 15", "FastAPI", "SQLAlchemy 2", "PostgreSQL"],
+      "github": "https://github.com/asadullah48/cmt-stitching-system"
     },
     {
       "name": "Agent Factory",

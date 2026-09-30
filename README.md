@@ -90,7 +90,7 @@ FinAgent-Nexus, the Textile ERP, and Kubernetes autoscaling).
 | Competency | Substrate | Status |
 |---|---|---|
 | Engineering Domain-Specific Intelligence Systems (Finance) | [FinAgent-Nexus](https://github.com/asadullah48/finagent-nexus) — <2 ms compliance screen, 0 model calls, 94 tests | Completed ✅ |
-| Architecting Domain-Specific ERP Intelligence (Textile) | [Textile ERP / CMT](https://cmt-stitching-asadullah-shafiques-projects.vercel.app) — order lifecycle, 4 auto-billing types, party ledgers | In production ✅ |
+| Architecting Domain-Specific ERP Intelligence (Textile) | [Textile ERP](https://github.com/asadullah48/textile-erp-platform) — Module 1 complete, [live demo](https://textile-erp-platform.vercel.app); [CMT Stitching System](https://github.com/asadullah48/cmt-stitching-system) — order lifecycle, 4 bill series, party ledgers | Module 1 live ✅ |
 | Implementing Cloud-Native Scale-Out | [`k8s/`](k8s/) — 11 manifests: autoscaling, network policy, service monitoring | Completed ✅ |
 
 ### Reliability & Safety

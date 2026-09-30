@@ -198,7 +198,7 @@ const MASTERY: MasteryCategory[] = [
     slug: "enterprise",
     items: [
       { id: "finance",   tag: "Finance",   evidence: "finagent-nexus · 94 tests" },
-      { id: "erp",       tag: "ERP",       evidence: "cmt-stitching · live" },
+      { id: "erp",       tag: "ERP",       evidence: "textile-erp · live demo" },
       { id: "scale",     tag: "K8s",       evidence: "k8s/ · 11 manifests" },
     ],
   },
