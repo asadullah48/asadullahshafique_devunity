@@ -89,10 +89,12 @@
     },
     {
       "name": "Textile ERP Platform",
-      "status": "in development",
-      "summary": "Full-scale ERP for Pakistan's textile and garment industry. 2026 launch target.",
-      "metrics": [],
-      "tech": ["Next.js", "FastAPI", "PostgreSQL"]
+      "status": "module 1 live",
+      "summary": "Multi-tenant ERP for Pakistan's fabric mills. Module 1 (Fabric Mill) is complete: roll register, yarn stock ledger, weaving and knitting sessions, LC imports with landed cost, roll traceability and 7 deterministic Mill Pulse alerts, with tenant isolation enforced by PostgreSQL row-level security. CMT billing, ledgers and financials are specced, not built; no production customer yet.",
+      "metrics": ["42 backend tests against real PostgreSQL", "Module 1 of 7 complete", "Live demo, no sign-up"],
+      "tech": ["FastAPI", "PostgreSQL RLS", "SQLAlchemy 2", "Next.js 15", "TypeScript"],
+      "github": "https://github.com/asadullah48/textile-erp-platform",
+      "demo": "https://textile-erp-platform.vercel.app"
     },
     {
       "name": "DevUnity Platform",
