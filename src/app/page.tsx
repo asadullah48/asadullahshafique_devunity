@@ -29,7 +29,6 @@ import Contact from "@/components/Contact";
 import Footer from "@/components/Footer";
 import TechMarquee from "@/components/TechMarquee";
 import FloatingWidgets from "@/components/FloatingWidgets";
-import NeuralField from "@/components/NeuralField";
 
 // Page-scoped, NOT layout-scoped. In the root layout these inherit into every
 // route in the app, which is how /resume ended up canonicalising itself to the
@@ -60,7 +59,7 @@ export default function Home() {
     };
     return (
         // 100dvh, not 100vh — avoids the iOS Safari toolbar layout jump.
-        <div className="min-h-[100dvh] bg-background">
+        <div className="portfolio-home min-h-[100dvh] bg-background">
             {/* Ambient substrate: two fixed, pointer-events-none paint layers —
                 a masked cyan hairline grid, and an edge vignette that gives the
                 flat carbon base a centre of gravity. Both are token-driven, so
@@ -74,11 +73,7 @@ export default function Home() {
                 className="command-vignette pointer-events-none fixed inset-0 -z-10 h-full w-full"
                 aria-hidden="true"
             />
-            {/* Third substrate layer: a node/signal graph revealed around the
-                cursor. Sits above the grid and vignette but still behind all
-                content (-z-10), and deploys the data-flow / think-ring
-                primitives that had been shipped but never called. */}
-            <NeuralField />
+
             {/* AI-engineering proof first; business services follow it */}
             <Hero />
             {/* The credibility layer, immediately after the hero and before
@@ -95,6 +90,7 @@ export default function Home() {
                 the AI-developer path both land here. They used to sit below
                 Roadmap, roughly two thirds of the way down. */}
             <FlagshipCaseStudies />
+            <Services />
             <TechMarquee />
             <About />
             <section aria-label="Claude Academy" className="container mx-auto px-6 py-10">
@@ -139,7 +135,6 @@ export default function Home() {
             <Roadmap />
             <Projects />
             <Hackathons />
-            <Services />
             <Industries />
             {/* Paid-acquisition craft sits right after the verticals it serves
                 and before the softer GrowthSkills leverage. Its calculator is

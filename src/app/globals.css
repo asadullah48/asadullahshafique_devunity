@@ -958,3 +958,16 @@
         margin: 12mm;
     }
 }
+
+/* Keep deep portfolio sections searchable while skipping offscreen paint. */
+@supports (content-visibility: auto) {
+    .portfolio-home > section:nth-of-type(n + 6) {
+        content-visibility: auto;
+        contain-intrinsic-size: auto 700px;
+    }
+}
+[id] { scroll-margin-top: 6rem; }
+:focus-visible { outline: 2px solid hsl(var(--brand)); outline-offset: 4px; }
+@media print {
+    .portfolio-home > section { content-visibility: visible !important; }
+}
