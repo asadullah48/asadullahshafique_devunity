@@ -131,12 +131,13 @@ const flagship = [
   },
   {
     name: "Textile ERP Platform",
-    tagline: "Multi-tenant SaaS for Pakistan's textile heartland",
+    tagline: "Multi-tenant fabric mill ERP, Module 1 of 7 live",
     impact:
-      "Targets Faisalabad, Sialkot, Gujranwala, Karachi and Lahore. Order lifecycle, four auto-billing types, party ledgers and BOM inventory. In build.",
-    href: "https://cmt-stitching-asadullah-shafiques-projects.vercel.app",
-    stack: ["Kubernetes", "FastAPI", "PostgreSQL"],
+      "Roll register, yarn stock ledger, weaving/knitting, LC landed cost and roll traceability, isolated by PostgreSQL row-level security. 42 tests against real Postgres; live no-signup demo. CMT billing, ledgers and financials are specced, not built.",
+    href: "https://github.com/asadullah48/textile-erp-platform",
+    stack: ["FastAPI", "PostgreSQL RLS", "Next.js 15"],
     shipped: false,
+    badge: "Module 1 live",
   },
   {
     name: "Agent Factory (H5)",
@@ -219,12 +220,12 @@ const projects = [
     description:
       "Full-scale ERP targeting Pakistan's textile and garment industry, from Fabric Mills to CMT units to garment exporters.",
     bullets: [
-      "Fabric Mill Module: Roll/lot management, weaving & knitting stage tracking, yarn inventory, imported fabric handling",
-      "CMT Core: Order lifecycle management, auto-billing (4 bill types), inventory with BOM, production sessions, dispatch tracking",
-      "Financial: Party ledgers, cash flow tracking, financial accounts for multi-city hubs (Faisalabad, Sialkot, Gujranwala, Karachi, Lahore)",
+      "Fabric Mill Module (complete, live demo): roll/lot register with partial issuance, append-only yarn stock ledger, weaving & knitting sessions, LC imports with landed cost, roll traceability, 7 deterministic Mill Pulse alerts; tenant isolation via PostgreSQL row-level security, 42 tests",
+      "CMT Core (specced, next): order lifecycle, auto-billing (4 bill types), BOM inventory, production sessions, dispatch",
+      "Financial (specced): party ledgers, aging, P&L and cash flow for multi-city hubs (Faisalabad, Sialkot, Gujranwala, Karachi, Lahore)",
     ],
-    demo: "https://cmt-stitching-asadullah-shafiques-projects.vercel.app",
-    stack: ["Next.js 15", "FastAPI", "PostgreSQL", "Vercel", "Koyeb"],
+    demo: "https://textile-erp-platform.vercel.app",
+    stack: ["Next.js 15", "FastAPI", "PostgreSQL RLS", "SQLAlchemy 2", "Vercel"],
   },
   {
     name: "Agent Factory (H5)",
@@ -609,8 +610,9 @@ export default function ResumePage() {
                     </Link>
                     {/* "Shipped" is a claim about the world, so it only goes
                         on a project whose code or deployment answers for it.
-                        Textile ERP is deliberately not shipped — it launches
-                        2026, and a badge that lies here poisons the other five. */}
+                        Textile ERP is not "Shipped": Module 1 is complete with a
+                        live demo, but the platform (7 modules) is not, and it has
+                        no production customer. Its badge says exactly that. */}
                     <Badge
                       variant="outline"
                       className={`text-[10px] flex-shrink-0 ${
@@ -619,7 +621,7 @@ export default function ResumePage() {
                           : "border-border text-muted-foreground"
                       }`}
                     >
-                      {p.shipped ? "Shipped ✅" : "In build"}
+                      {p.shipped ? "Shipped ✅" : ("badge" in p && p.badge) || "In build"}
                     </Badge>
                   </div>
                   <p className="text-brand/80 text-xs mb-2">{p.tagline}</p>

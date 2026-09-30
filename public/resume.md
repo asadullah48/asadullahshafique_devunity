@@ -104,15 +104,15 @@ Every agent path degrades gracefully without an API key — the deployed site ne
 **Impact:** 500+ verified sellers and 10K+ products across one codebase serving both retail checkout and a wholesale RFQ engine. PKR-native, three languages.  
 **Stack:** Next.js 15, FastAPI, Supabase, PostgreSQL, Redis, Docker
 
-### Textile ERP Platform — Pakistan *(In build)*
-**Founder | 2024 – Present** · [Live demo](https://cmt-stitching-asadullah-shafiques-projects.vercel.app)
+### Textile ERP Platform — Pakistan *(Module 1 live · platform in build)*
+**Founder | 2024 – Present** · [Live demo](https://textile-erp-platform.vercel.app) · [Code](https://github.com/asadullah48/textile-erp-platform)
 
-**Impact:** Targets Faisalabad, Sialkot, Gujranwala, Karachi and Lahore — Pakistan's full textile heartland — as multi-tenant SaaS on Kubernetes.
+**Impact:** Multi-tenant ERP for fabric mills in Faisalabad, Gujranwala and Karachi. Module 1 is complete: the database, not staff discipline, enforces tenant isolation (PostgreSQL row-level security) and stock integrity. 42 tests against real PostgreSQL; zero-cost public demo.
 
-- **Fabric Mill Module:** roll/lot management, weaving & knitting stage tracking, yarn inventory, imported fabric handling
-- **CMT Core:** order lifecycle, auto-billing (4 bill types), inventory with BOM, production sessions, dispatch tracking
-- **Financial:** party ledgers, cash-flow tracking, accounts for multi-city hubs  
-**Stack:** Next.js 15, FastAPI, PostgreSQL, Kubernetes, Supabase
+- **Fabric Mill Module (complete):** roll/lot register with row-locked partial issuance, append-only yarn stock ledger, weaving & knitting sessions posting yarn atomically, LC imports with server-computed landed cost, roll traceability with QR labels, 7 deterministic Mill Pulse alerts
+- **CMT Core (specced):** order lifecycle, auto-billing (4 bill types), BOM inventory, production sessions, dispatch
+- **Financial (specced):** party ledgers, aging, P&L and cash flow  
+**Stack:** FastAPI, SQLAlchemy 2, PostgreSQL (RLS), Next.js 15, TypeScript, pytest
 
 ### Agent Factory (H5) — Panaversity Hackathon 2025 *(Platinum)*
 
