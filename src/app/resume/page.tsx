@@ -106,7 +106,7 @@ const flagship = [
     name: "AI TradeFlow",
     tagline: "Inventory & Accounting for Wholesalers",
     impact:
-      "90 automated tests including full-trade-cycle integration and agent golden-question suites with tool-citation assertions. Munshi AI ships 5 read-only tools behind a deterministic constitutional screen.",
+      "Business-isolated books with a row-locked, idempotent posting path. 142 tests, including two-business leak tests and PostgreSQL oversell races. Credit-limit guard, void-by-reversal, WhatsApp collections desk, and Munshi AI with 5 read-only tools behind a deterministic constitution. Live no-signup demo; no production customer yet.",
     href: "https://github.com/asadullah48/ai-tradeflow",
     stack: ["OpenAI Agents SDK", "FastAPI", "PostgreSQL"],
     shipped: true,

@@ -83,12 +83,21 @@ Three specialists (MarketAnalyst, ComplianceOfficer, WealthStrategist) on a fixe
 **Stack:** LangGraph, Anthropic Claude, Constitutional AI, Python 3.12, Pydantic, pytest
 
 ### AI TradeFlow — Inventory & Accounting for Wholesalers *(Shipped)*
-[github.com/asadullah48/ai-tradeflow](https://github.com/asadullah48/ai-tradeflow)
+[Live demo](https://ai-tradeflow-demo.vercel.app) · [Code](https://github.com/asadullah48/ai-tradeflow)
 
-**Impact:** 90 automated tests including full-trade-cycle API integration and agent golden-question suites with tool-citation assertions.
+**Impact:** 142 backend tests, including two-business leak tests on every endpoint and PostgreSQL concurrency races in CI (12 parallel sales of 5 units in stock sell exactly 5). The public demo costs nothing to host.
 
-Munshi AI ships five read-only tools behind an SDK input guardrail, with a deterministic compiled-regex constitutional screen run against the raw question before any model call. Proper FIFO *udhaar* aging, not a balance heuristic. First in the "AI for Pakistan Trade" series.  
-**Stack:** OpenAI Agents SDK, FastAPI, SQLAlchemy, Alembic, PostgreSQL, Expo
+- **Business isolation:** one SQLAlchemy hook scopes every query, write and AI tool to the caller's business. Owner and munshi roles are enforced by the API.
+- **Accounting integrity:**
+  - exact NUMERIC money, and weighted-average cost snapshotted per sale, so past profit never changes;
+  - idempotent orders and payments;
+  - owner-only void by reversing entries;
+  - udhaar sales stop at the customer's credit limit unless the owner approves.
+- **Collections desk:** ranks whom to chase and why, and opens a Roman-Urdu WhatsApp reminder.
+- **Munshi AI:** five read-only tools behind an SDK input guardrail. A deterministic compiled-regex constitution runs before any model call, with an offline tool-grounded fallback. Proper invoice-aware FIFO *udhaar* aging.
+
+No production customer yet; the backend is Docker-ready with migration-only production start-up. First in the "AI for Pakistan Trade" series.  
+**Stack:** OpenAI Agents SDK, FastAPI, SQLAlchemy 2, Alembic, PostgreSQL, Next.js 16, Expo
 
 ### DevUnity Platform — This portfolio, and its own proof *(Shipped)*
 [github.com/asadullah48/asadullahshafique_devunity](https://github.com/asadullah48/asadullahshafique_devunity) · [Live](https://asadullahshafique-devunity.vercel.app)

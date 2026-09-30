@@ -82,10 +82,12 @@
     },
     {
       "name": "AI TradeFlow",
-      "status": "in development",
-      "summary": "Bilingual AI inventory and accounting platform for Pakistani wholesalers, built around the 'Munshi' AI agent.",
-      "metrics": ["90+ tests passing"],
-      "tech": ["FastAPI", "Next.js", "OpenAI Agents SDK", "Expo"]
+      "status": "live demo",
+      "summary": "Bilingual (Urdu + English) inventory and khata platform for Pakistani wholesalers. Books are business-isolated. Posting is row-locked and idempotent, corrections are voids by reversal, and a credit-limit guard stops udhaar sales at the customer's limit. A WhatsApp collections desk ranks whom to chase. Munshi AI answers from 5 read-only tools behind a deterministic constitution. No production customer yet; the backend is Docker-ready.",
+      "metrics": ["142 backend tests, including PostgreSQL concurrency races", "Two-business isolation tests on every endpoint", "Live demo, no sign-up"],
+      "tech": ["FastAPI", "PostgreSQL", "SQLAlchemy 2", "OpenAI Agents SDK", "Next.js 16", "Expo"],
+      "github": "https://github.com/asadullah48/ai-tradeflow",
+      "demo": "https://ai-tradeflow-demo.vercel.app"
     },
     {
       "name": "Textile ERP Platform",
