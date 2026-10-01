@@ -208,6 +208,12 @@ Full-spectrum digital marketing strategy for Dubai real estate, UAE construction
 
 ### Completed courses
 
+**Agent Foundations — Agent Academy, Cognizant AI Lab**
+
+Certificate of completion issued to Asadullah Shafique. Completed September 30, 2026.
+
+[View completion certificate](https://asadullahshafique-devunity.vercel.app/certificates/agent-foundations-asadullah-shafique.png)
+
 **AI Fluency: Framework and foundations — Claude Academy (Anthropic’s learning platform)**
 
 Verified completion badge issued to Asadullah Shafique on September 18, 2026.

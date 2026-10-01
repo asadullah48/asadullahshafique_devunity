@@ -46,6 +46,30 @@ export function ClaudeCredential() {
 
   return (
     <div className="grid gap-4 md:grid-cols-2">
+      <div className="rounded-xl border border-brand/30 bg-surface-1/60 p-6">
+        <div className="flex items-start gap-4">
+          <Award className="h-7 w-7 shrink-0 text-brand" aria-hidden="true" />
+          <div className="min-w-0">
+            <p className="text-xs font-semibold uppercase tracking-wider text-brand">
+              {ar ? "شهادة إتمام" : "Certificate of completion"}
+            </p>
+            <h3 className="mt-2 text-xl font-semibold text-foreground" dir="ltr">Agent Foundations</h3>
+            <p className="mt-1 text-sm text-muted-foreground">Agent Academy · Cognizant AI Lab</p>
+            <p className="mt-2 text-sm text-muted-foreground">
+              {ar ? "أسد الله شفيق · أُكمل في 30 سبتمبر 2026" : "Asadullah Shafique · Completed September 30, 2026"}
+            </p>
+            <a
+              href="/certificates/agent-foundations-asadullah-shafique.png"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="mt-4 inline-flex items-center gap-2 rounded text-sm font-medium text-brand underline underline-offset-4 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-brand"
+            >
+              {ar ? "عرض شهادة الإتمام" : "View completion certificate"}
+              <ExternalLink className="h-4 w-4" aria-hidden="true" />
+            </a>
+          </div>
+        </div>
+      </div>
       {credentials.map((credential) => (
         <div key={credential.verifyCode} className="rounded-xl border border-brand/30 bg-surface-1/60 p-6">
           <div className="flex items-start gap-4">

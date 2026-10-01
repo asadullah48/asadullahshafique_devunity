@@ -93,7 +93,7 @@ export default function Home() {
             <Services />
             <TechMarquee />
             <About />
-            <section aria-label="Claude Academy" className="container mx-auto px-6 py-10">
+            <section aria-label="Completed courses and certificates" className="container mx-auto px-6 py-10">
                 <ClaudeCredential />
             </section>
             {/* One promoted quote, immediately after About. Third-party
