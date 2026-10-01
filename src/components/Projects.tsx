@@ -674,6 +674,21 @@ const PROJECTS_EN: Project[] = [
     ],
   },
   {
+    id: "paid-growth-measured",
+    title: "Paid Growth, Measured",
+    status: "In Development",
+    tagline: "Agency workspace where every number and every ad claim is traceable",
+    description: "Ad-agency workspace: clients, orders, team and tasks, creative review with client approval, and campaign planning with validated CSV import/export. Client Context Packs hold client-approved facts; template-based copy traces every claim to an approved fact; monthly reports use frozen metric snapshots with Account Manager → client approval and PDF export. Local first release with synthetic demo data — no live ad-platform connections.",
+    tech: ["FastAPI", "Next.js 16", "PostgreSQL", "SQLAlchemy 2", "Alembic", "TypeScript"],
+    github: "https://github.com/asadullah48/paid-growth-measured",
+    metrics: [
+      { label: "Tests", value: "25"        },
+      { label: "Roles", value: "5"         },
+      { label: "Stage", value: "Local MVP" },
+    ],
+    isNew: true,
+  },
+  {
     id: "agent-factory",
     title: "Agent Factory",
     status: "Featured",
@@ -1267,6 +1282,21 @@ const PROJECTS_AR: Project[] = [
       { label: "الترحيلات",      value: "24"        },
       { label: "القطاع",         value: "CMT/ملابس" },
     ],
+  },
+  {
+    id: "paid-growth-measured",
+    title: "Paid Growth, Measured",
+    status: "In Development",
+    tagline: "مساحة عمل للوكالات الإعلانية يمكن فيها تتبّع كل رقم وكل ادعاء إعلاني",
+    description: "مساحة عمل لوكالات الإعلان: إدارة العملاء والطلبات وفريق العمل والمهام، ومراجعة الأعمال الإبداعية واعتمادها من العميل، وتخطيط الحملات مع استيراد وتصدير ملفات CSV بعد التحقق منها. تحفظ حزم سياق العميل الحقائق التي يعتمدها العميل، وتُبنى النصوص الإعلانية من قوالب تربط كل ادعاء بحقيقة معتمدة، وتعتمد التقارير الشهرية على لقطات ثابتة للأرقام مع اعتماد متسلسل من مدير الحساب ثم العميل وتصدير PDF. إصدار محلي أول ببيانات تجريبية اصطناعية، دون ربط مباشر بمنصات الإعلان.",
+    tech: ["FastAPI", "Next.js 16", "PostgreSQL", "SQLAlchemy 2", "Alembic", "TypeScript"],
+    github: "https://github.com/asadullah48/paid-growth-measured",
+    metrics: [
+      { label: "الاختبارات", value: "25"            },
+      { label: "الأدوار",    value: "5"             },
+      { label: "المرحلة",    value: "إصدار محلي أول" },
+    ],
+    isNew: true,
   },
   {
     id: "agent-factory",

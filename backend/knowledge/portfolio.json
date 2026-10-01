@@ -114,6 +114,14 @@
       "github": "https://github.com/asadullah48/cmt-stitching-system"
     },
     {
+      "name": "Paid Growth, Measured",
+      "status": "local MVP; no live deployment or customers yet",
+      "summary": "Ad-agency workspace: clients, orders, team and tasks, creative review with client approval, campaign planning with validated CSV import/export, Client Context Packs of client-approved facts, template-based copy that traces every claim to an approved fact, and monthly reports built from frozen metric snapshots with Account Manager then client approval and PDF export. Synthetic demo data only; no ad-platform integrations, external messaging or AI provider.",
+      "metrics": ["25 backend tests, also run against PostgreSQL 16", "5 roles with agency and client isolation"],
+      "tech": ["FastAPI", "Next.js 16", "PostgreSQL", "SQLAlchemy 2", "TypeScript"],
+      "github": "https://github.com/asadullah48/paid-growth-measured"
+    },
+    {
       "name": "Agent Factory",
       "status": "completed",
       "hackathon": "H5",
