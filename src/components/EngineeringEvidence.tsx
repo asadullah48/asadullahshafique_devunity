@@ -31,7 +31,7 @@ export default function EngineeringEvidence() {
     <section id="evidence" className="py-24">
       <div className="container mx-auto px-6">
         <Reveal className="mb-14 text-center">
-          <div className="mb-3 font-mono text-eyebrow uppercase tracking-widest text-brand/60">
+          <div className="mb-3 font-mono text-eyebrow uppercase tracking-widest text-brand/80">
             {t("evidence.eyebrow")}
           </div>
           <h2 className="mb-4 font-display text-4xl font-bold text-foreground lg:text-5xl">
@@ -79,7 +79,7 @@ export default function EngineeringEvidence() {
                     className="mt-auto inline-flex flex-wrap items-center gap-x-1.5 pt-6 font-mono text-xs text-brand-soft transition-colors duration-200 hover:text-brand"
                   >
                     {t("evidence.inspect")}
-                    <span className="text-muted-foreground/60">
+                    <span className="text-muted-foreground/80">
                       {sourceLabel(item.source)}
                     </span>
                     <ArrowUpRight

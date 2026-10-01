@@ -654,7 +654,7 @@ export function SkillsSection() {
         )}
 
         <Reveal as="p" step={4}
-          className="text-center text-muted-foreground/70 text-sm mt-10"
+          className="text-center text-muted-foreground/80 text-sm mt-10"
         >
           {t("skills.footer")}
         </Reveal>

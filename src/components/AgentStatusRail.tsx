@@ -34,7 +34,7 @@ const AGENT_TOKENS: Record<AgentState, { label: string; dot: string; text: strin
   online:   { label: "Active",   dot: "bg-brand",               text: "text-brand" },
   waking:   { label: "Waking",   dot: "bg-brand/45",            text: "text-brand-soft" },
   degraded: { label: "Degraded", dot: "bg-brand/25",            text: "text-muted-foreground" },
-  offline:  { label: "Offline",  dot: "bg-muted-foreground/40", text: "text-muted-foreground/70" },
+  offline:  { label: "Offline",  dot: "bg-muted-foreground/40", text: "text-muted-foreground/80" },
 };
 
 /** Thresholds are Core Web Vitals-ish, not invented: sub-1.5s is genuinely good. */
@@ -60,7 +60,7 @@ function Readout({
         {/* A div, not a button: this is a readout, not a control. `tabIndex`
             still makes the explanation reachable by keyboard. */}
         <div tabIndex={0} className="flex flex-col gap-0.5 rounded-sm outline-none">
-          <span className="text-[0.625rem] uppercase tracking-[0.16em] text-muted-foreground/50">
+          <span className="text-[0.625rem] uppercase tracking-[0.16em] text-muted-foreground/80">
             {label}
           </span>
           <span className="flex items-center gap-1.5 tabular-nums">{children}</span>

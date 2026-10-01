@@ -39,8 +39,18 @@ test.describe("Portfolio home page", () => {
   });
 
   test("Navbar contains Roadmap link", async ({ page }) => {
-    // Desktop nav + footer both contain the link — scope to the nav element
+    // Roadmap is a secondary section, so it lives in the "More" dropdown,
+    // which renders its links only while open.
+    await page.getByRole("button", { name: /more/i }).first().click();
     const link = page.locator('nav a[href="#roadmap"]').first();
     await expect(link).toBeVisible();
+  });
+
+  test("Certifications section is reachable from the navbar", async ({ page }) => {
+    await page.getByRole("button", { name: /more/i }).first().click();
+    await page.locator('nav a[href="#certifications"]').first().click();
+    const section = page.locator("#certifications");
+    await expect(section).toBeInViewport();
+    await expect(section.getByRole("listitem").first()).toBeVisible();
   });
 });

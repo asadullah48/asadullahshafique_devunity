@@ -32,6 +32,7 @@ const Navbar = () => {
   // Order mirrors the page's section flow (AI-engineering proof first).
   const navLinks = useMemo(() => [
     { key: "about",        name: t("nav.about"),        href: "#about"        },
+    { key: "certifications", name: t("nav.certifications"), href: "#certifications" },
     { key: "skills",       name: t("nav.skills"),       href: "#skills"       },
     { key: "agentEng",     name: t("nav.agentEng"),     href: "#agent-engineering" },
     { key: "expertise",    name: t("nav.expertise"),    href: "#expertise"    },

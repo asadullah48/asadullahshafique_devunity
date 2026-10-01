@@ -93,7 +93,7 @@ export default function AgentRuntime() {
     <section id="agent-runtime" className="py-24">
       <div className="container mx-auto px-6">
         <Reveal className="mb-10 text-center">
-          <div className="mb-3 font-mono text-eyebrow uppercase tracking-widest text-brand/60">
+          <div className="mb-3 font-mono text-eyebrow uppercase tracking-widest text-brand/80">
             {t("runtime.eyebrow")}
           </div>
           <h2 className="mb-4 font-display text-4xl font-bold text-foreground lg:text-5xl">
@@ -120,7 +120,7 @@ export default function AgentRuntime() {
           </p>
 
           <p className="mt-4 flex flex-wrap items-center gap-x-3 gap-y-1 font-mono text-xs">
-            <span className="text-muted-foreground/70">
+            <span className="text-muted-foreground/80">
               {t("runtime.sourceLabel")}:
             </span>
             {SOURCES.map((s) => (

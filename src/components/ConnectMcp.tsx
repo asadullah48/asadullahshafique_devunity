@@ -85,7 +85,7 @@ export default function ConnectMcp() {
     <section id="connect-mcp" className="py-24">
       <div className="container mx-auto px-6">
         <Reveal className="mb-10 text-center">
-          <div className="mb-3 font-mono text-eyebrow uppercase tracking-widest text-brand/60">
+          <div className="mb-3 font-mono text-eyebrow uppercase tracking-widest text-brand/80">
             {t("connectMcp.eyebrow")}
           </div>
           <h2 className="mb-4 font-display text-4xl font-bold text-foreground lg:text-5xl">

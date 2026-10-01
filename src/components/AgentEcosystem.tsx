@@ -277,7 +277,7 @@ export function AgentEcosystem() {
               Arabic instead of back at its own label. */}
           <ArrowRight className="w-4 h-4 shrink-0 rtl:rotate-180" />
         </a>
-        <p className="text-xs text-muted-foreground/70 mt-5 max-w-2xl mx-auto leading-relaxed text-pretty">
+        <p className="text-xs text-muted-foreground/80 mt-5 max-w-2xl mx-auto leading-relaxed text-pretty">
           {copy.footnote}
         </p>
       </Reveal>

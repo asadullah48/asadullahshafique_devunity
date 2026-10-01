@@ -58,8 +58,8 @@ const STATUS_TONE: Record<Status, string> = {
   NOMINAL: "text-brand-soft",
   DEGRADED: "text-muted-foreground",
   WAKING: "text-brand-soft",
-  OFFLINE: "text-muted-foreground/70",
-  UNKNOWN: "text-muted-foreground/60",
+  OFFLINE: "text-muted-foreground/80",
+  UNKNOWN: "text-muted-foreground/80",
 };
 
 /** Latency thresholds match AgentStatusRail's so the two never disagree. */
@@ -316,7 +316,7 @@ export default function AgentActivityLog() {
       className="rounded-panel border border-border bg-surface-1/60 font-mono text-xs overflow-hidden"
     >
       <div className="flex items-center justify-between gap-3 border-b border-border/70 px-5 py-2.5">
-        <span className="text-[0.625rem] uppercase tracking-[0.16em] text-muted-foreground/50">
+        <span className="text-[0.625rem] uppercase tracking-[0.16em] text-muted-foreground/80">
           Agent control plane
         </span>
         <span className="flex items-center gap-1.5">
@@ -327,7 +327,7 @@ export default function AgentActivityLog() {
           />
           <span
             className={`text-[0.625rem] uppercase tracking-[0.16em] ${
-              live ? "text-brand" : "text-muted-foreground/60"
+              live ? "text-brand" : "text-muted-foreground/80"
             }`}
           >
             {info === null ? "Probing" : live ? "Live" : "Degraded"}
@@ -355,7 +355,7 @@ export default function AgentActivityLog() {
                 printed ? "opacity-100" : "opacity-0"
               }`}
             >
-              <span className="text-muted-foreground/40 tabular-nums">
+              <span className="text-muted-foreground/80 tabular-nums">
                 {stamps[i] ?? "--:--:--"}
               </span>
               <span className="text-brand-soft/80">{pad(line.channel, 13)}</span>

@@ -22,10 +22,11 @@
     "contactMe": "Let's Talk",
     "contactMeShort": "Let's Talk",
     "toggleMenu": "Toggle menu",
-    "discordCommunity": "Discord Community"
+    "discordCommunity": "Discord Community",
+    "certifications": "Certifications"
   },
   "hero": {
-    "badge": "Available for Long-Term AI Engagements",
+    "badge": "Open to Agentic AI Roles & Engagements",
     "location": "Pakistan · UAE",
     "greeting": "Hi, I'm",
     "name": "Asadullah",
@@ -129,6 +130,17 @@
     "h2Desc": "Founder experience in Pakistan’s textile value chain shapes how I translate messy business workflows into practical software.",
     "h3Title": "Business Delivery",
     "h3Desc": "Engineering, digital strategy, and communication come together around one goal: moving a useful system from problem discovery to adoption."
+  },
+  "credentials": {
+    "title": "Certifications &",
+    "titleHighlight": "Credentials",
+    "subtitle": "{count} completed courses and certificates from {issuers}. Every card links to the issuer's own record or the certificate itself.",
+    "certificate": "Certificate of completion",
+    "badge": "Verified completion badge",
+    "completed": "Completed",
+    "issued": "Issued",
+    "verify": "Verify with issuer",
+    "view": "View certificate"
   },
   "skills": {
     "title": "Tech",

@@ -82,7 +82,7 @@ const Contact = () => {
         <Reveal
           className="text-center mb-16"
         >
-          <div dir="ltr" className="text-xs font-mono text-brand/60 uppercase tracking-widest mb-3">
+          <div dir="ltr" className="text-xs font-mono text-brand/80 uppercase tracking-widest mb-3">
             {"// contact"}
           </div>
           <h2 className="text-3xl md:text-5xl font-bold text-foreground mb-4">

@@ -57,7 +57,7 @@ export function ForwardDeployedSection() {
         <Reveal className="text-center mb-14">
           <div
             dir="ltr"
-            className="text-xs font-mono text-brand/60 uppercase tracking-widest mb-3"
+            className="text-xs font-mono text-brand/80 uppercase tracking-widest mb-3"
           >
             {"// forward_deployed"}
           </div>

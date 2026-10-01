@@ -119,7 +119,7 @@ export default function AgentEngineering() {
     <section id="agent-engineering" className="py-24">
       <div className="container mx-auto px-6">
         <Reveal className="mb-14 text-center">
-          <div className="mb-3 font-mono text-eyebrow uppercase tracking-widest text-brand/60">
+          <div className="mb-3 font-mono text-eyebrow uppercase tracking-widest text-brand/80">
             {"// agent_engineering"}
           </div>
           <h2 className="mb-4 font-display text-4xl font-bold text-foreground lg:text-5xl">

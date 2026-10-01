@@ -8,6 +8,7 @@ import { KeyboardShortcutsProvider } from "@/components/KeyboardShortcutsProvide
 import ShortcutsDialog from "@/components/ShortcutsDialog";
 import ScrollProgress from "@/components/ScrollProgress";
 import { BASE_URL, PERSON_ID } from "@/lib/seo";
+import { credentialJsonLd } from "@/lib/credentials";
 
 // Body/UI: Inter stays for small-size readability.
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
@@ -159,6 +160,8 @@ const personJsonLd = {
           "https://facebook.com/asadullahshafique",
           "https://instagram.com/shafiqueasadullah",
         ],
+    // Issued credentials only; see src/lib/credentials.ts.
+    hasCredential: credentialJsonLd(BASE_URL),
     knowsAbout: [
           "Agentic AI Development",
           "AI Agent Automation",

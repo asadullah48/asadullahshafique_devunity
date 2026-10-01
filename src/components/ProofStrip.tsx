@@ -80,7 +80,7 @@ export default function ProofStrip() {
                   {t(`proof.${item.id}.value`)}
                 </span>
 
-                <span className="mt-auto inline-flex items-center gap-1 pt-3 font-mono text-[11px] text-muted-foreground/70 transition-colors duration-200 group-hover:text-brand-soft group-focus-visible:text-brand-soft">
+                <span className="mt-auto inline-flex items-center gap-1 pt-3 font-mono text-[11px] text-muted-foreground/80 transition-colors duration-200 group-hover:text-brand-soft group-focus-visible:text-brand-soft">
                   {t("proof.verify")}
                   <ArrowUpRight
                     className="h-3 w-3 transition-transform duration-200 group-hover:-translate-y-px group-hover:translate-x-px"

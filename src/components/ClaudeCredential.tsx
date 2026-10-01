@@ -1,105 +1,95 @@
 "use client";
 
-import { Award, ExternalLink } from "lucide-react";
+import { Award, BadgeCheck, ExternalLink } from "lucide-react";
 import { useLocale } from "@/context/LocaleContext";
+import { CREDENTIALS } from "@/lib/credentials";
 
-const credentials = [
-  {
-    title: "AI Fluency: Framework and foundations",
-    verifyCode: "20a54be8bbdcfa54f1ffee06f6c45082",
-  },
-  {
-    title: "Introduction to Claude Cowork",
-    verifyCode: "e14c137e39659a99fb79e7afc1394c09",
-  },
-  {
-    title: "Claude Code 101",
-    verifyCode: "64b43e3f91ee11516e562d2c35801e3a",
-  },
-  {
-    title: "AI Fluency for builders",
-    verifyCode: "2cfb8dd802a841177aba39028ef6cf4e",
-  },
-  {
-    title: "AI capabilities and limitations",
-    verifyCode: "e5f7a0e1a35e7d3e6626241402d556be",
-  },
-  {
-    title: "Claude 101",
-    verifyCode: "6d808a4f90c00a98b326959280f5c280",
-  },
-  {
-    title: "Claude Code in action",
-    verifyCode: "f8192381a00c3d85b011b7cd94673286",
-    issued: false,
-  },
-  {
-    title: "Introduction to Model Context Protocol",
-    verifyCode: "881db997d7957558e2d108c9ab9d174e",
-    issued: false,
-  },
-];
+/**
+ * #certifications — completed courses and certificates.
+ *
+ * Data lives in src/lib/credentials.ts; add new certificates there. This
+ * component only renders. It keeps its historical name so the import in
+ * page.tsx does not have to change.
+ */
+
+// Fixed month names rather than Intl: server and browser ICU data can format
+// Arabic dates differently, which would be a hydration mismatch.
+const MONTHS = {
+  en: ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"],
+  ar: ["يناير", "فبراير", "مارس", "أبريل", "مايو", "يونيو", "يوليو", "أغسطس", "سبتمبر", "أكتوبر", "نوفمبر", "ديسمبر"],
+};
+const formatDate = (iso: string, ar: boolean) => {
+  const [y, m, d] = iso.split("-").map(Number);
+  return ar ? `${d} ${MONTHS.ar[m - 1]} ${y}` : `${MONTHS.en[m - 1]} ${d}, ${y}`;
+};
 
 export function ClaudeCredential() {
-  const { locale } = useLocale();
+  const { t, locale } = useLocale();
   const ar = locale === "ar";
+  const issuers = Array.from(new Set(CREDENTIALS.map((c) => c.issuer)));
 
   return (
-    <div className="grid gap-4 md:grid-cols-2">
-      <div className="rounded-xl border border-brand/30 bg-surface-1/60 p-6">
-        <div className="flex items-start gap-4">
-          <Award className="h-7 w-7 shrink-0 text-brand" aria-hidden="true" />
-          <div className="min-w-0">
-            <p className="text-xs font-semibold uppercase tracking-wider text-brand">
-              {ar ? "شهادة إتمام" : "Certificate of completion"}
-            </p>
-            <h3 className="mt-2 text-xl font-semibold text-foreground" dir="ltr">Agent Foundations</h3>
-            <p className="mt-1 text-sm text-muted-foreground">Agent Academy · Cognizant AI Lab</p>
-            <p className="mt-2 text-sm text-muted-foreground">
-              {ar ? "أسد الله شفيق · أُكمل في 30 سبتمبر 2026" : "Asadullah Shafique · Completed September 30, 2026"}
-            </p>
-            <a
-              href="/certificates/agent-foundations-asadullah-shafique.png"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="mt-4 inline-flex items-center gap-2 rounded text-sm font-medium text-brand underline underline-offset-4 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-brand"
-            >
-              {ar ? "عرض شهادة الإتمام" : "View completion certificate"}
-              <ExternalLink className="h-4 w-4" aria-hidden="true" />
-            </a>
-          </div>
+    <div id="certifications" className="scroll-mt-24">
+      <div className="mb-10 text-center">
+        <div dir="ltr" className="mb-3 font-mono text-xs uppercase tracking-widest text-brand/80">
+          {"// credentials"}
         </div>
+        <h2 className="mb-4 text-3xl font-bold text-foreground md:text-4xl">
+          {t("credentials.title")} <span className="text-brand">{t("credentials.titleHighlight")}</span>
+        </h2>
+        <p className="mx-auto max-w-2xl text-muted-foreground">
+          {t("credentials.subtitle")
+            .replace("{count}", String(CREDENTIALS.length))
+            .replace("{issuers}", issuers.join(ar ? " و " : " & "))}
+        </p>
       </div>
-      {credentials.map((credential) => (
-        <div key={credential.verifyCode} className="rounded-xl border border-brand/30 bg-surface-1/60 p-6">
-          <div className="flex items-start gap-4">
-            <Award className="h-7 w-7 shrink-0 text-brand" aria-hidden="true" />
-            <div className="min-w-0">
-              <p className="text-xs font-semibold uppercase tracking-wider text-brand">
-                {ar ? "شارة إتمام موثّقة" : "Verified completion badge"}
-              </p>
-              <h3 className="mt-2 text-xl font-semibold text-foreground" dir="ltr">{credential.title}</h3>
-              <p className="mt-1 text-sm text-muted-foreground">
-                {ar ? "Claude Academy · منصة التعلّم من Anthropic" : "Claude Academy · Anthropic’s learning platform"}
-              </p>
-              <p className="mt-2 text-sm text-muted-foreground">
-                {credential.issued === false
-                  ? (ar ? "أسد الله شفيق" : "Asadullah Shafique")
-                  : (ar ? "أسد الله شفيق · صدرت في 18 سبتمبر 2026" : "Asadullah Shafique · Issued September 18, 2026")}
-              </p>
-              <a
-                href={`https://academy.claude.com/verify/${credential.verifyCode}`}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="mt-4 inline-flex items-center gap-2 rounded text-sm font-medium text-brand underline underline-offset-4 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-brand"
-              >
-                {ar ? "التحقق من شارة الإتمام" : "Verify completion badge"}
-                <ExternalLink className="h-4 w-4" aria-hidden="true" />
-              </a>
-            </div>
-          </div>
-        </div>
-      ))}
+
+      <ul className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+        {CREDENTIALS.map((c) => {
+          const href = c.verifyUrl ?? c.certificateUrl;
+          const Icon = c.kind === "certificate" ? Award : BadgeCheck;
+          const label =
+            c.kind === "certificate" ? t("credentials.certificate") : t("credentials.badge");
+          const linkText = c.verifyUrl ? t("credentials.verify") : t("credentials.view");
+          return (
+            <li
+              key={href}
+              className="flex flex-col rounded-xl border border-brand/30 bg-surface-1/60 p-5"
+            >
+              <div className="flex items-start gap-3">
+                <Icon className="mt-0.5 h-6 w-6 shrink-0 text-brand" aria-hidden="true" />
+                <div className="min-w-0">
+                  <p className="text-xs font-semibold uppercase tracking-wider text-brand">{label}</p>
+                  <h3 className="mt-1.5 text-lg font-semibold leading-snug text-foreground" dir="ltr">
+                    {c.title}
+                  </h3>
+                  <p className="mt-1 text-sm text-muted-foreground">
+                    {ar ? c.programme.ar : c.programme.en}
+                  </p>
+                  {c.date && (
+                    <p className="mt-1 text-sm text-muted-foreground">
+                      {c.kind === "certificate" ? t("credentials.completed") : t("credentials.issued")}{" "}
+                      <time dateTime={c.date}>{formatDate(c.date, ar)}</time>
+                    </p>
+                  )}
+                </div>
+              </div>
+              {href && (
+                <a
+                  href={href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="mt-auto inline-flex min-h-[44px] items-center gap-2 self-start pt-3 text-sm font-medium text-brand underline underline-offset-4 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-brand"
+                >
+                  {linkText}
+                  <span className="sr-only">: {c.title}</span>
+                  <ExternalLink className="h-4 w-4" aria-hidden="true" />
+                </a>
+              )}
+            </li>
+          );
+        })}
+      </ul>
     </div>
   );
 }
