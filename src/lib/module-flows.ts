@@ -153,10 +153,10 @@ export const MODULE_FLOWS: Record<string, ModuleFlow> = {
     kind: "architecture",
     layout: "chain",
     nodes: [
-      { id: "storefront", label: { en: "Storefront (Next.js 15)", ar: "Storefront (Next.js 15)" }, detail: { en: "B2C browse, cart, and checkout.", ar: "تصفّح وسلة وإتمام شراء للبيع بالتجزئة." } },
+      { id: "storefront", label: { en: "Storefront (Next.js 14)", ar: "Storefront (Next.js 14)" }, detail: { en: "B2C browse, cart, and checkout.", ar: "تصفّح وسلة وإتمام شراء للبيع بالتجزئة." } },
       { id: "api", label: { en: "FastAPI Services", ar: "FastAPI Services" }, detail: { en: "RFQ engine, vendor analytics, tiered pricing.", ar: "محرك طلبات الأسعار، تحليلات الموردين، والتسعير المتدرّج." } },
-      { id: "data", label: { en: "Supabase (Auth + Postgres)", ar: "Supabase (Auth + Postgres)" }, detail: { en: "Realtime data and identity for every tenant.", ar: "بيانات لحظية وهوية لكل مستأجر." } },
-      { id: "payments", label: { en: "Payment Gateways", ar: "Payment Gateways" }, detail: { en: "JazzCash, Easypaisa, and card settlement.", ar: "تسوية عبر JazzCash وEasypaisa والبطاقات." } },
+      { id: "data", label: { en: "PostgreSQL + Redis + JWT", ar: "PostgreSQL + Redis + JWT" }, detail: { en: "Database, cache and role-based identity; backend deployment required.", ar: "قاعدة بيانات وذاكرة مؤقتة وهوية حسب الدور؛ يتطلب نشر الخلفية." } },
+      { id: "payments", label: { en: "Payment Gateways", ar: "Payment Gateways" }, detail: { en: "Provider adapters; live settlement requires configuration and acceptance tests.", ar: "موصلات مزودي الدفع؛ يتطلب التشغيل إعداداً واختبارات قبول." } },
     ],
     edges: [
       { from: "storefront", to: "api" },

@@ -15,7 +15,6 @@
     "",
     "Rule: every claim here must be demonstrable. See CLAUDE.md section 0."
   ],
-
   "identity": {
     "name": "Asadullah Shafique",
     "roles": [
@@ -28,7 +27,6 @@
     "focus": "Agentic AI development, full-stack engineering, spec-first development with Claude Code.",
     "education": "Panaversity — Agentic AI development"
   },
-
   "contact": {
     "email": "asadullahshafique@hotmail.com",
     "whatsapp": "+92 321 3771445",
@@ -36,17 +34,50 @@
     "discord": "https://discord.gg/kXfEYVGX",
     "portfolio": "https://asadullahshafique-devunity.vercel.app"
   },
-
   "skills": {
-    "languages": ["TypeScript", "JavaScript", "Python"],
-    "frameworks": ["Next.js", "React", "FastAPI"],
-    "data": ["PostgreSQL", "Supabase", "Redis"],
-    "ai": ["OpenAI Agents SDK", "Claude MCP", "LangGraph", "RAG"],
-    "devops": ["Docker", "Kubernetes", "GitHub Actions"],
-    "marketing": ["Meta Ads", "Google Ads", "Funnel design", "Conversion rate optimisation", "A/B testing", "Cost per lead", "CTR and CPC", "Retargeting", "Lookalike audiences", "Hook rate", "ROAS", "Attribution models", "Creative fatigue management"],
+    "languages": [
+      "TypeScript",
+      "JavaScript",
+      "Python"
+    ],
+    "frameworks": [
+      "Next.js",
+      "React",
+      "FastAPI"
+    ],
+    "data": [
+      "PostgreSQL",
+      "Supabase",
+      "Redis"
+    ],
+    "ai": [
+      "OpenAI Agents SDK",
+      "Claude MCP",
+      "LangGraph",
+      "RAG"
+    ],
+    "devops": [
+      "Docker",
+      "Kubernetes",
+      "GitHub Actions"
+    ],
+    "marketing": [
+      "Meta Ads",
+      "Google Ads",
+      "Funnel design",
+      "Conversion rate optimisation",
+      "A/B testing",
+      "Cost per lead",
+      "CTR and CPC",
+      "Retargeting",
+      "Lookalike audiences",
+      "Hook rate",
+      "ROAS",
+      "Attribution models",
+      "Creative fatigue management"
+    ],
     "methodology": "Spec-first development (SpecifyKit)"
   },
-
   "agentEngineering": {
     "summary": "Three disciplines that make up agent engineering.",
     "disciplines": [
@@ -64,28 +95,59 @@
       }
     ]
   },
-
   "projects": [
     {
       "name": "FinAgent-Nexus",
       "status": "flagship",
       "summary": "Multi-agent financial intelligence for wealth management: Plan-Act-Verify orchestration with Constitutional AI compliance review, deterministic Shari'ah and regulatory screening, and a hash-chained audit trail. Public on GitHub under MIT with a live interactive compliance screener.",
-      "metrics": ["sub-2ms compliance screen with zero model calls", "8 of 14 principles settled by arithmetic", "94 tests passing offline with no API key"],
-      "tech": ["LangGraph", "Anthropic Claude", "Python", "Pydantic", "Vercel"]
+      "metrics": [
+        "sub-2ms compliance screen with zero model calls",
+        "8 of 14 principles settled by arithmetic",
+        "94 tests passing offline with no API key"
+      ],
+      "tech": [
+        "LangGraph",
+        "Anthropic Claude",
+        "Python",
+        "Pydantic",
+        "Vercel"
+      ]
     },
     {
       "name": "Bazaar",
-      "status": "flagship",
-      "summary": "Pakistan's first unified marketplace with a dual B2C retail storefront and a B2B wholesale/RFQ engine.",
-      "metrics": ["500+ verified sellers", "10K+ products"],
-      "tech": ["Next.js 15", "FastAPI", "Supabase", "PostgreSQL", "Redis", "Docker"]
+      "status": "portfolio demo",
+      "summary": "Retail and wholesale marketplace with 12 illustrative products, catalog filters, a persisted cart, simulated checkout, explainable supplier comparison with human approval and seller fulfilment simulation. Demo mode works without paid backend hosting. Live commerce requires backend acceptance testing.",
+      "metrics": [
+        "12 illustrative products",
+        "3 demo journeys",
+        "no paid backend required for demo"
+      ],
+      "tech": [
+        "Next.js 14",
+        "FastAPI",
+        "PostgreSQL",
+        "Redis",
+        "JWT",
+        "Docker"
+      ]
     },
     {
       "name": "AI TradeFlow",
       "status": "live demo",
       "summary": "Bilingual (Urdu + English) inventory and khata platform for Pakistani wholesalers. Books are business-isolated. Posting is row-locked and idempotent, corrections are voids by reversal, and a credit-limit guard stops udhaar sales at the customer's limit. A WhatsApp collections desk ranks whom to chase. Munshi AI answers from 5 read-only tools behind a deterministic constitution. No production customer yet; the backend is Docker-ready.",
-      "metrics": ["142 backend tests, including PostgreSQL concurrency races", "Two-business isolation tests on every endpoint", "Live demo, no sign-up"],
-      "tech": ["FastAPI", "PostgreSQL", "SQLAlchemy 2", "OpenAI Agents SDK", "Next.js 16", "Expo"],
+      "metrics": [
+        "142 backend tests, including PostgreSQL concurrency races",
+        "Two-business isolation tests on every endpoint",
+        "Live demo, no sign-up"
+      ],
+      "tech": [
+        "FastAPI",
+        "PostgreSQL",
+        "SQLAlchemy 2",
+        "OpenAI Agents SDK",
+        "Next.js 16",
+        "Expo"
+      ],
       "github": "https://github.com/asadullah48/ai-tradeflow",
       "demo": "https://ai-tradeflow-demo.vercel.app"
     },
@@ -93,8 +155,18 @@
       "name": "Textile ERP Platform",
       "status": "module 1 live",
       "summary": "Multi-tenant ERP for Pakistan's fabric mills. Module 1 (Fabric Mill) is complete: roll register, yarn stock ledger, weaving and knitting sessions, LC imports with landed cost, roll traceability and 7 deterministic Mill Pulse alerts, with tenant isolation enforced by PostgreSQL row-level security. CMT billing, ledgers and financials are specced, not built; no production customer yet.",
-      "metrics": ["42 backend tests against real PostgreSQL", "Module 1 of 7 complete", "Live demo, no sign-up"],
-      "tech": ["FastAPI", "PostgreSQL RLS", "SQLAlchemy 2", "Next.js 15", "TypeScript"],
+      "metrics": [
+        "42 backend tests against real PostgreSQL",
+        "Module 1 of 7 complete",
+        "Live demo, no sign-up"
+      ],
+      "tech": [
+        "FastAPI",
+        "PostgreSQL RLS",
+        "SQLAlchemy 2",
+        "Next.js 15",
+        "TypeScript"
+      ],
       "github": "https://github.com/asadullah48/textile-erp-platform",
       "demo": "https://textile-erp-platform.vercel.app"
     },
@@ -103,14 +175,27 @@
       "status": "live",
       "summary": "Open-source developer community platform with Q&A, blogs, and collaboration features. This portfolio's sibling project.",
       "metrics": [],
-      "tech": ["Next.js 15", "TypeScript", "FastAPI", "Docker"]
+      "tech": [
+        "Next.js 15",
+        "TypeScript",
+        "FastAPI",
+        "Docker"
+      ]
     },
     {
       "name": "CMT Stitching & Packing System",
       "status": "in private daily use at the author's own CMT unit",
       "summary": "Production and billing system for a CMT stitching and packing unit: order lifecycle to dispatch, stitching/packing sessions with QC, four bill series generated on dispatch, cash and bank accounts, party ledgers with CSV/XLSX export, BOM inventory and read-only bill share links.",
-      "metrics": ["4 bill series", "24 database migrations"],
-      "tech": ["Next.js 15", "FastAPI", "SQLAlchemy 2", "PostgreSQL"],
+      "metrics": [
+        "4 bill series",
+        "24 database migrations"
+      ],
+      "tech": [
+        "Next.js 15",
+        "FastAPI",
+        "SQLAlchemy 2",
+        "PostgreSQL"
+      ],
       "github": "https://github.com/asadullah48/cmt-stitching-system"
     },
     {
@@ -126,16 +211,34 @@
       "status": "completed",
       "hackathon": "H5",
       "summary": "Two-tier agent architecture: a General Agent (Claude Code) that builds Custom Agents (OpenAI Agents SDK), with SKILL.md files as portable units.",
-      "metrics": ["117 slides"],
-      "tech": ["OpenAI Agents SDK", "Claude Code", "Kubernetes", "Dapr"]
+      "metrics": [
+        "117 slides"
+      ],
+      "tech": [
+        "OpenAI Agents SDK",
+        "Claude Code",
+        "Kubernetes",
+        "Dapr"
+      ]
     },
     {
       "name": "RAG Textbook Platform",
       "status": "completed",
       "hackathon": "Panaversity Physical AI hackathon (Spec-Kit Plus)",
       "summary": "Physical AI & Humanoid Robotics textbook: 5 modules, 16 chapters (ROS 2, Gazebo, NVIDIA Isaac, Vision-Language-Action). Its RAG tutor answers from the book with links to the exact section; with no server it retrieves in the browser (BM25 over a build-time index) and refuses out-of-scope questions, and when the FastAPI backend is healthy it uses Gemini embeddings over Qdrant.",
-      "metrics": ["16 chapters", "48 automated tests (17 retrieval tests on the real book index, 31 backend)", "Live on GitHub Pages"],
-      "tech": ["Docusaurus", "TypeScript", "FastAPI", "Gemini", "Qdrant", "Neon Postgres"],
+      "metrics": [
+        "16 chapters",
+        "48 automated tests (17 retrieval tests on the real book index, 31 backend)",
+        "Live on GitHub Pages"
+      ],
+      "tech": [
+        "Docusaurus",
+        "TypeScript",
+        "FastAPI",
+        "Gemini",
+        "Qdrant",
+        "Neon Postgres"
+      ],
       "github": "https://github.com/asadullah48/physical-ai-textbook-speckit",
       "demo": "https://asadullah48.github.io/physical-ai-textbook-speckit/"
     },
@@ -333,19 +436,35 @@
       "demo": "https://asadullah48.github.io/protobridge/"
     }
   ],
-
   "hackathons": {
     "summary": "Six consecutive Panaversity hackathons, H0 through H5.",
     "results": [
-      { "id": "H0", "result": "Bronze" },
-      { "id": "H1", "result": "Silver" },
-      { "id": "H2", "result": "Silver" },
-      { "id": "H3", "result": "Gold" },
-      { "id": "H4", "result": "Platinum" },
-      { "id": "H5", "result": "Agent Factory" }
+      {
+        "id": "H0",
+        "result": "Bronze"
+      },
+      {
+        "id": "H1",
+        "result": "Silver"
+      },
+      {
+        "id": "H2",
+        "result": "Silver"
+      },
+      {
+        "id": "H3",
+        "result": "Gold"
+      },
+      {
+        "id": "H4",
+        "result": "Platinum"
+      },
+      {
+        "id": "H5",
+        "result": "Agent Factory"
+      }
     ],
     "methodology": "Spec-first, heavy code reuse, evals before shipping."
   },
-
   "thisPortfolio": "Next.js App Router, TypeScript, Tailwind, shadcn/ui, EN/AR localization with RTL, and a FastAPI + LangGraph backend showcased in the repo. The live chat agent runs serverless on Vercel against Google Gemini."
 }
