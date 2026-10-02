@@ -1,0 +1,170 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Asadullah Shafique — Agentic AI Systems Engineer — Résumé</title>
+<style>
+  @page { size: A4; margin: 13mm 14mm 12mm 14mm; }
+  :root { --ink:#16181d; --muted:#4b5563; --accent:#0e7490; --rule:#d5dbe1; }
+  * { box-sizing: border-box; }
+  html { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  body { margin:0; font-family: "Inter", "Segoe UI", "Helvetica Neue", Arial, sans-serif; font-size: 9.35pt; line-height: 1.38; color: var(--ink); }
+  a { color: var(--accent); text-decoration: none; }
+  header { border-bottom: 2px solid var(--accent); padding-bottom: 6pt; margin-bottom: 7pt; }
+  h1 { font-size: 20pt; margin: 0; letter-spacing: -0.2pt; }
+  .role { font-size: 11pt; color: var(--accent); font-weight: 600; margin: 1pt 0 4pt; }
+  .contact { color: var(--muted); font-size: 8.7pt; }
+  .contact span + span::before { content: "  ·  "; color: #9aa3ad; }
+  h2 { font-size: 9.4pt; text-transform: uppercase; color: var(--accent); margin: 9pt 0 4pt; padding-bottom: 2pt; border-bottom: 1px solid var(--rule); break-after: avoid; }
+  p { margin: 0 0 3pt; }
+  ul { margin: 2pt 0 0; padding-left: 12pt; }
+  li { margin: 0 0 1.6pt; }
+  .item { margin: 0 0 6pt; break-inside: avoid; }
+  .item-head { display: flex; justify-content: space-between; align-items: baseline; gap: 8pt; }
+  .item-title { font-weight: 700; }
+  .item-meta { color: var(--muted); font-size: 8.5pt; white-space: nowrap; }
+  .sub { color: var(--muted); font-size: 8.6pt; }
+  .stack { color: var(--muted); font-size: 8.4pt; margin-top: 1.5pt; }
+  .skills { display: grid; grid-template-columns: 92pt 1fr; gap: 1.5pt 8pt; }
+  .skills b { font-weight: 600; }
+  .tag { display:inline-block; font-size: 7.6pt; font-weight: 600; color: var(--accent); border: 1px solid #b6dde5; border-radius: 3pt; padding: 0 3pt; margin-left: 4pt; vertical-align: 1pt; }
+  .page-break { break-before: page; }
+</style>
+</head>
+<body>
+
+<header>
+  <h1>Asadullah Shafique</h1>
+  <div class="role">Agentic AI Systems Engineer — multi-agent orchestration, MCP, deterministic guardrails, evaluation</div>
+  <div class="contact">
+    <span>Karachi, Pakistan · open to remote and UAE roles</span>
+    <span>+92 321 3771445</span>
+    <span><a href="mailto:asadullahshafique@hotmail.com">asadullahshafique@hotmail.com</a></span>
+  </div>
+  <div class="contact">
+    <span><a href="https://asadullahshafique-devunity.vercel.app">asadullahshafique-devunity.vercel.app</a></span>
+    <span><a href="https://github.com/asadullah48">github.com/asadullah48</a></span>
+    <span><a href="https://www.linkedin.com/in/asadullah-shafique-a00679325/">linkedin.com/in/asadullah-shafique-a00679325</a></span>
+  </div>
+</header>
+
+<h2>Summary</h2>
+<p>Agentic AI engineer who builds multi-agent systems that can be audited: typed orchestration with a recorded route, a written constitution enforced <em>before</em> any model call, and evaluations that read the execution trace instead of trusting the prose. Every flagship project below is open source, runs its tests without an API key, and has a live demo or repository a reviewer can check. Brings 25+ years in textile manufacturing and sourcing, including founding and running a 30–35 person production unit, so the systems are built for real operating constraints, not demos.</p>
+
+<h2>Core Skills</h2>
+<div class="skills">
+  <b>Agent engineering</b><span>OpenAI Agents SDK (handoffs, guardrails), LangGraph, Claude Code / Claude API, MCP servers (FastMCP, Streamable HTTP), A2A, tool contracts, context engineering, RAG</span>
+  <b>Reliability &amp; safety</b><span>Deterministic pre-model guardrails, eval harnesses (trace checks + LLM judge), hash-chained audit logs, provider fallback ladders, human-in-the-loop approvals</span>
+  <b>Backend &amp; data</b><span>Python, FastAPI, SQLAlchemy 2, Alembic, PostgreSQL (row-level security, concurrency tests), Pydantic, pytest</span>
+  <b>Frontend</b><span>TypeScript, Next.js 15/16, React 19, Tailwind CSS, bilingual EN/AR with RTL</span>
+  <b>Cloud &amp; ops</b><span>Docker, Kubernetes, Dapr, Kafka, Helm, GitHub Actions, Prometheus/Grafana/Jaeger, Vercel, Render</span>
+</div>
+
+<h2>Selected Projects</h2>
+
+<div class="item">
+  <div class="item-head"><span class="item-title">FinAgent-Nexus — multi-agent financial compliance</span><span class="item-meta"><a href="https://finagent-nexus.vercel.app">Live</a> · <a href="https://github.com/asadullah48/finagent-nexus">Code</a></span></div>
+  <ul>
+    <li>Three specialists (market analyst, compliance officer, wealth strategist) on a fixed Plan-Act-Verify state machine; no agent holds two of data, weighting and verdict, and no graph edge lets a draft approve itself.</li>
+    <li>Settles 8 of 14 compliance principles by arithmetic: a full screen in under 2 ms with zero model calls; 94 tests pass offline with no API key. Every run writes a hash-chained, tamper-evident audit trail.</li>
+  </ul>
+  <div class="stack">LangGraph · Claude · Constitutional AI · Python · Pydantic · pytest</div>
+</div>
+
+<div class="item">
+  <div class="item-head"><span class="item-title">Agent governance trio — OrchestratorX · ProtoBridge · GuardrailAI</span><span class="item-meta"><a href="https://asadullahshafique-devunity.vercel.app/systems/orchestratorx">Architecture reviews</a></span></div>
+  <ul>
+    <li><b>OrchestratorX:</b> supervisor-pattern framework where routing is typed state, not prompt text; 41 tests with no API key or network; FastAPI trace endpoint, Docker, CI on Python 3.11–3.13.</li>
+    <li><b>ProtoBridge:</b> MCP × A2A interoperability layer with a normalized envelope; 62 tests; the live demo recomputes SHA-256 ledger digests in the visitor's browser.</li>
+    <li><b>GuardrailAI:</b> deterministic compliance layer with a hash-chained audit ledger; 17 tests.</li>
+  </ul>
+</div>
+
+<div class="item">
+  <div class="item-head"><span class="item-title">AI TradeFlow — inventory, accounting and an AI assistant for wholesalers</span><span class="item-meta"><a href="https://ai-tradeflow-demo.vercel.app">Live</a> · <a href="https://github.com/asadullah48/ai-tradeflow">Code</a></span></div>
+  <ul>
+    <li>142 backend tests, including two-business leak tests on every endpoint and PostgreSQL concurrency races in CI (12 parallel sales against 5 units in stock sell exactly 5).</li>
+    <li>"Munshi" assistant: five read-only tools behind an Agents SDK input guardrail, a compiled-regex constitution screened before any model call, and an offline tool-grounded fallback. Exact NUMERIC money, idempotent payments, reversing-entry voids.</li>
+  </ul>
+  <div class="stack">OpenAI Agents SDK · FastAPI · SQLAlchemy 2 · PostgreSQL · Next.js 16</div>
+</div>
+
+<div class="item">
+  <div class="item-head"><span class="item-title">Portfolio platform — the site as its own proof</span><span class="item-meta"><a href="https://asadullahshafique-devunity.vercel.app">Live</a> · <a href="https://github.com/asadullah48/asadullahshafique_devunity">Code</a></span></div>
+  <ul>
+    <li>Triage orchestrator over four specialist agents, a real MCP server (six read-only tools) on the official SDK, and a written constitution verified blocking 4 of 4 violations with no model reachable; every agent path degrades gracefully without an API key.</li>
+  </ul>
+  <div class="stack">Next.js 15 · FastAPI · OpenAI Agents SDK · FastMCP · bilingual EN/AR</div>
+</div>
+
+<div class="item">
+  <div class="item-head"><span class="item-title">Textile ERP Platform — multi-tenant ERP for fabric mills</span><span class="item-meta"><a href="https://textile-erp-platform.vercel.app">Live</a> · <a href="https://github.com/asadullah48/textile-erp-platform">Code</a></span></div>
+  <ul>
+    <li>Module 1 (Fabric Mill) complete: tenant isolation enforced by PostgreSQL row-level security, row-locked roll issuance, append-only yarn ledger, landed-cost LC imports, 7 deterministic alerts; 42 tests against real PostgreSQL. Later modules are specified, not yet built.</li>
+  </ul>
+</div>
+
+<div class="item">
+  <div class="item-head"><span class="item-title">CMT Stitching &amp; Packing System · Paid Growth, Measured</span><span class="item-meta"><a href="https://github.com/asadullah48/cmt-stitching-system">CMT code</a> · <a href="https://github.com/asadullah48/paid-growth-measured">PGM code</a></span></div>
+  <ul>
+    <li><b>CMT system:</b> production and billing for my own stitching unit, in daily use there: order lifecycle to dispatch, QC sessions, four bill series, party ledgers, 24 migrations.</li>
+    <li><b>Paid Growth, Measured</b> (local MVP): ad-agency workspace where ad copy is built only from client-approved facts and every report number is a frozen, sourced snapshot; 25 tests, also run against PostgreSQL 16.</li>
+  </ul>
+</div>
+
+<div class="item">
+  <div class="item-head"><span class="item-title">21 open-source multi-agent reference implementations</span><span class="item-meta"><a href="https://github.com/asadullah48?tab=repositories">Repositories</a></span></div>
+  <p>Distinct domains (legacy-code transpilation, zero-trust MCP security, DAG workflows with approvals, inventory forecasting, and more), each with its own FastAPI gateway, Docker/Kubernetes configs and test suite: 263 tests in aggregate. Run on synthetic data; they demonstrate architecture, not production traffic.</p>
+</div>
+
+<h2>Experience</h2>
+
+<div class="item">
+  <div class="item-head"><span class="item-title">Agentic AI Engineer — independent, open source</span><span class="item-meta">2024 – Present</span></div>
+  <ul>
+    <li>Designed and shipped the systems above end to end: specification, agents, APIs, databases, frontends, tests, CI and deployment, using a spec-first, four-session build cycle.</li>
+    <li>Made governance structural rather than prompt-based: separation of powers between agents, pre-model constitutional screens, read-only tool contracts and trace-reading evaluations.</li>
+  </ul>
+</div>
+
+<div class="item">
+  <div class="item-head"><span class="item-title">Founder &amp; CEO — Texcot Embroidery Sourcing House (CMT stitching unit), Karachi</span><span class="item-meta">2020 – Present</span></div>
+  <ul>
+    <li>Founded and run a CMT stitching unit of 30–35 staff across the full lifecycle: sample and design analysis, machine allocation, bulk production and inspection.</li>
+    <li>Built and run the unit's own production and billing software (CMT system above); lead the business's digital marketing.</li>
+  </ul>
+</div>
+
+<div class="item">
+  <div class="item-head"><span class="item-title">Marketing Manager — JK Embroidery, Karachi</span><span class="item-meta">2016 – 2020</span></div>
+  <ul>
+    <li>Directed marketing and production planning; led 30–35 staff and rebuilt staff and machine scheduling to clear bottlenecks under peak order flow.</li>
+  </ul>
+</div>
+
+<div class="item">
+  <div class="item-head"><span class="item-title">Country Manager / Buying Agent — Steven Berry (international)</span><span class="item-meta">2003 – 2005</span></div>
+  <ul>
+    <li>Coordinated international garment and textile shipments end to end; ran pre-production, in-line and final inspections to international quality standards.</li>
+  </ul>
+</div>
+
+<h2>Hackathons</h2>
+<p><b>Panaversity hackathon series — six consecutive completions (2024–2025):</b> Personal AI CTO (Bronze) → Course Companion FTE (Silver) → AI-Powered Todo (Silver, 89 tests) → Advanced Todo (Gold, 149 tests, triple-layer Constitutional AI) → Cloud-Native Deployment (Platinum: Kubernetes, Dapr, Kafka, Prometheus/Grafana/Jaeger) → Agent Factory (Platinum: a general agent that builds custom agents; SKILL.md as portable units).</p>
+
+<h2>Certifications</h2>
+<ul>
+  <li><b>Agent Foundations</b> — Cognizant AI Lab, Agent Academy · Sep 2026 · <a href="https://asadullahshafique-devunity.vercel.app/certificates/agent-foundations-asadullah-shafique.png">certificate</a></li>
+  <li><b>Anthropic Claude Academy</b> — six verified badges, Sep 2026: AI Fluency: Framework and Foundations; AI Fluency for Builders; AI Capabilities and Limitations; Claude 101; Claude Code 101; Introduction to Claude Cowork · <a href="https://asadullahshafique-devunity.vercel.app/#certifications">verify links</a></li>
+  <li><b>In progress:</b> Claude Code in Action and Introduction to Model Context Protocol (Claude Academy, completed, badges pending); Panaversity Forward Deployed Engineer training (Track B); PCAR-F and Claude Certified Associate – Foundations (not yet awarded)</li>
+</ul>
+
+<h2>Education</h2>
+<ul>
+  <li><b>Governor Sindh Initiative for AI &amp; Computing (Panaversity)</b> — Agentic and Generative AI · 2024 – Present</li>
+  <li><b>Associate Degree, Textile Technology</b> — Textile Institute of Pakistan (APTMA project), Karachi · 1997</li>
+  <li>HSC Pre-Engineering, Pakistan Shipowners' Government College, 1994 · Alim (5-year Islamic studies), Burooj Institute, Karachi</li>
+</ul>
+
+</body>
+</html>

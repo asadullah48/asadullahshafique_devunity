@@ -1,291 +1,100 @@
-# ASADULLAH SHAFIQUE
-**Agentic AI Engineer | Multi-Agent Systems Architect | Enterprise AI Strategist**
+# Asadullah Shafique
+**Agentic AI Systems Engineer — multi-agent orchestration, MCP, deterministic guardrails, evaluation**
 
-*Bridging AI potential with financial services reality through orchestration, compliance, and scalable adoption.*
+Karachi, Pakistan · open to remote and UAE roles · +92 321 3771445 · asadullahshafique@hotmail.com
+[Portfolio](https://asadullahshafique-devunity.vercel.app) · [GitHub](https://github.com/asadullah48) · [LinkedIn](https://www.linkedin.com/in/asadullah-shafique-a00679325/)
 
-Karachi, Pakistan | +92-321-3771445 | asadullahshafique@hotmail.com  
-[GitHub](https://github.com/asadullah48) | [LinkedIn](https://linkedin.com/in/asadullah-shafique-a00679325) | [Portfolio](https://asadullahshafique-devunity.vercel.app) | [Medium](https://medium.com/@texcotembroiderysourcinghouse)
+<!-- Markdown twin of public/resume.pdf. Source of truth for the PDF is
+     scripts/resume/resume.html (`npm run resume:short`); keep the two in step. -->
 
----
+## Summary
 
-## PROFESSIONAL SUMMARY
+Agentic AI engineer who builds multi-agent systems that can be audited: typed orchestration with a recorded route, a written constitution enforced *before* any model call, and evaluations that read the execution trace instead of trusting the prose. Every flagship project below is open source, runs its tests without an API key, and has a live demo or repository a reviewer can check. Brings 25+ years in textile manufacturing and sourcing, including founding and running a 30–35 person production unit, so the systems are built for real operating constraints, not demos.
 
-Agentic AI Engineer building multi-agent systems for regulated industries, backed by 25+ years of operating a manufacturing business.
+## Core Skills
 
-Most agentic pilots in financial services die at the compliance review — not because the models are weak, but because a system that cannot show *why* it reached a conclusion cannot be signed off by a second line of defence. A control a model can argue its way past is not a control. My work makes that reviewable: typed orchestration with an auditable route, a written constitution screened deterministically **before** any model call, and evaluation that reads the execution trace rather than trusting the prose.
+- **Agent engineering:** OpenAI Agents SDK (handoffs, guardrails), LangGraph, Claude Code / Claude API, MCP servers (FastMCP, Streamable HTTP), A2A, tool contracts, context engineering, RAG
+- **Reliability & safety:** deterministic pre-model guardrails, eval harnesses (trace checks + LLM judge), hash-chained audit logs, provider fallback ladders, human-in-the-loop approvals
+- **Backend & data:** Python, FastAPI, SQLAlchemy 2, Alembic, PostgreSQL (row-level security, concurrency tests), Pydantic, pytest
+- **Frontend:** TypeScript, Next.js 15/16, React 19, Tailwind CSS, bilingual EN/AR with RTL
+- **Cloud & ops:** Docker, Kubernetes, Dapr, Kafka, Helm, GitHub Actions, Prometheus/Grafana/Jaeger, Vercel, Render
 
-Founder of Texcot Embroidery Sourcing House and creator of the **Textile ERP Platform**, targeting fabric mills, CMT units and garment exporters across Faisalabad, Sialkot, Gujranwala, Karachi and Lahore — so the domain intelligence is built from inside an industry rather than modelled from outside one.
+## Selected Projects
 
-Completed **6 consecutive Panaversity Hackathons** (Bronze → Silver → Silver → Gold → Platinum → Agent Factory) with **85% code reusability** and **zero failed attempts**.
+### FinAgent-Nexus — multi-agent financial compliance
+[Live](https://finagent-nexus.vercel.app) · [Code](https://github.com/asadullah48/finagent-nexus)
 
-Ships at volume: **21 production multi-agent platforms**, each with its own FastAPI gateway, test suite and public repository — **263 automated tests green** across them, all open source.
+- Three specialists (market analyst, compliance officer, wealth strategist) on a fixed Plan-Act-Verify state machine; no agent holds two of data, weighting and verdict, and no graph edge lets a draft approve itself.
+- Settles 8 of 14 compliance principles by arithmetic: a full screen in under 2 ms with zero model calls; 94 tests pass offline with no API key. Every run writes a hash-chained, tamper-evident audit trail.
 
----
+*LangGraph · Claude · Constitutional AI · Python · Pydantic · pytest*
 
-## AGENTIC AI MASTERY MATRIX
+### Agent governance trio — OrchestratorX · ProtoBridge · GuardrailAI
+[Architecture reviews](https://asadullahshafique-devunity.vercel.app/systems/orchestratorx)
 
-Twelve competencies, four categories. **Every one cites a path that demonstrates it** — a status nobody can check is decoration.
+- **OrchestratorX:** supervisor-pattern framework where routing is typed state, not prompt text; 41 tests with no API key or network; FastAPI trace endpoint, Docker, CI on Python 3.11–3.13.
+- **ProtoBridge:** MCP × A2A interoperability layer with a normalized envelope; 62 tests; the live demo recomputes SHA-256 ledger digests in the visitor's browser.
+- **GuardrailAI:** deterministic compliance layer with a hash-chained audit ledger; 17 tests.
 
-| Agentic Orchestration | Connectivity & Protocols | Enterprise & Scale | Reliability & Safety |
-|---|---|---|---|
-| Engineering Multi-Agent Ecosystem Design (MAS) | Engineering MCP Interoperability Layers | Engineering Domain-Specific Intelligence Systems (Finance) | Implementing Deterministic Guardrails |
-| Designing Graph-Based Agent Workflows | Standardizing Read-Only Agent Tool Contracts | Architecting Domain-Specific ERP Intelligence (Textile) | Designing Feedback-Driven Evaluation Loops |
-| Implementing Agentic Coding & SDLC Standardization | Architecting Provider-Agnostic Fallback Ladders | Implementing Cloud-Native Scale-Out | Engineering Context Integrity & Trace Auditability |
-| **تنسيق الوكلاء** | **الاتصال والبروتوكولات** | **المؤسسات والتوسّع** | **الموثوقية والأمان** |
+### AI TradeFlow — inventory, accounting and an AI assistant for wholesalers
+[Live](https://ai-tradeflow-demo.vercel.app) · [Code](https://github.com/asadullah48/ai-tradeflow)
 
-**Evidence, row by row**
+- 142 backend tests, including two-business leak tests on every endpoint and PostgreSQL concurrency races in CI (12 parallel sales against 5 units in stock sell exactly 5).
+- "Munshi" assistant: five read-only tools behind an Agents SDK input guardrail, a compiled-regex constitution screened before any model call, and an offline tool-grounded fallback. Exact NUMERIC money, idempotent payments, reversing-entry voids.
 
-| Competency | Substrate | Status |
-|---|---|---|
-| Multi-Agent Ecosystem Design (MAS) | `backend/orchestration/` — triage agent + 4 specialists, star topology, one hop | Completed ✅ |
-| Graph-Based Agent Workflows | LangGraph graph; Plan-Act-Verify with no draft→approve edge | Completed ✅ |
-| Agentic Coding & SDLC Standardization | `CLAUDE.md` — a written operating spec governing every change | Completed ✅ |
-| MCP Interoperability Layers | `/mcp/server` — FastMCP over Streamable HTTP, verified against a live client | Completed ✅ |
-| Read-Only Agent Tool Contracts | 6 tools, read-only by default; writes require a stated reason | Completed ✅ |
-| Provider-Agnostic Fallback Ladders | Agents SDK → LangGraph → static answers | Completed ✅ |
-| Domain-Specific Intelligence (Finance) | FinAgent-Nexus — <2 ms screen, 0 model calls, 94 tests | Completed ✅ |
-| Domain-Specific ERP Intelligence (Textile) | CMT / Textile ERP — order lifecycle, 4 auto-billing types, party ledgers | In production ✅ |
-| Cloud-Native Scale-Out | `k8s/` — 11 manifests: autoscaling, network policy, service monitoring | Completed ✅ |
-| Deterministic Guardrails | 5 written principles; verified blocking 4/4 violations with no model reachable | Completed ✅ |
-| Feedback-Driven Evaluation Loops | `evals/` — deterministic trace layer + LLM judge; a case passes only if both pass | Completed ✅ |
-| Context Integrity & Trace Auditability | Typed shared state recording `route` and `tool_calls` | Completed ✅ |
+*OpenAI Agents SDK · FastAPI · SQLAlchemy 2 · PostgreSQL · Next.js 16*
 
----
+### Portfolio platform — the site as its own proof
+[Live](https://asadullahshafique-devunity.vercel.app) · [Code](https://github.com/asadullah48/asadullahshafique_devunity)
 
-## AGENT ENGINEERING METHODOLOGY
+- Triage orchestrator over four specialist agents, a real MCP server (six read-only tools) on the official SDK, and a written constitution verified blocking 4 of 4 violations with no model reachable; every agent path degrades gracefully without an API key.
 
-A three-pillar framework — a way of building agents, not a product line.
+*Next.js 15 · FastAPI · OpenAI Agents SDK · FastMCP · bilingual EN/AR*
 
-**Harness — The Environment.** The safety net around the model: tools, memory, permissions, observability. An agent that forgets what it did five steps ago is a harness problem, not a model failure.
+### Textile ERP Platform — multi-tenant ERP for fabric mills
+[Live](https://textile-erp-platform.vercel.app) · [Code](https://github.com/asadullah48/textile-erp-platform)
 
-**Loop — The Feedback.** How the agent evaluates its own work and improves. Evidence over confidence: a coding agent stops when the tests pass, not when it feels done.
+- Module 1 (Fabric Mill) complete: tenant isolation enforced by PostgreSQL row-level security, row-locked roll issuance, append-only yarn ledger, landed-cost LC imports, 7 deterministic alerts; 42 tests against real PostgreSQL. Later modules are specified, not yet built.
 
-**Graph — The Flow.** Orchestration of the full workflow: branching, approvals, retries, parallel tasks. One agent is a demo; a graph with retries and approval gates is a product.
+### CMT Stitching & Packing System · Paid Growth, Measured
+[CMT code](https://github.com/asadullah48/cmt-stitching-system) · [PGM code](https://github.com/asadullah48/paid-growth-measured)
 
----
+- **CMT system:** production and billing for my own stitching unit, in daily use there: order lifecycle to dispatch, QC sessions, four bill series, party ledgers, 24 migrations.
+- **Paid Growth, Measured** (local MVP): ad-agency workspace where ad copy is built only from client-approved facts and every report number is a frozen, sourced snapshot; 25 tests, also run against PostgreSQL 16.
 
-## FLAGSHIP PROJECTS
+### 21 open-source multi-agent reference implementations
+[Repositories](https://github.com/asadullah48?tab=repositories)
 
-### The Autonomous Agent Ecosystem — 21 Production Platforms *(Shipped)*
-[github.com/asadullah48](https://github.com/asadullah48?tab=repositories) · [Index](https://asadullahshafique-devunity.vercel.app/#projects)
+Distinct domains (legacy-code transpilation, zero-trust MCP security, DAG workflows with approvals, inventory forecasting, and more), each with its own FastAPI gateway, Docker/Kubernetes configs and test suite: 263 tests in aggregate. Run on synthetic data; they demonstrate architecture, not production traffic.
 
-**Impact:** 21 production multi-agent platforms, each with its own FastAPI gateway, test suite and public repository. 263 automated tests green in aggregate across the 21 repositories, all open source.
+## Experience
 
-Not twenty-one variations on one template — each platform owns a distinct problem domain and a purpose-built agent team: **LegacyX** (COBOL and legacy-Java transpilation), **SecureBridge** (zero-trust MCP/A2A security and tool-poisoning defence), **StockAI** (autonomous inventory monitoring and demand forecasting), **GraphAI** (DAG workflow orchestration with human-in-the-loop approvals), and seventeen more spanning synthetic data, accessibility, context engineering, deterministic guardrails and multi-cloud marketplace agents. Each ships Docker and Kubernetes deployment configs and serves its own dashboard locally.  
-**Stack:** OpenAI Agents SDK, FastAPI, Python 3.12, pytest, Docker, Kubernetes
+### Agentic AI Engineer — independent, open source · 2024 – Present
+- Designed and shipped the systems above end to end: specification, agents, APIs, databases, frontends, tests, CI and deployment, using a spec-first, four-session build cycle.
+- Made governance structural rather than prompt-based: separation of powers between agents, pre-model constitutional screens, read-only tool contracts and trace-reading evaluations.
 
-### FinAgent-Nexus — Multi-Agent Financial Intelligence *(Shipped)*
-*Agentic AI Adoption for Financial Services* · [github.com/asadullah48/finagent-nexus](https://github.com/asadullah48/finagent-nexus) · [Live](https://finagent-nexus.vercel.app)
+### Founder & CEO — Texcot Embroidery Sourcing House (CMT stitching unit), Karachi · 2020 – Present
+- Founded and run a CMT stitching unit of 30–35 staff across the full lifecycle: sample and design analysis, machine allocation, bulk production and inspection.
+- Built and run the unit's own production and billing software (CMT system above); lead the business's digital marketing.
 
-**Impact:** Settles 8 of 14 compliance principles by arithmetic — a full screen in under 2 ms with zero model calls, and 94 tests that pass with no API key and no network.
+### Marketing Manager — JK Embroidery, Karachi · 2016 – 2020
+- Directed marketing and production planning; led 30–35 staff and rebuilt staff and machine scheduling to clear bottlenecks under peak order flow.
 
-Three specialists (MarketAnalyst, ComplianceOfficer, WealthStrategist) on a fixed Plan-Act-Verify state machine rather than a conversation. Compliance is structural: no agent holds two of the three powers — market data, setting weights, rendering the verdict — and there is deliberately no graph edge from drafting a recommendation to approving one, so verification cannot be skipped under load or disabled by a flag. Shari'ah and regulatory principles live in a versioned constitution reviewed like code. Every run writes a hash-chained, tamper-evident audit trail.  
-**Stack:** LangGraph, Anthropic Claude, Constitutional AI, Python 3.12, Pydantic, pytest
+### Country Manager / Buying Agent — Steven Berry (international) · 2003 – 2005
+- Coordinated international garment and textile shipments end to end; ran pre-production, in-line and final inspections to international quality standards.
 
-### AI TradeFlow — Inventory & Accounting for Wholesalers *(Shipped)*
-[Live demo](https://ai-tradeflow-demo.vercel.app) · [Code](https://github.com/asadullah48/ai-tradeflow)
+## Hackathons
 
-**Impact:** 142 backend tests, including two-business leak tests on every endpoint and PostgreSQL concurrency races in CI (12 parallel sales of 5 units in stock sell exactly 5). The public demo costs nothing to host.
+**Panaversity hackathon series — six consecutive completions (2024–2025):** Personal AI CTO (Bronze) → Course Companion FTE (Silver) → AI-Powered Todo (Silver, 89 tests) → Advanced Todo (Gold, 149 tests, triple-layer Constitutional AI) → Cloud-Native Deployment (Platinum: Kubernetes, Dapr, Kafka, Prometheus/Grafana/Jaeger) → Agent Factory (Platinum: a general agent that builds custom agents; SKILL.md as portable units).
 
-- **Business isolation:** one SQLAlchemy hook scopes every query, write and AI tool to the caller's business. Owner and munshi roles are enforced by the API.
-- **Accounting integrity:**
-  - exact NUMERIC money, and weighted-average cost snapshotted per sale, so past profit never changes;
-  - idempotent orders and payments;
-  - owner-only void by reversing entries;
-  - udhaar sales stop at the customer's credit limit unless the owner approves.
-- **Collections desk:** ranks whom to chase and why, and opens a Roman-Urdu WhatsApp reminder.
-- **Munshi AI:** five read-only tools behind an SDK input guardrail. A deterministic compiled-regex constitution runs before any model call, with an offline tool-grounded fallback. Proper invoice-aware FIFO *udhaar* aging.
+## Certifications
 
-No production customer yet; the backend is Docker-ready with migration-only production start-up. First in the "AI for Pakistan Trade" series.  
-**Stack:** OpenAI Agents SDK, FastAPI, SQLAlchemy 2, Alembic, PostgreSQL, Next.js 16, Expo
+- **Agent Foundations** — Cognizant AI Lab, Agent Academy · Sep 2026 · [certificate](https://asadullahshafique-devunity.vercel.app/certificates/agent-foundations-asadullah-shafique.png)
+- **Anthropic Claude Academy** — six verified badges, Sep 2026: AI Fluency: Framework and Foundations; AI Fluency for Builders; AI Capabilities and Limitations; Claude 101; Claude Code 101; Introduction to Claude Cowork · [verify links](https://asadullahshafique-devunity.vercel.app/#certifications)
+- **In progress:** Claude Code in Action and Introduction to Model Context Protocol (Claude Academy, completed, badges pending); Panaversity Forward Deployed Engineer training (Track B); PCAR-F and Claude Certified Associate – Foundations (not yet awarded)
 
-### DevUnity Platform — This portfolio, and its own proof *(Shipped)*
-[github.com/asadullah48/asadullahshafique_devunity](https://github.com/asadullah48/asadullahshafique_devunity) · [Live](https://asadullahshafique-devunity.vercel.app)
+## Education
 
-**Impact:** A triage orchestrator over four specialists, a real MCP server on the official SDK, and a written constitution verified blocking 4 of 4 violations with no model reachable.
-
-Every agent path degrades gracefully without an API key — the deployed site never 500s or hangs because a key is missing. Bilingual EN/AR with full RTL; AI-discoverable via llms.txt, JSON-LD and dynamic OG images.  
-**Stack:** Next.js 15, TypeScript, FastAPI, OpenAI Agents SDK, FastMCP, Render, Vercel
-
-### Bazaar — Unified B2B + B2C Marketplace *(Shipped)*
-[github.com/asadullah48/bazaar](https://github.com/asadullah48/bazaar)
-
-**Impact:** 500+ verified sellers and 10K+ products across one codebase serving both retail checkout and a wholesale RFQ engine. PKR-native, three languages.  
-**Stack:** Next.js 15, FastAPI, Supabase, PostgreSQL, Redis, Docker
-
-### Textile ERP Platform — Pakistan *(Module 1 live · platform in build)*
-**Founder | 2024 – Present** · [Live demo](https://textile-erp-platform.vercel.app) · [Code](https://github.com/asadullah48/textile-erp-platform)
-
-**Impact:** Multi-tenant ERP for fabric mills in Faisalabad, Gujranwala and Karachi. Module 1 is complete: the database, not staff discipline, enforces tenant isolation (PostgreSQL row-level security) and stock integrity. 42 tests against real PostgreSQL; zero-cost public demo.
-
-- **Fabric Mill Module (complete):** roll/lot register with row-locked partial issuance, append-only yarn stock ledger, weaving & knitting sessions posting yarn atomically, LC imports with server-computed landed cost, roll traceability with QR labels, 7 deterministic Mill Pulse alerts
-- **CMT Core (specced):** order lifecycle, auto-billing (4 bill types), BOM inventory, production sessions, dispatch
-- **Financial (specced):** party ledgers, aging, P&L and cash flow  
-**Stack:** FastAPI, SQLAlchemy 2, PostgreSQL (RLS), Next.js 15, TypeScript, pytest
-
-### Agent Factory (H5) — Panaversity Hackathon 2025 *(Platinum)*
-
-**Impact:** Two-tier architecture in which a General Agent manufactures Custom Agents at scale; SKILL.md as portable, reusable intelligence units. Deployed on Kubernetes + Dapr.  
-**Stack:** Claude Code, OpenAI Agents SDK, MCP, SKILL.md, Dapr, Kubernetes
-
----
-
-## PROFESSIONAL EXPERIENCE
-
-### Founder & CEO — CMT Stitching Operations
-**Texcot Embroidery Sourcing House | Karachi, Pakistan | 2020 – Present**
-
-- Engineered a multi-agent orchestration layer for financial-services research and Shari'ah screening, with separation of powers enforced structurally — no agent holds two of market data, weighting and verdict — rather than by prompt
-- Implemented MCP interoperability so agent capability is exposed as read-only tools on a protocol server, verified against a live client, instead of as bespoke HTTP endpoints
-- Architected deterministic guardrails from a written constitution, screened before any model call — verified blocking 4 of 4 violations with no model reachable, so enforcement survives a provider outage
-- Architected the Textile ERP Platform — order lifecycle, four auto-billing types, party ledgers and BOM inventory — to digitize Pakistan's textile value chain
-- Founded and operate a CMT stitching unit of 30–35 staff, running the full manufacturing lifecycle from sample fabric and design analysis through machine allocation, bulk production and inspection
-- Directed digital marketing across social channels, property portals and lead-generation funnels for textile and GCC real-estate clients
-
-### Marketing Manager
-**JK Embroidery | Karachi, Pakistan | 2016 – 2020**
-
-- Directed marketing and production planning for embroidery manufacturing operations
-- Engineered staff and equipment scheduling to clear production bottlenecks, implementing process improvements that held under peak order flow
-- Led a team of 30–35 staff, setting priorities against available resources and work-order flow
-
-### Country Manager / Buying Agent
-**Steven Berry | International | 2003 – 2005**
-
-- Coordinated international shipments end to end, guiding clients through the full procurement process
-- Enforced international quality standards across garment and textile categories
-- Conducted pre-production, in-production and final inspection of apparel, accessories and textile products
-
----
-
-## HACKATHON ACHIEVEMENTS
-
-**Panaversity Hackathon Series — 6 Consecutive Wins | 85% Code Reuse | Zero Failed Attempts**
-
-- **Agent Factory (H5) — 2025** | *Platinum Tier*  
-  General Agent (Claude Code) manufactures Custom Agents (OpenAI Agents SDK). SKILL.md monetization. Digital FTE deployed on Kubernetes + Dapr. 117-slide deck.
-
-- **Cloud-Native Deployment (H4) — 2025** | *Platinum Tier*  
-  Full K8s stack: Kubernetes + Docker + Dapr + Kafka + Prometheus/Grafana/Jaeger + Helm + GitHub Actions CI/CD.
-
-- **Advanced Todo (H3) — 2025** | *Gold Tier*  
-  149 tests passing. Recurring todos, team collaboration, AI suggestions, triple-layer Constitutional AI (7 BLOCK + 5 FLAG patterns).
-
-- **AI-Powered Todo (H2) — 2025** | *Silver Tier*  
-  89 tests passing. Full-stack Constitutional AI todo. 70% code reuse from H1.
-
-- **Course Companion FTE (H1) — 2024** | *Silver Tier*  
-  Zero-Backend-LLM architecture. Digital FTE model. 70% code reuse from H0.
-
-- **Personal AI CTO (H0) — 2024** | *Bronze Tier*  
-  Constitutional AI foundation. Established spec-first, four-session methodology.
-
----
-
-## TECHNICAL SKILLS
-
-**Languages:** TypeScript, JavaScript, Python, HTML/CSS  
-**Frontend:** Next.js 15, React 19, Tailwind CSS v4, shadcn/ui  
-**Backend:** FastAPI, SQLAlchemy ORM, PostgreSQL, REST APIs  
-**AI & Agents:** OpenAI Agents SDK, Claude Code / Claude API, MCP Servers, Computer Use, LangGraph, LangChain, Constitutional AI, RAG, Streaming SSE  
-**Cloud & DevOps:** Kubernetes, Docker, Dapr, Kafka, Helm, GitHub Actions, Vercel, Koyeb, Minikube  
-**Observability:** Prometheus, Grafana, Jaeger, Loki  
-**Platforms & Tools:** Git, Windows 11 / WSL2
-
----
-
-## DIGITAL MARKETING SERVICES
-
-Full-spectrum digital marketing strategy for Dubai real estate, UAE construction, and Pakistani SMEs:
-
-- Social media management (Facebook, Instagram, X/Twitter, LinkedIn) + paid advertising campaigns
-- Property portal listings, lead generation funnels, and monthly performance reporting
-- Tailored strategies for GCC/expat/Pakistani diaspora investors; AED-priced service packages
-
----
-
-## EDUCATION & CERTIFICATIONS
-
-### Completed courses
-
-**Agent Foundations — Agent Academy, Cognizant AI Lab**
-
-Certificate of completion issued to Asadullah Shafique. Completed September 30, 2026.
-
-[View completion certificate](https://asadullahshafique-devunity.vercel.app/certificates/agent-foundations-asadullah-shafique.png)
-
-**AI Fluency: Framework and foundations — Claude Academy (Anthropic’s learning platform)**
-
-Verified completion badge issued to Asadullah Shafique on September 18, 2026.
-
-[Verify completion badge](https://academy.claude.com/verify/20a54be8bbdcfa54f1ffee06f6c45082)
-
-**Introduction to Claude Cowork — Claude Academy (Anthropic’s learning platform)**
-
-Verified completion badge issued to Asadullah Shafique on September 18, 2026.
-
-[Verify completion badge](https://academy.claude.com/verify/e14c137e39659a99fb79e7afc1394c09)
-
-**Claude Code 101 — Claude Academy (Anthropic’s learning platform)**
-
-Verified completion badge issued to Asadullah Shafique on September 18, 2026.
-
-[Verify completion badge](https://academy.claude.com/verify/64b43e3f91ee11516e562d2c35801e3a)
-
-**AI Fluency for builders — Claude Academy (Anthropic’s learning platform)**
-
-Verified completion badge issued to Asadullah Shafique on September 18, 2026.
-
-[Verify completion badge](https://academy.claude.com/verify/2cfb8dd802a841177aba39028ef6cf4e)
-
-**AI capabilities and limitations — Claude Academy (Anthropic’s learning platform)**
-
-Verified completion badge issued to Asadullah Shafique on September 18, 2026.
-
-[Verify completion badge](https://academy.claude.com/verify/e5f7a0e1a35e7d3e6626241402d556be)
-
-**Claude 101 — Claude Academy (Anthropic’s learning platform)**
-
-Verified completion badge issued to Asadullah Shafique on September 18, 2026.
-
-[Verify completion badge](https://academy.claude.com/verify/6d808a4f90c00a98b326959280f5c280)
-
-**Claude Code in action — Claude Academy (Anthropic’s learning platform)**
-
-[Verify completion badge](https://academy.claude.com/verify/f8192381a00c3d85b011b7cd94673286)
-
-**Introduction to Model Context Protocol — Claude Academy (Anthropic’s learning platform)**
-
-[Verify completion badge](https://academy.claude.com/verify/881db997d7957558e2d108c9ab9d174e)
-
-### Governor Sindh Initiative for Artificial Intelligence & Computing (Panaversity)
-**Feb 2024 – Present** · Advanced study in Agentic AI and Generative AI
-
-**Forward Deployed Engineer Training — Track B (Accelerated), 13 weeks.** Governed Vertical
-Systems of Record, stateless MCP (rev. 2026-07-28), multi-agent research systems, and
-structured extraction pipelines with validation and human review.
-
-Coursework across TypeScript/JavaScript, React and Next.js, Python, agent SDKs and AI
-frameworks, and Loop / Harness / Graph-based agent architectures.
-
-**Certifications — expected, not yet awarded.** Listed by awarding body, because PCAR-F is
-Panaversity’s own exam aligned to Anthropic’s CCAR-F blueprint rather than an Anthropic exam:
-
-- **Sindh Board / University of Karachi** — programme certification
-- **Panaversity** — PCAR-F, Architect Foundations, aligned to Anthropic’s CCAR-F blueprint
-- **Anthropic** — [Claude Certified Associate – Foundations](https://anthropic-partners.skilljar.com/claude-certified-associate-foundations-certification) → Claude Certified Architect – Foundations
-
-### Prior qualifications
-
-- **Alim — 5-Year Islamic Studies Course** | Burooj Institute, Karachi, Pakistan
-- **Associate Degree — Textile Technology** | Textile Institute of Pakistan (APTMA Project), Karachi, 1997
-- **H.S.C Pre-Engineering** | Pakistan Shipowner's Government College, Karachi, 1994
-- **S.S.C Science** | Ladybird Grammar School, Karachi, 1992
-
----
-
-## ONLINE PRESENCE
-
-Portfolio: [asadullahshafique-devunity.vercel.app](https://asadullahshafique-devunity.vercel.app)  
-GitHub: [github.com/asadullah48](https://github.com/asadullah48) | Medium: [@texcotembroiderysourcinghouse](https://medium.com/@texcotembroiderysourcinghouse)  
-X/Twitter: [@texcotembroide1](https://x.com/texcotembroide1) | Instagram: [@shafiqueasadullah](https://instagram.com/shafiqueasadullah)
+- **Governor Sindh Initiative for AI & Computing (Panaversity)** — Agentic and Generative AI · 2024 – Present
+- **Associate Degree, Textile Technology** — Textile Institute of Pakistan (APTMA project), Karachi · 1997
+- HSC Pre-Engineering, Pakistan Shipowners' Government College, 1994 · Alim (5-year Islamic studies), Burooj Institute, Karachi

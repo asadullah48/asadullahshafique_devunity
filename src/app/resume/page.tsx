@@ -124,7 +124,7 @@ const flagship = [
     name: "Bazaar",
     tagline: "Unified B2B + B2C Marketplace",
     impact:
-      "500+ verified sellers and 10K+ products across one codebase serving both retail checkout and a wholesale RFQ engine. PKR-native, three languages.",
+      "One codebase serving both retail checkout and a wholesale RFQ engine, with JazzCash, Easypaisa and card payments. PKR-native, three languages.",
     href: "https://github.com/asadullah48/bazaar",
     stack: ["Next.js 15", "FastAPI", "Supabase"],
     shipped: true,
@@ -256,7 +256,7 @@ const experience = [
       "Architected deterministic guardrails from a written constitution, with a pattern layer that needs no model — verified blocking 4 of 4 violations with no model reachable, so enforcement survives a provider outage",
       "Architected the Textile ERP Platform — order lifecycle, four auto-billing types, party ledgers and BOM inventory — to digitize Pakistan's textile value chain",
       "Founded and operate a CMT stitching unit of 30–35 staff, running the full manufacturing lifecycle from sample fabric and design analysis through machine allocation, bulk production and inspection",
-      "Directed digital marketing across social channels, property portals and lead-generation funnels for textile and GCC real-estate clients",
+      "Lead the business's digital marketing across social channels and lead-generation funnels",
     ],
   },
   {
@@ -419,13 +419,24 @@ export default function ResumePage() {
               </Reveal>
 
               <Reveal className="flex flex-col gap-2 flex-shrink-0" data-print="hide">
+                {/* Two PDFs, two sources. resume.pdf is the 2-page recruiter
+                    version, printed from scripts/resume/resume.html by
+                    `npm run resume:short`. resume-full.pdf is THIS page,
+                    printed by `npm run resume:pdf`. Regenerate the one whose
+                    source you changed. */}
                 <a href="/resume.pdf" download="Asadullah_Shafique_Resume_2026.pdf">
                   <Button className="w-full bg-brand text-primary-foreground font-semibold hover:bg-brand/90 h-11 px-6">
                     <FileDown className="w-4 h-4 mr-2" />
-                    Download PDF
+                    Download 2-page PDF
                   </Button>
                 </a>
-                {/* resume.md on disk so it pairs with resume.pdf, but served
+                <a href="/resume-full.pdf" download="Asadullah_Shafique_Full_Profile_2026.pdf">
+                  <Button variant="outline" className="w-full border-border text-muted-foreground hover:border-brand/50 hover:text-brand h-9 px-6 text-sm">
+                    <FileDown className="w-3.5 h-3.5 mr-2" />
+                    Full profile (PDF)
+                  </Button>
+                </a>
+                {/* resume.md on disk so it pairs with resume.pdf (the 2-page version), but served
                     to the visitor under the full name — the same split the
                     PDF link above already uses. The file must stay in public/
                     to be served at all; only its name was the problem. */}

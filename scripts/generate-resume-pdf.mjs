@@ -1,5 +1,8 @@
 /**
- * Regenerates public/resume.pdf by printing /resume from headless Chrome.
+ * Regenerates public/resume-full.pdf by printing /resume from headless Chrome.
+ *
+ * public/resume.pdf is NOT this file: it is the 2-page recruiter version, printed
+ * from scripts/resume/resume.html by scripts/generate-resume-short.mjs.
  *
  * This is the generator that `src/app/globals.css` (the PRINT block, ~line 769)
  * has always described but nobody had written: that @media print block IS this
@@ -32,7 +35,7 @@ import { chromium } from "@playwright/test";
 import { writeFileSync, statSync } from "node:fs";
 
 const URL = process.env.RESUME_URL ?? "http://localhost:3013/resume";
-const OUT = "public/resume.pdf";
+const OUT = "public/resume-full.pdf";
 
 /* Floor: a PDF that lost .reveal content still renders headers and lands
    around 40 KB, so anything under this means the print block regressed.
@@ -40,7 +43,9 @@ const OUT = "public/resume.pdf";
 const MIN_BYTES = 60_000;
 const MAX_BYTES = 3_000_000;
 
-const browser = await chromium.launch();
+const browser = await chromium.launch(
+  process.env.CHROMIUM_PATH ? { executablePath: process.env.CHROMIUM_PATH } : {},
+);
 const page = await browser.newPage();
 
 await page.goto(URL, { waitUntil: "networkidle", timeout: 90_000 });
