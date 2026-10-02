@@ -40,9 +40,10 @@
     "title": "Agentic AI Systems Engineer",
     "headline": "I engineer AI systems that move from reasoning to reliable execution.",
     "supporting": "Production-oriented agents that coordinate workflows, use tools, preserve state, operate under guardrails, and leave an auditable trail.",
-    "ecosystemNote": "Every engineering claim below links to source code or live runtime evidence. Inspect the systems, then join the Discord to follow the next build.",
+    "ecosystemNote": "Every engineering claim below links to source code or live runtime evidence: four flagship systems, and 736 tests across 21 open-source agent repositories.",
     "capabilities": "Agent Orchestration · MCP · A2A · Guardrails · Evaluation · Kubernetes",
-    "sourceCta": "GitHub"
+    "sourceCta": "GitHub",
+    "hireCta": "Hire me or book an audit"
   },
   "runtime": {
     "eyebrow": "// agent_runtime",

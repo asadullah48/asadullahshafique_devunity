@@ -29,10 +29,6 @@ const TESTIMONIALS_EN: Testimonial[] = [
     avatarColor: "#84cc16",
     text: "Asadullah transformed how we generate leads online. The digital marketing system he built (property portals, social campaigns, and the analytics dashboard) cut our cost-per-lead by over 40% in the first quarter.",
     context: "Dubai Real Estate Digital Marketing",
-    // Promoted over the Panaversity quote deliberately: a paying client
-    // outranks a programme mentor for the enterprise reader, and this is the
-    // only hard business number anywhere on the site (40% cost-per-lead).
-    featured: true,
   },
   {
     name: "Tariq Mahmood",
@@ -51,6 +47,9 @@ const TESTIMONIALS_EN: Testimonial[] = [
     avatarColor: "#a855f7",
     text: "Asadullah has been one of the most consistent contributors in our hackathon series. His spec-first methodology and zero-defect delivery across six consecutive hackathons is a benchmark for other students.",
     context: "Panaversity Hackathon Series Mentor",
+    // Featured 2026-10-02 per external review feedback: an instructor's
+    // assessment of the engineering, which is what this page argues.
+    featured: true,
   },
 ];
 
@@ -63,7 +62,6 @@ const TESTIMONIALS_AR: Testimonial[] = [
     avatarColor: "#84cc16",
     text: "أسد الله غيّر طريقة توليد العملاء المحتملين عبر الإنترنت. نظام التسويق الرقمي الذي بناه (بوابات العقارات والحملات الاجتماعية ولوحة التحليلات) خفّض تكلفة الحصول على العميل بأكثر من 40% في الربع الأول.",
     context: "التسويق الرقمي للعقارات في دبي",
-    featured: true,
   },
   {
     name: "طارق محمود",
@@ -82,6 +80,9 @@ const TESTIMONIALS_AR: Testimonial[] = [
     avatarColor: "#a855f7",
     text: "كان أسد الله من أكثر المساهمين ثباتاً في سلسلة الهاكاثونات لدينا. منهجيته Spec-First وتسليمه خالياً من الأخطاء عبر ستة هاكاثونات متتالية هو معيار يُحتذى به للطلاب الآخرين.",
     context: "مرشد سلسلة هاكاثونات Panaversity",
+    // Featured 2026-10-02 per external review feedback: an instructor's
+    // assessment of the engineering, which is what this page argues.
+    featured: true,
   },
 ];
 

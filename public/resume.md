@@ -65,7 +65,7 @@ Agentic AI engineer who builds multi-agent systems that can be audited: typed or
 ### 21 open-source multi-agent reference implementations
 [Repositories](https://github.com/asadullah48?tab=repositories)
 
-Distinct domains (legacy-code transpilation, zero-trust MCP security, DAG workflows with approvals, inventory forecasting, and more), each with its own FastAPI gateway, Docker/Kubernetes configs and test suite: 263 tests in aggregate. Run on synthetic data; they demonstrate architecture, not production traffic.
+Distinct domains (legacy-code transpilation, zero-trust MCP security, DAG workflows with approvals, inventory forecasting, and more), each with its own FastAPI gateway, Docker/Kubernetes configs and test suite: 736 test functions in aggregate (6 of the 21 run them in CI). Twenty run on synthetic data; they demonstrate architecture, not production traffic.
 
 ## Experience
 

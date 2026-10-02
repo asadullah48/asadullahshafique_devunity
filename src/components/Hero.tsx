@@ -122,43 +122,47 @@ export function HeroSection() {
             {t("hero.capabilities")}
           </p>
 
+          {/* One primary action (review feedback, 2026-10-02): the page's
+              goal is a hiring or engagement conversation, so that is the only
+              filled button. #engagements lists the three ways to work
+              together, including the embedded/full-time role. */}
           <div className="flex flex-wrap justify-center gap-3 lg:justify-start">
             <Button asChild variant="neon" size="lg">
-              {/* The label promises flagship systems, so it lands on the three
-                  architecture case studies (#flagship-case-studies), which now
-                  sit directly under the audience paths. #projects keeps its id
-                  for the Navbar, Footer and other in-page links. */}
-              <Link href="#flagship-case-studies">
-                {t("hero.viewWork")}
+              <Link href="#engagements">
+                {t("hero.hireCta")}
                 <ArrowRight className="h-4 w-4" aria-hidden="true" />
               </Link>
             </Button>
 
             <Button asChild variant="outline" size="lg">
-              <a
-                href="https://github.com/asadullah48"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <Github className="h-4 w-4" aria-hidden="true" />
-                {t("hero.sourceCta")}
-              </a>
+              {/* Lands on the architecture case studies directly under the
+                  audience paths. #projects keeps its id for other links. */}
+              <Link href="#flagship-case-studies">{t("hero.viewWork")}</Link>
             </Button>
+          </div>
 
-            {/* Tertiary, not a third button — the one-primary rule in
-                CLAUDE.md, extended: three equal-weight buttons is no
-                hierarchy at all. */}
-            <Button asChild variant="ghost" size="lg">
-              <a
-                href="/resume.pdf"
-                download="Asadullah_Shafique_Resume.pdf"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <Download className="h-4 w-4" aria-hidden="true" />
-                {t("hero.downloadResume")}
-              </a>
-            </Button>
+          {/* Secondary exits as plain links, so they stop competing with the
+              primary action. */}
+          <div className="mt-4 flex flex-wrap items-center justify-center gap-x-5 gap-y-2 text-sm lg:justify-start">
+            <a
+              href="/resume.pdf"
+              download="Asadullah_Shafique_Resume.pdf"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex min-h-[44px] items-center gap-1.5 text-muted-foreground underline-offset-4 hover:text-brand hover:underline"
+            >
+              <Download className="h-4 w-4" aria-hidden="true" />
+              {t("hero.downloadResume")}
+            </a>
+            <a
+              href="https://github.com/asadullah48"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex min-h-[44px] items-center gap-1.5 text-muted-foreground underline-offset-4 hover:text-brand hover:underline"
+            >
+              <Github className="h-4 w-4" aria-hidden="true" />
+              {t("hero.sourceCta")}
+            </a>
           </div>
         </Reveal>
 
