@@ -125,6 +125,8 @@
     "badgeCMT": "CMT Industry Founder",
     "badgeMarketing": "Digital Marketer",
     "bio": "I build production-oriented AI systems and run a textile sourcing business. That combination keeps my engineering grounded in real workflows, deadlines, inventory, customers, and measurable outcomes.",
+    "whyLabel": "Why I build agentic systems",
+    "why": "I build agentic systems to turn complex, repetitive work into reliable workflows that give people more time to think, create, and grow their businesses. My experience running a textile business taught me how much a small team carries, so I focus on systems that create practical value and sustainable income. I want people to stay in control, with agents that act within clear boundaries and produce results they can verify.",
     "h1Title": "Agentic Systems",
     "h1Desc": "Orchestration, typed state, tool use, guardrails, evaluations, and graceful degradation—implemented as inspectable systems rather than presentation-only demos.",
     "h2Title": "Operational Perspective",

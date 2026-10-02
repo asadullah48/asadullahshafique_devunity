@@ -107,6 +107,19 @@ const About = () => {
           </p>
         </Reveal>
 
+        {/* The "why" — in Asadullah's own words (2026-10-02). Keep it his:
+            edit the wording only with him, not for style. */}
+        <Reveal step={1} className="max-w-3xl mx-auto mb-12">
+          <figure className="rounded-xl border border-brand/30 bg-surface-1/50 p-6 md:p-8 border-s-4 border-s-brand">
+            <figcaption className="mb-3 text-xs font-semibold uppercase tracking-wider text-brand">
+              {t("about.whyLabel")}
+            </figcaption>
+            <blockquote className="text-base md:text-lg leading-relaxed text-foreground/90">
+              {t("about.why")}
+            </blockquote>
+          </figure>
+        </Reveal>
+
         <div className="max-w-6xl mx-auto flex flex-col lg:flex-row gap-8 items-start mb-8">
 
           {/* LEFT — Bio Card */}
