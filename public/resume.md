@@ -57,10 +57,10 @@ Agentic AI engineer who builds multi-agent systems that can be audited: typed or
 - Module 1 (Fabric Mill) complete: tenant isolation enforced by PostgreSQL row-level security, row-locked roll issuance, append-only yarn ledger, landed-cost LC imports, 7 deterministic alerts; 42 tests against real PostgreSQL. Later modules are specified, not yet built.
 
 ### CMT Stitching & Packing System · Paid Growth, Measured
-[CMT code](https://github.com/asadullah48/cmt-stitching-system) · [PGM code](https://github.com/asadullah48/paid-growth-measured)
+[CMT code](https://github.com/asadullah48/cmt-stitching-system) · [PGM code](https://github.com/asadullah48/paid-growth-measured) · [PGM demo](https://paid-growth-measured.vercel.app)
 
 - **CMT system:** production and billing for my own stitching unit, in daily use there: order lifecycle to dispatch, QC sessions, four bill series, party ledgers, 24 migrations.
-- **Paid Growth, Measured** (local MVP): ad-agency workspace where ad copy is built only from client-approved facts and every report number is a frozen, sourced snapshot; 25 tests, also run against PostgreSQL 16.
+- **Paid Growth, Measured** (read-only live demo): ad-agency workspace where ad copy is built only from client-approved facts and every report number is a frozen, sourced snapshot; 29 tests, also run against PostgreSQL 16.
 
 ### 21 open-source multi-agent reference implementations
 [Repositories](https://github.com/asadullah48?tab=repositories)
