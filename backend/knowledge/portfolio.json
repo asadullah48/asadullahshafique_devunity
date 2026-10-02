@@ -68,16 +68,16 @@
   "projects": [
     {
       "name": "FinAgent-Nexus",
-      "status": "flagship",
+      "status": "shipped, live demo",
       "summary": "Multi-agent financial intelligence for wealth management: Plan-Act-Verify orchestration with Constitutional AI compliance review, deterministic Shari'ah and regulatory screening, and a hash-chained audit trail. Public on GitHub under MIT with a live interactive compliance screener.",
       "metrics": ["sub-2ms compliance screen with zero model calls", "8 of 14 principles settled by arithmetic", "94 tests passing offline with no API key"],
       "tech": ["LangGraph", "Anthropic Claude", "Python", "Pydantic", "Vercel"]
     },
     {
       "name": "Bazaar",
-      "status": "flagship",
-      "summary": "Pakistan's first unified marketplace with a dual B2C retail storefront and a B2B wholesale/RFQ engine.",
-      "metrics": ["500+ verified sellers", "10K+ products"],
+      "status": "shipped demo on seed data",
+      "summary": "Unified marketplace with a B2C retail storefront and a B2B wholesale/RFQ engine, JazzCash/Easypaisa/card payments, PKR-native pricing and English, Urdu and Arabic. The live demo runs on seed data; there are no production sellers yet.",
+      "metrics": ["B2C storefront and B2B RFQ engine in one codebase", "Demo on seed data; no production sellers yet"],
       "tech": ["Next.js 15", "FastAPI", "Supabase", "PostgreSQL", "Redis", "Docker"]
     },
     {

@@ -5,11 +5,11 @@ import Image from "next/image";
 import { Reveal } from "@/components/Reveal";
 import { AgentEcosystem } from "@/components/AgentEcosystem";
 import { ModuleFlowDialog } from "@/components/ModuleFlowDialog";
-import { Github, ExternalLink, ChevronDown, ChevronUp, Zap, Star, Clock, ShoppingBag, ShieldCheck, Terminal, LayoutGrid } from "lucide-react";
+import { Github, ExternalLink, ChevronDown, ChevronUp, Zap, Star, Clock, ShoppingBag, ShieldCheck, Terminal, LayoutGrid, FlaskConical } from "lucide-react";
 import { useLocale } from "@/context/LocaleContext";
 import { MODULE_FLOWS } from "@/lib/module-flows";
 
-type ProjectStatus = "Featured" | "In Development" | "Completed" | "Research" | "Flagship" | "Enterprise Grade";
+type ProjectStatus = "Featured" | "In Development" | "Completed" | "Research" | "Flagship" | "Enterprise Grade" | "Reference";
 
 /**
  * Status is a SEMANTIC role, not a colour. Each status resolves to tokens via
@@ -113,7 +113,7 @@ const PROJECTS_EN: Project[] = [
   {
     id: "stockai",
     title: "StockAI: Supply Chain & Inventory Automation Agent",
-    status: "Enterprise Grade",
+    status: "Reference",
     dataMode: "reference",
     tagline: "Autonomous SKU Velocity Monitoring, 30-Day Demand Forecasting & Draft PO Generation",
     problem: "SMEs lose $1.75T annually to stockouts and excess holding costs due to manual inventory counting and slow supplier reordering.",
@@ -133,7 +133,7 @@ const PROJECTS_EN: Project[] = [
   {
     id: "feedbackx",
     title: "FeedbackX: Customer Feedback & Market Intelligence Agent",
-    status: "Enterprise Grade",
+    status: "Reference",
     dataMode: "reference",
     tagline: "Thousands of Reviews Ingested, Aspect-Based Sentiment Analysis & RICE Roadmap Prioritization",
     problem: "Product teams struggle to manually sift through thousands of fragmented reviews across App Store, G2, Trustpilot, and Reddit, burying critical churn friction.",
@@ -153,7 +153,7 @@ const PROJECTS_EN: Project[] = [
   {
     id: "actionnews",
     title: "ActionNews: Financial Newsletter & Alpha Intelligence Agent",
-    status: "Enterprise Grade",
+    status: "Reference",
     dataMode: "reference",
     tagline: "Simulated multi-source ingestion, deterministic sentiment scoring and a synthesised investor brief",
     problem: "Investors face severe information overload from 10,000+ daily financial headlines, SEC filings, and central bank releases without actionable synthesis.",
@@ -174,7 +174,7 @@ const PROJECTS_EN: Project[] = [
   {
     id: "legacyx",
     title: "LegacyX: Automated COBOL & Java Migration Agent",
-    status: "Enterprise Grade",
+    status: "Reference",
     dataMode: "reference",
     tagline: "AST Intermediate Representation, Fixed-Point Arithmetic & Semantic-Parity Checking",
     problem: "Global enterprises run over 220B lines of legacy COBOL and aging Java J2EE code where manual rewrites take 3-7 years and fail 70%+ of the time due to undocumented business rules.",
@@ -210,7 +210,7 @@ const PROJECTS_EN: Project[] = [
   {
     id: "synthdata",
     title: "SynthData: Privacy-First Synthetic Data Generator",
-    status: "Enterprise Grade",
+    status: "Reference",
     dataMode: "reference",
     tagline: "Laplace Differential Privacy Noise, Zero-PII Eradication & GDPR/HIPAA Compliant Test Data Harness",
     problem: "Using production customer data for testing and machine learning exposes enterprises to severe GDPR/HIPAA regulatory fines and catastrophic privacy breach liabilities.",
@@ -229,7 +229,7 @@ const PROJECTS_EN: Project[] = [
   {
     id: "accessai",
     title: "AccessAI: Real-Time Audio Description & Accessibility Agent",
-    status: "Enterprise Grade",
+    status: "Reference",
     dataMode: "reference",
     tagline: "Live Media Stream Ingestion, Zero-Collision SSML Narration & WCAG 2.2 AAA Accessibility Certification",
     problem: "Live media broadcasts, keynotes, and video conferencing remain largely inaccessible to visually impaired users, while manual audio description post-production takes days.",
@@ -248,7 +248,7 @@ const PROJECTS_EN: Project[] = [
   {
     id: "collabx",
     title: "CollabX: Multi-Agent Newsletter & Editorial Team",
-    status: "Enterprise Grade",
+    status: "Reference",
     dataMode: "reference",
     tagline: "Orchestrated Newsroom State Graph, Autonomous Research Ingestion, Narrative Composition & Flesch-Kincaid Auditing",
     problem: "Single-prompt LLMs generate generic, uninspired content with hallucinated statistics and inconsistent tone, while manual corporate newsletter production takes days.",
@@ -267,7 +267,7 @@ const PROJECTS_EN: Project[] = [
   {
     id: "docucode",
     title: "DocuCode: Contextual Documentation Agent (AST Diff & Auto-Sync)",
-    status: "Enterprise Grade",
+    status: "Reference",
     dataMode: "reference",
     tagline: "Real-Time AST Diff Monitoring, Google-Style Docstring Synthesis, Type Accuracy Auditing & Zero-Drift READMEs",
     problem: "Software codebases evolve rapidly while documentation stagnates, causing signature drift, broken API references, and hours wasted decoding undocumented parameters.",
@@ -286,7 +286,7 @@ const PROJECTS_EN: Project[] = [
   {
     id: "privatebrain",
     title: "PrivateBrain: Local Finance Memory Agent (Air-Gapped & Zero-Cloud)",
-    status: "Enterprise Grade",
+    status: "Reference",
     dataMode: "reference",
     tagline: "Air-Gapped On-Device Execution, AES-256 Encrypted Memory Vault, PII Redaction & Zero Cloud Egress",
     problem: "Transmitting confidential wealth records, tax returns (Schedule C/1099), and private bank accounts (IBAN/SSN) to multi-tenant cloud LLMs violates banking secrecy and creates catastrophic data leakage risks.",
@@ -305,7 +305,7 @@ const PROJECTS_EN: Project[] = [
   {
     id: "researchx",
     title: "ResearchX: Autonomous Analyst Agent & Market Intelligence",
-    status: "Enterprise Grade",
+    status: "Reference",
     dataMode: "reference",
     tagline: "Multi-Source Evidence Triangulation, SEC Filing Ingestion, Divergence Auditing & SWOT Synthesis",
     problem: "Financial analysts spend 80% of their time cross-referencing conflicting industry numbers across filings, while traditional LLMs hallucinate statistics and lack verifiable citation provenance.",
@@ -324,7 +324,7 @@ const PROJECTS_EN: Project[] = [
   {
     id: "graphai",
     title: "GraphAI: Enterprise Workflow Orchestration (DAGs, HITL & Retries)",
-    status: "Enterprise Grade",
+    status: "Reference",
     dataMode: "reference",
     tagline: "Topological DAG Scheduling, Parallel Fan-Out Execution, HITL Compliance Gating & Exponential Retries",
     problem: "Linear unstructured agent execution causes unhandled dependency race conditions, lack of human-in-the-loop compliance authorization, and fatal workflow halts on transient downstream network errors.",
@@ -343,7 +343,7 @@ const PROJECTS_EN: Project[] = [
   {
     id: "loopai",
     title: "LoopAI: Feedback-Driven Agents (Plan-Act-Verify Self-Correction)",
-    status: "Enterprise Grade",
+    status: "Reference",
     dataMode: "reference",
     tagline: "Autonomous Reflection, Evidentiary Assertion Auditing, Closed-Loop Replanning & Convergence",
     problem: "Single-pass linear agent execution produces ungrounded hallucinations, structural formatting omissions, and silent calculation errors with zero autonomous self-correction mechanisms.",
@@ -378,7 +378,7 @@ const PROJECTS_EN: Project[] = [
   {
     id: "harnessai",
     title: "HarnessAI: Safe Operating Environment for Autonomous Agents",
-    status: "Enterprise Grade",
+    status: "Reference",
     dataMode: "reference",
     tagline: "Deterministic Containment, Sandboxed Capability Broker, Memory Partitioning & Runaway Circuit Breakers",
     problem: "Autonomous AI agents executing tools and mutating shared context risk infinite recursive execution, context memory poisoning, unhandled timeouts, and dirty state mutations without rollback capabilities.",
@@ -397,7 +397,7 @@ const PROJECTS_EN: Project[] = [
   {
     id: "securebridge",
     title: "SecureBridge: Agent Security Layer for MCP/A2A Mesh",
-    status: "Enterprise Grade",
+    status: "Reference",
     dataMode: "reference",
     tagline: "Compliance-First Zero-Trust Interoperability, Tool Poisoning Defense & Data Loss Prevention (DLP)",
     problem: "Model Context Protocol (MCP) and Agent-to-Agent (A2A) meshes are vulnerable to tool poisoning, indirect prompt injection inside tool outputs, shadow shell execution, and unauthorized PII/API key exfiltration.",
@@ -416,7 +416,7 @@ const PROJECTS_EN: Project[] = [
   {
     id: "workforceai-academy",
     title: "WorkforceAI Academy: Enterprise AI-Human Teaming & Fluency Platform",
-    status: "Enterprise Grade",
+    status: "Reference",
     dataMode: "reference",
     tagline: "Interactive AI Enablement, Real-Time In-Workflow Co-Pilot Scaffolding & Collaboration Index Certifications",
     problem: "Enterprise AI adoption fails when employees treat advanced reasoning agents as generic search engines, succumb to hallucination blindness, and lack structured guidance when designing agentic tool schemas.",
@@ -435,7 +435,7 @@ const PROJECTS_EN: Project[] = [
   {
     id: "conciergeagent",
     title: "ConciergeAgent: Hyperpersonalized Service AI Platform",
-    status: "Enterprise Grade",
+    status: "Reference",
     dataMode: "reference",
     tagline: "White-Glove Tier-Adapted Wealth Advisory, Instant Dispute Auto-Credits & Five-Star Hospitality AI",
     problem: "Generic conversational chatbots alienate high-net-worth and VIP clients in banking, insurance, and luxury retail with rigid scripts, ungrounded responses, and slow escalation during high-distress fraud and claims scenarios.",
@@ -454,7 +454,7 @@ const PROJECTS_EN: Project[] = [
   {
     id: "contextx",
     title: "ContextX: Advanced Context Engineering Framework",
-    status: "Enterprise Grade",
+    status: "Reference",
     dataMode: "reference",
     tagline: "Beyond Prompt Engineering: Hybrid RRF, Lost-in-the-Middle Attention Windows & Grounded Synthesis",
     problem: "Standard prompt stuffing in enterprise RAG pipelines suffers from the 'Lost-in-the-Middle' effect (up to 60% attention degradation in mid-context tokens), severe context dilution, and ungrounded hallucinations lacking chunk-level attribution.",
@@ -473,7 +473,7 @@ const PROJECTS_EN: Project[] = [
   {
     id: "guardrailai",
     title: "GuardrailAI: Deterministic Workflow & Compliance Layer",
-    status: "Enterprise Grade",
+    status: "Completed",
     tagline: "Zero-Trust Agentic Guardrails, Circuit Breakers & Cryptographic SHA-256 Audit Trails",
     problem: "Probabilistic LLM agents cannot be deployed in high-consequence finance, healthcare, and legal workflows due to non-deterministic hallucinations, lack of hard safety ceilings, and failure to meet evidentiary audit standards (SOC-2, SEC 17a-4, HIPAA).",
     solution: "A zero-trust multi-agent state machine where compliance is structural: pre-flight statutory interceptors, ProcessAgent bounded executions, ComplianceAgent post-flight threshold enforcement, automated circuit breakers with safe fallbacks, and an immutable SHA-256 blockchain-style audit ledger.",
@@ -490,7 +490,7 @@ const PROJECTS_EN: Project[] = [
   {
     id: "domainx",
     title: "DomainX: Specialized Multi-Agent Framework",
-    status: "Enterprise Grade",
+    status: "Reference",
     dataMode: "reference",
     tagline: "Specialized Vertical Intelligence (Legal • Medical • Supply Chain) Outperforming Generalist LLMs",
     problem: "Generalist foundation models suffer from 14%+ hallucination rates and regulatory non-compliance in high-stakes legal, healthcare, and supply chain applications.",
@@ -509,7 +509,7 @@ const PROJECTS_EN: Project[] = [
   {
     id: "marketagenthub",
     title: "MarketAgentHub: Marketplace-Ready Multi-Agent Suite",
-    status: "Enterprise Grade",
+    status: "Reference",
     dataMode: "reference",
     tagline: "Multi-Cloud A2A & MCP Autonomous Agents for AWS, Azure, GCP & Salesforce",
     problem: "Deploying autonomous agentic AI across major cloud marketplaces (AWS Bedrock, Azure AI, GCP Vertex, Salesforce Agentforce) requires fragmented action schemas, custom metering, and unstandardized inter-agent protocols.",
@@ -528,7 +528,7 @@ const PROJECTS_EN: Project[] = [
   {
     id: "workforceai",
     title: "WorkforceAI: Agent-as-a-Worker Automation Platform",
-    status: "Enterprise Grade",
+    status: "Reference",
     dataMode: "reference",
     tagline: "Scalable Agent Workforce Automation with Outcome-Based Pricing & Supervisor Governance",
     problem: "Traditional RPA and generalist LLMs charge per-token without accountability for task completion, leading to unpredictable SaaS costs and zero SLA guarantees.",
@@ -564,7 +564,7 @@ const PROJECTS_EN: Project[] = [
   {
     id: "finagent-nexus",
     title: "FinAgent-Nexus: Multi-Agent Financial Intelligence",
-    status: "Enterprise Grade",
+    status: "Completed",
     tagline: "Agentic AI adoption for financial services",
     problem: "Most agentic pilots in financial services die at the compliance review, not because the models are weak, but because a system that cannot show why it reached a conclusion cannot be signed off by a second line of defence. A control a model can argue its way past is not a control.",
     solution: "Three specialised agents, MarketAnalyst, ComplianceOfficer and WealthStrategist, on a fixed Plan-Act-Verify state machine rather than a conversation. Compliance is structural: no agent holds two of the three powers (market data, setting weights, rendering the verdict), and there is deliberately no graph edge from drafting a recommendation to approving one, so verification cannot be skipped under load or disabled by a flag. Shari'ah and regulatory principles live in a versioned constitution reviewed like code, and anything expressible as arithmetic is settled in Python with no model involved.",
@@ -582,20 +582,20 @@ const PROJECTS_EN: Project[] = [
   {
     id: "bazaar",
     title: "Bazaar: Unified B2B + B2C Marketplace",
-    status: "Flagship",
-    tagline: "Pakistan's First Unified B2B/B2C Marketplace",
+    status: "Featured",
+    tagline: "Unified B2B + B2C marketplace for Pakistani SMEs",
     problem: "Local SMEs in Pakistan and the UAE have no unified digital storefront. Buyers juggle multiple platforms, vendors lack analytics, and enterprise clients need white-label flexibility, all three groups are underserved by existing solutions.",
-    solution: "Bazaar unifies B2C retail (browse, cart, checkout, JazzCash, Easypaisa, Card) and B2B wholesale (RFQ engine, quantity-tier pricing, verified suppliers) into one platform. Architecture: multi-tenant Next.js 15 storefront, FastAPI microservices, Supabase BaaS for auth/realtime, local + Stripe payment gateways, vendor dashboard with analytics, AI-powered recommendations, and a white-label enterprise tier.",
-    impact: "500+ verified sellers, 10K+ products across Textiles, Electronics, Furniture, Auto Parts & more. PKR-native, 3 languages (EN/UR/AR). Modular design means each tier is additive, one codebase, SME to enterprise scale.",
-    description: "Pakistan's first unified marketplace with dual B2C retail storefront and B2B wholesale/RFQ engine, 500+ verified sellers, 10K+ products, JazzCash/Easypaisa/Card payments, and PKR-native currency. Built for local SMEs and enterprise adoption.",
+    solution: "Bazaar unifies B2C retail (browse, cart, checkout, JazzCash, Easypaisa, Card) and B2B wholesale (RFQ engine, quantity-tier pricing, verified suppliers) into one platform. Architecture: multi-tenant Next.js 15 storefront, FastAPI microservices, Supabase BaaS for auth/realtime, local + Stripe payment gateways, vendor dashboard with analytics, and nightly recommendation jobs.",
+    impact: "One codebase serves retail checkout and a wholesale RFQ engine. PKR-native, three languages (EN/UR/AR), local payment methods (JazzCash, Easypaisa) alongside cards. The live demo runs on seed data; there are no production sellers yet.",
+    description: "Unified marketplace with a B2C retail storefront and a B2B wholesale/RFQ engine, JazzCash/Easypaisa/card payments, PKR-native pricing and three languages. Demo runs on seed data.",
     tech: ["Next.js 15", "FastAPI", "Supabase", "PostgreSQL", "Redis", "Docker", "TypeScript", "WhatsApp"],
     github: "https://github.com/asadullah48/bazaar",
     demo: "https://frontend-three-kappa-64.vercel.app",
     image: "/images/bazaar-preview.svg",
     metrics: [
       { label: "Mode",     value: "B2B + B2C" },
-      { label: "Sellers",  value: "500+"       },
-      { label: "Products", value: "10K+"       },
+      { label: "Payments", value: "JazzCash · Easypaisa · Card" },
+      { label: "Languages", value: "EN · UR · AR" },
     ],
     featured: true,
   },
@@ -723,7 +723,7 @@ const PROJECTS_AR: Project[] = [
   {
     id: "stockai",
     title: "منصة StockAI: وكيل أتمتة المخزون وسلاسل الإمداد",
-    status: "Enterprise Grade",
+    status: "Reference",
     dataMode: "reference",
     tagline: "مراقبة مستويات المخزون، والتنبؤ بالطلب المستقبلي، وصياغة أوامر الشراء للموردين تلقائياً",
     problem: "تخسر الشركات الصغيرة والمتوسطة مليارات الدولارات سنوياً نتيجة نفاد المخزون وتكاليف التخزين الفائض وإجراءات إعادة الطلب اليدوية البطيئة.",
@@ -743,7 +743,7 @@ const PROJECTS_AR: Project[] = [
   {
     id: "feedbackx",
     title: "منصة FeedbackX: وكيل استخبارات السوق وتحليل آراء العملاء",
-    status: "Enterprise Grade",
+    status: "Reference",
     dataMode: "reference",
     tagline: "تحليل آلاف التقييمات عبر المتاجر، ونمذجة المشاعر الدقيقة، وخارطة طريق وفق نموذج RICE",
     problem: "تتشتت فرق المنتجات في قراءة آلاف التقييمات غير المنظمة عبر المتاجر ومنصات G2 و Reddit، مما يحجب أسباب تراجع العملاء والمزايا المطلوبة.",
@@ -763,7 +763,7 @@ const PROJECTS_AR: Project[] = [
   {
     id: "actionnews",
     title: "منصة ActionNews: وكيل النشرة المالية والذكاء الاستثماري",
-    status: "Enterprise Grade",
+    status: "Reference",
     dataMode: "reference",
     tagline: "تجميع تمثيلي متعدد المصادر، وتقييم معنويات حتمي، ونشرة استثمارية مركّبة",
     problem: "يواجه المستثمرون تشتتاً معرفياً هائلاً من آلاف العناوين المالية اليومية وإفصاحات الهيئات التنظيمية دون وجود تلخيص استثماري فوري.",
@@ -784,7 +784,7 @@ const PROJECTS_AR: Project[] = [
   {
     id: "legacyx",
     title: "منصة LegacyX: وكيل التحديث البرمجي وتحويل الأنظمة القديمة",
-    status: "Enterprise Grade",
+    status: "Reference",
     dataMode: "reference",
     tagline: "تحليل شجرة AST، وضمان دقة الحسابات المالية، وفحص التطابق الدلالي",
     problem: "تشغل المؤسسات العالمية أكثر من 220 مليار سطر برمجي من أنظمة COBOL و Java القديمة حيث تستغرق إعادة الكتابة اليدوية سنوات وتفشل في أغلب الأحيان لغياب التوثيق.",
@@ -820,7 +820,7 @@ const PROJECTS_AR: Project[] = [
   {
     id: "synthdata",
     title: "منصة SynthData: مولد البيانات الاصطناعية الموجه لحماية الخصوصية",
-    status: "Enterprise Grade",
+    status: "Reference",
     dataMode: "reference",
     tagline: "ضوضاء الخصوصية التفاضلية (Laplace)، واستبعاد كامل للهويات (Zero-PII)، وبيئة اختبار معتمدة لـ GDPR و HIPAA",
     problem: "استخدام بيانات العملاء الحقيقية في بيئات الاختبار وتدريب الذكاء الاصطناعي يعرض الشركات لغرامات تنظيمية باهظة ومخاطر تسريب البيانات الحساسة.",
@@ -839,7 +839,7 @@ const PROJECTS_AR: Project[] = [
   {
     id: "accessai",
     title: "منصة AccessAI: وكيل الوصف الصوتي الفوري وإتاحة الوصول الرقمي الشامل",
-    status: "Enterprise Grade",
+    status: "Reference",
     dataMode: "reference",
     tagline: "معالجة فورية للبث المرئي المباشر، وتوليد نطق SSML خالٍ من التداخل، واعتماد معايير WCAG 2.2 AAA",
     problem: "يظل البث المرئي والمؤتمرات الحية غير متاح للمستخدمين ضعاف البصر، بينما يستغرق إعداد الأوصاف الصوتية يدوياً أياماً عديدة.",
@@ -858,7 +858,7 @@ const PROJECTS_AR: Project[] = [
   {
     id: "collabx",
     title: "منصة CollabX: فريق التحرير متعدد الوكلاء لإنتاج النشرات والتقارير الإخبارية",
-    status: "Enterprise Grade",
+    status: "Reference",
     dataMode: "reference",
     tagline: "مخطط سير عمل تحريري منسق، واستكشاف ذكي للأدلة، وصياغة روائية مقنعة، وتدقيق سهولة القراءة (Flesch-Kincaid)",
     problem: "تنتج النماذج التقليدية محتوى غير مميز تملؤه الهلوسات الإحصائية والنبرة غير المتناسقة، بينما يستغرق إعداد النشرات المؤسسية يدوياً أياماً عديدة.",
@@ -877,7 +877,7 @@ const PROJECTS_AR: Project[] = [
   {
     id: "docucode",
     title: "منصة DocuCode: وكيل التوثيق البرمجي التلقائي وتحديث المستندات فورياً",
-    status: "Enterprise Grade",
+    status: "Reference",
     dataMode: "reference",
     tagline: "مراقبة شجرة الإعراب (AST) فورياً، وتوليد التوثيق القياسي (Docstrings)، وتدقيق مطابقة الأنواع، وتحديث مستندات README",
     problem: "يتطور الكود البرمجي بسرعة بينما يتخلف التوثيق، مما يؤدي إلى فجوات في توقيع الدوال، وجداول API معطلة، وإهدار الوقت في فهم المعاملات غير الموثقة.",
@@ -896,7 +896,7 @@ const PROJECTS_AR: Project[] = [
   {
     id: "privatebrain",
     title: "منصة PrivateBrain: وكيل الذاكرة المالية المحلية المحمية والمعزولة تماماً عن السحابة",
-    status: "Enterprise Grade",
+    status: "Reference",
     dataMode: "reference",
     tagline: "تنفيذ محلي معزول شبكياً 100%، وخزينة ذاكرة مشفرة بتشفير AES-256، وحجب البيانات الحساسة، وانعدام الاتصال السحابي",
     problem: "إرسال البيانات المالية السرية والإقرارات الضريبية والحسابات البنكية (IBAN/SSN) إلى السحابة ينتهك السرية المصرفية ويعرض الثروات لمخاطر التسريب.",
@@ -915,7 +915,7 @@ const PROJECTS_AR: Project[] = [
   {
     id: "researchx",
     title: "منصة ResearchX: وكيل المحلل المستقل لمعلومات السوق وأبحاث الاستثمار",
-    status: "Enterprise Grade",
+    status: "Reference",
     dataMode: "reference",
     tagline: "تثليث ومطابقة البيانات متعددة المصادر، واستخراج إفصاحات SEC، وتدقيق التباين، وصياغة تقارير SWOT",
     problem: "يستنزف المحللون الماليون 80% من وقتهم في مطابقة الأرقام المتضاربة عبر الإفصاحات، بينما تنتج النماذج التقليدية هلوسات إحصائية تفتقر للمراجع الموثوقة.",
@@ -934,7 +934,7 @@ const PROJECTS_AR: Project[] = [
   {
     id: "graphai",
     title: "منصة GraphAI: إدارة وتنسيق تدفقات العمل الموجهة (DAGs) والتحكم المؤسسي",
-    status: "Enterprise Grade",
+    status: "Reference",
     dataMode: "reference",
     tagline: "جدولة المخططات الموجهة، والتنفيذ المتوازي، وبوابات الموافقة البشرية، وإعادة المحاولة التلقائية",
     problem: "تؤدي التدفقات الخطية غير المنظمة إلى تعارضات في الاعتماديات، وانعدام الرقابة البشرية على القرارات الحساسة، وفشل العمليات عند حدوث أخطاء شبكية عابرة.",
@@ -953,7 +953,7 @@ const PROJECTS_AR: Project[] = [
   {
     id: "loopai",
     title: "منصة LoopAI: وكلاء أذكياء بنموذج التغذية الراجعة والتصحيح الذاتي (Plan-Act-Verify)",
-    status: "Enterprise Grade",
+    status: "Reference",
     dataMode: "reference",
     tagline: "حلقة مغلقة للتفكير التأملي وتدقيق الأدلة وإعادة التخطيط التكراري حتى التقارب المؤكد",
     problem: "يؤدي التنفيذ الخطي الأحادي للنماذج الذكية إلى هلوسات غير موثقة، وأخطاء حسابية وهيكلية صامتة بدون أي آلية للتصحيح الذاتي المستقل.",
@@ -988,7 +988,7 @@ const PROJECTS_AR: Project[] = [
   {
     id: "harnessai",
     title: "منصة HarnessAI: بيئة التشغيل الآمنة وحوكمة الوكلاء الأذكياء",
-    status: "Enterprise Grade",
+    status: "Reference",
     dataMode: "reference",
     tagline: "بيئة عزل محكمة وحوكمة الصلاحيات وتجزئة الذاكرة مع قواطع دوائر لمنع الحلقات الجامحة",
     problem: "يتعرض تشغيل الوكلاء المستقلين لمخاطر الحلقات التكرارية اللانهائية، وتسميم الذاكرة المشتركة، وتعديل الحالات التشغيلية بدون إمكانية الاسترجاع عند الفشل.",
@@ -1007,7 +1007,7 @@ const PROJECTS_AR: Project[] = [
   {
     id: "securebridge",
     title: "منصة SecureBridge: طبقة الحماية والتوافق الأمني للوكلاء الأذكياء",
-    status: "Enterprise Grade",
+    status: "Reference",
     dataMode: "reference",
     tagline: "حماية سيبرانية قائمة على الثقة الصفرية واعتراض تسميم الأدوات ومنع تسريب البيانات لبروتوكولات MCP/A2A",
     problem: "تواجه شبكات الوكلاء وبروتوكولات MCP مخاطر تسميم الأدوات البرمجية، وحقن الأوامر الخفية، والتنفيذ غير المصرح للأوامر، وتسريب مفاتيح API وبيانات الهوية الحساسة.",
@@ -1026,7 +1026,7 @@ const PROJECTS_AR: Project[] = [
   {
     id: "workforceai-academy",
     title: "أكاديمية WorkforceAI: منصة التدريب والتأهيل للتعاون بين البشر والذكاء الاصطناعي",
-    status: "Enterprise Grade",
+    status: "Reference",
     dataMode: "reference",
     tagline: "تمكين مؤسسي تفاعلي وتوجيه فوري لمهام العمل وشهادات معتمدة لمؤشر التعاون الذكي",
     problem: "يتعثر تبني الذكاء الاصطناعي المؤسسي عندما يتعامل الموظفون مع الوكلاء كأدوات بحث تقليدية، مع غياب القدرة على اكتشاف الهلوسات وانعدام التوجيه الفوري أثناء صياغة الأوامر.",
@@ -1045,7 +1045,7 @@ const PROJECTS_AR: Project[] = [
   {
     id: "conciergeagent",
     title: "ConciergeAgent: منصة الوكيل الرقمي الفاخر لخدمة ورفاهية العملاء",
-    status: "Enterprise Grade",
+    status: "Reference",
     dataMode: "reference",
     tagline: "خدمة راقية فائقة التخصيص واستشارات مالية استباقية وحل فوري للنزاعات بمعايير 5 نجوم",
     problem: "تتسبب روبوتات الدردشة التقليدية في نفور عملاء الثروات والشرائح المميزة بسبب الردود النمطية وغياب التخصيص وبطء المعالجة في حالات الاحتيال والمطالبات الحرجة.",
@@ -1064,7 +1064,7 @@ const PROJECTS_AR: Project[] = [
   {
     id: "contextx",
     title: "ContextX: إطار عمل هندسة السياق المتقدمة للوكلاء الأذكياء",
-    status: "Enterprise Grade",
+    status: "Reference",
     dataMode: "reference",
     tagline: "ما وراء هندسة الأوامر: استرجاع هجين RRF، تخفيف الضياع في المنتصف، وقرارات مسندة",
     problem: "تعاني أنظمة RAG التقليدية من ظاهرة 'الضياع في المنتصف' (انخفاض تركيز النموذج بنسبة تصل إلى 60% في منتصف السياق)، بالإضافة إلى هدر الرموز وتوليد إجابات غير مسندة بمصادر دقيقة.",
@@ -1083,7 +1083,7 @@ const PROJECTS_AR: Project[] = [
   {
     id: "guardrailai",
     title: "GuardrailAI: طبقة حواجز الحماية القطعية والامتثال التنظيمي",
-    status: "Enterprise Grade",
+    status: "Completed",
     tagline: "حواجز حماية غير مشروطة بالثقة ومفاتيح قطع الدائرة وسجلات تدقيق مشفرة بسلسلة SHA-256",
     problem: "لا يمكن نشر الوكلاء الاحتماليين في البيئات عالية الخطورة (المالية، الصحية، القانونية) بسبب الهلوسات وغياب الحدود الرياضية الإلزامية وعجز السجلات التقليدية عن تلبية معايير التدقيق القضائي.",
     solution: "هيكل عمل متعدد الوكلاء يفرض الامتثال بنيوياً: اعتراض الطلبات قبل التنفيذ، وتنفيذ منضبط للوكيل ProcessAgent، ومراجعة مخرجات الوكيل ComplianceAgent، ومفاتيح قطع الدائرة التلقائية مع سجل تدقيق مشفر غير قابل للتعديل.",
@@ -1100,7 +1100,7 @@ const PROJECTS_AR: Project[] = [
   {
     id: "domainx",
     title: "DomainX: إطار عمل الوكلاء الأذكياء المتخصصين",
-    status: "Enterprise Grade",
+    status: "Reference",
     dataMode: "reference",
     tagline: "ذكاء اصطناعي متخصص في القطاعات الحساسة (القانوني • الطبي • سلاسل الإمداد)",
     problem: "تعاني نماذج الذكاء الاصطناعي العامة من معدلات هلوسة تتجاوز 14% وعدم مطابقة للوائح في التطبيقات القانونية والطبية واللوجستية.",
@@ -1119,7 +1119,7 @@ const PROJECTS_AR: Project[] = [
   {
     id: "marketagenthub",
     title: "MarketAgentHub: منظومة الوكلاء الجاهزة للمتاجر السحابية",
-    status: "Enterprise Grade",
+    status: "Reference",
     dataMode: "reference",
     tagline: "وكلاء مستقلون متوافقون مع A2A و MCP لمتاجر AWS و Azure و GCP و Salesforce",
     problem: "يتطلب نشر الوكلاء الأذكياء عبر المتاجر السحابية الكبرى مواءمة معقدة لمخططات الإجراءات وأنظمة الفوترة وبروتوكولات التواصل بين الوكلاء.",
@@ -1138,7 +1138,7 @@ const PROJECTS_AR: Project[] = [
   {
     id: "workforceai",
     title: "WorkforceAI: منصة الوكيل كعامل رقمي مستقل",
-    status: "Enterprise Grade",
+    status: "Reference",
     dataMode: "reference",
     tagline: "أتمتة القوى العاملة الذكية مع نماذج تسعير قائمة على الإنجاز وإشراف ذاتي",
     problem: "تفرض أدوات RPA والنماذج العامة تكاليف لكل رمز دون مسؤولية عن إتمام المهام، مما يسبب عدم استقرار التكاليف وغياب ضمانات مستوى الخدمة.",
@@ -1174,7 +1174,7 @@ const PROJECTS_AR: Project[] = [
   {
     id: "finagent-nexus",
     title: "فِن-إيجنت نكسس: ذكاء مالي متعدد الوكلاء",
-    status: "Enterprise Grade",
+    status: "Completed",
     tagline: "تبنّي الذكاء الاصطناعي الوكيل في الخدمات المالية",
     problem: "تتعثّر معظم مشاريع الذكاء الاصطناعي الوكيل في القطاع المالي عند مرحلة المراجعة الرقابية، لا لضعف النماذج، بل لأن النظام الذي يعجز عن تبرير كيفية وصوله إلى نتيجته لا يمكن اعتماده من خط الدفاع الثاني. والضابط الذي يستطيع النموذج تجاوزه بالحجّة ليس ضابطًا.",
     solution: "ثلاثة وكلاء متخصصين، هم محلل السوق ومسؤول الالتزام ومخطط الثروات، يعملون ضمن آلة حالات ثابتة قوامها التخطيط ثم التنفيذ ثم التحقّق، لا حوار مفتوح. والالتزام هنا خاصية بنيوية: لا يجمع أي وكيل بين اثنتين من الصلاحيات الثلاث، وهي بيانات السوق وتحديد الأوزان وإصدار الحكم، ولا يوجد مسار في الرسم البياني ينقل التوصية من الصياغة إلى الاعتماد مباشرة، فلا سبيل إلى تخطّي التحقّق. وتُحفظ مبادئ الشريعة والتنظيم في دستور مُوثّق يُراجَع كما تُراجَع الشيفرة، وكل ما يمكن التعبير عنه حسابيًا يُحسم في بايثون دون تدخّل أي نموذج.",
@@ -1192,20 +1192,20 @@ const PROJECTS_AR: Project[] = [
   {
     id: "bazaar",
     title: "بازار: سوق B2B + B2C الموحد",
-    status: "Flagship",
-    tagline: "أول سوق موحد B2B/B2C في باكستان",
+    status: "Featured",
+    tagline: "سوق موحد B2B + B2C للشركات الباكستانية الصغيرة والمتوسطة",
     problem: "الشركات الصغيرة في باكستان والإمارات تفتقر إلى واجهة رقمية موحدة. المشترون يتنقلون بين منصات متعددة، والبائعون يفتقرون للتحليلات، وعملاء المؤسسات يحتاجون مرونة العلامة البيضاء, جميع الفئات غير خاضعة للخدمة الكاملة.",
-    solution: "بازار يوحّد تجارة التجزئة B2C (التصفح، السلة، الدفع, JazzCash وEasypaisa والبطاقة) والجملة B2B (محرك طلبات العروض، التسعير بالكمية، الموردون الموثقون) في منصة واحدة. الهندسة: متجر Next.js 15 متعدد المستأجرين، خدمات FastAPI المصغرة، Supabase BaaS للمصادقة، بوابات دفع محلية وStripe، لوحة تحكم البائع، توصيات بالذكاء الاصطناعي، وطبقة مؤسسية.",
-    impact: "أكثر من 500 بائع موثق، وأكثر من 10K منتج في المنسوجات والإلكترونيات والأثاث وقطع غيار السيارات. الروبية الباكستانية عملة أصلية، 3 لغات. التصميم المعياري يجعل كل طبقة إضافية, قاعدة كود واحدة، توسع لا محدود.",
-    description: "أول سوق موحد في باكستان بواجهة B2C للتجزئة ومحرك B2B للجملة وطلبات العروض, 500+ بائع موثق، 10K+ منتج، مدفوعات بـ JazzCash/Easypaisa/بطاقة، والروبية الباكستانية عملة أصلية.",
+    solution: "بازار يوحّد تجارة التجزئة B2C (التصفح، السلة، الدفع, JazzCash وEasypaisa والبطاقة) والجملة B2B (محرك طلبات العروض، التسعير بالكمية، الموردون الموثقون) في منصة واحدة. الهندسة: متجر Next.js 15 متعدد المستأجرين، خدمات FastAPI المصغرة، Supabase BaaS للمصادقة، بوابات دفع محلية وStripe، لوحة تحكم البائع، ومهام توصيات ليلية.",
+    impact: "قاعدة كود واحدة تخدم دفع التجزئة ومحرك طلبات عروض الجملة. الروبية الباكستانية عملة أصلية، وثلاث لغات (الإنجليزية والأردية والعربية)، وطرق دفع محلية (JazzCash وEasypaisa) إلى جانب البطاقات. يعمل العرض التجريبي على بيانات أولية، ولا يوجد بائعون فعليون بعد.",
+    description: "سوق موحد بواجهة B2C للتجزئة ومحرك B2B للجملة وطلبات العروض، ومدفوعات بـ JazzCash/Easypaisa/بطاقة، والروبية الباكستانية عملة أصلية وثلاث لغات. يعمل العرض التجريبي على بيانات أولية.",
     tech: ["Next.js 15", "FastAPI", "Supabase", "PostgreSQL", "Redis", "Docker", "TypeScript", "WhatsApp"],
     github: "https://github.com/asadullah48/bazaar",
     demo: "https://frontend-three-kappa-64.vercel.app",
     image: "/images/bazaar-preview.svg",
     metrics: [
       { label: "النمط",     value: "B2B + B2C" },
-      { label: "البائعون",  value: "500+"       },
-      { label: "المنتجات",  value: "10K+"       },
+      { label: "الدفع",  value: "JazzCash · Easypaisa · بطاقة" },
+      { label: "اللغات", value: "EN · UR · AR" },
     ],
     featured: true,
   },
@@ -1336,6 +1336,7 @@ const STATUS_ICONS: Record<ProjectStatus, React.ReactNode> = {
   "In Development": <Clock className="w-3 h-3" />,
   Completed:        <Zap className="w-3 h-3" />,
   Research:         <Zap className="w-3 h-3" />,
+  Reference:        <FlaskConical className="w-3 h-3" />,
 };
 
 /**
@@ -1379,6 +1380,14 @@ const STATUS_TOKENS: Record<ProjectStatus, StatusTone> = {
     rule:   "via-muted-foreground/30",
   },
   Completed: {
+    badge:  "bg-surface-3 text-muted-foreground border-border",
+    accent: "text-muted-foreground",
+    card:   "border-border hover:border-brand/25",
+    rule:   "via-muted-foreground/30",
+  },
+  // Synthetic-data reference implementations: real code and tests, no
+  // production traffic. Neutral, like Completed — never a top-tier tone.
+  Reference: {
     badge:  "bg-surface-3 text-muted-foreground border-border",
     accent: "text-muted-foreground",
     card:   "border-border hover:border-brand/25",
@@ -1736,6 +1745,7 @@ export function ProjectsSection() {
     "In Development": "In Development",
     Completed: "Completed",
     Research: "Research",
+    Reference: t("projects.statusReference"),
   };
 
   return (

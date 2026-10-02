@@ -8,10 +8,11 @@
       "expect": {
         "route": ["Portfolio Specialist"],
         "tools_any": ["get_projects"],
-        "must_contain_any": ["Bazaar"],
+        "must_contain_any": ["OrchestratorX", "ProtoBridge", "GuardrailAI"],
         "must_not_contain": ["Textbook RAG Chatbot"]
       },
-      "rubric": "faithfulness"
+      "rubric": "faithfulness",
+      "note": "Expected answer updated 2026-10-02 to follow the source of truth, not loosened: the site's flagship tier (FLAGSHIP_IDS in Projects.tsx) is OrchestratorX, ProtoBridge, GuardrailAI and this site, and portfolio.json now marks only those as flagship. Bazaar moved to the engineering tier and its demo runs on seed data."
     },
     {
       "id": "portfolio-contact",
