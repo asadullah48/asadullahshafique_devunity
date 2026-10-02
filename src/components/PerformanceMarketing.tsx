@@ -1,30 +1,20 @@
 "use client";
 
-import { useMemo, useState } from "react";
 import { Eye, MousePointerClick, Filter, TrendingUp, type LucideIcon } from "lucide-react";
 import Link from "next/link";
 import { Reveal } from "@/components/Reveal";
 import { useLocale } from "@/context/LocaleContext";
 
 /**
- * Performance Marketing — twelve paid-acquisition competencies and a live
- * funnel calculator.
+ * Performance Marketing — Track 3: twelve paid-acquisition competencies,
+ * grouped by funnel stage.
  *
- * EVIDENCE POSTURE. Two different kinds of claim sit in this section and they
- * are styled so a reviewer can tell them apart:
- *
- *   1. The competency cards are self-reported skill, like GrowthSkills. They
- *      cite no file path, so they get plain cyan and no gold (see the header
- *      of GrowthSkills.tsx for why gold is reserved).
- *   2. The calculator is the checkable part: the formulas run in this file,
- *      in the visitor's browser, and anyone can change an input and see the
- *      funnel respond. Its presets are ILLUSTRATIVE and labelled so on screen.
- *      They are round numbers chosen to be plausible for each market, not
- *      client data, and they must never be presented as results.
- *
- * The only client outcome this section refers to is the Al Rashidi
- * testimonial, and it links to it (#testimonials) rather than restating the
- * number, so the figure keeps exactly one home on the page.
+ * EVIDENCE POSTURE. These cards are self-reported skill, like GrowthSkills
+ * was: they cite no file path, so they get plain cyan and no gold. No client
+ * outcome is shown here. The illustrative funnel calculator and the link to a
+ * client testimonial were removed on 2026-10-02: the calculator's presets were
+ * invented numbers, and the testimonial was a scenario rather than a client
+ * on record. Publish a result here only once a real client has approved it.
  */
 
 type Stage = { id: StageId; Icon: LucideIcon; skills: SkillId[] };
@@ -111,95 +101,9 @@ const COPY: Record<"en" | "ar", Copy> = {
   },
 };
 
-type Inputs = {
-  budget: number;
-  cpm: number;
-  ctr: number;
-  cvr: number;
-  close: number;
-  value: number;
-  margin: number;
-};
-type PresetId = "realEstate" | "construction" | "ecommerce";
-const PRESETS: Record<PresetId, Inputs & { currency: string }> = {
-  realEstate: { currency: "AED", budget: 20000, cpm: 35, ctr: 1.1, cvr: 8, close: 0.8, value: 60000, margin: 70 },
-  construction: { currency: "AED", budget: 15000, cpm: 45, ctr: 0.9, cvr: 5, close: 2, value: 120000, margin: 15 },
-  ecommerce: { currency: "PKR", budget: 150000, cpm: 250, ctr: 1.4, cvr: 2.2, close: 100, value: 3500, margin: 35 },
-};
-const FIELDS: { key: keyof Inputs; step: number; money: boolean }[] = [
-  { key: "budget", step: 100, money: true },
-  { key: "cpm", step: 1, money: true },
-  { key: "ctr", step: 0.1, money: false },
-  { key: "cvr", step: 0.1, money: false },
-  { key: "close", step: 0.1, money: false },
-  { key: "value", step: 100, money: true },
-  { key: "margin", step: 1, money: false },
-];
-
-/** The whole funnel is a chain of multiplied rates. Percent inputs are 0–100. */
-function funnelMath(i: Inputs) {
-  const impressions = (i.budget / i.cpm) * 1000;
-  const clicks = impressions * (i.ctr / 100);
-  const leads = clicks * (i.cvr / 100);
-  const sales = leads * (i.close / 100);
-  const revenue = sales * i.value;
-  return {
-    clicks,
-    leads,
-    sales,
-    cpc: i.budget / clicks,
-    cpl: i.budget / leads,
-    cpa: i.budget / sales,
-    roas: revenue / i.budget,
-    breakEven: 100 / i.margin,
-    profit: revenue * (i.margin / 100) - i.budget,
-  };
-}
-
-function fmt(v: number, digits = 0) {
-  if (!Number.isFinite(v)) return "–";
-  return v.toLocaleString("en-US", { maximumFractionDigits: digits, minimumFractionDigits: digits });
-}
-function money(v: number, currency: string) {
-  if (!Number.isFinite(v)) return "–";
-  return `${currency} ${fmt(v, Math.abs(v) >= 1000 ? 0 : 2)}`;
-}
-
 export default function PerformanceMarketing() {
   const { t, locale } = useLocale();
   const copy = COPY[locale];
-  const [preset, setPreset] = useState<PresetId>("realEstate");
-  const [inputs, setInputs] = useState<Inputs>(() => {
-    const { currency, ...rest } = PRESETS.realEstate;
-    return rest;
-  });
-  const currency = PRESETS[preset].currency;
-  const r = useMemo(() => funnelMath(inputs), [inputs]);
-
-  const status =
-    r.roas >= r.breakEven * 1.25 ? "scale" : r.roas >= r.breakEven ? "hold" : "loss";
-  const statusClass =
-    status === "scale"
-      ? "border-brand/40 text-brand"
-      : status === "hold"
-        ? "border-border text-muted-foreground"
-        : "border-destructive/40 text-destructive";
-
-  const choosePreset = (id: PresetId) => {
-    const { currency: _c, ...rest } = PRESETS[id];
-    setPreset(id);
-    setInputs(rest);
-  };
-
-  const outputs: { label: string; value: string }[] = [
-    { label: "CPC", value: money(r.cpc, currency) },
-    { label: t("marketing.calc.leads"), value: fmt(r.leads) },
-    { label: "CPL", value: money(r.cpl, currency) },
-    { label: "CPA", value: money(r.cpa, currency) },
-    { label: "ROAS", value: `${fmt(r.roas, 2)}x` },
-    { label: t("marketing.calc.breakEven"), value: `${fmt(r.breakEven, 2)}x` },
-  ];
-
   return (
     <section id="marketing" className="py-24 relative">
       <div className="container mx-auto px-6">
@@ -253,86 +157,9 @@ export default function PerformanceMarketing() {
           })}
         </div>
 
-        {/* The checkable part: the same arithmetic run live in the browser. */}
-        <Reveal className="max-w-6xl mx-auto mt-10 bg-surface-2 border border-white/8 rounded-2xl p-6 md:p-8">
-          <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-4 mb-6">
-            <div>
-              <h3 className="font-display text-2xl font-semibold text-foreground mb-2">
-                {t("marketing.calc.title")}
-              </h3>
-              <p className="text-muted-foreground text-sm max-w-2xl">{t("marketing.calc.desc")}</p>
-            </div>
-            <div className="flex flex-wrap gap-2" role="group" aria-label={t("marketing.calc.presetsLabel")}>
-              {(Object.keys(PRESETS) as PresetId[]).map((id) => (
-                <button
-                  key={id}
-                  type="button"
-                  onClick={() => choosePreset(id)}
-                  aria-pressed={preset === id}
-                  className={`text-xs px-3 py-1.5 rounded-full border transition-colors ${
-                    preset === id
-                      ? "border-brand text-brand bg-brand/10"
-                      : "border-border text-muted-foreground hover:text-foreground hover:border-brand/40"
-                  }`}
-                >
-                  {t(`marketing.calc.preset.${id}`)}
-                </button>
-              ))}
-            </div>
-          </div>
-
-          <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-7 gap-4">
-            {FIELDS.map((f) => (
-              <label key={f.key} className="flex flex-col gap-1.5 text-xs text-muted-foreground">
-                <span>
-                  {t(`marketing.calc.field.${f.key}`)}
-                  {f.money && <span dir="ltr" className="font-mono"> ({currency})</span>}
-                </span>
-                <input
-                  id={`mkt-${f.key}`}
-                  type="number"
-                  inputMode="decimal"
-                  min={0}
-                  step={f.step}
-                  value={inputs[f.key]}
-                  onChange={(e) => {
-                    const v = parseFloat(e.target.value);
-                    if (Number.isFinite(v) && v > 0) setInputs((p) => ({ ...p, [f.key]: v }));
-                  }}
-                  dir="ltr"
-                  className="h-9 w-full rounded-md border border-input bg-transparent px-3 font-mono text-sm text-foreground tabular-nums focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring"
-                />
-              </label>
-            ))}
-          </div>
-
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-px mt-6 rounded-xl overflow-hidden border border-border bg-border">
-            {outputs.map((o) => (
-              <div key={o.label} className="bg-surface-1 p-4">
-                <p className="text-xs text-muted-foreground mb-1">{o.label}</p>
-                <p dir="ltr" className="font-mono text-lg text-foreground tabular-nums text-start">
-                  {o.value}
-                </p>
-              </div>
-            ))}
-          </div>
-
-          <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-3 mt-5">
-            <span className={`inline-flex w-fit items-center gap-2 text-xs px-3 py-1 rounded-full border ${statusClass}`}>
-              <span className="w-1.5 h-1.5 rounded-full bg-current" aria-hidden="true" />
-              {t(`marketing.calc.status.${status}`)}
-              <span dir="ltr" className="font-mono">· {money(r.profit, currency)}</span>
-            </span>
-            <p className="text-xs text-muted-foreground">{t("marketing.calc.illustrative")}</p>
-          </div>
-        </Reveal>
-
         <Reveal className="max-w-6xl mx-auto mt-8 flex flex-col sm:flex-row gap-4 sm:items-center sm:justify-between">
           <p className="text-sm text-muted-foreground">{t("marketing.proofLead")}</p>
           <div className="flex flex-wrap gap-4">
-            <Link href="#testimonials" className="text-brand text-sm font-medium hover:underline">
-              {t("marketing.proofTestimonial")}
-            </Link>
             <Link href="#contact" className="text-brand text-sm font-medium hover:underline">
               {t("marketing.proofContact")}
             </Link>

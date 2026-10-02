@@ -23,7 +23,7 @@ export type PostSummary = Pick<
 >;
 
 /** Two clean rows of the md:grid-cols-3 layout. The rest live on /blog. */
-const HOMEPAGE_LIMIT = 6;
+const HOMEPAGE_LIMIT = 3;
 
 function PostCard({
   post,

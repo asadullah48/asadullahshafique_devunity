@@ -10,40 +10,24 @@ test.describe("Portfolio home page", () => {
     await expect(page.locator("h1, [id='home']").first()).toBeVisible();
   });
 
-  test("renders Skills section", async ({ page }) => {
-    await page.evaluate(() => document.querySelector("#skills")?.scrollIntoView());
-    await expect(page.locator("#skills")).toBeVisible();
+  test("hero primary CTA leads to the engagements", async ({ page }) => {
+    await page.locator("#home").getByRole("link", { name: /hire me or book an audit/i }).click();
+    const engagements = page.locator("#engagements");
+    await expect(engagements).toBeInViewport();
+    await expect(engagements.locator("ol > li")).toHaveCount(3);
   });
 
-  test("renders Roadmap section with 6 cards", async ({ page }) => {
-    await page.evaluate(() => document.querySelector("#roadmap")?.scrollIntoView());
-    const section = page.locator("#roadmap");
-    await expect(section).toBeVisible();
-    // 6 module cards (one per learning track)
-    await expect(section.locator(".rounded-2xl")).toHaveCount(6);
-  });
-
-  test("Roadmap section shows Python card", async ({ page }) => {
-    await page.evaluate(() => document.querySelector("#roadmap")?.scrollIntoView());
-    const roadmap = page.locator("#roadmap");
-    await expect(roadmap.getByRole("heading", { name: "Python", exact: true })).toBeVisible();
-    await expect(roadmap.getByText("Core Language", { exact: true })).toBeVisible();
-  });
-
-  test("Roadmap section shows all domain subtitle labels", async ({ page }) => {
-    await page.evaluate(() => document.querySelector("#roadmap")?.scrollIntoView());
-    const roadmap = page.locator("#roadmap");
-    for (const label of ["Containerization", "Caching & Queuing", "Distributed Systems", "DevOps & Cloud", "AI Engineering"]) {
-      await expect(roadmap.getByText(label, { exact: true })).toBeVisible();
+  test("sections removed in the 2026-10-02 restructure stay removed", async ({ page }) => {
+    // Seven sections restated the methodology or listed self-reported skills.
+    // If one is restored, restore its nav link and llms.txt entry too.
+    for (const id of ["skills", "roadmap", "expertise", "leverage", "industries", "forward-deployed"]) {
+      await expect(page.locator(`#${id}`)).toHaveCount(0);
+      await expect(page.locator(`a[href="#${id}"]`)).toHaveCount(0);
     }
   });
 
-  test("Navbar contains Roadmap link", async ({ page }) => {
-    // Roadmap is a secondary section, so it lives in the "More" dropdown,
-    // which renders its links only while open.
-    await page.getByRole("button", { name: /more/i }).first().click();
-    const link = page.locator('nav a[href="#roadmap"]').first();
-    await expect(link).toBeVisible();
+  test("no unverified client testimonial is published", async ({ page }) => {
+    await expect(page.getByText(/Al Rashidi/i)).toHaveCount(0);
   });
 
   test("Certifications section is reachable from the navbar", async ({ page }) => {

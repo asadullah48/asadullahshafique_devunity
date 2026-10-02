@@ -7,6 +7,7 @@ import { LocaleProvider } from "@/context/LocaleContext";
 import { KeyboardShortcutsProvider } from "@/components/KeyboardShortcutsProvider";
 import ShortcutsDialog from "@/components/ShortcutsDialog";
 import ScrollProgress from "@/components/ScrollProgress";
+import AnchorSettle from "@/components/AnchorSettle";
 import { BASE_URL, PERSON_ID } from "@/lib/seo";
 import { credentialJsonLd } from "@/lib/credentials";
 
@@ -224,6 +225,7 @@ export default function RootLayout({
                                           Skip to content
                                     </a>
                                     <ScrollProgress />
+                                    <AnchorSettle />
                                     <Navbar />
                                     <main id="main-content">{children}</main>
                                     <ShortcutsDialog />

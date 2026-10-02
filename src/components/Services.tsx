@@ -25,7 +25,7 @@ const Services = () => {
       // One outcome line per service, matching the proof density of the
       // project cards. Every figure is backed: s2 by the live /mcp/server tool
       // count and the constitution's verified offline block, s3 by the module
-      // list in s3Desc, s1 by the Al Rashidi testimonial. Do not add a metric
+      // list in s3Desc, s1 by the twelve disciplines in #marketing. Do not add a metric
       // here that nothing can demonstrate.
       metric: t("services.s2Metric"),
       cta: t("services.s2CTA"),

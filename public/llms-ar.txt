@@ -33,9 +33,9 @@
 ## الأقسام
 
 - [نبذة عني](https://asadullahshafique-devunity.vercel.app/ar#about): الخلفية والمشاريع التجارية والمنهجية
-- [المهارات](https://asadullahshafique-devunity.vercel.app/ar#skills): التقنيات وأدوار الوكلاء
+- [الخدمات والارتباطات](https://asadullahshafique-devunity.vercel.app/ar#engagements): ثلاثة ارتباطات لهندسة الوكلاء مع ما يتم تسليمه، إضافة إلى مساري برمجيات Texcot والتسويق للنمو
 - [هندسة الوكلاء](https://asadullahshafique-devunity.vercel.app/ar#agent-engineering): إطار التجهيز × الحلقة × الرسم البياني
-- [الخبرة وحالات الاستخدام](https://asadullahshafique-devunity.vercel.app/ar#expertise): القدرات مع مسارات الكود، والقطاعات التي بُنيت من أجلها
+- [الأدلة الهندسية](https://asadullahshafique-devunity.vercel.app/ar#evidence): الممارسات التي تجعل تشغيل الوكيل موثوقاً، كل منها مع مسار الشيفرة
 - [المشاريع](https://asadullahshafique-devunity.vercel.app/ar#projects): أعمال إنتاجية منها منصة Bazaar ومنصة ERP للمنسوجات
 - [الهاكاثون](https://asadullahshafique-devunity.vercel.app/ar#hackathons): برونزية ← فضية ← فضية ← ذهبية ← بلاتينية ← Agent Factory
 - [تواصل معي](https://asadullahshafique-devunity.vercel.app/ar#contact): نموذج تواصل مرتبط بـ Discord

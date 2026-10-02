@@ -11,7 +11,7 @@ const Footer = () => {
 
   const quickLinks = [
     { nameKey: "nav.about",      href: "#about"      },
-    { nameKey: "nav.skills",     href: "#skills"     },
+    { nameKey: "nav.services",   href: "#services"   },
     { nameKey: "nav.projects",   href: "#projects"   },
     { nameKey: "nav.hackathons", href: "#hackathons" },
     { nameKey: "nav.openSource", href: "#open-source" },

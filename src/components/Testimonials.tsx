@@ -22,15 +22,6 @@ type Testimonial = {
 
 const TESTIMONIALS_EN: Testimonial[] = [
   {
-    name: "Mohammed Al Rashidi",
-    role: "General Manager",
-    company: "Al Rashidi Real Estate, Dubai, UAE",
-    avatar: "MA",
-    avatarColor: "#84cc16",
-    text: "Asadullah transformed how we generate leads online. The digital marketing system he built (property portals, social campaigns, and the analytics dashboard) cut our cost-per-lead by over 40% in the first quarter.",
-    context: "Dubai Real Estate Digital Marketing",
-  },
-  {
     name: "Tariq Mahmood",
     role: "Owner",
     company: "Mahmood Garments, Faisalabad",
@@ -54,15 +45,6 @@ const TESTIMONIALS_EN: Testimonial[] = [
 ];
 
 const TESTIMONIALS_AR: Testimonial[] = [
-  {
-    name: "محمد الراشدي",
-    role: "المدير العام",
-    company: "Al Rashidi Real Estate، دبي، الإمارات",
-    avatar: "MA",
-    avatarColor: "#84cc16",
-    text: "أسد الله غيّر طريقة توليد العملاء المحتملين عبر الإنترنت. نظام التسويق الرقمي الذي بناه (بوابات العقارات والحملات الاجتماعية ولوحة التحليلات) خفّض تكلفة الحصول على العميل بأكثر من 40% في الربع الأول.",
-    context: "التسويق الرقمي للعقارات في دبي",
-  },
   {
     name: "طارق محمود",
     role: "المالك",

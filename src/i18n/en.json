@@ -259,7 +259,7 @@
     "subtitle": "Three separate tracks. Agent engineering is the main one; the other two are my own textile business's software and the growth work I run alongside it.",
     "s1Title": "Digital Marketing",
     "s1Desc": "Full-spectrum digital marketing for Dubai real estate, UAE construction, and Pakistani businesses. Strategy, social media, paid ads, property portals, and monthly reporting.",
-    "s1Metric": "40% lower cost-per-lead — Al Rashidi Real Estate, Dubai",
+    "s1Metric": "Twelve paid-acquisition disciplines, from hook rate to break-even ROAS",
     "s1CTA": "See Marketing Plan →",
     "s2Title": "Agentic AI Systems",
     "s2Desc": "Production-grade agentic systems, cloud-native deployment, MCP servers, and custom AI agents. Built and deployed, not just prototyped.",
@@ -313,35 +313,7 @@
     "title": "Paid Growth,",
     "titleHighlight": "Measured",
     "subtitle": "Full-funnel paid acquisition on Meta and Google for Dubai real estate, UAE construction and Pakistani SMEs. Twelve disciplines, from the first three seconds of an ad to break-even ROAS, run as one loop: test, measure, refine, scale.",
-    "calc": {
-      "title": "Funnel math, live",
-      "desc": "The arithmetic behind every campaign decision on this page. Change any input and CPC, CPL, CPA and ROAS respond, because a paid funnel is a chain of multiplied rates.",
-      "presetsLabel": "Example markets",
-      "preset": {
-        "realEstate": "Dubai off-plan",
-        "construction": "UAE contractor",
-        "ecommerce": "Pakistani e-commerce"
-      },
-      "field": {
-        "budget": "Monthly budget",
-        "cpm": "CPM",
-        "ctr": "CTR %",
-        "cvr": "Landing → lead %",
-        "close": "Lead → sale %",
-        "value": "Revenue per sale",
-        "margin": "Gross margin %"
-      },
-      "leads": "Leads",
-      "breakEven": "Break-even ROAS",
-      "status": {
-        "scale": "Profitable with room to scale",
-        "hold": "Near break-even",
-        "loss": "Losing money"
-      },
-      "illustrative": "Illustrative inputs for each market, not client data."
-    },
-    "proofLead": "One client outcome is on record, in the client's own words.",
-    "proofTestimonial": "Read the Al Rashidi testimonial",
+    "proofLead": "Method, not testimonials: client results are published here only once a client has approved them.",
     "proofContact": "Plan a campaign together"
   },
   "expertise": {
@@ -520,7 +492,7 @@
     "s5Ev": "Problem → Solution → Impact, on every project card",
     "s6Title": "Business Impact",
     "s6Desc": "Tie the delivery to time saved, errors removed or revenue moved — not to tokens served or agents spawned.",
-    "s6Ev": "40% lower cost-per-lead · Al Rashidi Real Estate, Dubai",
+    "s6Ev": "Paid Growth, Measured: report numbers are frozen, sourced snapshots",
     "s7Title": "Closing the Loop",
     "s7Desc": "Turn the one-off fix into a capability the next engagement inherits, so the second delivery is cheaper than the first."
   },

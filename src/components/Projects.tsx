@@ -689,20 +689,6 @@ const PROJECTS_EN: Project[] = [
     isNew: true,
   },
   {
-    id: "agent-factory",
-    title: "Agent Factory",
-    status: "Featured",
-    tagline: "Two-tier agent architecture at enterprise scale",
-    description: "General Agent (Claude Code) builds Custom Agent (OpenAI Agents SDK). SKILL.md files as portable, monetizable intelligence units. Digital FTE model deployed on Kubernetes + Dapr. Targets OpenAI Apps ecosystem (800M users).",
-    tech: ["Claude Code", "OpenAI Agents SDK", "SKILL.md", "MCP", "Kubernetes", "Dapr"],
-    github: "https://github.com/asadullah48",
-    metrics: [
-      { label: "Hackathon", value: "H5 Completed" },
-      { label: "Slides",    value: "117"          },
-      { label: "Market",    value: "800M users"   },
-    ],
-  },
-  {
     id: "rag-textbook",
     title: "RAG Textbook Platform",
     status: "Completed",
@@ -1297,20 +1283,6 @@ const PROJECTS_AR: Project[] = [
       { label: "المرحلة",    value: "إصدار محلي أول" },
     ],
     isNew: true,
-  },
-  {
-    id: "agent-factory",
-    title: "مصنع الوكلاء",
-    status: "Featured",
-    tagline: "هندسة وكلاء من طبقتين على نطاق المؤسسة",
-    description: "الوكيل العام (Claude Code) يبني الوكيل المخصص (OpenAI Agents SDK). ملفات SKILL.md كوحدات ذكاء قابلة للنقل والتسييل. نموذج الموظف الرقمي المنشور على Kubernetes + Dapr. يستهدف نظام OpenAI Apps البيئي (800 مليون مستخدم).",
-    tech: ["Claude Code", "OpenAI Agents SDK", "SKILL.md", "MCP", "Kubernetes", "Dapr"],
-    github: "https://github.com/asadullah48",
-    metrics: [
-      { label: "الهاكاثون", value: "H5 مكتمل"          },
-      { label: "الشرائح",   value: "117"               },
-      { label: "السوق",     value: "800 مليون مستخدم" },
-    ],
   },
   {
     id: "rag-textbook",

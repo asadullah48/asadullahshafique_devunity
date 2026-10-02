@@ -6,18 +6,12 @@ import AudiencePaths from "@/components/AudiencePaths";
 import FlagshipCaseStudies from "@/components/FlagshipCaseStudies";
 import About from "@/components/About";
 import Services from "@/components/Services";
-import Industries from "@/components/Industries";
-import Skills from "@/components/Skills";
 import AgentEngineering from "@/components/AgentEngineering";
 import AgentTrace from "@/components/AgentTrace";
 import EngineeringEvidence from "@/components/EngineeringEvidence";
 import AgentRuntime from "@/components/AgentRuntime";
 import ConnectMcp from "@/components/ConnectMcp";
-import ForwardDeployed from "@/components/ForwardDeployed";
-import ExpertiseGrid from "@/components/ExpertiseGrid";
-import GrowthSkills from "@/components/GrowthSkills";
 import PerformanceMarketing from "@/components/PerformanceMarketing";
-import Roadmap from "@/components/Roadmap";
 import Projects from "@/components/Projects";
 import Hackathons from "@/components/Hackathons";
 import Blog, { type PostSummary } from "@/components/Blog";
@@ -27,7 +21,6 @@ import Testimonials, { FeaturedTestimonial } from "@/components/Testimonials";
 import Discord from "@/components/Discord";
 import Contact from "@/components/Contact";
 import Footer from "@/components/Footer";
-import TechMarquee from "@/components/TechMarquee";
 import FloatingWidgets from "@/components/FloatingWidgets";
 
 // Page-scoped, NOT layout-scoped. In the root layout these inherit into every
@@ -74,78 +67,47 @@ export default function Home() {
                 aria-hidden="true"
             />
 
-            {/* AI-engineering proof first; business services follow it */}
+            {/* Restructured 2026-10-02 from external review feedback: one
+                argument, told once. Seven sections that restated the
+                methodology or listed self-reported skills left the homepage
+                (TechMarquee, Skills, ForwardDeployed, ExpertiseGrid, Roadmap,
+                Industries, GrowthSkills). Their components remain in
+                src/components; restoring one is a one-line change here. */}
             <Hero />
-            {/* The credibility layer, immediately after the hero and before
-                anything decorative. Every cell links to the artefact that
-                verifies it — a live endpoint, a repo path, or a directory in
-                this tree. It replaces the four count-up counters that used to
-                sit inside the hero, two of which a stranger could not check.
-                See src/lib/evidence.ts for the provenance of each. */}
+            {/* The credibility layer, immediately after the hero. Every cell
+                links to the artefact that verifies it — see src/lib/evidence.ts. */}
             <ProofStrip />
             <AudiencePaths />
-            {/* The three flagship architecture reviews come straight after the
-                audience router: they are the strongest agentic-AI evidence on
-                the page, and the hero's "Explore flagship systems" button and
-                the AI-developer path both land here. They used to sit below
-                Roadmap, roughly two thirds of the way down. */}
+            {/* Third-party validation beside the proof strip, not two thirds of
+                the way down. Same entry as the #testimonials grid, not a copy. */}
+            <FeaturedTestimonial />
+            {/* The strongest agentic-AI evidence; the hero's secondary button
+                and the AI-developer audience path both land here. */}
             <FlagshipCaseStudies />
+            {/* The offer: three labelled tracks and the three agent-engineering
+                engagements (#engagements), which the hero's primary button
+                targets. */}
             <Services />
-            <TechMarquee />
+            {/* Philosophy -> trace -> evidence -> live system, read as one
+                block. The order is the argument: HOW agents are built, what one
+                run does (AgentTrace, labelled illustrative), the disciplines
+                that make it trustworthy, then the real system running — the
+                contrast between illustrative and measured is deliberate. */}
+            <AgentEngineering />
+            <AgentTrace />
+            <EngineeringEvidence />
+            <AgentRuntime />
+            {/* Same endpoint and data file as the runtime panels above. */}
+            <ConnectMcp />
+            <Projects />
             <About />
             <section aria-label="Completed courses and certificates" className="container mx-auto px-6 py-10">
                 <ClaudeCredential />
             </section>
-            {/* One promoted quote, immediately after About. Third-party
-                validation was previously unreachable until position 13 of 17,
-                below every project card — read by almost nobody. The full
-                grid still renders at #testimonials further down; this is the
-                same entry, not a copy. */}
-            <FeaturedTestimonial />
-            <Skills />
-            <AgentEngineering />
-            {/* Philosophy -> trace -> evidence, read as one block. The order is
-                the argument: HOW I think about agents, then what one actual run
-                does stage by stage, then the disciplines that make the run
-                trustworthy. Splitting these across the page would leave the
-                methodology section asserting things the reader cannot yet
-                check. AgentTrace is labelled illustrative in two places; the
-                file paths in its source column are real. */}
-            <AgentTrace />
-            <EngineeringEvidence />
-            {/* The argument closes with the system actually running. AgentTrace
-                above is explicitly illustrative; this is not — both panels here
-                read live endpoints and print the outage when the free-tier
-                backend is asleep. Putting the labelled-illustrative section
-                immediately before the measured one is deliberate: the contrast
-                is the point, and a reader just told "representative values"
-                then meets real ones and can tell which is which. */}
-            <AgentRuntime />
-            {/* The runtime panels prove the system is up; this invites the
-                visitor to use it from their own AI client. Same endpoint, same
-                data file, so nothing here can drift from what the panels show. */}
-            <ConnectMcp />
-            {/* The FDE model sits directly after the harness/loop/graph
-                framework: that section argues HOW agents are built, this one
-                argues how they reach a customer and get paid for. Each of its
-                seven steps cites the directory that proves it. */}
-            <ForwardDeployed />
-            {/* Applied capability follows the methodology that produced it. */}
-            <ExpertiseGrid />
-            <Roadmap />
-            <Projects />
             <Hackathons />
-            <Industries />
-            {/* Paid-acquisition craft sits right after the verticals it serves
-                and before the softer GrowthSkills leverage. Its calculator is
-                the checkable part; its presets are labelled illustrative. */}
+            {/* Track 3. Self-reported craft, shown as method: no client
+                outcomes are published until one is on record. */}
             <PerformanceMarketing />
-            {/* Non-engineering leverage, deliberately AFTER the services and
-                verticals block and immediately BEFORE Blog: its "Read the
-                writing" proof link points at #blog, so the evidence sits one
-                scroll below the claim. It cites no file paths and carries no
-                gold — see the header of GrowthSkills.tsx for why that matters. */}
-            <GrowthSkills />
             <Blog posts={posts} />
             <OpenSourceSection />
             <Testimonials />

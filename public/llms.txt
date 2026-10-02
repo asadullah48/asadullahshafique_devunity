@@ -34,9 +34,9 @@ stated as sector focus and target markets, not as completed client engagements.
 ## Sections
 
 - [About](https://asadullahshafique-devunity.vercel.app/#about): background, ventures, methodology
-- [Skills](https://asadullahshafique-devunity.vercel.app/#skills): stack by technology and by agent role
+- [Services & engagements](https://asadullahshafique-devunity.vercel.app/#engagements): three agent-engineering engagements with deliverables, plus the Texcot software and growth-marketing tracks
 - [Agent Engineering](https://asadullahshafique-devunity.vercel.app/#agent-engineering): the harness × loop × graph framework
-- [Expertise & Use Cases](https://asadullahshafique-devunity.vercel.app/#expertise): capabilities with their source paths, and the sectors they are built for
+- [Engineering evidence](https://asadullahshafique-devunity.vercel.app/#evidence): the disciplines that make an agent run trustworthy, each with its source path
 - [Projects](https://asadullahshafique-devunity.vercel.app/#projects): production work including Bazaar and the Textile ERP Platform
 - [Hackathons](https://asadullahshafique-devunity.vercel.app/#hackathons): Bronze → Silver → Silver → Gold → Platinum → Agent Factory
 - [Contact](https://asadullahshafique-devunity.vercel.app/#contact): contact form (Discord-webhook backed)
