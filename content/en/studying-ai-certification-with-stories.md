@@ -2,9 +2,9 @@
 slug: studying-ai-certification-with-stories
 lang: en
 dir: ltr
-title: "I Kept Missing the Same Six Questions. So I Turned an AI Course Into a Story."
-excerpt: "Rereading ten AI-fluency courses did not fix my practice-exam mistakes, because the mistakes were never about missing facts. They were the same six reasoning traps, repeating. Here is how I rebuilt the material as one continuous story about a workshop owner named Sana, and the distractor table that came out of it."
-description: "A study method for scenario-based AI certification exams: find the recurring reasoning traps in your misses, then retell the course material as one story whose scenes each defeat a trap. Includes the six traps, a distractor table, and how to build your own story book with an AI tutor without letting it invent content."
+title: "Six Traps Hiding in AI Certification Questions. So I Turned the Course Into a Story."
+excerpt: "Scenario-based AI certification questions rarely test whether you know a fact. They test whether you can resist a tempting wrong answer, and those wrong answers follow six patterns. Here is how I rebuilt ten AI-fluency courses as one continuous story about a workshop owner named Sana, and the distractor table that came out of it."
+description: "A study method for scenario-based AI certification exams: name the recurring reasoning traps behind tempting wrong answers, then retell the course material as one story whose scenes each defeat a trap. Includes the six traps, a distractor table, and how to build your own story book with an AI tutor without letting it invent content."
 author: "Asadullah Shafique"
 date: 2026-10-04
 category: strategy
@@ -13,17 +13,17 @@ accentColor: "#f59e0b"
 related: ["claude-certification-by-job-function", "psychology-of-hooks-and-storytelling", "ksor-knowledge-system-of-record"]
 ---
 
-A practice exam does not tell you why you were wrong. It tells you which questions you missed.
+A practice exam does not tell you why an answer is wrong. It tells you which questions you missed.
 
-I sat a practice run for the Panaversity Certified Associate: Foundations exam and failed it. The score report listed my misses by domain, and my first instinct was the obvious one: reread every course. Ten crash courses, from *Just Delegate It* to *Governance, Risk & Responsible Use*.
+I am preparing for the Panaversity Certified Associate: Foundations exam. My first practice run was only a test drive: I wanted to see the format, so I clicked through quickly and the score meant nothing. The useful part came afterwards, when I went back through the questions properly.
 
-That was the wrong fix, and I could prove it. When I looked at the misses one by one, I was not missing facts. I could recite the six steps of the Delegation Loop. I was missing **the same kind of judgment, over and over**: reaching for a stronger model when the real problem was a missing source, or accepting "a human will review it" when nobody had been named.
+The obvious study plan was to reread every course. Ten crash courses, from *Just Delegate It* to *Governance, Risk & Responsible Use*. But going through the questions one by one, I noticed they were not testing facts. Anyone can recite the six steps of the Delegation Loop. They were testing **the same kind of judgment, over and over**: whether you reach for a stronger model when the real problem is a missing source, or accept "a human will review it" when nobody has been named.
 
 Rereading feeds facts. It does nothing for a reasoning habit. So I tried something else.
 
-## The six traps, from my own misses
+## The six traps behind the tempting answers
 
-Before changing how I studied, I sorted every miss by *why* I chose the wrong answer, not by topic. Six patterns covered almost all of them:
+Before deciding how to study, I sorted the questions by *why* the wrong options were tempting, not by topic. Six patterns covered almost all of them:
 
 | # | The trap | What it looks like in a question |
 |---|---|---|
@@ -38,7 +38,7 @@ The list mattered more than any summary of the courses, because it told me what 
 
 ## Why a story, and not flashcards
 
-Flashcards are good at definitions. My problem was not definitions. It was that, under exam pressure, the tempting option *looked* reasonable, and I had no picture of the situation where it fails.
+Flashcards are good at definitions. These questions are not about definitions. Under exam pressure the tempting option *looks* reasonable, and a flashcard gives you no picture of the situation where it fails.
 
 A story gives you that picture. When you have watched a character choose the stronger model, get a more fluent wrong answer, and then fix it by attaching the missing invoice, the stronger-model option in a real question stops looking safe. You remember the scene, not the rule.
 
@@ -74,7 +74,7 @@ The most useful thing the story produced was not a scene. It was a table I now r
 | Rewrite the prompt | When did the symptom begin, and which cause is confirmed? | 5 |
 | Redesign now | Is there an unchanged baseline? | 1 |
 
-These are flags, not automatic eliminations. Some of my worst misses were the *second-order* cases, where the usual instinct is wrong: escalating to a stronger model really is correct once the input, the criterion and the prompt have all been proven good. The table makes me check that, instead of pattern-matching "stronger model" to "wrong."
+These are flags, not automatic eliminations. The hardest questions are the *second-order* cases, where the usual instinct is wrong: escalating to a stronger model really is correct once the input, the criterion and the prompt have all been proven good. The table makes me check that, instead of pattern-matching "stronger model" to "wrong."
 
 ## How I built it without letting the AI make things up
 
@@ -94,7 +94,7 @@ The trap-to-topic mapping in my tables is my own reading, not official exam cont
 
 ## If you want to try this
 
-1. **Sort your misses by reason, not by topic.** Write one sentence per miss: *I chose this because…* Group the sentences. You will probably find four to six patterns.
+1. **Sort your misses by reason, not by topic.** Take a practice run seriously, then write one sentence per miss: *I chose this because…* Group the sentences. You will probably find four to six patterns.
 2. **Pick one character with one ordinary job.** A small business works well, because every course concept has a place to land.
 3. **Write each trap as a scene where the character nearly falls for it.** The tempting fix, why it fails, the rule that decides.
 4. **End every chapter with a recall table** mapping each scene to the trap it defeats.
