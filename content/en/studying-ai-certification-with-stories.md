@@ -103,6 +103,9 @@ The trap-to-topic mapping in my tables is my own reading, not official exam cont
 
 The courses already hold every rule you need. What they cannot do is put you in the room where the wrong answer looks right. A story can.
 
+> [!NOTE]
+> This article is also published on LinkedIn, where you can comment and share: [Six Traps Hiding in AI Certification Questions](https://www.linkedin.com/pulse/six-traps-hiding-ai-certification-questions-why-i-turned-shafique-frogf).
+
 ## Sources
 
 - Panaversity, *The AI Agent Factory*: [Just Delegate It](https://agentfactory.panaversity.org/docs/just-delegate-it-crash-course), [What AI Actually Is](https://agentfactory.panaversity.org/docs/what-ai-actually-is-crash-course), [AI Fluency](https://agentfactory.panaversity.org/docs/ai-fluency-crash-course), [AI Prompting in 2026](https://agentfactory.panaversity.org/docs/ai-prompting-2026), [ChatGPT & Claude Quick Reference](https://agentfactory.panaversity.org/docs/claude-chatgpt-101-crash-course), [Skills & Connectors](https://agentfactory.panaversity.org/docs/skills-connectors-crash-course), [General Agents on the Web](https://agentfactory.panaversity.org/docs/general-agents-web-crash-course), [Workflow Design & Diagnosis](https://agentfactory.panaversity.org/docs/workflow-design-diagnosis-crash-course), [Governance, Risk & Responsible Use](https://agentfactory.panaversity.org/docs/governance-risk-responsible-use-crash-course), and [Code You Never Write](https://agentfactory.panaversity.org/docs/code-you-never-write-crash-course).
