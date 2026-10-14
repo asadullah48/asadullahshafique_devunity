@@ -191,7 +191,7 @@
     {
       "name": "SynthData",
       "status": "reference architecture",
-      "summary": "Enterprise multi-agent framework generating realistic synthetic datasets with strict Differential Privacy and Zero-PII certification for GDPR/HIPAA safe testing.",
+      "summary": "Multi-agent framework generating synthetic datasets with Laplace differential-privacy noise and PII checks (regex scans for SSNs, card numbers and emails).",
       "metrics": [],
       "tech": ["FastAPI", "Python 3.12", "Differential Privacy", "Laplace Noise", "PII Scrubber", "Helm", "Docker", "Pytest"],
       "github": "https://github.com/asadullah48/synthdata"
@@ -311,7 +311,7 @@
     {
       "name": "DomainX",
       "status": "reference architecture",
-      "summary": "High-precision vertical multi-agent framework outperforming generalist models across Legal, Medical, and Supply Chain domains.",
+      "summary": "Vertical multi-agent framework for Legal, Medical and Supply Chain: a router sends each request to a specialist agent backed by deterministic rule engines (contract rules, ICD-10/CPT coding, EOQ inventory optimisation).",
       "metrics": [],
       "tech": ["FastAPI", "Python 3.12", "HIPAA Safe Harbor", "ICD-10 / CPT", "EOQ Optimization", "Helm", "Docker", "Pytest"],
       "github": "https://github.com/asadullah48/domainx"
@@ -319,7 +319,7 @@
     {
       "name": "MarketAgentHub",
       "status": "reference architecture",
-      "summary": "Production-ready autonomous agent suite designed for deployment in AWS, Microsoft Azure, Google Cloud, and Salesforce marketplaces.",
+      "summary": "Autonomous agent suite built for marketplace packaging: OpenAPI action-schema adapters and a usage-metering engine. No live marketplace listing.",
       "metrics": [],
       "tech": ["FastAPI", "Python 3.12", "A2A Protocol", "Marketplace Adapters", "Docker"],
       "github": "https://github.com/asadullah48/marketagenthub"

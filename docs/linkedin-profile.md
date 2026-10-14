@@ -129,11 +129,11 @@ consider the practice's real start (the agentic work dates from Jan 2025).
 > put me inside the problems I now build software for: production status living in someone's phone,
 > orders tracked across Excel sheets and WhatsApp groups.
 >
-> • Designing a Textile ERP Platform for Pakistan's textile value chain — Module 1 (Fabric Mill:
->   roll/lot management, weaving/knitting stage tracking, yarn inventory). In development, running
->   locally; not yet deployed.
-> • Building a CMT Stitching & Packing Management System (FastAPI · Next.js · PostgreSQL) — order
->   tracking, production sessions, auto-billing. In development, running locally.
+> • Built a Textile ERP Platform for Pakistan's textile value chain — Module 1 of 7 (Fabric Mill:
+>   roll/lot management, weaving/knitting stage tracking, yarn inventory) is live as a no-sign-up
+>   demo; modules 2–7 are specified.
+> • Built a CMT Stitching & Packing Management System (FastAPI · Next.js · PostgreSQL) — order
+>   tracking, production sessions, auto-billing. Live, and in daily use at my own unit.
 > • Requirements come from my own CMT unit in Karachi; the modules are shaped by a real
 >   production floor, not by guesswork.
 > • Digital marketing strategy and paid campaigns; open to real estate and construction teams in the UAE.

@@ -224,12 +224,12 @@ const PROJECTS_EN: Project[] = [
     title: "SynthData: Privacy-First Synthetic Data Generator",
     status: "Reference",
     dataMode: "reference",
-    tagline: "Laplace Differential Privacy Noise, Zero-PII Eradication & GDPR/HIPAA Compliant Test Data Harness",
+    tagline: "Laplace differential-privacy noise, regex PII checks and a synthetic test-data harness",
     problem: "Using production customer data for testing and machine learning exposes enterprises to severe GDPR/HIPAA regulatory fines and catastrophic privacy breach liabilities.",
-    solution: "A privacy-first synthetic data generation multi-agent framework featuring GeneratorAgent (producing domain-tailored records with Laplace differential privacy noise), ValidatorAgent (verifying correlation preservation r >= 0.90), and ComplianceAgent (executing deep zero-PII leak scans and certifying GDPR Article 25 & HIPAA Safe Harbor compliance).",
+    solution: "A privacy-first synthetic data generation multi-agent framework featuring GeneratorAgent (producing domain-tailored records with Laplace differential privacy noise), ValidatorAgent (verifying correlation preservation r >= 0.90), and ComplianceAgent (scanning generated records for PII leaks: SSNs, card numbers and emails).",
     impact:
       "10 test functions defined in the suite, counted from source. This is a reference implementation: the agents, the state machine and the test suite are real, and the domain data is synthetic - so the architecture is the claim here, not a production track record.",
-    description: "Enterprise multi-agent framework generating realistic synthetic datasets with strict Differential Privacy and Zero-PII certification for GDPR/HIPAA safe testing.",
+    description: "Multi-agent framework generating synthetic datasets with Laplace differential-privacy noise and PII checks (regex scans for SSNs, card numbers and emails).",
     tech: ["FastAPI", "Python 3.12", "Differential Privacy", "Laplace Noise", "PII Scrubber", "Helm", "Docker", "Pytest"],
     github: "https://github.com/asadullah48/synthdata",
     metrics: [
@@ -504,12 +504,12 @@ const PROJECTS_EN: Project[] = [
     title: "DomainX: Specialized Multi-Agent Framework",
     status: "Reference",
     dataMode: "reference",
-    tagline: "Specialized Vertical Intelligence (Legal • Medical • Supply Chain) Outperforming Generalist LLMs",
-    problem: "Generalist foundation models suffer from 14%+ hallucination rates and regulatory non-compliance in high-stakes legal, healthcare, and supply chain applications.",
+    tagline: "Vertical agents for Legal, Medical and Supply Chain, built on deterministic rule engines",
+    problem: "High-stakes legal, healthcare and supply chain work needs answers that follow explicit rules and can be checked, which a general-purpose model alone does not guarantee.",
     solution: "Specialized multi-agent architecture fusing deterministic rule engines, clinical ontologies (ICD-10-CM / CPT), HIPAA Safe Harbor 18 PHI scrubber, and mathematical Economic Order Quantity (EOQ) inventory optimization.",
     impact:
       "24 test functions defined in the suite, counted from source. This is a reference implementation: the agents, the state machine and the test suite are real, and the domain data is synthetic - so the architecture is the claim here, not a production track record.",
-    description: "High-precision vertical multi-agent framework outperforming generalist models across Legal, Medical, and Supply Chain domains.",
+    description: "Vertical multi-agent framework for Legal, Medical and Supply Chain: a router sends each request to a specialist agent backed by deterministic rule engines (contract rules, ICD-10/CPT coding, EOQ inventory optimisation).",
     tech: ["FastAPI", "Python 3.12", "HIPAA Safe Harbor", "ICD-10 / CPT", "EOQ Optimization", "Helm", "Docker", "Pytest"],
     github: "https://github.com/asadullah48/domainx",
     metrics: [
@@ -520,15 +520,15 @@ const PROJECTS_EN: Project[] = [
   },
   {
     id: "marketagenthub",
-    title: "MarketAgentHub: Marketplace-Ready Multi-Agent Suite",
+    title: "MarketAgentHub: Multi-Agent Suite Built for Marketplace Packaging",
     status: "Reference",
     dataMode: "reference",
-    tagline: "Multi-Cloud A2A & MCP Autonomous Agents for AWS, Azure, GCP & Salesforce",
-    problem: "Deploying autonomous agentic AI across major cloud marketplaces (AWS Bedrock, Azure AI, GCP Vertex, Salesforce Agentforce) requires fragmented action schemas, custom metering, and unstandardized inter-agent protocols.",
-    solution: "Marketplace-ready multi-agent framework featuring PortfolioAgent, ComplianceAgent, and ClientEngagementAgent with native OpenAPI action group adapters, SaaS token metering engine, and A2A inter-agent protocol.",
+    tagline: "A2A multi-agent suite with OpenAPI action-schema adapters and usage metering, built for marketplace packaging",
+    problem: "Packaging an agent product for cloud marketplaces means producing per-platform action schemas, usage metering and a standard inter-agent protocol.",
+    solution: "Multi-agent framework featuring PortfolioAgent, ComplianceAgent and ClientEngagementAgent, with OpenAPI action-schema adapters, a SaaS usage-metering engine and an A2A inter-agent protocol, built for marketplace packaging.",
     impact:
       "19 test functions defined in the suite, counted from source. This is a reference implementation: the agents, the state machine and the test suite are real, and the domain data is synthetic - so the architecture is the claim here, not a production track record.",
-    description: "Production-ready autonomous agent suite designed for deployment in AWS, Microsoft Azure, Google Cloud, and Salesforce marketplaces.",
+    description: "Autonomous agent suite built for marketplace packaging: OpenAPI action-schema adapters and a usage-metering engine. No live marketplace listing.",
     tech: ["FastAPI", "Python 3.12", "A2A Protocol", "Marketplace Adapters", "Docker"],
     github: "https://github.com/asadullah48/marketagenthub",
     metrics: [
@@ -844,12 +844,12 @@ const PROJECTS_AR: Project[] = [
     title: "منصة SynthData: مولد البيانات الاصطناعية الموجه لحماية الخصوصية",
     status: "Reference",
     dataMode: "reference",
-    tagline: "ضوضاء الخصوصية التفاضلية (Laplace)، واستبعاد كامل للهويات (Zero-PII)، وبيئة اختبار معتمدة لـ GDPR و HIPAA",
+    tagline: "ضوضاء الخصوصية التفاضلية (Laplace)، وفحوص للبيانات الشخصية، وبيئة لبيانات الاختبار الاصطناعية",
     problem: "استخدام بيانات العملاء الحقيقية في بيئات الاختبار وتدريب الذكاء الاصطناعي يعرض الشركات لغرامات تنظيمية باهظة ومخاطر تسريب البيانات الحساسة.",
-    solution: "إطار عمل ذكي متعدد الوكلاء لإنتاج البيانات الاصطناعية يضم GeneratorAgent (توليد سجلات واقعية بضوضاء لابلاس التفاضلية)، و ValidatorAgent (التحقق من دقة الترابط الإحصائي r >= 0.90)، و ComplianceAgent (الفحص العميق لمنع تسريب الهويات واعتماد معايير GDPR و HIPAA).",
+    solution: "إطار عمل ذكي متعدد الوكلاء لإنتاج البيانات الاصطناعية يضم GeneratorAgent (توليد سجلات واقعية بضوضاء لابلاس التفاضلية)، و ValidatorAgent (التحقق من دقة الترابط الإحصائي r >= 0.90)، و ComplianceAgent (فحص السجلات المولَّدة بحثاً عن تسريب بيانات شخصية: أرقام الضمان الاجتماعي وأرقام البطاقات والبريد الإلكتروني).",
     impact:
       "تُعرّف 10 دالة اختبار في المجموعة، محسوبة من الشيفرة المصدرية. هذا تنفيذ مرجعي: الوكلاء وآلة الحالة ومجموعة الاختبارات حقيقية، والبيانات تمثيلية، فالبنية هي الادعاء هنا لا سجل تشغيل إنتاجي.",
-    description: "إطار عمل رائد متعدد الوكلاء لتوليد مجموعات بيانات اصطناعية عالية الدقة الإحصائية مع ضمانات الخصوصية التفاضلية الرياضية وخلوها التام من البيانات الشخصية.",
+    description: "إطار عمل متعدد الوكلاء لتوليد مجموعات بيانات اصطناعية بضوضاء لابلاس للخصوصية التفاضلية، مع فحوص للبيانات الشخصية (مسح بالتعابير النمطية لأرقام الضمان الاجتماعي وأرقام البطاقات والبريد الإلكتروني).",
     tech: ["FastAPI", "Python 3.12", "Differential Privacy", "Laplace Noise", "PII Scrubber", "Helm", "Docker", "Pytest"],
     github: "https://github.com/asadullah48/synthdata",
     metrics: [
@@ -1125,11 +1125,11 @@ const PROJECTS_AR: Project[] = [
     status: "Reference",
     dataMode: "reference",
     tagline: "ذكاء اصطناعي متخصص في القطاعات الحساسة (القانوني • الطبي • سلاسل الإمداد)",
-    problem: "تعاني نماذج الذكاء الاصطناعي العامة من معدلات هلوسة تتجاوز 14% وعدم مطابقة للوائح في التطبيقات القانونية والطبية واللوجستية.",
+    problem: "تحتاج الأعمال القانونية والطبية وسلاسل الإمداد عالية الحساسية إلى إجابات تتبع قواعد صريحة ويمكن التحقق منها، وهو ما لا يضمنه نموذج عام بمفرده.",
     solution: "إطار عمل متعدد الوكلاء يدمج محركات القواعد القطعية، وقواعد المعرفة السريرية (ICD-10-CM / CPT)، وتطهير البيانات الصحية وفق معايير HIPAA Safe Harbor، والمعادلات الرياضية لكمية الطلب الاقتصادية (EOQ).",
     impact:
       "تُعرّف 24 دالة اختبار في المجموعة، محسوبة من الشيفرة المصدرية. هذا تنفيذ مرجعي: الوكلاء وآلة الحالة ومجموعة الاختبارات حقيقية، والبيانات تمثيلية، فالبنية هي الادعاء هنا لا سجل تشغيل إنتاجي.",
-    description: "إطار عمل فائق الدقة للوكلاء الأذكياء المتخصصين يتفوق على النماذج العامة في المجالات القانونية والطبية وسلاسل الإمداد.",
+    description: "إطار عمل متعدد الوكلاء للمجالات القانونية والطبية وسلاسل الإمداد: يوجّه الموجّه كل طلب إلى وكيل متخصص تدعمه محركات قواعد حتمية (قواعد العقود، وترميز ICD-10/CPT، وتحسين المخزون بنموذج EOQ).",
     tech: ["FastAPI", "Python 3.12", "HIPAA Safe Harbor", "ICD-10 / CPT", "EOQ Optimization", "Helm", "Docker", "Pytest"],
     github: "https://github.com/asadullah48/domainx",
     metrics: [
@@ -1140,15 +1140,15 @@ const PROJECTS_AR: Project[] = [
   },
   {
     id: "marketagenthub",
-    title: "MarketAgentHub: منظومة الوكلاء الجاهزة للمتاجر السحابية",
+    title: "MarketAgentHub: منظومة وكلاء مبنية للتغليف في المتاجر السحابية",
     status: "Reference",
     dataMode: "reference",
-    tagline: "وكلاء مستقلون متوافقون مع A2A و MCP لمتاجر AWS و Azure و GCP و Salesforce",
+    tagline: "منظومة وكلاء متوافقة مع A2A مع محولات لمخططات الإجراءات (OpenAPI) وعدّاد للاستخدام، مبنية للتغليف في المتاجر السحابية",
     problem: "يتطلب نشر الوكلاء الأذكياء عبر المتاجر السحابية الكبرى مواءمة معقدة لمخططات الإجراءات وأنظمة الفوترة وبروتوكولات التواصل بين الوكلاء.",
-    solution: "منظومة وكلاء جاهزة للمتاجر السحابية تضم PortfolioAgent و ComplianceAgent و ClientEngagementAgent مع محولات مدمجة ومحرك فوترة SaaS وبروتوكول A2A.",
+    solution: "منظومة وكلاء تضم PortfolioAgent و ComplianceAgent و ClientEngagementAgent مع محولات لمخططات الإجراءات (OpenAPI) ومحرك لقياس الاستخدام وبروتوكول A2A، مبنية للتغليف في المتاجر السحابية.",
     impact:
       "تُعرّف 19 دالة اختبار في المجموعة، محسوبة من الشيفرة المصدرية. هذا تنفيذ مرجعي: الوكلاء وآلة الحالة ومجموعة الاختبارات حقيقية، والبيانات تمثيلية، فالبنية هي الادعاء هنا لا سجل تشغيل إنتاجي.",
-    description: "منظومة وكلاء ذكاء اصطناعي مستقلة جاهزة لإعادة الاستخدام والبيع في المتاجر السحابية العالمية.",
+    description: "منظومة وكلاء مستقلة مبنية للتغليف في المتاجر السحابية: محولات لمخططات الإجراءات ومحرك لقياس الاستخدام. لا توجد قائمة منشورة في أي متجر.",
     tech: ["FastAPI", "Python 3.12", "A2A Protocol", "Marketplace Adapters", "Docker"],
     github: "https://github.com/asadullah48/marketagenthub",
     metrics: [
