@@ -123,6 +123,13 @@
       "demo": "https://paid-growth-measured.vercel.app"
     },
     {
+      "name": "Factory Line",
+      "status": "in development; private repository, source available on request",
+      "summary": "An agentic software factory for Claude Code. Agents do the work (spec-writer, builder, 4 parallel reviewers, approver); a deterministic router, board.py, applies the merge or rework rule from a typed verdict, not a model: its POLICY SEAM merges only when decision is merge, risk is low and tests_passed is literally true. First app: neon-agent, a document-assistant backend on Neon (Postgres, Auth, Functions, Storage). Its security design was chosen by tests on a real database branch: Option A failed for a recorded reason (Neon refuses a non-owner role access to its auth schema, and the signing key cannot pass the connection pooler), so Option B shipped. Per-user isolation is enforced by Postgres itself through forced row-level security; every job branch gets its own credentials and the old ones were proven rejected. As of 14 October 2026 a health API and a documents API are deployed to a development branch, checked with real sign-in tokens. The agent line itself is written but not yet run end-to-end. Next, planned and nothing built yet: AI chat and document ingestion.",
+      "metrics": ["117 of 117 tests pass (14 October 2026)", "Router: 14 of 14 tests pass", "Health and documents APIs deployed to a development branch, 14 October 2026"],
+      "tech": ["Claude Code", "Python", "TypeScript", "Neon Postgres", "Row-Level Security", "Neon Auth", "Neon Functions"]
+    },
+    {
       "name": "Agent Factory",
       "status": "completed",
       "hackathon": "H5",
