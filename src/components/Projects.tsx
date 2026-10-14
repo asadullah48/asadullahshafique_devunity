@@ -1261,14 +1261,14 @@ const PROJECTS_AR: Project[] = [
     tagline: "حلقة وكلاء بميزانية محددة تجد شهادات الذكاء الاصطناعي المجانية وتتحقق منها وتنشرها كل أسبوع",
     problem: "تظهر برامج التعلّم المجانية في الذكاء الاصطناعي والحوسبة السحابية وتنتهي بهدوء عبر مواقع مزوّدين كثيرين. والمراجعة اليدوية الأسبوعية سهلة الإهمال وصعبة الانتظام.",
     solution: "يطلق برنامج جدولة المهام في Windows نبضة كل 7 أيام. يبحث وكيل Claude Code يعمل دون واجهة في المزوّدين العشرة المتتبَّعين ضمن ميزانية صارمة: 10 عمليات بحث و12 عملية جلب و2.50 دولار كحد أقصى لكل تشغيل. ثم يتحقق certloop.py من النتائج بشكل حتمي (البحث في كل مزوّد، و5 فرص على الأقل، وكل الحقول المطلوبة، وروابط https رسمية، وعدم التكرار) ويرفض التشغيل إن لم تتحقق. وتصوغ مرحلة الصانع والمدقق ملف README للأسبوع وتفرض بنيته ونبرة مهنية بسيطة وحدّاً أقصى للجملة 40 كلمة، لمدة تصل إلى 6 جولات. ويُضاف كل أسبوع إلى progress.md مع وسم كل فرصة بأنها جديدة أو متكررة، ثم يُحفظ ويُدفع إلى GitHub.",
-    impact: "حتى 14 أكتوبر 2026 نشرت الحلقة تشغيلين أسبوعيين (1 و8 أكتوبر 2026): 13 إدراجاً منها 8 فريدة، وكلاهما ضمن الميزانية (7 و5 من 10 عمليات بحث) واجتاز المدقق من الجولة الأولى. والمزوّدون الذين لا يملكون برنامجاً رسمياً (xAI Grok وDeepSeek وOllama) يُسجَّلون كذلك بدلاً من حشو القائمة بدورات من جهات خارجية.",
+    impact: "حتى 14 أكتوبر 2026 نشرت الحلقة تشغيلين أسبوعيين (1 و8 أكتوبر 2026): 13 إدراجاً منها 8 فريدة، وكلاهما ضمن الميزانية (7 و5 من 10 عمليات بحث) واجتاز المدقق من الجولة الأولى. والمزوّدون الذين لا يملكون برنامجاً رسمياً (xAI Grok، DeepSeek، Ollama) يُسجَّلون كذلك بدلاً من حشو القائمة بدورات من جهات خارجية.",
     description: "حلقة وكلاء أسبوعية: بحث Claude Code بميزانية محددة في 10 مزوّدين، وتحقق حتمي في certloop.py، ومرحلة صانع ومدقق لملف README، وسجل progress.md، تُحفظ في GitHub كل أسبوع.",
     tech: ["Claude Code (headless)", "Python", "PowerShell", "Windows Task Scheduler", "GitHub"],
     github: "https://github.com/asadullah48/weekly-certification-loop",
     metrics: [
       { label: "تشغيلات أسبوعية",     value: "2"           },
       { label: "مزوّدون متتبَّعون",    value: "10"          },
-      { label: "ميزانية البحث",        value: "≤10 / تشغيل" },
+      { label: "ميزانية البحث",        value: "حتى 10 لكل تشغيل" },
     ],
     isNew: true,
   },
@@ -1560,7 +1560,7 @@ function ProjectCard({
       )}
 
       {project.isNew && (
-        <div className="absolute top-4 right-4 z-10">
+        <div className="absolute top-4 end-4 z-10">
           {/* `animate-think-pulse` rather than Tailwind's `animate-pulse`:
               the site's own heartbeat easing, and it stops under
               prefers-reduced-motion via the one block in globals.css. */}
@@ -1590,7 +1590,7 @@ function ProjectCard({
             </span>
           )}
         </div>
-        <h3 className="font-display text-xl font-bold text-foreground mt-3 mb-1.5 group-hover:text-brand transition-colors duration-200 pr-12">
+        <h3 className="font-display text-xl font-bold text-foreground mt-3 mb-1.5 group-hover:text-brand transition-colors duration-200 pe-12">
           {project.title}
         </h3>
         <p className={`text-sm font-medium mb-4 ${tone.accent}`}>
