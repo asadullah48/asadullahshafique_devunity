@@ -49,9 +49,21 @@ type Project = {
   problem?: string;
   solution?: string;
   impact?: string;
+  /**
+   * Work that is PROPOSED in the project's own handoff, nothing built. Rendered
+   * under its own "Next (planned)" label so a roadmap line can never be read
+   * as part of the Impact row above it.
+   */
+  next?: string;
   description: string;
   tech: string[];
   github?: string;
+  /**
+   * The repository is private. Without this, a card with no `github` simply
+   * loses its Code button, which reads as "no source exists". This states the
+   * real position instead, as plain text with no link.
+   */
+  sourceOnRequest?: boolean;
   demo?: string;
   image?: string;
   metrics?: { label: string; value: string }[];
@@ -578,6 +590,29 @@ const PROJECTS_EN: Project[] = [
       { label: "Model Calls",       value: "0"    },
       { label: "Tests",             value: "94"   },
     ],
+  },
+  {
+    // Every figure below is copied from the VERIFIED sections of the private
+    // factory-line repo (HANDOFF.md, apps/neon-agent/SPEC.md) as of 2026-10-14.
+    // Its README marks the agent line itself NOT VERIFIED (written, not yet run
+    // end-to-end), so the card claims the router and neon-agent, not the line.
+    id: "factory-line",
+    title: "Factory Line: Agentic Software Factory for Claude Code",
+    status: "In Development",
+    tagline: "Agents do the work; a deterministic router decides what ships",
+    problem: "Agent teams usually let a model decide whether its own work is good enough to merge. A control a model can argue its way past is not a control.",
+    solution: "Harness × Loop × Graph. Agents do the work: a spec-writer, a builder, four parallel reviewers (security, UX, UI, code) and an approver that writes a typed verdict.json. A deterministic router, board.py, applies the merge or rework rule from that verdict, not a model: its POLICY SEAM merges only when decision is merge, risk is low and tests_passed is literally true; anything missing, malformed or high-risk goes to rework or to a human. First app: neon-agent, a document-assistant backend on Neon (Postgres, Auth, Functions, Storage).",
+    impact: "The security design was chosen by tests on a real database branch. Option A failed for a recorded reason: Neon refuses a non-owner role access to its auth schema, and the signing key cannot pass the connection pooler, so Option B shipped. Per-user isolation is enforced by Postgres itself through forced row-level security, every job branch gets its own credentials, and the old ones were proven rejected. As of 14 October 2026: 117 of 117 tests pass, the router's 14 of 14 pass, and a health API and a documents API are deployed to a development branch, checked with real sign-in tokens: a second user sees none of the first user's documents. The agent line itself is written but not yet run end-to-end.",
+    next: "AI chat and document ingestion on the documents API (embeddings, retrieval and cited answers). Nothing built yet.",
+    description: "An agentic software factory for Claude Code. Agents do the work (spec-writer, builder, 4 reviewers, approver); a deterministic router, board.py, applies the merge or rework rule from a typed verdict, not a model. First app: neon-agent, a document-assistant backend on Neon.",
+    tech: ["Claude Code", "Python", "TypeScript", "Neon Postgres", "Row-Level Security", "Neon Auth", "Neon Functions"],
+    sourceOnRequest: true,
+    metrics: [
+      { label: "Tests",        value: "117/117"     },
+      { label: "Router Tests", value: "14/14"       },
+      { label: "Dev Deploy",   value: "14 Oct 2026" },
+    ],
+    isNew: true,
   },
   {
     id: "bazaar",
@@ -1177,6 +1212,26 @@ const PROJECTS_AR: Project[] = [
     ],
   },
   {
+    // Mirrors the EN entry; same VERIFIED sources, same 2026-10-14 cut-off.
+    id: "factory-line",
+    title: "Factory Line: مصنع برمجيات وكيلي لـ Claude Code",
+    status: "In Development",
+    tagline: "الوكلاء يُنجزون العمل، وموجّه حتمي يقرّر ما يُدمَج",
+    problem: "تترك فرق الوكلاء عادةً للنموذج أن يقرّر إن كان عمله جيدًا بما يكفي للدمج. والضابط الذي يستطيع النموذج أن يجادل حتى يتجاوزه ليس ضابطًا.",
+    solution: "Harness × Loop × Graph. الوكلاء يُنجزون العمل: كاتب المواصفات، والباني، وأربعة مراجعين متوازين (الأمان، وتجربة المستخدم، والواجهة، والكود)، ومُعتمِد يكتب حكمًا مُنمَّطًا في verdict.json. ثم يطبّق موجّه حتمي، board.py، قاعدة الدمج أو إعادة العمل انطلاقًا من ذلك الحكم لا من نموذج: فلا تدمج POLICY SEAM إلّا حين يكون القرار دمجًا والمخاطرة منخفضة وقيمة tests_passed هي true حرفيًا، وكل حكم ناقص أو مشوّه أو عالي المخاطرة يذهب إلى إعادة العمل أو إلى إنسان. التطبيق الأول: neon-agent، خلفية لمساعد مستندات على Neon (Postgres، والمصادقة، والدوال، والتخزين).",
+    impact: "اختيرَ تصميم الأمان بالاختبارات على فرع قاعدة بيانات حقيقي. فشل الخيار A لسبب مسجَّل: يمنع Neon أيّ دور غير مالك من الوصول إلى مخطط المصادقة، ولا يعبر مفتاح التوقيع مُجمِّع الاتصالات، فاعتُمد الخيار B. وعزل كل مستخدم تفرضه Postgres نفسها عبر أمان مستوى الصفوف المفروض، ولكل فرع مهمة بيانات اعتماد خاصة به، وقد ثبت رفض بيانات الاعتماد القديمة. وحتى 14 أكتوبر 2026: تنجح 117 من 117 اختبارًا، وتنجح اختبارات الموجّه الـ 14 كلها، وواجهتا health و documents منشورتان على فرع تطوير، وقد فُحصتا برموز دخول حقيقية: لا يرى مستخدم ثانٍ أيًّا من مستندات المستخدم الأول. أمّا خط الوكلاء نفسه فمكتوب لكنه لم يُشغَّل بعد من البداية إلى النهاية.",
+    next: "المحادثة الذكية واستيعاب المستندات على واجهة documents (التضمينات والاسترجاع والإجابات المستشهِدة بالمصادر). لم يُبنَ شيء منها بعد.",
+    description: "مصنع برمجيات وكيلي لـ Claude Code. الوكلاء يُنجزون العمل (كاتب المواصفات، والباني، وأربعة مراجعين، والمُعتمِد)، وموجّه حتمي، board.py، يطبّق قاعدة الدمج أو إعادة العمل من حكم مُنمَّط لا من نموذج. التطبيق الأول: neon-agent، خلفية لمساعد مستندات على Neon.",
+    tech: ["Claude Code", "Python", "TypeScript", "Neon Postgres", "Row-Level Security", "Neon Auth", "Neon Functions"],
+    sourceOnRequest: true,
+    metrics: [
+      { label: "الاختبارات",          value: "117/117"       },
+      { label: "اختبارات الموجّه",    value: "14/14"         },
+      { label: "نشر التطوير",         value: "14 أكتوبر 2026" },
+    ],
+    isNew: true,
+  },
+  {
     id: "bazaar",
     title: "بازار: سوق B2B + B2C الموحد",
     status: "Featured",
@@ -1640,6 +1695,11 @@ function ProjectCard({
                   { label: labels.problem,  dot: "bg-muted-foreground/50", text: "text-muted-foreground", body: project.problem  },
                   { label: labels.solution, dot: "bg-brand/50",            text: "text-brand-soft",       body: project.solution },
                   { label: labels.impact,   dot: "bg-brand",               text: "text-brand",            body: project.impact   },
+                  // Planned work drops back to the muted tone: it is not
+                  // evidence, so it must not inherit Impact's full-cyan weight.
+                  ...(project.next
+                    ? [{ label: labels.next, dot: "bg-muted-foreground/50", text: "text-muted-foreground", body: project.next }]
+                    : []),
                 ].map((row) => (
                   <div key={row.label}>
                     <div className={`text-eyebrow font-semibold uppercase mb-2 flex items-center gap-2 ${row.text}`}>
@@ -1659,6 +1719,11 @@ function ProjectCard({
             <a href={project.github} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 text-muted-foreground hover:text-foreground text-sm border border-border hover:border-brand/30 px-4 py-2 rounded-md transition-all duration-200 ease-spring active:scale-[0.97]">
               <Github className="w-4 h-4" /> {labels.viewCode}
             </a>
+          )}
+          {!project.github && project.sourceOnRequest && (
+            <span className="flex items-center gap-2 text-muted-foreground text-sm border border-dashed border-border px-4 py-2 rounded-md">
+              <Github className="w-4 h-4" aria-hidden="true" /> {labels.sourceOnRequest}
+            </span>
           )}
           {project.demo && (
             <a href={project.demo} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 text-muted-foreground hover:text-brand text-sm border border-border hover:border-brand/40 px-4 py-2 rounded-md transition-all duration-200 ease-spring active:scale-[0.97]">
@@ -1705,6 +1770,8 @@ export function ProjectsSection() {
     problem: t("projects.problem"),
     solution: t("projects.solution"),
     impact: t("projects.impact"),
+    next: t("projects.next"),
+    sourceOnRequest: t("projects.sourceOnRequest"),
     Flagship: t("projects.flagship"),
     "Enterprise Grade": t("projects.enterpriseGrade"),
     // Hardcoded English, matching the status labels below rather than

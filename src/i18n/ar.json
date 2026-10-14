@@ -355,6 +355,8 @@
     "problem": "المشكلة",
     "solution": "الحل",
     "impact": "التأثير",
+    "next": "التالي (مخطّط)",
+    "sourceOnRequest": "الكود المصدري متاح عند الطلب",
     "flagship": "المشروع الرئيسي",
     "enterpriseGrade": "درجة المؤسسات",
     "new": "جديد",

@@ -355,6 +355,8 @@
     "problem": "Problem",
     "solution": "Solution",
     "impact": "Impact",
+    "next": "Next (planned)",
+    "sourceOnRequest": "Source available on request",
     "flagship": "Flagship",
     "enterpriseGrade": "Enterprise Grade",
     "new": "NEW",
