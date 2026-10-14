@@ -26,9 +26,8 @@
     "certifications": "Certifications"
   },
   "hero": {
-    "badge": "Open to Agentic AI Roles & Engagements",
-    "location": "Pakistan · UAE",
-    "greeting": "Hi, I'm",
+    "badge": "Open to Agentic AI roles · Pakistan · UAE · Available to relocate",
+        "greeting": "Hi, I'm",
     "name": "Asadullah",
     "viewWork": "Explore flagship systems",
     "engagementModels": "Discuss an AI system",
@@ -39,6 +38,7 @@
     "resumeMissingHint": "Add resume.pdf to your /public folder & redeploy",
     "title": "Agentic AI Systems Engineer",
     "headline": "I engineer AI systems that move from reasoning to reliable execution.",
+    "positioning": "Governed agentic AI for regulated workflows: deterministic guardrails, auditable runs, humans in control. English and Arabic.",
     "supporting": "Production-oriented agents that coordinate workflows, use tools, preserve state, operate under guardrails, and leave an auditable trail.",
     "ecosystemNote": "Every engineering claim below links to source code or live runtime evidence: four flagship systems, and 736 tests across 21 open-source agent repositories.",
     "capabilities": "Agent Orchestration · MCP · A2A · Guardrails · Evaluation · Kubernetes",
