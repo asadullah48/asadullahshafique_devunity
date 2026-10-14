@@ -61,15 +61,21 @@
     "subtitle": "This portfolio is also a live MCP server. Add it to your own AI assistant and ask about my skills, projects and how to reach me. The answers come from the same data file this site uses.",
     "claudeCode": "Claude Code: run in your terminal",
     "endpoint": "Endpoint for any MCP client (Streamable HTTP)",
+    "cursor": "Cursor: add this entry to mcpServers in your MCP configuration (keep any existing servers)",
     "otherClients": "In Claude on desktop or the web, add it as a custom connector in Settings using the endpoint URL. Other clients that support Streamable HTTP take the same URL.",
+    "guidesLabel": "Setup guides",
+    "claudeGuide": "Claude custom connectors",
+    "cursorGuide": "Cursor MCP",
     "toolsLabel": "Six read-only tools",
     "tryLabel": "Then try asking",
     "try1": "“What has Asadullah built with MCP and guardrails?”",
     "try2": "“How can I contact Asadullah about an agentic AI project?”",
+    "try3": "“Which projects demonstrate Asadullah’s agent orchestration experience? Cite the available evidence and flag missing information.”",
     "readOnly": "Read-only by design: the tools take no arguments and cannot write anything.",
-    "coldStart": "It runs on a free tier that sleeps when idle, so the first request can take about a minute while it wakes. If the connection times out, try again.",
+    "coldStart": "The first request can take about a minute while the server wakes; retry if it times out.",
     "copy": "Copy",
-    "copied": "Copied"
+    "copied": "Copied",
+    "copyFailed": "Copy unavailable. Select the text and copy it manually."
   },
   "evidence": {
     "eyebrow": "// engineering_evidence",

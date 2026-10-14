@@ -664,7 +664,7 @@ const PROJECTS_EN: Project[] = [
     description: "Multi-tenant fabric mill ERP: roll register, yarn ledger, looms, LC imports and roll traceability, with a live no-signup demo.",
     tech: ["FastAPI", "PostgreSQL RLS", "SQLAlchemy 2", "Next.js 15", "TypeScript", "pytest"],
     github: "https://github.com/asadullah48/textile-erp-platform",
-    demo: "https://textile-erp-platform.vercel.app",
+    demo: "https://textile-erp-platform.vercel.app/",
     metrics: [
       { label: "Tests",        value: "42"        },
       { label: "Pulse Rules",  value: "7"         },
@@ -701,7 +701,7 @@ const PROJECTS_EN: Project[] = [
     description: "Production management for a Cut-Make-Trim stitching and packing business: order lifecycle from pending to dispatched, stitching and packing sessions with QC, four bill series generated on dispatch from rate templates, cash and bank accounts, party ledgers with CSV/XLSX export, BOM inventory, and public read-only bill links.",
     tech: ["Next.js 15", "FastAPI", "SQLAlchemy 2", "PostgreSQL", "Alembic", "TypeScript"],
     github: "https://github.com/asadullah48/cmt-stitching-system",
-    demo: "https://cmt-stitching-asadullah-shafiques-projects.vercel.app",
+    demo: "https://cmt-stitching-asadullah-shafiques-projects.vercel.app/",
     metrics: [
       { label: "Bill Series", value: "4"          },
       { label: "Migrations",  value: "24"         },
@@ -1281,7 +1281,7 @@ const PROJECTS_AR: Project[] = [
     description: "ERP متعدد المستأجرين لمصانع الأقمشة: سجل الرولات ودفتر الغزل والأنوال والاستيراد وتتبع الرولات، مع عرض تجريبي مباشر بلا تسجيل.",
     tech: ["FastAPI", "PostgreSQL RLS", "SQLAlchemy 2", "Next.js 15", "TypeScript", "pytest"],
     github: "https://github.com/asadullah48/textile-erp-platform",
-    demo: "https://textile-erp-platform.vercel.app",
+    demo: "https://textile-erp-platform.vercel.app/",
     metrics: [
       { label: "الاختبارات",       value: "42"     },
       { label: "قواعد التنبيه",    value: "7"      },
@@ -1318,7 +1318,7 @@ const PROJECTS_AR: Project[] = [
     description: "إدارة الإنتاج لأعمال التخييط والتعبئة (القص والخياطة والتشطيب): دورة حياة الطلب من الانتظار حتى الشحن، وجلسات التخييط والتعبئة مع فحص الجودة، وأربع سلاسل فواتير تُنشأ عند الشحن من قوالب الأسعار، وحسابات النقد والبنك، ودفاتر الأطراف مع تصدير CSV/XLSX، ومخزون قائمة المواد، وروابط فواتير عامة للقراءة فقط.",
     tech: ["Next.js 15", "FastAPI", "SQLAlchemy 2", "PostgreSQL", "Alembic", "TypeScript"],
     github: "https://github.com/asadullah48/cmt-stitching-system",
-    demo: "https://cmt-stitching-asadullah-shafiques-projects.vercel.app",
+    demo: "https://cmt-stitching-asadullah-shafiques-projects.vercel.app/",
     metrics: [
       { label: "سلاسل الفواتير", value: "4"         },
       { label: "الترحيلات",      value: "24"        },
