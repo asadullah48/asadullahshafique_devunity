@@ -14,6 +14,7 @@ import ConnectMcp from "@/components/ConnectMcp";
 import PerformanceMarketing from "@/components/PerformanceMarketing";
 import Projects from "@/components/Projects";
 import Hackathons from "@/components/Hackathons";
+import portfolio from "../../backend/knowledge/portfolio.json";
 import Blog, { type PostSummary } from "@/components/Blog";
 import { listArticleMeta, type ArticleMeta } from "@/lib/content";
 import OpenSourceSection from "@/components/OpenSource";
@@ -104,7 +105,8 @@ export default function Home() {
             <section aria-label="Completed courses and certificates" className="container mx-auto px-6 py-10">
                 <ClaudeCredential />
             </section>
-            <Hackathons />
+            {/* Tier + status from the canonical record the MCP tool also serves. */}
+            <Hackathons results={portfolio.hackathons.results} />
             {/* Track 3. Self-reported craft, shown as method: no client
                 outcomes are published until one is on record. */}
             <PerformanceMarketing />

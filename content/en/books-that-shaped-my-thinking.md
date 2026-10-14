@@ -45,6 +45,6 @@ These sharpen mindset, resilience, and the practical machinery of getting better
 
 ## Why I'm Sharing This
 
-A portfolio built entirely from output — repos, deployments, hackathon wins — tells you what I can build. It doesn't tell you why I build it a certain way, or what I'm reasoning from when a problem doesn't have a clean technical answer. That's what this list is for.
+A portfolio built entirely from output — repos, deployments, hackathon completions — tells you what I can build. It doesn't tell you why I build it a certain way, or what I'm reasoning from when a problem doesn't have a clean technical answer. That's what this list is for.
 
 If you're looking for where to start: the philosophy shelf first, for grounding. The self-improvement shelf second, for execution. Read them in the other order and you'll get good habits pointed at a goal you haven't actually examined yet.

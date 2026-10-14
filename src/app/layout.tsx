@@ -55,7 +55,7 @@ export const metadata: Metadata = {
     // backend/orchestration/, the MCP server is mounted at /mcp/server, and
     // the constitution in backend/constitution/ is enforced as SDK guardrails.
     description:
-          "Asadullah Shafique — Agentic AI Systems Engineer. Multi-agent orchestration on the OpenAI Agents SDK, real MCP servers, constitutional guardrails and trace-level evaluation. Pakistan · UAE.",
+          "Asadullah Shafique, Agentic AI Systems Engineer: governed agentic AI with deterministic guardrails, auditable runs and real MCP servers. Pakistan · UAE.",
     keywords: [
           "Asadullah Shafique",
           "Agentic AI",
@@ -83,7 +83,7 @@ export const metadata: Metadata = {
     openGraph: {
           title: "Asadullah Shafique — Agentic AI Systems Engineer",
           description:
-                  "Multi-agent orchestration on the OpenAI Agents SDK, a real MCP server, constitutional guardrails and trace-level evaluation. Every claim links to its source.",
+                  "Governed agentic AI for regulated workflows: deterministic guardrails, auditable runs, humans in control. Pakistan · UAE.",
           type: "website",
           url: BASE_URL,
           siteName: "Asadullah Shafique Portfolio",
@@ -94,7 +94,7 @@ export const metadata: Metadata = {
           card: "summary_large_image",
           title: "Asadullah Shafique — Agentic AI Systems Engineer",
           description:
-                  "Multi-agent orchestration on the OpenAI Agents SDK, a real MCP server, constitutional guardrails and trace-level evaluation. Every claim links to its source.",
+                  "Governed agentic AI for regulated workflows: deterministic guardrails, auditable runs, humans in control. Pakistan · UAE.",
     },
 };
 
