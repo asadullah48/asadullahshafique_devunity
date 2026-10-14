@@ -131,6 +131,14 @@
       "tech": ["Claude Code", "Python", "TypeScript", "Neon Postgres", "Row-Level Security", "Neon Auth", "Neon Functions"]
     },
     {
+      "name": "Weekly Certification Loop",
+      "status": "running weekly (first run 2026-10-01)",
+      "summary": "A budgeted agent loop that finds, verifies and publishes free AI certifications every week. Windows Task Scheduler fires a heartbeat every 7 days; a headless Claude Code agent searches 10 providers within a hard budget (at most 10 searches, 12 fetches and $2.50 per run); certloop.py verifies the findings deterministically (every provider searched, at least 5 opportunities, required fields, official https links, no duplicates); a maker-checker pass enforces the README's structure, tone and sentence length; each week is appended to progress.md with finds tagged new or returning, then committed and pushed. Providers with no official programme are recorded as such. The repository has no automated test suite.",
+      "metrics": ["2 weekly runs published (2026-10-01, 2026-10-08)", "13 listings, 8 unique", "10 providers tracked"],
+      "tech": ["Claude Code (headless)", "Python", "PowerShell", "Windows Task Scheduler", "GitHub"],
+      "github": "https://github.com/asadullah48/weekly-certification-loop"
+    },
+    {
       "name": "Agent Factory",
       "status": "completed",
       "hackathon": "H5",

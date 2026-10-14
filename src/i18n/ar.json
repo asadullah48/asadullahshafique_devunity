@@ -371,7 +371,8 @@
     "viewAllGithub": "تصفّح جميع المستودعات على GitHub",
     "inspectSystem": "استكشاف النظام",
     "close": "إغلاق",
-    "statusReference": "مرجعي"
+    "statusReference": "مرجعي",
+    "statusRunningWeekly": "يعمل أسبوعياً"
   },
   "hackathons": {
     "title": "الهاكاثونات &",

@@ -5,11 +5,11 @@ import Image from "next/image";
 import { Reveal } from "@/components/Reveal";
 import { AgentEcosystem } from "@/components/AgentEcosystem";
 import { ModuleFlowDialog } from "@/components/ModuleFlowDialog";
-import { Github, ExternalLink, ChevronDown, ChevronUp, Zap, Star, Clock, ShoppingBag, ShieldCheck, Terminal, LayoutGrid, FlaskConical } from "lucide-react";
+import { Github, ExternalLink, ChevronDown, ChevronUp, Zap, Star, Clock, ShoppingBag, ShieldCheck, Terminal, LayoutGrid, FlaskConical, Repeat } from "lucide-react";
 import { useLocale } from "@/context/LocaleContext";
 import { MODULE_FLOWS } from "@/lib/module-flows";
 
-type ProjectStatus = "Featured" | "In Development" | "Completed" | "Research" | "Flagship" | "Enterprise Grade" | "Reference";
+type ProjectStatus = "Featured" | "In Development" | "Completed" | "Research" | "Flagship" | "Enterprise Grade" | "Reference" | "Running weekly";
 
 /**
  * Status is a SEMANTIC role, not a colour. Each status resolves to tokens via
@@ -611,6 +611,28 @@ const PROJECTS_EN: Project[] = [
       { label: "Tests",        value: "117/117"     },
       { label: "Router Tests", value: "14/14"       },
       { label: "Dev Deploy",   value: "14 Oct 2026" },
+    ],
+    isNew: true,
+  },
+  {
+    // Facts from github.com/asadullah48/weekly-certification-loop at 0e48b87
+    // (README, loop/config.json, loop/certloop.py, loop/heartbeat.ps1,
+    // progress.md), re-counted 2026-10-14. The repo has no test files, so the
+    // card carries no test metric.
+    id: "weekly-certification-loop",
+    title: "Weekly Certification Loop",
+    status: "Running weekly",
+    tagline: "A budgeted agent loop that finds, verifies and publishes free AI certifications every week",
+    problem: "Free AI and cloud learning programmes appear and expire quietly across many provider sites. A manual weekly check is easy to skip and hard to keep consistent.",
+    solution: "Windows Task Scheduler fires a heartbeat every 7 days. A headless Claude Code agent searches the 10 tracked providers within a hard budget: at most 10 searches, 12 fetches and $2.50 per run. certloop.py then verifies the findings deterministically (every provider searched, at least 5 opportunities, all required fields, official https links, no duplicates) and rejects the run otherwise. A maker-checker pass drafts the week's README and enforces its structure, a plain professional tone and a 40-word sentence limit, for up to 6 rounds. Each week is appended to progress.md with every find tagged new or returning, then committed and pushed.",
+    impact: "As of 14 October 2026 the loop has published 2 weekly runs (1 and 8 October 2026): 13 listings, 8 of them unique, both within budget (7 and 5 of 10 searches) and both passing the checker in 1 round. Providers with no official programme (xAI Grok, DeepSeek, Ollama) are recorded as such instead of being padded with third-party courses.",
+    description: "A weekly agent loop: a budgeted Claude Code search of 10 providers, deterministic verification in certloop.py, a maker-checker pass on the README and a progress.md log, committed to GitHub every week.",
+    tech: ["Claude Code (headless)", "Python", "PowerShell", "Windows Task Scheduler", "GitHub"],
+    github: "https://github.com/asadullah48/weekly-certification-loop",
+    metrics: [
+      { label: "Weekly runs",       value: "2"        },
+      { label: "Providers tracked", value: "10"       },
+      { label: "Search budget",     value: "≤10 / run" },
     ],
     isNew: true,
   },
@@ -1232,6 +1254,25 @@ const PROJECTS_AR: Project[] = [
     isNew: true,
   },
   {
+    // Mirrors the EN entry; same repo commit (0e48b87), same 2026-10-14 count.
+    id: "weekly-certification-loop",
+    title: "Weekly Certification Loop: حلقة الشهادات الأسبوعية",
+    status: "Running weekly",
+    tagline: "حلقة وكلاء بميزانية محددة تجد شهادات الذكاء الاصطناعي المجانية وتتحقق منها وتنشرها كل أسبوع",
+    problem: "تظهر برامج التعلّم المجانية في الذكاء الاصطناعي والحوسبة السحابية وتنتهي بهدوء عبر مواقع مزوّدين كثيرين. والمراجعة اليدوية الأسبوعية سهلة الإهمال وصعبة الانتظام.",
+    solution: "يطلق برنامج جدولة المهام في Windows نبضة كل 7 أيام. يبحث وكيل Claude Code يعمل دون واجهة في المزوّدين العشرة المتتبَّعين ضمن ميزانية صارمة: 10 عمليات بحث و12 عملية جلب و2.50 دولار كحد أقصى لكل تشغيل. ثم يتحقق certloop.py من النتائج بشكل حتمي (البحث في كل مزوّد، و5 فرص على الأقل، وكل الحقول المطلوبة، وروابط https رسمية، وعدم التكرار) ويرفض التشغيل إن لم تتحقق. وتصوغ مرحلة الصانع والمدقق ملف README للأسبوع وتفرض بنيته ونبرة مهنية بسيطة وحدّاً أقصى للجملة 40 كلمة، لمدة تصل إلى 6 جولات. ويُضاف كل أسبوع إلى progress.md مع وسم كل فرصة بأنها جديدة أو متكررة، ثم يُحفظ ويُدفع إلى GitHub.",
+    impact: "حتى 14 أكتوبر 2026 نشرت الحلقة تشغيلين أسبوعيين (1 و8 أكتوبر 2026): 13 إدراجاً منها 8 فريدة، وكلاهما ضمن الميزانية (7 و5 من 10 عمليات بحث) واجتاز المدقق من الجولة الأولى. والمزوّدون الذين لا يملكون برنامجاً رسمياً (xAI Grok وDeepSeek وOllama) يُسجَّلون كذلك بدلاً من حشو القائمة بدورات من جهات خارجية.",
+    description: "حلقة وكلاء أسبوعية: بحث Claude Code بميزانية محددة في 10 مزوّدين، وتحقق حتمي في certloop.py، ومرحلة صانع ومدقق لملف README، وسجل progress.md، تُحفظ في GitHub كل أسبوع.",
+    tech: ["Claude Code (headless)", "Python", "PowerShell", "Windows Task Scheduler", "GitHub"],
+    github: "https://github.com/asadullah48/weekly-certification-loop",
+    metrics: [
+      { label: "تشغيلات أسبوعية",     value: "2"           },
+      { label: "مزوّدون متتبَّعون",    value: "10"          },
+      { label: "ميزانية البحث",        value: "≤10 / تشغيل" },
+    ],
+    isNew: true,
+  },
+  {
     id: "bazaar",
     title: "بازار: سوق B2B + B2C الموحد",
     status: "Featured",
@@ -1366,6 +1407,7 @@ const STATUS_ICONS: Record<ProjectStatus, React.ReactNode> = {
   Completed:        <Zap className="w-3 h-3" />,
   Research:         <Zap className="w-3 h-3" />,
   Reference:        <FlaskConical className="w-3 h-3" />,
+  "Running weekly": <Repeat className="w-3 h-3" />,
 };
 
 /**
@@ -1427,6 +1469,13 @@ const STATUS_TOKENS: Record<ProjectStatus, StatusTone> = {
     accent: "text-muted-foreground",
     card:   "border-border hover:border-brand/25",
     rule:   "via-violet/40",
+  },
+  // A live, scheduled system (real data, real runs): same tone as Featured.
+  "Running weekly": {
+    badge:  "bg-brand/10 text-brand-soft border-brand/25",
+    accent: "text-brand-soft",
+    card:   "border-border hover:border-brand/35",
+    rule:   "via-brand/40",
   },
 };
 
@@ -1787,6 +1836,7 @@ export function ProjectsSection() {
     Completed: "Completed",
     Research: "Research",
     Reference: t("projects.statusReference"),
+    "Running weekly": t("projects.statusRunningWeekly"),
   };
 
   return (
