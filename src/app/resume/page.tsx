@@ -551,9 +551,8 @@ export default function ResumePage() {
         <Section title="Hackathon Achievements" icon={<Trophy className="w-5 h-5" />}>
           <p className="text-sm text-muted-foreground mb-5">
             {/* Was "6 Consecutive Wins · 85% Code Reuse · Zero Failed Attempts".
-                The entries' own `achievement` fields below read Bronze, Silver,
-                Silver, Gold, Platinum (in progress) and Completed — a tier
-                ladder, not six competitive wins, with one still open. The
+                The six results read Bronze, Silver, Silver, Gold, Platinum
+                and Agent Factory — a tier ladder, not six competitive wins. The
                 ladder is the stronger claim anyway: it shows compounding
                 (89 tests -> 149), which "won" does not. */}
             Panaversity Hackathon Series: <span className="text-foreground/80">6 consecutive builds</span> · Bronze → Agent Factory
@@ -743,7 +742,7 @@ export default function ResumePage() {
           <Card className="bg-surface-1/60 border-border">
             <CardContent className="p-5">
               <p className="text-sm text-muted-foreground mb-3 leading-relaxed">
-                Full-spectrum digital marketing strategy for Dubai real estate, UAE construction, and Pakistani SMEs:
+                Digital marketing strategy for Pakistani SMEs, and on offer to real estate and construction teams in the UAE:
               </p>
               <ul className="space-y-1.5">
                 {[

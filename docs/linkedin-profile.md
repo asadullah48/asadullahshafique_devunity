@@ -14,7 +14,7 @@ removed from the site because nothing a stranger can open supports them.
 **Check before posting** (in `portfolio.json`, NOT in `evidence.ts`):
 - Bazaar "500+ verified sellers, 10K+ products" — live usage or target? If target, say "built for".
 - FinAgent-Nexus "94 tests passing offline" — re-count in the repo before quoting.
-- H4 tier — the site shows "Platinum (in progress)". Keep "in progress" until it is awarded.
+- H4 tier — Platinum, completed. The site and the MCP record now say so.
 
 ---
 
@@ -124,7 +124,8 @@ consider the practice's real start (the agentic work dates from Jan 2025).
 
 ### Founder — Texcot Embroidery Sourcing House · Apr 2021 – [end date or Present]
 (Use an end date if Texcot is no longer your main work; keep "Present" if the unit still operates.)
-> Founded a CMT (Cut-Make-Trim) and textile sourcing business serving Pakistan and the UAE. Running it
+> Founded a small CMT (Cut-Make-Trim) stitching and packing unit in Karachi, plus commission-based
+> embroidery sourcing. Running it
 > put me inside the problems I now build software for: production status living in someone's phone,
 > orders tracked across Excel sheets and WhatsApp groups.
 >
@@ -133,9 +134,9 @@ consider the practice's real start (the agentic work dates from Jan 2025).
 >   locally; not yet deployed.
 > • Building a CMT Stitching & Packing Management System (FastAPI · Next.js · PostgreSQL) — order
 >   tracking, production sessions, auto-billing. In development, running locally.
-> • Requirements come from working mills and CMT units in Faisalabad, Sialkot and Karachi — the
->   modules are shaped by real production floors, not by guesswork.
-> • Digital marketing strategy and paid campaigns for Dubai real estate and UAE construction clients.
+> • Requirements come from my own CMT unit in Karachi; the modules are shaped by a real
+>   production floor, not by guesswork.
+> • Digital marketing strategy and paid campaigns; open to real estate and construction teams in the UAE.
 >
 > Skills: Textile Sourcing · CMT Production · Product Requirements · Digital Marketing
 
@@ -147,7 +148,7 @@ consider the practice's real start (the agentic work dates from Jan 2025).
 
 ### Education fixes
 - **GIAIC — AI, Web 3.0 & Metaverse:** add to the description: "Panaversity Agentic AI programme.
-  Six consecutive hackathon builds, H0 → H5 (Bronze, Silver, Silver, Gold, Platinum in progress,
+  Six consecutive hackathon builds, H0 → H5 (Bronze, Silver, Silver, Gold, Platinum completed,
   Agent Factory)." Drop "outdoor sports" from Activities; replace with the hackathons.
 - **Textile Institute of Pakistan:** fix the "Institue" typo.
 

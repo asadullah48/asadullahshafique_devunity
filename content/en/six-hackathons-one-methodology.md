@@ -3,7 +3,7 @@ slug: six-hackathons-one-methodology
 lang: en
 dir: ltr
 title: "How I Won 6 Consecutive Hackathons With a Single Methodology"
-excerpt: "Panaversity, Bronze → Platinum → Agent Factory. Zero failures across 6 hackathons, 85% code reuse, and a four-session execution model that any developer can copy. Here's the exact playbook."
+excerpt: "Panaversity, Bronze → Platinum → Agent Factory. Six consecutive hackathons, 85% code reuse, and a four-session execution model that any developer can copy. Here's the exact playbook."
 author: "Asadullah Shafique"
 date: 2025-04-01
 displayDate: "April 2025"
@@ -27,7 +27,7 @@ Most hackathon advice optimizes the wrong variable. It treats each event as a st
 | H1 | Course Companion FTE | Silver | 70% from H0 |
 | H2 | AI-Powered Todo | Silver | 70% from H1 |
 | H3 | Advanced Todo | Gold | 85% from H2 |
-| H4 | Cloud-Native Deployment | Platinum | Containerized H3 directly |
+| H4 | Cloud-Native Deployment | Platinum, completed | Containerized H3 directly |
 | H5 | Agent Factory | Completed | Two-tier agent architecture |
 
 Read the "carried forward" column top to bottom. It goes 70, 70, 85 — and then at H4 it stops being a percentage, because H4 *was* H3. I did not build a new application for the Platinum round. I took the Gold application and gave it multi-stage Docker builds, Kubernetes manifests, a Dapr service mesh, Kafka pub/sub, and a Prometheus/Grafana/Jaeger observability stack.
@@ -87,13 +87,11 @@ The second layer, the model-based classifier, catches everything the patterns mi
 
 ## The failure that shaped it
 
-"Zero failures across six hackathons" needs an asterisk, and I would rather supply it than have someone find it.
+"Six consecutive hackathons" can sound like six wins. It needs an asterisk, and I would rather supply it than have someone find it.
 
 H0 took Bronze. H1 and H2 took Silver. Those are not failures, but they are not wins either — they are three consecutive events of finishing respectably while watching what the Gold projects did differently. The methodology in this article is largely a description of what I changed after H2, and the jump from Silver to Gold at H3 is the evidence that it worked.
 
 Anyone selling you a system that worked from day one is selling you a story with the H0 removed.
-
-<!-- [VERIFY] This framing assumes H4's Platinum is now complete — the project card in `Hackathons.tsx` still reads "Platinum (in progress)." Confirm before publishing, since the title says "6 consecutive." -->
 
 ## What to copy
 

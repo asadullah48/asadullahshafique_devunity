@@ -24,10 +24,9 @@ import HeroSystemDiagram from "@/components/HeroSystemDiagram";
  *      - "85% Code Reuse Rate" — self-reported; nothing measures it.
  *      - "149+ Tests Passing" — traces to ONE hackathon project
  *        (Hackathons.tsx:60), presented as a career-wide figure.
- *    A third, "Hackathons Won", overclaimed: the six entries' own `achievement`
- *    fields read Bronze / Silver / Silver / Gold / Platinum (in progress) /
- *    Completed. That is a progression ladder, not six competitive wins, and one
- *    is explicitly still in progress.
+ *    A third, "Hackathons Won", overclaimed: the six results in
+ *    portfolio.json read Bronze / Silver / Silver / Gold / Platinum / Agent
+ *    Factory. That is a progression ladder, not six competitive wins.
  *    Proof now lives one screen down in <ProofStrip />, where every figure is a
  *    link to the thing that verifies it.
  *

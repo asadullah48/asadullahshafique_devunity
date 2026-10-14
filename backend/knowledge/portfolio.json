@@ -25,7 +25,7 @@
       "CMT Industry Founder"
     ],
     "location": "Pakistan · UAE",
-    "tagline": "Building production-grade AI systems for real businesses, from Dubai construction to Pakistani textile factories. Six hackathons. Zero failures.",
+    "tagline": "Building production-grade agentic AI systems, including the software that runs my own small CMT unit in Karachi. Available for UAE engagements.",
     "focus": "Agentic AI development, full-stack engineering, spec-first development with Claude Code.",
     "education": "Panaversity — Agentic AI development"
   },
@@ -57,7 +57,7 @@
       },
       {
         "name": "Loop engineering",
-        "detail": "Testing, evals, and iteration until zero failures."
+        "detail": "Testing, evals, and iteration until the checks pass."
       },
       {
         "name": "Graph engineering",
