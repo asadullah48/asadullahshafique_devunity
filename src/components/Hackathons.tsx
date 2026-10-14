@@ -7,13 +7,25 @@ import { useLocale } from "@/context/LocaleContext";
 
 type HackathonTier = "Agent Factory" | "Platinum" | "Gold" | "Silver" | "Bronze";
 
+/**
+ * One row of portfolio.json `hackathons.results` — the same record the MCP
+ * get_hackathons tool returns. Tier and completion status are read from it
+ * (passed in by the server page) instead of being typed out here, so the
+ * card cannot drift from the canonical record again. H4 once read
+ * "Platinum (in progress)" here while portfolio.json said "Platinum".
+ */
+export type HackathonResult = { id: string; result: string; status?: string };
+
+const TIERS: readonly HackathonTier[] = ["Agent Factory", "Platinum", "Gold", "Silver", "Bronze"];
+const isTier = (value: string): value is HackathonTier =>
+  (TIERS as readonly string[]).includes(value);
+
 type HackathonEntry = {
-  tier: HackathonTier;
+  id: string;
   title: string;
   organizer: string;
   date: string;
   location: string;
-  achievement: string;
   description: string;
   technologies: string[];
   highlight: boolean;
@@ -29,67 +41,61 @@ const tierStyles: Record<HackathonTier, string> = {
 
 const HACKATHONS_EN: HackathonEntry[] = [
   {
-    tier: "Agent Factory",
+    id: "H5",
     title: "H5: Agent Factory",
     organizer: "Panaversity Hackathon Series",
     date: "2025",
     location: "Online",
-    achievement: "Completed",
     description: "Two-tier architecture: General Agent (Claude Code) builds Custom Agent (OpenAI Agents SDK). SKILL.md files as portable, monetizable intelligence units. Digital FTE model priced and deployed on Kubernetes + Dapr. Distribution targets OpenAI Apps ecosystem (800M users). 117-slide presentation mastered.",
     technologies: ["Claude Code", "OpenAI Agents SDK", "SKILL.md", "MCP", "Kubernetes", "Dapr"],
     highlight: true,
   },
   {
-    tier: "Platinum",
+    id: "H4",
     title: "H4: Cloud-Native Deployment",
     organizer: "Panaversity Hackathon Series",
     date: "2025",
     location: "Online",
-    achievement: "Platinum (in progress)",
     description: "Containerized H3 with multi-stage Docker builds. Kubernetes manifests: namespace, ConfigMap, Secrets, Deployments, StatefulSets, PVCs. Dapr service mesh, Kafka event-driven pub/sub, Prometheus + Grafana + Jaeger observability stack, Helm charts, GitHub Actions CI/CD.",
     technologies: ["Kubernetes", "Docker", "Dapr", "Kafka", "Prometheus", "Grafana", "Helm"],
     highlight: true,
   },
   {
-    tier: "Gold",
+    id: "H3",
     title: "H3: Advanced Todo",
     organizer: "Panaversity Hackathon Series",
     date: "2025",
     location: "Online",
-    achievement: "Gold",
     description: "149 tests passing. Recurring todos, templates, team collaboration, AI suggestions, calendar integration. Triple-layer Constitutional AI: 7 BLOCK patterns (academic dishonesty, illegal activity, harmful content), 5 FLAG patterns. 85% code reuse from H2.",
     technologies: ["Next.js", "FastAPI", "PostgreSQL", "Constitutional AI", "TypeScript"],
     highlight: true,
   },
   {
-    tier: "Silver",
+    id: "H2",
     title: "H2: AI-Powered Todo",
     organizer: "Panaversity Hackathon Series",
     date: "2025",
     location: "Online",
-    achievement: "Silver",
     description: "89 tests passing. Full-stack AI-powered todo with Constitutional AI integration. 70% code reuse from H1. Spec-first four-session methodology.",
     technologies: ["Next.js", "TypeScript", "FastAPI", "Constitutional AI"],
     highlight: false,
   },
   {
-    tier: "Silver",
+    id: "H1",
     title: "H1: Course Companion FTE",
     organizer: "Panaversity Hackathon Series",
     date: "2024",
     location: "Online",
-    achievement: "Silver",
     description: "Zero-Backend-LLM architecture. Course companion built as a Digital Full-Time Employee (FTE) model. 70% code reuse from H0.",
     technologies: ["Next.js", "TypeScript", "OpenAI API", "Zero-Backend Architecture"],
     highlight: false,
   },
   {
-    tier: "Bronze",
+    id: "H0",
     title: "H0: Personal AI CTO",
     organizer: "Panaversity Hackathon Series",
     date: "2024",
     location: "Online",
-    achievement: "Bronze",
     description: "Constitutional AI foundation. Established the spec-first methodology and constitutional constraint patterns that persist across all 6 subsequent hackathons.",
     technologies: ["TypeScript", "Constitutional AI", "LLMs"],
     highlight: false,
@@ -98,76 +104,77 @@ const HACKATHONS_EN: HackathonEntry[] = [
 
 const HACKATHONS_AR: HackathonEntry[] = [
   {
-    tier: "Agent Factory",
+    id: "H5",
     title: "H5: مصنع الوكلاء",
     organizer: "سلسلة هاكاثونات Panaversity",
     date: "2025",
     location: "عبر الإنترنت",
-    achievement: "مكتمل",
     description: "هندسة من طبقتين: الوكيل العام (Claude Code) يصنع الوكيل المخصص (OpenAI Agents SDK). ملفات SKILL.md كوحدات ذكاء قابلة للنقل والتسييل. نموذج الموظف الرقمي مُسعَّر ومنشور على Kubernetes + Dapr. يستهدف نظام OpenAI Apps البيئي (800 مليون مستخدم). 117 شريحة عرض مُتقنة.",
     technologies: ["Claude Code", "OpenAI Agents SDK", "SKILL.md", "MCP", "Kubernetes", "Dapr"],
     highlight: true,
   },
   {
-    tier: "Platinum",
+    id: "H4",
     title: "H4: النشر السحابي الأصيل",
     organizer: "سلسلة هاكاثونات Panaversity",
     date: "2025",
     location: "عبر الإنترنت",
-    achievement: "بلاتيني (قيد التقدم)",
     description: "حاويات H3 مع Docker متعدد المراحل. مانيفيستات Kubernetes: namespace وConfigMap وSecrets وDeployments وStatefulSets وPVCs. شبكة خدمات Dapr وKafka، مجموعة Prometheus + Grafana + Jaeger، مخططات Helm، وCI/CD بـ GitHub Actions.",
     technologies: ["Kubernetes", "Docker", "Dapr", "Kafka", "Prometheus", "Grafana", "Helm"],
     highlight: true,
   },
   {
-    tier: "Gold",
+    id: "H3",
     title: "H3: مهام متقدمة",
     organizer: "سلسلة هاكاثونات Panaversity",
     date: "2025",
     location: "عبر الإنترنت",
-    achievement: "ذهبي",
     description: "149 اختباراً ناجحاً. مهام متكررة وقوالب وتعاون جماعي واقتراحات ذكاء اصطناعي وتكامل التقويم. ذكاء اصطناعي دستوري ثلاثي الطبقات: 7 أنماط BLOCK (غش أكاديمي، نشاط غير قانوني، محتوى ضار)، 5 أنماط FLAG. 85% إعادة استخدام كود من H2.",
     technologies: ["Next.js", "FastAPI", "PostgreSQL", "Constitutional AI", "TypeScript"],
     highlight: true,
   },
   {
-    tier: "Silver",
+    id: "H2",
     title: "H2: مهام مدعومة بالذكاء الاصطناعي",
     organizer: "سلسلة هاكاثونات Panaversity",
     date: "2025",
     location: "عبر الإنترنت",
-    achievement: "فضي",
     description: "89 اختباراً ناجحاً. مهام كاملة الحزمة مدعومة بالذكاء الاصطناعي مع تكامل الذكاء الاصطناعي الدستوري. 70% إعادة استخدام كود من H1. منهجية Spec-First المكونة من أربع جلسات.",
     technologies: ["Next.js", "TypeScript", "FastAPI", "Constitutional AI"],
     highlight: false,
   },
   {
-    tier: "Silver",
+    id: "H1",
     title: "H1: زميل الدورة الموظف الرقمي",
     organizer: "سلسلة هاكاثونات Panaversity",
     date: "2024",
     location: "عبر الإنترنت",
-    achievement: "فضي",
     description: "هندسة Zero-Backend-LLM. مساعد دورة مبني كنموذج موظف رقمي متفرغ (FTE). 70% إعادة استخدام كود من H0.",
     technologies: ["Next.js", "TypeScript", "OpenAI API", "Zero-Backend Architecture"],
     highlight: false,
   },
   {
-    tier: "Bronze",
+    id: "H0",
     title: "H0: المدير التقني الشخصي بالذكاء الاصطناعي",
     organizer: "سلسلة هاكاثونات Panaversity",
     date: "2024",
     location: "عبر الإنترنت",
-    achievement: "برونزي",
     description: "أساس الذكاء الاصطناعي الدستوري. رسّخ منهجية Spec-First وأنماط القيود الدستورية التي استمرت عبر جميع الهاكاثونات الـ6 اللاحقة.",
     technologies: ["TypeScript", "Constitutional AI", "LLMs"],
     highlight: false,
   },
 ];
 
-const Hackathons = () => {
+const Hackathons = ({ results }: { results: HackathonResult[] }) => {
   const { t, locale } = useLocale();
-  const hackathons = locale === "ar" ? HACKATHONS_AR : HACKATHONS_EN;
+  const byId = new Map(results.map((r) => [r.id, r]));
+  // An entry with no canonical result, or an unknown tier, is not rendered:
+  // showing a card without its verified result is the drift this guards against.
+  const hackathons = (locale === "ar" ? HACKATHONS_AR : HACKATHONS_EN).flatMap((entry) => {
+    const record = byId.get(entry.id);
+    if (!record || !isTier(record.result)) return [];
+    return [{ ...entry, tier: record.result, completed: record.status === "completed" }];
+  });
 
   const tierLabels: Record<HackathonTier, string> = {
     "Agent Factory": t("hackathons.agentFactory"),
@@ -218,10 +225,10 @@ const Hackathons = () => {
                       <span className={`inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold ${tierStyles[hackathon.tier] ?? ""}`}>
                         {tierLabels[hackathon.tier]}
                       </span>
-                      {hackathon.highlight && (
+                      {hackathon.highlight && hackathon.completed && (
                         <span className="inline-flex items-center gap-1 px-3 py-1 rounded-full bg-brand/10 text-brand text-xs font-medium">
                           <Award className="w-3 h-3" />
-                          {hackathon.achievement}
+                          {t("hackathons.completed")}
                         </span>
                       )}
                     </div>

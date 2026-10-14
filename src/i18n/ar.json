@@ -382,6 +382,7 @@
     "gold": "ذهبي",
     "silver": "فضي",
     "bronze": "برونزي",
+    "completed": "مكتمل",
     "online": "عبر الإنترنت"
   },
   "blog": {
@@ -416,7 +417,7 @@
   "testimonials": {
     "title": "ما يقوله",
     "titleHighlight": "الناس",
-    "subtitle": "من عقارات دبي إلى مصانع الملابس في فيصل آباد، آراء من أشخاص تعاملت معهم.",
+    "subtitle": "آراء الأشخاص الذين عملت معهم.",
     "linkedInCTA": "عرض توصيات LinkedIn"
   },
   "discord": {

@@ -5,6 +5,7 @@
     "Consumers:",
     "  backend/knowledge/__init__.py  -> Python loader (agent.py, mcp_server.py)",
     "  src/lib/agent-knowledge.ts     -> imports this file directly, renders the LLM prompt",
+    "  src/components/Hackathons.tsx  -> hackathon tier + status badges (EN/AR)",
     "",
     "Why this lives under backend/ and not at the repo root:",
     "  docker-compose.yml sets the backend build context to ./backend, and Render's",
@@ -345,12 +346,12 @@
   "hackathons": {
     "summary": "Six consecutive Panaversity hackathons, H0 through H5.",
     "results": [
-      { "id": "H0", "result": "Bronze" },
-      { "id": "H1", "result": "Silver" },
-      { "id": "H2", "result": "Silver" },
-      { "id": "H3", "result": "Gold" },
-      { "id": "H4", "result": "Platinum" },
-      { "id": "H5", "result": "Agent Factory" }
+      { "id": "H0", "result": "Bronze", "status": "completed" },
+      { "id": "H1", "result": "Silver", "status": "completed" },
+      { "id": "H2", "result": "Silver", "status": "completed" },
+      { "id": "H3", "result": "Gold", "status": "completed" },
+      { "id": "H4", "result": "Platinum", "status": "completed" },
+      { "id": "H5", "result": "Agent Factory", "status": "completed" }
     ],
     "methodology": "Spec-first, heavy code reuse, evals before shipping."
   },

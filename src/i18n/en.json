@@ -382,6 +382,7 @@
     "gold": "Gold",
     "silver": "Silver",
     "bronze": "Bronze",
+    "completed": "Completed",
     "online": "Online"
   },
   "blog": {
@@ -416,7 +417,7 @@
   "testimonials": {
     "title": "What People",
     "titleHighlight": "Say",
-    "subtitle": "From Dubai real estate to Faisalabad garment factories: feedback from the people I've worked with.",
+    "subtitle": "Feedback from the people I've worked with.",
     "linkedInCTA": "View LinkedIn Recommendations"
   },
   "discord": {
