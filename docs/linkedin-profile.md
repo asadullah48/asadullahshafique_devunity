@@ -117,7 +117,7 @@ consider the practice's real start (the agentic work dates from Jan 2025).
 >   enforcement survives provider outages.
 > • Wrote trace-based eval suites (routing, constitution, portfolio) wired into CI.
 > • Open-sourced deterministic-control projects: OrchestratorX (model-free routing, 39 tests, no API
->   keys), ProtoBridge (MCP + A2A at the wire level, 61 tests), GuardrailAI (OFAC / AML / HIPAA
+>   keys), ProtoBridge (MCP + A2A at the wire level, 62 tests), GuardrailAI (OFAC / AML / HIPAA
 >   screening, 17 tests).
 >
 > Skills: OpenAI Agents SDK · Model Context Protocol · LangGraph · FastAPI · Next.js
@@ -181,7 +181,7 @@ Kubernetes, GitHub Actions, Spec-driven development.
 | AI TradeFlow | Bilingual AI inventory and accounting for Pakistani wholesalers, around the Munshi agent | github.com/asadullah48/ai-tradeflow |
 | Asadullah.dev portfolio | Agents SDK orchestration, MCP server, Constitutional AI guardrails and trace-based evals, EN/AR | github.com/asadullah48/asadullahshafique_devunity |
 | OrchestratorX | Model-free routing in typed state; 39 offline tests | github.com/asadullah48/orchestratorx |
-| ProtoBridge | MCP + A2A implemented to the wire; 61 tests | github.com/asadullah48/protobridge |
+| ProtoBridge | MCP + A2A implemented to the wire; 62 tests | github.com/asadullah48/protobridge |
 
 ## 7. Settings checklist
 
