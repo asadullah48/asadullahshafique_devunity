@@ -254,8 +254,8 @@
     {
       "name": "OrchestratorX",
       "status": "flagship system",
-      "summary": "A supervisor-pattern multi-agent framework that keeps routing in typed state and plain Python, so execution order is tested without a model or API key. Only the supervisor selects the next node, a hop budget guarantees termination, and every hop is written to an audit trace. Reference architecture, not a customer deployment.",
-      "metrics": ["41 tests pass with no API key or network", "CLI, FastAPI service with GET /trace/{run_id}, Docker, CI on Python 3.11-3.13"],
+      "summary": "A completed LangGraph reference implementation with model-free routing, typed state, and ordered traces over synthetic portfolio data. The supervisor selects the next node; Reporter is terminal. Hop and retry limits bound steps and attempts, not blocked-call duration. No authentication, persistent trace storage, or streaming. Reporter does not explicitly render specialist errors; inspect run errors and traces alongside report text.",
+      "metrics": ["41 tests pass locally with the default FakeLLM", "CLI, FastAPI service with GET /trace/{run_id}, Docker, CI on Python 3.11-3.13"],
       "tech": ["LangGraph", "Python 3.13", "Pydantic", "FastAPI", "Docker", "GitHub Actions", "pytest"],
       "github": "https://github.com/asadullah48/orchestratorx"
     },

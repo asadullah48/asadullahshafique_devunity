@@ -37,7 +37,7 @@ type Project = {
    * conviction_score=94.5, which the card rendered as "94.5% peak trade
    * conviction".
    *
-   * Undefined means the data is as real as the code (OrchestratorX, ProtoBridge,
+   * Undefined means the data is as real as the code (ProtoBridge,
    * GuardrailAI, the shipped platforms).
    *
    * Stating this costs nothing and buys the rest of the portfolio its
@@ -86,7 +86,8 @@ type Project = {
  *
  * FLAGSHIP is chosen on engineering substance, deliberately not on how good the
  * UI looks. Each of the four owns one pillar of the argument this site makes,
- * each runs on REAL data, and each is independently checkable:
+ * each has independently checkable implementation evidence; synthetic domain
+ * inputs are labelled on the relevant card:
  *
  *   orchestratorx  orchestration      routing as typed state, not prompt text
  *   protobridge    interoperability   MCP + A2A implemented to the wire
@@ -373,18 +374,19 @@ const PROJECTS_EN: Project[] = [
   },
   {
     id: "orchestratorx",
-    title: "OrchestratorX: Supervisor-Pattern Multi-Agent Framework",
+    title: "OrchestratorX: Testable Multi-Agent Routing",
     status: "Completed",
-    tagline: "Routing as a testable invariant, not a prompt",
-    problem: "A multi-agent system has to answer four questions: who runs next, what happens when a specialist finds something, what happens when one fails, and how you prove afterwards what actually occurred. The common answer puts all four inside a prompt, which makes the most important behaviour in the system untestable without a live model, non-deterministic across runs, and unprovable to a reviewer.",
-    solution: "All four move into typed state and plain Python on a LangGraph supervisor. Specialist agents (RiskModeler, ComplianceChecker, ClientAdvisor, Reporter) return only to the supervisor and never to each other, so every routing decision sits in one function that can be tested in isolation. Six invariants are enforced structurally rather than by convention: only the supervisor routes, required specialists always run before a report, every run terminates, every hop is recorded on success and failure, routing never consults a model, and concurrent runs are isolated by run id so breaker state cannot leak between them.",
-    impact: "41 tests pass with no API key and no network, because routing is model-free — that is what makes 'the supervisor never skips ComplianceChecker' a millisecond CI assertion rather than a claim in a README. A looping supervisor needs a hop budget, not just a retry cap: retries bound one node's failures, but only a budget bounds the cycle. Escalation is graduated and isolated in one function marked POLICY SEAM — halt on critical, one bounded mitigation round on high — so an organisation's risk posture is a single-function edit. Ships a CLI, a FastAPI service whose GET /trace/{run_id} lets a run be interrogated after the fact, a Dockerfile, and CI across Python 3.11 to 3.13.",
-    description: "A supervisor-pattern multi-agent framework where the routing rules are typed state rather than prompt text, every hop lands in an ordered audit trace including the failures, and the whole suite runs offline.",
+    dataMode: "reference",
+    tagline: "Completed reference implementation with model-free routing",
+    problem: "When prompts control specialist ordering and escalation, workflow behaviour is harder to test independently of a model. Reviewers also need a trace of decisions and failures.",
+    solution: "A LangGraph supervisor routes RiskModeler, ComplianceChecker, and ClientAdvisor through typed state and Python policy; Reporter is terminal. Bounded mitigation, retries, circuit breakers, and a hop budget make workflow decisions inspectable through a CLI and FastAPI service.",
+    impact: "41 tests pass locally with the default FakeLLM. Run traces can be retrieved by ID or exported. Includes Docker configuration and CI for Python 3.11–3.13. Uses synthetic data; authentication, persistent traces, and streaming are outside scope.",
+    description: "A completed LangGraph reference implementation with model-free routing, typed state, and ordered execution traces. Synthetic portfolio workflows demonstrate specialist ordering, escalation, and handled failures.",
     tech: ["LangGraph", "Python 3.13", "Pydantic", "FastAPI", "Docker", "GitHub Actions", "pytest"],
     github: "https://github.com/asadullah48/orchestratorx",
     metrics: [
       { label: "Tests", value: "41" },
-      { label: "API Keys", value: "0" },
+      { label: "Default API Keys", value: "0" },
     ],
   },
   {
@@ -993,18 +995,19 @@ const PROJECTS_AR: Project[] = [
   },
   {
     id: "orchestratorx",
-    title: "أوركستريتور إكس: إطار متعدّد الوكلاء بنمط المشرف",
+    title: "OrchestratorX: توجيه متعدد الوكلاء قابل للاختبار",
     status: "Completed",
-    tagline: "التوجيه ثابتٌ قابل للإثبات لا موجّهٌ نصّي",
-    problem: "على أيّ نظام متعدّد الوكلاء أن يجيب عن أربعة أسئلة: مَن يعمل تاليًا، وماذا يحدث حين يجد أحد المتخصّصين مخالفة، وماذا يحدث حين يُخفق أحدهم، وكيف تُثبت لاحقًا ما جرى فعلًا. والإجابة الشائعة تضع الأربعة داخل الموجّه النصّي، فيغدو أهمّ سلوك في النظام غير قابل للاختبار دون نموذج حيّ، وغير حتميّ بين التشغيلات، وغير قابل للإثبات أمام مراجع.",
-    solution: "تنتقل الأربعة جميعًا إلى حالة مُنمّطة وبايثون خالصة فوق مشرف مبنيّ على LangGraph. والوكلاء المتخصّصون (RiskModeler و ComplianceChecker و ClientAdvisor و Reporter) يعودون إلى المشرف فقط ولا يسلّم أحدهم إلى الآخر، فيبقى كل قرار توجيه في دالة واحدة قابلة للاختبار منفردة. وتُفرض ستّة ثوابت بنيويًّا لا عُرفيًّا: المشرف وحده يوجّه، والمتخصّصون المطلوبون يعملون دائمًا قبل إصدار أيّ تقرير، وكل تشغيل ينتهي حتمًا، وكل قفزة تُسجَّل في حالتَي النجاح والإخفاق، والتوجيه لا يستشير أيّ نموذج، والتشغيلات المتزامنة معزولة بمعرّف التشغيل فلا تتسرّب حالة القاطع بينها.",
-    impact: "تُعرّف 41 اختبارًا دون مفتاح واجهة برمجية ودون شبكة، لأنّ التوجيه خالٍ من النماذج — وهذا ما يجعل عبارة «المشرف لا يتخطّى ComplianceChecker أبدًا» تأكيدًا يُنفَّذ في أجزاء من الألف من الثانية بدل أن يكون ادّعاءً في ملف تعريفي. والمشرف الدوّار يحتاج ميزانية قفزات لا مجرّد سقف لإعادة المحاولة: فإعادة المحاولة تحدّ من إخفاقات عقدة واحدة، أمّا الدورة فلا يحدّها إلّا ميزانية. والتصعيد متدرّج ومعزول في دالة واحدة موسومة بـ POLICY SEAM — إيقاف عند الحرج، وجولة تخفيف واحدة محدودة عند المرتفع — فيصبح موقف المؤسسة من المخاطر تعديلًا في دالة واحدة. ويأتي المشروع بواجهة سطر أوامر، وخدمة FastAPI يتيح مسارها GET /trace/{run_id} استجواب أيّ تشغيل بعد وقوعه، وملف Docker، وتكامل مستمر على بايثون 3.11 حتى 3.13.",
-    description: "إطار متعدّد الوكلاء بنمط المشرف، تكون فيه قواعد التوجيه حالةً مُنمّطة لا نصًّا في موجّه، وتُسجَّل كل قفزة في أثر تدقيق مُرتّب يشمل الإخفاقات، وتعمل المجموعة كلّها دون اتصال.",
+    dataMode: "reference",
+    tagline: "تنفيذ مرجعي مكتمل بتوجيه مستقل عن النموذج",
+    problem: "عندما تتحكم الموجّهات النصية في ترتيب المتخصصين والتصعيد، يصعب اختبار سلوك سير العمل بصورة مستقلة عن النموذج. ويحتاج المراجع إلى أثر يوضح القرارات والإخفاقات.",
+    solution: "يوجّه مشرف LangGraph كلاً من RiskModeler وComplianceChecker وClientAdvisor عبر حالة مُنمّطة وسياسة Python؛ أما Reporter فنهائي. يتيح التخفيف المحدود وإعادة المحاولة وقواطع الدوائر وميزانية القفزات فحص قرارات التنفيذ عبر CLI وخدمة FastAPI.",
+    impact: "تنجح 41 اختبارًا محليًا باستخدام FakeLLM الافتراضي. يمكن استرجاع الآثار بمعرّف التشغيل أو تصديرها. يشمل إعداد Docker وتكاملًا مستمرًا لبايثون 3.11–3.13. البيانات اصطناعية؛ والمصادقة والتخزين الدائم للآثار والبث خارج النطاق.",
+    description: "تنفيذ مرجعي مكتمل بمشرف LangGraph وتوجيه مستقل عن النموذج وحالة مُنمّطة وآثار تنفيذ مرتبة. توضّح محافظ اصطناعية ترتيب المتخصصين والتصعيد والإخفاقات المعالَجة.",
     tech: ["LangGraph", "Python 3.13", "Pydantic", "FastAPI", "Docker", "GitHub Actions", "pytest"],
     github: "https://github.com/asadullah48/orchestratorx",
     metrics: [
       { label: "اختبارات", value: "41" },
-      { label: "مفاتيح API", value: "0" },
+      { label: "مفاتيح API افتراضيًا", value: "0" },
     ],
   },
   {
