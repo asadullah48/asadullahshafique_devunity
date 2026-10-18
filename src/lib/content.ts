@@ -1,7 +1,7 @@
 /**
  * Article loading for the blog routes.
  *
- * SERVER ONLY. `gray-matter` and `marked` are imported here and nowhere a
+ * SERVER ONLY. YAML frontmatter and `marked` are loaded here and nowhere a
  * client component can reach them, so they never enter the client bundle —
  * which is the whole reason adding two dependencies was acceptable at all
  * given the 211 kB -> 171 kB fight recorded in CLAUDE.md.
@@ -23,7 +23,7 @@
 
 import fs from "node:fs";
 import path from "node:path";
-import matter from "gray-matter";
+import { readFrontmatter } from "@/lib/frontmatter";
 import { Marked, type Tokens } from "marked";
 import { ENGINEERING_EVIDENCE, PROOF, type Evidence } from "@/lib/evidence";
 import { isCategoryId, type CategoryId } from "@/lib/blog-taxonomy";
@@ -321,7 +321,7 @@ function readArticle(locale: Locale, slug: string): { meta: ArticleMeta; body: s
   const file = articlePath(locale, slug);
   if (!fs.existsSync(file)) return null;
 
-  const { data, content } = matter(fs.readFileSync(file, "utf8"));
+  const { data, content } = readFrontmatter(fs.readFileSync(file, "utf8"));
   const rel = `content/${locale}/${slug}.md`;
 
   if (data.category !== undefined && !isCategoryId(data.category)) {

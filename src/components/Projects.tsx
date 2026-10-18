@@ -111,12 +111,14 @@ type Tier = "flagship" | "engineering" | "reference";
 
 /**
  * Tier is DERIVED, never stored on the record, so it cannot drift out of step
- * with `dataMode` the way a hand-maintained third field would. One rule wins
- * over all others: synthetic domain data means reference, whatever else is
- * true of the project.
+ * with `dataMode` the way a hand-maintained third field would. Agent Rehearsal
+ * is an engineering evaluation tool whose test fixtures are intentionally
+ * synthetic; retain that disclosure while showing the tool with engineering work.
+ * Other projects with synthetic domain data belong in reference implementations.
  */
 function tierOf(p: Project): Tier {
   if (FLAGSHIP_IDS.includes(p.id)) return "flagship";
+  if (p.id === "agent-rehearsal") return "engineering";
   if (p.dataMode === "reference") return "reference";
   return "engineering";
 }
@@ -125,7 +127,7 @@ const PROJECTS_EN: Project[] = [
   {
     id: "agent-rehearsal",
     title: "Agent Rehearsal: Offline Controller Evaluation",
-    status: "Reference",
+    status: "Completed",
     dataMode: "reference",
     tagline: "An offline simulator that checks whether tool-using agents follow the rules",
     description: "Offline procurement simulator checking approval, idempotency and budget invariants. Seven recorded runs over five fictional fixtures include a false-success claim caught by an independent evaluator. Deterministic and scripted controllers make zero model calls.",

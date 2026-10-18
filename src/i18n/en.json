@@ -343,7 +343,7 @@
     "tierFlagshipDesc": "Four systems that carry the argument: orchestration, protocol interoperability, deterministic governance, and the site you are reading. Each one runs on real data and each links to its source.",
     "discordCta": "See how these get built — join #agentic-ai on Discord →",
     "tierEngineering": "Engineering projects",
-    "tierEngineeringDesc": "Shipped platforms and products built on the same methods, with real data behind them.",
+    "tierEngineeringDesc": "Platforms, products and engineering tools. Each project states its evidence and limits.",
     "tierReference": "Reference implementations",
     "tierReferenceDesc": "Real multi-agent code and real test suites running against synthetic domain data. They demonstrate an architecture; they are not deployments with a production track record.",
     "showReference": "Show reference implementations",
