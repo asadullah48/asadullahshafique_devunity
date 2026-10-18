@@ -123,6 +123,22 @@ function tierOf(p: Project): Tier {
 
 const PROJECTS_EN: Project[] = [
   {
+    id: "agent-rehearsal",
+    title: "Agent Rehearsal: Offline Controller Evaluation",
+    status: "Reference",
+    dataMode: "reference",
+    tagline: "Independent evidence checks for tool-using controllers",
+    description: "Offline procurement simulator checking approval, idempotency and budget invariants. Seven recorded runs over five fictional fixtures include a false-success claim caught by an independent evaluator. Deterministic and scripted controllers make zero model calls.",
+    impact: "Session 4: 169 tests passed; merged-main CI green at 381d5ed. Local recovery exercised at six workflow and seven export crash boundaries. Synthetic exercises with one local SQLite writer; no live-agent safety or production reliability claim.",
+    tech: ["Python", "SQLite", "Pydantic", "pytest", "Static HTML", "GitHub Actions"],
+    github: "https://github.com/asadullah48/agent-rehearsal",
+    demo: "https://asadullah48.github.io/agent-rehearsal/",
+    metrics: [
+      { label: "Tests", value: "169" },
+      { label: "Model calls", value: "0" },
+    ],
+  },
+  {
     id: "stockai",
     title: "StockAI: Supply Chain & Inventory Automation Agent",
     status: "Reference",
