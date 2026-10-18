@@ -2004,6 +2004,18 @@ export function ProjectsSection() {
                 <span className="font-mono text-xs tabular-nums text-muted-foreground/70">
                   {project.metrics?.[0]?.value} {project.metrics?.[0]?.label}
                 </span>
+                {project.demo && (
+                  <a
+                    href={project.demo}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label={`${labels.viewDemo}: ${project.title}`}
+                    className="inline-flex items-center gap-1 font-mono text-xs text-brand-soft transition-colors hover:text-brand"
+                  >
+                    <ExternalLink className="h-3 w-3" aria-hidden="true" />
+                    {labels.viewDemo}
+                  </a>
+                )}
                 {project.github && (
                   <a
                     href={project.github}
