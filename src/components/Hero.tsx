@@ -3,7 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { Reveal } from "@/components/Reveal";
-import { ArrowRight, Download, Github, MapPin } from "lucide-react";
+import { ArrowRight, Download, Github } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useLocale } from "@/context/LocaleContext";
 import HeroSystemDiagram from "@/components/HeroSystemDiagram";
@@ -24,10 +24,9 @@ import HeroSystemDiagram from "@/components/HeroSystemDiagram";
  *      - "85% Code Reuse Rate" — self-reported; nothing measures it.
  *      - "149+ Tests Passing" — traces to ONE hackathon project
  *        (Hackathons.tsx:60), presented as a career-wide figure.
- *    A third, "Hackathons Won", overclaimed: the six entries' own `achievement`
- *    fields read Bronze / Silver / Silver / Gold / Platinum (in progress) /
- *    Completed. That is a progression ladder, not six competitive wins, and one
- *    is explicitly still in progress.
+ *    A third, "Hackathons Won", overclaimed: the six results in
+ *    portfolio.json read Bronze / Silver / Silver / Gold / Platinum / Agent
+ *    Factory. That is a progression ladder, not six competitive wins.
  *    Proof now lives one screen down in <ProofStrip />, where every figure is a
  *    link to the thing that verifies it.
  *
@@ -74,11 +73,11 @@ export function HeroSection() {
               <span className="absolute inline-flex h-full w-full rounded-full bg-brand opacity-60" />
               <span className="relative inline-flex h-2 w-2 rounded-full bg-brand" />
             </span>
+            {/* The badge carries the location itself ("· Pakistan · UAE ·"),
+                so the separate location chip that sat here would repeat it. */}
             <span className="text-sm font-medium text-brand-soft">
               {t("hero.badge")}
             </span>
-            <MapPin className="h-3 w-3 text-brand/60" aria-hidden="true" />
-            <span className="text-xs text-brand/60">{t("hero.location")}</span>
           </Reveal>
 
           {/* The only <h1> on the page. */}
@@ -95,6 +94,12 @@ export function HeroSection() {
               here second — this is the sentence the visitor should leave with. */}
           <p className="mb-5 max-w-[24ch] text-balance text-2xl font-semibold leading-snug text-foreground lg:max-w-[26ch] lg:text-3xl">
             {t("hero.headline")}
+          </p>
+
+          {/* Positioning line for regulated-workflow (UAE-facing) readers,
+              placed directly under the thesis. */}
+          <p className="mb-5 max-w-[62ch] text-pretty font-medium leading-relaxed text-brand-soft">
+            {t("hero.positioning")}
           </p>
 
           <p className="mb-8 max-w-[62ch] text-pretty leading-relaxed text-muted-foreground">

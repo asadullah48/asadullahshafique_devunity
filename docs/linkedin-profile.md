@@ -14,7 +14,7 @@ removed from the site because nothing a stranger can open supports them.
 **Check before posting** (in `portfolio.json`, NOT in `evidence.ts`):
 - Bazaar "500+ verified sellers, 10K+ products" — live usage or target? If target, say "built for".
 - FinAgent-Nexus "94 tests passing offline" — re-count in the repo before quoting.
-- H4 tier — the site shows "Platinum (in progress)". Keep "in progress" until it is awarded.
+- H4 tier — Platinum, completed. The site and the MCP record now say so.
 
 ---
 
@@ -116,26 +116,27 @@ consider the practice's real start (the agentic work dates from Jan 2025).
 > • Implemented Constitutional AI as SDK guardrails with a model-free deterministic layer, so
 >   enforcement survives provider outages.
 > • Wrote trace-based eval suites (routing, constitution, portfolio) wired into CI.
-> • Open-sourced deterministic-control projects: OrchestratorX (model-free routing, 39 tests, no API
->   keys), ProtoBridge (MCP + A2A at the wire level, 61 tests), GuardrailAI (OFAC / AML / HIPAA
+> • Open-sourced deterministic-control projects: OrchestratorX (model-free routing, 41 tests, no API
+>   keys), ProtoBridge (MCP + A2A at the wire level, 62 tests), GuardrailAI (OFAC / AML / HIPAA
 >   screening, 17 tests).
 >
 > Skills: OpenAI Agents SDK · Model Context Protocol · LangGraph · FastAPI · Next.js
 
 ### Founder — Texcot Embroidery Sourcing House · Apr 2021 – [end date or Present]
 (Use an end date if Texcot is no longer your main work; keep "Present" if the unit still operates.)
-> Founded a CMT (Cut-Make-Trim) and textile sourcing business serving Pakistan and the UAE. Running it
+> Founded a small CMT (Cut-Make-Trim) stitching and packing unit in Karachi, plus commission-based
+> embroidery sourcing. Running it
 > put me inside the problems I now build software for: production status living in someone's phone,
 > orders tracked across Excel sheets and WhatsApp groups.
 >
-> • Designing a Textile ERP Platform for Pakistan's textile value chain — Module 1 (Fabric Mill:
->   roll/lot management, weaving/knitting stage tracking, yarn inventory). In development, running
->   locally; not yet deployed.
-> • Building a CMT Stitching & Packing Management System (FastAPI · Next.js · PostgreSQL) — order
->   tracking, production sessions, auto-billing. In development, running locally.
-> • Requirements come from working mills and CMT units in Faisalabad, Sialkot and Karachi — the
->   modules are shaped by real production floors, not by guesswork.
-> • Digital marketing strategy and paid campaigns for Dubai real estate and UAE construction clients.
+> • Built a Textile ERP Platform for Pakistan's textile value chain — Module 1 of 7 (Fabric Mill:
+>   roll/lot management, weaving/knitting stage tracking, yarn inventory) is live as a no-sign-up
+>   demo; modules 2–7 are specified.
+> • Built a CMT Stitching & Packing Management System (FastAPI · Next.js · PostgreSQL) — order
+>   tracking, production sessions, auto-billing. Live, and in daily use at my own unit.
+> • Requirements come from my own CMT unit in Karachi; the modules are shaped by a real
+>   production floor, not by guesswork.
+> • Digital marketing strategy and paid campaigns; open to real estate and construction teams in the UAE.
 >
 > Skills: Textile Sourcing · CMT Production · Product Requirements · Digital Marketing
 
@@ -147,7 +148,7 @@ consider the practice's real start (the agentic work dates from Jan 2025).
 
 ### Education fixes
 - **GIAIC — AI, Web 3.0 & Metaverse:** add to the description: "Panaversity Agentic AI programme.
-  Six consecutive hackathon builds, H0 → H5 (Bronze, Silver, Silver, Gold, Platinum in progress,
+  Six consecutive hackathon builds, H0 → H5 (Bronze, Silver, Silver, Gold, Platinum completed,
   Agent Factory)." Drop "outdoor sports" from Activities; replace with the hackathons.
 - **Textile Institute of Pakistan:** fix the "Institue" typo.
 
@@ -179,8 +180,8 @@ Kubernetes, GitHub Actions, Spec-driven development.
 | FinAgent-Nexus | Multi-agent financial intelligence with deterministic compliance screening and a hash-chained audit trail | GitHub |
 | AI TradeFlow | Bilingual AI inventory and accounting for Pakistani wholesalers, around the Munshi agent | github.com/asadullah48/ai-tradeflow |
 | Asadullah.dev portfolio | Agents SDK orchestration, MCP server, Constitutional AI guardrails and trace-based evals, EN/AR | github.com/asadullah48/asadullahshafique_devunity |
-| OrchestratorX | Model-free routing in typed state; 39 offline tests | github.com/asadullah48/orchestratorx |
-| ProtoBridge | MCP + A2A implemented to the wire; 61 tests | github.com/asadullah48/protobridge |
+| OrchestratorX | Model-free routing in typed state; 41 offline tests | github.com/asadullah48/orchestratorx |
+| ProtoBridge | MCP + A2A implemented to the wire; 62 tests | github.com/asadullah48/protobridge |
 
 ## 7. Settings checklist
 

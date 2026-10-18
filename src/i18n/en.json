@@ -26,9 +26,8 @@
     "certifications": "Certifications"
   },
   "hero": {
-    "badge": "Open to Agentic AI Roles & Engagements",
-    "location": "Pakistan · UAE",
-    "greeting": "Hi, I'm",
+    "badge": "Open to Agentic AI roles · Pakistan · UAE · Available to relocate",
+        "greeting": "Hi, I'm",
     "name": "Asadullah",
     "viewWork": "Explore flagship systems",
     "engagementModels": "Discuss an AI system",
@@ -39,6 +38,7 @@
     "resumeMissingHint": "Add resume.pdf to your /public folder & redeploy",
     "title": "Agentic AI Systems Engineer",
     "headline": "I engineer AI systems that move from reasoning to reliable execution.",
+    "positioning": "Governed agentic AI for regulated workflows: deterministic guardrails, auditable runs, humans in control. English and Arabic.",
     "supporting": "Production-oriented agents that coordinate workflows, use tools, preserve state, operate under guardrails, and leave an auditable trail.",
     "ecosystemNote": "Every engineering claim below links to source code or live runtime evidence: four flagship systems, and 736 tests across 21 open-source agent repositories.",
     "capabilities": "Agent Orchestration · MCP · A2A · Guardrails · Evaluation · Kubernetes",
@@ -266,7 +266,7 @@
     "titleHighlight": "Offer",
     "subtitle": "Three separate tracks. Agent engineering is the main one; the other two are my own textile business's software and the growth work I run alongside it.",
     "s1Title": "Digital Marketing",
-    "s1Desc": "Full-spectrum digital marketing for Dubai real estate, UAE construction, and Pakistani businesses. Strategy, social media, paid ads, property portals, and monthly reporting.",
+    "s1Desc": "Digital marketing for Pakistani businesses, and on offer to real estate and construction teams in the UAE: strategy, social media, paid ads, property portals and monthly reporting.",
     "s1Metric": "Twelve paid-acquisition disciplines, from hook rate to break-even ROAS",
     "s1CTA": "See Marketing Plan →",
     "s2Title": "Agentic AI Systems",
@@ -308,11 +308,11 @@
     "titleHighlight": "Serve",
     "subtitle": "Domain expertise built through real operations, not just consulting.",
     "i1Title": "Textile & Garment",
-    "i1Sub": "Pakistan · UAE · Turkey",
-    "i1Desc": "Serving Pakistan's textile value chain: CMT stitching units, garment factories, fabric mills, and exporters across Faisalabad, Sialkot, Gujranwala, Karachi, and Lahore. Also UAE and Turkish sourcing houses.",
-    "i2Title": "Dubai & UAE Real Estate / Construction",
+    "i1Sub": "Karachi · Pakistan",
+    "i1Desc": "My own small CMT stitching and packing unit in Karachi, plus commission-based embroidery sourcing. The CMT Stitching System and the Textile ERP are built for this real unit. Open to UAE and Gulf sourcing partners.",
+    "i2Title": "Real Estate & Construction (UAE)",
     "i2Sub": "Real estate · Contractors · Developers",
-    "i2Desc": "Digital marketing, property portals, social media, and lead generation for the UAE construction and property sector.",
+    "i2Desc": "Available for UAE engagements: digital marketing, property portals, social media and lead generation for real estate and construction teams.",
     "i3Title": "Pakistani SMEs & Factories",
     "i3Sub": "Small and medium enterprises across Pakistan",
     "i3Desc": "AI tools, digital marketing, and SaaS solutions tailored for Pakistani businesses entering the digital economy."
@@ -320,7 +320,7 @@
   "marketing": {
     "title": "Paid Growth,",
     "titleHighlight": "Measured",
-    "subtitle": "Full-funnel paid acquisition on Meta and Google for Dubai real estate, UAE construction and Pakistani SMEs. Twelve disciplines, from the first three seconds of an ad to break-even ROAS, run as one loop: test, measure, refine, scale.",
+    "subtitle": "Full-funnel paid acquisition on Meta and Google for Pakistani SMEs, and on offer to real estate and construction teams in the UAE. Twelve disciplines, from the first three seconds of an ad to break-even ROAS, run as one loop: test, measure, refine, scale.",
     "proofLead": "Method, not testimonials: client results are published here only once a client has approved them.",
     "proofContact": "Plan a campaign together"
   },
@@ -343,7 +343,7 @@
     "tierFlagshipDesc": "Four systems that carry the argument: orchestration, protocol interoperability, deterministic governance, and the site you are reading. Each one runs on real data and each links to its source.",
     "discordCta": "See how these get built — join #agentic-ai on Discord →",
     "tierEngineering": "Engineering projects",
-    "tierEngineeringDesc": "Shipped platforms and products built on the same methods, with real data behind them.",
+    "tierEngineeringDesc": "Platforms, products and engineering tools. Each project states its evidence and limits.",
     "tierReference": "Reference implementations",
     "tierReferenceDesc": "Real multi-agent code and real test suites running against synthetic domain data. They demonstrate an architecture; they are not deployments with a production track record.",
     "showReference": "Show reference implementations",
@@ -371,7 +371,8 @@
     "viewAllGithub": "Browse All Repositories on GitHub",
     "inspectSystem": "Inspect the System",
     "close": "Close",
-    "statusReference": "Reference"
+    "statusReference": "Reference",
+    "statusRunningWeekly": "Running weekly"
   },
   "hackathons": {
     "title": "Hackathons &",
@@ -382,6 +383,7 @@
     "gold": "Gold",
     "silver": "Silver",
     "bronze": "Bronze",
+    "completed": "Completed",
     "online": "Online"
   },
   "blog": {
@@ -416,7 +418,7 @@
   "testimonials": {
     "title": "What People",
     "titleHighlight": "Say",
-    "subtitle": "From Dubai real estate to Faisalabad garment factories: feedback from the people I've worked with.",
+    "subtitle": "Feedback from the people I've worked with.",
     "linkedInCTA": "View LinkedIn Recommendations"
   },
   "discord": {
