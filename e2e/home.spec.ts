@@ -3,7 +3,7 @@ import { test, expect } from "@playwright/test";
 test.describe("Portfolio home page", () => {
   test.beforeEach(async ({ page }) => {
     await page.goto("/");
-    await page.waitForLoadState("networkidle");
+    await expect(page.locator("html")).toHaveAttribute("data-anchor-navigation-ready", "true");
   });
 
   test("renders hero section", async ({ page }) => {
@@ -12,6 +12,7 @@ test.describe("Portfolio home page", () => {
 
   test("hero primary CTA leads to the engagements", async ({ page }) => {
     await page.locator("#home").getByRole("link", { name: /hire me or book an audit/i }).click();
+    await expect(page).toHaveURL(/#engagements$/);
     const engagements = page.locator("#engagements");
     await expect(engagements).toBeInViewport();
     await expect(engagements.locator("ol > li")).toHaveCount(3);
@@ -31,8 +32,12 @@ test.describe("Portfolio home page", () => {
   });
 
   test("Certifications section is reachable from the navbar", async ({ page }) => {
-    await page.getByRole("button", { name: /more/i }).first().click();
+    const more = page.getByRole("button", { name: "More", exact: true });
+    await more.click();
+    await expect(more).toHaveAttribute("aria-expanded", "true");
     await page.locator('nav a[href="#certifications"]').first().click();
+    await expect(page).toHaveURL(/#certifications$/);
+    await expect(more).toHaveAttribute("aria-expanded", "false");
     const section = page.locator("#certifications");
     await expect(section).toBeInViewport();
     await expect(section.getByRole("listitem").first()).toBeVisible();

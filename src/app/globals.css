@@ -961,7 +961,7 @@
 
 /* Keep deep portfolio sections searchable while skipping offscreen paint. */
 @supports (content-visibility: auto) {
-    .portfolio-home > section:nth-of-type(n + 6) {
+    .portfolio-home:not([data-anchor-navigation="true"]) > section:nth-of-type(n + 6) {
         content-visibility: auto;
         contain-intrinsic-size: auto 700px;
     }
