@@ -7,7 +7,7 @@ import { BASE_URL, PERSON_ID } from "@/lib/seo";
 // three constants; nothing else in this file depends on their wording.
 const AR_TITLE = "أسد الله شافق | مطور ذكاء اصطناعي وكيل";
 const AR_DESCRIPTION =
-  "أسد الله شافق، مهندس أنظمة ذكاء اصطناعي وكيلة: ذكاء اصطناعي وكيل محكوم بحواجز حماية حتمية وتشغيلات قابلة للتدقيق. باكستان · الإمارات.";
+  "أسد الله شافق، مهندس أنظمة ذكاء اصطناعي وكيلة يبحث عن أدوار Forward Deployed Engineer في الإمارات. سير عمل الأعمال، وOpenAI Agents SDK، وMCP، وتقييم الوكلاء دون اتصال.";
 const AR_OG_DESCRIPTION =
   "ذكاء اصطناعي وكيل محكوم لسير العمل المنظَّم: حواجز حماية حتمية، وتشغيلات قابلة للتدقيق، والإنسان صاحب القرار. باكستان · الإمارات.";
 

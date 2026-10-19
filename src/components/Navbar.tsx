@@ -40,7 +40,6 @@ const Navbar = () => {
     { key: "marketing",    name: t("nav.marketing"),    href: "#marketing"    },
     { key: "blog",         name: t("nav.blog"),         href: "#blog"         },
     { key: "openSource",   name: t("nav.openSource"),   href: "#open-source"  },
-    { key: "testimonials", name: t("nav.testimonials"), href: "#testimonials" },
     { key: "contact",      name: t("nav.contact"),      href: "#contact"      },
   ], [t]);
 

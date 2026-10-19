@@ -30,7 +30,7 @@ removed from the site because nothing a stranger can open supports them.
 | Skills | 9 skills; none are agentic (no Agents SDK, MCP, LangGraph) | The core positioning is invisible to recruiter search | §5 |
 | Skills | "DeepLearning.AI", "Certified Python Developer" listed as skills | These are credentials, not skills | Move to Licenses & Certifications |
 | Education | "Textile Institue of Pakistan" | Typo | "Institute" |
-| Activity | Reposts claim "21+ production multi-agent platforms", "263+ / 180+ tests", "zero failed attempts", "85% code reusability", "40%+ cost-per-lead cut" | None is in `evidence.ts`; "zero failures" and "85% reuse" were **deliberately removed** from the site | Stop echoing them in your own posts; do not repeat in the About |
+| Activity | Reposts claim "21+ production multi-agent platforms", "263+ / 180+ tests", "zero failed attempts", "85% code reusability" | None is in `evidence.ts`; "zero failures" and "85% reuse" were **deliberately removed** from the site | Stop echoing them in your own posts; do not repeat in the About |
 | Activity | Posts spell both "Texcot" and "Texco" | Brand inconsistency | Pick one |
 | Open to work | Visible to everyone (green frame) | Reads as job-seeking next to a "Founder" headline | Recruiters-only, unless job-seeking is the priority |
 

@@ -27,7 +27,7 @@ test.describe("Portfolio home page", () => {
   });
 
   test("no unverified client testimonial is published", async ({ page }) => {
-    await expect(page.getByText(/Al Rashidi/i)).toHaveCount(0);
+    await expect(page.locator('[id="testimonials"]')).toHaveCount(0);
   });
 
   test("Certifications section is reachable from the navbar", async ({ page }) => {

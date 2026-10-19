@@ -114,7 +114,7 @@ The single page is ordered as an argument: agentic evidence first, then methodol
 | 1 | Hero | `#home` | Static role line, headline, primary CTA to the flagship systems |
 | 2 | Proof strip + audience paths | — | Checkable evidence cells; four routes (hiring, business, developer, community) |
 | 3 | Flagship case studies | `#flagship-case-studies` | OrchestratorX, ProtoBridge, GuardrailAI |
-| 4 | About · Claude Academy · featured testimonial | `#about` | Background, verified credentials, one promoted quote |
+| 4 | About · Claude Academy | `#about` | Background, verified credentials |
 | 5 | Skills · Agent Engineering | `#skills`, `#agent-engineering` | Stack, and the harness × loop × graph framework |
 | 6 | Agent trace → evidence → runtime → connect | `#agent-trace`, `#evidence`, `#agent-runtime`, `#connect-mcp` | An illustrative run, the disciplines behind it, live endpoints, then how to connect the MCP server to your own AI |
 | 7 | Forward-deployed model · Expertise · Roadmap | `#forward-deployed`, `#expertise`, `#roadmap` | How systems reach a customer; capabilities with source paths |
@@ -122,7 +122,7 @@ The single page is ordered as an argument: agentic evidence first, then methodol
 | 9 | Services · Industries | `#services`, `#industries` | Agentic AI systems, Textile ERP, digital marketing |
 | 10 | Performance Marketing | `#marketing` | Funnel competencies and the live calculator |
 | 11 | Growth skills · Blog · Open source | `#leverage`, `#blog`, `#open-source` | Non-engineering leverage, writing, repositories |
-| 12 | Testimonials · Discord · Contact | `#testimonials`, `#discord`, `#contact` | Third-party quotes, community, engagement models and form |
+| 12 | Discord · Contact | `#discord`, `#contact` | Community, engagement models and form |
 
 ---
 
@@ -133,7 +133,7 @@ Added in [#6](https://github.com/asadullah48/asadullahshafique_devunity/pull/6).
 - **Twelve competencies by funnel stage.** Attention (hook rate, CTR, creative fatigue), click (CPC, lookalike audiences, retargeting), conversion (funnel math, CVR, cost per lead, A/B testing) and profit (ROAS, attribution). Each card shows the formula it works from.
 - **Live funnel calculator.** Budget, CPM, CTR, landing conversion, close rate, deal value and margin in; CPC, CPL, CPA, ROAS and break-even ROAS out. Everything runs in the visitor's browser.
 - **Three presets:** Dubai off-plan (AED), UAE contractor (AED) and Pakistani e-commerce (PKR). They are **illustrative round numbers, labelled as such on screen, not client data**.
-- **Evidence posture.** The competency cards are self-reported skill, so they carry no gold evidence styling. The only client outcome the section refers to is the Al Rashidi testimonial, which it links to rather than restating.
+- **Evidence posture.** The marketing section describes services offered and working methods. It makes no client testimonial or achieved-result claims.
 - **One source of facts.** The same skills are in `skills.marketing` in [`backend/knowledge/portfolio.json`](backend/knowledge/portfolio.json), so the chat assistant and the MCP `get_skills` tool report them too.
 - **Bilingual.** English and Arabic copy in `src/i18n/en.json` / `ar.json`; formulas render left-to-right in both.
 

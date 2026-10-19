@@ -104,16 +104,10 @@ const LEVERAGE: Leverage[] = [
   // The multiplier gets the full-width anchor row on purpose: it is the only
   // one of the seven whose value is a function of the other six.
   //
-  // Its proof is the weakest link on this page and the label is worded to
-  // match: a testimonial proves a deal was CLOSED AND DELIVERED, not that it
-  // was negotiated well. "See client outcomes" claims exactly that and no
-  // more. Do not upgrade this label to imply the negotiation itself is on
-  // display.
   {
     id: "negotiation",
     Icon: Handshake,
     span: "lg:col-span-6",
-    href: "#testimonials",
   },
 ];
 
@@ -158,7 +152,6 @@ const COPY: Record<"en" | "ar", Record<string, Entry>> = {
     negotiation: {
       title: "Negotiation & Deal-Making",
       desc: "The multiplier on every other skill here. Closing a deal, structuring a partnership, or defusing a conflict — the value you capture is decided at the table, not in the build.",
-      proof: "See client outcomes",
     },
   },
   ar: {
@@ -194,7 +187,6 @@ const COPY: Record<"en" | "ar", Record<string, Entry>> = {
     negotiation: {
       title: "التفاوض وإبرام الصفقات",
       desc: "المُضاعِف لكل مهارة أخرى هنا. إغلاق صفقة، أو هيكلة شراكة، أو نزع فتيل خلاف — القيمة التي تحصل عليها تُحسم على الطاولة، لا أثناء البناء.",
-      proof: "اطّلع على نتائج العملاء",
     },
   },
 };

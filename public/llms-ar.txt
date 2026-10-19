@@ -54,7 +54,7 @@
 - الجودة: مجموعة تقييم (evals) تجمع بين فحوصات حتمية وتحكيم بنموذج لغوي
 - السجل: ستة هاكاثونات متتالية في Panaversity، من H0 إلى H5 (برونزية ← فضية ← فضية ← ذهبية ← بلاتينية ← Agent Factory). وقد شحنت الجولة الذهبية H3 نظام ذكاء اصطناعي دستوري ثلاثي الطبقات مع نجاح 149 اختباراً — وهي أصل عمل الحواجز المذكور أعلاه.
 - حجم المساهمة مفتوحة المصدر: 520 مستودعاً عاماً، منها 512 مستودعاً أصلياً و8 نسخ متفرعة، وفق فحص GitHub في 2026-10-19. الأعداد الحيّة من /api/github/stats.
-- التوجه المهني: أدوار Forward Deployed Engineer وهندسة الذكاء الاصطناعي التطبيقي في الإمارات، بما فيها فرص OpenAI. أدلة التنفيذ: https://asadullahshafique-devunity.vercel.app/ar#delivery-evidence . هذا هدف مهني وليس ادعاء توظيف أو ارتباط بالشركة.
+- التوجه المهني: أدوار Forward Deployed Engineer وهندسة الذكاء الاصطناعي التطبيقي في الإمارات. أدلة التنفيذ: https://asadullahshafique-devunity.vercel.app/ar#delivery-evidence
 - Agent Failure Atlas: 30 اختباراً؛ Agent Rehearsal v1.0.0: 171 اختباراً. كلاهما تمارين مبرمجة دون اتصال ببيانات تمثيلية وعروض مسجلة؛ لا يثبتان سلامة النماذج الحية أو موثوقية الإنتاج.
 - الاتصال عبر MCP: https://asadullahshafique-devunity.onrender.com/mcp/server ‏(Streamable HTTP، ست أدوات للقراءة فقط؛ في Claude Code: `claude mcp add --transport http asadullah-portfolio https://asadullahshafique-devunity.onrender.com/mcp/server`). الخادم على خطة مجانية، لذا قد يستغرق الطلب الأول نحو دقيقة حتى يستيقظ.
 - النسخة الإنجليزية: https://asadullahshafique-devunity.vercel.app/

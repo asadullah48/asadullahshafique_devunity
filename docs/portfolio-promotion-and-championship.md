@@ -14,7 +14,7 @@ The homepage now gives hiring teams three evidence routes:
 
 OpenAI's UAE Forward Deployed Engineer role emphasizes customer delivery, full-stack implementation, scoping, and reusable patterns. It also asks for 5+ years of relevant engineering or technical deployment experience, including customer-facing work. The portfolio shows relevant artifacts; it does not establish that every hiring requirement is met. Do not count textile experience automatically as software-engineering tenure or imply employment with OpenAI.
 
-GitHub verification on 2026-10-19: **520 public repositories = 512 original + 8 forks**. The requested 523 could include repositories not visible publicly or a different snapshot; it is not the verified public count. Prefer project depth over a larger headline number.
+GitHub verification on 2026-10-19: **520 public repositories = 512 original + 8 forks**. Prefer project depth over a larger headline number.
 
 ## Entry-pack review
 

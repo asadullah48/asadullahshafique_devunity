@@ -2,7 +2,7 @@
   "delivery": {
     "eyebrow": "Selected work for hiring teams",
     "title": "From business workflow to tested execution",
-    "intro": "Seeking Forward Deployed Engineer and Applied AI roles in the UAE, including opportunities at OpenAI. These projects show how I approach operational problems, integration, and verification.",
+    "intro": "Seeking Forward Deployed Engineer and Applied AI roles in the UAE. These projects show how I approach operational problems, integration, and verification.",
     "businessTitle": "Understand the operation",
     "businessDesc": "CMT software manages orders, production sessions, billing, and party ledgers in my own stitching unit. AI TradeFlow extends the business-workflow theme with inventory, accounting, and five read-only AI tools.",
     "businessLimit": "CMT is my own operating context. Public demos and test counts do not establish customer ROI or enterprise scale.",
@@ -14,7 +14,7 @@
     "evaluationLimit": "Both are scripted/offline exercises with synthetic data. Public pages show recordings; no live model or real purchases are involved.",
     "resume": "Review my resume",
     "contact": "Discuss an engineering role",
-    "role": "Role context: OpenAI FDE · UAE"
+    "role": "Target role: Forward Deployed Engineer · UAE"
   },
   "nav": {
     "about": "About",
@@ -30,7 +30,6 @@
     "hackathons": "Hackathons",
     "blog": "Blog",
     "openSource": "Open Source",
-    "testimonials": "Testimonials",
     "contact": "Contact",
     "more": "More",
     "discord": "Discord",
@@ -432,12 +431,6 @@
     "s3Label": "Tests · 21 agentic repos",
     "s4Label": "Technologies",
     "s5Label": "Communities"
-  },
-  "testimonials": {
-    "title": "What People",
-    "titleHighlight": "Say",
-    "subtitle": "Feedback from the people I've worked with.",
-    "linkedInCTA": "View LinkedIn Recommendations"
   },
   "discord": {
     "title": "Build Reliable AI",

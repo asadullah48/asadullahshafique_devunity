@@ -19,7 +19,6 @@ import portfolio from "../../backend/knowledge/portfolio.json";
 import Blog, { type PostSummary } from "@/components/Blog";
 import { listArticleMeta, type ArticleMeta } from "@/lib/content";
 import OpenSourceSection from "@/components/OpenSource";
-import Testimonials, { FeaturedTestimonial } from "@/components/Testimonials";
 import Discord from "@/components/Discord";
 import Contact from "@/components/Contact";
 import Footer from "@/components/Footer";
@@ -81,9 +80,6 @@ export default function Home() {
             <ProofStrip />
             <AudiencePaths />
             <DeliveryEvidence />
-            {/* Third-party validation beside the proof strip, not two thirds of
-                the way down. Same entry as the #testimonials grid, not a copy. */}
-            <FeaturedTestimonial />
             {/* The strongest agentic-AI evidence; the hero's secondary button
                 and the AI-developer audience path both land here. */}
             <FlagshipCaseStudies />
@@ -114,7 +110,6 @@ export default function Home() {
             <PerformanceMarketing />
             <Blog posts={posts} />
             <OpenSourceSection />
-            <Testimonials />
             <Discord />
             <Contact />
             <Footer />

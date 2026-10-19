@@ -103,7 +103,7 @@ export const metadata: Metadata = {
  * this person is "known for". Two rules govern what may go in here.
  *
  * 1. `sameAs` lists ONLY profiles this site already links somewhere else
- *    (About, Footer, Testimonials, resume). sameAs exists for entity
+ *    (About, Footer, resume). sameAs exists for entity
  *    consolidation; an unreachable or invented profile weakens the graph
  *    rather than strengthening it, and would be a new claim besides.
  * 2. `knowsAbout` is phrased as what people actually search for, not as a
@@ -120,15 +120,7 @@ export const metadata: Metadata = {
  *   - `knowsLanguage` asserts the PERSON reads these, which is a separate
  *     claim from the site shipping an Arabic locale. Owner-confirmed.
  *
- * `aggregateRating` was requested and is deliberately NOT here, on facts
- * rather than taste. src/components/Testimonials.tsx holds THREE testimonials,
- * not two, and its `Testimonial` type is {name, role, text, context} — there
- * is no rating field anywhere in the data, so a "5" is sourced from nothing
- * and a reviewCount of "2" is simply wrong. One of the three is also explicit
- * pre-delivery feedback on a concept, not a review of delivered work. Add
- * this block only once real, rated reviews exist to count — and note that
- * even then, self-hosted reviews about this site's owner are ineligible for
- * Google review rich results and unsupported on Person.
+ * No aggregateRating is published because no verified rated reviews are recorded.
  *
  * `alternateName` here coexists with `alternateName: "أسد الله شافق"` on the
  * same @id in src/app/ar/layout.tsx. Multiple alternateName values are valid
@@ -152,7 +144,7 @@ const personJsonLd = {
     image: `${BASE_URL}/opengraph-image`,
     jobTitle: "Agentic AI Systems Engineer",
     description:
-          "Agentic AI engineer building production multi-agent systems with the OpenAI Agents SDK, real MCP servers, and Constitutional AI guardrails, for clients in Western markets and the Gulf.",
+          "Agentic AI Systems Engineer seeking Forward Deployed Engineer roles in the UAE. Work includes business software, OpenAI Agents SDK and MCP integration, and offline agent evaluation.",
     sameAs: [
           "https://github.com/asadullah48",
           "https://www.linkedin.com/in/asadullah-shafique-a00679325/",

@@ -20,9 +20,8 @@ interface GitHubProfile {
 // total can go DOWN when a repo is deleted or made private, which is exactly
 // why a "+" suffix belongs on the display and not in this object), followers
 // 135 -> 136. following/total_stars/top_languages verified unchanged.
-// Of the 506, 498 are original and 8 are forks.
+// Repository snapshot checked 2026-10-19: 520 public = 512 original + 8 forks.
 //
-// Re-measured 2026-09-11: repos 506 -> 512 (504 original + 8 forks).
 // followers/stars/languages NOT re-measured in that pass.
 const FALLBACK_STATS = {
   public_repos: 520,
