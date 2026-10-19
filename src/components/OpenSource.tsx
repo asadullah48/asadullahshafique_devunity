@@ -9,25 +9,16 @@ import { GitHubStatsStrip } from "@/components/GitHubStatsStrip";
 const GITHUB_USERNAME = "asadullah48";
 
 const STAT_ICONS = [Github, GitFork, Code2, Star, Users];
-// Repo count re-measured against the GitHub API 2026-09-11: 512 public repos
-// = 504 original + 8 forks (was 506 = 498 + 8 on 2026-08-29). The displayed
-// figure is the ORIGINAL count, since a raw total invites the "are these
-// tutorial forks?" question and 98.4% original answers it outright. Shown with
-// a "+" so it stays true as the count grows. Keep in step with the github/stats
-// route fallback and opensrc.subtitle in both i18n files.
-// (Hero.tsx no longer carries a STATS array — its four count-up counters were
-// removed in the 2026-09-10 pass and replaced by <ProofStrip />, so this list
-// is one place shorter than it used to be.)
 // Slot 3 was "85%" / "Code Reuse Rate": self-reported, with nothing anywhere
 // measuring it. Replaced with a figure that was actually counted — 736 is the
 // total of `def test_` occurrences across the 21 AGENTIC repositories, counted
 // on 2026-09-10 from the GitHub trees API over files named test_*.py and
 // *_test.py. (An earlier looser pass over 23 repos produced 835; that figure
-// is superseded and must not reappear.) Scoped to the 21, not all 504 — hence
-// the explicit label; a bare "tests" beside a 504 repo count would imply the
+// is superseded and must not reappear.) Scoped to the 21 — hence
+// the explicit label; a bare "tests" beside a repo count would imply the
 // wrong denominator. Only 6 of the 21 run their tests in CI, which
 // AgentEcosystem's footnote states outright.
-const STAT_VALUES = ["504+", "6", "736", "10+", "3"];
+const STAT_VALUES = ["512", "6", "736", "10+", "3"];
 // Was ["#84cc16", "#3b82f6", "#a855f7", "#f59e0b", "#10b981"] — five literal
 // hex accents, including the retired lime brand and the violet that CLAUDE.md
 // reserves for ambient use only. Five colours across five adjacent tiles encode
@@ -69,6 +60,7 @@ export function OpenSourceSection() {
           <p className="text-muted-foreground max-w-xl mx-auto">
             {t("opensrc.subtitle")}
           </p>
+          <p className="mt-3 text-xs text-muted-foreground">{t("opensrc.repoEvidence")}</p>
           {/* Live repo / star / follower counts from /api/github/stats */}
           <GitHubStatsStrip />
         </Reveal>

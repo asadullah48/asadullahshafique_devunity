@@ -54,7 +54,9 @@ stated as sector focus and target markets, not as completed client engagements.
 - Safety: Constitutional AI — five written principles enforced as guardrails on the orchestrator
 - Quality: an eval suite pairing deterministic tool/route checks with LLM-as-judge scoring
 - Track record: six consecutive Panaversity hackathons, H0 through H5 (Bronze → Silver → Silver → Gold → Platinum → Agent Factory). H3, the Gold round, shipped a triple-layer constitutional AI system with 149 tests passing — the origin of the guardrail work above.
-- Open-source scale: 480+ public repositories and 135 followers on GitHub (481 repos measured 2026-08-24). Live counts are served from /api/github/stats.
+- Open-source scale: 520 public repositories, including 512 original repositories and 8 forks, checked against GitHub on 2026-10-19. Live counts are served from /api/github/stats.
+- Hiring focus: Forward Deployed Engineer and Applied AI roles in the UAE, including opportunities at OpenAI. Selected delivery evidence: https://asadullahshafique-devunity.vercel.app/#delivery-evidence . This is a career target, not an employment or affiliation claim.
+- Agent Failure Atlas: 30 tests; Agent Rehearsal v1.0.0: 171 tests. Both are scripted/offline exercises with synthetic data and public recorded demos. They do not establish live-model safety or production reliability.
 - Connect via MCP: https://asadullahshafique-devunity.onrender.com/mcp/server (Streamable HTTP, six read-only tools; Claude Code: `claude mcp add --transport http asadullah-portfolio https://asadullahshafique-devunity.onrender.com/mcp/server`). Free-tier host: the first request can take about a minute while it wakes.
 - Arabic version: https://asadullahshafique-devunity.vercel.app/ar
 - Machine-readable Arabic profile: https://asadullahshafique-devunity.vercel.app/llms-ar.txt

@@ -6,7 +6,7 @@ import { Reveal } from "@/components/Reveal";
 import { useLocale } from "@/context/LocaleContext";
 
 const PATHS = [
-  { id: "hiring", icon: BriefcaseBusiness, href: "#evidence" },
+  { id: "hiring", icon: BriefcaseBusiness, href: "#delivery-evidence" },
   { id: "client", icon: Building2, href: "#engagements" },
   { id: "developer", icon: Code2, href: "#flagship-case-studies" },
   { id: "community", icon: Users, href: "#discord" }

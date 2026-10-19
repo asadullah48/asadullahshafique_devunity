@@ -25,7 +25,7 @@ interface GitHubProfile {
 // Re-measured 2026-09-11: repos 506 -> 512 (504 original + 8 forks).
 // followers/stars/languages NOT re-measured in that pass.
 const FALLBACK_STATS = {
-  public_repos: 512,
+  public_repos: 520,
   followers: 136,
   following: 1429,
   total_stars: 19,

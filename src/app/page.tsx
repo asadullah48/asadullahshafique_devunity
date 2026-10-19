@@ -3,6 +3,7 @@ import { ClaudeCredential } from "@/components/ClaudeCredential";
 import Hero from "@/components/Hero";
 import ProofStrip from "@/components/ProofStrip";
 import AudiencePaths from "@/components/AudiencePaths";
+import DeliveryEvidence from "@/components/DeliveryEvidence";
 import FlagshipCaseStudies from "@/components/FlagshipCaseStudies";
 import About from "@/components/About";
 import Services from "@/components/Services";
@@ -79,6 +80,7 @@ export default function Home() {
                 links to the artefact that verifies it — see src/lib/evidence.ts. */}
             <ProofStrip />
             <AudiencePaths />
+            <DeliveryEvidence />
             {/* Third-party validation beside the proof strip, not two thirds of
                 the way down. Same entry as the #testimonials grid, not a copy. */}
             <FeaturedTestimonial />

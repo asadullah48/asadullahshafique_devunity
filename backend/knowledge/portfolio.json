@@ -26,7 +26,7 @@
     ],
     "location": "Pakistan · UAE",
     "tagline": "Building production-grade agentic AI systems, including the software that runs my own small CMT unit in Karachi. Available for UAE engagements.",
-    "focus": "Agentic AI development, full-stack engineering, spec-first development with Claude Code.",
+    "focus": "Seeking Forward Deployed Engineer and Applied AI roles in the UAE, including opportunities at OpenAI. Evidence spans business software, OpenAI Agents SDK and MCP integration, and offline agent evaluation. No employment or affiliation with OpenAI is claimed.",
     "education": "Panaversity — Agentic AI development"
   },
 
@@ -67,6 +67,24 @@
   },
 
   "projects": [
+    {
+      "name": "Agent Failure Atlas",
+      "status": "public recorded offline demo; synthetic data",
+      "summary": "Case 001 compares vulnerable and repaired controllers after a committed purchase response is lost. Independent ledger checks expose a duplicate purchase. Separate implementation from Agent Rehearsal; the case links to it. No live models, real purchases, or production safety claim.",
+      "metrics": ["30 tests passed on 2026-10-19: py -3 -X utf8 -m unittest discover -s tests", "One implemented case"],
+      "tech": ["Python", "SQLite", "unittest", "Static HTML"],
+      "github": "https://github.com/asadullah48/agent-failure-atlas",
+      "demo": "https://asadullah48.github.io/agent-failure-atlas/"
+    },
+    {
+      "name": "Agent Rehearsal",
+      "status": "v1.0.0; public recorded offline demo; synthetic data",
+      "summary": "Offline procurement simulator checking approval, budget and retry rules, including a scripted false-success claim rejected by an independent evaluator. Deterministic and scripted controllers make zero model calls. No live-agent safety or production reliability claim.",
+      "metrics": ["171 tests passed for v1.0.0", "Zero model calls"],
+      "tech": ["Python", "SQLite", "Pydantic", "pytest", "Static HTML"],
+      "github": "https://github.com/asadullah48/agent-rehearsal",
+      "demo": "https://asadullah48.github.io/agent-rehearsal/"
+    },
     {
       "name": "FinAgent-Nexus",
       "status": "shipped, live demo",

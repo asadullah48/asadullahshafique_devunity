@@ -55,7 +55,7 @@ export const metadata: Metadata = {
     // backend/orchestration/, the MCP server is mounted at /mcp/server, and
     // the constitution in backend/constitution/ is enforced as SDK guardrails.
     description:
-          "Asadullah Shafique, Agentic AI Systems Engineer: governed agentic AI with deterministic guardrails, auditable runs and real MCP servers. Pakistan · UAE.",
+          "Asadullah Shafique, Agentic AI Systems Engineer seeking Forward Deployed Engineer roles in the UAE. Business workflows, OpenAI Agents SDK, MCP, and offline agent evaluation.",
     keywords: [
           "Asadullah Shafique",
           "Agentic AI",
