@@ -125,6 +125,24 @@ function tierOf(p: Project): Tier {
 
 const PROJECTS_EN: Project[] = [
   {
+    id: "agent-failure-atlas",
+    title: "Agent Failure Atlas: Inspectable Failure Cases",
+    status: "Completed",
+    tagline: "Same success claim. Two purchases. Inspect the ledger.",
+    description: "A public field guide to constructed agent failure cases. Case 001 compares vulnerable and repaired procurement controllers after a committed purchase response is lost. The live demo is a recorded snapshot with synthetic data and no live model calls.",
+    problem: "A timeout leaves a purchase outcome unknown. Retrying with a new operation key can duplicate a purchase while the controller still reports success.",
+    solution: "Compare independent ledger checks, reconcile by intent before retrying, preserve a stable operation key, and enforce uniqueness at the tool boundary. Case 001 links to Agent Rehearsal for deeper offline controller evaluation.",
+    impact: "30 tests passed with py -3 -X utf8 -m unittest discover -s tests (2026-10-19). The constructed fault produces two orders and AED 2,500 spent in the vulnerable run, versus one order and AED 1,250 in the repaired run. Deterministic, single-process SQLite simulation; no real purchases or production reliability claim.",
+    tech: ["Python", "SQLite", "unittest", "Static HTML", "GitHub Actions"],
+    github: "https://github.com/asadullah48/agent-failure-atlas",
+    demo: "https://asadullah48.github.io/agent-failure-atlas/",
+    metrics: [
+      { label: "Tests", value: "30" },
+      { label: "Implemented cases", value: "1" },
+      { label: "Data", value: "Synthetic" },
+    ],
+  },
+  {
     id: "agent-rehearsal",
     title: "Agent Rehearsal: Offline Controller Evaluation",
     status: "Completed",
@@ -782,6 +800,24 @@ const PROJECTS_EN: Project[] = [
 ];
 
 const PROJECTS_AR: Project[] = [
+  {
+    id: "agent-failure-atlas",
+    title: "Agent Failure Atlas: حالات فشل قابلة للفحص",
+    status: "Completed",
+    tagline: "ادعاء نجاح واحد، وعمليتا شراء. افحص السجل.",
+    description: "دليل عام لحالات فشل مصطنعة للوكلاء. تقارن الحالة 001 بين متحكم معرض للفشل وآخر مُصلح بعد فقدان استجابة عملية شراء نُفذت بالفعل. العرض المنشور تسجيل ثابت ببيانات تمثيلية، دون استدعاء نموذج حي.",
+    problem: "يترك انتهاء المهلة نتيجة الشراء مجهولة. قد تؤدي إعادة المحاولة بمفتاح عملية جديد إلى شراء مكرر رغم إعلان المتحكم النجاح.",
+    solution: "فحص مستقل للسجل، والتحقق من الشراء حسب النية قبل إعادة المحاولة، والحفاظ على مفتاح عملية ثابت، وفرض التفرد عند حدود الأداة. ترتبط الحالة 001 بمشروع Agent Rehearsal لتقييم أعمق دون اتصال.",
+    impact: "نجح 30 اختباراً بالأمر py -3 -X utf8 -m unittest discover -s tests بتاريخ 2026-10-19. تنتج الحالة المصطنعة طلبين وإنفاق 2,500 درهم في النسخة المعرضة للفشل، مقابل طلب واحد وإنفاق 1,250 درهماً في النسخة المُصلحة. محاكاة حتمية باستخدام SQLite في عملية واحدة؛ لا مشتريات حقيقية ولا ادعاء بموثوقية إنتاجية.",
+    tech: ["Python", "SQLite", "unittest", "Static HTML", "GitHub Actions"],
+    github: "https://github.com/asadullah48/agent-failure-atlas",
+    demo: "https://asadullah48.github.io/agent-failure-atlas/",
+    metrics: [
+      { label: "اختبارات", value: "30" },
+      { label: "حالات منفذة", value: "1" },
+      { label: "البيانات", value: "تمثيلية" },
+    ],
+  },
   {
     id: "stockai",
     title: "منصة StockAI: وكيل أتمتة المخزون وسلاسل الإمداد",
