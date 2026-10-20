@@ -97,11 +97,11 @@ export const MODULE_FLOWS: Record<string, ModuleFlow> = {
     kind: "agentic",
     layout: "chain",
     nodes: [
-      { id: "interceptor", label: { en: "Pre-Flight Interceptor", ar: "Pre-Flight Interceptor" }, detail: { en: "Blocks a request against AML/OFAC/HIPAA before any agent runs.", ar: "يمنع الطلب أمام قواعد AML وOFAC وHIPAA قبل تشغيل أي وكيل." } },
+      { id: "interceptor", label: { en: "Pre-Flight Interceptor", ar: "Pre-Flight Interceptor" }, detail: { en: "Checks synthetic inputs against OFAC/AML/HIPAA Safe Harbor patterns before model execution.", ar: "يفحص مدخلات تمثيلية لأنماط OFAC وAML وHIPAA Safe Harbor قبل تشغيل النموذج." } },
       { id: "processagent", label: { en: "ProcessAgent", ar: "ProcessAgent" }, detail: { en: "Executes within enforced, bounded limits.", ar: "يُنفَّذ ضمن حدود مفروضة ومقيّدة." } },
-      { id: "complianceagent", label: { en: "ComplianceAgent", ar: "ComplianceAgent" }, detail: { en: "Checks the result against every regulatory threshold.", ar: "يفحص النتيجة أمام كل عتبة تنظيمية." } },
+      { id: "complianceagent", label: { en: "ComplianceAgent", ar: "ComplianceAgent" }, detail: { en: "Checks the result against the configured example thresholds.", ar: "يفحص النتيجة أمام عتبات الأمثلة المحددة." } },
       { id: "circuitbreaker", label: { en: "Circuit Breaker", ar: "Circuit Breaker" }, detail: { en: "Trips to a safe fallback on any threshold breach.", ar: "يتوقف إلى بديل آمن عند أي خرق للعتبة." } },
-      { id: "ledger", label: { en: "SHA-256 Audit Ledger", ar: "SHA-256 Audit Ledger" }, detail: { en: "Hash-chains every hop into a non-repudiable record.", ar: "يسلسل كل قفزة تشفيريًا في سجل غير قابل للإنكار." } },
+      { id: "ledger", label: { en: "SHA-256 Audit Ledger", ar: "SHA-256 Audit Ledger" }, detail: { en: "Links in-memory audit entries with SHA-256: tamper-evident, not tamper-proof.", ar: "يربط قيود التدقيق في الذاكرة ببصمات SHA-256 لكشف العبث، لا لمنعه." } },
     ],
     edges: [
       { from: "interceptor", to: "processagent" },

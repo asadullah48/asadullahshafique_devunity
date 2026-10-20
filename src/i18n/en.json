@@ -568,6 +568,6 @@
     "protobridgeDesc": "MCP and A2A messages cross one governed envelope without losing identity, sensitivity, or correlation context.",
     "guardrailaiTag": "Governance",
     "guardrailaiTitle": "GuardrailAI",
-    "guardrailaiDesc": "Deterministic controls, bounded execution, circuit breakers, and tamper-evident audit records around probabilistic agents."
+    "guardrailaiDesc": "Deterministic pre-model OFAC/AML/HIPAA Safe Harbor patterns on synthetic data, with an in-memory SHA-256 audit chain: tamper-evident, not tamper-proof."
   }
 }

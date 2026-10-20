@@ -77,10 +77,10 @@ export const FLAGSHIP_SYSTEMS: readonly FlagshipSystem[] = [
     slug: "guardrailai",
     name: "GuardrailAI",
     thesis: "Controls the model cannot negotiate away.",
-    summary: "A compliance-oriented reference framework that places deterministic checks, execution bounds, circuit breakers, and a hash-chained audit ledger around probabilistic agents.",
+    summary: "A reference framework demonstrating deterministic pre-model checks for OFAC/AML/HIPAA Safe Harbor patterns on synthetic data and an in-memory SHA-256 hash-chained audit ledger: tamper-evident, not tamper-proof.",
     problem: "Prompt-only safety instructions are not hard controls. High-consequence workflows need explicit ceilings, refusal paths, bounded execution, and records that can be examined after the model responds.",
     decision: "Deterministic pre-flight and post-flight checks sit outside the model. Circuit breakers select safe fallbacks, while each transition contributes to a tamper-evident ledger.",
-    architecture: ["Request", "Pre-flight controls", "Bounded agent work", "Post-flight controls", "Audit certificate"],
+    architecture: ["Request", "Pre-flight controls", "Bounded agent work", "Post-flight controls", "Audit digest and integrity check"],
     invariants: [
       "Deterministic rules run before model execution.",
       "Agent work has explicit mathematical bounds.",
@@ -89,13 +89,14 @@ export const FLAGSHIP_SYSTEMS: readonly FlagshipSystem[] = [
       "Audit entries are linked by cryptographic hashes."
     ],
     verification: [
+      { label: "Audit ledger implementation", href: "https://github.com/asadullah48/guardrailai/blob/69dd5d9b1a996e6f779609c9219ce2897e3b240a/guardrailai/core/audit_ledger.py", detail: "In-memory blocks, SHA-256 digests, link verification, and a formatted audit seal; no digital signature." },
       { label: "Guardrail source", href: "https://github.com/asadullah48/guardrailai/tree/main/guardrailai/guardrails", detail: "Deterministic policy implementations and enforcement boundaries." },
       { label: "Source repository", href: "https://github.com/asadullah48/guardrailai", detail: "Framework, tests, deployment assets, and documentation." }
     ],
     limitations: [
       "A technical reference is not a certification or legal compliance determination.",
       "Rules must be reviewed and maintained by qualified domain owners.",
-      "Hash chaining supports tamper evidence; it does not replace access control or retention policy."
+      "The ledger is held in memory and can be replaced and rehashed by a writer; it is not tamper-proof or digitally signed."
     ],
     enterpriseNext: ["Validate rules with domain counsel.", "Integrate authoritative policy sources.", "Add access control, retention, monitoring, and incident procedures."],
     stack: ["FastAPI", "Python", "LangGraph", "SHA-256", "Circuit Breakers", "Docker"],

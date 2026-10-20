@@ -329,8 +329,8 @@
     {
       "name": "GuardrailAI",
       "status": "flagship system",
-      "summary": "A compliance layer that enforces AML, OFAC and HIPAA Safe Harbor rules in deterministic Python before any model is called, with a SHA-256 hash-chained audit ledger.",
-      "metrics": ["17 tests"],
+      "summary": "Reference implementation of deterministic pre-model OFAC/AML/HIPAA Safe Harbor pattern checks on synthetic data, with an in-memory SHA-256 hash-chained, tamper-evident (not tamper-proof) audit ledger.",
+      "metrics": ["42 tests passed on public main 69dd5d9 (2026-10-20)"],
       "tech": ["FastAPI", "Python 3.12", "LangGraph", "State Machines", "SHA-256 Cryptography", "Circuit Breakers", "Helm", "Docker"],
       "github": "https://github.com/asadullah48/guardrailai"
     },
@@ -362,7 +362,7 @@
       "name": "ProtoBridge",
       "status": "flagship system",
       "summary": "An interoperability layer that normalises MCP and A2A messages into one governed ProtocolEnvelope, inspects them on the way in and on the way out, and records every hop in a hash-chained ledger of payload digests. Implements both protocols on the wire: JSON-RPC over stdio and a real HTTP A2A peer.",
-      "metrics": ["62 tests pass with no API key or network", "Live demo recomputes SHA-256 ledger digests in the visitor's browser"],
+      "metrics": ["65 tests passed on public main 3449d8d (2026-10-20), using local protocol peers and no external service", "Live demo recomputes SHA-256 ledger digests in the visitor's browser"],
       "tech": ["LangGraph", "MCP", "A2A", "JSON-RPC 2.0", "Python 3.13", "Pydantic", "GitHub Pages"],
       "github": "https://github.com/asadullah48/protobridge",
       "demo": "https://asadullah48.github.io/protobridge/"
