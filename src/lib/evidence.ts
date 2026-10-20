@@ -168,8 +168,9 @@ export const PROOF: readonly Evidence[] = [
  *
  * Each `value` is measured, not carried over from marketing copy. Test counts
  * are what `pytest` collects and passes on a fresh clone of each repository
- * (re-measured 2026-09-30: OrchestratorX 41 passed, ProtoBridge 62 passed,
- * GuardrailAI 17 passed). The 2026-09-10 audit had counted `def test_`
+ * (re-measured from public main on 2026-10-20: OrchestratorX 41 passed,
+ * ProtoBridge 65 passed, GuardrailAI 42 passed; commit SHAs and commands
+ * are recorded in docs/public-project-evidence.md). The 2026-09-10 audit had counted `def test_`
  * occurrences instead (39 and 61), which misses parametrized cases, so the
  * site briefly showed two different numbers for the same repository.
  */
@@ -191,7 +192,7 @@ export const ENGINEERING_EVIDENCE: readonly Evidence[] = [
   {
     id: "protocol-wire",
     label: "Protocol interop",
-    value: "62 tests · MCP + A2A",
+    value: "65 tests · MCP + A2A",
     detail:
       "ProtoBridge implements both protocols to the wire — real JSON-RPC over stdio in a subprocess, and a real HTTP peer serving an Agent Card — rather than simulating them. Governance rides inside the envelope, because transport headers do not survive an stdio hop.",
     source: {
@@ -201,7 +202,7 @@ export const ENGINEERING_EVIDENCE: readonly Evidence[] = [
     },
     ar: {
       label: "التشغيل البيني للبروتوكولات",
-      value: "62 اختباراً · MCP + A2A",
+      value: "65 اختباراً · MCP + A2A",
       detail:
         "ينفّذ ProtoBridge البروتوكولين على مستوى السلك فعلياً — JSON-RPC حقيقي عبر stdio في عملية فرعية، ونظير HTTP حقيقي يقدّم Agent Card — بدلاً من محاكاتهما. وتنتقل الحوكمة داخل الظرف نفسه، لأن ترويسات النقل لا تنجو من قفزة stdio.",
     },
@@ -209,15 +210,15 @@ export const ENGINEERING_EVIDENCE: readonly Evidence[] = [
   {
     id: "compliance",
     label: "Deterministic guardrails",
-    value: "17 tests · 3 domains",
+    value: "42 tests · 3 domains",
     detail:
-      "GuardrailAI screens OFAC, AML and HIPAA Safe Harbor in plain Python before a model is reached. A control a model can argue its way past is not a control.",
+      "GuardrailAI uses deterministic pre-model checks for OFAC/AML/HIPAA Safe Harbor patterns on synthetic data, with an in-memory SHA-256 hash-chained ledger that is tamper-evident, not tamper-proof.",
     source: { kind: "repo", slug: "guardrailai", path: "guardrailai/guardrails" },
     ar: {
       label: "حواجز حماية حتمية",
-      value: "17 اختباراً · 3 مجالات",
+      value: "42 اختباراً · 3 مجالات",
       detail:
-        "يفحص GuardrailAI قوائم OFAC ومكافحة غسل الأموال وHIPAA Safe Harbor بكود Python صريح قبل الوصول إلى أي نموذج. فالضابط الذي يستطيع النموذج التحايل عليه بالحجّة ليس ضابطاً.",
+        "يستخدم GuardrailAI فحوصات حتمية قبل النموذج لأنماط OFAC وAML وHIPAA Safe Harbor على بيانات تمثيلية، مع سجل في الذاكرة مرتبط ببصمات SHA-256 يكشف العبث ولا يمنعه.",
     },
   },
   {
