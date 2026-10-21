@@ -10,8 +10,8 @@
     "integrationDesc": "This portfolio implements an OpenAI Agents SDK orchestrator with four specialists and six read-only MCP tools. ProtoBridge explores governed communication across MCP and A2A.",
     "integrationLimit": "The portfolio tools cannot write business data. Protocol demonstrations do not establish interoperability with every external service.",
     "evaluationTitle": "Inspect failures and verify repairs",
-    "evaluationDesc": "Agent Failure Atlas makes a duplicate-purchase failure inspectable, with 30 passing tests. Agent Rehearsal v1.0.0 checks approval, budget, and retry rules, with 171 passing tests and an independently rejected false-success claim.",
-    "evaluationLimit": "Both are scripted/offline exercises with synthetic data. Public pages show recordings; no live model or real purchases are involved.",
+    "evaluationDesc": "Agent Failure Atlas makes a duplicate-purchase failure inspectable, with 30 passing tests. Agent Rehearsal v1.1.0 checks approval, budget, and retry rules, with 257 tests passed in CI (39 optional live-SDK tests skipped) and an independently rejected false-success claim.",
+    "evaluationLimit": "Both public demos are scripted/offline exercises with synthetic data; no real purchases are involved. Agent Rehearsal's one live-model evaluation is reported separately with its limits.",
     "resume": "Review my resume",
     "contact": "Discuss an engineering role",
     "role": "Target role: Forward Deployed Engineer · UAE"
