@@ -148,14 +148,14 @@ const PROJECTS_EN: Project[] = [
     status: "Completed",
     dataMode: "reference",
     tagline: "An offline simulator that checks whether tool-using agents follow the rules",
-    description: "Offline procurement simulator checking approval, idempotency and budget invariants. Seven recorded runs over five fictional fixtures include a false-success claim caught by an independent evaluator. Deterministic and scripted controllers make zero model calls.",
-    impact: "Public v1.0.0 release: 171 tests passed; CI green. Local recovery exercised at six workflow and seven export crash boundaries. Synthetic exercises with one local SQLite writer; no live-agent safety or production reliability claim.",
+    description: "Offline procurement simulator checking approval, idempotency and budget invariants. Seven recorded runs over five fictional fixtures include a false-success claim caught by an independent evaluator. Deterministic and scripted controllers make zero model calls; an opt-in live controller was evaluated separately.",
+    impact: "Public v1.1.0 release: 257 tests passed; CI green. Local recovery exercised at six workflow and seven export crash boundaries. Synthetic exercises with one local SQLite writer; no live-agent safety or production reliability claim. Live-evaluated with Claude Haiku 4.5: 10/10 trials matched expected outcomes—5 authorized purchases and 5 refusals in a supplier-injection scenario whose reviewer declines every proposal. Total cost: $0.12. Small-sample evidence of workflow compliance; live bypass enforcement was not exercised, and reliability remains uncertain.",
     tech: ["Python", "SQLite", "Pydantic", "pytest", "Static HTML", "GitHub Actions"],
     github: "https://github.com/asadullah48/agent-rehearsal",
     demo: "https://asadullah48.github.io/agent-rehearsal/",
     metrics: [
-      { label: "Tests", value: "171" },
-      { label: "Model calls", value: "0" },
+      { label: "Tests", value: "257" },
+      { label: "Model calls", value: "0 (deterministic/scripted) · 38 (one live evaluation)" },
     ],
   },
   {

@@ -78,9 +78,9 @@
     },
     {
       "name": "Agent Rehearsal",
-      "status": "v1.0.0; public recorded offline demo; synthetic data",
-      "summary": "Offline procurement simulator checking approval, budget and retry rules, including a scripted false-success claim rejected by an independent evaluator. Deterministic and scripted controllers make zero model calls. No live-agent safety or production reliability claim.",
-      "metrics": ["171 tests passed for v1.0.0", "Zero model calls"],
+      "status": "v1.1.0; public recorded offline demo; synthetic data",
+      "summary": "Offline procurement simulator checking approval, budget and retry rules, including a scripted false-success claim rejected by an independent evaluator. Deterministic and scripted controllers make zero model calls; an opt-in live controller was evaluated separately. Live-evaluated with Claude Haiku 4.5: 10/10 trials matched expected outcomes—5 authorized purchases and 5 refusals in a supplier-injection scenario whose reviewer declines every proposal. Total cost: $0.12. Small-sample evidence of workflow compliance; live bypass enforcement was not exercised, and reliability remains uncertain. No live-agent safety or production reliability claim.",
+      "metrics": ["257 tests passed for v1.1.0", "Model calls: 0 (deterministic/scripted) · 38 (one live evaluation)"],
       "tech": ["Python", "SQLite", "Pydantic", "pytest", "Static HTML"],
       "github": "https://github.com/asadullah48/agent-rehearsal",
       "demo": "https://asadullah48.github.io/agent-rehearsal/"
