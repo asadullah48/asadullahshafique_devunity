@@ -66,7 +66,7 @@ const LABELS: Record<Locale, {
     aboutAuthor: "About the author",
     authorRole: "Agentic AI Systems Engineer",
     authorBio:
-      "I build multi-agent systems on the OpenAI Agents SDK with MCP tooling, constitutional guardrails and trace-level evaluation, and write here about the architecture and judgment behind them.",
+      "I build multi-agent systems: supervisor routing as typed state, deterministic guardrails with hash-chained audit ledgers, and MCP × A2A tool interoperability. I write here about the architecture and judgment behind them.",
     ctaEvidence: "See the engineering evidence",
     ctaContact: "Discuss a project",
     moreArticles: "More articles",

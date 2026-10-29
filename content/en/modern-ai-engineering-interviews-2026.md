@@ -8,6 +8,7 @@ date: 2026-10-29
 category: strategy
 tags: ["AI Engineering", "Technical Interviews", "Agentic AI", "Evaluation", "Software Engineering"]
 accentColor: "#4f8cff"
+ogImage: "/images/blog/og/modern-ai-engineering-interviews-2026.png"
 related: ["architecture-of-agentic-ai", "graph-engineering-with-claude", "closing-the-deployment-gap"]
 ---
 
@@ -164,7 +165,7 @@ For AI engineering roles, add practical depth in these areas:
 - Security, authorization, prompt injection, and data handling
 - Model selection, routing, cost, and latency
 
-Then practise under realistic constraints:
+Then practice under realistic constraints:
 
 - Understand an unfamiliar repository in a fixed time.
 - Debug a deliberately broken retrieval pipeline.
@@ -172,6 +173,13 @@ Then practise under realistic constraints:
 - Review generated code for hidden correctness and security issues.
 - Build a small evaluation set and compare two system versions.
 - Explain every important change as if you were opening a pull request.
+
+## How I practice this
+
+- [Agent Failure Atlas (Case 001)](https://asadullah48.github.io/agent-failure-atlas/) — reproducible agent-failure case
+- [OrchestratorX](/systems/orchestratorx) — supervisor routing as typed state, 41 tests
+- [GuardrailAI](/systems/guardrailai) — deterministic compliance checks with hash-chained audit ledger, 42 tests
+- [ProtoBridge](/systems/protobridge) — MCP × A2A interoperability layer, 65 tests
 
 ## The principle to remember
 

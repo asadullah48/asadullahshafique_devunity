@@ -60,7 +60,12 @@ export type ArticleMeta = {
   related: string[];
   /** Where the ideas in the article exist as code. Resolved, never free text. */
   evidence: Evidence[];
+  /** Per-article share image under /public, or null to use the site default. */
+  ogImage: OgImage | null;
 };
+
+/** Width/height are read from the file, never typed by hand; absent if unknown. */
+export type OgImage = { url: string; width?: number; height?: number };
 
 export type Article = ArticleMeta & { html: string; toc: TocEntry[] };
 
@@ -317,6 +322,30 @@ function resolveEvidence(raw: unknown, file: string): Evidence[] {
   });
 }
 
+/**
+ * `ogImage:` is a site-relative path under /public. Like evidence paths it is
+ * checked at build time, and its dimensions come from the PNG header, so the
+ * card cannot advertise a size the file does not have. Other formats ship
+ * without width/height rather than with a guess.
+ */
+function resolveOgImage(raw: unknown, file: string): OgImage | null {
+  if (raw === undefined || raw === null || raw === "") return null;
+  const url = String(raw);
+  if (!url.startsWith("/")) throw new Error(`${file}: ogImage must start with "/": ${url}`);
+  const abs = path.join(process.cwd(), "public", url);
+  if (!fs.existsSync(abs)) throw new Error(`${file}: ogImage does not exist: public${url}`);
+
+  const head = Buffer.alloc(24);
+  const fd = fs.openSync(abs, "r");
+  try {
+    fs.readSync(fd, head, 0, 24, 0);
+  } finally {
+    fs.closeSync(fd);
+  }
+  const isPng = head.readUInt32BE(0) === 0x89504e47 && head.toString("ascii", 12, 16) === "IHDR";
+  return isPng ? { url, width: head.readUInt32BE(16), height: head.readUInt32BE(20) } : { url };
+}
+
 function readArticle(locale: Locale, slug: string): { meta: ArticleMeta; body: string } | null {
   const file = articlePath(locale, slug);
   if (!fs.existsSync(file)) return null;
@@ -358,6 +387,7 @@ function readArticle(locale: Locale, slug: string): { meta: ArticleMeta; body: s
       featured: data.featured === true,
       related: Array.isArray(data.related) ? data.related.map(String) : [],
       evidence: resolveEvidence(data.evidence, rel),
+      ogImage: resolveOgImage(data.ogImage, rel),
     },
   };
 }

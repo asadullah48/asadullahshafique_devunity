@@ -26,6 +26,20 @@ export const OG_IMAGE = {
   alt: "Asadullah Shafique — Agentic AI Systems Engineer",
 };
 
+/**
+ * The article's own image when its frontmatter declares one, else the site
+ * default. Dimensions are passed through only when content.ts measured them.
+ */
+function shareImage(article: ArticleMeta) {
+  const img = article.ogImage;
+  if (!img) return OG_IMAGE;
+  return {
+    url: img.url,
+    ...(img.width && img.height && { width: img.width, height: img.height }),
+    alt: article.title,
+  };
+}
+
 export function articleHref(locale: Locale, slug: string): string {
   return `${locale === "ar" ? "/ar" : ""}/blog/${slug}`;
 }
@@ -37,6 +51,7 @@ export function buildArticleMetadata(article: ArticleMeta): Metadata {
   // Advertising an alternate that 404s is worse than declaring none.
   const translated = hasTranslation(lang, slug);
   const category = getCategory(article.category);
+  const image = shareImage(article);
 
   return {
     metadataBase: new URL(BASE_URL),
@@ -69,13 +84,13 @@ export function buildArticleMetadata(article: ArticleMeta): Metadata {
       ...(category && { section: category.label }),
       authors: [article.author],
       tags: article.tags,
-      images: [OG_IMAGE],
+      images: [image],
     },
     twitter: {
       card: "summary_large_image",
       title: article.title,
       description: article.description,
-      images: [OG_IMAGE.url],
+      images: [image.url],
     },
   };
 }
@@ -106,7 +121,7 @@ export function buildArticleJsonLd(article: ArticleMeta): string {
         keywords: article.tags.join(", "),
         author: { "@id": PERSON_ID },
         publisher: { "@id": PERSON_ID },
-        image: `${BASE_URL}/opengraph-image`,
+        image: `${BASE_URL}${shareImage(article).url}`,
         url,
         mainEntityOfPage: url,
         ...(!isAr && { isPartOf: { "@id": `${BASE_URL}/blog#blog` } }),
