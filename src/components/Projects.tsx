@@ -5,7 +5,7 @@ import Image from "next/image";
 import { Reveal } from "@/components/Reveal";
 import { AgentEcosystem } from "@/components/AgentEcosystem";
 import { ModuleFlowDialog } from "@/components/ModuleFlowDialog";
-import { Github, ExternalLink, ChevronDown, ChevronUp, Zap, Star, Clock, ShoppingBag, ShieldCheck, Terminal, LayoutGrid, FlaskConical, Repeat } from "lucide-react";
+import { Github, ExternalLink, ChevronDown, ChevronUp, Zap, Star, Clock, ShoppingBag, ShieldCheck, Terminal, LayoutGrid, FlaskConical, Repeat, Play } from "lucide-react";
 import { useLocale } from "@/context/LocaleContext";
 import { MODULE_FLOWS } from "@/lib/module-flows";
 
@@ -65,6 +65,7 @@ type Project = {
    */
   sourceOnRequest?: boolean;
   demo?: string;
+  video?: string;
   image?: string;
   metrics?: { label: string; value: string }[];
   // NOTE: `featured` is currently DEAD — it is set on 25 of the 32 entries and
@@ -604,6 +605,7 @@ const PROJECTS_EN: Project[] = [
     tech: ["LangGraph", "MCP", "A2A", "JSON-RPC 2.0", "Python 3.13", "Pydantic", "GitHub Pages"],
     github: "https://github.com/asadullah48/protobridge",
     demo: "https://asadullah48.github.io/protobridge/",
+    video: "https://youtu.be/fRyhCSqvunk",
     metrics: [
       { label: "Tests", value: "65" },
       { label: "API Keys", value: "0" },
@@ -1281,6 +1283,7 @@ const PROJECTS_AR: Project[] = [
     tech: ["LangGraph", "MCP", "A2A", "JSON-RPC 2.0", "Python 3.13", "Pydantic", "GitHub Pages"],
     github: "https://github.com/asadullah48/protobridge",
     demo: "https://asadullah48.github.io/protobridge/",
+    video: "https://youtu.be/fRyhCSqvunk",
     metrics: [
       { label: "اختبارات", value: "65" },
       { label: "مفاتيح API", value: "0" },
@@ -1834,7 +1837,7 @@ function ProjectCard({
           </div>
         )}
 
-        <div className="flex gap-3 mt-auto">
+        <div className="flex flex-wrap gap-3 mt-auto">
           {project.github && (
             <a href={project.github} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 text-muted-foreground hover:text-foreground text-sm border border-border hover:border-brand/30 px-4 py-2 rounded-md transition-all duration-200 ease-spring active:scale-[0.97]">
               <Github className="w-4 h-4" /> {labels.viewCode}
@@ -1848,6 +1851,11 @@ function ProjectCard({
           {project.demo && (
             <a href={project.demo} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 text-muted-foreground hover:text-brand text-sm border border-border hover:border-brand/40 px-4 py-2 rounded-md transition-all duration-200 ease-spring active:scale-[0.97]">
               <ExternalLink className="w-4 h-4" /> {labels.viewDemo}
+            </a>
+          )}
+          {project.video && (
+            <a href={project.video} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 text-muted-foreground hover:text-brand text-sm border border-border hover:border-brand/40 px-4 py-2 rounded-md transition-all duration-200 ease-spring active:scale-[0.97]">
+              <Play className="w-4 h-4" /> {labels.viewVideo}
             </a>
           )}
         </div>
@@ -1884,6 +1892,7 @@ export function ProjectsSection() {
     referenceDataTitle: t("projects.referenceDataTitle"),
     viewCode: t("projects.viewCode"),
     viewDemo: t("projects.viewDemo"),
+    viewVideo: t("projects.viewVideo"),
     viewCaseStudy: t("projects.viewCaseStudy"),
     hideCaseStudy: t("projects.hideCaseStudy"),
     inspectSystem: t("projects.inspectSystem"),
@@ -2069,6 +2078,18 @@ export function ProjectsSection() {
                   >
                     <ExternalLink className="h-3 w-3" aria-hidden="true" />
                     {labels.viewDemo}
+                  </a>
+                )}
+                {project.video && (
+                  <a
+                    href={project.video}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label={`${labels.viewVideo}: ${project.title}`}
+                    className="inline-flex items-center gap-1 font-mono text-xs text-brand-soft transition-colors hover:text-brand"
+                  >
+                    <Play className="h-3 w-3" aria-hidden="true" />
+                    {labels.viewVideo}
                   </a>
                 )}
                 {project.github && (
