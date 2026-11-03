@@ -186,3 +186,5 @@ Then practice under realistic constraints:
 AI tools accelerate execution. The engineer remains responsible for reasoning, verification, trade-offs, and outcomes.
 
 The strongest candidate is not the person who refuses AI, or the person who accepts every AI suggestion. It is the person who can use AI as an engineering tool while keeping the work understandable, testable, and under human control.
+
+Update, 3 Nov 2026: now 74 tests passing (commit 69cd28a), and a live A2A demo is online at https://84-12-146-32.sslip.io/ (reference A2A peer only, synthetic data).

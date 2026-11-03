@@ -66,6 +66,8 @@ type Project = {
   sourceOnRequest?: boolean;
   demo?: string;
   video?: string;
+  // A hosted peer that is only part of the system; `note` says which part.
+  liveA2a?: { href: string; note: string };
   image?: string;
   metrics?: { label: string; value: string }[];
   // NOTE: `featured` is currently DEAD — it is set on 25 of the 32 entries and
@@ -606,6 +608,7 @@ const PROJECTS_EN: Project[] = [
     github: "https://github.com/asadullah48/protobridge",
     demo: "https://asadullah48.github.io/protobridge/",
     video: "https://youtu.be/fRyhCSqvunk",
+    liveA2a: { href: "https://84-12-146-32.sslip.io/", note: "Reference A2A peer only (synthetic data)" },
     metrics: [
       { label: "Tests", value: "74" },
       { label: "API Keys", value: "0" },
@@ -1284,6 +1287,7 @@ const PROJECTS_AR: Project[] = [
     github: "https://github.com/asadullah48/protobridge",
     demo: "https://asadullah48.github.io/protobridge/",
     video: "https://youtu.be/fRyhCSqvunk",
+    liveA2a: { href: "https://84-12-146-32.sslip.io/", note: "نظير A2A مرجعي فقط (بيانات اصطناعية)" },
     metrics: [
       { label: "اختبارات", value: "74" },
       { label: "مفاتيح API", value: "0" },
@@ -1858,6 +1862,14 @@ function ProjectCard({
               <Play className="w-4 h-4" /> {labels.viewVideo}
             </a>
           )}
+          {project.liveA2a && (
+            <span className="flex flex-wrap items-center gap-2">
+              <a href={project.liveA2a.href} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 text-muted-foreground hover:text-brand text-sm border border-border hover:border-brand/40 px-4 py-2 rounded-md transition-all duration-200 ease-spring active:scale-[0.97]">
+                <ExternalLink className="w-4 h-4" /> {labels.viewLiveA2a}
+              </a>
+              <span className="text-xs text-muted-foreground">{project.liveA2a.note}</span>
+            </span>
+          )}
         </div>
       </div>
     </Reveal>
@@ -1893,6 +1905,7 @@ export function ProjectsSection() {
     viewCode: t("projects.viewCode"),
     viewDemo: t("projects.viewDemo"),
     viewVideo: t("projects.viewVideo"),
+    viewLiveA2a: t("projects.viewLiveA2a"),
     viewCaseStudy: t("projects.viewCaseStudy"),
     hideCaseStudy: t("projects.hideCaseStudy"),
     inspectSystem: t("projects.inspectSystem"),
@@ -2091,6 +2104,21 @@ export function ProjectsSection() {
                     <Play className="h-3 w-3" aria-hidden="true" />
                     {labels.viewVideo}
                   </a>
+                )}
+                {project.liveA2a && (
+                  <a
+                    href={project.liveA2a.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label={`${labels.viewLiveA2a}: ${project.title}`}
+                    className="inline-flex items-center gap-1 font-mono text-xs text-brand-soft transition-colors hover:text-brand"
+                  >
+                    <ExternalLink className="h-3 w-3" aria-hidden="true" />
+                    {labels.viewLiveA2a}
+                  </a>
+                )}
+                {project.liveA2a && (
+                  <span className="font-mono text-xs text-muted-foreground/70">{project.liveA2a.note}</span>
                 )}
                 {project.github && (
                   <a

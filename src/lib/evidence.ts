@@ -192,7 +192,7 @@ export const ENGINEERING_EVIDENCE: readonly Evidence[] = [
   {
     id: "protocol-wire",
     label: "Protocol interop",
-    value: "65 tests · MCP + A2A",
+    value: "74 tests passing (verified 3 Nov 2026, commit 69cd28a)",
     detail:
       "ProtoBridge implements both protocols to the wire — real JSON-RPC over stdio in a subprocess, and a real HTTP peer serving an Agent Card — rather than simulating them. Governance rides inside the envelope, because transport headers do not survive an stdio hop.",
     source: {
@@ -202,7 +202,7 @@ export const ENGINEERING_EVIDENCE: readonly Evidence[] = [
     },
     ar: {
       label: "التشغيل البيني للبروتوكولات",
-      value: "65 اختباراً · MCP + A2A",
+      value: "74 اختباراً ناجحاً (تم التحقّق في 3 نوفمبر 2026، الإيداع 69cd28a)",
       detail:
         "ينفّذ ProtoBridge البروتوكولين على مستوى السلك فعلياً — JSON-RPC حقيقي عبر stdio في عملية فرعية، ونظير HTTP حقيقي يقدّم Agent Card — بدلاً من محاكاتهما. وتنتقل الحوكمة داخل الظرف نفسه، لأن ترويسات النقل لا تنجو من قفزة stdio.",
     },

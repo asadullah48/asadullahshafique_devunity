@@ -362,7 +362,7 @@
       "name": "ProtoBridge",
       "status": "flagship system",
       "summary": "An interoperability layer that normalises MCP and A2A messages into one governed ProtocolEnvelope, inspects them on the way in and on the way out, and records every hop in a hash-chained ledger of payload digests. Implements both protocols on the wire: JSON-RPC over stdio and a real HTTP A2A peer.",
-      "metrics": ["65 tests passed on public main 3449d8d (2026-10-20), using local protocol peers and no external service", "Live demo recomputes SHA-256 ledger digests in the visitor's browser"],
+      "metrics": ["74 tests passing (verified 3 Nov 2026, commit 69cd28a), using local protocol peers and no external service", "Live demo recomputes SHA-256 ledger digests in the visitor's browser"],
       "tech": ["LangGraph", "MCP", "A2A", "JSON-RPC 2.0", "Python 3.13", "Pydantic", "GitHub Pages"],
       "github": "https://github.com/asadullah48/protobridge",
       "demo": "https://asadullah48.github.io/protobridge/"
