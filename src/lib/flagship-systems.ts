@@ -61,7 +61,8 @@ export const FLAGSHIP_SYSTEMS: readonly FlagshipSystem[] = [
     ],
     verification: [
       { label: "Protocol implementation", href: "https://github.com/asadullah48/protobridge/tree/main/src/protobridge/protocols", detail: "MCP and A2A codecs and transport implementations." },
-      { label: "Interactive verification", href: "https://asadullah48.github.io/protobridge/", detail: "Browser-side replay and digest verification for published traces." }
+      { label: "Interactive verification", href: "https://asadullah48.github.io/protobridge/", detail: "Browser-side replay and digest verification for published traces." },
+      { label: "Live A2A demo", href: "https://84-12-146-32.sslip.io/", detail: "Reference A2A peer only (synthetic data). Full MCP + A2A bridge runs locally." }
     ],
     limitations: [
       "Published demonstrations use controlled traces rather than a customer's private traffic.",
