@@ -33,7 +33,7 @@ Agentic AI engineer who builds multi-agent systems that can be audited: typed or
 [Architecture reviews](https://asadullahshafique-devunity.vercel.app/systems/orchestratorx)
 
 - **OrchestratorX:** supervisor-pattern framework where routing is typed state, not prompt text; 41 tests with no API key or network; FastAPI trace endpoint, Docker, CI on Python 3.11–3.13.
-- **ProtoBridge:** MCP × A2A interoperability layer with a normalized envelope; 62 tests; the live demo recomputes SHA-256 ledger digests in the visitor's browser.
+- **ProtoBridge:** MCP × A2A interoperability layer with a normalized envelope; 74 tests passing (verified 3 Nov 2026, commit 69cd28a); the live demo recomputes SHA-256 ledger digests in the visitor's browser.
 - **GuardrailAI:** deterministic compliance layer with a hash-chained audit ledger; 17 tests.
 
 ### AI TradeFlow — inventory, accounting and an AI assistant for wholesalers
