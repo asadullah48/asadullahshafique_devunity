@@ -27,13 +27,14 @@ const Navbar = () => {
   const { t, locale } = useLocale();
   const pathname = usePathname();
   const homePath = locale === "ar" ? "/ar" : "/";
-  const sectionHref = (hash: string) => pathname === homePath ? hash : `${homePath}${hash}`;
+  const sectionHref = (hash: string) => !hash.startsWith("#") ? hash : pathname === homePath ? hash : `${homePath}${hash}`;
 
   // Order mirrors the page's section flow (AI-engineering proof first).
   const navLinks = useMemo(() => [
     { key: "about",        name: t("nav.about"),        href: "#about"        },
     { key: "certifications", name: t("nav.certifications"), href: "#certifications" },
     { key: "agentEng",     name: t("nav.agentEng"),     href: "#agent-engineering" },
+    { key: "howIBuild", name: t("nav.howIBuild"), href: "/how-i-build-agents" },
     { key: "projects",     name: t("nav.projects"),     href: "#projects"     },
     { key: "hackathons",   name: t("nav.hackathons"),   href: "#hackathons"   },
     { key: "services",     name: t("nav.services"),     href: "#services"     },
@@ -51,7 +52,8 @@ const Navbar = () => {
     () => navLinks.filter((l) => !(PRIMARY_KEYS as readonly string[]).includes(l.key)),
     [navLinks]
   );
-  const isMoreActive = moreLinks.some((l) => l.href === `#${activeId}`);
+  const isActive = (href: string) => href.startsWith("#") ? pathname === homePath && href === `#${activeId}` : pathname === href;
+  const isMoreActive = moreLinks.some((l) => isActive(l.href));
 
   useEffect(() => {
     const handleScroll = () => setIsScrolled(window.scrollY > 50);
@@ -63,7 +65,7 @@ const Navbar = () => {
   // Scroll-spy: highlight whichever section is crossing the middle band of
   // the viewport, including sections folded into "More".
   useEffect(() => {
-    const ids = navLinks.map((l) => l.href.slice(1));
+    const ids = navLinks.filter((l) => l.href.startsWith("#")).map((l) => l.href.slice(1));
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
@@ -113,7 +115,7 @@ const Navbar = () => {
   // hydration), so the header never pops in late.
   const linkClass = (href: string) =>
     `text-sm transition-colors duration-200 rounded-sm ${
-      href === `#${activeId}`
+      isActive(href)
         ? "text-brand font-medium"
         : "text-muted-foreground hover:text-brand"
     }`;
@@ -140,7 +142,7 @@ const Navbar = () => {
               key={link.href}
               href={sectionHref(link.href)}
               className={linkClass(link.href)}
-              aria-current={link.href === `#${activeId}` ? "true" : undefined}
+              aria-current={isActive(link.href) ? "true" : undefined}
             >
               {link.name}
             </Link>
@@ -173,9 +175,9 @@ const Navbar = () => {
                       key={link.href}
                       href={sectionHref(link.href)}
                       onClick={() => setIsMoreOpen(false)}
-                      aria-current={link.href === `#${activeId}` ? "true" : undefined}
+                      aria-current={isActive(link.href) ? "true" : undefined}
                       className={`block px-4 py-2 text-sm transition-colors ${
-                        link.href === `#${activeId}`
+                        isActive(link.href)
                           ? "text-brand"
                           : "text-muted-foreground hover:text-brand hover:bg-white/5"
                       }`}
@@ -295,9 +297,9 @@ const Navbar = () => {
                 key={link.href}
                 href={sectionHref(link.href)}
                 onClick={() => setIsMobileOpen(false)}
-                aria-current={link.href === `#${activeId}` ? "true" : undefined}
+                aria-current={isActive(link.href) ? "true" : undefined}
                 className={`block py-2 transition-colors ${
-                  link.href === `#${activeId}` ? "text-brand" : "text-muted-foreground hover:text-brand"
+                  isActive(link.href) ? "text-brand" : "text-muted-foreground hover:text-brand"
                 }`}
               >
                 {link.name}
