@@ -181,6 +181,8 @@
     "tabOpenClaw": "OpenClaw Track"
   },
   "agentEngineering": {
+    "readHowIBuild": "Read how I build agents →",
+    "synthetic": "The reference projects use synthetic data.",
     "seenIn": "Demonstrated in",
     "stackLabel": "// the whole stack, bottom to top",
     "closing": "Reliable intelligence is an engineered system, not a prompt.",

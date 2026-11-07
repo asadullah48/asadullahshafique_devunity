@@ -1,6 +1,7 @@
 "use client";
 
-import { ArrowUpRight } from "lucide-react";
+import Link from "next/link";
+import { AgentMethodologyEvidence } from "@/components/AgentMethodologyEvidence";
 import { Reveal } from "@/components/Reveal";
 import { useLocale } from "@/context/LocaleContext";
 
@@ -37,13 +38,6 @@ type Pillar = {
   id: "harness" | "loop" | "graph";
   number: string;
   chips: string[];
-  /**
-   * The system that demonstrates this pillar, and where to check it. This is
-   * what turns three abstractions into an argument: a reader who doubts "loop
-   * engineering" can open the eval cases and read them. A methodology section
-   * with no exhibit is a manifesto.
-   */
-  exemplar: { name: string; note: string; href: string };
 };
 
 const PILLARS: readonly Pillar[] = [
@@ -53,13 +47,8 @@ const PILLARS: readonly Pillar[] = [
     // Was ["MCP Servers", "Memory", "Permissions", "Hooks", "Observability"].
     // Memory and observability do not exist in this codebase (tracing is
     // disabled on purpose, CLAUDE.md §5), and nothing linked demonstrates
-    // hooks. Chips name only what the exemplar or this repo can show.
+    // hooks. Chips name features shown in the examples and this repo.
     chips: ["MCP Servers", "Read-only Tools", "Guardrails", "Typed State"],
-    exemplar: {
-      name: "ProtoBridge",
-      note: "MCP and A2A implemented to the wire, governance inside the envelope",
-      href: "https://github.com/asadullah48/protobridge/tree/main/src/protobridge/protocols",
-    },
   },
   {
     id: "loop",
@@ -67,11 +56,6 @@ const PILLARS: readonly Pillar[] = [
     // "Self-Correction" removed: no agent here revises its own output. The
     // loop is external — trace assertions plus a rubric judge (evals/judge.py).
     chips: ["Eval Harness", "Trace Assertions", "LLM Judge", "Regression Cases"],
-    exemplar: {
-      name: "evals/cases",
-      note: "scored on the execution trace, not only on the prose",
-      href: "https://github.com/asadullah48/asadullahshafique_devunity/tree/main/evals/cases",
-    },
   },
   {
     id: "graph",
@@ -80,11 +64,6 @@ const PILLARS: readonly Pillar[] = [
     // The orchestrator is a one-hop star: no approval gate, no parallel
     // branches, and the fallback ladder degrades rather than retries.
     chips: ["Typed Routing", "Handoffs", "LangGraph", "Fallback Ladder"],
-    exemplar: {
-      name: "OrchestratorX",
-      note: "routing as typed state, asserted offline with no API key",
-      href: "https://github.com/asadullah48/orchestratorx/tree/main/tests",
-    },
   },
 ] as const;
 
@@ -131,6 +110,13 @@ export default function AgentEngineering() {
           <p className="mx-auto max-w-2xl text-pretty text-muted-foreground">
             {t("agentEngineering.subtitle")}
           </p>
+          <p className="mt-3 text-sm text-muted-foreground">{t("agentEngineering.synthetic")}</p>
+          <Link
+            href="/how-i-build-agents"
+            className="mt-4 inline-block text-sm font-medium text-brand underline underline-offset-4"
+          >
+            {t("agentEngineering.readHowIBuild")}
+          </Link>
         </Reveal>
 
         {/* ------------------------------------------------------------------
@@ -193,26 +179,7 @@ export default function AgentEngineering() {
                   {t(`agentEngineering.${pillar.id}.callout`)}
                 </p>
 
-                {/* The exhibit. Each pillar names the thing that demonstrates
-                    it and links straight to that code, so the three concepts
-                    are checkable rather than merely asserted. */}
-                <p className="mt-4 flex flex-wrap items-baseline gap-x-2 gap-y-1 text-xs">
-                  <span className="font-mono uppercase tracking-widest text-muted-foreground/70">
-                    {t("agentEngineering.seenIn")}
-                  </span>
-                  <a
-                    href={pillar.exemplar.href}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center gap-1 font-mono text-brand-soft transition-colors hover:text-brand"
-                  >
-                    {pillar.exemplar.name}
-                    <ArrowUpRight className="h-3 w-3" aria-hidden="true" />
-                  </a>
-                  <span className="text-muted-foreground">
-                    {pillar.exemplar.note}
-                  </span>
-                </p>
+                <AgentMethodologyEvidence pillar={pillar.id} />
               </div>
 
               {/* Vocabulary */}
