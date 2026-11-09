@@ -178,13 +178,13 @@ export const ENGINEERING_EVIDENCE: readonly Evidence[] = [
   {
     id: "model-free-routing",
     label: "Deterministic routing",
-    value: "41 tests · 0 API keys",
+    value: "70 tests passing (verified 9 Nov 2026, main 8ff9f8c) · 0 API keys",
     detail:
       "OrchestratorX keeps routing in typed state and plain Python, never in a prompt. That turns “the supervisor never skips ComplianceChecker” from a README claim into a millisecond CI assertion that runs offline.",
     source: { kind: "repo", slug: "orchestratorx", path: "tests" },
     ar: {
       label: "التوجيه الحتمي",
-      value: "41 اختباراً · 0 مفاتيح API",
+      value: "70 اختباراً ناجحاً (تم التحقّق في 9 نوفمبر 2026، main عند 8ff9f8c) · 0 مفاتيح API",
       detail:
         "يُبقي OrchestratorX منطق التوجيه داخل حالة مُصنّفة وكود Python صريح، لا داخل موجّه نصي. هذا ما يحوّل عبارة «المنسّق لا يتخطى ComplianceChecker أبداً» من ادعاء في ملف README إلى تأكيد يُنفَّذ في أجزاء من الثانية وبدون اتصال بالشبكة.",
     },

@@ -282,7 +282,7 @@
       "name": "OrchestratorX",
       "status": "flagship system",
       "summary": "A supervisor-pattern multi-agent framework that keeps routing in typed state and plain Python, so execution order is tested without a model or API key. Only the supervisor selects the next node, a hop budget guarantees termination, and every hop is written to an audit trace. Reference architecture, not a customer deployment.",
-      "metrics": ["41 tests pass with no API key or network", "CLI, FastAPI service with GET /trace/{run_id}, Docker, CI on Python 3.11-3.13"],
+      "metrics": ["70 tests passing (verified 9 Nov 2026, main 8ff9f8c), with no API key or network", "CLI, FastAPI service with GET /trace/{run_id}, Docker, CI on Python 3.11-3.13"],
       "tech": ["LangGraph", "Python 3.13", "Pydantic", "FastAPI", "Docker", "GitHub Actions", "pytest"],
       "github": "https://github.com/asadullah48/orchestratorx"
     },
