@@ -41,8 +41,11 @@
 export type VerificationSource =
   /** A live production endpoint anyone can curl right now. Strongest form. */
   | { kind: "live"; url: string; note: string }
-  /** A public repository, optionally a specific path inside it. */
-  | { kind: "repo"; slug: string; path?: string }
+  /**
+   * A public repository, optionally a specific path inside it. `ref` pins the
+   * link to the commit a measured value was taken at (default: main).
+   */
+  | { kind: "repo"; slug: string; path?: string; ref?: string }
   /** A path inside THIS repository. */
   | { kind: "local"; path: string };
 
@@ -95,7 +98,7 @@ export function sourceHref(s: VerificationSource): string {
     case "repo":
       if (!s.slug) return `https://github.com/${OWNER}?tab=repositories`;
       return `https://github.com/${OWNER}/${s.slug}${
-        s.path ? `/tree/main/${s.path}` : ""
+        s.path ? `/tree/${s.ref ?? "main"}/${s.path}` : ""
       }`;
     case "local":
       return `https://github.com/${OWNER}/${THIS_REPO}/tree/main/${s.path}`;
@@ -173,6 +176,8 @@ export const PROOF: readonly Evidence[] = [
  * are recorded in docs/public-project-evidence.md). The 2026-09-10 audit had counted `def test_`
  * occurrences instead (39 and 61), which misses parametrized cases, so the
  * site briefly showed two different numbers for the same repository.
+ * OrchestratorX was re-verified on 2026-11-09: 70 passed after a clean
+ * `pip install -e ".[dev,api]"` at main 8ff9f8c; its source link is pinned there.
  */
 export const ENGINEERING_EVIDENCE: readonly Evidence[] = [
   {
@@ -181,7 +186,7 @@ export const ENGINEERING_EVIDENCE: readonly Evidence[] = [
     value: "70 tests passing (verified 9 Nov 2026, main 8ff9f8c) · 0 API keys",
     detail:
       "OrchestratorX keeps routing in typed state and plain Python, never in a prompt. That turns “the supervisor never skips ComplianceChecker” from a README claim into a millisecond CI assertion that runs offline.",
-    source: { kind: "repo", slug: "orchestratorx", path: "tests" },
+    source: { kind: "repo", slug: "orchestratorx", path: "tests", ref: "8ff9f8c" },
     ar: {
       label: "التوجيه الحتمي",
       value: "70 اختباراً ناجحاً (تم التحقّق في 9 نوفمبر 2026، main عند 8ff9f8c) · 0 مفاتيح API",
