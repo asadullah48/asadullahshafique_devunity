@@ -20,7 +20,7 @@ const examples = {
     {
       name: "ProtoBridge",
       detail: "protocol-level tool access",
-      href: "https://github.com/asadullah48/protobridge/tree/69cd28a",
+      href: "https://github.com/asadullah48/protobridge/tree/9b43a3d",
     },
   ],
   loop: [
@@ -42,7 +42,7 @@ const examples = {
 const testSuites = [
   { name: "OrchestratorX", detail: "41 tests · 1ca950a", href: "https://github.com/asadullah48/orchestratorx/tree/1ca950a/tests" },
   { name: "GuardrailAI", detail: "42 tests · 69dd5d9", href: "https://github.com/asadullah48/guardrailai/tree/69dd5d9" },
-  { name: "ProtoBridge", detail: "74 tests · verified 3 Nov 2026 · 69cd28a", href: "https://github.com/asadullah48/protobridge/blob/69cd28a/README.md" },
+  { name: "ProtoBridge", detail: "75 tests passing (verified 9 Nov 2026, main 9b43a3d)", href: "https://github.com/asadullah48/protobridge/blob/9b43a3d/README.md" },
   { name: "Portfolio backend", detail: "49 tests", href: `${PORTFOLIO}/tree/main/backend/tests` },
 ];
 

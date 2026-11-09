@@ -179,7 +179,7 @@ Then practice under realistic constraints:
 - [Agent Failure Atlas (Case 001)](https://asadullah48.github.io/agent-failure-atlas/) — reproducible agent-failure case
 - [OrchestratorX](/systems/orchestratorx) — supervisor routing as typed state, 41 tests
 - [GuardrailAI](/systems/guardrailai) — deterministic compliance checks with hash-chained audit ledger, 42 tests
-- [ProtoBridge](/systems/protobridge) — MCP × A2A interoperability layer, 65 tests
+- [ProtoBridge](/systems/protobridge) — MCP × A2A interoperability layer, 75 tests passing (verified 9 Nov 2026, main 9b43a3d)
 
 ## The principle to remember
 
@@ -187,4 +187,4 @@ AI tools accelerate execution. The engineer remains responsible for reasoning, v
 
 The strongest candidate is not the person who refuses AI, or the person who accepts every AI suggestion. It is the person who can use AI as an engineering tool while keeping the work understandable, testable, and under human control.
 
-Update, 3 Nov 2026: now 74 tests passing (commit 69cd28a), and a live A2A demo is online at https://84-12-146-32.sslip.io/ (reference A2A peer only, synthetic data).
+Update, 9 Nov 2026: 75 tests passing (verified 9 Nov 2026, main 9b43a3d), and a live A2A demo is online at https://84-12-146-32.sslip.io (Agent Card at /.well-known/agent-card.json; reference A2A peer only, synthetic data).
