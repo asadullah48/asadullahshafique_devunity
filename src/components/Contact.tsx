@@ -36,17 +36,21 @@ const Contact = () => {
   const [formData, setFormData] = useState({
     name: "",
     email: "",
-    subject: "",
+    company: "",
+    enquiryType: "job",
+    website: "",
     message: "",
   });
   const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
+  const [leadId, setLeadId] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    if (status === "loading") return;
     setStatus("loading");
     const controller = new AbortController();
-    const requestTimeout = window.setTimeout(() => controller.abort(), 15000);
+    const requestTimeout = window.setTimeout(() => controller.abort(), 35000);
     try {
       const res = await fetch("/api/contact", {
         method: "POST",
@@ -55,19 +59,19 @@ const Contact = () => {
         signal: controller.signal,
       });
       if (res.ok) {
+        const data = await res.json();
+        if (!data.leadId) throw new Error("Missing reference");
+        setLeadId(data.leadId);
         setStatus("success");
-        setFormData({ name: "", email: "", subject: "", message: "" });
-        setTimeout(() => setStatus("idle"), 5000);
+        setFormData({ name: "", email: "", company: "", enquiryType: "job", website: "", message: "" });
       } else {
         const data = await res.json();
         setErrorMessage(data.error || t("contact.errorGeneric"));
         setStatus("error");
-        setTimeout(() => setStatus("idle"), 5000);
       }
     } catch {
       setErrorMessage(t("contact.errorNetwork"));
       setStatus("error");
-      setTimeout(() => setStatus("idle"), 5000);
     } finally {
       window.clearTimeout(requestTimeout);
     }
@@ -265,6 +269,7 @@ const Contact = () => {
                   <input
                     type="text"
                     required
+                    maxLength={200}
                     id="contact-name"
                     name="name"
                     autoComplete="name"
@@ -279,6 +284,7 @@ const Contact = () => {
                   <input
                     type="email"
                     required
+                    maxLength={200}
                     id="contact-email"
                     name="email"
                     autoComplete="email"
@@ -291,17 +297,20 @@ const Contact = () => {
               </div>
 
               <div>
-                <label htmlFor="contact-subject" className="block text-sm text-muted-foreground mb-1.5">{t("contact.subjectLabel")}</label>
-                <input
-                  type="text"
-                  required
-                  id="contact-subject"
-                  name="subject"
-                  value={formData.subject}
-                  onChange={(e) => setFormData({ ...formData, subject: e.target.value })}
-                  className={inputClass}
-                  placeholder={t("contact.subjectPlaceholder")}
-                />
+                <label htmlFor="contact-company" className="block text-sm text-muted-foreground mb-1.5">Company (optional)</label>
+                <input id="contact-company" name="company" autoComplete="organization" maxLength={200} value={formData.company} onChange={(e) => setFormData({ ...formData, company: e.target.value })} className={inputClass} />
+              </div>
+              <div>
+                <label htmlFor="contact-type" className="block text-sm text-muted-foreground mb-1.5">Enquiry type</label>
+                <select id="contact-type" name="enquiryType" required value={formData.enquiryType} onChange={(e) => setFormData({ ...formData, enquiryType: e.target.value })} className={inputClass}>
+                  <option value="job">Job</option>
+                  <option value="freelance project">Freelance project</option>
+                  <option value="other">Other</option>
+                </select>
+              </div>
+              <div hidden aria-hidden="true">
+                <label htmlFor="contact-website">Leave this field empty</label>
+                <input id="contact-website" name="website" tabIndex={-1} autoComplete="off" value={formData.website} onChange={(e) => setFormData({ ...formData, website: e.target.value })} />
               </div>
 
               <div>
@@ -309,6 +318,7 @@ const Contact = () => {
                 <textarea
                   required
                   rows={5}
+                  maxLength={5000}
                   id="contact-message"
                   name="message"
                   value={formData.message}
@@ -344,7 +354,7 @@ const Contact = () => {
                   className="flex items-center gap-2 p-3 rounded-lg bg-green-500/10 border border-green-500/20 text-green-400 text-sm"
                 >
                   <CheckCircle className="w-4 h-4 shrink-0" />
-                  {t("contact.successFull")}
+                  Thank you. Your enquiry is saved. Your reference number is #{leadId}.
                 </Reveal>
               )}
 
@@ -357,6 +367,7 @@ const Contact = () => {
                   {errorMessage}
                 </Reveal>
               )}
+              <p className="text-xs text-muted-foreground">I store your name, email and message only to reply to you. To have them deleted, email asadullahshafique@hotmail.com. Optional company and enquiry details are also stored; a temporary hashed visitor identifier limits spam. Your full IP address is not stored.</p>
             </form>
           </Reveal>
         </div>

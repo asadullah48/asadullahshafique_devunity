@@ -1,0 +1,2 @@
+# Verified false positive: synthetic test fixtures only (no real credentials).
+2dcd8a6ff0e5127d4067e7f295ced2a5550371b6:scripts/leads-route.test.mjs:generic-api-key:10

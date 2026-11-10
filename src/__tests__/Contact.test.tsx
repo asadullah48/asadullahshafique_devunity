@@ -2,6 +2,7 @@
 import { render, screen, fireEvent, waitFor } from '@testing-library/react';
 import Contact from '@/components/Contact';
 
+// Synthetic fixtures only; fetch is mocked.
 // Mock fetch
 global.fetch = jest.fn();
 
@@ -15,7 +16,7 @@ describe('Contact Form', () => {
     
     expect(screen.getByLabelText(/name/i)).toBeInTheDocument();
     expect(screen.getByLabelText(/email/i)).toBeInTheDocument();
-    expect(screen.getByLabelText(/subject/i)).toBeInTheDocument();
+    expect(screen.getByLabelText(/enquiry type/i)).toBeInTheDocument();
     expect(screen.getByLabelText(/message/i)).toBeInTheDocument();
     expect(screen.getByRole('button', { name: /send/i })).toBeInTheDocument();
   });
@@ -46,22 +47,22 @@ describe('Contact Form', () => {
   it('should submit form successfully', async () => {
     (global.fetch as jest.Mock).mockResolvedValueOnce({
       ok: true,
-      json: async () => ({ success: true, message: 'Message sent!' }),
+      json: async () => ({ leadId: 'synthetic-123' }),
     });
 
     render(<Contact />);
     
     fireEvent.change(screen.getByLabelText(/name/i), {
-      target: { value: 'Test User' },
+      target: { value: 'Synthetic Visitor' },
     });
     fireEvent.change(screen.getByLabelText(/email/i), {
-      target: { value: 'test@example.com' },
+      target: { value: 'synthetic@example.invalid' },
     });
-    fireEvent.change(screen.getByLabelText(/subject/i), {
-      target: { value: 'Test Subject' },
+    fireEvent.change(screen.getByLabelText(/enquiry type/i), {
+      target: { value: 'job' },
     });
     fireEvent.change(screen.getByLabelText(/message/i), {
-      target: { value: 'Test Message' },
+      target: { value: 'Synthetic test message' },
     });
     
     fireEvent.click(screen.getByRole('button', { name: /send/i }));
@@ -83,16 +84,16 @@ describe('Contact Form', () => {
     render(<Contact />);
     
     fireEvent.change(screen.getByLabelText(/name/i), {
-      target: { value: 'Test User' },
+      target: { value: 'Synthetic Visitor' },
     });
     fireEvent.change(screen.getByLabelText(/email/i), {
-      target: { value: 'test@example.com' },
+      target: { value: 'synthetic@example.invalid' },
     });
-    fireEvent.change(screen.getByLabelText(/subject/i), {
-      target: { value: 'Test Subject' },
+    fireEvent.change(screen.getByLabelText(/enquiry type/i), {
+      target: { value: 'job' },
     });
     fireEvent.change(screen.getByLabelText(/message/i), {
-      target: { value: 'Test Message' },
+      target: { value: 'Synthetic test message' },
     });
     
     fireEvent.click(screen.getByRole('button', { name: /send/i }));
