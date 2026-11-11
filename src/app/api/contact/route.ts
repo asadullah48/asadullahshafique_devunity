@@ -5,6 +5,8 @@ import { allowSubmission, saveLead, markAlert } from "@/lib/lead-database";
 export const runtime = "nodejs";
 export const maxDuration = 30;
 
+const safeName = (name: unknown) => (typeof name === "string" && /^[\w.-]{1,64}$/.test(name) ? name : "unknown");
+
 export async function POST(request: Request) {
   let body: unknown;
   try {
@@ -48,6 +50,7 @@ export async function POST(request: Request) {
     return NextResponse.json({ error: "Unable to save your enquiry. Please try later or email directly." }, { status: 503 });
   }
   let sent = false;
+  let failure = "";
   try {
     const response = await fetch("https://api.resend.com/emails", {
       method: "POST",
@@ -58,8 +61,10 @@ export async function POST(request: Request) {
         text: `Lead #${saved.id}\nSubmitted: ${karachiTime(saved.timestamp)} (Asia/Karachi)\nType: ${lead.enquiryType}\nName: ${lead.name}\nEmail: ${lead.email}\nCompany: ${lead.company || "Not provided"}\n\n${lead.message}` }),
     });
     sent = response.ok;
-  } catch { /* The saved lead remains available if email delivery fails. */ }
+    // Log only Resend's error name: its message can echo addresses.
+    if (!sent) failure = `status=${response.status} name=${safeName(await response.json().then((b) => b?.name, () => undefined))}`;
+  } catch (error) { failure = `name=${safeName(error instanceof Error ? error.name : undefined)}`; /* The saved lead remains available. */ }
   try { await markAlert(saved.id, sent ? "sent" : "failed"); } catch { console.error("Lead alert status update failed"); }
-  if (!sent) console.error(`Lead #${saved.id} saved; alert failed`);
+  if (!sent) console.error(`Lead #${saved.id} saved; alert failed (${failure})`);
   return NextResponse.json({ leadId: saved.id }, { status: 201 });
 }
