@@ -53,10 +53,18 @@ test('contact route validates, limits, saves then alerts using synthetic mocks',
       assert.equal(send.mock.callCount(), 0); assert.ok(!queries.some(q => q.sql.includes('INSERT INTO contact_messages')));
     });
     await t.test('keeps a saved reference when email fails', async () => {
-      attempts = 1; queries = []; send.mock.mockImplementation(async () => new Response('{}', { status: 503 }));
+      attempts = 1; queries = [];
+      const logged = mock.method(console, 'error', () => {});
+      send.mock.mockImplementation(async () => new Response(JSON.stringify({ statusCode: 403, name: 'validation_error', message: 'You can only send to synthetic-owner@example.invalid' }), { status: 403 }));
       const response = await POST(request(fixture));
       assert.equal(response.status, 201); assert.equal((await response.json()).leadId, '42');
       assert.equal(queries.at(-1).values[1], 'failed');
+      send.mock.mockImplementation(async () => { throw new DOMException('Synthetic timeout', 'TimeoutError'); });
+      assert.equal((await POST(request(fixture))).status, 201);
+      const lines = logged.mock.calls.map(c => String(c.arguments[0]));
+      assert.deepEqual(lines, ['Lead #42 saved; alert failed (status=403 name=validation_error)', 'Lead #42 saved; alert failed (name=TimeoutError)']);
+      assert.ok(lines.every(l => !l.includes('@') && !l.includes('synthetic-not-a-key')));
+      logged.mock.restore();
     });
     await t.test('database failure returns 503 without sending email', async () => {
       send.mock.resetCalls(); query.mock.mockImplementation(async () => { throw new Error('Synthetic DB failure'); });
