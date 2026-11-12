@@ -30,7 +30,7 @@ for (const mobile of [false, true]) {
     await expect(harness.getByRole("link", { name: "GuardrailAI" })).toHaveAttribute("href", "https://github.com/asadullah48/guardrailai/tree/69dd5d9");
     const loop = page.getByRole("region", { name: mapping[1] });
     await expect(loop).toContainText("trace-checked evals");
-    for (const result of ["41 tests · 1ca950a", "42 tests · 69dd5d9", "75 tests passing (verified 9 Nov 2026, main 9b43a3d)", "49 tests"]) {
+    for (const result of ["70 tests passing (verified 9 Nov 2026, main 8ff9f8c)", "42 tests · 69dd5d9", "75 tests passing (verified 9 Nov 2026, main 9b43a3d)", "49 tests"]) {
       await expect(loop).toContainText(result);
     }
     const graph = page.getByRole("region", { name: mapping[2] });
