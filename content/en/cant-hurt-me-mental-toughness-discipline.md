@@ -3,16 +3,16 @@ slug: "cant-hurt-me-mental-toughness-discipline"
 lang: "en"
 dir: "ltr"
 title: "Beyond Your First Limit: Lessons from Can't Hurt Me"
-excerpt: "A practical look at David Goggins' ideas on mental toughness, the 40% Rule, accountability, and the daily discipline of doing difficult things."
-description: "Explore lessons from David Goggins' Can't Hurt Me: the 40% Rule, mental toughness, discipline, the Accountability Mirror, and facing fear."
-abstract: "Feeling unready can become a reason to keep waiting. This reading guide explores ideas from Can't Hurt Me and turns them into practical steps for learning, work, and personal growth."
+excerpt: "A practical look at David Goggins' ideas on mental toughness, the 40% Rule, accountability, and the daily discipline of doing difficult things, with a real example: how I went from 283 to 800 on a certification exam."
+description: "Lessons from David Goggins' Can't Hurt Me: the 40% Rule, mental toughness, discipline, the Accountability Mirror and the Cookie Jar, applied to a real certification retake and turned into a seven-day plan."
+abstract: "Feeling unready can become a reason to keep waiting. This reading guide explores ideas from Can't Hurt Me, shows how I used them to pass a certification exam on my third attempt, and turns them into practical steps for learning, work, and personal growth."
 author: "Asadullah Shafique"
 date: "2026-11-12"
 displayDate: "November 12, 2026"
-tags: ["Can't Hurt Me", "David Goggins", "Mental Toughness", "Self-Discipline", "Personal Growth"]
+tags: ["Can't Hurt Me", "David Goggins", "Mental Toughness", "Self-Discipline", "Personal Growth", "Certification"]
 accentColor: "#d97706"
 category: perspective
-related: ["the-1-9-1-rule"]
+related: ["studying-ai-certification-with-stories", "the-1-9-1-rule"]
 ---
 
 The job application is open. Your portfolio is ready enough to share. Then a familiar thought appears: *I need one more project before I apply.*
@@ -21,13 +21,23 @@ Sometimes that thought points to a real gap. Sometimes it is a comfortable way t
 
 David Goggins' *Can't Hurt Me: Master Your Mind and Defy the Odds* asks readers to examine the limits they have accepted about themselves. His story brings together hardship, personal responsibility, and an unusually demanding approach to change. For everyday work, the useful question is practical: what can you do when your first reaction is to stop?
 
+I tested that question this autumn on a certification exam. I needed 720 to pass. My scores were 283, then 633, then 800. The ideas in this guide are the ones that helped between those numbers.
+
+**Key takeaways**
+
+- Your first urge to stop is a signal to investigate, not a final measurement.
+- Make every weakness specific enough to practise.
+- Hold yourself accountable for behaviour, not for being "good enough".
+- A small routine you keep beats a big plan you abandon.
+- Keep a record of what worked, so you can reuse the method when confidence drops.
+
 ## How your mind can limit your potential
 
 There is a difference between saying *I struggled with this* and deciding *I am incapable of this*.
 
 The first describes an experience. The second turns that experience into a prediction about every future attempt. A failed interview becomes a reason to stop applying. A difficult subject becomes something you believe you can never learn.
 
-Try making the claim smaller and more precise. Replace “I am bad at interviews” with “I need practice explaining my architecture decisions.” Now there is a skill you can work on.
+Try making the claim smaller and more precise. Replace "I am bad at interviews" with "I need practice explaining my architecture decisions." Now there is a skill you can work on.
 
 Your past deserves an honest place in your story. It does not have to write every next chapter.
 
@@ -43,7 +53,7 @@ This approach asks you to investigate your first impulse to quit. Physical warni
 
 ## Face your fears and weaknesses with a specific task
 
-“Become confident” is hard to act on. “Record a two-minute explanation of my project” is clear enough to do today.
+"Become confident" is hard to act on. "Record a two-minute explanation of my project" is clear enough to do today.
 
 Choose one fear and give it a manageable task:
 
@@ -69,7 +79,7 @@ Include recovery in the plan. A routine should leave you able to return tomorrow
 
 Motivation can help you start. A clear routine gives you a next action on the days when enthusiasm is missing.
 
-Compare “I will improve my skills this month” with “After breakfast, I will spend twenty minutes solving one problem and writing down what I learned.” The second gives you a time, an action, and a finish line.
+Compare "I will improve my skills this month" with "After breakfast, I will spend twenty minutes solving one problem and writing down what I learned." The second gives you a time, an action, and a finish line.
 
 Set a minimum you can keep on an ordinary difficult day. Track completed work rather than intentions. If you miss a session, examine the cause and resume at the next planned time.
 
@@ -89,17 +99,44 @@ The Accountability Mirror is one of the ideas associated with *Can't Hurt Me*: f
 
 Here is a simple adaptation using a mirror, notebook, or daily note:
 
-1. **State the fact:** “I planned to apply this week and sent no applications.”
-2. **Identify your part:** “I kept rewriting my introduction to avoid sending it.”
-3. **Choose the next action:** “Tomorrow, I will tailor and submit one application.”
+1. **State the fact:** "I planned to apply this week and sent no applications."
+2. **Identify your part:** "I kept rewriting my introduction to avoid sending it."
+3. **Choose the next action:** "Tomorrow, I will tailor and submit one application."
 
 Be direct about behavior. Calling yourself worthless gives you nothing useful to change. Naming an avoided task gives you somewhere to begin.
 
 Also acknowledge real constraints. Responsibility starts with identifying what is within your control.
 
+## How I used these ideas: 283, 633, 800
+
+In October 2026 I sat the Panaversity Certified Associate: Foundations (PCAO-F) exam. The pass mark was 720.
+
+**Attempt 1 (4 October): 283.** I treated it as a test drive to see the format, and the score showed it. The useful part came afterwards, when I went back through the questions properly. I wrote about that study method in [Six Traps Hiding in AI Certification Questions](/blog/studying-ai-certification-with-stories).
+
+**Attempt 2 (18 October): 633.** This one hurt more, because I had prepared. I was 87 points short. It was tempting to read that as "this exam is not for me". The Accountability Mirror gave me a better reading:
+
+1. **The fact:** I missed the pass mark by 87 points.
+2. **My part:** I was losing marks on the same question types: select-TWO questions, table questions, and long answer options that look almost identical.
+3. **The next action:** practise exactly those types every day for a week.
+
+**The week in between.** Nothing heroic, just a routine I could keep beside work:
+
+- Daily drills on select-TWO, table and long-option questions.
+- For every mistake, one line on *why the right answer is right*.
+- One full timed mock, then a review of the mistakes only.
+- Turning yesterday's mistakes into short rules, then retaking the same mock with shuffled options.
+- A second, fresh timed mock two days before the exam.
+- The night before: light review only, no new topics, and an early night.
+
+**Attempt 3 (25 October): 800. Passed.**
+
+Looking back, 633 felt like my limit at the time. It was really a first stopping point. The difference between 633 and 800 was not new talent. It was a specific diagnosis, a small daily routine, and one more attempt.
+
+That week is now in my own Cookie Jar.
+
 ## Remember past successes when progress feels distant
 
-Goggins' “Cookie Jar” idea involves drawing strength from past challenges you have overcome. You can adapt it into a short record of evidence.
+Goggins' "Cookie Jar" idea involves drawing strength from past challenges you have overcome. You can adapt it into a short record of evidence.
 
 Write down a difficult task you completed, what made it difficult, and which actions helped. Small successes count: understanding a concept after several attempts, finishing a course, or asking for help when you were stuck.
 
@@ -113,13 +150,38 @@ Pick one meaningful goal. Define a small daily action. Seek feedback. Review the
 
 Potential becomes easier to assess when you have actual attempts to examine. What can you do now that you could not do before? Where do you still need help? What is worth trying next?
 
+## A seven-day plan you can start today
+
+Choose one task you have been avoiding: an exam, an application, a hard chapter, a project you keep postponing.
+
+| Day | What to do | Time |
+|---|---|---|
+| 1 | Write the Accountability Mirror for this task: the fact, your part, the next action. | 10 min |
+| 2 | Make the weakness specific. List the exact topics, question types or steps that keep going wrong. | 20 min |
+| 3 | Practise only the weakest item. Write one line on every mistake. | 20–30 min |
+| 4 | Repeat day 3. Turn your mistake lines into short rules. | 20–30 min |
+| 5 | Do a full, timed attempt: a mock exam, a complete draft, a working version. | 30–60 min |
+| 6 | Review the mistakes only. Retry the items you missed. | 20–30 min |
+| 7 | Add one success to your Cookie Jar and plan next week's minimum. | 10 min |
+
+If you miss a day, do not restart the week. Continue with the next day's step.
+
+## Questions readers ask
+
+**Is the 40% Rule scientific?**
+No. Treat it as a motivational idea that asks you to question your first urge to quit, not as a measurement. Pain, illness and exhaustion still deserve attention.
+
+**Is the book a good fit if I do not like a very intense tone?**
+Maybe. Goggins writes forcefully, and some readers find that energising while others find it too much. You can take the principles (honest accountability, specific challenges, steady routines) without copying his extremes.
+
+**I failed an exam or interview twice. Should I keep going?**
+First, run the Accountability Mirror on the result. If you can name a specific, fixable gap, another prepared attempt is usually worth it. If you cannot name one yet, get feedback before you try again.
+
 ## Why read Can't Hurt Me?
 
 Read it if you want a forceful challenge to procrastination, avoidance, and the stories you tell yourself about your limits. Its memoir format gives context to Goggins' ideas, beyond a list of motivational slogans.
 
 His tone is intense, and readers will differ in how they respond to it. You can consider the lessons carefully and choose habits that fit your own responsibilities and circumstances.
-
-For the next seven days, choose one task you have been avoiding. Give it a fixed place in your day. Keep a brief record of what you did and what got in the way. At the end of the week, use that record to plan your next attempt.
 
 ## Book details and source
 
@@ -128,4 +190,4 @@ For the next seven days, choose one task you have been avoiding. Give it a fixed
 - **Genre:** Memoir and personal development
 - **Source:** [David Goggins' official book page](https://davidgoggins.com/book/), including the description of *Can't Hurt Me* and the 40% Rule.
 
-This is an independent reading guide. The work and learning examples are practical adaptations, not quotations or personal experiences attributed to the author.
+This is an independent reading guide. The certification example is my own experience, with my real dates and scores. The other work and learning examples are practical adaptations, not quotations or experiences attributed to the book's author.
