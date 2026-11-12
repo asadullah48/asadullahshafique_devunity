@@ -180,13 +180,13 @@ export const ENGINEERING_EVIDENCE: readonly Evidence[] = [
     label: "Deterministic routing",
     value: "41 tests · 0 API keys",
     detail:
-      "OrchestratorX keeps routing in typed state and plain Python, never in a prompt. That turns “the supervisor never skips ComplianceChecker” from a README claim into a millisecond CI assertion that runs offline.",
+      "OrchestratorX keeps routing in typed state and plain Python. Its 41-test suite checks happy-path specialist ordering, escalation, handled failures, and concurrent-run state isolation using the default FakeLLM.",
     source: { kind: "repo", slug: "orchestratorx", path: "tests" },
     ar: {
       label: "التوجيه الحتمي",
       value: "41 اختباراً · 0 مفاتيح API",
       detail:
-        "يُبقي OrchestratorX منطق التوجيه داخل حالة مُصنّفة وكود Python صريح، لا داخل موجّه نصي. هذا ما يحوّل عبارة «المنسّق لا يتخطى ComplianceChecker أبداً» من ادعاء في ملف README إلى تأكيد يُنفَّذ في أجزاء من الثانية وبدون اتصال بالشبكة.",
+        "يُبقي OrchestratorX التوجيه داخل حالة مُنمّطة وكود Python صريح. تختبر مجموعته المكوّنة من 41 اختبارًا ترتيب المتخصصين في المسار السليم والتصعيد والإخفاقات المعالَجة وعزل الحالة بين التشغيلات المتزامنة، باستخدام FakeLLM الافتراضي.",
     },
   },
   {
