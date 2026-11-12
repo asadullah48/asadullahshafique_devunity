@@ -168,8 +168,8 @@ export const PROOF: readonly Evidence[] = [
  *
  * Each `value` is measured, not carried over from marketing copy. Test counts
  * are what `pytest` collects and passes on a fresh clone of each repository
- * (re-measured from public main on 2026-10-20: OrchestratorX 41 passed,
- * ProtoBridge 65 passed, GuardrailAI 42 passed; commit SHAs and commands
+ * (re-measured from public main on 2026-11-12: OrchestratorX 70 passed at
+ * f077fcc, ProtoBridge 75 at 9b43a3d, GuardrailAI 53 at 8112ddd; commit SHAs and commands
  * are recorded in docs/public-project-evidence.md). The 2026-09-10 audit had counted `def test_`
  * occurrences instead (39 and 61), which misses parametrized cases, so the
  * site briefly showed two different numbers for the same repository.
@@ -178,13 +178,13 @@ export const ENGINEERING_EVIDENCE: readonly Evidence[] = [
   {
     id: "model-free-routing",
     label: "Deterministic routing",
-    value: "41 tests · 0 API keys",
+    value: "70 tests · 0 API keys",
     detail:
       "OrchestratorX keeps routing in typed state and plain Python, never in a prompt. That turns “the supervisor never skips ComplianceChecker” from a README claim into a millisecond CI assertion that runs offline.",
     source: { kind: "repo", slug: "orchestratorx", path: "tests" },
     ar: {
       label: "التوجيه الحتمي",
-      value: "41 اختباراً · 0 مفاتيح API",
+      value: "70 اختباراً · 0 مفاتيح API",
       detail:
         "يُبقي OrchestratorX منطق التوجيه داخل حالة مُصنّفة وكود Python صريح، لا داخل موجّه نصي. هذا ما يحوّل عبارة «المنسّق لا يتخطى ComplianceChecker أبداً» من ادعاء في ملف README إلى تأكيد يُنفَّذ في أجزاء من الثانية وبدون اتصال بالشبكة.",
     },
@@ -210,13 +210,13 @@ export const ENGINEERING_EVIDENCE: readonly Evidence[] = [
   {
     id: "compliance",
     label: "Deterministic guardrails",
-    value: "42 tests · 3 domains",
+    value: "53 tests · 3 domains",
     detail:
       "GuardrailAI uses deterministic pre-model checks for OFAC/AML/HIPAA Safe Harbor patterns on synthetic data, with an in-memory SHA-256 hash-chained ledger that is tamper-evident, not tamper-proof.",
     source: { kind: "repo", slug: "guardrailai", path: "guardrailai/guardrails" },
     ar: {
       label: "حواجز حماية حتمية",
-      value: "42 اختباراً · 3 مجالات",
+      value: "53 اختباراً · 3 مجالات",
       detail:
         "يستخدم GuardrailAI فحوصات حتمية قبل النموذج لأنماط OFAC وAML وHIPAA Safe Harbor على بيانات تمثيلية، مع سجل في الذاكرة مرتبط ببصمات SHA-256 يكشف العبث ولا يمنعه.",
     },
