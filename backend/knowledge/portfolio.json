@@ -282,7 +282,7 @@
       "name": "OrchestratorX",
       "status": "flagship system",
       "summary": "A supervisor-pattern multi-agent framework that keeps routing in typed state and plain Python, so execution order is tested without a model or API key. Only the supervisor selects the next node, a hop budget guarantees termination, and every hop is written to an audit trace. Reference architecture, not a customer deployment.",
-      "metrics": ["41 tests pass with no API key or network", "CLI, FastAPI service with GET /trace/{run_id}, Docker, CI on Python 3.11-3.13"],
+      "metrics": ["70 tests pass with no API key or network (run 12 Nov 2026, main f077fcc)", "CLI, FastAPI service with GET /trace/{run_id}, Docker, CI on Python 3.11-3.13"],
       "tech": ["LangGraph", "Python 3.13", "Pydantic", "FastAPI", "Docker", "GitHub Actions", "pytest"],
       "github": "https://github.com/asadullah48/orchestratorx"
     },
@@ -330,7 +330,7 @@
       "name": "GuardrailAI",
       "status": "flagship system",
       "summary": "Reference implementation of deterministic pre-model OFAC/AML/HIPAA Safe Harbor pattern checks on synthetic data, with an in-memory SHA-256 hash-chained, tamper-evident (not tamper-proof) audit ledger.",
-      "metrics": ["42 tests passed on public main 69dd5d9 (2026-10-20)"],
+      "metrics": ["53 tests passed on public main 8112ddd (run 12 Nov 2026)"],
       "tech": ["FastAPI", "Python 3.12", "LangGraph", "State Machines", "SHA-256 Cryptography", "Circuit Breakers", "Helm", "Docker"],
       "github": "https://github.com/asadullah48/guardrailai"
     },
@@ -377,7 +377,7 @@
       { "id": "H2", "result": "Silver", "status": "completed" },
       { "id": "H3", "result": "Gold", "status": "completed" },
       { "id": "H4", "result": "Platinum", "status": "completed" },
-      { "id": "H5", "result": "Agent Factory", "status": "completed" }
+      { "id": "H5", "result": "Completed", "status": "completed" }
     ],
     "methodology": "Spec-first, heavy code reuse, evals before shipping."
   },

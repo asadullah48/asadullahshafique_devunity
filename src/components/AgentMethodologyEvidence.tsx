@@ -40,8 +40,8 @@ const examples = {
 };
 
 const testSuites = [
-  { name: "OrchestratorX", detail: "41 tests · 1ca950a", href: "https://github.com/asadullah48/orchestratorx/tree/1ca950a/tests" },
-  { name: "GuardrailAI", detail: "42 tests · 69dd5d9", href: "https://github.com/asadullah48/guardrailai/tree/69dd5d9" },
+  { name: "OrchestratorX", detail: "70 tests · f077fcc", href: "https://github.com/asadullah48/orchestratorx/tree/f077fcc/tests" },
+  { name: "GuardrailAI", detail: "53 tests · 8112ddd", href: "https://github.com/asadullah48/guardrailai/tree/8112ddd" },
   { name: "ProtoBridge", detail: "75 tests passing (verified 9 Nov 2026, main 9b43a3d)", href: "https://github.com/asadullah48/protobridge/blob/9b43a3d/README.md" },
   { name: "Portfolio backend", detail: "49 tests", href: `${PORTFOLIO}/tree/main/backend/tests` },
 ];
