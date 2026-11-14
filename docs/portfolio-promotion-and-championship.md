@@ -86,7 +86,7 @@ News context: https://gulfnews.com/business/economy/uae-reveals-control-tower-to
 - Business Wire launch release: https://www.businesswire.com/news/home/20261008883373/en/Dubai-Launches-Global-Create-AI-Agents-Championship-with-Prize-Pool-Exceeding-AED-2.5-Million — supplied launch reference; not retrievable through this session's web reader. Do not treat it as current eligibility guidance.
 - The National launch reporting: https://www.thenationalnews.com/news/uae/2026/10/07/dubai-launches-create-ai-agents-championship-with-prize-money-exceeding-dh25m/
 - Khaleej Times launch reporting: https://www.khaleejtimes.com/uae/sheikh-hamdan-launch-create-ai-agents-championship-prizes — its December deadline is superseded by the current organizer page; its AED overall-prize amount is launch reporting, not an amount currently specified on the organizer page.
-- Role: https://openai.com/careers/forward-deployed-engineer-uae-abu-dhabi-uae/
+- Role type: Forward Deployed Engineer · Anthropic (London). The checked URL lives in `src/lib/target-role.ts` (checked 14 Nov 2026).
 - News attribution: https://gulfnews.com/business/economy/uae-reveals-control-tower-to-monitor-ai-government-agents-1.500710167
 - GITEX dates: https://www.gitex.com/plan-your-visit-2026 — summit December 7; expo December 8–11. No attendance or competition connection is claimed.
 - Supplied source: Create AI Agents Championship — Entry Pack.pdf, pages 1–8. Reviewed as planning material; claims were checked against the current organizer page where available.
