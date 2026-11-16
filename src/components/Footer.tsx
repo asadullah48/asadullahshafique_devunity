@@ -6,15 +6,17 @@ import React from "react";
 import { useLocale } from "@/context/LocaleContext";
 
 const Footer = () => {
-  const { t } = useLocale();
+  const { t, locale } = useLocale();
   const currentYear = new Date().getFullYear();
+  // Absolute so the links work from /blog and other routes; locale-aware so /ar stays Arabic.
+  const home = locale === "ar" ? "/ar" : "/";
 
   const quickLinks = [
-    { nameKey: "nav.about",      href: "/#about"      },
-    { nameKey: "nav.services",   href: "/#services"   },
-    { nameKey: "nav.projects",   href: "/#projects"   },
-    { nameKey: "nav.hackathons", href: "/#hackathons" },
-    { nameKey: "nav.openSource", href: "/#open-source" },
+    { nameKey: "nav.about",      href: `${home}#about`       },
+    { nameKey: "nav.services",   href: `${home}#services`    },
+    { nameKey: "nav.projects",   href: `${home}#projects`    },
+    { nameKey: "nav.hackathons", href: `${home}#hackathons`  },
+    { nameKey: "nav.openSource", href: `${home}#open-source` },
   ];
 
   return (
