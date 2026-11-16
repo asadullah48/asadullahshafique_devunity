@@ -32,7 +32,7 @@ Agentic AI engineer who builds multi-agent systems that can be audited: typed or
 ### Agent governance trio — OrchestratorX · ProtoBridge · GuardrailAI
 [Architecture reviews](https://asadullahshafique-devunity.vercel.app/systems/orchestratorx)
 
-- **OrchestratorX:** supervisor-pattern framework where routing is typed state, not prompt text; 41 tests with no API key or network; FastAPI trace endpoint, Docker, CI on Python 3.11–3.13.
+- **OrchestratorX:** supervisor-pattern framework where routing is typed state, not prompt text; 70 tests passing (verified 9 Nov 2026, main 8ff9f8c), with no API key or network; FastAPI trace endpoint, Docker, CI on Python 3.11–3.13.
 - **ProtoBridge:** MCP × A2A interoperability layer with a normalized envelope; 75 tests passing (verified 9 Nov 2026, main 9b43a3d); the live demo recomputes SHA-256 ledger digests in the visitor's browser.
 - **GuardrailAI:** deterministic compliance layer with a hash-chained audit ledger; 17 tests.
 

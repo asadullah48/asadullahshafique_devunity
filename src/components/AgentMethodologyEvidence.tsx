@@ -34,13 +34,13 @@ const examples = {
     {
       name: "OrchestratorX",
       detail: "typed supervisor routing",
-      href: "https://github.com/asadullah48/orchestratorx/tree/1ca950a",
+      href: "https://github.com/asadullah48/orchestratorx/tree/8ff9f8c",
     },
   ],
 };
 
 const testSuites = [
-  { name: "OrchestratorX", detail: "41 tests · 1ca950a", href: "https://github.com/asadullah48/orchestratorx/tree/1ca950a/tests" },
+  { name: "OrchestratorX", detail: "70 tests passing (verified 9 Nov 2026, main 8ff9f8c)", href: "https://github.com/asadullah48/orchestratorx/tree/8ff9f8c/tests" },
   { name: "GuardrailAI", detail: "42 tests · 69dd5d9", href: "https://github.com/asadullah48/guardrailai/tree/69dd5d9" },
   { name: "ProtoBridge", detail: "75 tests passing (verified 9 Nov 2026, main 9b43a3d)", href: "https://github.com/asadullah48/protobridge/blob/9b43a3d/README.md" },
   { name: "Portfolio backend", detail: "49 tests", href: `${PORTFOLIO}/tree/main/backend/tests` },

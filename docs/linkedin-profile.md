@@ -116,7 +116,7 @@ consider the practice's real start (the agentic work dates from Jan 2025).
 > • Implemented Constitutional AI as SDK guardrails with a model-free deterministic layer, so
 >   enforcement survives provider outages.
 > • Wrote trace-based eval suites (routing, constitution, portfolio) wired into CI.
-> • Open-sourced deterministic-control projects: OrchestratorX (model-free routing, 41 tests, no API
+> • Open-sourced deterministic-control projects: OrchestratorX (model-free routing, 70 tests passing (verified 9 Nov 2026, main 8ff9f8c), no API
 >   keys), ProtoBridge (MCP + A2A at the wire level, 75 tests passing (verified 9 Nov 2026, main 9b43a3d)), GuardrailAI (OFAC / AML / HIPAA
 >   pattern checks on synthetic data, 42 tests).
 >
@@ -180,7 +180,7 @@ Kubernetes, GitHub Actions, Spec-driven development.
 | FinAgent-Nexus | Multi-agent financial intelligence with deterministic compliance screening and a hash-chained audit trail | GitHub |
 | AI TradeFlow | Bilingual AI inventory and accounting for Pakistani wholesalers, around the Munshi agent | github.com/asadullah48/ai-tradeflow |
 | Asadullah.dev portfolio | Agents SDK orchestration, MCP server, Constitutional AI guardrails and trace-based evals, EN/AR | github.com/asadullah48/asadullahshafique_devunity |
-| OrchestratorX | Model-free routing in typed state; 41 offline tests | github.com/asadullah48/orchestratorx |
+| OrchestratorX | Model-free routing in typed state; 70 tests passing (verified 9 Nov 2026, main 8ff9f8c), offline | github.com/asadullah48/orchestratorx |
 | ProtoBridge | MCP + A2A implemented to the wire; 75 tests passing (verified 9 Nov 2026, main 9b43a3d) | github.com/asadullah48/protobridge |
 
 ## 7. Settings checklist
