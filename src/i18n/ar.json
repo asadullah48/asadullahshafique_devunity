@@ -137,6 +137,14 @@
     "open-source": {
       "label": "مصدر مفتوح",
       "value": "تطبيقات مرجعية"
+    },
+    "claude": {
+      "title": "مبني باستخدام Claude",
+      "mcp": "هذا الموقع خادم MCP مباشر يمكنك إضافته إلى Claude Code",
+      "rehearsal": "Agent Rehearsal: تقييم حي على Claude Haiku 4.5، عشر تجارب (عينة صغيرة)",
+      "finagent": "يستدعي FinAgent-Nexus واجهة Claude API",
+      "certloop": "تعمل Weekly Certification Loop على Claude Code دون واجهة رسومية",
+      "badges": "{count} شارات من Claude Academy مع روابط تحقق من الجهة المانحة"
     }
   },
   "about": {

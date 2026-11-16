@@ -137,6 +137,14 @@
     "open-source": {
       "label": "Open source",
       "value": "reference repositories"
+    },
+    "claude": {
+      "title": "Built with Claude",
+      "mcp": "This site is a live MCP server you can add to Claude Code",
+      "rehearsal": "Agent Rehearsal: live evaluation on Claude Haiku 4.5, 10 trials (small sample)",
+      "finagent": "FinAgent-Nexus calls the Claude API",
+      "certloop": "Weekly Certification Loop runs on headless Claude Code",
+      "badges": "{count} Claude Academy badges with issuer verify links"
     }
   },
   "about": {
