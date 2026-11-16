@@ -1,6 +1,5 @@
 "use client";
 
-import * as React from "react";
 // next-themes ships its own types (dist/index.d.ts). The former
 // src/types/next-themes.d.ts stub was both redundant and unusable: it
 // contained only an ambient `declare module`, which cannot be imported as a
@@ -9,17 +8,11 @@ import * as React from "react";
 // union), so this import is strictly better typed, not merely a build fix.
 import { ThemeProvider as NextThemesProvider, type ThemeProviderProps } from "next-themes";
 
+// Always render the provider. It used to render a bare fragment until mounted,
+// then switch to <NextThemesProvider>; that type change made React unmount and
+// remount the ENTIRE app after every hydration (every DOM node replaced, every
+// effect run twice). next-themes is SSR-safe: its theme mismatch is absorbed by
+// suppressHydrationWarning on <html> in layout.tsx.
 export function ThemeProvider({ children, ...props }: ThemeProviderProps) {
-  const [mounted, setMounted] = React.useState(false);
-
-  // Prevent hydration mismatch by only rendering after component is mounted
-  React.useEffect(() => {
-    setMounted(true);
-  }, []);
-
-  if (!mounted) {
-    return <>{children}</>;
-  }
-
   return <NextThemesProvider {...props}>{children}</NextThemesProvider>;
 }

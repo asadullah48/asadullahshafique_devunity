@@ -3,7 +3,7 @@ slug: six-hackathons-one-methodology
 lang: en
 dir: ltr
 title: "How I Completed 6 Consecutive Hackathons With a Single Methodology"
-excerpt: "Panaversity, Bronze → Platinum → Agent Factory. Six consecutive hackathons and a four-session execution model that any developer can copy. Here's the exact playbook."
+excerpt: "Panaversity, Bronze → Platinum, then Agent Factory. Six consecutive hackathons and a four-session execution model that any developer can copy. Here's the exact playbook."
 author: "Asadullah Shafique"
 date: 2025-04-01
 displayDate: "April 2025"

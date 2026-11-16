@@ -13,11 +13,11 @@ Agentic AI engineer who builds multi-agent systems that can be audited: typed or
 
 ## Core Skills
 
-- **Agent engineering:** OpenAI Agents SDK (handoffs, guardrails), LangGraph, Claude Code / Claude API, MCP servers (FastMCP, Streamable HTTP), A2A, tool contracts, context engineering, RAG
+- **Agent engineering:** OpenAI Agents SDK (handoffs, guardrails), LangGraph (LangChain ecosystem), Claude Code / Claude API, MCP servers (FastMCP, Streamable HTTP), A2A, tool contracts, context engineering, RAG (Qdrant)
 - **Reliability & safety:** deterministic pre-model guardrails, eval harnesses (trace checks + LLM judge), hash-chained audit logs, provider fallback ladders, human-in-the-loop approvals
 - **Backend & data:** Python, FastAPI, SQLAlchemy 2, Alembic, PostgreSQL (row-level security, concurrency tests), Pydantic, pytest
 - **Frontend:** TypeScript, Next.js 15/16, React 19, Tailwind CSS, bilingual EN/AR with RTL
-- **Cloud & ops:** Docker, Kubernetes, Dapr, Kafka, Helm, GitHub Actions, Prometheus/Grafana/Jaeger, Vercel, Render
+- **Cloud & ops:** Docker, Kubernetes, Dapr, Kafka, Helm, GitHub Actions, Prometheus/Grafana/Jaeger, Vercel, Render, Oracle Cloud (OCI)
 
 ## Selected Projects
 
@@ -32,9 +32,9 @@ Agentic AI engineer who builds multi-agent systems that can be audited: typed or
 ### Agent governance trio — OrchestratorX · ProtoBridge · GuardrailAI
 [Architecture reviews](https://asadullahshafique-devunity.vercel.app/systems/orchestratorx)
 
-- **OrchestratorX:** supervisor-pattern framework where routing is typed state, not prompt text; 41 tests with no API key or network; FastAPI trace endpoint, Docker, CI on Python 3.11–3.13.
-- **ProtoBridge:** MCP × A2A interoperability layer with a normalized envelope; 75 tests passing (verified 9 Nov 2026, main 9b43a3d); the live demo recomputes SHA-256 ledger digests in the visitor's browser.
-- **GuardrailAI:** deterministic compliance layer with a hash-chained audit ledger; 17 tests.
+- **OrchestratorX:** supervisor-pattern framework where routing is typed state, not prompt text; 70 tests passing with no API key or network (run 12 Nov 2026, main f077fcc); FastAPI trace endpoint, Docker, CI on Python 3.11–3.13.
+- **ProtoBridge:** MCP × A2A interoperability layer with a normalized envelope; 75 tests passing (run 12 Nov 2026, main 9b43a3d); the live demo recomputes SHA-256 ledger digests in the visitor's browser.
+- **GuardrailAI:** deterministic compliance layer with a hash-chained audit ledger; 53 tests passing (run 12 Nov 2026, main 8112ddd).
 
 ### AI TradeFlow — inventory, accounting and an AI assistant for wholesalers
 [Live](https://ai-tradeflow-demo.vercel.app) · [Code](https://github.com/asadullah48/ai-tradeflow)
@@ -85,10 +85,11 @@ Distinct domains (legacy-code transpilation, zero-trust MCP security, DAG workfl
 
 ## Hackathons
 
-**Panaversity hackathon series — six consecutive completions (2024–2025):** Personal AI CTO (Bronze) → Course Companion FTE (Silver) → AI-Powered Todo (Silver, 89 tests) → Advanced Todo (Gold, 149 tests, triple-layer Constitutional AI) → Cloud-Native Deployment (Platinum: Kubernetes, Dapr, Kafka, Prometheus/Grafana/Jaeger) → Agent Factory (Platinum: a general agent that builds custom agents; SKILL.md as portable units).
+**Panaversity hackathon series — six consecutive completions (2024–2025):** Personal AI CTO (Bronze) → Course Companion FTE (Silver) → AI-Powered Todo (Silver, 89 tests) → Advanced Todo (Gold, 149 tests, triple-layer Constitutional AI) → Cloud-Native Deployment (Platinum: Kubernetes, Dapr, Kafka, Prometheus/Grafana/Jaeger) → Agent Factory (completed: a general agent that builds custom agents; SKILL.md as portable units).
 
 ## Certifications
 
+- **Panaversity Certified Associate: Foundations (PCAO-F)** — passed 25 Oct 2026
 - **Agent Foundations** — Cognizant AI Lab, Agent Academy · Sep 2026 · [certificate](https://asadullahshafique-devunity.vercel.app/certificates/agent-foundations-asadullah-shafique.png)
 - **Anthropic Claude Academy** — six verified badges, Sep 2026: AI Fluency: Framework and Foundations; AI Fluency for Builders; AI Capabilities and Limitations; Claude 101; Claude Code 101; Introduction to Claude Cowork · [verify links](https://asadullahshafique-devunity.vercel.app/#certifications)
 - **In progress:** Claude Code in Action and Introduction to Model Context Protocol (Claude Academy, completed, badges pending); Panaversity Forward Deployed Engineer training (Track B); PCAR-F and Claude Certified Associate – Foundations (not yet awarded)

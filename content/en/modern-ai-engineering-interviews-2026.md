@@ -177,8 +177,8 @@ Then practice under realistic constraints:
 ## How I practice this
 
 - [Agent Failure Atlas (Case 001)](https://asadullah48.github.io/agent-failure-atlas/) — reproducible agent-failure case
-- [OrchestratorX](/systems/orchestratorx) — supervisor routing as typed state, 41 tests
-- [GuardrailAI](/systems/guardrailai) — deterministic compliance checks with hash-chained audit ledger, 42 tests
+- [OrchestratorX](/systems/orchestratorx) — supervisor routing as typed state, 70 tests passing (run 12 Nov 2026, main f077fcc)
+- [GuardrailAI](/systems/guardrailai) — deterministic compliance checks with hash-chained audit ledger, 53 tests passing (run 12 Nov 2026, main 8112ddd)
 - [ProtoBridge](/systems/protobridge) — MCP × A2A interoperability layer, 75 tests passing (verified 9 Nov 2026, main 9b43a3d)
 
 ## The principle to remember
