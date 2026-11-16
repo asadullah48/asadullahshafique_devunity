@@ -10,11 +10,11 @@ const Footer = () => {
   const currentYear = new Date().getFullYear();
 
   const quickLinks = [
-    { nameKey: "nav.about",      href: "#about"      },
-    { nameKey: "nav.services",   href: "#services"   },
-    { nameKey: "nav.projects",   href: "#projects"   },
-    { nameKey: "nav.hackathons", href: "#hackathons" },
-    { nameKey: "nav.openSource", href: "#open-source" },
+    { nameKey: "nav.about",      href: "/#about"      },
+    { nameKey: "nav.services",   href: "/#services"   },
+    { nameKey: "nav.projects",   href: "/#projects"   },
+    { nameKey: "nav.hackathons", href: "/#hackathons" },
+    { nameKey: "nav.openSource", href: "/#open-source" },
   ];
 
   return (

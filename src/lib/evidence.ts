@@ -156,9 +156,9 @@ export const PROOF: readonly Evidence[] = [
   {
     id: "open-source",
     label: "Open source",
-    value: "21 agentic repos",
+    value: "Reference implementations",
     detail:
-      "Twenty-one agentic reference implementations are public, each with its own architecture, gateway, test suite, and repository. The homepage distinguishes these from deployed products.",
+      "Public agentic reference implementations on synthetic domain data. The project section derives its displayed reference count from the project records and distinguishes these from deployed products.",
     source: { kind: "repo", slug: "" },
   },
 ] as const;

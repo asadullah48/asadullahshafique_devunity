@@ -14,7 +14,7 @@ import { useLocale } from "@/context/LocaleContext";
  * section costs you the reader before the project grid below it can argue
  * anything in depth.
  *
- * What survives is the claim itself — twenty-one platforms — stated once
+ * What survives is the claim itself — the reference-tier count — stated once
  * at poster weight, with four named openers as proof of shape and a link
  * to the rest. Coverage is now demonstrated by the GitHub link rather than
  * by transcribing the index into the page.
@@ -29,7 +29,6 @@ import { useLocale } from "@/context/LocaleContext";
  * ------------------------------------------------------------------ */
 
 const GITHUB_OWNER = "asadullah48";
-const TOTAL_PLATFORMS = 21;
 
 type Featured = {
   /** Repo slug. Doubles as the React key and the specialty lookup key. */
@@ -68,7 +67,7 @@ const SPECIALTY_AR: Record<string, string> = {
 const COPY = {
   en: {
     eyebrow: "// agent ecosystem",
-    headline: "Twenty-one open-source multi-agent platforms",
+    headline: "open-source multi-agent reference implementations",
     subtitle:
       "Each with its own agent architecture, FastAPI gateway, test suite and public repository — reference implementations running on synthetic domain data, not deployed products.",
     /* No count in the string — the gutter already carries "+17", and in RTL
@@ -76,33 +75,33 @@ const COPY = {
     // Was "…all open source and live". "Live" contradicted the footnote below:
     // each platform serves its dashboard from localhost and none is deployed.
     more: "further platforms, all open source",
-    cta: `View all ${TOTAL_PLATFORMS} repositories`,
+    cta: "View repositories",
     stats: [
-      { value: "736", label: "Tests defined" },
+      { value: "Synthetic", label: "Domain data" },
       { value: "100%", label: "Open source" },
       { value: "EN / AR", label: "RTL localization" },
     ],
     footnote:
-      "736 is the count of test functions across all 21 public repositories, not a single suite in this one — every file named test_*.py, counted from source on 2026-09-10. It replaces an earlier 263, which one repository in this list now exceeds on its own. Two caveats, stated because they matter: 6 of the 21 run those tests in CI, and a test count measures engineering activity, not system quality. Each platform serves its dashboard from localhost, so no dashboard is linked — clone the repo and it comes up there.",
+      "The count comes from the reference tier displayed below. These are reference implementations on synthetic domain data, not production deployments. Local dashboards require cloning and running their repositories.",
   },
   ar: {
     eyebrow: "// منظومة الوكلاء",
-    headline: "إحدى وعشرون منصة مفتوحة المصدر متعددة الوكلاء",
+    headline: "تطبيقات مرجعية مفتوحة المصدر متعددة الوكلاء",
     subtitle:
       "لكل منها بنية وكلاء خاصة بها وبوابة FastAPI ومجموعة اختبارات ومستودع عام — تطبيقات مرجعية تعمل على بيانات مجال اصطناعية، لا منتجات منشورة.",
     more: "منصة أخرى، جميعها مفتوحة المصدر",
-    cta: `استعرض المستودعات الـ${TOTAL_PLATFORMS}`,
+    cta: "استعرض المستودعات",
     stats: [
-      { value: "736", label: "اختبار معرّف" },
+      { value: "اصطناعية", label: "بيانات المجال" },
       { value: "100%", label: "مفتوح المصدر" },
       { value: "EN / AR", label: "دعم الاتجاهين" },
     ],
     footnote:
-      "رقم 736 هو عدد دوال الاختبار عبر المستودعات العامة الواحد والعشرين جميعها، لا مجموعة اختبارات واحدة في هذا المستودع — كل ملف باسم test_*.py، محسوب من الشيفرة المصدرية بتاريخ 2026-09-10. ويستبدل الرقم السابق 263، الذي يتجاوزه اليوم مستودع واحد من هذه القائمة بمفرده. وثمة تحفّظان يستحقان الذكر: ستة من الواحد والعشرين تشغّل هذه الاختبارات في التكامل المستمر، وعدد الاختبارات يقيس النشاط الهندسي لا جودة النظام. وتقدّم كل منصة لوحتها من الجهاز المحلي، لذا لا تُربط أي لوحة — استنسخ المستودع وستعمل عليه.",
+      "العدد مشتق من الفئة المرجعية المعروضة أدناه. هذه تطبيقات مرجعية ببيانات اصطناعية وليست أنظمة إنتاجية. تتطلب اللوحات المحلية استنساخ المستودعات وتشغيلها.",
   },
 } as const;
 
-export function AgentEcosystem() {
+export function AgentEcosystem({ referenceCount }: { referenceCount: number }) {
   const { locale } = useLocale();
   const copy = locale === "ar" ? COPY.ar : COPY.en;
   const specialty = locale === "ar" ? SPECIALTY_AR : SPECIALTY_EN;
@@ -156,7 +155,7 @@ export function AgentEcosystem() {
               dir="ltr"
               className="shrink-0 text-[5rem] sm:text-[6.5rem] lg:text-[8.5rem] font-bold leading-[0.78] tracking-tighter text-brand tabular-nums"
             >
-              {TOTAL_PLATFORMS}
+              {referenceCount}
             </div>
             <div>
               <div className="w-10 h-1 bg-brand mb-4 rounded-full" />
@@ -230,7 +229,7 @@ export function AgentEcosystem() {
                 dir="ltr"
                 className="font-mono text-xs text-muted-foreground/50 tabular-nums ps-1"
               >
-                {`+${TOTAL_PLATFORMS - FEATURED.length}`}
+                {`+${referenceCount - FEATURED.length}`}
               </span>
               <span className="text-muted-foreground/70 text-sm">
                 {copy.more}
