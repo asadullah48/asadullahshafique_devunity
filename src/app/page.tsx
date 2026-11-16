@@ -8,6 +8,7 @@ import FlagshipCaseStudies from "@/components/FlagshipCaseStudies";
 import About from "@/components/About";
 import Services from "@/components/Services";
 import AgentEngineering from "@/components/AgentEngineering";
+import AgentToolkit from "@/components/AgentToolkit";
 import AgentTrace from "@/components/AgentTrace";
 import EngineeringEvidence from "@/components/EngineeringEvidence";
 import AgentRuntime from "@/components/AgentRuntime";
@@ -93,6 +94,7 @@ export default function Home() {
                 that make it trustworthy, then the real system running — the
                 contrast between illustrative and measured is deliberate. */}
             <AgentEngineering />
+            <AgentToolkit />
             <AgentTrace />
             <EngineeringEvidence />
             <AgentRuntime />
