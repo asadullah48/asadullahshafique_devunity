@@ -20,14 +20,14 @@ export const FLAGSHIP_SYSTEMS: readonly FlagshipSystem[] = [
     slug: "orchestratorx",
     name: "OrchestratorX",
     thesis: "Routing as a testable invariant, not a prompt.",
-    summary: "A supervisor-pattern multi-agent framework that keeps routing in typed state and plain Python so execution order can be tested without a model or API key.",
+    summary: "A completed LangGraph reference implementation with model-free routing, typed state, and ordered execution traces over synthetic portfolio data.",
     problem: "When routing, retry behaviour, and completion rules live inside prompts, the most important system behaviour becomes probabilistic and difficult to explain after a run.",
-    decision: "A single supervisor owns every transition. Specialists return to the supervisor, never directly to one another, and every hop is written to an audit trace.",
+    decision: "A single supervisor owns every transition. RiskModeler, ComplianceChecker, and ClientAdvisor return to the supervisor; Reporter is terminal. Completed hops and handled failures are recorded in an ordered trace.",
     architecture: ["Request", "Supervisor", "Specialist", "Verification", "Recorded result"],
     invariants: [
       "Only the supervisor selects the next node.",
-      "Required specialists run before reporting.",
-      "A hop budget guarantees termination.",
+      "Required specialists run before reporting on the happy path; halts and open breakers permit exceptions.",
+      "Hop and retry limits bound steps and attempts; they do not time out blocked calls.",
       "Failures remain visible in the ordered trace.",
       "Concurrent runs isolate breaker state by run identifier."
     ],
@@ -37,8 +37,10 @@ export const FLAGSHIP_SYSTEMS: readonly FlagshipSystem[] = [
     ],
     limitations: [
       "Reference architecture, not evidence of a customer production deployment.",
-      "Business-specific escalation policy must be supplied by the adopting organisation.",
-      "Operational SLOs require measurement in the target environment."
+      "Domain rules are illustrative; all client, issuer, and market data is synthetic.",
+      "No authentication, persistent trace storage, or streaming. Operational SLOs require measurement.",
+      "Reporter does not explicitly render specialist errors; inspect run state and traces alongside report text.",
+      "Mitigation proposes actions without rerunning domain checks against a changed portfolio."
     ],
     enterpriseNext: ["Connect organisation-specific tools.", "Define escalation and approval policy.", "Add production telemetry and service objectives."],
     stack: ["LangGraph", "Python", "Pydantic", "FastAPI", "Docker", "pytest"],
