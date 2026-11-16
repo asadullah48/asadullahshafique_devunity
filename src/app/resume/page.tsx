@@ -143,7 +143,7 @@ const flagship = [
     name: "Agent Factory (H5)",
     tagline: "A General Agent that manufactures Custom Agents",
     impact:
-      "Two-tier architecture where Claude Code manufactures OpenAI Agents SDK agents; SKILL.md as portable intelligence units. Platinum tier, deployed on Kubernetes + Dapr.",
+      "Two-tier architecture where Claude Code manufactures OpenAI Agents SDK agents; SKILL.md as portable intelligence units. Completed; deployed on Kubernetes + Dapr.",
     href: "https://github.com/asadullah48",
     stack: ["Claude Code", "SKILL.md", "Dapr"],
     shipped: true,
@@ -154,8 +154,8 @@ const skills = {
   Languages: ["TypeScript", "JavaScript", "Python", "HTML/CSS"],
   Frontend: ["Next.js 15", "React 19", "Tailwind CSS v4", "shadcn/ui"],
   Backend: ["FastAPI", "SQLAlchemy ORM", "PostgreSQL", "REST APIs"],
-  "AI & Agents": ["OpenAI Agents SDK", "MCP Servers", "Constitutional AI", "RAG", "OpenAI API"],
-  "Cloud & DevOps": ["Kubernetes", "Docker", "Dapr", "Kafka", "Helm", "GitHub Actions", "Vercel", "Koyeb", "Minikube"],
+  "AI & Agents": ["OpenAI Agents SDK", "MCP Servers", "LangGraph (LangChain ecosystem)", "Constitutional AI", "RAG", "Qdrant", "OpenAI API"],
+  "Cloud & DevOps": ["Kubernetes", "Docker", "Dapr", "Kafka", "Helm", "GitHub Actions", "Vercel", "Koyeb", "Minikube", "Oracle Cloud (OCI)"],
   Observability: ["Prometheus", "Grafana", "Jaeger", "Loki"],
   "Platforms & Tools": ["Git", "Windows 11", "WSL2"],
 };
@@ -165,7 +165,7 @@ const hackathons = [
     emoji: "🏭",
     name: "Agent Factory (H5)",
     year: "2025",
-    tier: "Platinum",
+    tier: "Completed",
     description: "General Agent (Claude Code) manufactures Custom Agents (OpenAI Agents SDK). SKILL.md monetization. Digital FTE deployed on Kubernetes + Dapr. 117-slide deck.",
     stack: ["Claude Code", "OpenAI SDK", "MCP", "SKILL.md", "Dapr", "K8s"],
   },
@@ -345,6 +345,7 @@ const education: Education[] = [
       },
     ],
   },
+  { degree: "Panaversity Certified Associate: Foundations (PCAO-F)", institution: "Panaversity", period: "Passed 25 Oct 2026" },
   { degree: "Alim (5-Year Islamic Studies Course)", institution: "Burooj Institute, Karachi", period: "" },
   { degree: "Associate Degree in Textile Technology", institution: "Textile Institute of Pakistan (APTMA)", period: "1997" },
   { degree: "H.S.C Pre-Engineering", institution: "Pakistan Shipowner's Government College, Karachi", period: "1994" },
@@ -352,6 +353,7 @@ const education: Education[] = [
 ];
 
 const tierColor: Record<string, string> = {
+  Completed: "bg-brand/10 text-brand border-brand/40",
   Platinum: "bg-zinc-300/10 text-foreground border-zinc-300/40",
   Gold: "bg-yellow-400/10 text-yellow-400 border-yellow-400/40",
   Silver: "bg-muted/10 text-muted-foreground border-border/40",
@@ -471,7 +473,7 @@ export default function ResumePage() {
             units and garment exporters across Faisalabad, Sialkot, Gujranwala, Karachi and Lahore — so the
             domain intelligence is built from inside an industry rather than modelled from outside one.
             Completed <span className="text-foreground font-medium">6 consecutive Panaversity Hackathons</span>{" "}
-            (Bronze → Silver → Silver → Gold → Platinum → Agent Factory), each build{" "}
+            (Bronze → Silver → Silver → Gold → Platinum, then Agent Factory), each build{" "}
             <span className="text-brand font-medium">carrying the last one forward</span>.
           </p>
         </Section>
@@ -551,11 +553,11 @@ export default function ResumePage() {
         <Section title="Hackathon Achievements" icon={<Trophy className="w-5 h-5" />}>
           <p className="text-sm text-muted-foreground mb-5">
             {/* Was "6 Consecutive Wins · 85% Code Reuse · Zero Failed Attempts".
-                The six results read Bronze, Silver, Silver, Gold, Platinum
-                and Agent Factory — a tier ladder, not six competitive wins. The
+                The results read Bronze, Silver, Silver, Gold, Platinum, then
+                Agent Factory (completed, no tier) — a ladder, not six competitive wins. The
                 ladder is the stronger claim anyway: it shows compounding
                 (89 tests -> 149), which "won" does not. */}
-            Panaversity Hackathon Series: <span className="text-foreground/80">6 consecutive builds</span> · Bronze → Agent Factory
+            Panaversity Hackathon Series: <span className="text-foreground/80">6 consecutive builds</span> · Bronze → Platinum, then Agent Factory
           </p>
           <div className="space-y-3">
             {hackathons.map((h) => (

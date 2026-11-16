@@ -1,4 +1,20 @@
-# Public project evidence — 20 October 2026
+# Public project evidence
+
+## 12 November 2026 — re-run on local `main` checkouts (in sync with `origin/main` after `git fetch`)
+
+| Repository | main commit | Command | Exact summary |
+|---|---|---|---|
+| OrchestratorX | `f077fcc` | `uv run --frozen pytest -q` | `70 passed in 2.98s` |
+| ProtoBridge | `9b43a3d` | `uv run --frozen pytest -q` | `75 passed in 9.20s` |
+| GuardrailAI | `8112ddd` | `uv run --with-requirements requirements.txt --with pytest pytest -q` | `53 passed, 1 warning in 16.96s` |
+
+GuardrailAI caveat: run as `.venv/Scripts/python.exe -m pytest` without activating the venv, the result is `1 failed, 52 passed` — `scripts/demo.ps1` calls bare `python` from PATH, which then is not the project interpreter. Environment, not code; all 53 pass when the environment is on PATH.
+
+The 20 October 2026 record below is kept as history.
+
+---
+
+## Public project evidence — 20 October 2026
 
 ## VERIFIED: clean public main clones
 

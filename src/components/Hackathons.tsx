@@ -5,7 +5,8 @@ import { Reveal } from "@/components/Reveal";
 import { Trophy, Calendar, MapPin, Award } from "lucide-react";
 import { useLocale } from "@/context/LocaleContext";
 
-type HackathonTier = "Agent Factory" | "Platinum" | "Gold" | "Silver" | "Bronze";
+// H5 records completion only; it was never awarded a tier.
+type HackathonTier = "Completed" | "Platinum" | "Gold" | "Silver" | "Bronze";
 
 /**
  * One row of portfolio.json `hackathons.results` — the same record the MCP
@@ -16,7 +17,7 @@ type HackathonTier = "Agent Factory" | "Platinum" | "Gold" | "Silver" | "Bronze"
  */
 export type HackathonResult = { id: string; result: string; status?: string };
 
-const TIERS: readonly HackathonTier[] = ["Agent Factory", "Platinum", "Gold", "Silver", "Bronze"];
+const TIERS: readonly HackathonTier[] = ["Completed", "Platinum", "Gold", "Silver", "Bronze"];
 const isTier = (value: string): value is HackathonTier =>
   (TIERS as readonly string[]).includes(value);
 
@@ -32,7 +33,7 @@ type HackathonEntry = {
 };
 
 const tierStyles: Record<HackathonTier, string> = {
-  "Agent Factory": "bg-purple-500/20 text-purple-400 border border-purple-500/30",
+  "Completed":     "bg-brand/10 text-brand border border-brand/30",
   "Platinum":      "bg-sky-500/20    text-sky-400    border border-sky-500/30",
   "Gold":          "bg-yellow-500/20 text-yellow-400 border border-yellow-500/30",
   "Silver":        "bg-muted/20   text-foreground/80   border border-border/30",
@@ -177,7 +178,7 @@ const Hackathons = ({ results }: { results: HackathonResult[] }) => {
   });
 
   const tierLabels: Record<HackathonTier, string> = {
-    "Agent Factory": t("hackathons.agentFactory"),
+    "Completed":     t("hackathons.completed"),
     "Platinum":      t("hackathons.platinum"),
     "Gold":          t("hackathons.gold"),
     "Silver":        t("hackathons.silver"),
@@ -225,7 +226,7 @@ const Hackathons = ({ results }: { results: HackathonResult[] }) => {
                       <span className={`inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold ${tierStyles[hackathon.tier] ?? ""}`}>
                         {tierLabels[hackathon.tier]}
                       </span>
-                      {hackathon.highlight && hackathon.completed && (
+                      {hackathon.highlight && hackathon.completed && hackathon.tier !== "Completed" && (
                         <span className="inline-flex items-center gap-1 px-3 py-1 rounded-full bg-brand/10 text-brand text-xs font-medium">
                           <Award className="w-3 h-3" />
                           {t("hackathons.completed")}
