@@ -15,6 +15,7 @@ import AgentRuntime from "@/components/AgentRuntime";
 import ConnectMcp from "@/components/ConnectMcp";
 import PerformanceMarketing from "@/components/PerformanceMarketing";
 import Projects from "@/components/Projects";
+import ReadingList from "@/components/ReadingList";
 import Hackathons from "@/components/Hackathons";
 import portfolio from "../../backend/knowledge/portfolio.json";
 import Blog, { type PostSummary } from "@/components/Blog";
@@ -113,6 +114,7 @@ export default function Home() {
             <Blog posts={posts} />
             <OpenSourceSection />
             <Discord />
+            <ReadingList />
             <Contact />
             <Footer />
             <FloatingWidgets />
