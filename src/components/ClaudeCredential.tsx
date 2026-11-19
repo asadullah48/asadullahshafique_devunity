@@ -53,7 +53,7 @@ export function ClaudeCredential() {
           const linkText = c.verifyUrl ? t("credentials.verify") : t("credentials.view");
           return (
             <li
-              key={href}
+              key={c.title}
               className="flex flex-col rounded-xl border border-brand/30 bg-surface-1/60 p-5"
             >
               <div className="flex items-start gap-3">
@@ -74,6 +74,11 @@ export function ClaudeCredential() {
                   )}
                 </div>
               </div>
+              {c.proofPending && (
+                <p className="mt-3 text-sm text-muted-foreground">
+                  {ar ? "رابط الإثبات الرسمي قيد الإضافة." : "Official proof link pending."}
+                </p>
+              )}
               {href && (
                 <a
                   href={href}

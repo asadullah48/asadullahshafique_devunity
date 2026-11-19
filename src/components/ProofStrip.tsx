@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
 import { PROOF, sourceHref, sourceLabel } from "@/lib/evidence";
+import { CREDENTIALS } from "@/lib/credentials";
 import { useLocale } from "@/context/LocaleContext";
 
 /**
@@ -38,6 +39,21 @@ import { useLocale } from "@/context/LocaleContext";
  * prose here too would make the first screen after the hero dense enough to
  * skip, which is the opposite of what a proof layer is for.
  */
+// "Built with Claude" — each item links to the file or section that proves it,
+// checked 2026-11-16. Factory Line is left out: its repo is private and its own
+// README marks the agent line NOT VERIFIED (not yet run end-to-end).
+const GH = "https://github.com/asadullah48";
+const CLAUDE_EVIDENCE = [
+  { key: "mcp", href: "#connect-mcp" },
+  { key: "rehearsal", href: `${GH}/agent-rehearsal/blob/main/evidence/live-eval-2026-10-20.json` },
+  { key: "finagent", href: `${GH}/finagent-nexus/blob/main/src/finagent_nexus/llm.py` },
+  { key: "certloop", href: `${GH}/weekly-certification-loop/blob/main/loop/heartbeat.ps1` },
+  { key: "badges", href: "#certifications" },
+] as const;
+const ACADEMY_BADGES = CREDENTIALS.filter((c) =>
+  c.verifyUrl?.startsWith("https://academy.claude.com/verify/"),
+).length;
+
 export default function ProofStrip() {
   const { t } = useLocale();
 
@@ -98,6 +114,22 @@ export default function ProofStrip() {
             </li>
           ))}
         </ul>
+
+        <p className="flex flex-wrap items-baseline gap-x-4 gap-y-2 py-4 text-sm text-muted-foreground">
+          <span className="text-eyebrow font-mono uppercase tracking-widest">
+            {t("proof.claude.title")}
+          </span>
+          {CLAUDE_EVIDENCE.map(({ key, href }) => (
+            <a
+              key={key}
+              href={href}
+              {...(href.startsWith("http") ? { target: "_blank", rel: "noopener noreferrer" } : {})}
+              className="underline decoration-border underline-offset-4 transition-colors hover:text-brand-soft focus-visible:text-brand-soft"
+            >
+              {t(`proof.claude.${key}`).replace("{count}", String(ACADEMY_BADGES))}
+            </a>
+          ))}
+        </p>
       </div>
     </section>
   );

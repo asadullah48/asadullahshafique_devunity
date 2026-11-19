@@ -1,14 +1,14 @@
 "use client";
 
 import { Reveal } from "@/components/Reveal";
-import { Github, GitFork, Star, Code2, Users } from "lucide-react";
+import { Github, GitFork, Star, Users } from "lucide-react";
 import { useLocale } from "@/context/LocaleContext";
 import { GitHubHeatmap } from "@/components/GitHubHeatmap";
 import { GitHubStatsStrip } from "@/components/GitHubStatsStrip";
 
 const GITHUB_USERNAME = "asadullah48";
 
-const STAT_ICONS = [Github, GitFork, Code2, Star, Users];
+const STAT_ICONS = [Github, GitFork, Star, Users];
 // Slot 3 was "85%" / "Code Reuse Rate": self-reported, with nothing anywhere
 // measuring it. Replaced with a figure that was actually counted — 736 is the
 // total of `def test_` occurrences across the 21 AGENTIC repositories, counted
@@ -18,14 +18,16 @@ const STAT_ICONS = [Github, GitFork, Code2, Star, Users];
 // the explicit label; a bare "tests" beside a repo count would imply the
 // wrong denominator. Only 6 of the 21 run their tests in CI, which
 // AgentEcosystem's footnote states outright.
-const STAT_VALUES = ["512", "6", "736", "10+", "3"];
+// 2026-11-16: the 736 tile is removed. It counted 21 repos; the site now shows
+// 20 reference implementations and the count was not re-run for that set.
+const STAT_VALUES = ["512", "6", "10+", "3"];
 // Was ["#84cc16", "#3b82f6", "#a855f7", "#f59e0b", "#10b981"] — five literal
 // hex accents, including the retired lime brand and the violet that CLAUDE.md
 // reserves for ambient use only. Five colours across five adjacent tiles encode
 // nothing: the stats are peers, so they should read as one set. Opacity now
 // carries the only variation.
-const STAT_OPACITIES = [1, 0.88, 0.76, 0.64, 0.52];
-const STAT_LABEL_KEYS = ["s1Label", "s2Label", "s3Label", "s4Label", "s5Label"] as const;
+const STAT_OPACITIES = [1, 0.85, 0.7, 0.55];
+const STAT_LABEL_KEYS = ["s1Label", "s2Label", "s4Label", "s5Label"] as const;
 
 const VALUE_KEYS = ["v1", "v2", "v3"] as const;
 const VALUE_ICONS = ["🌐", "🧪", "🤝"];
@@ -65,7 +67,7 @@ export function OpenSourceSection() {
           <GitHubStatsStrip />
         </Reveal>
 
-        <div className="grid grid-cols-2 md:grid-cols-5 gap-4 mb-16">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-16">
           {stats.map((stat, i) => (
             <Reveal step={i}
               key={stat.label}

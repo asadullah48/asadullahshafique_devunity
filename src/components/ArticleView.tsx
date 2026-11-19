@@ -64,7 +64,7 @@ const LABELS: Record<Locale, {
       "Some of the ideas above are implemented in the system behind this site. Each link opens the source, so the claim can be checked rather than taken on trust.",
     opensSource: "(opens the source on GitHub)",
     aboutAuthor: "About the author",
-    authorRole: "Agentic AI Systems Engineer",
+    authorRole: "Agentic AI System Engineer",
     authorBio:
       "I build multi-agent systems: supervisor routing as typed state, deterministic guardrails with hash-chained audit ledgers, and MCP × A2A tool interoperability. I write here about the architecture and judgment behind them.",
     ctaEvidence: "See the engineering evidence",

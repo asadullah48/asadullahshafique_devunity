@@ -86,9 +86,9 @@ const mastery = [
 const flagship = [
   {
     name: "The Autonomous Agent Ecosystem",
-    tagline: "21 open-source platforms, one per problem domain",
+    tagline: "Open-source platforms, one per problem domain",
     impact:
-      "21 multi-agent platforms, each with its own FastAPI gateway, Helm chart, test suite and public repository — reference implementations running on synthetic domain data. 736 test functions across the 21 repositories, counted from source on 2026-09-10; 6 of them run those tests in CI. All open source.",
+      "Multi-agent platforms, each with its own FastAPI gateway, Helm chart, test suite and public repository — reference implementations running on synthetic domain data. All open source.",
     href: "https://github.com/asadullah48?tab=repositories",
     stack: ["FastAPI", "Pytest", "Helm"],
     shipped: true,
@@ -166,7 +166,7 @@ const hackathons = [
     name: "Agent Factory (H5)",
     year: "2025",
     tier: "Completed",
-    description: "General Agent (Claude Code) manufactures Custom Agents (OpenAI Agents SDK). SKILL.md monetization. Digital FTE deployed on Kubernetes + Dapr. 117-slide deck.",
+    description: "General Agent (Claude Code) manufactures Custom Agents (OpenAI Agents SDK). SKILL.md monetization. Digital FTE deployed on Kubernetes + Dapr.",
     stack: ["Claude Code", "OpenAI SDK", "MCP", "SKILL.md", "Dapr", "K8s"],
   },
   {
@@ -236,7 +236,6 @@ const projects = [
     bullets: [
       "General Agent (Claude Code) manufactures Custom Agent (OpenAI Agents SDK)",
       "SKILL.md files as portable, reusable, monetizable intelligence units",
-      "Digital FTE pricing model targeting OpenAI Apps ecosystem (800M users)",
       "Deployed on Kubernetes + Dapr",
     ],
     demo: null,

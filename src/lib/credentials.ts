@@ -28,6 +28,8 @@ export type Credential = {
   issued?: boolean;
   verifyUrl?: string;
   certificateUrl?: string;
+  /** REPORTED by the owner; official issuer proof is still pending. */
+  proofPending?: boolean;
 };
 
 const CLAUDE_ACADEMY = {
@@ -35,16 +37,25 @@ const CLAUDE_ACADEMY = {
   ar: "Claude Academy · منصة التعلّم من Anthropic",
 };
 
-const academy = (title: string, code: string, issued = true): Credential => ({
+const academy = (title: string, code: string, date = "2026-09-18"): Credential => ({
   title,
   issuer: "Anthropic",
   programme: CLAUDE_ACADEMY,
   kind: "badge",
-  ...(issued ? { date: "2026-09-18" } : { issued: false }),
+  date,
   verifyUrl: `https://academy.claude.com/verify/${code}`,
 });
 
 export const CREDENTIALS: Credential[] = [
+  {
+    title: "Panaversity Certified Associate: Foundations (PCAO-F)",
+    issuer: "Panaversity",
+    programme: { en: "Passed · reported by owner", ar: "اجتياز · حسب إفادة المالك" },
+    kind: "certificate",
+    date: "2026-10-25",
+    proofPending: true,
+    // TODO: add the official issuer proof link; do not invent a URL or score.
+  },
   {
     title: "Agent Foundations",
     issuer: "Cognizant",
@@ -59,13 +70,14 @@ export const CREDENTIALS: Credential[] = [
   academy("AI Fluency for builders", "2cfb8dd802a841177aba39028ef6cf4e"),
   academy("AI capabilities and limitations", "e5f7a0e1a35e7d3e6626241402d556be"),
   academy("Claude 101", "6d808a4f90c00a98b326959280f5c280"),
-  academy("Claude Code in action", "f8192381a00c3d85b011b7cd94673286", false),
-  academy("Introduction to Model Context Protocol", "881db997d7957558e2d108c9ab9d174e", false),
+  // VERIFIED 14 Nov 2026: issuer VerifyCertificate responses, UTC issue dates.
+  academy("Claude Code in action", "f8192381a00c3d85b011b7cd94673286", "2026-09-19"),
+  academy("Introduction to Model Context Protocol", "881db997d7957558e2d108c9ab9d174e", "2026-09-19"),
 ];
 
 /** schema.org EducationalOccupationalCredential entries for issued credentials. */
 export function credentialJsonLd(baseUrl: string) {
-  return CREDENTIALS.filter((c) => c.issued !== false && c.date).map((c) => ({
+  return CREDENTIALS.filter((c) => c.issued !== false && !c.proofPending && c.date).map((c) => ({
     "@type": "EducationalOccupationalCredential",
     name: c.title,
     credentialCategory: c.kind === "certificate" ? "certificate" : "badge",

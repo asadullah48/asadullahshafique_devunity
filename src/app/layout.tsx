@@ -49,17 +49,17 @@ export const metadata: Metadata = {
     // positioning: a developer writes the agent; a systems engineer is
     // accountable for whether it can be trusted in production — which is what
     // the orchestration, guardrail and eval layers in this repo exist for.
-    title: "Asadullah Shafique — Agentic AI Systems Engineer",
+    title: "Asadullah Shafique — Agentic AI System Engineer",
     // Names the substrate, not the aspiration. Every claim here is one the
     // repo can demonstrate on request: the Agents SDK orchestrator lives in
     // backend/orchestration/, the MCP server is mounted at /mcp/server, and
     // the constitution in backend/constitution/ is enforced as SDK guardrails.
     description:
-          "Asadullah Shafique, Agentic AI Systems Engineer seeking Forward Deployed Engineer roles in the UAE. Business workflows, OpenAI Agents SDK, MCP, and offline agent evaluation.",
+          "Asadullah Shafique, Agentic AI System Engineer seeking Forward Deployed Engineer roles in the UAE. Business workflows, OpenAI Agents SDK, MCP, and offline agent evaluation.",
     keywords: [
           "Asadullah Shafique",
           "Agentic AI",
-          "Next.js Developer",
+          "Agentic AI System Engineer",
           "Full Stack",
           "TypeScript",
           "Python",
@@ -81,7 +81,7 @@ export const metadata: Metadata = {
           shortcut: "/favicon.svg",
     },
     openGraph: {
-          title: "Asadullah Shafique — Agentic AI Systems Engineer",
+          title: "Asadullah Shafique — Agentic AI System Engineer",
           description:
                   "Governed agentic AI for regulated workflows: deterministic guardrails, auditable runs, humans in control. Pakistan · UAE.",
           type: "website",
@@ -92,7 +92,7 @@ export const metadata: Metadata = {
     },
     twitter: {
           card: "summary_large_image",
-          title: "Asadullah Shafique — Agentic AI Systems Engineer",
+          title: "Asadullah Shafique — Agentic AI System Engineer",
           description:
                   "Governed agentic AI for regulated workflows: deterministic guardrails, auditable runs, humans in control. Pakistan · UAE.",
     },
@@ -127,9 +127,9 @@ export const metadata: Metadata = {
  * schema.org, so these merge rather than conflict.
  *
  * IDENTITY STRING — reconciled 2026-09-10. `jobTitle`, `alternateName`, the
- * document title, openGraph and twitter now all read "Agentic AI Systems
- * Engineer". They previously disagreed three ways ("Agentic AI Developer",
- * "Agentic AI & Automation Engineer", "Agentic AI Developer"), and entity
+ * document title, openGraph and twitter all read one string, set to "Agentic AI
+ * System Engineer" on 2026-11-14. They previously disagreed three ways ("Agentic AI
+ * Developer", "Agentic AI & Automation Engineer", "Agentic AI Developer"), and entity
  * search rewards ONE string everywhere. The off-site half of that pass is NOT
  * done: LinkedIn, GitHub and Medium still carry the old titles, and the
  * consolidation only pays off once they match.
@@ -139,12 +139,12 @@ const personJsonLd = {
     "@type": "Person",
     "@id": PERSON_ID,
     name: "Asadullah Shafique",
-    alternateName: "Asadullah Shafique — Agentic AI Systems Engineer",
+    alternateName: "Asadullah Shafique — Agentic AI System Engineer",
     url: BASE_URL,
     image: `${BASE_URL}/opengraph-image`,
-    jobTitle: "Agentic AI Systems Engineer",
+    jobTitle: "Agentic AI System Engineer",
     description:
-          "Agentic AI Systems Engineer seeking Forward Deployed Engineer roles in the UAE. Work includes business software, OpenAI Agents SDK and MCP integration, and offline agent evaluation.",
+          "Agentic AI System Engineer seeking Forward Deployed Engineer roles in the UAE. Work includes business software, OpenAI Agents SDK and MCP integration, and offline agent evaluation.",
     sameAs: [
           "https://github.com/asadullah48",
           "https://www.linkedin.com/in/asadullah-shafique-a00679325/",

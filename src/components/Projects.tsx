@@ -760,7 +760,7 @@ const PROJECTS_EN: Project[] = [
     id: "stitching-packing",
     title: "CMT Stitching & Packing System",
     status: "Featured",
-    tagline: "Runs production and billing at my own CMT stitching unit",
+    tagline: "Prototype built for my own stitching unit; daily use starts 16 Nov 2026",
     description: "Production management for a Cut-Make-Trim stitching and packing business: order lifecycle from pending to dispatched, stitching and packing sessions with QC, four bill series generated on dispatch from rate templates, cash and bank accounts, party ledgers with CSV/XLSX export, BOM inventory, and public read-only bill links.",
     tech: ["Next.js 15", "FastAPI", "SQLAlchemy 2", "PostgreSQL", "Alembic", "TypeScript"],
     github: "https://github.com/asadullah48/cmt-stitching-system",
@@ -1433,7 +1433,7 @@ const PROJECTS_AR: Project[] = [
     id: "stitching-packing",
     title: "نظام CMT للتخييط والتعبئة",
     status: "Featured",
-    tagline: "يدير الإنتاج والفوترة في وحدة التخييط الخاصة بي",
+    tagline: "نموذج أولي مبني لوحدة الخياطة الخاصة بي؛ يبدأ الاستخدام اليومي في 16 نوفمبر 2026",
     description: "إدارة الإنتاج لأعمال التخييط والتعبئة (القص والخياطة والتشطيب): دورة حياة الطلب من الانتظار حتى الشحن، وجلسات التخييط والتعبئة مع فحص الجودة، وأربع سلاسل فواتير تُنشأ عند الشحن من قوالب الأسعار، وحسابات النقد والبنك، ودفاتر الأطراف مع تصدير CSV/XLSX، ومخزون قائمة المواد، وروابط فواتير عامة للقراءة فقط.",
     tech: ["Next.js 15", "FastAPI", "SQLAlchemy 2", "PostgreSQL", "Alembic", "TypeScript"],
     github: "https://github.com/asadullah48/cmt-stitching-system",
@@ -1955,7 +1955,7 @@ export function ProjectsSection() {
             argues individual platforms in depth. Index first, then depth -
             a reviewer checking coverage should not have to scroll a few
             dozen cards to find out how many platforms there are. */}
-        <AgentEcosystem />
+        <AgentEcosystem referenceCount={reference.length} />
 
         {/* ------------------------------------------------------------------
             TIER 1 — FLAGSHIP. Two columns, not three, so these cards are

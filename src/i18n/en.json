@@ -4,7 +4,7 @@
     "title": "From business workflow to tested execution",
     "intro": "Seeking Forward Deployed Engineer and Applied AI roles in the UAE. These projects show how I approach operational problems, integration, and verification.",
     "businessTitle": "Understand the operation",
-    "businessDesc": "CMT software manages orders, production sessions, billing, and party ledgers in my own stitching unit. AI TradeFlow extends the business-workflow theme with inventory, accounting, and five read-only AI tools.",
+    "businessDesc": "Prototype built for my own stitching unit; daily use starts 16 Nov 2026. CMT software covers orders, production sessions, billing, and party ledgers. AI TradeFlow adds inventory, accounting, and five read-only AI tools.",
     "businessLimit": "CMT is my own operating context. Public demos and test counts do not establish customer ROI or enterprise scale.",
     "integrationTitle": "Connect tools and systems",
     "integrationDesc": "This portfolio implements an OpenAI Agents SDK orchestrator with four specialists and six read-only MCP tools. ProtoBridge explores governed communication across MCP and A2A.",
@@ -14,7 +14,7 @@
     "evaluationLimit": "Both public demos are scripted/offline exercises with synthetic data; no real purchases are involved. Agent Rehearsal's one live-model evaluation is reported separately with its limits.",
     "resume": "Review my resume",
     "contact": "Discuss an engineering role",
-    "role": "Target role: Forward Deployed Engineer · UAE"
+    "role": "Target role type: Forward Deployed Engineer · Anthropic"
   },
   "nav": {
     "howIBuild": "How I build agents",
@@ -53,10 +53,10 @@
     "downloadingResume": "Checking...",
     "resumeNotFound": "PDF not found",
     "resumeMissingHint": "Add resume.pdf to your /public folder & redeploy",
-    "title": "Agentic AI Systems Engineer",
+    "title": "Agentic AI System Engineer",
     "headline": "I engineer AI systems that move from reasoning to reliable execution.",
     "positioning": "I turn operational problems into full-stack software, with agent tools, explicit controls, and checks that inspect what actually happened.",
-    "supporting": "My work spans the software used in my own CMT business, OpenAI Agents SDK and MCP integration, and offline evaluation of approval and retry failures.",
+    "supporting": "My work spans software built for my own CMT business, OpenAI Agents SDK and MCP integration, and offline evaluation of approval and retry failures.",
     "ecosystemNote": "Start with the delivery evidence below: business workflows, working integrations, and recorded failure cases. Each project states its evidence and limits.",
     "capabilities": "Agent Orchestration · MCP · A2A · Guardrails · Evaluation · Kubernetes",
     "sourceCta": "GitHub",
@@ -136,7 +136,15 @@
     },
     "open-source": {
       "label": "Open source",
-      "value": "21 agentic repos"
+      "value": "reference repositories"
+    },
+    "claude": {
+      "title": "Built with Claude",
+      "mcp": "This site is a live MCP server you can add to Claude Code",
+      "rehearsal": "Agent Rehearsal: live evaluation on Claude Haiku 4.5, 10 trials (small sample)",
+      "finagent": "FinAgent-Nexus calls the Claude API",
+      "certloop": "Weekly Certification Loop runs on headless Claude Code",
+      "badges": "{count} Claude Academy badges with issuer verify links"
     }
   },
   "about": {
@@ -144,7 +152,7 @@
     "titleHighlight": "Me",
     "subtitle": "I connect agent architecture with real operational problems across Pakistan and the UAE.",
     "bioName": "Asadullah Shafique",
-    "badgeAI": "Agentic AI Systems Engineer",
+    "badgeAI": "Agentic AI System Engineer",
     "badgeCMT": "CMT Industry Founder",
     "badgeMarketing": "Digital Marketer",
     "bio": "I build production-oriented AI systems and run a textile sourcing business. That combination keeps my engineering grounded in real workflows, deadlines, inventory, customers, and measurable outcomes.",
@@ -160,7 +168,7 @@
   "credentials": {
     "title": "Certifications &",
     "titleHighlight": "Credentials",
-    "subtitle": "{count} completed courses and certificates from {issuers}. Every card links to the issuer's own record or the certificate itself.",
+    "subtitle": "{count} completed courses and certificates from {issuers}. Issuer records and certificate links are provided where available; pending proof is labelled.",
     "certificate": "Certificate of completion",
     "badge": "Verified completion badge",
     "completed": "Completed",
@@ -293,8 +301,8 @@
     "s2Metric": "Live MCP server, 6 tools · guardrails verified with no model reachable",
     "s2CTA": "Explore flagship systems →",
     "s3Title": "Textile Industry Software (Texcot)",
-    "s3Desc": "Software built for and inside my own textile business. Textile ERP Module 1 (Fabric Mill) is live as a demo: roll and lot register, yarn ledger, weaving and knitting sessions, LC imports, with tenant isolation in PostgreSQL. The CMT Stitching & Packing System runs production and billing at my own unit every day.",
-    "s3Metric": "ERP Module 1 of 7 live (demo) · modules 2–7 specified · CMT system in daily use",
+    "s3Desc": "Software built for my own textile business. Textile ERP Module 1 (Fabric Mill) is live as a demo: roll and lot register, yarn ledger, weaving and knitting sessions, LC imports, with tenant isolation in PostgreSQL. CMT: Prototype built for my own stitching unit; daily use starts 16 Nov 2026. Packing remains a software feature; my packing department closed in Oct 2026.",
+    "s3Metric": "ERP Module 1 of 7 live (demo) · modules 2–7 specified · CMT daily use planned for 16 Nov 2026",
     "s3CTA": "Join the waitlist →",
     "s3Badge": "Launching 2026",
     "track1": "Track 1 · Agent engineering",
@@ -328,7 +336,7 @@
     "subtitle": "Domain expertise built through real operations, not just consulting.",
     "i1Title": "Textile & Garment",
     "i1Sub": "Karachi · Pakistan",
-    "i1Desc": "My own small CMT stitching and packing unit in Karachi, plus commission-based embroidery sourcing. The CMT Stitching System and the Textile ERP are built for this real unit. Open to UAE and Gulf sourcing partners.",
+    "i1Desc": "My own small CMT stitching unit in Karachi, plus commission-based embroidery sourcing. My packing department closed in Oct 2026. The CMT Stitching System and Textile ERP are built for this unit. Open to UAE and Gulf sourcing partners.",
     "i2Title": "Real Estate & Construction (UAE)",
     "i2Sub": "Real estate · Contractors · Developers",
     "i2Desc": "Available for UAE engagements: digital marketing, property portals, social media and lead generation for real estate and construction teams.",
@@ -371,7 +379,7 @@
     "referenceDataTitle": "Real multi-agent code and a real test suite, running against synthetic data rather than a live production integration.",
     "title": "Featured",
     "titleHighlight": "Projects",
-    "subtitle": "Three tiers, not thirty-two peers: four flagship systems running on real data, shipped engineering projects, and reference implementations on synthetic data. Click View Case Study on any card for the full problem, solution, and impact breakdown.",
+    "subtitle": "Three tiers: flagship systems, engineering projects, and reference implementations on synthetic data. Click View Case Study on any card for the problem, solution, and impact breakdown.",
     "viewCode": "Code",
     "viewLive": "Live",
     "viewDemo": "Demo",
@@ -432,7 +440,7 @@
     "s1Label": "Original public repos",
     "repoEvidence": "GitHub checked 19 Oct 2026: 520 public repositories, including 512 original repositories and 8 forks.",
     "s2Label": "Hackathons",
-    "s3Label": "Tests · 21 agentic repos",
+    "s3Label": "Tests · reference repositories",
     "s4Label": "Technologies",
     "s5Label": "Communities"
   },
@@ -526,7 +534,7 @@
   "footer": {
     "rights": "All rights reserved.",
     "builtWith": "Built with Next.js · Deployed on Vercel",
-    "bio": "Agentic AI Systems Engineer. Multi-agent orchestration, guardrails and evaluation — and the real businesses they run inside, across Pakistan and the UAE.",
+    "bio": "Agentic AI System Engineer. Multi-agent orchestration, guardrails and evaluation — and the real businesses they run inside, across Pakistan and the UAE.",
     "quickLinksTitle": "Quick Links",
     "getInTouchTitle": "Get in Touch",
     "getInTouchDesc": "Open to collaborations, hackathons, and interesting AI projects.",

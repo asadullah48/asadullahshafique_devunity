@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { Reveal } from "@/components/Reveal";
 import { useLocale } from "@/context/LocaleContext";
+import { TARGET_ROLE_URL } from "@/lib/target-role";
 
 const EVIDENCE = [
   {
@@ -58,7 +59,7 @@ export default function DeliveryEvidence() {
         <Reveal className="mt-8 flex flex-wrap items-center gap-5 border-t border-border pt-6">
           <Link href="/resume" className="text-brand underline underline-offset-4">{t("delivery.resume")}</Link>
           <a href="mailto:asadullahshafique@hotmail.com" className="text-brand underline underline-offset-4">{t("delivery.contact")}</a>
-          <a href="https://openai.com/careers/forward-deployed-engineer-uae-abu-dhabi-uae/" className="text-sm text-muted-foreground underline underline-offset-4">{t("delivery.role")}</a>
+          <a href={TARGET_ROLE_URL} className="text-sm text-muted-foreground underline underline-offset-4">{t("delivery.role")}</a>
         </Reveal>
       </div>
     </section>
