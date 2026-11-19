@@ -42,6 +42,8 @@ for (const mobile of [false, true]) {
 
 test("homepage Agent Engineering links to the same methodology and evidence", async ({ page }) => {
   await page.goto("/#agent-engineering");
+  // AnchorSettle scrolls to the hash on mount, then sets this flag; clicking before it can lose the click.
+  await expect(page.locator("html")).toHaveAttribute("data-anchor-navigation-ready", "true");
   const homeSection = page.locator("#agent-engineering");
   await expect(homeSection).toContainText("synthetic data");
   const labels = [...mapping, "Per-repo test suites"];
